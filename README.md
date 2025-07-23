@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Consultico Site
 
 High-performance marketing site built with:
@@ -13,3 +14,6 @@ High-performance marketing site built with:
 ```bash
 npm install
 npm run dev
+=======
+# consultico-site
+>>>>>>> 43286e5312f94932211c49c09b019ba263030cb1
