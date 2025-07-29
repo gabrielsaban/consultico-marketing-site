@@ -85,3 +85,13 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: #3b82f6;
 }
+
+/* Grow animation for lines */
+@keyframes grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
