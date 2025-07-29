@@ -35,7 +35,7 @@ export default function RootLayout({
             dotColor="#3B82F6"
             dotSize={1.3}
             dotSpacing={40}
-            dotOpacity={0.4}
+            dotOpacity={0.3}
             mouseInfluence={0.2}
             breathingSpeed={0.0015}
             breathingIntensity={0.2}
