@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 interface CustomCursorProps {
   size?: number
@@ -19,12 +19,23 @@ export default function CustomCursor({
   enableHoverEffects = true,
   className = ''
 }: CustomCursorProps) {
+  const [isDisabled, setIsDisabled] = useState(false)
   const cursorRef = useRef<HTMLDivElement>(null)
   const ringRef = useRef<HTMLDivElement>(null)
   const mouse = useRef({ x: 0, y: 0 })
   const isHovering = useRef(false)
 
   useEffect(() => {
+    // Disable on touch/coarse pointers or when prefers-reduced-motion
+    const coarse = window.matchMedia('(pointer: coarse)').matches
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const disabled = coarse || reduced
+    setIsDisabled(disabled)
+    if (disabled) {
+      document.body.style.cursor = 'auto'
+      return
+    }
+
     const update = () => {
       if (cursorRef.current) {
         cursorRef.current.style.left = `${mouse.current.x}px`
@@ -50,6 +61,17 @@ export default function CustomCursor({
       const el = e.target as HTMLElement
       const interactive = el.closest('a, button, [data-cursor-hover]')
       isHovering.current = !!interactive
+
+      const wantsNative = el.closest('[data-native-cursor]')
+      if (wantsNative) {
+        document.body.style.cursor = 'auto'
+        if (cursorRef.current) cursorRef.current.style.display = 'none'
+        if (ringRef.current) ringRef.current.style.display = 'none'
+      } else {
+        document.body.style.cursor = 'none'
+        if (cursorRef.current) cursorRef.current.style.display = 'block'
+        if (ringRef.current) ringRef.current.style.display = 'block'
+      }
     }
 
     document.addEventListener('mousemove', handleMouseMove)
@@ -63,6 +85,8 @@ export default function CustomCursor({
       document.body.style.cursor = 'auto'
     }
   }, [enableHoverEffects])
+
+  if (isDisabled) return null
 
   return (
     <>
