@@ -86,9 +86,9 @@ export default function Home() {
             </h3>
             <AnimatedText 
               paragraphs={[
-                "Marketing works best when it&apos;s customised to your business. Our digital marketing consultants build tailored strategies for you.",
+                "Marketing works best when it’s customised to your business. Our digital marketing consultants build tailored strategies for you.",
                 "To make your brand excel, we focus on the type of customers you want and exactly how to get there. Our methods are done-for-you meaning we take what your business stands for without stepping on your toes.",
-                "We use our specialised marketing process to build your business a lead generation framework that doesn&apos;t rely on guesswork."
+                "We use our specialised marketing process to build your business a lead generation framework that doesn’t rely on guesswork."
               ]}
               className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 font-helvetica-light"
               highlightWords={["tailored strategies", "done-for-you", "specialised marketing process"]}
@@ -125,7 +125,7 @@ export default function Home() {
                   { value: '1134%',    label: 'Visibility Increase',       note: 'Using SEO for search engine results.' },
                   { value: '200,000%', label: 'More Daily Traffic',         note: 'For our SEO clients, curated over 2 years.' },
                   { value: '50x',      label: 'Return on Ad Spend',         note: 'Bringing new life to PPC client lead generation.' },
-                  { value: '£1.2M',    label: "Increase in Clients&apos; Work", note: "Increase in our clients&apos; quotes resulting from our work." },
+                  { value: '£1.2M',    label: "Increase in Clients’ Work", note: "Increase in our clients’ quotes resulting from our work." },
                 ].map((stat) => (
                   <div
                     key={stat.label}
