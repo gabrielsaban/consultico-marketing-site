@@ -8,22 +8,32 @@ export default function HeroCTA({
   hoverWidth = '260px',
   className = '',
   position = 'hero',
+  targetId,
 }: {
   text?: string;
   width?: string;
   hoverWidth?: string;
   className?: string;
-  position?: 'hero' | 'stats';
+  position?: 'hero' | 'stats' | 'team';
+  targetId?: string;
 }) {
-  // hover/stretch variants remain unchanged
+  // Responsive base widths: hero scales with viewport so it feels consistent across screens
+  const responsiveWidth = position === 'hero' ? 'clamp(200px, 22vmin, 360px)' : width;
+  const responsiveHoverWidth = position === 'hero' ? 'clamp(240px, 26vmin, 420px)' : hoverWidth;
+
   const btnVariants = {
-    rest: { width, scale: 1, backgroundColor: '#007BFF' },
-    hover: { width: hoverWidth, scale: 1.05, backgroundColor: '#0260c4' },
+    rest: { width: responsiveWidth, scale: 1, backgroundColor: '#007BFF' },
+    hover: { width: responsiveHoverWidth, scale: 1.05, backgroundColor: '#0260c4' },
   };
 
   const arrowVariants = {
     rest: { x: -20, opacity: 0 },
-    hover: { x: 0,   opacity: 1 },
+    hover: { x: 12,  opacity: 1 },
+  };
+
+  const labelVariants = {
+    rest: { x: 0 },
+    hover: { x: -20 },
   };
 
   // wrapper variants only need hidden/visible without transition
@@ -32,13 +42,23 @@ export default function HeroCTA({
     visible: { opacity: 1, y: 0 },
   };
 
+  const handleClick = () => {
+    if (!targetId) return;
+    const el = document.getElementById(targetId);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
     <motion.div
       // positioning same as before
       className={`${
         position === 'hero'
-          ? 'absolute bottom-40 left-7/9 -translate-x-1/2 flex justify-start'
-          : 'flex justify-end'
+          ? 'absolute bottom-[18vmin] xl:bottom-[16vmin] 2xl:bottom-[14vmin] left-1/2 -translate-x-1/2 flex justify-start'
+          : position === 'team'
+            ? 'flex justify-end'
+            : 'flex justify-center'
       } ${className}`}
       variants={wrapperVariants}
       initial="hidden"
@@ -54,24 +74,28 @@ export default function HeroCTA({
         className="
           relative
           text-white font-futura font-semibold
-          text-xl
-          py-5 px-10
+          text-lg md:text-xl xl:text-2xl
+          py-5 px-12 xl:py-6 xl:px-14
           rounded-lg
           overflow-hidden
           whitespace-nowrap
-          text-left
+          text-center
+          flex items-center justify-center
         "
         variants={btnVariants}
         initial="rest"
         whileHover="hover"
         animate="rest"
         transition={{ duration: 0.3, ease: 'easeOut' }}
+        onClick={handleClick}
       >
-        <span className="relative z-10">{text}</span>
+        <motion.span className="relative z-10" variants={labelVariants}>
+          {text}
+        </motion.span>
 
-        <motion.span
-          className="
-            absolute right-6 top-1/2 transform -translate-y-1/2
+          <motion.span
+            className="
+            absolute right-6 xl:right-10 top-1/2 -translate-y-1/2
             text-2xl
           "
           variants={arrowVariants}
