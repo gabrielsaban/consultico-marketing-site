@@ -60,6 +60,15 @@ h1, h2, h3, h4, h5, h6, .font-futura, .btn, .navbar {
   background-color: var(--blue-secondary) !important;
 }
 
+/* Footer slide-in basic helper classes (optional, not used if using motion) */
+.footer-slide-enter {
+  transform: translateY(100%);
+}
+.footer-slide-enter-active {
+  transform: translateY(0%);
+  transition: transform 400ms ease-out;
+}
+
 /* Custom Scrollbar Styles */
 
 /* Firefox */
@@ -93,5 +102,18 @@ html {
   }
   to {
     transform: scaleX(1);
+  }
+}
+
+/* Static mask for keyword carousel only beyond large desktop */
+.carousel-mask {
+  -webkit-mask-image: none;
+          mask-image: none;
+}
+
+@media (min-width: 1600px) {
+  .carousel-mask {
+    -webkit-mask-image: linear-gradient(to right, transparent, black 120px, black calc(100% - 120px), transparent);
+            mask-image: linear-gradient(to right, transparent, black 120px, black calc(100% - 120px), transparent);
   }
 }
