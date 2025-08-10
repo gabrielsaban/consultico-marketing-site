@@ -71,6 +71,8 @@ export default function AnimatedText({ paragraphs, className = "", delay = 0, hi
 
   let wordCounter = 0;
 
+  const prefersReduced = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   return (
     <div ref={containerRef} className={className}>
       {paragraphs.map((_, paragraphIndex) => (
@@ -80,6 +82,15 @@ export default function AnimatedText({ paragraphs, className = "", delay = 0, hi
             .map((seg, segIdx) =>
               seg.words.map((word, wIdx) => {
                 const globalWordIndex = wordCounter++;
+                if (prefersReduced) {
+                  const isSpace = /^\s+$/.test(word);
+                  const wordClass = `${isSpace ? '' : 'inline-block mr-2'}${seg.highlight && !isSpace ? ' text-blue-primary' : ''}`;
+                  return (
+                    <span key={`${paragraphIndex}-${segIdx}-${wIdx}`} className={wordClass}>
+                      {word}
+                    </span>
+                  );
+                }
                 // Animate each word or space
                 const wordProgress = useTransform(
                   scrollYProgress,
