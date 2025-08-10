@@ -17,26 +17,6 @@ npm run dev
 
 ## 🛠️ Development Roadmap
 
-### 🔹 Phase 2: Homepage Layout
-- [ ] Build homepage layout based on Figma design
-  - [ ] Sticky vertical navigation bar with section links
-  - [ ] Full-width scrollable hero section with image and stats
-  - [ ] Service list section with tags and CTA
-  - [ ] Client carousel (projects section)
-  - [ ] Testimonial slider section
-  - [ ] Animated stat counters
-  - [ ] Meet the Team grid
-  - [ ] FAQ section with dropdowns
-  - [ ] Footer with return-to-top button
-- [ ] Structure sections into modular components (`components/sections/`)
-
-### 🔹 Phase 3: Animation & UX Polish
-- [ ] Install and configure Framer Motion
-- [ ] Animate scroll transitions between sections
-- [ ] Add hover/entry animations (buttons, cards, sliders)
-- [ ] Smooth scroll and snap-to-section behavior
-- [ ] Add scroll-based return-to-top button
-
 ### 🔹 Phase 4: Responsive Design & Accessibility
 - [ ] Make all sections responsive across mobile/tablet/desktop
 - [ ] Ensure semantic HTML and heading structure
