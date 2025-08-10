@@ -11,6 +11,7 @@ interface AnimatedCounterProps {
 export default function AnimatedCounter({ value, duration = 2 }: AnimatedCounterProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const prefersReduced = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const [displayValue, setDisplayValue] = useState(0);
   
   // Parse the target value
@@ -29,7 +30,7 @@ export default function AnimatedCounter({ value, duration = 2 }: AnimatedCounter
   const targetValue = getTargetValue();
 
   useEffect(() => {
-    if (isInView) {
+    if (isInView && !prefersReduced) {
       const startTime = Date.now();
       const animate = () => {
         const elapsed = (Date.now() - startTime) / 1000;
@@ -68,7 +69,7 @@ export default function AnimatedCounter({ value, duration = 2 }: AnimatedCounter
       transition={{ duration: 0.5 }}
     >
       <div className="text-5xl md:text-6xl font-bold text-blue-primary mb-4 font-futura">
-        {formatValue(displayValue)}
+        {prefersReduced ? value : formatValue(displayValue)}
       </div>
     </motion.div>
   );
