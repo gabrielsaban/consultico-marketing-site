@@ -27,7 +27,7 @@ export default function ImageFilledText({ text, className = '' }: ImageFilledTex
 
   useEffect(() => {
     let frame: number
-    let start = performance.now()
+    const start = performance.now()
 
     const animate = (now: number) => {
       const elapsed = now - start
@@ -40,7 +40,6 @@ export default function ImageFilledText({ text, className = '' }: ImageFilledTex
       const breatheWave = Math.sin(elapsed * 0.0005) // slower wave
       const brightness = 1 + breatheWave * 0.03 // 0.97–1.03
       const contrast = 1 + breatheWave * 0.02    // 0.98–1.02
-      const blur = 0.4 + breatheWave * 0.4       // 0–0.8px
       setFilterStyle(`brightness(${brightness}) contrast(${contrast})`)
 
       frame = requestAnimationFrame(animate)
