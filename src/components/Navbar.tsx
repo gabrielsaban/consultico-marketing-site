@@ -6,9 +6,9 @@ import Link from 'next/link';
 
 const navItems = [
   { name: 'home',     href: '#home'     },
-  { name: 'about',    href: '#about'    },
   { name: 'projects', href: '#projects' },
   { name: 'services', href: '#services' },
+  { name: 'about',    href: '#about'    },
   { name: 'contact',  href: '#contact'  },
 ];
 
@@ -23,23 +23,38 @@ export default function Navbar() {
   };
 
   useEffect(() => {
-    const onScroll = () => {
-      const scrollPos = window.scrollY + 100;
-      for (let { name, href } of navItems) {
-        const el = document.getElementById(href.slice(1));
-        if (!el) continue;
-        if (scrollPos >= el.offsetTop && scrollPos < el.offsetTop + el.offsetHeight) {
-          setActiveSection(name);
-          break;
+    // Highlight section whose center is inside the viewport window
+    const ids = navItems.map((n) => n.href.slice(1));
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // Pick the entry with the highest intersection ratio
+        let bestId: string | null = null;
+        let bestRatio = 0;
+        for (const entry of entries) {
+          if (entry.isIntersecting && entry.intersectionRatio > bestRatio) {
+            bestRatio = entry.intersectionRatio;
+            bestId = (entry.target as HTMLElement).id;
+          }
         }
+        if (bestId) setActiveSection(bestId);
+      },
+      {
+        // Center-weighted window: when section's middle is inside, it becomes active
+        root: null,
+        rootMargin: '-35% 0px -55% 0px',
+        threshold: [0, 0.25, 0.5, 0.75, 1],
       }
-    };
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
+    );
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
   }, []);
 
   return (
     <motion.nav 
+      data-native-cursor
       className="fixed left-0 top-0 h-full w-16 bg-blue-primary z-50 flex flex-col justify-center"
       initial={{ x: -100, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
