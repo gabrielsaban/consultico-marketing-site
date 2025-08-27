@@ -3,9 +3,13 @@
 import HeroSection from '@/components/HeroSection';
 import KeywordCarousel from '@/components/KeywordCarousel';
 import HeroCTA from '@/components/HeroCTA';
+import ServiceCard from '@/components/ServiceCard';
 import AnimatedCounter from '@/components/AnimatedCounter';
 import AnimatedLine from '@/components/AnimatedLine';
 import AnimatedText from '@/components/AnimatedText';
+import ProjectsGrid from '@/components/ProjectsGrid';
+import BlogCarousel from '@/components/BlogCarousel';
+import TestimonialsCarousel from '@/components/TestimonialsCarousel';
 import { motion, useScroll, useTransform, AnimatePresence, useSpring } from 'framer-motion';
 import { useRef, useState } from 'react';
 
@@ -90,7 +94,7 @@ export default function Home() {
                 "To make your brand excel, we focus on the type of customers you want and exactly how to get there. Our methods are done-for-you meaning we take what your business stands for without stepping on your toes.",
                 "We use our specialised marketing process to build your business a lead generation framework that doesn’t rely on guesswork."
               ]}
-              className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 font-helvetica-light"
+              className="text-lg sm:text-xl md:text-[1.35rem] lg:text-[1.5rem] xl:text-[1.65rem] 2xl:text-[1.8rem] text-gray-700 font-helvetica-light tracking-normal"
               highlightWords={["tailored strategies", "done-for-you", "specialised marketing process"]}
             />
           </div>
@@ -156,19 +160,186 @@ export default function Home() {
         </section>
       </section>
 
-      {/* Projects section (now after home) */}
-      <section id="projects" className="min-h-screen flex items-center justify-center scroll-mt-24">
-        <div className="text-center mx-auto px-4 sm:px-6 lg:px-8 max-w-[1280px] xl:max-w-7xl 2xl:max-w-[1400px] 3xl:max-w-[1600px]">
-          <h2 className="text-4xl font-bold text-blue-600 mb-4">Projects</h2>
-          <p className="text-lg text-gray-600">Projects section coming soon...</p>
+      {/* Services section (now before projects) */}
+      <section id="services" className="relative scroll-mt-24 py-20">
+        <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-[1280px] xl:max-w-7xl 2xl:max-w-[1400px] 3xl:max-w-[1600px]">
+          {/* Intro */}
+          <div className="text-center md:max-w-3xl lg:max-w-4xl mx-auto">
+            <h2 className="text-blue-primary font-futura text-4xl md:text-5xl lg:text-6xl font-extrabold">
+              Start with a Marketing Health Report
+            </h2>
+            <p className="mt-5 text-gray-700 text-base md:text-lg lg:text-xl font-helvetica-light">
+              Every client begins with a one-off audit. In half a day, we review your site, SEO, ads, and funnel, then give you a clear action plan. From there, you can choose what services to unlock.
+            </p>
+            <div className="mt-10 flex items-center justify-center gap-4 md:gap-6 flex-wrap">
+              <HeroCTA text="Book My Health Report" width="clamp(300px, 32vmin, 560px)" hoverWidth="clamp(340px, 36vmin, 620px)" position="stats" targetId="contact" inline />
+              <HeroCTA text="Book a Free Assessment" width="clamp(300px, 32vmin, 560px)" hoverWidth="clamp(340px, 36vmin, 620px)" position="stats" targetId="contact" variant="secondary" inline />
+            </div>
+          </div>
+
+          {/* Two-tier grid */}
+          <div className="mt-16 space-y-10">
+            {/* Tier 1: Featured */}
+            <div className="grid grid-cols-1 lg:grid-cols-12">
+              <ServiceCard
+                featured
+                title="Marketing Health Report"
+                subtitle="Your starting point with Consultico"
+                bullets={[
+                  'Technical site check',
+                  'SEO baseline',
+                  'Ads snapshot',
+                  '90-day roadmap',
+                  'Competitor snapshot',
+                  'Analytics sanity check',
+                ]}
+                bonusText="Includes free 12-month access to our private Skool community (£480 value)"
+                ctaLabel="Get Started"
+                href="#contact"
+                className="lg:col-start-2 lg:col-span-10 xl:col-start-2 xl:col-span-10 w-full"
+              />
+            </div>
+
+            {/* Heading before services grid */}
+            <div className="pt-4 md:pt-6 lg:pt-20">
+              <h3 className="text-blue-primary font-futura text-2xl md:text-3xl lg:text-4xl font-bold text-center">Our Services</h3>
+            </div>
+
+            {/* Tier 2: Services unlocked after report */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10">
+              <ServiceCard
+                title="SEO Growth Plan"
+                outcome="Grow visibility and organic clicks month on month."
+                provider="Consultico"
+                priceFrom="£X"
+                ctaLabel="Access Portal"
+                unlockNote
+              />
+              <ServiceCard
+                title="Paid Ads"
+                outcome="Drive targeted leads via Google & Meta."
+                provider="Consultico"
+                priceFrom="£X"
+                ctaLabel="Access Portal"
+                unlockNote
+              />
+              <ServiceCard
+                title="Web Refresh"
+                outcome="Tighten site structure and improve performance."
+                provider="Trusted Partner"
+                priceFrom="£X"
+                ctaLabel="Access Portal"
+                unlockNote
+              />
+              <ServiceCard
+                title="Brand Pack"
+                outcome="Clarify your brand voice and visuals."
+                provider="Trusted Partner"
+                priceFrom="£X"
+                ctaLabel="Access Portal"
+                unlockNote
+              />
+              <ServiceCard
+                title="Email Marketing"
+                outcome="Nurture and convert your audience with lifecycle flows."
+                provider="Consultico"
+                priceFrom="£X"
+                ctaLabel="Access Portal"
+                unlockNote
+              />
+              <ServiceCard
+                title="Analytics Setup"
+                outcome="Get GA4 and tracking configured for clear insights."
+                provider="Consultico"
+                priceFrom="£X"
+                ctaLabel="Access Portal"
+                unlockNote
+              />
+            </div>
+            {/* Zig-zag pillars (alternating, slight overlap for tighter stagger) */}
+            <div className="pt-24 md:pt-32 lg:pt-40">
+              <h3 className="text-blue-primary font-futura text-2xl md:text-3xl lg:text-5xl font-bold mb-6 md:mb-8 lg:mb-20 text-left">
+                See how we make your brand heard...
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 lg:gap-x-24 gap-y-12 md:gap-y-24 lg:gap-y-28">
+                {[
+                  {
+                    title: 'Build a recognisable identity',
+                    subheading: 'Branding & Content Creation',
+                    paragraphs: [
+                      'Your brand is more than a logo — it’s how people recognise and trust you. We create consistent visuals, tone, and content that reflect your identity across every channel.',
+                      'From logos to video, we ensure your brand looks sharp, feels authentic, and connects with the right audience.',
+                    ],
+                  },
+                  {
+                    title: 'Websites with purpose',
+                    subheading: 'Design & Development',
+                    paragraphs: [
+                      'A website should be more than a placeholder. We design and build sites that are intuitive, visually strong, and strategically crafted to persuade and convert.',
+                      'Whether it’s a refresh or a full build, your online hub becomes a growth engine, not just an address.',
+                    ],
+                  },
+                  {
+                    title: 'Be discoverable everywhere',
+                    subheading: 'SEO & Social Media',
+                    paragraphs: [
+                      'Visibility is everything. We optimise your site for search engines and adapt to AI-driven search, while also managing creative, algorithm-aware social strategies.',
+                      'From backlinks to TikTok storefronts, we help you show up, rank higher, and turn attention into customers.',
+                    ],
+                  },
+                  {
+                    title: 'Stay ahead of the curve',
+                    subheading: 'Marketing Strategy',
+                    paragraphs: [
+                      'Good marketing isn’t reactive — it’s proactive. We deliver long-term direction backed by research, positioning, and campaign planning.',
+                      'With clear priorities and data-driven forecasting, we keep your brand in front of trends and ahead of competitors.',
+                    ],
+                  },
+                ].map((pillar, index) => {
+                  const isRight = index % 2 === 1;
+                  const baseCol = isRight ? 'md:col-start-2' : 'md:col-start-1';
+                  const offsetClass = isRight
+                    ? 'md:mt-32 lg:mt-56' // push right items a touch further down
+                    : index > 0
+                      ? 'md:-mt-24 lg:-mt-28' // pull left items up slightly less for lower start
+                      : '';
+                  return (
+                    <div key={pillar.title} className={`${baseCol} ${offsetClass}`}>
+                      <h3 className="text-blue-primary font-futura text-2xl md:text-3xl font-bold mb-1">{pillar.title}</h3>
+                      {('subheading' in pillar) && (
+                        <div className="text-blue-primary font-helvetica text-sm md:text-base mb-3">{(pillar as any).subheading}</div>
+                      )}
+                      <div className="text-gray-700 font-helvetica-light text-sm md:text-base mb-4 space-y-3">
+                        {pillar.paragraphs.map((p, i) => (
+                          <p key={i}>{p}</p>
+                        ))}
+                      </div>
+                      <div className="w-full h-56 md:h-72 lg:h-[22rem] rounded-xl bg-gray-200 border border-gray-300" />
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Services placeholder section */}
-      <section id="services" className="min-h-screen flex items-center justify-center scroll-mt-24">
-        <div className="text-center mx-auto px-4 sm:px-6 lg:px-8 max-w-[1280px] xl:max-w-7xl 2xl:max-w-[1400px] 3xl:max-w-[1600px]">
-          <h3 className="text-4xl font-bold text-blue-600 mb-4">Services</h3>
-          <p className="text-lg text-gray-600">Services section coming soon...</p>
+      {/* Projects section */}
+      <section id="projects" className="scroll-mt-24">
+        <ProjectsGrid />
+        {/* Blogs + Testimonials two-column block */}
+        <div className="mt-24 md:mt-28 lg:mt-32 max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,900px)_1fr] gap-10 lg:gap-16 items-start">
+            {/* Left: Our Blogs (large square, left-aligned) */}
+            <div className="justify-self-start">
+              <h2 className="text-left text-blue-primary font-futura text-4xl md:text-5xl lg:text-6xl font-extrabold">Our Blogs</h2>
+              <BlogCarousel centered={false} className="w-full max-w-[900px]" />
+            </div>
+            {/* Right: Testimonies as right-aligned column list, no heading */}
+            <div className="justify-self-end w-full max-w-[900px]">
+              <TestimonialsCarousel className="w-full" />
+            </div>
+          </div>
         </div>
       </section>
 
