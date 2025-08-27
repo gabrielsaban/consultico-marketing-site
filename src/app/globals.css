@@ -117,3 +117,15 @@ html {
             mask-image: linear-gradient(to right, transparent, black 120px, black calc(100% - 120px), transparent);
   }
 }
+
+/* Subtle dotted background and soft mask for premium sections */
+.dot-grid-premium {
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(0,0,0,0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.section-mask {
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 5%, black 95%, transparent);
+          mask-image: linear-gradient(to bottom, transparent, black 5%, black 95%, transparent);
+}
