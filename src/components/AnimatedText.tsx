@@ -92,7 +92,7 @@ function Word({
   const wordProgress = useTransform(progress, [index / total, (index + 1) / total], [0, 1]);
   const opacity = useTransform(wordProgress, [0, 1], [0.3, 1]);
   const color = useTransform(wordProgress, [0, 1], ['#798596', 'inherit']);
-  const cls = `${isSpace ? '' : 'inline-block mr-2'}${
+  const cls = `${isSpace ? '' : 'inline-block'}${
     highlight && !isSpace ? ' text-blue-primary' : ''
   }`;
 
@@ -163,7 +163,7 @@ export default function AnimatedText({
             prefersReduced ? (
               <span
                 key={i}
-                className={`${isSpace ? '' : 'inline-block mr-2'}${
+                className={`${isSpace ? '' : 'inline-block'}${
                   highlight && !isSpace ? ' text-blue-primary' : ''
                 }`}
               >
