@@ -21,17 +21,35 @@ function ProjectTile({
   isOpen,
   onToggle,
   idx,
-  yMv,
-  opMv,
+  scrollYProgress,
+  reduceMotion,
 }: {
   project: Project;
   isOpen: boolean;
   onToggle: () => void;
   idx: number;
-  yMv: MotionValue<number>;
-  opMv: MotionValue<number>;
+  scrollYProgress: MotionValue<number>;
+  reduceMotion: boolean;
 }) {
   const tileRef = useRef<HTMLDivElement | null>(null);
+
+  // Per-tile animations derived from section scroll progress
+  const col = idx % 3;
+  const yRanges: ReadonlyArray<[number, number]> = [
+    [reduceMotion ? 0 : 260, 0],
+    [reduceMotion ? 0 : 200, 0],
+    [reduceMotion ? 0 : 140, 0],
+  ];
+  const yMv = useSpring(useTransform(scrollYProgress, [0, 1], yRanges[col]), {
+    stiffness: 160,
+    damping: 24,
+    mass: 0.7,
+  });
+  const phase = Math.floor(idx / 3) * 0.08;
+  const opMv = useSpring(useTransform(scrollYProgress, [0 + phase, 0.25 + phase], [0, 1]), {
+    stiffness: 140,
+    damping: 22,
+  });
 
   const panelId = `project-panel-${project.id}`;
 
@@ -179,7 +197,7 @@ export default function ProjectsGrid() {
 
   const [openId, setOpenId] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = !!useReducedMotion();
 
   const close = useCallback(() => setOpenId(null), []);
 
@@ -208,28 +226,7 @@ export default function ProjectsGrid() {
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start 85%', 'end 15%'] });
 
-  // Helpers: per-index motion values
-  const yFor = (idx: number): MotionValue<number> => {
-    const col = idx % 3;
-    const ranges: ReadonlyArray<[number, number]> = [
-      [reduceMotion ? 0 : 260, 0],
-      [reduceMotion ? 0 : 200, 0],
-      [reduceMotion ? 0 : 140, 0],
-    ];
-    return useSpring(useTransform(scrollYProgress, [0, 1], ranges[col]), {
-      stiffness: 160,
-      damping: 24,
-      mass: 0.7,
-    });
-  };
-
-  const opacityFor = (idx: number): MotionValue<number> => {
-    const phase = Math.floor(idx / 3) * 0.08;
-    return useSpring(useTransform(scrollYProgress, [0 + phase, 0.25 + phase], [0, 1]), {
-      stiffness: 140,
-      damping: 22,
-    });
-  };
+  // Per-tile motion values are computed inside ProjectTile to satisfy hook rules
 
   return (
     <section ref={sectionRef} className="relative w-full py-20 md:py-24 lg:py-28 overflow-visible">
@@ -244,8 +241,6 @@ export default function ProjectsGrid() {
         >
           {projects.map((p, idx) => {
             const isOpen = openId === p.id;
-            const yMv = yFor(idx);
-            const opMv = opacityFor(idx);
             return (
               <ProjectTile
                 key={p.id}
@@ -253,8 +248,8 @@ export default function ProjectsGrid() {
                 isOpen={isOpen}
                 onToggle={() => setOpenId((cur) => (cur === p.id ? null : p.id))}
                 idx={idx}
-                yMv={yMv}
-                opMv={opMv}
+                scrollYProgress={scrollYProgress}
+                reduceMotion={reduceMotion}
               />
             );
           })}

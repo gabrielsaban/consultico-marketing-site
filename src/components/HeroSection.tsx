@@ -7,7 +7,6 @@ import { useEffect, useRef, useState } from 'react';
 
 export default function HeroSection() {
   const line1Ref = useRef<HTMLDivElement>(null);
-  const [line1Width, setLine1Width] = useState<number>(0);
   const line2Ref = useRef<HTMLDivElement>(null);
   const [line2FontSizePx, setLine2FontSizePx] = useState<number | undefined>(undefined);
 
@@ -21,7 +20,6 @@ export default function HeroSection() {
         el1.style.width = 'auto';
         l1 = el1.offsetWidth;
         el1.style.width = prev1;
-        setLine1Width(l1);
       }
       if (line2Ref.current && l1 > 0) {
         // measure natural width of the second line text without constraints

@@ -47,7 +47,7 @@ export default function AnimatedCounter({ value, duration = 2 }: AnimatedCounter
       
       requestAnimationFrame(animate);
     }
-  }, [isInView, targetValue, duration]);
+  }, [isInView, targetValue, duration, prefersReduced]);
 
   const formatValue = (num: number) => {
     if (value.includes('%')) {

@@ -306,9 +306,7 @@ export default function Home() {
                   return (
                     <div key={pillar.title} className={`${baseCol} ${offsetClass}`}>
                       <h3 className="text-blue-primary font-futura text-2xl md:text-3xl font-bold mb-1">{pillar.title}</h3>
-                      {('subheading' in pillar) && (
-                        <div className="text-blue-primary font-helvetica text-sm md:text-base mb-3">{(pillar as any).subheading}</div>
-                      )}
+                      <div className="text-blue-primary font-helvetica text-sm md:text-base mb-3">{pillar.subheading}</div>
                       <div className="text-gray-700 font-helvetica-light text-sm md:text-base mb-4 space-y-3">
                         {pillar.paragraphs.map((p, i) => (
                           <p key={i}>{p}</p>
