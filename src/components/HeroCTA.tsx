@@ -12,6 +12,7 @@ export default function HeroCTA({
   targetId,
   variant = 'primary',
   inline = false,
+  mobileOffset,
 }: {
   text?: string;
   width?: string;
@@ -21,6 +22,8 @@ export default function HeroCTA({
   targetId?: string;
   variant?: 'primary' | 'secondary';
   inline?: boolean;
+  /** Mobile-only margin top in pixels (applies only for position='hero') */
+  mobileOffset?: number;
 }) {
   // Responsive base widths: hero scales with viewport so it feels consistent across screens
   const responsiveWidth = position === 'hero' ? 'clamp(200px, 22vmin, 360px)' : width;
@@ -84,19 +87,21 @@ export default function HeroCTA({
     }
   };
 
-  const wrapperClass = inline
-    ? `${className}`
-    : `${
-        position === 'hero'
-          ? 'absolute bottom-[20vmin] xl:bottom-[18vmin] 2xl:bottom-[16vmin] left-1/2 -translate-x-1/2 flex justify-start'
-          : position === 'team'
-            ? 'flex justify-end'
-            : 'flex justify-center'
-      } ${className}`;
+  const desktopWrapperClass =
+    position === 'hero'
+      ? 'hidden md:flex absolute bottom-[20vmin] xl:bottom-[18vmin] 2xl:bottom-[16vmin] left-1/2 -translate-x-1/2 justify-center'
+      : position === 'team'
+        ? 'hidden md:flex justify-end'
+        : 'hidden md:flex justify-center';
+
+  const mobileWrapperClass =
+    position === 'hero'
+      ? 'md:hidden flex justify-center w-full'
+      : 'md:hidden flex justify-center';
 
   const textColorClass = variant === 'secondary' ? 'text-blue-primary' : 'text-white';
   const borderClass = variant === 'secondary' ? 'border border-gray-300' : '';
-  const labelSizeClass = 'text-lg md:text-xl xl:text-2xl';
+  const labelSizeClass = 'text-base md:text-xl xl:text-2xl';
 
   const btnVariants = {
     rest: {
@@ -113,24 +118,13 @@ export default function HeroCTA({
     },
   };
 
-  return (
-    <motion.div
-      className={wrapperClass}
-      variants={wrapperVariants}
-      initial="hidden"
-      animate="visible"
-      transition={{
-        delay:    1.5,
-        duration: 0.4,
-        ease:     'easeOut',
-      }}
-    >
+  const Button = (
       <motion.button
         className={`
           relative
           ${textColorClass} font-futura font-semibold
           ${labelSizeClass}
-          py-5 px-12 xl:py-6 xl:px-14
+          py-3 px-8 md:py-5 md:px-12 xl:py-6 xl:px-14
           rounded-lg ${borderClass}
           overflow-hidden
           whitespace-nowrap
@@ -159,6 +153,60 @@ export default function HeroCTA({
           &raquo;&raquo;
         </motion.span>
       </motion.button>
+  );
+
+  if (inline) {
+    return (
+      <motion.div
+        className={className}
+        variants={wrapperVariants}
+        initial="hidden"
+        animate="visible"
+        transition={{ delay: 1.5, duration: 0.4, ease: 'easeOut' }}
+      >
+        {Button}
+      </motion.div>
+    );
+  }
+
+  if (position === 'hero') {
+    return (
+      <>
+        {/* Mobile wrapper: position via marginTop only on mobile */}
+        <motion.div
+          className={`${mobileWrapperClass} ${className}`}
+          style={{ marginTop: mobileOffset ?? 8 }}
+          variants={wrapperVariants}
+          initial="hidden"
+          animate="visible"
+          transition={{ delay: 1.5, duration: 0.4, ease: 'easeOut' }}
+        >
+          {Button}
+        </motion.div>
+        {/* Desktop wrapper: absolute centered */}
+        <motion.div
+          className={`${desktopWrapperClass} ${className}`}
+          variants={wrapperVariants}
+          initial="hidden"
+          animate="visible"
+          transition={{ delay: 1.5, duration: 0.4, ease: 'easeOut' }}
+        >
+          {Button}
+        </motion.div>
+      </>
+    );
+  }
+
+  // Non-hero positions: single wrapper responsive
+  return (
+    <motion.div
+      className={`${'flex justify-center md:justify-center'} ${className}`}
+      variants={wrapperVariants}
+      initial="hidden"
+      animate="visible"
+      transition={{ delay: 1.5, duration: 0.4, ease: 'easeOut' }}
+    >
+      {Button}
     </motion.div>
   );
 }

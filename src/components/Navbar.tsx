@@ -55,7 +55,7 @@ export default function Navbar() {
   return (
     <motion.nav 
       data-native-cursor
-      className="fixed left-0 top-0 h-full w-16 bg-blue-primary z-50 flex flex-col justify-center"
+      className="hidden md:flex fixed left-0 top-0 h-full w-16 bg-blue-primary z-50 flex-col justify-center"
       initial={{ x: -100, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       transition={{ 

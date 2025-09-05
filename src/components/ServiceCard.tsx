@@ -38,8 +38,8 @@ export default function ServiceCard({
 }: ServiceCardProps) {
   const Wrapper = motion.div;
 
-  const baseClasses = `rounded-2xl ring-1 ring-gray-300/80 bg-white/60 backdrop-blur-sm shadow-sm ${
-    featured ? 'p-8 md:p-10 lg:p-12' : 'p-6 md:p-7 lg:p-8'
+  const baseClasses = `rounded-2xl ring-1 ring-gray-300/80 bg-white/60 backdrop-blur-sm shadow-sm overflow-hidden flex flex-col h-full ${
+    featured ? 'p-8 md:p-10 lg:p-12' : 'p-5 md:p-7 lg:p-8'
   } ${className}`;
 
   const handleClick = () => {
@@ -64,13 +64,10 @@ export default function ServiceCard({
       className={baseClasses}
     >
       {/* Header */}
-      <div className={`${featured ? 'mb-8 md:mb-10' : 'mb-5 md:mb-6'}`}>
-        <h3 className={`${featured ? 'text-3xl md:text-4xl lg:text-[2.5rem]' : 'text-xl md:text-2xl'} font-bold text-blue-primary font-futura`}>{title}</h3>
+      <div className={`${featured ? 'mb-8 md:mb-10' : 'mb-3 md:mb-6'}`}>
+        <h3 className={`${featured ? 'text-3xl md:text-4xl lg:text-[2.5rem]' : 'text-lg md:text-2xl'} font-bold text-blue-primary font-futura`}>{title}</h3>
         {subtitle && (
           <p className={`mt-2 text-gray-700 ${featured ? 'text-lg md:text-xl' : 'text-sm md:text-base'} font-helvetica-light`}>{subtitle}</p>
-        )}
-        {outcome && !featured && (
-          <p className="mt-3 text-gray-700 text-sm md:text-base font-helvetica-light">{outcome}</p>
         )}
       </div>
 
@@ -119,34 +116,36 @@ export default function ServiceCard({
           </div>
         </div>
       ) : (
-        <div className="flex flex-col gap-4">
+        <div className="flex-1 flex flex-col gap-3 text-[0.9rem] md:text-base">
           {(provider || priceFrom) && (
             <div className="flex items-center gap-3">
               {provider && (
-                <span className="inline-flex items-center rounded-full bg-blue-50 text-blue-700 border border-blue-200 px-3 py-1 text-xs font-semibold">
-                  Delivered by: {provider}
+                <span className="inline-flex items-center rounded-full bg-blue-50 text-blue-700 border border-blue-200 px-2 py-1 text-[11px] sm:text-xs font-semibold whitespace-nowrap truncate max-w-full">
+                  By: {provider}
                 </span>
-              )}
-              {priceFrom && (
-                <span className="text-gray-600 text-sm font-helvetica"></span>
               )}
             </div>
           )}
 
-          <div className="mt-auto flex items-center justify-between pt-2">
-            <div className="text-gray-500 text-xs md:text-sm font-helvetica-light">
-              {unlockNote ? 'Unlockable after your Health Report.' : ''}
+          {outcome && (
+            <p className="text-gray-700 text-sm font-helvetica-light">{outcome}</p>
+          )}
+
+          {unlockNote && (
+            <div className="text-gray-500 text-xs md:text-sm font-helvetica-light mt-1">
+              Unlockable after your Health Report.
             </div>
-            <button
-              onClick={handleClick}
-              disabled={ctaDisabled}
-              className={`px-2 py-2 rounded-md text-white font-futura text-sm transition-colors ${
-                ctaDisabled ? 'bg-gray-300 cursor-not-allowed' : 'bg-blue-primary hover:bg-blue-600'
-              }`}
-            >
-              {ctaLabel}
-            </button>
-          </div>
+          )}
+
+          <button
+            onClick={handleClick}
+            disabled={ctaDisabled}
+            className={`mt-auto w-full py-3 rounded-lg text-white font-futura font-semibold text-sm md:text-base transition-colors ${
+              ctaDisabled ? 'bg-gray-300 cursor-not-allowed' : 'bg-blue-primary hover:bg-blue-600'
+            }`}
+          >
+            {ctaLabel}
+          </button>
         </div>
       )}
     </Wrapper>

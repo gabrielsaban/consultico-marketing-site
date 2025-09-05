@@ -63,7 +63,4 @@
   --font-helvetica-light: 'HelveticaLight', Arial, sans-serif;
 }
 
-.font-helvetica-light {
-  font-family: var(--font-helvetica);
-  font-weight: 300;
-} 
+/* font-helvetica-light utility is defined in globals.css to avoid duplication */ 

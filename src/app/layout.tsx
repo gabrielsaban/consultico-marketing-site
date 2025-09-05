@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import DotMatrixBackground from "@/components/InteractiveBackground";
 import LenisProvider from "@/components/LenisProvider";
 import CustomCursor from "@/components/CustomCursor";
+import TopBar from "@/components/TopBar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -45,6 +46,8 @@ export default function RootLayout({
             size={8}
             color="#3B82F6"
           />
+          {/* Mobile-only top bar */}
+          <TopBar />
           <Navbar />
           <div className="pl-0 md:pl-16 relative z-10 min-h-screen flex flex-col">
             <div className="flex-1">

@@ -29,7 +29,7 @@ const line3 = [
 
 // responsive item typography; dot spacing handled via responsive classes inline
 const ITEM_CLASS =
-  'flex-shrink-0 flex items-center font-helvetica text-gray-800 px-6 md:px-8 cursor-pointer text-2xl md:text-4xl lg:text-5xl xl:text-6xl'
+  'flex-shrink-0 flex items-center font-helvetica text-gray-800 px-5 md:px-8 cursor-pointer text-3xl md:text-4xl lg:text-5xl xl:text-6xl'
 
 /** Single keyword + dot */
 function MarqueeItem({
@@ -141,15 +141,15 @@ export default function KeywordCarousel() {
 
   return (
     <div
-      className="relative overflow-hidden py-12 space-y-6 mx-auto w-[3500px] max-w-[94vw] carousel-mask"
+      className="relative overflow-hidden py-8 md:py-12 space-y-4 md:space-y-6 mx-auto w-[2000px] max-w-[92vw] carousel-mask"
     >
       {lines.map(({ kws, rev, d }, i) => (
         <MarqueeLine key={i} keywords={kws} duration={d} reverse={rev} />
       ))}
 
       {/* Fallback gradient edges for browsers without mask-image support */}
-      <div className="hidden min-[1600px]:block pointer-events-none absolute inset-y-0 left-0 w-[120px] bg-gradient-to-r from-white to-white/0" />
-      <div className="hidden min-[1600px]:block pointer-events-none absolute inset-y-0 right-0 w-[120px] bg-gradient-to-l from-white to-white/0" />
+      <div className="hidden lg:block pointer-events-none absolute inset-y-0 left-0 w-[5vw] max-w-[140px] bg-gradient-to-r from-white to-white/0" />
+      <div className="hidden lg:block pointer-events-none absolute inset-y-0 right-0 w-[5vw] max-w-[140px] bg-gradient-to-l from-white to-white/0" />
     </div>
   )
 }

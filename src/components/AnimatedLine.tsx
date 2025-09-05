@@ -10,7 +10,7 @@ export default function AnimatedLine() {
   return (
     <motion.div
       ref={ref}
-      className="w-60 h-0.5 bg-blue-primary mx-auto mb-4"
+      className="w-32 sm:w-56 h-0.5 bg-blue-primary mx-auto my-3 sm:my-4"
       initial={{ scaleX: 0 }}
       animate={{ scaleX: isInView ? 1 : 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}

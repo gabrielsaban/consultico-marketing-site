@@ -82,10 +82,10 @@ export default function Home() {
         <HeroSection />
       
         {/* Marketing made for you section */}
-        <section className="py-30" ref={marketingRef}>
-        <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-[1280px] xl:max-w-7xl 2xl:max-w-[1400px] 3xl:max-w-[1600px] relative">
+        <section className="pt-2 pb-14 md:py-30" ref={marketingRef}>
+        <div className="mx-auto px-6 sm:px-6 lg:px-8 max-w-[1280px] xl:max-w-7xl 2xl:max-w-[1400px] 3xl:max-w-[1600px] relative">
           <div className="text-left md:text-right md:ml-auto md:max-w-[87%]">
-            <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-blue-primary mb-8 font-futura whitespace-normal xl:whitespace-nowrap">
+            <h3 className="text-[clamp(1.75rem,6vw,2.25rem)] md:text-5xl lg:text-6xl font-bold text-blue-primary mb-8 font-futura whitespace-nowrap">
               Marketing made for you
             </h3>
             <AnimatedText 
@@ -117,10 +117,10 @@ export default function Home() {
               <motion.div
                 style={{ y: statsY, opacity: statsOpacity }}
                 className="
-                  grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4
+                  grid grid-cols-2 sm:grid-cols-2 xl:grid-cols-4
                   items-start 
                   justify-items-center
-                  gap-10 lg:gap-12 xl:gap-16
+                  gap-6 sm:gap-8 lg:gap-12 xl:gap-16
                   mb-16
                   mx-auto
                 "
@@ -136,11 +136,13 @@ export default function Home() {
                       className="w-full max-w-[320px] text-center transition-transform duration-300 p-4 rounded-lg hover:scale-105 motion-reduce:hover:scale-100"
                   >
                     <AnimatedCounter value={stat.value} duration={2} />
-                    <div className="text-xl text-gray-600 font-helvetica mb-6">
+                    <div className="text-lg sm:text-xl text-gray-600 font-helvetica mb-4 sm:mb-6">
                       {stat.label}
                     </div>
-                    <AnimatedLine />
-                    <div className="text-sm text-gray-500 font-helvetica">
+                    <div className="my-2 sm:my-3">
+                      <AnimatedLine />
+                    </div>
+                    <div className="text-xs sm:text-sm text-gray-500 font-helvetica">
                       {stat.note}
                     </div>
                   </div>
@@ -164,7 +166,7 @@ export default function Home() {
       <section id="services" className="relative scroll-mt-24 py-20">
         <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-[1280px] xl:max-w-7xl 2xl:max-w-[1400px] 3xl:max-w-[1600px]">
           {/* Intro */}
-          <div className="text-center md:max-w-3xl lg:max-w-4xl mx-auto">
+          <div className="text-center md:max-w-3xl lg:max-w-4xl mx-auto px-5">
             <h2 className="text-blue-primary font-futura text-4xl md:text-5xl lg:text-6xl font-extrabold">
               Start with a Marketing Health Report
             </h2>
@@ -206,7 +208,7 @@ export default function Home() {
             </div>
 
             {/* Tier 2: Services unlocked after report */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10">
+            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 lg:gap-10">
               <ServiceCard
                 title="SEO Growth Plan"
                 outcome="Grow visibility and organic clicks month on month."
@@ -257,11 +259,11 @@ export default function Home() {
               />
             </div>
             {/* Zig-zag pillars (alternating, slight overlap for tighter stagger) */}
-            <div className="pt-24 md:pt-32 lg:pt-40">
-              <h3 className="text-blue-primary font-futura text-2xl md:text-3xl lg:text-5xl font-bold mb-6 md:mb-8 lg:mb-20 text-left">
+            <div className="pt-16 md:pt-32 lg:pt-40 px-5">
+              <h3 className="text-blue-primary font-futura text-xl md:text-3xl lg:text-5xl font-bold mb-8 md:mb-8 lg:mb-20 text-center">
                 See how we make your brand heard...
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 lg:gap-x-24 gap-y-12 md:gap-y-24 lg:gap-y-28">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 lg:gap-x-24 gap-y-10 md:gap-y-24 lg:gap-y-28 text-[0.95rem] md:text-base">
                 {[
                   {
                     title: 'Build a recognisable identity',
@@ -307,7 +309,7 @@ export default function Home() {
                     <div key={pillar.title} className={`${baseCol} ${offsetClass}`}>
                       <h3 className="text-blue-primary font-futura text-2xl md:text-3xl font-bold mb-1">{pillar.title}</h3>
                       <div className="text-blue-primary font-helvetica text-sm md:text-base mb-3">{pillar.subheading}</div>
-                      <div className="text-gray-700 font-helvetica-light text-sm md:text-base mb-4 space-y-3">
+                      <div className="text-gray-700 font-helvetica-light text-sm md:text-base mb-4 space-y-3 pr-1">
                         {pillar.paragraphs.map((p, i) => (
                           <p key={i}>{p}</p>
                         ))}
@@ -352,13 +354,13 @@ export default function Home() {
         <motion.div className="relative z-10 mx-auto px-4 sm:px-6 lg:px-8 py-28 md:py-32 max-w-[1280px] xl:max-w-7xl 2xl:max-w-[1400px] 3xl:max-w-[1600px]" style={{ y: aboutContentY }}>
           {/* Headline */}
           <div className="mb-8">
-            <h2 className="leading-[0.95] text-blue-primary font-futura text-6xl md:text-7xl lg:text-8xl font-bold">
+            <h2 className="leading-[0.95] text-blue-primary font-futura text-6xl md:text-7xl lg:text-8xl font-bold px-5">
               About <span className="font-extrabold">us</span>
             </h2>
           </div>
 
           {/* Intro paragraph */}
-          <div className="max-w-3xl text-gray-700 text-xl md:text-2xl font-helvetica-light space-y-6 mb-24 md:mb-28">
+          <div className="max-w-3xl text-gray-700 text-lg md:text-2xl font-helvetica-light space-y-6 mb-24 md:mb-28 px-5">
             <p>
               In business, nobody can afford to operate a full marketing strategy themselves. That’s where we come in! We are your specialised marketing department, helping you design new and innovative ways to bring more customers straight to you.
             </p>
@@ -368,9 +370,9 @@ export default function Home() {
           </div>
 
           {/* Sections container: Left subheading, Right content, with dividers */}
-          <div className="space-y-0">
+          <div className="space-y-0 px-5">
             {/* Section 1 */}
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start py-16 md:py-20">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-start py-12 md:py-20">
               <div className="md:col-span-5">
                 <h3 className="text-3xl md:text-4xl font-bold text-blue-primary font-futura">
                   <motion.span
@@ -391,7 +393,7 @@ export default function Home() {
                 viewport={{ once: true, margin: '-20% 0% -20% 0%' }}
                 transition={{ duration: 0.5, ease: 'easeOut' }}
               >
-                <div className="text-gray-700 text-lg md:text-xl font-helvetica-light space-y-4">
+                <div className="text-gray-700 text-base md:text-xl font-helvetica-light space-y-4">
                   <p>
                     We don’t make decisions based on gut feelings or wishful thinking. If something’s not working, we say so. If your message is muddled or your identity confused, we’ll bring it forward and make sure it’s solved.
                   </p>
@@ -415,7 +417,7 @@ export default function Home() {
             </motion.div>
 
             {/* Section 2 */}
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start py-16 md:py-20">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-start py-12 md:py-20">
               <div className="md:col-span-5">
                 <h3 className="text-3xl md:text-4xl font-bold text-blue-primary font-futura">
                   Making your brand{' '}
@@ -436,7 +438,7 @@ export default function Home() {
                 viewport={{ once: true, margin: '-20% 0% -20% 0%' }}
                 transition={{ duration: 0.5, ease: 'easeOut' }}
               >
-                <div className="text-gray-700 text-lg md:text-xl font-helvetica-light space-y-4">
+                <div className="text-gray-700 text-base md:text-xl font-helvetica-light space-y-4">
                   <p>
                     The average person sees between 4,000 and 10,000 brands a day and most of them go completely unnoticed. You scroll, swipe, and close the tab. You see no reason for you to buy into the brand. You’ve forgotten it already.
                   </p>
@@ -463,7 +465,7 @@ export default function Home() {
             </motion.div>
 
             {/* Section 3 */}
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start py-16 md:py-20">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-start py-12 md:py-20">
               <div className="md:col-span-5">
                 <h3 className="text-3xl md:text-4xl font-bold text-blue-primary font-futura">
                   Our dedication to{' '}
@@ -484,7 +486,7 @@ export default function Home() {
                 viewport={{ once: true, margin: '-20% 0% -20% 0%' }}
                 transition={{ duration: 0.5, ease: 'easeOut' }}
               >
-                <div className="text-gray-700 text-lg md:text-xl font-helvetica-light space-y-4">
+                <div className="text-gray-700 text-base md:text-xl font-helvetica-light space-y-4">
                   <p>
                     We build our work around students because they are already the sharpest marketers of this generation. As digital natives, they move most fluently between online and offline spaces, understanding platforms, trends, and behaviour without needing translation.
                   </p>
