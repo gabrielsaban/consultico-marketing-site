@@ -6,6 +6,7 @@
   --foreground: #171717;
   --font-futura: 'FuturaHeavyBT', 'Futura', Arial, sans-serif;
   --font-helvetica: 'Helvetica', Arial, sans-serif;
+  --font-helvetica-light: 'HelveticaLight', Arial, sans-serif;
   --blue-primary: #007BFF;
   --blue-secondary: #0260c4;
 }
@@ -17,6 +18,8 @@
   --font-mono: var(--font-geist-mono);
   --font-futura: 'FuturaHeavyBT', 'Futura', Arial, sans-serif;
   --font-helvetica: 'Helvetica', Arial, sans-serif;
+  --color-blue-primary: #007BFF;
+  --color-blue-secondary: #0260c4;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -32,33 +35,22 @@ body {
   font-family: var(--font-helvetica);
 }
 
-h1, h2, h3, h4, h5, h6, .font-futura, .btn, .navbar {
+/* Font utilities used across components */
+.font-futura {
   font-family: var(--font-futura) !important;
 }
-
 .font-helvetica {
   font-family: var(--font-helvetica) !important;
 }
-
 .font-helvetica-light {
   font-family: var(--font-helvetica-light) !important;
 }
 
-.text-blue-primary {
-  color: var(--blue-primary) !important;
-}
-
-.text-blue-secondary {
-  color: var(--blue-secondary) !important;
-}
-
-.bg-blue-primary {
-  background-color: var(--blue-primary) !important;
-}
-
-.bg-blue-secondary {
-  background-color: var(--blue-secondary) !important;
-}
+/* Color utilities referenced in components */
+.text-blue-primary { color: var(--blue-primary) !important; }
+.text-blue-secondary { color: var(--blue-secondary) !important; }
+.bg-blue-primary { background-color: var(--blue-primary) !important; }
+.bg-blue-secondary { background-color: var(--blue-secondary) !important; }
 
 /* Footer slide-in basic helper classes (optional, not used if using motion) */
 .footer-slide-enter {
@@ -70,7 +62,6 @@ h1, h2, h3, h4, h5, h6, .font-futura, .btn, .navbar {
 }
 
 /* Custom Scrollbar Styles */
-
 /* Firefox */
 html {
   scrollbar-width: thin;
@@ -85,10 +76,6 @@ html, body {
 /* WebKit browsers (Chrome, Safari, Edge) */
 ::-webkit-scrollbar {
   width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {

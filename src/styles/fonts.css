@@ -27,25 +27,9 @@
 
 @font-face {
   font-family: 'Helvetica';
-  src: url('/fonts/Helvetica.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Helvetica';
   src: url('/fonts/Helvetica-Bold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Helvetica';
-  src: url('/fonts/Helvetica-Oblique.ttf') format('truetype');
-  font-weight: 400;
-  font-style: italic;
   font-display: swap;
 }
 
@@ -55,12 +39,6 @@
   font-weight: 700;
   font-style: italic;
   font-display: swap;
-}
-
-:root {
-  --font-futura: 'FuturaHeavyBT', 'Futura', Arial, sans-serif;
-  --font-helvetica: 'Helvetica', Arial, sans-serif;
-  --font-helvetica-light: 'HelveticaLight', Arial, sans-serif;
 }
 
 /* font-helvetica-light utility is defined in globals.css to avoid duplication */ 
