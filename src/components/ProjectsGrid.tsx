@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence, useReducedMotion, useScroll, useTransform, useSpring, MotionValue } from 'framer-motion';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import Image from 'next/image';
 
 export type Project = {
   id: number;
@@ -23,6 +24,7 @@ function ProjectTile({
   idx,
   scrollYProgress,
   reduceMotion,
+  disableMotion,
 }: {
   project: Project;
   isOpen: boolean;
@@ -30,15 +32,16 @@ function ProjectTile({
   idx: number;
   scrollYProgress: MotionValue<number>;
   reduceMotion: boolean;
+  disableMotion: boolean;
 }) {
   const tileRef = useRef<HTMLDivElement | null>(null);
 
   // Per-tile animations derived from section scroll progress
   const col = idx % 3;
   const yRanges: ReadonlyArray<[number, number]> = [
-    [reduceMotion ? 0 : 260, 0],
-    [reduceMotion ? 0 : 200, 0],
-    [reduceMotion ? 0 : 140, 0],
+    [reduceMotion ? 0 : 120, 0],
+    [reduceMotion ? 0 : 90, 0],
+    [reduceMotion ? 0 : 60, 0],
   ];
   const yMv = useSpring(useTransform(scrollYProgress, [0, 1], yRanges[col]), {
     stiffness: 160,
@@ -57,12 +60,12 @@ function ProjectTile({
     <motion.div
       ref={tileRef}
       layout
-      style={{ y: yMv, opacity: opMv }}
+      style={{ y: disableMotion ? 0 : yMv, opacity: disableMotion ? 1 : opMv }}
       className={`relative rounded-2xl ring-0 shadow-none bg-gray-200 overflow-hidden transform-gpu will-change-transform will-change-opacity z-0`}
     >
       <button
         type="button"
-        className="group relative block w-full aspect-[2/3] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-primary"
+        className="group relative block w-full aspect-[2/3] md:aspect-[2/3] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-primary"
         aria-expanded={isOpen}
         aria-controls={panelId}
         onClick={(e) => {
@@ -76,6 +79,16 @@ function ProjectTile({
           }
         }}
       >
+        {/* Image */}
+        <Image
+          src={project.imageSrc}
+          alt={project.imageAlt}
+          fill
+          sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
+          className="object-cover"
+          priority={false}
+        />
+
         {/* Hover sheen (no transform) */}
         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden>
           <div className="absolute -inset-1 bg-gradient-to-br from-white/20 to-transparent" />
@@ -93,17 +106,17 @@ function ProjectTile({
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2, ease: 'easeOut' }}
-              className="absolute inset-0 bg-white/95 backdrop-blur-sm p-4 sm:p-5 md:p-6 flex flex-col cursor-pointer"
+              className="fixed inset-0 z-50 bg-white/95 backdrop-blur-sm p-3 sm:p-4 md:p-6 flex flex-col cursor-pointer overflow-auto md:absolute md:z-auto md:overflow-hidden"
               onClick={(e) => {
                 e.stopPropagation();
                 onToggle();
               }}
             >
-              <h3 className="text-blue-primary font-futura text-xl md:text-2xl font-bold">{project.title}</h3>
-              <div className="text-blue-secondary text-xs md:text-sm font-helvetica mt-1">
+              <h3 className="text-blue-primary font-futura text-base sm:text-lg md:text-2xl font-bold leading-tight">{project.title}</h3>
+              <div className="text-blue-secondary text-[11px] sm:text-xs md:text-sm font-helvetica mt-1">
                 {project.role} — {project.team}
               </div>
-              <p className="text-gray-700 font-helvetica-light text-sm md:text-base mt-3">{project.blurb}</p>
+              <p className="text-gray-700 font-helvetica-light text-[13px] sm:text-sm md:text-base mt-2 leading-snug">{project.blurb}</p>
               {project.href && (
                 <a
                   href={project.href}
@@ -124,7 +137,7 @@ function ProjectTile({
   );
 }
 
-export default function ProjectsGrid() {
+export default function ProjectsGrid(): React.JSX.Element {
   const projects: Project[] = useMemo(
     () => [
       {
@@ -198,6 +211,7 @@ export default function ProjectsGrid() {
   const [openId, setOpenId] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const reduceMotion = !!useReducedMotion();
+  const disableMotion = typeof window !== 'undefined' ? window.matchMedia('(max-width: 767px)').matches : false;
 
   const close = useCallback(() => setOpenId(null), []);
 
@@ -236,7 +250,7 @@ export default function ProjectsGrid() {
 
         <motion.div
           ref={containerRef}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-6 gap-x-8 overflow-visible isolation-isolate"
+          className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 md:gap-8 overflow-visible isolation-isolate"
           layout
         >
           {projects.map((p, idx) => {
@@ -250,6 +264,7 @@ export default function ProjectsGrid() {
                 idx={idx}
                 scrollYProgress={scrollYProgress}
                 reduceMotion={reduceMotion}
+                disableMotion={disableMotion}
               />
             );
           })}

@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { useMemo, useState } from 'react';
+import type { JSX } from 'react';
 
 type BlogSlide = {
   id: number;
@@ -12,7 +13,12 @@ type BlogSlide = {
   readTime: string; // e.g., "2 min read"
 };
 
-export default function BlogCarousel({ centered = true, className = '' }: { centered?: boolean; className?: string }) {
+interface BlogCarouselProps {
+  centered?: boolean;
+  className?: string;
+}
+
+export default function BlogCarousel({ centered = true, className = '' }: BlogCarouselProps): JSX.Element {
   const slides: BlogSlide[] = useMemo(
     () => [
       {
@@ -51,7 +57,7 @@ export default function BlogCarousel({ centered = true, className = '' }: { cent
   const next = () => setIndex((i) => (i + 1) % slides.length);
 
   return (
-    <div className={`${centered ? 'left-1/2 -translate-x-1/2 transform w-[94vw] max-w-[1400px]' : 'w-full'} relative mt-6 md:mt-8 px-0 ${className}`}>
+    <div className={`${centered ? 'left-1/2 -translate-x-1/2 transform w-[92vw] max-w-[1100px]' : 'w-full'} relative mt-4 md:mt-6 px-0 ${className}`}>
       {/* Arrows — reuse style from Mission & Values carousel */}
       <button
         aria-label="Previous"
@@ -76,7 +82,7 @@ export default function BlogCarousel({ centered = true, className = '' }: { cent
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -40 }}
             transition={{ duration: 0.35, ease: 'easeOut' }}
-            className="rounded-2xl border border-gray-200 bg-white/60 backdrop-blur-sm shadow-sm p-6 md:p-8 max-w-[620px]"
+            className="rounded-2xl border border-gray-200 bg-white/60 backdrop-blur-sm shadow-sm p-4 md:p-6 max-w-[520px]"
           >
             {/* Square visual first */}
             <div className="w-full aspect-square rounded-2xl bg-gray-200 border border-gray-300" />
@@ -93,16 +99,16 @@ export default function BlogCarousel({ centered = true, className = '' }: { cent
               </div>
 
               {/* Title */}
-              <h3 className="mt-4 text-blue-primary font-futura text-2xl md:text-3xl font-bold">
+              <h3 className="mt-3 text-blue-primary font-futura text-xl md:text-2xl font-bold">
                 {slides[index].title}
               </h3>
 
               {/* Summary */}
-              <p className="mt-3 text-gray-700 font-helvetica-light text-base md:text-lg leading-relaxed">
+              <p className="mt-2 text-gray-700 font-helvetica-light text-sm md:text-base leading-relaxed">
                 {slides[index].summary}
               </p>
 
-              <div className="pt-5">
+              <div className="pt-4">
                 <button
                   type="button"
                   className="inline-flex items-center text-blue-primary font-helvetica text-sm md:text-base hover:underline"

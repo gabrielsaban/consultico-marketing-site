@@ -29,7 +29,7 @@ const line3 = [
 
 // responsive item typography; dot spacing handled via responsive classes inline
 const ITEM_CLASS =
-  'flex-shrink-0 flex items-center font-helvetica text-gray-800 px-5 md:px-8 cursor-pointer text-3xl md:text-4xl lg:text-5xl xl:text-6xl'
+  'flex-shrink-0 flex items-center font-helvetica-light text-gray-700 px-5 md:px-8 cursor-pointer text-3xl md:text-4xl lg:text-5xl xl:text-6xl'
 
 /** Single keyword + dot */
 function MarqueeItem({
@@ -50,8 +50,8 @@ function MarqueeItem({
       <motion.span
         animate={
           isGlowing
-            ? { textShadow: '0 2px 10px rgba(0,0,0,0.22)', color: '#1f2937' }
-            : { textShadow: '0 0 0 rgba(0,0,0,0)', color: '#1f2937' }
+            ? { textShadow: '0 2px 10px rgba(0,0,0,0.18)', color: '#374151' }
+            : { textShadow: '0 0 0 rgba(0,0,0,0)', color: '#374151' }
         }
         transition={{ duration: 0.15, ease: 'easeOut' }}
       >
@@ -132,7 +132,7 @@ function MarqueeLine({
 }
 
 /** Full three-line carousel */
-export default function KeywordCarousel() {
+export default function KeywordCarousel(): React.JSX.Element {
   const lines = [
     { kws: line1, rev: false, d: 25 },
     { kws: line2, rev: true,  d: 28 },

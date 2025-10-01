@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, Variants } from 'framer-motion';
+import { motion, Variants, useReducedMotion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 
 export default function HeroCTA({
@@ -24,7 +24,8 @@ export default function HeroCTA({
   inline?: boolean;
   /** Mobile-only margin top in pixels (applies only for position='hero') */
   mobileOffset?: number;
-}) {
+}): React.JSX.Element {
+  const prefersReduced = useReducedMotion();
   // Responsive base widths: hero scales with viewport so it feels consistent across screens
   const responsiveWidth = position === 'hero' ? 'clamp(200px, 22vmin, 360px)' : width;
   const responsiveHoverWidth = position === 'hero' ? 'clamp(240px, 26vmin, 420px)' : hoverWidth;
@@ -106,13 +107,13 @@ export default function HeroCTA({
   const btnVariants = {
     rest: {
       width: inline && widthRestPx ? widthRestPx : responsiveWidth,
-      scale: 1,
+      scale: prefersReduced ? 1 : 1,
       backgroundColor: variant === 'secondary' ? '#FFFFFF' : '#007BFF',
       ...(inline && prBase ? { paddingRight: prBase } : {}),
     },
     hover: {
       width: inline && widthHoverPx ? widthHoverPx : responsiveHoverWidth,
-      scale: 1.05,
+      scale: prefersReduced ? 1 : 1.05,
       backgroundColor: variant === 'secondary' ? '#FFFFFF' : '#0260c4',
       ...(inline && prHover ? { paddingRight: prHover } : {}),
     },
@@ -162,7 +163,7 @@ export default function HeroCTA({
         variants={wrapperVariants}
         initial="hidden"
         animate="visible"
-        transition={{ delay: 1.5, duration: 0.4, ease: 'easeOut' }}
+        transition={{ delay: prefersReduced ? 0 : 1.5, duration: prefersReduced ? 0 : 0.4, ease: 'easeOut' }}
       >
         {Button}
       </motion.div>
@@ -179,7 +180,7 @@ export default function HeroCTA({
           variants={wrapperVariants}
           initial="hidden"
           animate="visible"
-          transition={{ delay: 1.5, duration: 0.4, ease: 'easeOut' }}
+        transition={{ delay: prefersReduced ? 0 : 1.5, duration: prefersReduced ? 0 : 0.4, ease: 'easeOut' }}
         >
           {Button}
         </motion.div>
@@ -204,7 +205,7 @@ export default function HeroCTA({
       variants={wrapperVariants}
       initial="hidden"
       animate="visible"
-      transition={{ delay: 1.5, duration: 0.4, ease: 'easeOut' }}
+      transition={{ delay: prefersReduced ? 0 : 1.5, duration: prefersReduced ? 0 : 0.4, ease: 'easeOut' }}
     >
       {Button}
     </motion.div>
