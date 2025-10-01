@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import Footer from "@/components/Footer";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
+import RouteAwareNavbar from "@/components/RouteAwareNavbar";
+import RouteAwarePageFrame from "@/components/RouteAwarePageFrame";
 import DotMatrixBackground from "@/components/InteractiveBackground";
 import LenisProvider from "@/components/LenisProvider";
 import CustomCursor from "@/components/CustomCursor";
@@ -48,14 +48,10 @@ export default function RootLayout({
           />
           {/* Mobile-only top bar */}
           <TopBar />
-          <Navbar />
-          <div className="pl-0 md:pl-16 relative z-10 min-h-screen flex flex-col">
-            <div className="flex-1">
-              {children}
-            </div>
-            {/* Footer */}
-            <Footer />
-          </div>
+          <RouteAwareNavbar />
+          <RouteAwarePageFrame>
+            {children}
+          </RouteAwarePageFrame>
         </LenisProvider>
       </body>
     </html>
