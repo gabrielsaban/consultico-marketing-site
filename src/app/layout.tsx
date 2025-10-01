@@ -3,9 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import RouteAwareNavbar from "@/components/RouteAwareNavbar";
 import RouteAwarePageFrame from "@/components/RouteAwarePageFrame";
-import DotMatrixBackground from "@/components/InteractiveBackground";
-import LenisProvider from "@/components/LenisProvider";
-import CustomCursor from "@/components/CustomCursor";
+import EffectsLayer from "@/components/EffectsLayer";
 import TopBar from "@/components/TopBar";
 
 const geistSans = Geist({
@@ -19,9 +17,37 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Consultico | Digital Marketing Consultancy",
-  description:
-    "Marketing made for you. Our digital marketing consultants build tailored strategies for your business.",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://www.consultico.example'),
+  title: {
+    default: 'Consultico | Digital Marketing Consultancy',
+    template: '%s | Consultico',
+  },
+  description: 'Marketing made for you. Our digital marketing consultants build tailored strategies for your business.',
+  openGraph: {
+    type: 'website',
+    url: '/',
+    title: 'Consultico | Digital Marketing Consultancy',
+    description: 'Marketing made for you. Our digital marketing consultants build tailored strategies for your business.',
+    siteName: 'Consultico',
+    images: [
+      {
+        url: '/og.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Consultico',
+      },
+    ],
+    locale: 'en_GB',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Consultico | Digital Marketing Consultancy',
+    description: 'Marketing made for you. Our digital marketing consultants build tailored strategies for your business.',
+    images: ['/og.jpg'],
+  },
+  alternates: {
+    canonical: '/',
+  },
 };
 
 export default function RootLayout({
@@ -32,27 +58,14 @@ export default function RootLayout({
   return (
     <html lang="en" className="bg-white">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased font-sans bg-white relative`}>
-        <LenisProvider>
-          <DotMatrixBackground
-            dotColor="#3B82F6"
-            dotSize={1.3}
-            dotSpacing={40}
-            dotOpacity={0.3}
-            mouseInfluence={0.2}
-            breathingSpeed={0.0015}
-            breathingIntensity={0.2}
-          />
-          <CustomCursor
-            size={8}
-            color="#3B82F6"
-          />
+        <EffectsLayer>
           {/* Mobile-only top bar */}
           <TopBar />
           <RouteAwareNavbar />
           <RouteAwarePageFrame>
             {children}
           </RouteAwarePageFrame>
-        </LenisProvider>
+        </EffectsLayer>
       </body>
     </html>
   );
