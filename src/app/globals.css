@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "../styles/fonts.css";
 
 :root {
   --background: #ffffff;
@@ -7,8 +6,13 @@
   --font-futura: 'FuturaHeavyBT', 'Futura', Arial, sans-serif;
   --font-helvetica: 'Helvetica', Arial, sans-serif;
   --font-helvetica-light: 'HelveticaLight', Arial, sans-serif;
-  --blue-primary: #007BFF;
-  --blue-secondary: #0260c4;
+  --font-helvetica-ui: 'Helvetica', Arial, sans-serif;
+  /* Brand color tokens */
+  --brand-blue: #007BFF;      /* Our blue */
+  --brand-silk: #f2f2f2;      /* Bleached silk */
+  --brand-black: #141414;     /* Chinese black */
+  /* Backwards-compat: alias old primary to brand blue */
+  --blue-primary: var(--brand-blue);
 }
 
 @theme inline {
@@ -18,8 +22,12 @@
   --font-mono: var(--font-geist-mono);
   --font-futura: 'FuturaHeavyBT', 'Futura', Arial, sans-serif;
   --font-helvetica: 'Helvetica', Arial, sans-serif;
-  --color-blue-primary: #007BFF;
-  --color-blue-secondary: #0260c4;
+  /* Expose brand tokens to Tailwind theme */
+  --color-brand-blue: var(--brand-blue);
+  --color-brand-silk: var(--brand-silk);
+  --color-brand-black: var(--brand-black);
+  /* Backwards-compat mapping */
+  --color-blue-primary: var(--brand-blue);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -43,14 +51,50 @@ body {
   font-family: var(--font-helvetica) !important;
 }
 .font-helvetica-light {
-  font-family: var(--font-helvetica-light) !important;
+  font-family: var(--font-helvetica) !important;
+  font-weight: 400 !important;
+}
+.font-helvetica-ui {
+  font-family: var(--font-helvetica-ui) !important;
 }
 
+/* Brand type scale utilities */
+/* Display sizes */
+.text-d-64 { font-size: 64px; line-height: 72px; }
+.text-d-48 { font-size: 48px; line-height: 56px; }
+.text-d-40 { font-size: 40px; line-height: 48px; }
+.text-d-30 { font-size: 30px; line-height: 36px; }
+.text-d-24 { font-size: 24px; line-height: 30px; }
+.text-d-20 { font-size: 20px; line-height: 28px; }
+/* Body sizes */
+.text-b-18 { font-size: 18px; line-height: 28px; }
+.text-b-16 { font-size: 16px; line-height: 24px; }
+.text-b-12 { font-size: 12px; line-height: 18px; }
+.text-b-10 { font-size: 10px; line-height: 14px; }
+
 /* Color utilities referenced in components */
-.text-blue-primary { color: var(--blue-primary) !important; }
-.text-blue-secondary { color: var(--blue-secondary) !important; }
-.bg-blue-primary { background-color: var(--blue-primary) !important; }
-.bg-blue-secondary { background-color: var(--blue-secondary) !important; }
+/* New brand utilities */
+.text-brand-blue { color: var(--brand-blue) !important; }
+.text-brand-silk { color: var(--brand-silk) !important; }
+.text-brand-black { color: var(--brand-black) !important; }
+.bg-brand-blue { background-color: var(--brand-blue) !important; }
+.bg-brand-silk { background-color: var(--brand-silk) !important; }
+.bg-brand-black { background-color: var(--brand-black) !important; }
+/* Border/Ring/Stroke/Fill helpers */
+.border-brand-blue { border-color: var(--brand-blue) !important; }
+.ring-brand-blue { --tw-ring-color: var(--brand-blue) !important; }
+.stroke-brand-blue { stroke: var(--brand-blue) !important; }
+.fill-brand-blue { fill: var(--brand-blue) !important; }
+/* Hover/focus variants for brand */
+.hover\:bg-brand-blue:hover { background-color: var(--brand-blue) !important; }
+.hover\:text-brand-blue:hover { color: var(--brand-blue) !important; }
+.focus-visible\:ring-brand-blue:focus-visible { --tw-ring-color: var(--brand-blue) !important; }
+/* Backwards-compat for existing usages */
+.text-blue-primary { color: var(--brand-blue) !important; }
+.bg-blue-primary { background-color: var(--brand-blue) !important; }
+/* Remove secondary: map to brand blue for now to avoid breakage */
+.text-blue-secondary { color: var(--brand-blue) !important; }
+.bg-blue-secondary { background-color: var(--brand-blue) !important; }
 
 /* Footer slide-in basic helper classes (optional, not used if using motion) */
 .footer-slide-enter {
@@ -65,7 +109,7 @@ body {
 /* Firefox */
 html {
   scrollbar-width: thin;
-  scrollbar-color: #60a5fa transparent;
+  scrollbar-color: var(--brand-blue) transparent;
 }
 
 /* Prevent unintended horizontal scrolling */
@@ -79,12 +123,12 @@ html, body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #60a5fa; /* Tailwind blue-400 */
+  background: var(--brand-blue);
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #3b82f6;
+  background: var(--brand-blue);
 }
 
 /* Grow animation for lines */
