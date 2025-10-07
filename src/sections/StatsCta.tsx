@@ -1,5 +1,6 @@
 'use client';
 
+import type { JSX } from 'react';
 import { motion, useScroll, useTransform, useSpring, useReducedMotion } from 'framer-motion';
 import { useRef } from 'react';
 import AnimatedCounter from '@/components/AnimatedCounter';

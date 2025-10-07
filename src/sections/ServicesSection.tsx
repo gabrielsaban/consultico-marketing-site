@@ -16,10 +16,10 @@ export default function ServicesSection() {
     <section id="services" className="relative scroll-mt-24 py-20">
       <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-[1280px] xl:max-w-7xl 2xl:max-w-[1400px] 3xl:max-w-[1600px]">
         <div className="text-center md:max-w-3xl lg:max-w-4xl mx-auto px-5">
-          <h2 className="text-blue-primary font-futura text-4xl md:text-5xl lg:text-6xl font-extrabold">
+          <h2 className="text-blue-primary font-futura text-d-40 md:text-d-48 font-extrabold">
             Start with a Marketing Health Report
           </h2>
-          <p className="mt-5 text-gray-700 text-base md:text-lg lg:text-xl font-helvetica-light">
+          <p className="mt-5 text-gray-700 text-b-16 md:text-b-18 font-helvetica-light">
             Every client begins with a one-off audit. In half a day, we review your site, SEO, ads, and funnel, then give you a clear action plan. From there, you can choose what services to unlock.
           </p>
           <div className="mt-10 flex items-center justify-center gap-4 md:gap-6 flex-wrap">
@@ -54,10 +54,10 @@ export default function ServicesSection() {
           </div>
 
           <div className="pt-16 md:pt-32 lg:pt-40 px-5">
-            <h3 className="text-blue-primary font-futura text-xl md:text-3xl lg:text-5xl font-bold mb-8 md:mb-8 lg:mb-20 text-center">
+            <h3 className="text-blue-primary font-futura text-d-40 md:text-d-30 lg:text-d-40 font-bold mb-8 md:mb-8 lg:mb-20 text-left">
               See how we make your brand heard...
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 lg:gap-x-24 gap-y-10 md:gap-y-24 lg:gap-y-28 text-[0.95rem] md:text-base">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 lg:gap-x-24 gap-y-10 md:gap-y-24 lg:gap-y-28 text-b-16">
               {[
                 {
                   title: 'Build a recognisable identity',
@@ -101,9 +101,9 @@ export default function ServicesSection() {
                     : '';
                 return (
                   <div key={pillar.title} className={`${baseCol} ${offsetClass}`}>
-                    <h3 className="text-blue-primary font-futura text-2xl md:text-3xl font-bold mb-1">{pillar.title}</h3>
-                    <div className="text-blue-primary font-helvetica text-sm md:text-base mb-3">{pillar.subheading}</div>
-                    <div className="text-gray-700 font-helvetica-light text-sm md:text-base mb-4 space-y-3 pr-1">
+                    <h3 className="text-blue-primary font-futura text-d-24 md:text-d-30 font-bold mb-1">{pillar.title}</h3>
+                    <div className="text-blue-primary font-helvetica text-b-16 mb-3">{pillar.subheading}</div>
+                    <div className="text-gray-700 font-helvetica-light text-b-16 md:text-b-18 mb-4 space-y-3 pr-1">
                       {pillar.paragraphs.map((p, i) => (
                         <p key={i}>{p}</p>
                       ))}

@@ -50,12 +50,12 @@ export default function AboutSection(): React.JSX.Element {
       <motion.div aria-hidden className="absolute inset-0 bg-white z-0" style={{ opacity: prefersReduced ? 1 : aboutOverlayOpacity }} />
       <motion.div className="relative z-10 mx-auto px-4 sm:px-6 lg:px-8 py-28 md:py-32 max-w-[1280px] xl:max-w-7xl 2xl:max-w-[1400px] 3xl:max-w-[1600px]" style={{ y: prefersReduced ? '0vh' as any : aboutContentY }}>
         <div className="mb-8">
-          <h2 className="leading-[0.95] text-blue-primary font-futura text-6xl md:text-7xl lg:text-8xl font-bold px-5">
+          <h2 className="leading-[0.95] text-blue-primary font-futura text-d-48 md:text-d-64 font-bold px-5">
             About <span className="font-extrabold">us</span>
           </h2>
         </div>
 
-        <div className="max-w-3xl text-gray-700 text-lg md:text-2xl font-helvetica-light space-y-6 mb-24 md:mb-28 px-5">
+        <div className="max-w-3xl text-gray-700 text-b-18 md:text-b-18 font-helvetica-light space-y-6 mb-24 md:mb-28 px-5">
           <p>
             In business, nobody can afford to operate a full marketing strategy themselves. That’s where we come in! We are your specialised marketing department, helping you design new and innovative ways to bring more customers straight to you.
           </p>
@@ -67,7 +67,7 @@ export default function AboutSection(): React.JSX.Element {
         <div className="space-y-0 px-5">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-start py-12 md:py-20">
             <div className="md:col-span-5">
-              <h3 className="text-3xl md:text-4xl font-bold text-blue-primary font-futura">
+              <h3 className="text-d-30 md:text-d-40 font-bold text-blue-primary font-futura">
                 <motion.span
                   initial={{ fontWeight: 600 }}
                   whileInView={{ fontWeight: 800 }}
@@ -86,7 +86,7 @@ export default function AboutSection(): React.JSX.Element {
               viewport={{ once: true, margin: '-20% 0% -20% 0%' }}
               transition={{ duration: 0.5, ease: 'easeOut' }}
             >
-              <div className="text-gray-700 text-base md:text-xl font-helvetica-light space-y-4">
+              <div className="text-gray-700 text-b-16 md:text-b-18 font-helvetica-light space-y-4">
                 <p>
                   We don’t make decisions based on gut feelings or wishful thinking. If something’s not working, we say so. If your message is muddled or your identity confused, we’ll bring it forward and make sure it’s solved.
                 </p>
@@ -104,13 +104,13 @@ export default function AboutSection(): React.JSX.Element {
             transition={{ duration: 0.4, ease: 'easeOut' }}
             className="py-3 md:py-4"
           >
-            <div className="h-[1px] bg-blue-primary"></div>
-            <div className="h-[1px] bg-blue-primary/60 mt-1"></div>
+            <div className="h-[1px] bg-brand-blue"></div>
+            <div className="h-[1px] bg-brand-blue/60 mt-1"></div>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-start py-12 md:py-20">
             <div className="md:col-span-5">
-              <h3 className="text-3xl md:text-4xl font-bold text-blue-primary font-futura">
+              <h3 className="text-d-30 md:text-d-40 font-bold text-blue-primary font-futura">
                 Making your brand{' '}
                 <motion.span
                   initial={{ fontWeight: 600 }}
@@ -129,7 +129,7 @@ export default function AboutSection(): React.JSX.Element {
               viewport={{ once: true, margin: '-20% 0% -20% 0%' }}
               transition={{ duration: 0.5, ease: 'easeOut' }}
             >
-              <div className="text-gray-700 text-base md:text-xl font-helvetica-light space-y-4">
+              <div className="text-gray-700 text-b-16 md:text-b-18 font-helvetica-light space-y-4">
                 <p>
                   The average person sees between 4,000 and 10,000 brands a day and most of them go completely unnoticed. You scroll, swipe, and close the tab. You see no reason for you to buy into the brand. You’ve forgotten it already.
                 </p>
@@ -150,13 +150,13 @@ export default function AboutSection(): React.JSX.Element {
             transition={{ duration: 0.4, ease: 'easeOut' }}
             className="py-3 md:py-4"
           >
-            <div className="h-[1px] bg-blue-primary"></div>
-            <div className="h-[1px] bg-blue-primary/60 mt-1"></div>
+            <div className="h-[1px] bg-brand-blue"></div>
+            <div className="h-[1px] bg-brand-blue/60 mt-1"></div>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-start py-12 md:py-20">
             <div className="md:col-span-5">
-              <h3 className="text-3xl md:text-4xl font-bold text-blue-primary font-futura">
+              <h3 className="text-d-30 md:text-d-40 font-bold text-blue-primary font-futura">
                 Our dedication to{' '}
                 <motion.span
                   initial={{ fontWeight: 600 }}
@@ -175,7 +175,7 @@ export default function AboutSection(): React.JSX.Element {
               viewport={{ once: true, margin: '-20% 0% -20% 0%' }}
               transition={{ duration: 0.5, ease: 'easeOut' }}
             >
-              <div className="text-gray-700 text-base md:text-xl font-helvetica-light space-y-4">
+              <div className="text-gray-700 text-b-16 md:text-b-18 font-helvetica-light space-y-4">
                 <p>
                   We build our work around students because they are already the sharpest marketers of this generation. As digital natives, they move most fluently between online and offline spaces, understanding platforms, trends, and behaviour without needing translation.
                 </p>
@@ -210,8 +210,8 @@ export default function AboutSection(): React.JSX.Element {
                   >
                     <div className="w-full aspect-square rounded-xl bg-gradient-to-br from-gray-200 to-gray-300 border border-gray-300" />
                     <div className="mt-3">
-                      <div className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold text-gray-800">Name Placeholder</div>
-                      <div className="text-[0.7rem] sm:text-xs md:text-sm lg:text-base text-gray-500">Role Placeholder</div>
+                      <div className="text-b-16 sm:text-d-24 md:text-d-30 lg:text-d-40 font-semibold text-gray-800">Name Placeholder</div>
+                      <div className="text-b-10 sm:text-b-12 md:text-b-16 lg:text-b-18 text-gray-500">Role Placeholder</div>
                     </div>
                   </motion.div>
                 ))}
@@ -219,26 +219,26 @@ export default function AboutSection(): React.JSX.Element {
             </motion.div>
 
             <div className="md:col-span-4 order-1 md:order-2 flex flex-col items-end">
-              <h2 className="leading-[0.95] text-blue-primary font-futura text-5xl md:text-6xl lg:text-7xl font-bold text-right">
+              <h2 className="leading-[0.95] text-blue-primary font-futura text-d-40 md:text-d-48 font-bold text-right">
                 Our <span className="font-extrabold">team</span>
               </h2>
-              <p className="text-right text-gray-700 text-lg md:text-xl font-helvetica-light mt-4 pl-6 md:pl-10">
+              <p className="text-right text-gray-700 text-b-16 md:text-b-18 font-helvetica-light mt-4 pl-6 md:pl-10">
                 Our fantastic head staff who make the marketing dream come true.
               </p>
             </div>
           </div>
 
           <div className="pt-24 md:pt-28">
-            <h2 className="text-center text-blue-primary font-futura text-5xl md:text-6xl font-extrabold">Our Mission &amp; Values</h2>
+            <h2 className="text-center text-blue-primary font-futura text-d-40 md:text-d-48 font-extrabold">Our Mission &amp; Values</h2>
             <div className="relative left-1/2 -translate-x-1/2 transform w-[94vw] max-w-[1600px] mt-12 px-2 md:px-6">
               <button aria-label="Previous" onClick={handleMissionPrev} className="absolute left-6 top-1/2 -translate-y-1/2 z-20 rounded-full bg-gray-200 text-gray-600 hover:bg-gray-300 px-4 py-2 shadow-sm">‹</button>
               <button aria-label="Next" onClick={handleMissionNext} className="absolute right-6 top-1/2 -translate-y-1/2 z-20 rounded-full bg-gray-200 text-gray-600 hover:bg-gray-300 px-4 py-2 shadow-sm">›</button>
               <div className="px-4 md:px-10 lg:px-16">
                 <div className="rounded-2xl border border-gray-200 bg-white/60 backdrop-blur-sm shadow-sm p-10 md:p-16 grid md:grid-cols-2 gap-8 md:gap-12 items-start md:items-stretch h-[520px] md:h-[560px] lg:h-[600px]">
                   <div className="flex flex-col h-full">
-                    <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-blue-primary mb-4 md:mb-6 lg:mb-8">{missionSlides[missionIndex].title}</h3>
+                    <h3 className="text-d-24 md:text-d-30 lg:text-d-40 font-bold text-blue-primary mb-4 md:mb-6 lg:mb-8">{missionSlides[missionIndex].title}</h3>
                     <div className="flex-1 flex items-start md:items-center overflow-hidden">
-                      <div className="text-gray-700 text-[0.95rem] sm:text-base md:text-[1.05rem] lg:text-lg xl:text-[1.15rem] font-helvetica-light space-y-4 md:space-y-5 lg:space-y-6 max-w-2xl leading-relaxed break-words pb-2 pr-1 overflow-auto">
+                      <div className="text-gray-700 text-b-16 md:text-b-18 font-helvetica-light space-y-4 md:space-y-5 lg:space-y-6 max-w-2xl leading-relaxed break-words pb-2 pr-1 overflow-auto">
                         {missionSlides[missionIndex].paragraphs.map((p, idx) => (
                           <p key={idx}>{p}</p>
                         ))}
