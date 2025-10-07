@@ -57,7 +57,7 @@ export default function RouteAwareNavbar() {
   return (
     <motion.nav 
       data-native-cursor
-      className="hidden md:flex fixed left-0 top-0 h-full w-16 bg-blue-primary z-50 flex-col justify-center"
+      className="hidden md:flex fixed left-0 top-0 h-full w-16 bg-brand-blue z-50 flex-col justify-center"
       initial={prefersReduced ? false : { x: -100, opacity: 0 }}
       animate={prefersReduced ? { x: 0, opacity: 1 } : { x: 0, opacity: 1 }}
       transition={{ delay: prefersReduced ? 0 : 1.5, duration: prefersReduced ? 0 : 0.4, ease: 'easeOut' }}
@@ -75,14 +75,14 @@ export default function RouteAwareNavbar() {
                 transition-all duration-200 ease-out
                 ${isActive
                   ? 'font-extrabold scale-110 text-white drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]'
-                  : 'font-bold text-blue-300'
+                  : 'font-bold text-brand-silk/70'
                 }
                 hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]
                 hover:scale-105
               `}
             >
               <div className="transform -rotate-90 whitespace-nowrap">
-                <span className="text-[24px] tracking-wide antialiased subpixel-antialiased">
+                <span className="text-d-20 tracking-wide antialiased subpixel-antialiased">
                   {item.name}
                 </span>
               </div>

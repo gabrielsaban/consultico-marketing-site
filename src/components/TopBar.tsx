@@ -44,17 +44,18 @@ export default function TopBar() {
               <div className="absolute inset-0 bg-gradient-to-b from-white via-white/90 to-white/0" />
               <div className="absolute inset-0 backdrop-blur-[2px]" />
             </div>
-            <div className="flex items-center justify-between px-4 py-3 relative">
-              <div className="text-2xl font-bold font-futura">
-                <span className="text-blue-primary">Consult</span>
-                <span className="text-blue-secondary">ico</span>
+            <div className="flex items-center px-4 py-3 relative">
+              <div className="shrink-0 flex items-center">
+                <img src="/brand/logo_main.svg" alt="Consultico" className="block h-7 w-auto" />
               </div>
-              <div className="flex items-center space-x-4">
-                <SocialIcons />
+              <div className="flex-1 flex items-center justify-center">
+                <SocialIcons className="!space-x-2 md:space-x-6 [&>a>span]:!w-6 [&>a>span]:!h-6 md:[&>a>span]:w-12 md:[&>a>span]:h-12" />
+              </div>
+              <div className="shrink-0 flex items-center">
                 <button
                   aria-label={open ? 'Close menu' : 'Open menu'}
                   onClick={() => setOpen((v) => !v)}
-                  className="w-10 h-10 rounded-full border border-blue-primary text-blue-primary grid place-items-center"
+                  className="w-10 h-10 rounded-full border border-brand-blue text-brand-blue grid place-items-center"
                 >
                   <div className="relative w-5 h-5">
                     <span className={`absolute left-0 right-0 h-[2px] bg-current transition-transform ${open ? 'top-1/2 -translate-y-1/2 rotate-45' : 'top-1'} `} />
@@ -63,7 +64,7 @@ export default function TopBar() {
                   </div>
                 </button>
               </div>
-            </div>
+              </div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -100,7 +101,7 @@ export default function TopBar() {
                       setOpen(false);
                       document.getElementById(item.href.slice(1))?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }}
-                    className="px-4 py-3 text-blue-primary font-futura text-lg hover:bg-blue-50 rounded-lg"
+                    className="px-4 py-3 text-brand-blue font-futura text-lg rounded-lg"
                   >
                     {item.name}
                   </a>

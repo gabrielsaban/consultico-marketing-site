@@ -224,7 +224,7 @@ export default function ServicesDial({ services, autoplay = false, className = '
                               <path
                                 d={d}
                                 fill="none"
-                                stroke="#60a5fa"
+                                stroke="var(--brand-blue)"
                                 strokeWidth={3}
                                 vectorEffect="non-scaling-stroke"
                                 strokeLinejoin="round"
@@ -245,7 +245,7 @@ export default function ServicesDial({ services, autoplay = false, className = '
                                   <motion.g style={{ rotate: counterMV, transformBox: 'fill-box', transformOrigin: '0 0' }}>
                                     <foreignObject x={-96} y={-20} width={192} height={40} style={{ overflow: 'visible', pointerEvents: 'auto' }}>
                                       <button
-                                        className={`w-full text-center ${isActiveSeg ? 'text-blue-700' : 'text-gray-700'} font-futura ${isActiveSeg ? 'font-semibold' : 'font-medium'} text-[12px] sm:text-[14px] leading-tight whitespace-pre-line`} 
+                                        className={`w-full text-center ${isActiveSeg ? 'text-brand-blue' : 'text-gray-700'} font-futura ${isActiveSeg ? 'font-semibold' : 'font-medium'} text-b-10 sm:text-b-12 leading-tight whitespace-pre-line`} 
                                         onClick={(e) => { e.preventDefault(); e.stopPropagation(); onCardClick(i); }}
                                       >
                                         {labelText}
@@ -290,10 +290,10 @@ export default function ServicesDial({ services, autoplay = false, className = '
             {selectedIndex != null && services[selectedIndex] && (
               <div className="pointer-events-none absolute inset-0 flex items-center justify-center" aria-live="polite">
                 <div
-                  className="rounded-full ring-1 ring-blue-200 bg-white/90 backdrop-blur-sm shadow-md flex flex-col items-center justify-center text-center"
+                  className="rounded-full ring-1 ring-gray-200 bg-white/90 backdrop-blur-sm shadow-md flex flex-col items-center justify-center text-center"
                   style={{ width: Math.max(80, innerGapR * 2 - 14), height: Math.max(80, innerGapR * 2 - 14) }}
                 >
-                  <div className="mb-1 text-blue-600 text-xs md:text-sm font-helvetica">By: {services[selectedIndex].provider}</div>
+                  <div className="mb-1 text-brand-blue text-xs md:text-sm font-helvetica">By: {services[selectedIndex].provider}</div>
                   <div className="text-blue-primary font-futura text-base md:text-2xl font-bold">{services[selectedIndex].title}</div>
                   {services[selectedIndex].outcome && (
                     <div className="mt-2 text-gray-700 text-sm md:text-base font-helvetica-light">{services[selectedIndex].outcome}</div>
@@ -329,7 +329,7 @@ export default function ServicesDial({ services, autoplay = false, className = '
                   <button
                     type="button"
                     disabled={Boolean(activeService.ctaDisabled)}
-                    className={`w-full md:w-auto px-5 py-3 rounded-lg text-white font-futura font-semibold text-sm md:text-base ${activeService.ctaDisabled ? 'bg-gray-300 cursor-not-allowed' : 'bg-blue-primary hover:bg-blue-600'}`}
+                    className={`w-full md:w-auto px-5 py-3 rounded-lg text-white font-futura font-semibold text-sm md:text-base ${activeService.ctaDisabled ? 'bg-gray-300 cursor-not-allowed' : 'bg-brand-blue hover:bg-brand-blue'}`}
                     onClick={() => handleCTA(activeService)}
                   >
                     {activeService.ctaLabel ?? 'Access Portal'}
@@ -337,7 +337,7 @@ export default function ServicesDial({ services, autoplay = false, className = '
                 </div>
 
                 {activeService.provider && (
-                  <div className="mb-1 text-blue-600 text-xs md:text-sm font-helvetica">By: {activeService.provider}</div>
+                  <div className="mb-1 text-brand-blue text-xs md:text-sm font-helvetica">By: {activeService.provider}</div>
                 )}
                 <h3 className="text-blue-primary font-futura text-xl md:text-2xl font-bold">{activeService.title}</h3>
                 {activeService.outcome && (
@@ -366,7 +366,7 @@ export default function ServicesDial({ services, autoplay = false, className = '
                       <div className="text-gray-600 text-sm">{(activeService as any)?.caseStudy?.result}</div>
                     )}
                     {(activeService as any)?.caseStudy?.href && (
-                      <a href={(activeService as any)?.caseStudy?.href} className="inline-flex items-center text-blue-primary text-sm mt-2 hover:underline">Read case study →</a>
+                      <a href={(activeService as any)?.caseStudy?.href} className="inline-flex items-center text-brand-blue text-sm mt-2 hover:underline">Read case study →</a>
                     )}
                   </div>
                 )}

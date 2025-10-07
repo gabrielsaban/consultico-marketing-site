@@ -65,7 +65,7 @@ function ProjectTile({
     >
       <button
         type="button"
-        className="group relative block w-full aspect-[2/3] md:aspect-[2/3] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-primary"
+        className="group relative block w-full aspect-[2/3] md:aspect-[2/3] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue"
         aria-expanded={isOpen}
         aria-controls={panelId}
         onClick={(e) => {
@@ -113,10 +113,10 @@ function ProjectTile({
               }}
             >
               <h3 className="text-blue-primary font-futura text-base sm:text-lg md:text-2xl font-bold leading-tight">{project.title}</h3>
-              <div className="text-blue-secondary text-[11px] sm:text-xs md:text-sm font-helvetica mt-1">
+              <div className="text-brand-blue text-b-10 sm:text-b-12 md:text-b-16 font-helvetica mt-1">
                 {project.role} — {project.team}
               </div>
-              <p className="text-gray-700 font-helvetica-light text-[13px] sm:text-sm md:text-base mt-2 leading-snug">{project.blurb}</p>
+              <p className="text-gray-700 font-helvetica-light text-b-12 md:text-b-16 mt-2 leading-snug">{project.blurb}</p>
               {project.href && (
                 <a
                   href={project.href}
@@ -127,7 +127,7 @@ function ProjectTile({
                 </a>
               )}
               <div className="mt-auto pt-3">
-                <span className="inline-block text-blue-secondary text-xs">Click outside to close</span>
+                <span className="inline-block text-brand-blue text-xs">Click outside to close</span>
               </div>
             </motion.div>
           )}

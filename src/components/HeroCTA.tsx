@@ -100,7 +100,7 @@ export default function HeroCTA({
       ? 'md:hidden flex justify-center w-full'
       : 'md:hidden flex justify-center';
 
-  const textColorClass = variant === 'secondary' ? 'text-blue-primary' : 'text-white';
+  const textColorClass = variant === 'secondary' ? 'text-brand-blue' : 'text-white';
   const borderClass = variant === 'secondary' ? 'border border-gray-300' : '';
   const labelSizeClass = 'text-base md:text-xl xl:text-2xl';
 
@@ -108,13 +108,13 @@ export default function HeroCTA({
     rest: {
       width: inline && widthRestPx ? widthRestPx : responsiveWidth,
       scale: prefersReduced ? 1 : 1,
-      backgroundColor: variant === 'secondary' ? '#FFFFFF' : '#007BFF',
+      backgroundColor: variant === 'secondary' ? '#FFFFFF' : 'var(--brand-blue)',
       ...(inline && prBase ? { paddingRight: prBase } : {}),
     },
     hover: {
       width: inline && widthHoverPx ? widthHoverPx : responsiveHoverWidth,
       scale: prefersReduced ? 1 : 1.05,
-      backgroundColor: variant === 'secondary' ? '#FFFFFF' : '#0260c4',
+      backgroundColor: variant === 'secondary' ? '#FFFFFF' : 'var(--brand-blue)',
       ...(inline && prHover ? { paddingRight: prHover } : {}),
     },
   };
@@ -123,7 +123,7 @@ export default function HeroCTA({
       <motion.button
         className={`
           relative
-          ${textColorClass} font-futura font-semibold
+          ${textColorClass} font-helvetica-ui font-semibold
           ${labelSizeClass}
           py-3 px-8 md:py-5 md:px-12 xl:py-6 xl:px-14
           rounded-lg ${borderClass}

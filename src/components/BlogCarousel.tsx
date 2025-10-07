@@ -92,26 +92,26 @@ export default function BlogCarousel({ centered = true, className = '' }: BlogCa
               {/* Author */}
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-gray-300 border border-gray-400" />
-                <div className="text-gray-700 text-sm md:text-base font-helvetica">
+                <div className="text-gray-700 text-b-12 md:text-b-16 font-helvetica">
                   <div className="font-medium">{slides[index].author}</div>
                   <div className="text-gray-500">{slides[index].date} · {slides[index].readTime}</div>
                 </div>
               </div>
 
               {/* Title */}
-              <h3 className="mt-3 text-blue-primary font-futura text-xl md:text-2xl font-bold">
+              <h3 className="mt-3 text-blue-primary font-futura text-d-20 md:text-d-24 font-bold">
                 {slides[index].title}
               </h3>
 
               {/* Summary */}
-              <p className="mt-2 text-gray-700 font-helvetica-light text-sm md:text-base leading-relaxed">
+              <p className="mt-2 text-gray-700 font-helvetica-light text-b-12 md:text-b-16 leading-relaxed">
                 {slides[index].summary}
               </p>
 
               <div className="pt-4">
                 <button
                   type="button"
-                  className="inline-flex items-center text-blue-primary font-helvetica text-sm md:text-base hover:underline"
+                  className="inline-flex items-center text-blue-primary font-helvetica text-b-12 md:text-b-16 hover:underline"
                 >
                   Read the blog →
                 </button>

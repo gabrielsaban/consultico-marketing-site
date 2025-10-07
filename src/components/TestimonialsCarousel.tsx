@@ -71,15 +71,15 @@ export default function TestimonialsCarousel({ className = '' }: TestimonialsCar
                 i === 0 ? 'ml-auto mr-2' : i === 1 ? 'ml-[10%]' : i === 2 ? 'ml-[18%]' : 'ml-[26%]'
               }`}
             >
-              <p className="text-gray-800 text-base md:text-lg font-helvetica-light">{t.textA}</p>
-              <p className="text-gray-800 text-base md:text-lg font-helvetica-light mt-3">{t.textB}</p>
+              <p className="text-gray-800 text-b-16 md:text-b-18 font-helvetica-light">{t.textA}</p>
+              <p className="text-gray-800 text-b-16 md:text-b-18 font-helvetica-light mt-3">{t.textB}</p>
               <div className="mt-5 flex items-center justify-between gap-3">
                 <div>
-                  <div className="text-gray-700 font-helvetica-light text-sm md:text-base">{t.company}</div>
-                  <div className="text-gray-500 text-xs md:text-sm font-helvetica-light">{t.author}</div>
+                  <div className="text-gray-700 font-helvetica-light text-b-12 md:text-b-16">{t.company}</div>
+                  <div className="text-gray-500 text-b-10 md:text-b-12 font-helvetica-light">{t.author}</div>
                 </div>
                 {/* 5 stars */}
-                <div className="flex items-center gap-1 text-blue-primary">
+                <div className="flex items-center gap-1 text-brand-blue">
                   {Array.from({ length: 5 }).map((_, i) => (
                     <svg key={i} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
                       <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.802 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.802-2.034a1 1 0 00-1.175 0l-2.802 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81H7.03a1 1 0 00.95-.69l1.07-3.292z" />
@@ -87,7 +87,7 @@ export default function TestimonialsCarousel({ className = '' }: TestimonialsCar
                   ))}
                 </div>
                 {/* Avatar */}
-                <div className="w-10 h-10 rounded-full bg-blue-primary/90 flex items-center justify-center text-white font-bold">A</div>
+                <div className="w-10 h-10 rounded-full bg-brand-blue/90 flex items-center justify-center text-white font-bold">A</div>
               </div>
             </motion.div>
           );

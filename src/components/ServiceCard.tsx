@@ -65,7 +65,7 @@ export default function ServiceCard({
     >
       {/* Header */}
       <div className={`${featured ? 'mb-8 md:mb-10' : 'mb-3 md:mb-6'}`}>
-        <h3 className={`${featured ? 'text-3xl md:text-4xl lg:text-[2.5rem]' : 'text-lg md:text-2xl'} font-bold text-blue-primary font-futura`}>{title}</h3>
+        <h3 className={`${featured ? 'text-d-40 md:text-d-48' : 'text-d-20 md:text-d-24'} font-bold text-blue-primary font-futura`}>{title}</h3>
         {subtitle && (
           <p className={`mt-2 text-gray-700 ${featured ? 'text-lg md:text-xl' : 'text-sm md:text-base'} font-helvetica-light`}>{subtitle}</p>
         )}
@@ -76,18 +76,18 @@ export default function ServiceCard({
         <div>
           {Array.isArray(bullets) && bullets.length > 0 && (
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 lg:gap-5">
-              <ul className="space-y-2 text-gray-700 text-[1.05rem] md:text-[1.15rem] font-helvetica-light">
+              <ul className="space-y-2 text-gray-700 text-b-16 md:text-b-18 font-helvetica-light">
                 {bullets.filter(Boolean).slice(0, Math.ceil((bullets?.length || 0)/2)).map((item, idx) => (
                   <li key={`b1-${idx}`} className="flex items-start gap-2">
-                    <span className="select-none text-blue-primary">-</span>
+                    <span className="select-none text-brand-blue">-</span>
                     <span>{item}</span>
                   </li>
                 ))}
               </ul>
-              <ul className="space-y-2 text-gray-700 text-[1.05rem] md:text-[1.15rem] font-helvetica-light">
+              <ul className="space-y-2 text-gray-700 text-b-16 md:text-b-18 font-helvetica-light">
                 {bullets.filter(Boolean).slice(Math.ceil((bullets?.length || 0)/2)).map((item, idx) => (
                   <li key={`b2-${idx}`} className="flex items-start gap-2">
-                    <span className="select-none text-blue-primary">-</span>
+                    <span className="select-none text-brand-blue">-</span>
                     <span>{item}</span>
                   </li>
                 ))}
@@ -106,8 +106,8 @@ export default function ServiceCard({
               <button
                 onClick={handleClick}
                 disabled={ctaDisabled}
-                className={`px-5 py-3 rounded-lg text-white font-futura font-semibold text-sm md:text-base transition-colors ${
-                  ctaDisabled ? 'bg-gray-300 cursor-not-allowed' : 'bg-blue-primary hover:bg-blue-600'
+                className={`px-5 py-3 rounded-lg text-white font-helvetica-ui font-semibold text-sm md:text-base transition-colors ${
+                  ctaDisabled ? 'bg-gray-300 cursor-not-allowed' : 'bg-brand-blue hover:bg-brand-blue'
                 }`}
               >
                 {ctaLabel}
@@ -116,11 +116,11 @@ export default function ServiceCard({
           </div>
         </div>
       ) : (
-        <div className="flex-1 flex flex-col gap-3 text-[0.9rem] md:text-base">
+        <div className="flex-1 flex flex-col gap-3 text-b-16">
           {(provider || priceFrom) && (
             <div className="flex items-center gap-3">
               {provider && (
-                <span className="inline-flex items-center rounded-full bg-blue-50 text-blue-700 border border-blue-200 px-2 py-1 text-[11px] sm:text-xs font-semibold whitespace-nowrap truncate max-w-full">
+                <span className="inline-flex items-center rounded-full bg-brand-silk text-brand-blue border border-brand-blue/20 px-2 py-1 text-b-10 sm:text-b-12 font-semibold whitespace-nowrap truncate max-w-full">
                   By: {provider}
                 </span>
               )}
@@ -140,8 +140,8 @@ export default function ServiceCard({
           <button
             onClick={handleClick}
             disabled={ctaDisabled}
-            className={`mt-auto w-full py-3 rounded-lg text-white font-futura font-semibold text-sm md:text-base transition-colors ${
-              ctaDisabled ? 'bg-gray-300 cursor-not-allowed' : 'bg-blue-primary hover:bg-blue-600'
+            className={`mt-auto w-full py-3 rounded-lg text-white font-helvetica-ui font-semibold text-sm md:text-base transition-colors ${
+              ctaDisabled ? 'bg-gray-300 cursor-not-allowed' : 'bg-brand-blue hover:bg-brand-blue'
             }`}
           >
             {ctaLabel}

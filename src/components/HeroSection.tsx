@@ -42,7 +42,12 @@ export default function HeroSection() {
         }
       }
     };
-    measure();
+    const ready = (document as any).fonts?.ready as Promise<any> | undefined;
+    if (ready) {
+      ready.then(() => measure());
+    } else {
+      measure();
+    }
     const ro = new ResizeObserver(measure);
     if (line1Ref.current) ro.observe(line1Ref.current);
     if (line2Ref.current) ro.observe(line2Ref.current);
@@ -57,9 +62,9 @@ export default function HeroSection() {
       {/* Background gradient */}
       <div className="absolute inset-0 -z-10" />
       
-      {/* Brand name - positioned higher and more to the right with better spacing (hidden on phones; TopBar shows logo) */}
+      {/* Brand logo SVG - positioned near top-right on desktop (hidden on phones; TopBar shows logo) */}
       <motion.div 
-        className="absolute top-[4.5rem] left-24 hidden md:block"
+        className="absolute top-[3.25rem] left-24 hidden md:block"
         initial={{ opacity: 0, y: -40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ 
@@ -68,10 +73,11 @@ export default function HeroSection() {
           ease: "easeOut" 
         }}
       >
-        <h1 className="text-[clamp(5.5rem,9vmin,11rem)] font-bold font-futura">
-          <span className="text-blue-primary">Consult</span>
-          <span className="text-blue-secondary">ico</span>
-        </h1>
+        <img
+          src="/brand/logo_main.svg"
+          alt="Consultico"
+          className="block w-[min(36vw,420px)] h-auto"
+        />
       </motion.div>
       
       {/* Hero headline - positioned absolutely for better control */}
@@ -127,9 +133,9 @@ export default function HeroSection() {
         <HeroCTA targetId="contact" />
       </div>
       
-      {/* Social media icons - hidden on phones; moved to TopBar */}
+      {/* Social media icons - hidden on phones; moved to TopBar; nudged higher */}
       <motion.div 
-        className="absolute top-24 right-24 hidden md:flex space-x-4 xl:space-x-6"
+        className="absolute top-16 right-24 hidden md:flex space-x-8 xl:space-x-6 "
         initial={{ opacity: 0, y: -40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ 
@@ -138,7 +144,7 @@ export default function HeroSection() {
           ease: "easeOut" 
         }}
       >
-        <SocialIcons className="[&>*]:w-[clamp(3.75rem,6.2vmin,5rem)] [&>*]:h-[clamp(3.75rem,6.2vmin,5rem)]" />
+        <SocialIcons className="[&>a>img]:w-[clamp(2rem,4.5vmin,2.75rem)] [&>a>img]:h-[clamp(2rem,4.5vmin,2.75rem)]" />
       </motion.div>
     </div>
   );

@@ -10,7 +10,7 @@ export default function LandingPage() {
       <Link
         href="/"
         aria-label="Enter main site"
-        className="fixed top-4 right-4 md:top-6 md:right-6 z-20 inline-flex h-11 w-11 items-center justify-center rounded-full bg-blue-primary text-white text-2xl leading-none shadow-md hover:bg-blue-secondary transition-colors"
+        className="fixed top-4 right-4 md:top-6 md:right-6 z-20 inline-flex h-11 w-11 items-center justify-center rounded-full bg-brand-blue text-white text-2xl leading-none shadow-md hover:bg-brand-blue transition-colors"
       >
         →
       </Link>
@@ -19,9 +19,9 @@ export default function LandingPage() {
         <div className="max-w-[1280px] mx-auto text-center pt-12 md:pt-21 lg:pt-18 pb-16 md:pb-24 lg:pb-28">
           {/* Consultico logo */}
           <div className="mb-10">
-            <h1 className="text-[clamp(3.25rem,7vw,5.5rem)] font-bold font-futura">
-              <span className="text-blue-primary">Consult</span>
-              <span className="text-blue-secondary">ico</span>
+            <h1 className="text-d-48 font-bold font-futura">
+              <span className="text-brand-blue">Consult</span>
+              <span className="text-brand-blue">ico</span>
             </h1>
           </div>
 
@@ -46,7 +46,7 @@ export default function LandingPage() {
           </div>
 
           {/* Divider between hook and pitch */}
-          <div className="mx-auto mt-5 h-[2px] max-w-6xl bg-gradient-to-r from-transparent via-blue-primary to-transparent" />
+          <div className="mx-auto mt-5 h-[2px] max-w-6xl bg-gradient-to-r from-transparent via-brand-blue to-transparent" />
 
           {/* Immediate sales vision/pitch (regular, key terms blue/bold) */}
           <p className="mt-4 md:mt-6 text-gray-800 font-helvetica-light leading-[1.05] text-3xl sm:text-4xl md:text-5xl lg:text-6xl max-w-6xl mx-auto">
@@ -61,7 +61,7 @@ export default function LandingPage() {
           {/* VSL placeholder */}
           <div className="mt-10 md:mt-14">
             <div className="mx-auto w-full max-w-6xl">
-              <div className="rounded-t-2xl bg-blue-primary text-white text-center text-sm sm:text-base font-helvetica py-3 font-semibold tracking-wide shadow-sm">
+              <div className="rounded-t-2xl bg-brand-blue text-white text-center text-sm sm:text-base font-helvetica py-3 font-semibold tracking-wide shadow-sm">
                 CLICK BELOW TO SEE HOW WE WORK
               </div>
               <div className="relative w-full aspect-video rounded-b-2xl border border-gray-300 bg-gradient-to-br from-gray-100 to-gray-200 shadow-sm overflow-hidden">
@@ -123,7 +123,7 @@ export default function LandingPage() {
                 {Array.from({ length: 3 }).map((_, i) => (
                   <div key={i} className="rounded-2xl border border-gray-200 bg-white shadow-sm p-6">
                     <div className="w-full aspect-[4/5] rounded-xl bg-gradient-to-br from-gray-200 to-gray-300 border border-gray-300 shadow-[0_8px_20px_rgba(0,0,0,0.08)]" />
-                    <div className="mt-8 text-[1.35rem] font-semibold text-gray-900 font-helvetica">Business Name Placeholder</div>
+                    <div className="mt-8 text-d-24 font-semibold text-gray-900 font-helvetica">Business Name Placeholder</div>
                     <div className="mt-5 text-sm text-gray-700 font-helvetica-light space-y-4">
                       <p>Short paragraph about how we helped this client achieve measurable results and improvements.</p>
                       <p>Additional context describing the challenge, our approach, and the outcome in brief.</p>

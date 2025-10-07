@@ -14,7 +14,7 @@ interface DotMatrixBackgroundProps {
 }
 
 export default function DotMatrixBackground({
-  dotColor = '#3B82F6', // Tailwind blue-500
+  dotColor = '#007BFF',
   dotSize = 2,
   dotSpacing = 40,
   dotOpacity = 0,
