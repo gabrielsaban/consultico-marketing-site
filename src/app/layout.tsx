@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import localFont from 'next/font/local';
 import "./globals.css";
 import RouteAwareNavbar from "@/components/RouteAwareNavbar";
 import RouteAwarePageFrame from "@/components/RouteAwarePageFrame";
@@ -16,17 +17,42 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+// Brand fonts (local woff2)
+const futuraHV = localFont({
+  src: '../fonts/FuturaHVBT.woff2',
+  weight: '700',
+  style: 'normal',
+  display: 'swap',
+  variable: '--font-futura',
+});
+
+const helveticaNow = localFont({
+  src: '../fonts/HelveticaNowDisplay.woff2',
+  weight: '400',
+  style: 'normal',
+  display: 'swap',
+  variable: '--font-helvetica',
+});
+
+const helveticaUI = localFont({
+  src: '../fonts/HelveticaRegular.woff2',
+  weight: '400',
+  style: 'normal',
+  display: 'swap',
+  variable: '--font-helvetica-ui',
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://www.consultico.example'),
   title: {
-    default: 'Consultico | Digital Marketing Consultancy',
+    default: 'Consultico - Digital Marketing Consultancy',
     template: '%s | Consultico',
   },
   description: 'Marketing made for you. Our digital marketing consultants build tailored strategies for your business.',
   openGraph: {
     type: 'website',
     url: '/',
-    title: 'Consultico | Digital Marketing Consultancy',
+    title: 'Consultico - Digital Marketing Consultancy',
     description: 'Marketing made for you. Our digital marketing consultants build tailored strategies for your business.',
     siteName: 'Consultico',
     images: [
@@ -57,7 +83,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="bg-white">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased font-sans bg-white relative`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} ${futuraHV.variable} ${helveticaNow.variable} ${helveticaUI.variable} antialiased font-sans bg-white relative`}>
         <EffectsLayer>
           {/* Mobile-only top bar */}
           <TopBar />
