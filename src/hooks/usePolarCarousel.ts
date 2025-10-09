@@ -1,7 +1,7 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { animate, MotionValue, useMotionValue, useMotionValueEvent, useTransform } from 'framer-motion';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { animate, MotionValue, useMotionValue, useMotionValueEvent } from 'framer-motion';
 
 export interface PolarItemStyle {
   x: number;
@@ -11,15 +11,6 @@ export interface PolarItemStyle {
   zIndex: number;
 }
 
-export interface PolarItemTransforms {
-  x: MotionValue<number>;
-  y: MotionValue<number>;
-  scale: MotionValue<number>;
-  opacity: MotionValue<number>;
-  zIndex: MotionValue<number>;
-  thetaDeg: MotionValue<number>;
-}
-
 export interface UsePolarCarouselOptions {
   itemCount: number;
   radius: number; // measured radius from container
@@ -27,13 +18,6 @@ export interface UsePolarCarouselOptions {
   autoplay?: boolean; // when true, continuous rotate slowly (no active selection)
   autoplaySpeedIndicesPerSecond?: number; // default 0.06
   ellipseXScale?: number; // horizontal stretch factor for oval path (default 1)
-}
-
-function clampRadiusFromViewport(viewportWidth: number): number {
-  const minPx = 220;
-  const maxPx = 420;
-  const vw = viewportWidth * 0.28;
-  return Math.max(minPx, Math.min(maxPx, vw));
 }
 
 export function usePolarCarousel(options: UsePolarCarouselOptions) {
@@ -54,8 +38,6 @@ export function usePolarCarousel(options: UsePolarCarouselOptions) {
     }
   }, []);
 
-  // No window-based radius here; caller provides measured radius
-
   // progress: continuous value, where integer values are snapped indices
   const progress: MotionValue<number> = useMotionValue(initialIndex);
   const [activeIndex, setActiveIndex] = useState<number>(() => ((initialIndex % itemCount) + itemCount) % itemCount);
@@ -65,7 +47,7 @@ export function usePolarCarousel(options: UsePolarCarouselOptions) {
   });
   useEffect(() => {
     setActiveIndex(((Math.round(progress.get()) % itemCount) + itemCount) % itemCount);
-  }, [itemCount]);
+  }, [itemCount, progress]);
 
   const isAnimatingRef = useRef(false);
   const currentAnimationRef = useRef<ReturnType<typeof animate> | null>(null);
@@ -124,7 +106,7 @@ export function usePolarCarousel(options: UsePolarCarouselOptions) {
     stopAnimation();
   }, [progress, stopAnimation]);
 
-  const onDrag = useCallback((_: any, info: { delta: { x: number; y: number } }) => {
+  const onDrag = useCallback((_: unknown, info: { delta: { x: number; y: number } }) => {
     // Horizontal drag maps to progress; tune sensitivity
     const sensitivity = 1 / 160; // px per index
     const delta = info.delta.x;
@@ -179,7 +161,7 @@ export function usePolarCarousel(options: UsePolarCarouselOptions) {
     }
   }, []);
 
-  const onDragGuard = useCallback((_: any, info: { delta: { x: number; y: number } }) => {
+  const onDragGuard = useCallback((_: unknown, info: { delta: { x: number; y: number } }) => {
     dragTotalPxRef.current += Math.abs(info.delta.x) + Math.abs(info.delta.y);
   }, []);
 
@@ -195,28 +177,8 @@ export function usePolarCarousel(options: UsePolarCarouselOptions) {
     return lastDragPxRef.current < 6; // threshold in pixels
   }, []);
 
-  // Build reactive transforms for each item using motion values
-  const radiusMV = useMotionValue(radius);
-  const rxMV = useMotionValue(radius * ellipseXScale);
-  useEffect(() => { radiusMV.set(radius); rxMV.set(radius * ellipseXScale); }, [radius, ellipseXScale, radiusMV, rxMV]);
-
-  const items: PolarItemTransforms[] = [];
+  // Expose shared geometry: angle per item (per-item transforms to be defined in components)
   const anglePer = 360 / Math.max(1, itemCount);
-  for (let index = 0; index < itemCount; index++) {
-    const thetaDeg = useTransform(progress, (p) => (index - (p as number)) * anglePer);
-    const theta = useTransform(thetaDeg, (deg) => ((deg as number) * Math.PI) / 180);
-    const x = useTransform([theta, rxMV], ([t, r]) => (r as number) * Math.sin(t as number));
-    const y = useTransform([theta, radiusMV], ([t, r]) => -(r as number) * Math.cos(t as number));
-    const normalized = useTransform(thetaDeg, (deg) => {
-      const d = (deg as number);
-      const norm = Math.abs(((d + 540) % 360) - 180) / 180;
-      return norm;
-    });
-    const scale = useTransform(normalized, (v) => (reduceMotion ? 1 : 0.84 + (1 - (v as number)) * 0.16));
-    const opacity = useTransform(normalized, (v) => 0.35 + (1 - (v as number)) * 0.65);
-    const zIndex = useTransform(normalized, (v) => Math.round(1000 - (v as number) * 800));
-    items.push({ x, y, scale, opacity, zIndex, thetaDeg });
-  }
 
   return {
     progress,
@@ -224,13 +186,13 @@ export function usePolarCarousel(options: UsePolarCarouselOptions) {
     reduceMotion,
     snapTo,
     increment,
-    onDragStart: (e?: any, info?: any) => { onDragStart(); onDragStartGuard(); },
-    onDrag: (e?: any, info?: any) => { onDrag(e, info); onDragGuard(e, info); },
-    onDragEnd: (e?: any, info?: any) => { onDragEnd(); onDragEndGuard(); },
+    onDragStart: (_e?: unknown, _info?: unknown) => { onDragStart(); onDragStartGuard(); },
+    onDrag: (_e?: unknown, info?: { delta: { x: number; y: number } }) => { if (info) { onDrag(undefined, info); onDragGuard(undefined, info); } },
+    onDragEnd: (_e?: unknown, _info?: unknown) => { onDragEnd(); onDragEndGuard(); },
     onWheel,
     onKeyDown,
     isTapAllowed,
-    items,
+    anglePer,
   } as const;
 }
 
