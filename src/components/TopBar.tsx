@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 import SocialIcons from '@/components/SocialIcons';
 
 export default function TopBar() {
@@ -46,7 +47,7 @@ export default function TopBar() {
             </div>
             <div className="flex items-center px-4 py-3 relative">
               <div className="shrink-0 flex items-center">
-                <img src="/brand/logo_main.svg" alt="Consultico" className="block h-7 w-auto" />
+                <Image src="/brand/logo_main.svg" alt="Consultico" width={140} height={28} className="block h-7 w-auto" priority />
               </div>
               <div className="flex-1 flex items-center justify-center">
                 <SocialIcons className="!space-x-2 md:space-x-6 [&>a>span]:!w-6 [&>a>span]:!h-6 md:[&>a>span]:w-12 md:[&>a>span]:h-12" />

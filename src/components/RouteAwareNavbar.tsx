@@ -15,10 +15,9 @@ const navItems = [
 
 export default function RouteAwareNavbar() {
   const pathname = usePathname();
-  if (pathname?.startsWith('/landing')) return null;
-
   const [activeSection, setActiveSection] = useState('home');
   const prefersReduced = useReducedMotion();
+  const shouldHide = pathname?.startsWith('/landing');
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -53,6 +52,8 @@ export default function RouteAwareNavbar() {
     });
     return () => observer.disconnect();
   }, []);
+
+  if (shouldHide) return null;
 
   return (
     <motion.nav 

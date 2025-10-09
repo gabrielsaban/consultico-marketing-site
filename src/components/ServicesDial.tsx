@@ -17,6 +17,7 @@ export type Service = {
   unlockNote?: boolean;
   href?: string;
   bullets?: string[]; // optional for future
+  caseStudy?: { client?: string; result?: string; href?: string };
 };
 
 interface ServicesDialProps {
@@ -101,7 +102,6 @@ export default function ServicesDial({ services, autoplay = false, className = '
     onWheel,
     onKeyDown,
     isTapAllowed,
-    items,
   } = usePolarCarousel({ itemCount, radius, initialIndex: 0, autoplay: autoplayActive, ellipseXScale: ellipseScale });
 
   const activeService = useMemo(() => (selectedIndex != null ? services[selectedIndex] : undefined), [services, selectedIndex]);
@@ -348,25 +348,25 @@ export default function ServicesDial({ services, autoplay = false, className = '
                 <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
                   <div className="rounded-lg ring-1 ring-gray-200 bg-white/60 p-3">
                     <div className="text-gray-500">Typical timeline</div>
-                    <div className="text-gray-800 font-medium">{(activeService as any)?.timeRequired ?? '2–4 weeks'}</div>
+                    <div className="text-gray-800 font-medium">{(activeService as unknown as { timeRequired?: string })?.timeRequired ?? '2–4 weeks'}</div>
                   </div>
                   <div className="rounded-lg ring-1 ring-gray-200 bg-white/60 p-3">
                     <div className="text-gray-500">Expected result</div>
-                    <div className="text-gray-800 font-medium">{(activeService as any)?.returns ?? (activeService as any)?.expectedReturn ?? 'Meaningful lift in visibility and qualified leads'}</div>
+                    <div className="text-gray-800 font-medium">{(activeService as unknown as { returns?: string; expectedReturn?: string })?.returns ?? (activeService as unknown as { returns?: string; expectedReturn?: string })?.expectedReturn ?? 'Meaningful lift in visibility and qualified leads'}</div>
                   </div>
                 </div>
 
                 {/* Case study row */}
-                {Boolean((activeService as any)?.caseStudy) && (
+                {Boolean(activeService?.caseStudy) && (
                   <div className="mt-4 rounded-lg ring-1 ring-gray-200 bg-white/60 p-3">
                     <div className="text-gray-700 font-medium">
-                      {(activeService as any)?.caseStudy?.client ?? 'Client'}
+                      {activeService?.caseStudy?.client ?? 'Client'}
                     </div>
-                    {(activeService as any)?.caseStudy?.result && (
-                      <div className="text-gray-600 text-sm">{(activeService as any)?.caseStudy?.result}</div>
+                    {activeService?.caseStudy?.result && (
+                      <div className="text-gray-600 text-sm">{activeService.caseStudy.result}</div>
                     )}
-                    {(activeService as any)?.caseStudy?.href && (
-                      <a href={(activeService as any)?.caseStudy?.href} className="inline-flex items-center text-brand-blue text-sm mt-2 hover:underline">Read case study →</a>
+                    {activeService?.caseStudy?.href && (
+                      <a href={activeService.caseStudy.href} className="inline-flex items-center text-brand-blue text-sm mt-2 hover:underline">Read case study →</a>
                     )}
                   </div>
                 )}

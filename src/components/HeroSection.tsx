@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import ImageFilledText from './ImageFilledText';
 import HeroCTA from './HeroCTA';
 import { useEffect, useRef, useState } from 'react';
@@ -73,10 +74,13 @@ export default function HeroSection() {
           ease: "easeOut" 
         }}
       >
-        <img
+        <Image
           src="/brand/logo_main.svg"
           alt="Consultico"
+          width={420}
+          height={120}
           className="block w-[min(36vw,420px)] h-auto"
+          priority
         />
       </motion.div>
       
@@ -135,7 +139,7 @@ export default function HeroSection() {
       
       {/* Social media icons - hidden on phones; moved to TopBar; nudged higher */}
       <motion.div 
-        className="absolute top-16 right-24 hidden md:flex space-x-8 xl:space-x-6 "
+        className="absolute top-16 right-24 hidden md:flex space-x-4 xl:space-x-6"
         initial={{ opacity: 0, y: -40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ 

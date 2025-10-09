@@ -48,7 +48,7 @@ export default function AboutSection(): React.JSX.Element {
       className="relative min-h-screen overflow-hidden scroll-mt-24"
     >
       <motion.div aria-hidden className="absolute inset-0 bg-white z-0" style={{ opacity: prefersReduced ? 1 : aboutOverlayOpacity }} />
-      <motion.div className="relative z-10 mx-auto px-4 sm:px-6 lg:px-8 py-28 md:py-32 max-w-[1280px] xl:max-w-7xl 2xl:max-w-[1400px] 3xl:max-w-[1600px]" style={{ y: prefersReduced ? '0vh' as any : aboutContentY }}>
+      <motion.div className="relative z-10 mx-auto px-4 sm:px-6 lg:px-8 py-28 md:py-32 max-w-[1280px] xl:max-w-7xl 2xl:max-w-[1400px] 3xl:max-w-[1600px]" style={{ y: prefersReduced ? ('0vh' as unknown as string) : aboutContentY }}>
         <div className="mb-8">
           <h2 className="leading-[0.95] text-blue-primary font-futura text-d-48 md:text-d-64 font-bold px-5">
             About <span className="font-extrabold">us</span>

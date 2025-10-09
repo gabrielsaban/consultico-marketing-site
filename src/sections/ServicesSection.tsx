@@ -1,15 +1,15 @@
 import ServiceCard from '@/components/ServiceCard';
-import ServicesDial, { type Service as DialService } from '@/components/ServicesDial';
+// import ServicesDial, { type Service as DialService } from '@/components/ServicesDial';
 import HeroCTA from '@/components/HeroCTA';
 
-const servicesDialData: DialService[] = [
+/* const servicesDialData: DialService[] = [
   { id: 'seo', title: 'SEO Growth Plan', outcome: 'Grow visibility and organic clicks month on month.', provider: 'Consultico', priceFrom: '£X', ctaLabel: 'Access Portal', unlockNote: true, href: '#contact' },
   { id: 'paid-ads', title: 'Paid Ads', outcome: 'Drive targeted leads via Google & Meta.', provider: 'Consultico', priceFrom: '£X', ctaLabel: 'Access Portal', unlockNote: true, href: '#contact' },
   { id: 'web-refresh', title: 'Web Refresh', outcome: 'Tighten site structure and improve performance.', provider: 'Trusted Partner', priceFrom: '£X', ctaLabel: 'Access Portal', unlockNote: true, href: '#contact' },
   { id: 'brand-pack', title: 'Brand Pack', outcome: 'Clarify your brand voice and visuals.', provider: 'Trusted Partner', priceFrom: '£X', ctaLabel: 'Access Portal', unlockNote: true, href: '#contact' },
   { id: 'email', title: 'Email Marketing', outcome: 'Nurture and convert your audience with lifecycle flows.', provider: 'Consultico', priceFrom: '£X', ctaLabel: 'Access Portal', unlockNote: true, href: '#contact' },
   { id: 'analytics', title: 'Analytics Setup', outcome: 'Get GA4 and tracking configured for clear insights.', provider: 'Consultico', priceFrom: '£X', ctaLabel: 'Access Portal', unlockNote: true, href: '#contact' },
-];
+]; */
 
 export default function ServicesSection() {
   return (
@@ -49,9 +49,10 @@ export default function ServicesSection() {
             />
           </div>
 
-          <div className="mt-16 md:mt-36">
+          {/* Dial temporarily disabled */}
+          {/* <div className="mt-16 md:mt-36">
             <ServicesDial services={servicesDialData} />
-          </div>
+          </div> */}
 
           <div className="pt-16 md:pt-32 lg:pt-40 px-5">
             <h3 className="text-blue-primary font-futura text-d-40 md:text-d-30 lg:text-d-40 font-bold mb-8 md:mb-8 lg:mb-20 text-left">

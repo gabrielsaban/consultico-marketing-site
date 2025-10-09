@@ -17,6 +17,8 @@ export type Project = {
 
 // Tiles reveal individually while-in-view; no container-driven animation
 
+const PLACEHOLDER_IMG = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1200"><rect width="100%" height="100%" fill="%23e5e7eb"/></svg>';
+
 function ProjectTile({
   project,
   isOpen,
@@ -147,7 +149,7 @@ export default function ProjectsGrid(): React.JSX.Element {
         team: 'Consultico',
         blurb:
           'A crisp, editorial identity and a conversion-oriented site for a fast-growing interior studio. Built for speed, clarity, and lead quality.',
-        imageSrc: '/projects/placeholder-1.jpg',
+        imageSrc: PLACEHOLDER_IMG,
         imageAlt: 'North Shore Interiors website preview',
         href: '#',
       },
@@ -158,7 +160,7 @@ export default function ProjectsGrid(): React.JSX.Element {
         team: 'Consultico',
         blurb:
           'Search-first content paired with lightweight brand storytelling. Rankings climbed steadily while bounce rate dropped across key pages.',
-        imageSrc: '/projects/placeholder-2.jpg',
+        imageSrc: PLACEHOLDER_IMG,
         imageAlt: 'Marble & Grain case preview',
         href: '#',
       },
@@ -169,7 +171,7 @@ export default function ProjectsGrid(): React.JSX.Element {
         team: 'Consultico',
         blurb:
           'Complex product, simple interface. We shipped a scalable design system and a site that explains value in seconds.',
-        imageSrc: '/projects/placeholder-3.jpg',
+        imageSrc: PLACEHOLDER_IMG,
         imageAlt: 'Hawk Systems interface preview',
         href: '#',
       },
@@ -180,7 +182,7 @@ export default function ProjectsGrid(): React.JSX.Element {
         team: 'Consultico + Partner',
         blurb:
           'A focused refresh that sharpened the visual language and clarified the message across landing pages and ads.',
-        imageSrc: '/projects/placeholder-4.jpg',
+        imageSrc: PLACEHOLDER_IMG,
         imageAlt: 'Green Orbit branding preview',
       },
       {
@@ -190,7 +192,7 @@ export default function ProjectsGrid(): React.JSX.Element {
         team: 'Consultico',
         blurb:
           'Performance-first redesign paired with targeted ad campaigns. Appointment volume and qualified enquiries increased month-on-month.',
-        imageSrc: '/projects/placeholder-5.jpg',
+        imageSrc: PLACEHOLDER_IMG,
         imageAlt: 'Lumen Clinics website preview',
       },
       {
@@ -200,7 +202,7 @@ export default function ProjectsGrid(): React.JSX.Element {
         team: 'Consultico',
         blurb:
           'A frictionless purchase flow and cleaner category structure. Reduced abandonment and stronger repeat purchase behaviour.',
-        imageSrc: '/projects/placeholder-6.jpg',
+        imageSrc: PLACEHOLDER_IMG,
         imageAlt: 'Ridge Supply ecommerce preview',
         href: '#',
       },
