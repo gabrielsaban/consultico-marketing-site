@@ -7,6 +7,8 @@ import HeroCTA from './HeroCTA';
 import { useEffect, useRef, useState } from 'react';
 import SocialIcons from '@/components/SocialIcons';
 
+type DocumentWithFonts = Document & { fonts?: { ready?: Promise<void> } };
+
 export default function HeroSection() {
   const line1Ref = useRef<HTMLDivElement>(null);
   const line2Ref = useRef<HTMLDivElement>(null);
@@ -43,7 +45,7 @@ export default function HeroSection() {
         }
       }
     };
-    const ready = (document as any).fonts?.ready as Promise<any> | undefined;
+    const ready = (document as DocumentWithFonts).fonts?.ready;
     if (ready) {
       ready.then(() => measure());
     } else {
