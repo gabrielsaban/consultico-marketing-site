@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useMemo, useState } from 'react';
+import { JSX } from 'react';
 
 type Testimony = {
   id: number;
