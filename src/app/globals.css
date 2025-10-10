@@ -131,6 +131,21 @@ html, body {
   background: var(--brand-blue);
 }
 
+/* Hide scrollbar utility for specific containers */
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+}
+
+/* Subtle left/right fade for horizontal scrollers */
+.scroll-fade-mask {
+  -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0) 0, rgba(0,0,0,1) 24px, rgba(0,0,0,1) calc(100% - 40px), rgba(0,0,0,0) 100%);
+          mask-image: linear-gradient(to right, rgba(0,0,0,0) 0, rgba(0,0,0,1) 24px, rgba(0,0,0,1) calc(100% - 40px), rgba(0,0,0,0) 100%);
+}
+
 /* Grow animation for lines */
 @keyframes grow {
   from {
