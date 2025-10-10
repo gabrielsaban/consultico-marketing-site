@@ -1,4 +1,5 @@
 import ServiceCard from '@/components/ServiceCard';
+import ServicesShowcase from '@/components/ServicesShowcase';
 // import ServicesDial, { type Service as DialService } from '@/components/ServicesDial';
 import HeroCTA from '@/components/HeroCTA';
 
@@ -15,39 +16,22 @@ export default function ServicesSection() {
   return (
     <section id="services" className="relative scroll-mt-24 py-20">
       <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-[1280px] xl:max-w-7xl 2xl:max-w-[1400px] 3xl:max-w-[1600px]">
-        <div className="text-center md:max-w-3xl lg:max-w-4xl mx-auto px-5">
-          <h2 className="text-blue-primary font-futura text-d-40 md:text-d-48 font-extrabold">
+        <div className="md:max-w-3xl lg:max-w-4xl">
+          <h2 className="text-blue-primary font-futura text-d-40 md:text-d-48 font-extrabold text-left">
             Start with a Marketing Health Report
           </h2>
-          <p className="mt-5 text-gray-700 text-b-16 md:text-b-18 font-helvetica-light">
+          <p className="mt-5 text-gray-700 text-b-16 md:text-b-18 font-helvetica-light text-left">
             Every client begins with a one-off audit. In half a day, we review your site, SEO, ads, and funnel, then give you a clear action plan. From there, you can choose what services to unlock.
           </p>
-          <div className="mt-10 flex items-center justify-center gap-4 md:gap-6 flex-wrap">
+          <div className="mt-6 flex items-center justify-start gap-4 md:gap-6 flex-wrap">
             <HeroCTA text="Book My Health Report" width="clamp(300px, 32vmin, 560px)" hoverWidth="clamp(340px, 36vmin, 620px)" position="stats" targetId="contact" inline />
             <HeroCTA text="Book a Free Assessment" width="clamp(300px, 32vmin, 560px)" hoverWidth="clamp(340px, 36vmin, 620px)" position="stats" targetId="contact" variant="secondary" inline />
           </div>
         </div>
 
-        <div className="mt-20 md:mt-28 space-y-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12">
-            <ServiceCard
-              featured
-              title="Marketing Health Report"
-              subtitle="Your starting point with Consultico"
-              bullets={[
-                'Technical site check',
-                'SEO baseline',
-                'Ads snapshot',
-                '90-day roadmap',
-                'Competitor snapshot',
-                'Analytics sanity check',
-              ]}
-              bonusText="Includes free 12-month access to our private Skool community (£480 value)"
-              ctaLabel="Get Started"
-              href="#contact"
-              className="lg:col-start-2 lg:col-span-10 xl:col-start-2 xl:col-span-10 w-full"
-            />
-          </div>
+        <div className="mt-10 md:mt-14 space-y-10">
+          {/* New Services Showcase replacing previous featured card */}
+          <ServicesShowcase />
 
           {/* Dial temporarily disabled */}
           {/* <div className="mt-16 md:mt-36">
