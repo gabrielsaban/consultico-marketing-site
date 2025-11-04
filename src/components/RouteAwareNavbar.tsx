@@ -75,10 +75,9 @@ export default function RouteAwareNavbar() {
                 relative flex items-center justify-center
                 transition-all duration-200 ease-out
                 ${isActive
-                  ? 'font-extrabold scale-110 text-white drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]'
+                  ? 'font-extrabold scale-110 text-white'
                   : 'font-bold text-brand-silk/70'
                 }
-                hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]
                 hover:scale-105
               `}
             >
