@@ -2,11 +2,29 @@
 
 export default function SocialIcons({ className = '' }: { className?: string }) {
   return (
-    <div className={`flex items-center pt-2 space-x-6 ${className}`}>
+    <div className={`flex items-center pt-2 space-x-7 ${className}`}>
+      <a aria-label="LinkedIn" href="#" className="inline-flex items-center justify-center transition-transform duration-200 hover:scale-110 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded">
+        <span
+          aria-hidden
+          className="w-14 h-14"
+          style={{
+            backgroundColor: 'var(--brand-blue)',
+            WebkitMaskImage: 'url(/icons/linkedin.svg)',
+            maskImage: 'url(/icons/linkedin.svg)',
+            WebkitMaskRepeat: 'no-repeat',
+            maskRepeat: 'no-repeat',
+            WebkitMaskPosition: 'center',
+            maskPosition: 'center',
+            WebkitMaskSize: 'contain',
+            maskSize: 'contain',
+            display: 'inline-block',
+          }}
+        />
+      </a>
       <a aria-label="Instagram" href="#" className="inline-flex items-center justify-center transition-transform duration-200 hover:scale-110 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded">
         <span
           aria-hidden
-          className="w-12 h-12"
+          className="w-14 h-14"
           style={{
             backgroundColor: 'var(--brand-blue)',
             WebkitMaskImage: 'url(/icons/instagram.svg)',
@@ -24,29 +42,11 @@ export default function SocialIcons({ className = '' }: { className?: string }) 
       <a aria-label="Facebook" href="#" className="inline-flex items-center justify-center transition-transform duration-200 hover:scale-110 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded">
         <span
           aria-hidden
-          className="w-12 h-12"
+          className="w-14 h-14"
           style={{
             backgroundColor: 'var(--brand-blue)',
             WebkitMaskImage: 'url(/icons/facebook.svg)',
             maskImage: 'url(/icons/facebook.svg)',
-            WebkitMaskRepeat: 'no-repeat',
-            maskRepeat: 'no-repeat',
-            WebkitMaskPosition: 'center',
-            maskPosition: 'center',
-            WebkitMaskSize: 'contain',
-            maskSize: 'contain',
-            display: 'inline-block',
-          }}
-        />
-      </a>
-      <a aria-label="LinkedIn" href="#" className="inline-flex items-center justify-center transition-transform duration-200 hover:scale-110 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded">
-        <span
-          aria-hidden
-          className="w-12 h-12"
-          style={{
-            backgroundColor: 'var(--brand-blue)',
-            WebkitMaskImage: 'url(/icons/linkedin.svg)',
-            maskImage: 'url(/icons/linkedin.svg)',
             WebkitMaskRepeat: 'no-repeat',
             maskRepeat: 'no-repeat',
             WebkitMaskPosition: 'center',
