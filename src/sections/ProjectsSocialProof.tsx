@@ -1,22 +1,34 @@
-import ProjectsGrid from '@/components/ProjectsGrid';
-import BlogCarousel from '@/components/BlogCarousel';
-import TestimonialsCarousel from '@/components/TestimonialsCarousel';
+// ARCHIVED: Full projects content moved to src/a_sections/ProjectsSocialProof_archived.tsx
+// StatsCta archived - replaced with StatsBoxes
+
+// import StatsCta from './StatsCta';
+import ProjectCarousel from '@/components/ProjectCarousel';
+import StatsBoxes from '@/components/StatsBoxes';
+import ReviewsCarousel from '@/components/ReviewsCarousel';
 
 export default function ProjectsSocialProof() {
   return (
-    <section id="projects" className="scroll-mt-24">
-      <ProjectsGrid />
-      <div className="mt-24 md:mt-28 lg:mt-32 max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,900px)_1fr] gap-10 lg:gap-16 items-start">
-          <div className="justify-self-start">
-            <h2 className="text-left text-blue-primary font-futura text-4xl md:text-5xl lg:text-6xl font-extrabold">Our Blogs</h2>
-            <BlogCarousel centered={false} className="w-full max-w-[900px]" />
-          </div>
-          <div className="justify-self-end w-full max-w-[900px]">
-            <TestimonialsCarousel className="w-full" />
-          </div>
-        </div>
+    <section id="projects" className="min-h-screen mt-10 scroll-mt-24">
+      {/* Projects Header Banner */}
+      <div className="bg-brand-silk py-10 md:py-10 px-6 sm:px-12 lg:px-16 xl:px-36 rounded-tl-[140px] rounded-br-[140px]">
+        <h2 className="text-[32px] sm:text-[40px] md:text-[44px] lg:text-[50px] font-bold text-brand-blue font-futura text-center">
+          See for yourself? See our past work!
+        </h2>
       </div>
+      
+      <ProjectCarousel />
+      
+      {/* Stats Introduction Heading */}
+      <div className="pt-20 pl-[7.5rem] pr-[7.5rem] pb-8">
+        <h2 className="text-[32px] sm:text-[40px] md:text-[44px] lg:text-[50px] font-bold text-brand-blue font-futura text-left">
+          For previous clients, we've achieved...
+        </h2>
+      </div>
+      
+      <StatsBoxes />
+      
+      {/* Reviews Section */}
+      <ReviewsCarousel />
     </section>
   );
 }
