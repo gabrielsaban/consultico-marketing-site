@@ -21,7 +21,7 @@ export default function ProjectsSocialProof() {
       {/* Stats Introduction Heading */}
       <div className="pt-20 pl-[7.5rem] pr-[7.5rem] pb-8">
         <h2 className="text-[32px] sm:text-[40px] md:text-[44px] lg:text-[50px] font-bold text-brand-blue font-futura text-left">
-          For previous clients, we've achieved...
+          For previous clients, we&apos;ve achieved...
         </h2>
       </div>
       
