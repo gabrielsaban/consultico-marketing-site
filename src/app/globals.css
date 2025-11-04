@@ -180,3 +180,6 @@ html, body {
   -webkit-mask-image: linear-gradient(to bottom, transparent, black 5%, black 95%, transparent);
           mask-image: linear-gradient(to bottom, transparent, black 5%, black 95%, transparent);
 }
+
+/* Ensure FlowLine path stroke width is not overridden by global utilities */
+/* Flowline specificity is now handled inline within the SVG to ensure source order wins */
