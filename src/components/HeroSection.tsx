@@ -40,8 +40,8 @@ export default function HeroSection() {
         initial={{ opacity: 0, y: -40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ 
-          delay: 1.5, 
-          duration: 0.4, 
+          delay: 0.5, 
+          duration: 0.2, 
           ease: "easeOut" 
         }}
       >
@@ -61,8 +61,8 @@ export default function HeroSection() {
         initial={{ opacity: 0, y: -40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ 
-          delay: 1.5, 
-          duration: 0.4, 
+          delay: 0.5, 
+          duration: 0.2, 
           ease: "easeOut" 
         }}
       >
@@ -107,7 +107,7 @@ export default function HeroSection() {
 
           {/* Right Column - Media Placeholder */}
           <motion.div
-            className="flex items-end justify-end xl:pt-[1rem] 2xl:w-full 2xl:max-w-[650px] 2xl:justify-self-end 2xl:pr-[4vw] 2xl:pt-[2rem]"
+            className="flex items-end justify-end xl:pt-[1rem] 2xl:w-full 2xl:max-w-[700px] 2xl:justify-self-end 2xl:pr-[4vw] 2xl:pt-[2rem]"
             variants={itemVariants}
           >
             <div className="w-full aspect-[4/4] rounded-xl border-2 border-gray-200 bg-gradient-to-br from-blue-50 to-gray-50 flex items-center justify-center">

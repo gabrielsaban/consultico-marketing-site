@@ -61,7 +61,7 @@ export default function RouteAwareNavbar() {
       className="hidden md:flex fixed left-0 top-0 h-full w-16 bg-brand-blue z-50 flex-col justify-center"
       initial={prefersReduced ? false : { x: -100, opacity: 0 }}
       animate={prefersReduced ? { x: 0, opacity: 1 } : { x: 0, opacity: 1 }}
-      transition={{ delay: prefersReduced ? 0 : 1.5, duration: prefersReduced ? 0 : 0.4, ease: 'easeOut' }}
+      transition={{ delay: prefersReduced ? 0 : 0.4, duration: prefersReduced ? 0 : 0.2, ease: 'easeOut' }}
     >
       <div className="flex flex-col items-center space-y-28">
         {navItems.map((item) => {

@@ -1,0 +1,15 @@
+# Archived components and sections
+src/a_components/
+src/a_sections/
+
+# Next.js
+.next/
+out/
+
+# Build outputs
+dist/
+build/
+
+# Dependencies
+node_modules/
+
