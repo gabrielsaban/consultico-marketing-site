@@ -99,7 +99,6 @@ function buildOrthogonalRoundedPath(points: { x: number; y: number }[], radius: 
 
   // 2) Build rounded polyline at each interior vertex where direction changes
   let d = `M ${expanded[0].x} ${expanded[0].y}`;
-  let cursor = { ...expanded[0] };
 
   const segDir = (a: { x: number; y: number }, b: { x: number; y: number }) =>
     Math.abs(b.x - a.x) > Math.abs(b.y - a.y) ? 'h' : 'v';
@@ -114,7 +113,6 @@ function buildOrthogonalRoundedPath(points: { x: number; y: number }[], radius: 
     if (dirIn === dirOut) {
       // Straight continuation, just draw to current
       d += ` L ${curr.x} ${curr.y}`;
-      cursor = { ...curr };
       continue;
     }
 
@@ -131,7 +129,6 @@ function buildOrthogonalRoundedPath(points: { x: number; y: number }[], radius: 
     d += ` L ${pre.x} ${pre.y}`;
     // Rounded corner
     d += ` Q ${curr.x} ${curr.y} ${post.x} ${post.y}`;
-    cursor = post;
   }
 
   // 3) Final leg to end
@@ -202,7 +199,7 @@ export default function ScrollFlowLine({
       y: padding + p.y * Math.max(0, size.height - padding * 2),
     }));
     return pts;
-  }, [size.width, size.height, padding, waypoints]);
+  }, [size.width, size.height, padding, waypoints, defaultPoints]);
 
   const d = useMemo(() => {
     if (styleType === 'orthogonal') {
@@ -282,7 +279,7 @@ export default function ScrollFlowLine({
             strokeDashoffset: dashOffset,
             opacity: pathOpacity, 
             strokeWidth: `${strokeWidth}px`
-          } as any}
+          }}
         />
         {debug && pointsPx.map((p, i) => (
           <circle key={i} cx={p.x} cy={p.y} r={4} fill={color} opacity={0.6} />
