@@ -78,7 +78,7 @@ export default function AboutSection(): React.JSX.Element {
           </h2>
           <div className="max-w-3xl space-y-4">
             <p className="text-[clamp(1rem,1.3vw,1.2rem)] leading-[1.6] text-gray-800 font-helvetica">
-              In business, very few teams can afford a full in-house marketing department - that's where we come in.
+              In business, very few teams can afford a full in-house marketing department - that&apos;s where we come in.
             </p>
             <p className="text-[clamp(1rem,1.3vw,1.2rem)] leading-[1.6] text-gray-800 font-helvetica">
               We act as a strategy-led marketing partner, helping brands cut through saturated markets with clarity, structure, and intent.
@@ -115,7 +115,7 @@ export default function AboutSection(): React.JSX.Element {
             Most are forgotten instantly.
           </p>
           <p className="text-[clamp(1.25rem,2vw,1.75rem)] leading-[1.5] text-brand-blue font-helvetica font-medium">
-            <b>We exist to make sure yours isn't.</b>
+            <b>We exist to make sure yours isn&apos;t.</b>
           </p>
         </div>
 
@@ -174,7 +174,7 @@ export default function AboutSection(): React.JSX.Element {
                 We build our work around sharp, digitally-native thinkers who understand modern platforms instinctively.
               </p>
               <p className="text-[clamp(0.95rem,1.1vw,1.05rem)] leading-[1.6] text-gray-700 font-helvetica-light">
-                Many of our team are students — not because they're cheap or inexperienced, but because they're closest to how audiences actually behave today and are guided by skilled oversight.
+                Many of our team are students — not because they&apos;re cheap or inexperienced, but because they&apos;re closest to how audiences actually behave today and are guided by skilled oversight.
               </p>
               <p className="text-[clamp(0.95rem,1.1vw,1.05rem)] leading-[1.6] text-gray-700 font-helvetica-light">
                 We trust their thinking, give them real responsibility, and hold all work to the same strategic standard.

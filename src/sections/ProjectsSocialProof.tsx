@@ -25,7 +25,7 @@ export default function ProjectsSocialProof() {
       <div className="bg-gray-50 shadow-[0_4px_20px_rgba(0,0,0,0.1)] py-16 md:py-20 lg:py-24">
         <Container className="mb-6 md:mb-8">
           <h2 className="text-[clamp(2rem,3vw,3.125rem)] font-bold text-brand-blue font-futura text-center">
-            What we've achieved
+            What we&apos;ve achieved
           </h2>
         </Container>
         

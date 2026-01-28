@@ -13,7 +13,7 @@ export default function ThinkFirstSection(): JSX.Element {
           </h3>
           
           <p className="text-[clamp(1rem,1.4vw,1.25rem)] leading-[1.6] text-gray-800 font-helvetica-light mb-8">
-            Before ads, agencies, or retainers, we help B2C brands understand what will work, why it will work, and what it's worth.
+            Before ads, agencies, or retainers, we help B2C brands understand what will work, why it will work, and what it&apos;s worth.
           </p>
 
           <ul className="space-y-4 mb-8 pl-8">
