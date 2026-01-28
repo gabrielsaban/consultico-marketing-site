@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import Image from 'next/image';
+import Container from '@/components/Container';
 
 interface Review {
   id: number;
@@ -75,9 +76,9 @@ export default function ReviewsCarousel() {
   const showRightArrow = currentIndex < reviews.length - 3;
 
   return (
-    <div className="w-full pl-[7.5vw] pr-[7.5vw] py-16 relative">
+    <Container className="py-16 relative">
       {/* Top Left Quote - In margin */}
-      <div className="absolute top-1 xl:left-11 2xl:left-15">
+      <div className="absolute top-1 -left-4 md:-left-8 lg:-left-11 xl:-left-11 2xl:-left-15">
         <Image
           src="/icons/Vector.svg"
           alt=""
@@ -88,7 +89,7 @@ export default function ReviewsCarousel() {
       </div>
 
       {/* Bottom Right Quote - In margin, Rotated 180deg */}
-      <div className="absolute bottom-1 xl:right-11 2xl:right-15">
+      <div className="absolute bottom-1 -right-4 md:-right-8 lg:-right-11 xl:-right-11 2xl:-right-15">
         <Image
           src="/icons/Vector.svg"
           alt=""
@@ -100,7 +101,7 @@ export default function ReviewsCarousel() {
 
       <div className="relative">
         {/* Reviews Grid */}
-        <div className="grid grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 lg:gap-12">
           <AnimatePresence mode="wait">
             {visibleReviews.map((review, idx) => (
               <motion.div
@@ -112,7 +113,7 @@ export default function ReviewsCarousel() {
                 className="flex flex-col"
               >
                 {/* Review Text */}
-                <p className="font-helvetica text-[16px] xl:text-[17px] 2xl:text-[19px] text-gray-800 leading-[1.7] mb-12 flex-grow">
+                <p className="font-helvetica text-[clamp(0.875rem,1.1vw,1.125rem)] text-gray-800 leading-[1.7] mb-12 flex-grow">
                   {review.text}
                 </p>
 
@@ -123,10 +124,10 @@ export default function ReviewsCarousel() {
                   
                   <div className="flex flex-col">
                     {/* Name and Company */}
-                    <p className="font-helvetica text-[16px] xl:text-[17px] 2xl:text-[18px] text-gray-900">
+                    <p className="font-helvetica text-[clamp(0.875rem,1vw,1.125rem)] text-gray-900">
                       {review.name}
                     </p>
-                    <p className="font-helvetica text-[16px] xl:text-[17px] 2xl:text-[18px] text-gray-900 mb-2">
+                    <p className="font-helvetica text-[clamp(0.875rem,1vw,1.125rem)] text-gray-900 mb-2">
                       {review.company}
                     </p>
 
@@ -205,7 +206,7 @@ export default function ReviewsCarousel() {
           )}
         </AnimatePresence>
       </div>
-    </div>
+    </Container>
   );
 }
 

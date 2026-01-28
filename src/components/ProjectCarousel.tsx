@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
+import Container from '@/components/Container';
 
 interface Project {
   id: number;
@@ -52,10 +53,10 @@ export default function ProjectCarousel() {
   const showRightArrow = currentIndex < projects.length - 3;
 
   return (
-    <div className="w-full pl-[7.5vw] pr-[7.5vw] py-16">
+    <Container className="py-16">
       <div className="relative">
         {/* Project Grid */}
-        <div className="grid grid-cols-3 gap-15">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10 lg:gap-12 xl:gap-15">
           <AnimatePresence mode="wait">
             {visibleProjects.map((project, idx) => (
               <motion.div
@@ -68,17 +69,17 @@ export default function ProjectCarousel() {
               >
                 {/* Project Image Placeholder */}
                 <div
-                  className="w-full bg-brand-silk rounded-lg mb-4"
+                  className="w-full bg-white rounded-lg mb-4"
                   style={{ aspectRatio: '0.7 / 0.9' }}
                 />
 
                 {/* Project Title */}
-                <h3 className="font-helvetica font-bold text-[18px] xl:text-[23px] 2xl:text-[29px] text-black mb-2 max-w-[40%]">
+                <h3 className="font-helvetica font-bold text-[clamp(1.125rem,1.4vw,1.5rem)] text-black mb-2">
                   {project.title}
                 </h3>
 
                 {/* Project Description */}
-                <p className="font-helvetica text-[14px] xl:text-[16px] 2xl:text-[21px] text-gray-700">
+                <p className="font-helvetica text-[clamp(0.875rem,1vw,1.125rem)] text-gray-700">
                   {project.description}
                 </p>
               </motion.div>
@@ -146,7 +147,7 @@ export default function ProjectCarousel() {
           )}
         </AnimatePresence>
       </div>
-    </div>
+    </Container>
   );
 }
 
