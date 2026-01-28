@@ -89,7 +89,7 @@ const services: Service[] = [
 ];
 
 const ServiceIcon = ({ icon, className }: { icon: string; className?: string }) => {
-  const iconPaths: Record<string, JSX.Element> = {
+  const iconPaths: Record<string, React.JSX.Element> = {
     compass: (
       <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z M8 12l4-4 4 4-4 4-4-4z" />
     ),
