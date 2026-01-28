@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import SocialIcons from '@/components/SocialIcons';
+import Container from '@/components/Container';
+import ImageFilledText from '@/components/ImageFilledText';
 
 // Animation variants for staggered content reveal
 const containerVariants = {
@@ -30,13 +32,13 @@ const itemVariants = {
 
 export default function HeroSection() {
   return (
-    <div className="min-h-[82vh] md:min-h-screen relative">
+    <div className="min-h-screen relative flex items-center">
       {/* Background gradient */}
       <div className="absolute inset-0 -z-10" />
       
       {/* Brand logo SVG - positioned near top-left on desktop (hidden on phones; TopBar shows logo) */}
       <motion.div 
-        className="absolute top-[3.25rem] left-[7.5vw] hidden md:block"
+        className="absolute top-[3.25rem] left-4 sm:left-6 md:left-[5vw] lg:left-[7.5vw] hidden md:block"
         initial={{ opacity: 0, y: -40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ 
@@ -57,7 +59,7 @@ export default function HeroSection() {
       
       {/* Social media icons - hidden on phones; moved to TopBar; nudged higher */}
       <motion.div 
-        className="absolute top-16 right-[3.75vw] 2xl:right-[7.5vw] hidden md:flex space-x-4 xl:space-x-6"
+        className="absolute top-16 right-4 sm:right-6 md:right-[5vw] lg:right-[7.5vw] hidden md:flex space-x-4 xl:space-x-6"
         initial={{ opacity: 0, y: -40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ 
@@ -69,34 +71,58 @@ export default function HeroSection() {
         <SocialIcons className="[&>a>img]:w-[clamp(2rem,4.5vmin,2.75rem)] [&>a>img]:h-[clamp(2rem,4.5vmin,2.75rem)]" />
       </motion.div>
 
-      {/* Main Hero Content Grid */}
-      <div className="relative w-full pl-[7.5vw] xl:pr-[3.75vw] pt-[16rem] md:pt-[18rem] lg:pt-[12rem] pb-16">
+      {/* Main Hero Content - Centered Slogan */}
+      <Container className="w-full">
         <motion.div
-          className="w-full grid grid-cols-1 md:grid-cols-2 xl:gap-[6vw] 2xl:gap-[0vw] md:items-start"
+          className="text-center"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          {/* Left Column - Copy */}
-          <motion.div className="space-y-6" variants={itemVariants}>
-            {/* Main Headline */}
-            <h1 className="text-blue-primary font-futura font-[750] text-[clamp(1.5rem,3vw,3.3rem)] 2xl:pr-[6.5vw] leading-[1.2]">
-              Marketing done by the first generation born technology
-            </h1>
-
-            {/* Body Paragraphs */}
-            <div className="space-y-7 2xl:pr-[11vw] pr-[3.5vw]">
-              <p className="text-gray-900 font-helvetica text-[clamp(1.4rem,1.7vw,1.8rem)] leading-[1.5]">
-                To make your brand excel, we focus on the type of customers you want and exactly how to get there.
-              </p>
-              <p className="text-gray-900 font-helvetica text-[clamp(1.4rem,1.7vw,1.8rem)] leading-[1.5]">
-                Our methods are done-for-you meaning we take what your business stands for without stepping on your toes.
-              </p>
+          {/* Slogan */}
+          <motion.div className="mb-12" variants={itemVariants}>
+            <div className="flex flex-col items-center gap-4 md:gap-6">
+              {/* Line 1: "in a world of noise" */}
+              <div className="flex flex-wrap items-baseline justify-center gap-3 md:gap-4">
+                <h1 className="text-blue-primary font-futura font-[750] text-[clamp(2rem,5vw,4.5rem)] leading-[1.1]">
+                  in a world of
+                </h1>
+                <ImageFilledText 
+                  text="noise" 
+                  className="font-futura font-[750] text-[clamp(4rem,10vw,12rem)] leading-[1]"
+                />
+              </div>
+              
+              {/* Line 2: "we make your brand heard" */}
+              <h2 className="text-blue-primary font-futura font-[750] text-[clamp(2rem,5vw,4.5rem)] leading-[1.1]">
+                we make your brand heard
+              </h2>
             </div>
+          </motion.div>
 
-            {/* CTA Button */}
+          {/* Decorative Divider */}
+          <motion.div className="mb-8" variants={itemVariants}>
+            <div className="h-[1px] bg-blue-primary mx-auto w-[25vw]"  />
+          </motion.div>
+
+          {/* Supporting Line - Strategy Focus */}
+          <motion.div className="mb-8" variants={itemVariants}>
+            <p className="text-blue-primary opacity-80 font-futura font-medium text-[clamp(1rem,2.25vw,1.9rem)] leading-[1.3]">
+              A Strategy-Led Digital Marketing Studio
+            </p>
+          </motion.div>
+
+          {/* Philosophy Micro Line */}
+          <motion.div className="mb-10" variants={itemVariants}>
+            <p className="text-gray-600 font-futura text-[clamp(0.75rem,0.9vw,0.85rem)] tracking-[0.15em] opacity-70 uppercase">
+               No Templates <span className="mx-2">·</span> No Guesswork <span className="mx-2">·</span> No Gut-Feel Marketing
+            </p>
+          </motion.div>
+
+          {/* CTA Button */}
+          <motion.div variants={itemVariants}>
             <motion.button
-              className="bg-blue-primary text-white font-helvetica font-medium text-[clamp(1.5rem,1.5vw,1.125rem)] px-30 py-3 mt-8 rounded-lg hover:opacity-90 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-primary focus:ring-offset-2"
+              className="bg-blue-primary text-white font-helvetica font-medium text-[clamp(1rem,1.2vw,1.125rem)] px-8 py-3 rounded-lg hover:opacity-90 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-primary focus:ring-offset-2"
               whileHover={{ scale: 1.06 }}
               whileTap={{ scale: 0.98 }}
               aria-label="Get in touch with Consultico"
@@ -104,36 +130,8 @@ export default function HeroSection() {
               Get in touch
             </motion.button>
           </motion.div>
-
-          {/* Right Column - Media Placeholder */}
-          <motion.div
-            className="flex items-end justify-end xl:pt-[1rem] 2xl:w-full 2xl:max-w-[700px] 2xl:justify-self-end 2xl:pr-[4vw] 2xl:pt-[2rem]"
-            variants={itemVariants}
-          >
-            <div className="w-full aspect-[4/4] rounded-xl border-2 border-gray-200 bg-gradient-to-br from-blue-50 to-gray-50 flex items-center justify-center">
-              {/* Placeholder for globe/media - replace with actual globe component/video later */}
-              <div className="text-center text-gray-400 font-helvetica">
-                <svg
-                  className="w-24 h-24 mb-4 opacity-30"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-                <span className="text-sm">Globe media placeholder</span>
-              </div>
-            </div>
-          </motion.div>
         </motion.div>
-      </div>
+      </Container>
     </div>
   );
 }
