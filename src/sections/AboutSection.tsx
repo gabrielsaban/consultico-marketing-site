@@ -1,18 +1,188 @@
 // ARCHIVED: Full about section content moved to src/a_sections/AboutSection_archived.tsx
 
+import Container from '@/components/Container';
+import Link from 'next/link';
+
+interface TeamMember {
+  id: number;
+  name: string;
+  role: string;
+  cvLink: string;
+}
+
+interface PhilosophyPoint {
+  title: string;
+  description: string;
+  icon: string;
+}
+
+const teamMembers: TeamMember[] = [
+  { id: 1, name: 'Name Placeholder', role: 'Role Title', cvLink: '#' },
+  { id: 2, name: 'Name Placeholder', role: 'Role Title', cvLink: '#' },
+  { id: 3, name: 'Name Placeholder', role: 'Role Title', cvLink: '#' },
+  { id: 4, name: 'Name Placeholder', role: 'Role Title', cvLink: '#' },
+  { id: 5, name: 'Name Placeholder', role: 'Role Title', cvLink: '#' },
+  { id: 6, name: 'Name Placeholder', role: 'Role Title', cvLink: '#' },
+  { id: 7, name: 'Name Placeholder', role: 'Role Title', cvLink: '#' },
+  { id: 8, name: 'Name Placeholder', role: 'Role Title', cvLink: '#' },
+];
+
+const philosophyPoints: PhilosophyPoint[] = [
+  {
+    title: 'No Guesswork',
+    description: "We don't rely on gut feeling or hope. If something isn't working, we say so.",
+    icon: 'target',
+  },
+  {
+    title: 'Clarity Before Execution',
+    description: 'We believe marketing should be structured from the ground up, not patched together after the fact.',
+    icon: 'blueprint',
+  },
+  {
+    title: 'Built To Carry Weight',
+    description: 'Everything we create is designed to carry meaning, not just look good.',
+    icon: 'weight',
+  },
+  {
+    title: 'No Templates Or Shortcuts',
+    description: 'Every strategy is custom-built. No copy-paste solutions or borrowed frameworks.',
+    icon: 'unique',
+  },
+];
+
+const PhilosophyIcon = () => {
+  return (
+    <svg
+      className="w-8 h-8 md:w-10 md:h-10 text-brand-blue"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      viewBox="0 0 24 24"
+    >
+      <path d="M5 12h14" />
+      <path d="M12 5l7 7-7 7" />
+    </svg>
+  );
+};
+
 export default function AboutSection(): React.JSX.Element {
   return (
-    <section id="about" className="min-h-screen mt-32 scroll-mt-24">
-      {/* About Header Banner */}
-      <div className="bg-brand-silk py-10 md:py-10 px-6 sm:px-12 lg:px-16 xl:px-36 rounded-bl-[140px] rounded-tr-[140px]">
-        <h2 className="text-[32px] sm:text-[40px] md:text-[44px] lg:text-[50px] font-bold text-brand-blue font-futura text-center">
-          We
-        </h2>
-      </div>
-      
-      <div className="text-center mx-auto px-4 sm:px-6 lg:px-8 max-w-[1280px] xl:max-w-7xl 2xl:max-w-[1400px] 3xl:max-w-[1600px] pt-16">
-        <p className="text-lg text-gray-600">About section coming soon...</p>
-      </div>
+    <section id="about" className="py-16 md:py-20 lg:py-24 scroll-mt-24">
+      <Container>
+        {/* Intro */}
+        <div className="mb-16 md:mb-20 lg:mb-24">
+          <h2 className="text-[clamp(2rem,3vw,3.125rem)] font-bold text-brand-blue font-futura mb-8">
+            About Consultico
+          </h2>
+          <div className="max-w-3xl space-y-4">
+            <p className="text-[clamp(1rem,1.3vw,1.2rem)] leading-[1.6] text-gray-800 font-helvetica">
+              In business, very few teams can afford a full in-house marketing department - that's where we come in.
+            </p>
+            <p className="text-[clamp(1rem,1.3vw,1.2rem)] leading-[1.6] text-gray-800 font-helvetica">
+              We act as a strategy-led marketing partner, helping brands cut through saturated markets with clarity, structure, and intent.
+            </p>
+          </div>
+        </div>
+
+        {/* Philosophy Section */}
+        <div className="mb-16 md:mb-20 lg:mb-24">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-12">
+            {philosophyPoints.map((point) => (
+              <div key={point.title} className="flex gap-4">
+                <div className="flex-shrink-0">
+                  <PhilosophyIcon />
+                </div>
+                <div>
+                  <h4 className="font-futura font-bold text-[clamp(1.125rem,1.4vw,1.35rem)] text-brand-blue mb-2">
+                    {point.title}
+                  </h4>
+                  <p className="text-[clamp(0.95rem,1.1vw,1.25rem)] leading-[1.6] text-gray-700 font-helvetica-light">
+                    {point.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Visual Pause - Noise Context */}
+        <div className="mb-20 md:mb-28 lg:mb-32 py-16 md:py-20 lg:py-24 text-center max-w-4xl mx-auto">
+          <p className="text-[clamp(1.25rem,2vw,1.75rem)] leading-[1.5] text-gray-800 font-helvetica mb-4">
+            The average person sees thousands of brands every day.
+            <br />
+            Most are forgotten instantly.
+          </p>
+          <p className="text-[clamp(1.25rem,2vw,1.75rem)] leading-[1.5] text-brand-blue font-helvetica font-medium">
+            <b>We exist to make sure yours isn't.</b>
+          </p>
+        </div>
+
+        {/* Team Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-[60%_auto] gap-12 lg:gap-16">
+          {/* Team Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+            {teamMembers.map((member) => (
+              <div
+                key={member.id}
+                className="relative bg-gray-50 rounded-lg overflow-hidden flex flex-col"
+              >
+                {/* Profile Picture Placeholder */}
+                <div className="w-full aspect-square bg-gray-200" />
+                
+                {/* Info Section */}
+                <div className="p-3 md:p-4 flex-grow flex flex-col justify-end">
+                  <h3 className="font-futura font-bold text-[clamp(0.875rem,1.1vw,1rem)] text-brand-blue mb-1">
+                    {member.name}
+                  </h3>
+                  <p className="font-helvetica-light text-[clamp(0.75rem,0.9vw,0.875rem)] text-gray-600">
+                    {member.role}
+                  </p>
+                </div>
+                
+                {/* CV/Portfolio Link Icon */}
+                <Link
+                  href={member.cvLink}
+                  className="absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:shadow-lg transition-shadow"
+                  aria-label={`View ${member.name}'s CV`}
+                >
+                  <svg
+                    className="w-4 h-4 text-brand-blue"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                    <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" />
+                  </svg>
+                </Link>
+              </div>
+            ))}
+          </div>
+
+          {/* Team Description */}
+          <div className="flex flex-col ">
+            <h3 className="text-[clamp(1.5rem,2.5vw,2.5rem)] font-bold text-brand-blue font-futura mb-6">
+              Our Team
+            </h3>
+            <div className="space-y-4">
+              <p className="text-[clamp(0.95rem,1.1vw,1.05rem)] leading-[1.6] text-gray-700 font-helvetica">
+                We build our work around sharp, digitally-native thinkers who understand modern platforms instinctively.
+              </p>
+              <p className="text-[clamp(0.95rem,1.1vw,1.05rem)] leading-[1.6] text-gray-700 font-helvetica-light">
+                Many of our team are students — not because they're cheap or inexperienced, but because they're closest to how audiences actually behave today and are guided by skilled oversight.
+              </p>
+              <p className="text-[clamp(0.95rem,1.1vw,1.05rem)] leading-[1.6] text-gray-700 font-helvetica-light">
+                We trust their thinking, give them real responsibility, and hold all work to the same strategic standard.
+              </p>
+            </div>
+          </div>
+        </div>
+      </Container>
     </section>
   );
 }
