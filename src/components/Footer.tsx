@@ -3,12 +3,20 @@ import Link from 'next/link';
 import Container from '@/components/Container';
 
 export default function Footer() {
-  const quickLinks = [
+  const quickLinks1 = [
     { name: 'Home', href: '/' },
     { name: 'Services', href: '#services' },
     { name: 'Projects', href: '#projects' },
     { name: 'About', href: '#about' },
     { name: 'Contact', href: '#contact' },
+  ];
+
+  const quickLinks2 = [
+    { name: 'Think-First', href: '#think-first' },
+    { name: 'SEO', href: '#seo' },
+    { name: 'Marketing', href: '#marketing' },
+    { name: 'Paid Ads', href: '#paid-ads' },
+    { name: 'Careers', href: '#careers' },
   ];
 
   return (
@@ -24,39 +32,77 @@ export default function Footer() {
               height={60}
               className="mb-6 brightness-0 invert"
             />
-            <p className="text-[clamp(0.875rem,1vw,1rem)] leading-[1.6] font-helvetica-light text-gray-100">
+            <p className="text-[clamp(0.875rem,1vw,1rem)] leading-[1.6] font-helvetica-light text-gray-100 mb-6">
               Strategic digital marketing solutions that drive real results. We help businesses grow through data-driven strategies and expert execution.
             </p>
+            
+            {/* Social Media Icons */}
+            <div className="flex gap-4">
+              <a href="#" className="hover:opacity-80 transition-opacity" aria-label="Instagram">
+                <Image src="/icons/instagram.svg" alt="Instagram" width={24} height={24} className="brightness-0 invert" />
+              </a>
+              <a href="#" className="hover:opacity-80 transition-opacity" aria-label="LinkedIn">
+                <Image src="/icons/linkedin.svg" alt="LinkedIn" width={24} height={24} className="brightness-0 invert" />
+              </a>
+              <a href="#" className="hover:opacity-80 transition-opacity" aria-label="Facebook">
+                <Image src="/icons/facebook.svg" alt="Facebook" width={24} height={24} className="brightness-0 invert" />
+              </a>
+            </div>
           </div>
 
-          {/* Column 2: Quick Links */}
-          <div className="w-full max-w-xs">
+          {/* Column 2: Quick Links - Two columns side by side */}
+          <div className="w-full">
             <h3 className="text-[clamp(1.125rem,1.3vw,1.25rem)] font-futura font-bold mb-4">
               Quick Links
             </h3>
-            <ul className="space-y-2">
-              {quickLinks.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    href={link.href}
-                    className="flex items-center gap-2 text-[clamp(0.875rem,1vw,1rem)] font-helvetica-light text-gray-100 hover:text-white transition-colors group"
-                  >
-                    <svg
-                      className="w-3 h-3 flex-shrink-0 group-hover:translate-x-1 transition-transform"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      viewBox="0 0 24 24"
+            <div className="grid grid-cols-2 gap-3">
+              <ul className="space-y-2">
+                {quickLinks1.map((link) => (
+                  <li key={link.name}>
+                    <Link
+                      href={link.href}
+                      className="flex items-center gap-2 text-[clamp(0.875rem,1vw,1rem)] font-helvetica-light text-gray-100 hover:text-white transition-colors group"
                     >
-                      <path d="M5 12h14M12 5l7 7-7 7" />
-                    </svg>
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+                      <svg
+                        className="w-3 h-3 flex-shrink-0 group-hover:translate-x-1 transition-transform"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                      </svg>
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              <ul className="space-y-2">
+                {quickLinks2.map((link) => (
+                  <li key={link.name}>
+                    <Link
+                      href={link.href}
+                      className="flex items-center gap-2 text-[clamp(0.875rem,1vw,1rem)] font-helvetica-light text-gray-100 hover:text-white transition-colors group"
+                    >
+                      <svg
+                        className="w-3 h-3 flex-shrink-0 group-hover:translate-x-1 transition-transform"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                      </svg>
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
           {/* Column 3: Contact Us */}
