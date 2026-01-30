@@ -21,6 +21,9 @@
 # production
 /build
 
+/src/a_components/
+/src/a_sections/
+
 # misc
 .DS_Store
 *.pem
