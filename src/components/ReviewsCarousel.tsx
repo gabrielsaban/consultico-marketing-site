@@ -47,13 +47,15 @@ const reviews: Review[] = [
 
 // Star SVG Component
 const StarIcon = () => (
-  <Image
-    src="/icons/Star 2.svg"
-    alt=""
-    width={20}
-    height={19}
-    className="opacity-100"
-  />
+  <svg
+    width="20"
+    height="19"
+    viewBox="0 0 20 19"
+    fill="currentColor"
+    className="text-brand-blue"
+  >
+    <path d="M10 0L12.2451 6.90983H19.5106L13.6327 11.1803L15.8779 18.0902L10 13.8197L4.12215 18.0902L6.36729 11.1803L0.489435 6.90983H7.75486L10 0Z" />
+  </svg>
 );
 
 export default function ReviewsCarousel() {
@@ -77,28 +79,6 @@ export default function ReviewsCarousel() {
 
   return (
     <Container className="py-16 relative">
-      {/* Top Left Quote - In margin */}
-      <div className="absolute top-1 -left-4 md:-left-8 lg:-left-11 xl:-left-11 2xl:-left-15">
-        <Image
-          src="/icons/Vector.svg"
-          alt=""
-          width={54}
-          height={50}
-          className="w-[50px] h-auto opacity-100"
-        />
-      </div>
-
-      {/* Bottom Right Quote - In margin, Rotated 180deg */}
-      <div className="absolute bottom-1 -right-4 md:-right-8 lg:-right-11 xl:-right-11 2xl:-right-15">
-        <Image
-          src="/icons/Vector.svg"
-          alt=""
-          width={54}
-          height={50}
-          className="w-[50px] h-auto opacity-100 rotate-180"
-        />
-      </div>
-
       <div className="relative">
         {/* Reviews Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 lg:gap-12">
@@ -110,12 +90,17 @@ export default function ReviewsCarousel() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -100 }}
                 transition={{ duration: 0.4, delay: idx * 0.1 }}
-                className="flex flex-col"
+                className="bg-white rounded-lg border border-gray-200 p-6 flex flex-col"
               >
-                {/* Review Text */}
-                <p className="font-helvetica text-[clamp(0.875rem,1.1vw,1.125rem)] text-gray-800 leading-[1.7] mb-12 flex-grow">
+                {/* Review Text with inline quotes */}
+                <p className="font-helvetica text-[clamp(0.875rem,1.1vw,1.125rem)] text-gray-800 leading-[1.7] mb-6 flex-grow">
+                  <span className="text-[clamp(1.75rem,2vw,2rem)] text-brand-blue mr-1 inline-block align-top leading-none">&ldquo;</span>
                   {review.text}
+                  <span className="text-[clamp(1.75rem,2vw,2rem)] text-brand-blue ml-1 inline-block align-top leading-none">&rdquo;</span>
                 </p>
+
+                {/* Blue Divider */}
+                <div className="w-full h-[2px] bg-brand-blue mb-6 flex-shrink-0" />
 
                 {/* Author Info */}
                 <div className="flex items-start gap-7">
