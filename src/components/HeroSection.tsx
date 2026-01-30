@@ -101,8 +101,8 @@ export default function HeroSection() {
           </motion.div>
 
           {/* Decorative Divider */}
-          <motion.div className="mb-8" variants={itemVariants}>
-            <div className="h-[1px] bg-blue-primary mx-auto w-[25vw]"  />
+          <motion.div className="mb-14" variants={itemVariants}>
+            <div className="h-[2px] bg-gradient-to-r from-transparent via-blue-primary to-transparent mx-auto w-[30vw]"  />
           </motion.div>
 
           {/* Supporting Line - Strategy Focus */}
