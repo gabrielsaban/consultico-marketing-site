@@ -38,20 +38,23 @@ export default function StatsBoxes() {
         {stats.map((stat, index) => (
           <div
             key={index}
-            className="bg-brand-silk rounded-lg p-6 shadow-[inset_0_0_6px_rgba(0,0,0,0.1)] flex flex-col justify-between min-h-[12rem] xl:h-[12rem] 2xl:h-[15rem]"
+            className="flex flex-col min-h-[12rem] xl:h-[12rem] 2xl:h-[15rem]"
           >
             {/* Stat Value */}
-            <h3 className="font-futura font-bold text-[clamp(2rem,2.5vw,3rem)] text-brand-blue">
+            <h3 className="font-futura font-bold text-[clamp(2rem,2.5vw,3rem)] text-brand-blue mb-4">
               {stat.value}
             </h3>
 
+            {/* Blue Divider */}
+            <div className="w-full h-[2px] bg-brand-blue mb-4 flex-shrink-0" />
+
             {/* Stat Name */}
-            <h4 className="font-helvetica font-medium text-[clamp(1.125rem,1.4vw,1.75rem)] text-black">
+            <h4 className="font-helvetica font-medium text-[clamp(1.125rem,1.4vw,1.75rem)] text-black mb-2">
               {stat.name}
             </h4>
 
             {/* Stat Info */}
-            <p className="font-helvetica leading-tight text-[clamp(0.875rem,1vw,1.25rem)] pt-2 text-black">
+            <p className="font-helvetica leading-tight text-[clamp(0.875rem,1vw,1.25rem)] text-black">
               {stat.info}
             </p>
           </div>
