@@ -1,7 +1,10 @@
+'use client';
+
 // ARCHIVED: Full about section content moved to src/a_sections/AboutSection_archived.tsx
 
 import Container from '@/components/Container';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 interface TeamMember {
   id: number;
@@ -108,19 +111,28 @@ export default function AboutSection(): React.JSX.Element {
         </div>
 
         {/* Visual Pause - Noise Context */}
-        <div className="mb-20 md:mb-28 lg:mb-32 py-16 md:py-20 lg:py-24 text-center max-w-4xl mx-auto">
-          <p className="text-[clamp(1.25rem,2vw,1.75rem)] leading-[1.5] text-gray-800 font-helvetica mb-4">
-            The average person sees thousands of brands every day.
-            <br />
+        <div className="mb-20 md:mb-28 lg:mb-32 py-16 md:py-20 lg:py-24">
+          <div className="flex items-center gap-6 mb-2">
+            <div className="flex-1 h-[2px] bg-gradient-to-r from-transparent via-black to-black" />
+            <p className="text-[clamp(1.25rem,2vw,1.75rem)] leading-[1.5] text-gray-800 font-helvetica text-center max-w-4xl whitespace-nowrap">
+              The average person sees thousands of brands every day.
+            </p>
+            <div className="flex-1 h-[2px] bg-gradient-to-l from-transparent via-black to-black" />
+          </div>
+          <p className="text-[clamp(1.25rem,2vw,1.75rem)] leading-[1.5] text-gray-800 font-helvetica text-center mb-6">
             Most are forgotten instantly.
           </p>
-          <p className="text-[clamp(1.25rem,2vw,1.75rem)] leading-[1.5] text-brand-blue font-helvetica font-medium">
-            <b>We exist to make sure yours isn&apos;t.</b>
-          </p>
+          <div className="flex items-center gap-6">
+            <div className="flex-1 h-[2px] bg-gradient-to-r from-transparent via-brand-blue to-brand-blue" />
+            <p className="text-[clamp(1.25rem,2vw,1.75rem)] leading-[1.5] text-brand-blue font-helvetica font-medium text-center max-w-4xl whitespace-nowrap">
+              <b>We exist to make sure yours isn&apos;t.</b>
+            </p>
+            <div className="flex-1 h-[2px] bg-gradient-to-l from-transparent via-brand-blue to-brand-blue" />
+          </div>
         </div>
 
         {/* Team Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-[60%_auto] gap-12 lg:gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-[70%_auto] gap-12 lg:gap-16">
           {/* Team Grid */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {teamMembers.map((member) => (
@@ -165,21 +177,31 @@ export default function AboutSection(): React.JSX.Element {
           </div>
 
           {/* Team Description */}
-          <div className="flex flex-col ">
-            <h3 className="text-[clamp(1.5rem,2.5vw,2.5rem)] font-bold text-brand-blue font-futura mb-6">
-              Our Team
-            </h3>
-            <div className="space-y-4">
-              <p className="text-[clamp(0.95rem,1.1vw,1.05rem)] leading-[1.6] text-gray-700 font-helvetica">
-                We build our work around sharp, digitally-native thinkers who understand modern platforms instinctively.
-              </p>
-              <p className="text-[clamp(0.95rem,1.1vw,1.05rem)] leading-[1.6] text-gray-700 font-helvetica-light">
-                Many of our team are students — not because they&apos;re cheap or inexperienced, but because they&apos;re closest to how audiences actually behave today and are guided by skilled oversight.
-              </p>
-              <p className="text-[clamp(0.95rem,1.1vw,1.05rem)] leading-[1.6] text-gray-700 font-helvetica-light">
-                We trust their thinking, give them real responsibility, and hold all work to the same strategic standard.
-              </p>
+          <div className="flex flex-col justify-between">
+            <div>
+              <h3 className="text-[clamp(1.5rem,2.5vw,2.5rem)] font-bold text-brand-blue font-futura mb-6">
+                Our Team
+              </h3>
+              <div className="space-y-4 mb-8">
+                <p className="text-[clamp(0.95rem,1.1vw,1.05rem)] leading-[1.6] text-gray-700 font-helvetica">
+                  We build our work around sharp, digitally-native thinkers who understand modern platforms instinctively.
+                </p>
+                <p className="text-[clamp(0.95rem,1.1vw,1.05rem)] leading-[1.6] text-gray-700 font-helvetica-light">
+                  Many of our team are students — not because they&apos;re cheap or inexperienced, but because they&apos;re closest to how audiences actually behave today and are guided by skilled oversight.
+                </p>
+                <p className="text-[clamp(0.95rem,1.1vw,1.05rem)] leading-[1.6] text-gray-700 font-helvetica-light">
+                  We trust their thinking, give them real responsibility, and hold all work to the same strategic standard.
+                </p>
+              </div>
             </div>
+
+            <motion.button
+              className="bg-brand-blue text-white font-helvetica font-medium text-[clamp(1rem,1.2vw,1.125rem)] px-8 py-3 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2 self-start"
+              whileHover={{ scale: 1.06 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              Explore open positions
+            </motion.button>
           </div>
         </div>
       </Container>
