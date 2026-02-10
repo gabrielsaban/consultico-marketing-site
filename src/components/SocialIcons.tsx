@@ -3,7 +3,13 @@
 export default function SocialIcons({ className = '' }: { className?: string }) {
   return (
     <div className={`flex items-center pt-2 space-x-7 ${className}`}>
-      <a aria-label="LinkedIn" href="#" className="inline-flex items-center justify-center transition-transform duration-200 hover:scale-110 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded">
+      <a
+        aria-label="LinkedIn"
+        href="https://www.linkedin.com/company/consultico-ltd/"
+        target="_blank"
+        rel="noreferrer"
+        className="inline-flex items-center justify-center transition-transform duration-200 hover:scale-110 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded"
+      >
         <span
           aria-hidden
           className="w-14 h-14"
@@ -21,7 +27,13 @@ export default function SocialIcons({ className = '' }: { className?: string }) 
           }}
         />
       </a>
-      <a aria-label="Instagram" href="#" className="inline-flex items-center justify-center transition-transform duration-200 hover:scale-110 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded">
+      <a
+        aria-label="Instagram"
+        href="https://www.instagram.com/consultico_marketing/"
+        target="_blank"
+        rel="noreferrer"
+        className="inline-flex items-center justify-center transition-transform duration-200 hover:scale-110 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded"
+      >
         <span
           aria-hidden
           className="w-14 h-14"
@@ -39,7 +51,13 @@ export default function SocialIcons({ className = '' }: { className?: string }) 
           }}
         />
       </a>
-      <a aria-label="Facebook" href="#" className="inline-flex items-center justify-center transition-transform duration-200 hover:scale-110 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded">
+      <a
+        aria-label="Facebook"
+        href="https://www.facebook.com/profile.php?id=61562303216944"
+        target="_blank"
+        rel="noreferrer"
+        className="inline-flex items-center justify-center transition-transform duration-200 hover:scale-110 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded"
+      >
         <span
           aria-hidden
           className="w-14 h-14"
@@ -60,5 +78,4 @@ export default function SocialIcons({ className = '' }: { className?: string }) 
     </div>
   );
 }
-
 

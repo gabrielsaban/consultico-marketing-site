@@ -38,13 +38,31 @@ export default function Footer() {
             
             {/* Social Media Icons */}
             <div className="flex gap-4">
-              <a href="#" className="hover:opacity-80 transition-opacity" aria-label="Instagram">
+              <a
+                href="https://www.instagram.com/consultico_marketing/"
+                target="_blank"
+                rel="noreferrer"
+                className="hover:opacity-80 transition-opacity"
+                aria-label="Instagram"
+              >
                 <Image src="/icons/instagram.svg" alt="Instagram" width={24} height={24} className="brightness-0 invert" />
               </a>
-              <a href="#" className="hover:opacity-80 transition-opacity" aria-label="LinkedIn">
+              <a
+                href="https://www.linkedin.com/company/consultico-ltd/"
+                target="_blank"
+                rel="noreferrer"
+                className="hover:opacity-80 transition-opacity"
+                aria-label="LinkedIn"
+              >
                 <Image src="/icons/linkedin.svg" alt="LinkedIn" width={24} height={24} className="brightness-0 invert" />
               </a>
-              <a href="#" className="hover:opacity-80 transition-opacity" aria-label="Facebook">
+              <a
+                href="https://www.facebook.com/profile.php?id=61562303216944"
+                target="_blank"
+                rel="noreferrer"
+                className="hover:opacity-80 transition-opacity"
+                aria-label="Facebook"
+              >
                 <Image src="/icons/facebook.svg" alt="Facebook" width={24} height={24} className="brightness-0 invert" />
               </a>
             </div>
@@ -195,5 +213,4 @@ export default function Footer() {
     </footer>
   );
 }
-
 
