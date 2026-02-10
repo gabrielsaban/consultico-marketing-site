@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import Link from 'next/link';
 import ThemeToggle from '@/components/ThemeToggle';
+import { useRouter } from 'next/navigation';
 
 const navItems = [
   { name: 'home',     href: '#home'     },
@@ -16,6 +17,7 @@ const navItems = [
 
 export default function RouteAwareNavbar() {
   const pathname = usePathname();
+  const router = useRouter();
   const [activeSection, setActiveSection] = useState('home');
   const prefersReduced = useReducedMotion();
   const shouldHide = pathname?.startsWith('/landing');
@@ -23,36 +25,65 @@ export default function RouteAwareNavbar() {
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     const targetId = href.slice(1);
-    document.getElementById(targetId)
-      ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (pathname !== '/') {
+      sessionStorage.setItem('consultico_scroll_target', targetId);
+      router.push('/');
+      return;
+    }
+    document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   useEffect(() => {
-    const ids = navItems.map((n) => n.href.slice(1));
-    const observer = new IntersectionObserver(
-      (entries) => {
-        let bestId: string | null = null;
-        let bestRatio = 0;
-        for (const entry of entries) {
-          if (entry.isIntersecting && entry.intersectionRatio > bestRatio) {
-            bestRatio = entry.intersectionRatio;
-            bestId = (entry.target as HTMLElement).id;
-          }
-        }
-        if (bestId) setActiveSection(bestId);
-      },
-      {
-        root: null,
-        rootMargin: '-35% 0px -55% 0px',
-        threshold: [0, 0.25, 0.5, 0.75, 1],
+    if (pathname !== '/') {
+      if (pathname === '/think-first') {
+        setActiveSection('home');
+        return;
       }
-    );
-    ids.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
-    return () => observer.disconnect();
-  }, []);
+      if (pathname === '/careers') {
+        setActiveSection('about');
+        return;
+      }
+      setActiveSection('services');
+      return;
+    }
+
+    const ids = navItems.map((n) => n.href.slice(1));
+    let raf = 0;
+
+    const updateActive = () => {
+      raf = 0;
+      const threshold = window.innerHeight * 0.35;
+      let bestId: string | null = null;
+      let bestTop = -Infinity;
+
+      for (const id of ids) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        const top = el.getBoundingClientRect().top;
+        if (top <= threshold && top > bestTop) {
+          bestTop = top;
+          bestId = id;
+        }
+      }
+
+      if (bestId) setActiveSection(bestId);
+      else setActiveSection('home');
+    };
+
+    const onScroll = () => {
+      if (raf) return;
+      raf = requestAnimationFrame(updateActive);
+    };
+
+    updateActive();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => {
+      if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    };
+  }, [pathname]);
 
   if (shouldHide) return null;
 
@@ -97,4 +128,3 @@ export default function RouteAwareNavbar() {
     </motion.nav>
   );
 }
-
