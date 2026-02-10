@@ -69,17 +69,17 @@ export default function ProjectCarousel() {
               >
                 {/* Project Image Placeholder */}
                 <div
-                  className="w-full bg-white rounded-lg mb-4"
+                  className="w-full bg-white dark:bg-gray-900 rounded-lg mb-4"
                   style={{ aspectRatio: '0.7 / 0.9' }}
                 />
 
                 {/* Project Title */}
-                <h3 className="font-helvetica font-bold text-[clamp(1.125rem,1.4vw,1.5rem)] text-black mb-2">
+                <h3 className="font-helvetica font-bold text-[clamp(1.125rem,1.4vw,1.5rem)] text-black dark:text-gray-100 mb-2">
                   {project.title}
                 </h3>
 
                 {/* Project Description */}
-                <p className="font-helvetica text-[clamp(0.875rem,1vw,1.125rem)] text-gray-700">
+                <p className="font-helvetica text-[clamp(0.875rem,1vw,1.125rem)] text-gray-700 dark:text-gray-300">
                   {project.description}
                 </p>
               </motion.div>
@@ -150,4 +150,3 @@ export default function ProjectCarousel() {
     </Container>
   );
 }
-

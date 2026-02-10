@@ -90,10 +90,10 @@ export default function ReviewsCarousel() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -100 }}
                 transition={{ duration: 0.4, delay: idx * 0.1 }}
-                className="bg-white rounded-lg border border-gray-200 p-6 flex flex-col"
+                className="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 p-6 flex flex-col"
               >
                 {/* Review Text with inline quotes */}
-                <p className="font-helvetica text-[clamp(0.875rem,1.1vw,1.125rem)] text-gray-800 leading-[1.7] mb-6 flex-grow">
+                <p className="font-helvetica text-[clamp(0.875rem,1.1vw,1.125rem)] text-gray-800 dark:text-gray-200 leading-[1.7] mb-6 flex-grow">
                   <span className="text-[clamp(1.75rem,2vw,2rem)] text-brand-blue mr-1 inline-block align-top leading-none">&ldquo;</span>
                   {review.text}
                   <span className="text-[clamp(1.75rem,2vw,2rem)] text-brand-blue ml-1 inline-block align-top leading-none">&rdquo;</span>
@@ -105,14 +105,14 @@ export default function ReviewsCarousel() {
                 {/* Author Info */}
                 <div className="flex items-start gap-7">
                   {/* Avatar Placeholder - matches height of text+stars div */}
-                  <div className="rounded-full bg-gray-300 flex-shrink-0 w-[70px] h-[70px] xl:w-[75px] xl:h-[75px] 2xl:w-[90px] 2xl:h-[90px]" />
+                  <div className="rounded-full bg-gray-300 dark:bg-gray-800 flex-shrink-0 w-[70px] h-[70px] xl:w-[75px] xl:h-[75px] 2xl:w-[90px] 2xl:h-[90px]" />
                   
                   <div className="flex flex-col">
                     {/* Name and Company */}
-                    <p className="font-helvetica text-[clamp(0.875rem,1vw,1.125rem)] text-gray-900">
+                    <p className="font-helvetica text-[clamp(0.875rem,1vw,1.125rem)] text-gray-900 dark:text-gray-100">
                       {review.name}
                     </p>
-                    <p className="font-helvetica text-[clamp(0.875rem,1vw,1.125rem)] text-gray-900 mb-2">
+                    <p className="font-helvetica text-[clamp(0.875rem,1vw,1.125rem)] text-gray-900 dark:text-gray-100 mb-2">
                       {review.company}
                     </p>
 
@@ -194,4 +194,3 @@ export default function ReviewsCarousel() {
     </Container>
   );
 }
-

@@ -11,7 +11,7 @@ export default function ProjectsSocialProof() {
   return (
     <section id="projects" className="scroll-mt-24">
       {/* Projects Section - Grey Background with Shadow */}
-      <div className="bg-brand-silk shadow-[0_4px_20px_rgba(0,0,0,0.1)] py-16 md:py-20 lg:py-24">
+      <div className="bg-brand-silk dark:bg-gray-950 shadow-[0_4px_20px_rgba(0,0,0,0.1)] py-16 md:py-20 lg:py-24">
         <Container className="mb-6 md:mb-8">
           <h2 className="text-[clamp(2rem,3vw,3.125rem)] font-bold text-brand-blue font-futura text-center">
             See our past work
@@ -22,7 +22,7 @@ export default function ProjectsSocialProof() {
       </div>
       
       {/* Stats Section - Lighter Grey Background with Shadow */}
-      <div className="bg-gray-50 shadow-[0_4px_20px_rgba(0,0,0,0.1)] py-16 md:py-20 lg:py-24">
+      <div className="bg-gray-50 dark:bg-gray-900 shadow-[0_4px_20px_rgba(0,0,0,0.1)] py-16 md:py-20 lg:py-24">
         <Container className="mb-6 md:mb-8">
           <h2 className="text-[clamp(2rem,3vw,3.125rem)] font-bold text-brand-blue font-futura text-center">
             What can you achieve?
@@ -39,5 +39,4 @@ export default function ProjectsSocialProof() {
     </section>
   );
 }
-
 

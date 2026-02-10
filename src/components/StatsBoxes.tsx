@@ -49,12 +49,12 @@ export default function StatsBoxes() {
             <div className="w-full h-[2px] bg-brand-blue mb-4 flex-shrink-0" />
 
             {/* Stat Name */}
-            <h4 className="font-helvetica font-medium text-[clamp(1.125rem,1.4vw,1.75rem)] text-black mb-2">
+            <h4 className="font-helvetica font-medium text-[clamp(1.125rem,1.4vw,1.75rem)] text-black dark:text-gray-100 mb-2">
               {stat.name}
             </h4>
 
             {/* Stat Info */}
-            <p className="font-helvetica leading-tight text-[clamp(0.875rem,1vw,1.25rem)] text-black">
+            <p className="font-helvetica leading-tight text-[clamp(0.875rem,1vw,1.25rem)] text-black dark:text-gray-200">
               {stat.info}
             </p>
           </div>
@@ -63,4 +63,3 @@ export default function StatsBoxes() {
     </Container>
   );
 }
-

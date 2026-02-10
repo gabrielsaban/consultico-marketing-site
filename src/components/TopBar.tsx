@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import SocialIcons from '@/components/SocialIcons';
+import ThemeToggle from '@/components/ThemeToggle';
 
 export default function TopBar() {
   const [open, setOpen] = useState(false);
@@ -42,7 +43,7 @@ export default function TopBar() {
           >
             {/* Stronger layered gradient wash for readability under logo/icons */}
             <div className="pointer-events-none absolute inset-x-0 top-0 h-20">
-              <div className="absolute inset-0 bg-gradient-to-b from-white via-white/90 to-white/0" />
+              <div className="absolute inset-0 bg-gradient-to-b from-white via-white/90 to-white/0 dark:from-[#0f1117] dark:via-[#0f1117]/90 dark:to-[#0f1117]/0" />
               <div className="absolute inset-0 backdrop-blur-[2px]" />
             </div>
             <div className="flex items-center px-4 py-3 relative">
@@ -52,7 +53,8 @@ export default function TopBar() {
               <div className="flex-1 flex items-center justify-center">
                 <SocialIcons className="!space-x-2 md:space-x-6 [&>a>span]:!w-6 [&>a>span]:!h-6 md:[&>a>span]:w-12 md:[&>a>span]:h-12" />
               </div>
-              <div className="shrink-0 flex items-center">
+              <div className="shrink-0 flex items-center gap-2">
+                <ThemeToggle className="w-9 h-9" />
                 <button
                   aria-label={open ? 'Close menu' : 'Open menu'}
                   onClick={() => setOpen((v) => !v)}
@@ -80,7 +82,7 @@ export default function TopBar() {
           >
             <div className="absolute inset-0 bg-black/40" onClick={() => setOpen(false)} />
             <motion.div
-              className="absolute top-3 right-3 bg-white rounded-xl shadow-lg border border-gray-200 p-4"
+              className="absolute top-3 right-3 bg-white dark:bg-gray-900 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 p-4"
               initial={{ y: -16, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -16, opacity: 0 }}
@@ -115,5 +117,4 @@ export default function TopBar() {
     </>
   );
 }
-
 

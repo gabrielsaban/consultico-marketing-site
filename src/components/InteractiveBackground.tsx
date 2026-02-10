@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react'
 
 interface DotMatrixBackgroundProps {
   dotColor?: string
+  backgroundColor?: string
   dotSize?: number
   dotSpacing?: number
   dotOpacity?: number
@@ -15,6 +16,7 @@ interface DotMatrixBackgroundProps {
 
 export default function DotMatrixBackground({
   dotColor = '#007BFF',
+  backgroundColor = '#FFFFFF',
   dotSize = 2,
   dotSpacing = 40,
   dotOpacity = 0,
@@ -79,8 +81,8 @@ export default function DotMatrixBackground({
     window.addEventListener('mousemove', handleMouseMove)
 
     const render = (time: number) => {
-      // Fill canvas with white background first
-      ctx.fillStyle = '#FFFFFF'
+      // Fill canvas background
+      ctx.fillStyle = backgroundColor
       ctx.fillRect(0, 0, width, height)
 
       for (const dot of dots) {
@@ -113,7 +115,7 @@ export default function DotMatrixBackground({
       window.removeEventListener('resize', handleResize)
       window.removeEventListener('mousemove', handleMouseMove)
     }
-  }, [dotColor, dotSize, dotSpacing, dotOpacity, mouseInfluence, breathingSpeed, breathingIntensity])
+  }, [backgroundColor, dotColor, dotSize, dotSpacing, dotOpacity, mouseInfluence, breathingSpeed, breathingIntensity])
 
   return (
     <canvas

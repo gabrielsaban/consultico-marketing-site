@@ -153,7 +153,7 @@ export default function ServicesBubbleList() {
                   ${
                     isSelected
                       ? 'bg-brand-blue text-white'
-                      : 'bg-brand-silk text-brand-blue hover:bg-gray-200'
+                      : 'bg-brand-silk text-brand-blue hover:bg-gray-200 dark:bg-gray-900 dark:hover:bg-gray-800'
                   }
                 `}
                 whileHover={{ scale: 1.02 }}
@@ -186,7 +186,7 @@ export default function ServicesBubbleList() {
             // Top 3: Info top, Image bottom
             <>
               {/* Outcome Line */}
-              <p className="text-[clamp(1rem,1.3vw,1.2rem)] leading-[1.6] text-gray-800 font-helvetica-light">
+              <p className="text-[clamp(1rem,1.3vw,1.2rem)] leading-[1.6] text-gray-800 dark:text-gray-200 font-helvetica-light">
                 {currentService.outcome}
               </p>
 
@@ -195,7 +195,7 @@ export default function ServicesBubbleList() {
                 {currentService.bullets.map((bullet, index) => (
                   <li
                     key={index}
-                    className="text-[clamp(0.95rem,1.2vw,1.1rem)] leading-[1.6] text-gray-700 font-helvetica-light relative before:content-['•'] before:absolute before:left-[-1.5rem] before:text-brand-blue before:font-bold"
+                    className="text-[clamp(0.95rem,1.2vw,1.1rem)] leading-[1.6] text-gray-700 dark:text-gray-300 font-helvetica-light relative before:content-['•'] before:absolute before:left-[-1.5rem] before:text-brand-blue before:font-bold"
                   >
                     {bullet}
                   </li>
@@ -213,16 +213,16 @@ export default function ServicesBubbleList() {
               </motion.button>
 
               {/* Image Placeholder - Bottom */}
-              <div className="w-full aspect-square bg-brand-silk rounded-[10px] mt-auto" />
+              <div className="w-full aspect-square bg-brand-silk dark:bg-gray-900 rounded-[10px] mt-auto" />
             </>
           ) : (
             // Bottom 3: Image top, Info bottom
             <>
               {/* Image Placeholder - Top */}
-              <div className="w-full aspect-square bg-brand-silk rounded-[10px]" />
+              <div className="w-full aspect-square bg-brand-silk dark:bg-gray-900 rounded-[10px]" />
 
               {/* Outcome Line */}
-              <p className="text-[clamp(1rem,1.3vw,1.2rem)] leading-[1.6] text-gray-800 font-helvetica-light">
+              <p className="text-[clamp(1rem,1.3vw,1.2rem)] leading-[1.6] text-gray-800 dark:text-gray-200 font-helvetica-light">
                 {currentService.outcome}
               </p>
 
@@ -231,7 +231,7 @@ export default function ServicesBubbleList() {
                 {currentService.bullets.map((bullet, index) => (
                   <li
                     key={index}
-                    className="text-[clamp(0.95rem,1.2vw,1.1rem)] leading-[1.6] text-gray-700 font-helvetica-light relative before:content-['•'] before:absolute before:left-[-1.5rem] before:text-brand-blue before:font-bold"
+                    className="text-[clamp(0.95rem,1.2vw,1.1rem)] leading-[1.6] text-gray-700 dark:text-gray-300 font-helvetica-light relative before:content-['•'] before:absolute before:left-[-1.5rem] before:text-brand-blue before:font-bold"
                   >
                     {bullet}
                   </li>
@@ -254,4 +254,3 @@ export default function ServicesBubbleList() {
     </Container>
   );
 }
-

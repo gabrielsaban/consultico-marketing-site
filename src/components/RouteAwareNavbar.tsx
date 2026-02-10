@@ -4,6 +4,7 @@ import { usePathname } from 'next/navigation'
 import { useState, useEffect } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import Link from 'next/link';
+import ThemeToggle from '@/components/ThemeToggle';
 
 const navItems = [
   { name: 'home',     href: '#home'     },
@@ -90,8 +91,10 @@ export default function RouteAwareNavbar() {
           );
         })}
       </div>
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2">
+        <ThemeToggle className="border-white text-white hover:bg-white/20" />
+      </div>
     </motion.nav>
   );
 }
-
 

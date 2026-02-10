@@ -80,10 +80,10 @@ export default function AboutSection(): React.JSX.Element {
             About Consultico
           </h2>
           <div className="max-w-3xl space-y-4">
-            <p className="text-[clamp(1rem,1.3vw,1.2rem)] leading-[1.6] text-gray-800 font-helvetica">
+            <p className="text-[clamp(1rem,1.3vw,1.2rem)] leading-[1.6] text-gray-800 dark:text-gray-200 font-helvetica">
               In business, very few teams can afford a full in-house marketing department - that&apos;s where we come in.
             </p>
-            <p className="text-[clamp(1rem,1.3vw,1.2rem)] leading-[1.6] text-gray-800 font-helvetica">
+            <p className="text-[clamp(1rem,1.3vw,1.2rem)] leading-[1.6] text-gray-800 dark:text-gray-200 font-helvetica">
               We act as a strategy-led marketing partner, helping brands cut through saturated markets with clarity, structure, and intent.
             </p>
           </div>
@@ -101,7 +101,7 @@ export default function AboutSection(): React.JSX.Element {
                   <h4 className="font-futura font-bold text-[clamp(1.125rem,1.4vw,1.35rem)] text-brand-blue mb-2">
                     {point.title}
                   </h4>
-                  <p className="text-[clamp(0.95rem,1.1vw,1.25rem)] leading-[1.6] text-gray-700 font-helvetica-light">
+                  <p className="text-[clamp(0.95rem,1.1vw,1.25rem)] leading-[1.6] text-gray-700 dark:text-gray-300 font-helvetica-light">
                     {point.description}
                   </p>
                 </div>
@@ -113,13 +113,13 @@ export default function AboutSection(): React.JSX.Element {
         {/* Visual Pause - Noise Context */}
         <div className="mb-20 md:mb-28 lg:mb-32 py-16 md:py-20 lg:py-24">
           <div className="flex items-center gap-6 mb-2">
-            <div className="flex-1 h-[2px] bg-gradient-to-r from-transparent via-black to-black" />
-            <p className="text-[clamp(1.25rem,2vw,1.75rem)] leading-[1.5] text-gray-800 font-helvetica text-center max-w-4xl whitespace-nowrap">
+            <div className="flex-1 h-[2px] bg-gradient-to-r from-transparent via-black to-black dark:via-gray-600 dark:to-gray-600" />
+            <p className="text-[clamp(1.25rem,2vw,1.75rem)] leading-[1.5] text-gray-800 dark:text-gray-200 font-helvetica text-center max-w-4xl whitespace-nowrap">
               The average person sees thousands of brands every day.
             </p>
-            <div className="flex-1 h-[2px] bg-gradient-to-l from-transparent via-black to-black" />
+            <div className="flex-1 h-[2px] bg-gradient-to-l from-transparent via-black to-black dark:via-gray-600 dark:to-gray-600" />
           </div>
-          <p className="text-[clamp(1.25rem,2vw,1.75rem)] leading-[1.5] text-gray-800 font-helvetica text-center mb-6">
+          <p className="text-[clamp(1.25rem,2vw,1.75rem)] leading-[1.5] text-gray-800 dark:text-gray-200 font-helvetica text-center mb-6">
             Most are forgotten instantly.
           </p>
           <div className="flex items-center gap-6">
@@ -138,17 +138,17 @@ export default function AboutSection(): React.JSX.Element {
             {teamMembers.map((member) => (
               <div
                 key={member.id}
-                className="relative bg-gray-50 rounded-lg overflow-hidden flex flex-col"
+                className="relative bg-gray-50 dark:bg-gray-900 rounded-lg overflow-hidden flex flex-col"
               >
                 {/* Profile Picture Placeholder */}
-                <div className="w-full aspect-square bg-gray-200" />
+                <div className="w-full aspect-square bg-gray-200 dark:bg-gray-800" />
                 
                 {/* Info Section */}
                 <div className="p-3 md:p-4 flex-grow flex flex-col justify-end">
                   <h3 className="font-futura font-bold text-[clamp(0.875rem,1.1vw,1rem)] text-brand-blue mb-1">
                     {member.name}
                   </h3>
-                  <p className="font-helvetica-light text-[clamp(0.75rem,0.9vw,0.875rem)] text-gray-600">
+                  <p className="font-helvetica-light text-[clamp(0.75rem,0.9vw,0.875rem)] text-gray-600 dark:text-gray-400">
                     {member.role}
                   </p>
                 </div>
@@ -156,7 +156,7 @@ export default function AboutSection(): React.JSX.Element {
                 {/* CV/Portfolio Link Icon */}
                 <Link
                   href={member.cvLink}
-                  className="absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:shadow-lg transition-shadow"
+                  className="absolute top-3 right-3 w-8 h-8 bg-white dark:bg-gray-900 dark:border dark:border-gray-700 rounded-full flex items-center justify-center shadow-md hover:shadow-lg transition-shadow"
                   aria-label={`View ${member.name}'s CV`}
                 >
                   <svg
@@ -183,13 +183,13 @@ export default function AboutSection(): React.JSX.Element {
                 Our Team
               </h3>
               <div className="space-y-4 mb-8">
-                <p className="text-[clamp(0.95rem,1.1vw,1.05rem)] leading-[1.6] text-gray-700 font-helvetica">
+                <p className="text-[clamp(0.95rem,1.1vw,1.05rem)] leading-[1.6] text-gray-700 dark:text-gray-300 font-helvetica">
                   We build our work around sharp, digitally-native thinkers who understand modern platforms instinctively.
                 </p>
-                <p className="text-[clamp(0.95rem,1.1vw,1.05rem)] leading-[1.6] text-gray-700 font-helvetica-light">
+                <p className="text-[clamp(0.95rem,1.1vw,1.05rem)] leading-[1.6] text-gray-700 dark:text-gray-300 font-helvetica-light">
                   Many of our team are students — not because they&apos;re cheap or inexperienced, but because they&apos;re closest to how audiences actually behave today and are guided by skilled oversight.
                 </p>
-                <p className="text-[clamp(0.95rem,1.1vw,1.05rem)] leading-[1.6] text-gray-700 font-helvetica-light">
+                <p className="text-[clamp(0.95rem,1.1vw,1.05rem)] leading-[1.6] text-gray-700 dark:text-gray-300 font-helvetica-light">
                   We trust their thinking, give them real responsibility, and hold all work to the same strategic standard.
                 </p>
               </div>

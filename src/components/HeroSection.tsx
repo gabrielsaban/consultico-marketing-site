@@ -114,7 +114,7 @@ export default function HeroSection() {
 
           {/* Philosophy Micro Line */}
           <motion.div className="mb-10" variants={itemVariants}>
-            <p className="text-gray-600 font-futura text-[clamp(0.75rem,0.9vw,0.85rem)] tracking-[0.15em] opacity-70 uppercase">
+            <p className="text-gray-600 dark:text-gray-300 font-futura text-[clamp(0.75rem,0.9vw,0.85rem)] tracking-[0.15em] opacity-70 uppercase">
                No Templates <span className="mx-2">·</span> No Guesswork <span className="mx-2">·</span> No Gut-Feel Marketing
             </p>
           </motion.div>
