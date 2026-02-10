@@ -1,7 +1,8 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { motion, useInView } from 'framer-motion';
+import { useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Container from '@/components/Container';
 
 interface Service {
@@ -11,6 +12,7 @@ interface Service {
   bullets: string[];
   cta: string;
   icon: string;
+  slug: string;
 }
 
 const services: Service[] = [
@@ -25,6 +27,7 @@ const services: Service[] = [
     ],
     cta: 'Explore Market Strategy',
     icon: 'compass',
+    slug: 'market-strategy',
   },
   {
     id: 'branding',
@@ -37,6 +40,7 @@ const services: Service[] = [
     ],
     cta: 'Explore Branding & Image',
     icon: 'layers',
+    slug: 'branding',
   },
   {
     id: 'content',
@@ -49,6 +53,7 @@ const services: Service[] = [
     ],
     cta: 'Explore Content Creation',
     icon: 'sparkles',
+    slug: 'content-creation',
   },
   {
     id: 'seo',
@@ -61,6 +66,7 @@ const services: Service[] = [
     ],
     cta: 'Explore SEO',
     icon: 'trending-up',
+    slug: 'seo',
   },
   {
     id: 'web',
@@ -73,6 +79,7 @@ const services: Service[] = [
     ],
     cta: 'Explore Web Development',
     icon: 'code',
+    slug: 'web-development',
   },
   {
     id: 'social',
@@ -85,6 +92,7 @@ const services: Service[] = [
     ],
     cta: 'Explore Social Media',
     icon: 'share-2',
+    slug: 'social-media',
   },
 ];
 
@@ -128,6 +136,9 @@ const ServiceIcon = ({ icon, className }: { icon: string; className?: string }) 
 
 export default function ServicesBubbleList() {
   const [selectedService, setSelectedService] = useState<string>('strategy');
+  const router = useRouter();
+  const sectionRef = useRef<HTMLDivElement | null>(null);
+  const isInView = useInView(sectionRef, { once: true, margin: '-120px' });
 
   const currentService = services.find((s) => s.id === selectedService) || services[0];
   const currentIndex = services.findIndex((s) => s.id === selectedService);
@@ -137,13 +148,31 @@ export default function ServicesBubbleList() {
     <Container className="py-16">
       <div className="grid grid-cols-1 lg:grid-cols-[60%_auto] gap-8 lg:gap-12 xl:gap-16 2xl:gap-20 items-start">
         {/* Left Column - Service Bubbles */}
-        <div className="flex flex-col gap-8">
+        <motion.div
+          ref={sectionRef}
+          className="flex flex-col gap-8"
+          initial="hidden"
+          animate={isInView ? 'show' : 'hidden'}
+          variants={{
+            hidden: {},
+            show: { transition: { staggerChildren: 0.08, delayChildren: 0.08 } },
+          }}
+        >
           {services.map((service) => {
             const isSelected = selectedService === service.id;
             return (
               <motion.button
                 key={service.id}
                 onClick={() => setSelectedService(service.id)}
+                variants={{
+                  hidden: { opacity: 0, y: 18, scale: 0.97 },
+                  show: {
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+                  },
+                }}
                 className={`
                   w-full rounded-[74px] pl-6 sm:pl-8 md:pl-10 lg:pl-12 pr-4 sm:pr-5 py-4 sm:py-5 
                   flex items-center justify-between
@@ -172,13 +201,13 @@ export default function ServicesBubbleList() {
               </motion.button>
             );
           })}
-        </div>
+        </motion.div>
 
         {/* Right Column - Service Preview */}
         <motion.div
           key={selectedService}
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 20 }}
           transition={{ duration: 0.3 }}
           className="flex flex-col gap-6 min-h-[400px]"
         >
@@ -208,6 +237,7 @@ export default function ServicesBubbleList() {
                 whileHover={{ scale: 1.06 }}
                 whileTap={{ scale: 0.98 }}
                 aria-label={currentService.cta}
+                onClick={() => router.push(`/${currentService.slug}`)}
               >
                 {currentService.cta}
               </motion.button>
@@ -244,6 +274,7 @@ export default function ServicesBubbleList() {
                 whileHover={{ scale: 1.06 }}
                 whileTap={{ scale: 0.98 }}
                 aria-label={currentService.cta}
+                onClick={() => router.push(`/${currentService.slug}`)}
               >
                 {currentService.cta}
               </motion.button>
