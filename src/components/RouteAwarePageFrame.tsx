@@ -39,6 +39,11 @@ export default function RouteAwarePageFrame({ children }: { children: React.Reac
     prevPathRef.current = pathname || null
   }, [pathname])
 
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+  }, [pathname])
+
   return (
     <div className={`${paddingClass} relative z-10 min-h-screen flex flex-col`}>
       <div className="flex-1">
