@@ -91,9 +91,25 @@ export default function AboutSection(): React.JSX.Element {
 
         {/* Philosophy Section */}
         <div className="mb-16 md:mb-20 lg:mb-24">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-12">
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-12"
+            variants={{
+              hidden: {},
+              show: { transition: { staggerChildren: 0.12 } },
+            }}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.3 }}
+          >
             {philosophyPoints.map((point) => (
-              <div key={point.title} className="flex gap-4">
+              <motion.div
+                key={point.title}
+                className="flex gap-4"
+                variants={{
+                  hidden: { opacity: 0, x: -18 },
+                  show: { opacity: 1, x: 0, transition: { duration: 0.45, ease: 'easeOut' } },
+                }}
+              >
                 <div className="flex-shrink-0">
                   <PhilosophyIcon />
                 </div>
@@ -105,9 +121,9 @@ export default function AboutSection(): React.JSX.Element {
                     {point.description}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
 
         {/* Visual Pause - Noise Context */}
