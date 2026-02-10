@@ -1,6 +1,7 @@
 'use client';
 
 import Container from '@/components/Container';
+import AnimatedCounter from '@/components/AnimatedCounter';
 
 interface Stat {
   value: string;
@@ -41,9 +42,7 @@ export default function StatsBoxes() {
             className="flex flex-col min-h-[12rem] xl:h-[12rem] 2xl:h-[15rem]"
           >
             {/* Stat Value */}
-            <h3 className="font-futura font-bold text-[clamp(2rem,2.5vw,3rem)] text-brand-blue mb-4">
-              {stat.value}
-            </h3>
+            <AnimatedCounter value={stat.value} duration={1.4} />
 
             {/* Blue Divider */}
             <div className="w-full h-[2px] bg-brand-blue mb-4 flex-shrink-0" />
