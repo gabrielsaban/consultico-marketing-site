@@ -126,6 +126,9 @@ export default function HeroSection() {
               whileHover={{ scale: 1.06 }}
               whileTap={{ scale: 0.98 }}
               aria-label="Get in touch with Consultico"
+              onClick={() => {
+                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }}
             >
               Get in touch
             </motion.button>

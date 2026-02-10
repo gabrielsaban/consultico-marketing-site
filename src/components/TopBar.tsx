@@ -102,7 +102,12 @@ export default function TopBar() {
                     onClick={(e) => {
                       e.preventDefault();
                       setOpen(false);
-                      document.getElementById(item.href.slice(1))?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      const targetId = item.href.slice(1);
+                      requestAnimationFrame(() => {
+                        requestAnimationFrame(() => {
+                          document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        });
+                      });
                     }}
                     className="px-4 py-3 text-brand-blue font-futura text-lg rounded-lg"
                   >
@@ -117,4 +122,3 @@ export default function TopBar() {
     </>
   );
 }
-
