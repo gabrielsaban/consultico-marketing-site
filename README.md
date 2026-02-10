@@ -121,7 +121,8 @@ public/
 
 ## To-Do
 
-- [ ] Add social links
+- [X] Add social links
+- [X] Add dark mode
 - [ ] Retouch hero spacing
 - [ ] Redirect CTAs to sections, footer buttons to relevant pages
 - [ ] Add CMS for projects, reviews, staff & resumes
@@ -132,4 +133,3 @@ public/
 - [ ] Develop careers page
 - [ ] Develop service pages
 - [ ] Ensure full mobile responsive design
-- [ ] Add dark mode and toggle capabilities
