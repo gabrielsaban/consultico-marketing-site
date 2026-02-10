@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -13,6 +15,7 @@
   --brand-black: #141414;     /* Chinese black */
   /* Backwards-compat: alias old primary to brand blue */
   --blue-primary: var(--brand-blue);
+  color-scheme: light;
 }
 
 @theme inline {
@@ -30,11 +33,10 @@
   --color-blue-primary: var(--brand-blue);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  color-scheme: dark;
 }
 
 body {

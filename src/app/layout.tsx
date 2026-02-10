@@ -76,14 +76,27 @@ export const metadata: Metadata = {
   },
 };
 
+const themeScript = `
+(() => {
+  try {
+    const stored = localStorage.getItem('theme');
+    const theme = stored === 'light' || stored === 'dark' ? stored : 'light';
+    document.documentElement.classList.toggle('dark', theme === 'dark');
+  } catch {
+    // no-op
+  }
+})();
+`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="bg-white">
-      <body className={`${geistSans.variable} ${geistMono.variable} ${futuraHV.variable} ${helveticaNow.variable} ${helveticaUI.variable} antialiased font-sans bg-white relative`}>
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${geistSans.variable} ${geistMono.variable} ${futuraHV.variable} ${helveticaNow.variable} ${helveticaUI.variable} antialiased font-sans relative`}>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <EffectsLayer>
           {/* Mobile-only top bar */}
           <TopBar />
