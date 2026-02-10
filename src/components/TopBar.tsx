@@ -5,11 +5,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import SocialIcons from '@/components/SocialIcons';
 import ThemeToggle from '@/components/ThemeToggle';
+import { usePathname, useRouter } from 'next/navigation';
 
 export default function TopBar() {
   const [open, setOpen] = useState(false);
   const [visible, setVisible] = useState(true);
   const lastY = useRef(0);
+  const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     const onScroll = () => {
@@ -103,6 +106,11 @@ export default function TopBar() {
                       e.preventDefault();
                       setOpen(false);
                       const targetId = item.href.slice(1);
+                      if (pathname !== '/') {
+                        sessionStorage.setItem('consultico_scroll_target', targetId);
+                        router.push('/');
+                        return;
+                      }
                       requestAnimationFrame(() => {
                         requestAnimationFrame(() => {
                           document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
