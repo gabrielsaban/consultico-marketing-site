@@ -5,6 +5,7 @@
 import Container from '@/components/Container';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 
 interface TeamMember {
   id: number;
@@ -71,6 +72,7 @@ const PhilosophyIcon = () => {
 };
 
 export default function AboutSection(): React.JSX.Element {
+  const router = useRouter();
   return (
     <section id="about" className="py-16 md:py-20 lg:py-24 scroll-mt-24">
       <Container>
@@ -215,6 +217,7 @@ export default function AboutSection(): React.JSX.Element {
               className="bg-brand-blue text-white font-helvetica font-medium text-[clamp(1rem,1.2vw,1.125rem)] px-8 py-3 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2 self-start"
               whileHover={{ scale: 1.06 }}
               whileTap={{ scale: 0.98 }}
+              onClick={() => router.push('/careers')}
             >
               Explore open positions
             </motion.button>

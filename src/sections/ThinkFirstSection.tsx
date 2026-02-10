@@ -2,8 +2,10 @@
 
 import type { JSX } from 'react';
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 
 export default function ThinkFirstSection(): JSX.Element {
+  const router = useRouter();
   return (
     <section className="py-12 md:py-16 lg:py-20 bg-gray-50 dark:bg-gray-900 shadow-[0_8px_20px_rgba(0,0,0,0.1)]">
       <div className="px-4 sm:px-6 md:px-[5vw] lg:px-[7.5vw]">
@@ -37,6 +39,7 @@ export default function ThinkFirstSection(): JSX.Element {
             whileHover={{ scale: 1.06 }}
             whileTap={{ scale: 0.98 }}
             aria-label="See how it works"
+            onClick={() => router.push('/think-first')}
           >
             Get clarity before you invest
           </motion.button>
