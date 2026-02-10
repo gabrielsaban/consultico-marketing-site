@@ -2,7 +2,10 @@
 
 import Container from '@/components/Container';
 import { useState } from 'react';
+import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
+
+const ContactMap = dynamic(() => import('@/components/ContactMap'), { ssr: false });
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -266,14 +269,8 @@ export default function ContactSection() {
           </div>
         </div>
 
-        {/* Map Placeholder */}
-        <div className="w-full h-[400px] md:h-[500px] bg-gray-300 dark:bg-gray-800 rounded-lg flex items-center justify-center">
-          <p className="text-gray-600 dark:text-gray-400 font-helvetica text-[clamp(1rem,1.2vw,1.25rem)]">
-            Map Placeholder
-          </p>
-        </div>
+        <ContactMap />
       </Container>
     </section>
   );
 }
-
