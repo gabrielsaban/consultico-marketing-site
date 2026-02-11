@@ -90,7 +90,7 @@ export default function SitePreloader() {
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 94.86 125.84"
+          viewBox="-2 12 98 118"
           className="w-20 sm:w-24"
           fill="none"
         >
