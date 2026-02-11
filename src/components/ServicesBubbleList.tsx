@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Container from '@/components/Container';
@@ -155,22 +155,22 @@ export default function ServicesBubbleList() {
           animate={isInView ? 'show' : 'hidden'}
           variants={{
             hidden: {},
-            show: { transition: { staggerChildren: 0.08, delayChildren: 0.08 } },
+            show: { transition: { staggerChildren: 0.1, delayChildren: 0.08 } },
           }}
         >
-          {services.map((service) => {
+          {services.map((service, index) => {
             const isSelected = selectedService === service.id;
+            const fromLeft = index % 2 === 0;
             return (
               <motion.button
                 key={service.id}
                 onClick={() => setSelectedService(service.id)}
                 variants={{
-                  hidden: { opacity: 0, y: 18, scale: 0.97 },
+                  hidden: { opacity: 0, x: fromLeft ? -30 : 30 },
                   show: {
                     opacity: 1,
-                    y: 0,
-                    scale: 1,
-                    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+                    x: 0,
+                    transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
                   },
                 }}
                 className={`
@@ -185,7 +185,7 @@ export default function ServicesBubbleList() {
                       : 'bg-brand-silk text-brand-blue hover:bg-gray-200 dark:bg-gray-900 dark:hover:bg-gray-800'
                   }
                 `}
-                whileHover={{ scale: 1.02 }}
+                whileHover={isSelected ? {} : { scale: 1.015, x: 6 }}
                 whileTap={{ scale: 0.98 }}
               >
                 <div className="flex items-center gap-3 sm:gap-4">
@@ -204,35 +204,48 @@ export default function ServicesBubbleList() {
         </motion.div>
 
         {/* Right Column - Service Preview */}
-        <motion.div
-          key={selectedService}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 20 }}
-          transition={{ duration: 0.3 }}
-          className="flex flex-col gap-6 min-h-[400px]"
-        >
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={selectedService}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 16 }}
+            exit={{ opacity: 0, y: -12, transition: { duration: 0.2, ease: 'easeIn' } }}
+            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            className="flex flex-col gap-6 min-h-[400px]"
+          >
           {isTopThree ? (
             // Top 3: Info top, Image bottom
             <>
               {/* Outcome Line */}
-              <p className="text-[clamp(1rem,1.3vw,1.2rem)] leading-[1.6] text-gray-800 dark:text-gray-200 font-helvetica-light">
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.05, duration: 0.3 }}
+                className="text-[clamp(1rem,1.3vw,1.2rem)] leading-[1.6] text-gray-800 dark:text-gray-200 font-helvetica-light"
+              >
                 {currentService.outcome}
-              </p>
+              </motion.p>
 
               {/* Bullets */}
               <ul className="space-y-3 pl-8">
                 {currentService.bullets.map((bullet, index) => (
-                  <li
+                  <motion.li
                     key={index}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.12 + index * 0.08, duration: 0.3 }}
                     className="text-[clamp(0.95rem,1.2vw,1.1rem)] leading-[1.6] text-gray-700 dark:text-gray-300 font-helvetica-light relative before:content-['•'] before:absolute before:left-[-1.5rem] before:text-brand-blue before:font-bold"
                   >
                     {bullet}
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
 
               {/* CTA Button */}
               <motion.button
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.36, duration: 0.3 }}
                 className="w-full bg-blue-primary text-white font-helvetica font-medium text-[clamp(0.95rem,1.2vw,1.1rem)] px-6 py-3 rounded-lg hover:opacity-90 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-primary focus:ring-offset-2"
                 whileHover={{ scale: 1.06 }}
                 whileTap={{ scale: 0.98 }}
@@ -252,24 +265,35 @@ export default function ServicesBubbleList() {
               <div className="w-full aspect-square bg-brand-silk dark:bg-gray-900 rounded-[10px]" />
 
               {/* Outcome Line */}
-              <p className="text-[clamp(1rem,1.3vw,1.2rem)] leading-[1.6] text-gray-800 dark:text-gray-200 font-helvetica-light">
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.05, duration: 0.3 }}
+                className="text-[clamp(1rem,1.3vw,1.2rem)] leading-[1.6] text-gray-800 dark:text-gray-200 font-helvetica-light"
+              >
                 {currentService.outcome}
-              </p>
+              </motion.p>
 
               {/* Bullets */}
               <ul className="space-y-3 pl-8">
                 {currentService.bullets.map((bullet, index) => (
-                  <li
+                  <motion.li
                     key={index}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.12 + index * 0.08, duration: 0.3 }}
                     className="text-[clamp(0.95rem,1.2vw,1.1rem)] leading-[1.6] text-gray-700 dark:text-gray-300 font-helvetica-light relative before:content-['•'] before:absolute before:left-[-1.5rem] before:text-brand-blue before:font-bold"
                   >
                     {bullet}
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
 
               {/* CTA Button */}
               <motion.button
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.36, duration: 0.3 }}
                 className="w-full bg-blue-primary text-white font-helvetica font-medium text-[clamp(0.95rem,1.2vw,1.1rem)] px-6 py-3 rounded-lg hover:opacity-90 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-primary focus:ring-offset-2"
                 whileHover={{ scale: 1.06 }}
                 whileTap={{ scale: 0.98 }}
@@ -280,7 +304,8 @@ export default function ServicesBubbleList() {
               </motion.button>
             </>
           )}
-        </motion.div>
+          </motion.div>
+        </AnimatePresence>
       </div>
     </Container>
   );
