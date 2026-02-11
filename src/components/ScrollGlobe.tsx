@@ -17,8 +17,8 @@ export default function ScrollGlobe({ className = '' }: { className?: string }) 
   });
 
   // Scroll-driven 3D tilt — crank values for visible movement
-  const rotateY = useTransform(scrollYProgress, [0, 1], [-50, 25]);
-  const rotateX = useTransform(scrollYProgress, [0, 1], [20 ,0]);
+  const rotateY = useTransform(scrollYProgress, [0, 1], [-50, 0]);
+  const rotateX = useTransform(scrollYProgress, [0, 1], [10 ,0]);
   const translateY = useTransform(scrollYProgress, [0, 1], [0,0]);
 
   return (
