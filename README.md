@@ -123,13 +123,15 @@ public/
 
 - [X] Add social links
 - [X] Add dark mode
+- [X] Add working interactive map
+- [X] Redirect CTAs to sections, footer buttons to relevant pages
+- [X] Add more scroll-in animations (e.g. stat number bump, smooth pops)
+- [X] Add animated site entry screen
+- [ ] Fix dark-mode bugs
 - [ ] Retouch hero spacing
-- [ ] Redirect CTAs to sections, footer buttons to relevant pages
-- [ ] Add CMS for projects, reviews, staff & resumes
-- [ ] Add more scroll-in animations (e.g. stat number bump, smooth pops)
-- [ ] Make webinar registration & contact form functional
-- [ ] Add working interactive map
 - [ ] Develop ThinkFirst page
 - [ ] Develop careers page
 - [ ] Develop service pages
+- [ ] Add CMS for projects, reviews, staff & resumes
+- [ ] Make webinar registration & contact form functional
 - [ ] Ensure full mobile responsive design
