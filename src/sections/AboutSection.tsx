@@ -129,25 +129,52 @@ export default function AboutSection(): React.JSX.Element {
         </div>
 
         {/* Visual Pause - Noise Context */}
-        <div className="mb-20 md:mb-28 lg:mb-32 py-16 md:py-20 lg:py-24">
-          <div className="flex items-center gap-6 mb-2">
+        <motion.div
+          className="mb-20 md:mb-28 lg:mb-32 py-16 md:py-20 lg:py-24"
+          variants={{
+            hidden: {},
+            show: { transition: { staggerChildren: 0.25 } },
+          }}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.5 }}
+        >
+          <motion.div
+            className="flex items-center gap-6 mb-2"
+            variants={{
+              hidden: { opacity: 0 },
+              show: { opacity: 1, transition: { duration: 0.8, ease: 'easeOut' } },
+            }}
+          >
             <div className="flex-1 h-[2px] bg-gradient-to-r from-transparent via-black to-black dark:via-gray-600 dark:to-gray-600" />
             <p className="text-[clamp(1.25rem,2vw,1.75rem)] leading-[1.5] text-gray-800 dark:text-gray-200 font-helvetica text-center max-w-4xl whitespace-nowrap">
               The average person sees thousands of brands every day.
             </p>
             <div className="flex-1 h-[2px] bg-gradient-to-l from-transparent via-black to-black dark:via-gray-600 dark:to-gray-600" />
-          </div>
-          <p className="text-[clamp(1.25rem,2vw,1.75rem)] leading-[1.5] text-gray-800 dark:text-gray-200 font-helvetica text-center mb-6">
+          </motion.div>
+          <motion.p
+            className="text-[clamp(1.25rem,2vw,1.75rem)] leading-[1.5] text-gray-800 dark:text-gray-200 font-helvetica text-center mb-6"
+            variants={{
+              hidden: { opacity: 0 },
+              show: { opacity: 1, transition: { duration: 0.8, ease: 'easeOut' } },
+            }}
+          >
             Most are forgotten instantly.
-          </p>
-          <div className="flex items-center gap-6">
+          </motion.p>
+          <motion.div
+            className="flex items-center gap-6"
+            variants={{
+              hidden: { opacity: 0 },
+              show: { opacity: 1, transition: { duration: 0.8, ease: 'easeOut' } },
+            }}
+          >
             <div className="flex-1 h-[2px] bg-gradient-to-r from-transparent via-brand-blue to-brand-blue" />
             <p className="text-[clamp(1.25rem,2vw,1.75rem)] leading-[1.5] text-brand-blue font-helvetica font-medium text-center max-w-4xl whitespace-nowrap">
               <b>We exist to make sure yours isn&apos;t.</b>
             </p>
             <div className="flex-1 h-[2px] bg-gradient-to-l from-transparent via-brand-blue to-brand-blue" />
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Team Section */}
         <div className="grid grid-cols-1 lg:grid-cols-[70%_auto] gap-12 lg:gap-16">
