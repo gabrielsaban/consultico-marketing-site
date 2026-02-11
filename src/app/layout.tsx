@@ -6,6 +6,9 @@ import RouteAwareNavbar from "@/components/RouteAwareNavbar";
 import RouteAwarePageFrame from "@/components/RouteAwarePageFrame";
 import EffectsLayer from "@/components/EffectsLayer";
 import TopBar from "@/components/TopBar";
+import SitePreloader from "@/components/SitePreloader";
+import { PreloaderProvider } from "@/components/PreloaderContext";
+import PreloaderGate from "@/components/PreloaderGate";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -97,14 +100,19 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} ${futuraHV.variable} ${helveticaNow.variable} ${helveticaUI.variable} antialiased font-sans relative`}>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
-        <EffectsLayer>
-          {/* Mobile-only top bar */}
-          <TopBar />
-          <RouteAwareNavbar />
-          <RouteAwarePageFrame>
-            {children}
-          </RouteAwarePageFrame>
-        </EffectsLayer>
+        <PreloaderProvider>
+          <SitePreloader />
+          <PreloaderGate>
+            <EffectsLayer>
+              {/* Mobile-only top bar */}
+              <TopBar />
+              <RouteAwareNavbar />
+              <RouteAwarePageFrame>
+                {children}
+              </RouteAwarePageFrame>
+            </EffectsLayer>
+          </PreloaderGate>
+        </PreloaderProvider>
       </body>
     </html>
   );
