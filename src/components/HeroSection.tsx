@@ -12,8 +12,8 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.3,
+      staggerChildren: 0.12,
+      delayChildren: 0.45,
     },
   },
 };
@@ -24,7 +24,7 @@ const itemVariants = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.6,
+      duration: 0.45,
       ease: [0.4, 0, 0.2, 1] as const, // easeOut bezier
     },
   },
@@ -42,8 +42,8 @@ export default function HeroSection() {
         initial={{ opacity: 0, y: -40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ 
-          delay: 0.5, 
-          duration: 0.2, 
+          delay: 0.15, 
+          duration: 0.35, 
           ease: "easeOut" 
         }}
       >
@@ -63,8 +63,8 @@ export default function HeroSection() {
         initial={{ opacity: 0, y: -40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ 
-          delay: 0.5, 
-          duration: 0.2, 
+          delay: 0.15, 
+          duration: 0.35, 
           ease: "easeOut" 
         }}
       >
