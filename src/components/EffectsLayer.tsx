@@ -91,7 +91,7 @@ export default function EffectsLayer({ children }: EffectsLayerProps) {
       {!reducedMotion && (
         <DynamicDots
           backgroundColor={isDark ? '#272727' : '#FFFFFF'}
-          dotColor={isDark ? '#575757' : '#d1d5db'}
+          dotColor={isDark ? '#575757' : '#c0c4ca'}
           dotSize={1.7}
           dotSpacing={40}
           dotOpacity={isDark ? 0.25 : 0.6}
