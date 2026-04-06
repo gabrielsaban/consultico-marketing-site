@@ -1,4 +1,4 @@
-// ARCHIVED: Full projects content moved to src/a_sections/ProjectsSocialProof_archived.tsx
+// ARCHIVED: Full projects content moved to archive/sections/ProjectsSocialProof_archived.tsx
 // StatsCta archived - replaced with StatsBoxes
 
 // import StatsCta from './StatsCta';
@@ -39,4 +39,3 @@ export default function ProjectsSocialProof() {
     </section>
   );
 }
-

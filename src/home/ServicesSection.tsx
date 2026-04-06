@@ -1,4 +1,4 @@
-// ARCHIVED: Full services content moved to src/a_sections/ServicesSection_archived.tsx
+// ARCHIVED: Full services content moved to archive/sections/ServicesSection_archived.tsx
 
 import ServicesBubbleList from '@/components/ServicesBubbleList';
 import Container from '@/components/Container';
@@ -18,4 +18,3 @@ export default function ServicesSection() {
     </section>
   );
 }
-

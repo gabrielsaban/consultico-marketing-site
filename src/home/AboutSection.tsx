@@ -1,6 +1,6 @@
 'use client';
 
-// ARCHIVED: Full about section content moved to src/a_sections/AboutSection_archived.tsx
+// ARCHIVED: Full about section content moved to archive/sections/AboutSection_archived.tsx
 
 import Container from '@/components/Container';
 import Link from 'next/link';

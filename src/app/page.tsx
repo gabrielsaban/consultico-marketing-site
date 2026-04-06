@@ -1,4 +1,4 @@
-import ComposedPage from '@/sections/__ComposedPage';
+import ComposedPage from '@/home/__ComposedPage';
 
 export default function Home() {
   return <ComposedPage />;
