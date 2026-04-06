@@ -21,9 +21,6 @@
 # production
 /build
 
-/src/a_components/
-/src/a_sections/
-
 # misc
 .DS_Store
 *.pem
@@ -43,14 +40,4 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
-### ✅ 0.3 Add `.gitignore` manually before anything
-You can copy this for now:
-
-```gitignore
-node_modules
-.next
-.env.local
-.DS_Store
-*.log
-.vscode
+AGENTS.md

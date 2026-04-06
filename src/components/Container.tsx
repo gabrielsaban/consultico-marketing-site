@@ -16,7 +16,7 @@ interface ContainerProps {
  * Provides consistent max-width and responsive padding across all sections.
  * Mobile-first: 16px → 24px → fluid VW-based → capped at max-width
  * 
- * @see DESIGN_STANDARDS.md - Container Pattern
+ * @see archive/docs/DESIGN_STANDARDS.md - historical container guidance
  */
 export default function Container({
   children,
