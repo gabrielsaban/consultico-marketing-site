@@ -9,7 +9,6 @@ export default function RouteAwarePageFrame({ children }: { children: React.Reac
   const pathname = usePathname()
   const prefersReduced = useReducedMotion()
   const prevPathRef = useRef<string | null>(null)
-  const isLanding = pathname?.startsWith('/landing')
   const isService = [
     '/market-strategy',
     '/branding',
@@ -33,8 +32,6 @@ export default function RouteAwarePageFrame({ children }: { children: React.Reac
         '/careers',
       ].includes(prevPathRef.current)
     : false
-  const paddingClass = isLanding ? 'pl-0' : 'pl-0 md:pl-16'
-
   useEffect(() => {
     prevPathRef.current = pathname || null
   }, [pathname])
@@ -45,7 +42,7 @@ export default function RouteAwarePageFrame({ children }: { children: React.Reac
   }, [pathname])
 
   return (
-    <div className={`${paddingClass} relative z-10 min-h-screen flex flex-col`}>
+    <div className="relative z-10 min-h-screen flex flex-col pl-0 md:pl-16">
       <div className="flex-1">
         <AnimatePresence mode="wait">
           <motion.div

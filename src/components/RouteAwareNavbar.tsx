@@ -20,7 +20,6 @@ export default function RouteAwareNavbar() {
   const router = useRouter();
   const [activeSection, setActiveSection] = useState('home');
   const prefersReduced = useReducedMotion();
-  const shouldHide = pathname?.startsWith('/landing');
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -84,8 +83,6 @@ export default function RouteAwareNavbar() {
       window.removeEventListener('resize', onScroll);
     };
   }, [pathname]);
-
-  if (shouldHide) return null;
 
   return (
     <motion.nav 
