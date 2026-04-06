@@ -2,7 +2,7 @@
 
 import React, { useEffect, useMemo, useRef, useState, useLayoutEffect } from 'react';
 import { motion, useInView, useTransform } from 'framer-motion';
-import { usePolarCarousel } from '@/hooks/usePolarCarousel';
+import { usePolarCarousel } from '../hooks/usePolarCarousel';
 
 export type ServiceProvider = 'Consultico' | 'Trusted Partner';
 
@@ -421,5 +421,4 @@ export default function ServicesDial({ services, autoplay = false, className = '
     </div>
   );
 }
-
 

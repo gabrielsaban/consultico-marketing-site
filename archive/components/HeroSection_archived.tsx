@@ -2,8 +2,8 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import ImageFilledText from '../components/ImageFilledText';
-import HeroCTA from '../components/HeroCTA';
+import ImageFilledText from './ImageFilledText';
+import HeroCTA from './HeroCTA';
 import { useEffect, useRef, useState } from 'react';
 import SocialIcons from '@/components/SocialIcons';
 
@@ -155,5 +155,4 @@ export default function HeroSection() {
     </div>
   );
 }
-
 

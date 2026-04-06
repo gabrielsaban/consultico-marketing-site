@@ -5,7 +5,7 @@ import { motion, useScroll, useTransform, useSpring, useReducedMotion } from 'fr
 import { useRef } from 'react';
 import AnimatedCounter from '@/components/AnimatedCounter';
 import AnimatedLine from '@/components/AnimatedLine';
-import HeroCTA from '@/components/HeroCTA';
+import HeroCTA from './HeroCTA';
 
 export default function StatsCta(): JSX.Element {
   const prefersReduced = useReducedMotion();
@@ -68,5 +68,4 @@ export default function StatsCta(): JSX.Element {
     </section>
   );
 }
-
 

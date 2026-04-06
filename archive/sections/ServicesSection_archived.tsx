@@ -1,8 +1,8 @@
-import ServiceCard from '@/components/ServiceCard';
-import ServicesShowcase from '@/components/ServicesShowcase';
-// import ServicesDial, { type Service as DialService } from '@/components/ServicesDial';
-import HeroCTA from '@/components/HeroCTA';
-import ScrollFlowLine from '@/components/ScrollFlowLine';
+import ServiceCard from '../components/ServiceCard';
+import ServicesShowcase from '../components/ServicesShowcase';
+// import ServicesDial, { type Service as DialService } from '../components/ServicesDial';
+import HeroCTA from '../components/HeroCTA';
+import ScrollFlowLine from '../components/ScrollFlowLine';
 
 /* const servicesDialData: DialService[] = [
   { id: 'seo', title: 'SEO Growth Plan', outcome: 'Grow visibility and organic clicks month on month.', provider: 'Consultico', priceFrom: '£X', ctaLabel: 'Access Portal', unlockNote: true, href: '#contact' },
@@ -116,5 +116,4 @@ export default function ServicesSection() {
     </section>
   );
 }
-
 
