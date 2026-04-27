@@ -68,8 +68,13 @@ public/
 - [X] Redirect CTAs to sections, footer buttons to relevant pages
 - [X] Add more scroll-in animations (e.g. stat number bump, smooth pops)
 - [X] Add animated site entry screen
+- [ ] Gather context files
 - [ ] Fix dark-mode bugs
 - [ ] Retouch hero spacing
+- [ ] Replace 'Branding & Image' with 'PPC'
+- [ ] Replace social media icons with 'Contact Us'
+- [ ] Add 'Campaign Management' service
+- [ ] Add 'Articles' footer page
 - [ ] Develop ThinkFirst page
 - [ ] Develop careers page
 - [ ] Develop service pages
