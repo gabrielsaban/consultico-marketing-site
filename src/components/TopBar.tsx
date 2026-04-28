@@ -3,8 +3,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
-import SocialIcons from '@/components/SocialIcons';
 import ThemeToggle from '@/components/ThemeToggle';
+import ContactHeaderButton from '@/components/ContactHeaderButton';
 import { usePathname, useRouter } from 'next/navigation';
 
 export default function TopBar() {
@@ -44,7 +44,7 @@ export default function TopBar() {
             exit={{ y: -64, opacity: 0 }}
             transition={{ duration: 0.25, ease: 'easeOut' }}
           >
-            {/* Stronger layered gradient wash for readability under logo/icons */}
+            {/* Stronger layered gradient wash for readability under logo/actions */}
             <div className="pointer-events-none absolute inset-x-0 top-0 h-20">
               <div className="absolute inset-0 bg-gradient-to-b from-white via-white/90 to-white/0 dark:from-[#0f1117] dark:via-[#0f1117]/90 dark:to-[#0f1117]/0" />
               <div className="absolute inset-0 backdrop-blur-[2px]" />
@@ -54,7 +54,7 @@ export default function TopBar() {
                 <Image src="/brand/logo_main.svg" alt="Consultico" width={140} height={28} className="block h-7 w-auto" priority />
               </div>
               <div className="flex-1 flex items-center justify-center">
-                <SocialIcons className="!space-x-2 md:space-x-6 [&>a>span]:!w-6 [&>a>span]:!h-6 md:[&>a>span]:w-12 md:[&>a>span]:h-12" />
+                <ContactHeaderButton variant="mobile" />
               </div>
               <div className="shrink-0 flex items-center gap-2">
                 <ThemeToggle className="w-9 h-9" />

@@ -13,6 +13,7 @@ interface EffectsLayerProps {
 
 export default function EffectsLayer({ children }: EffectsLayerProps) {
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [coarsePointer, setCoarsePointer] = useState(false);
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
@@ -28,6 +29,19 @@ export default function EffectsLayer({ children }: EffectsLayerProps) {
       mq.addListener(update);
       return () => mq.removeListener(update);
     }
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) return;
+    const mq = window.matchMedia('(pointer: coarse)');
+    const update = () => setCoarsePointer(mq.matches);
+    update();
+    if (typeof mq.addEventListener === 'function') {
+      mq.addEventListener('change', update);
+      return () => mq.removeEventListener('change', update);
+    }
+    mq.addListener(update);
+    return () => mq.removeListener(update);
   }, []);
 
   useEffect(() => {
@@ -95,12 +109,13 @@ export default function EffectsLayer({ children }: EffectsLayerProps) {
           dotSize={1.7}
           dotSpacing={40}
           dotOpacity={isDark ? 0.25 : 0.6}
-          mouseInfluence={0.2}
+          mouseInfluence={coarsePointer ? 0 : 0.2}
+          interactive={!coarsePointer}
           breathingSpeed={0.0015}
           breathingIntensity={0.2}
         />
       )}
-      {!reducedMotion && <DynamicCursor size={8} color="#3B82F6" />}
+      {!reducedMotion && !coarsePointer && <DynamicCursor size={8} color="#3B82F6" />}
       {content}
     </>
   );

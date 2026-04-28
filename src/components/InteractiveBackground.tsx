@@ -9,6 +9,7 @@ interface DotMatrixBackgroundProps {
   dotSpacing?: number
   dotOpacity?: number
   mouseInfluence?: number
+  interactive?: boolean
   breathingSpeed?: number
   breathingIntensity?: number
   className?: string
@@ -21,6 +22,7 @@ export default function DotMatrixBackground({
   dotSpacing = 40,
   dotOpacity = 0,
   mouseInfluence = 0.12,
+  interactive = true,
   breathingSpeed = 0.002,
   breathingIntensity = 0.15,
   className = '',
@@ -35,13 +37,9 @@ export default function DotMatrixBackground({
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
-    let width = window.innerWidth
-    let height = window.innerHeight
-    canvas.width = width
-    canvas.height = height
-
-    const cols = Math.ceil(width / dotSpacing)
-    const rows = Math.ceil(height / dotSpacing)
+    let width = 0
+    let height = 0
+    let pixelRatio = 1
 
     interface Dot {
       x: number
@@ -52,26 +50,45 @@ export default function DotMatrixBackground({
       highlight: number  // 0 = default, 1 = fully blue, decays over time
     }
 
-    const dots: Dot[] = []
+    let dots: Dot[] = []
 
-    for (let y = 0; y < rows; y++) {
-      for (let x = 0; x < cols; x++) {
-        dots.push({
-          x: x * dotSpacing,
-          y: y * dotSpacing,
-          baseX: x * dotSpacing,
-          baseY: y * dotSpacing,
-          offset: Math.random() * 1000,
-          highlight: 0,
-        })
+    const buildDots = () => {
+      const cols = Math.ceil(width / dotSpacing) + 1
+      const rows = Math.ceil(height / dotSpacing) + 1
+      const nextDots: Dot[] = []
+
+      for (let y = 0; y < rows; y++) {
+        for (let x = 0; x < cols; x++) {
+          nextDots.push({
+            x: x * dotSpacing,
+            y: y * dotSpacing,
+            baseX: x * dotSpacing,
+            baseY: y * dotSpacing,
+            offset: Math.random() * 1000,
+            highlight: 0,
+          })
+        }
       }
+
+      dots = nextDots
     }
 
-    const handleResize = () => {
+    const syncCanvasSize = () => {
       width = window.innerWidth
       height = window.innerHeight
-      canvas.width = width
-      canvas.height = height
+      pixelRatio = Math.min(window.devicePixelRatio || 1, 1.5)
+      canvas.width = Math.ceil(width * pixelRatio)
+      canvas.height = Math.ceil(height * pixelRatio)
+      canvas.style.width = `${width}px`
+      canvas.style.height = `${height}px`
+      ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0)
+      buildDots()
+    }
+
+    syncCanvasSize()
+
+    const handleResize = () => {
+      syncCanvasSize()
     }
 
     const handleMouseMove = (e: MouseEvent) => {
@@ -80,7 +97,9 @@ export default function DotMatrixBackground({
     }
 
     window.addEventListener('resize', handleResize)
-    window.addEventListener('mousemove', handleMouseMove)
+    if (interactive) {
+      window.addEventListener('mousemove', handleMouseMove, { passive: true })
+    }
 
     // Parse the default dot color RGB for interpolation
     const hexToRgb = (hex: string) => {
@@ -100,13 +119,13 @@ export default function DotMatrixBackground({
       ctx.fillRect(0, 0, width, height)
 
       for (const dot of dots) {
-        const dx = dot.baseX - mouse.current.x
-        const dy = dot.baseY - mouse.current.y
+        const dx = interactive ? dot.baseX - mouse.current.x : 0
+        const dy = interactive ? dot.baseY - mouse.current.y : 0
         const dist = Math.sqrt(dx * dx + dy * dy)
-        const influence = Math.max(0, 1 - dist / 200) * mouseInfluence
+        const influence = interactive ? Math.max(0, 1 - dist / 200) * mouseInfluence : 0
 
         // Highlight dot if cursor is close enough
-        if (dist < HIGHLIGHT_RADIUS) {
+        if (interactive && dist < HIGHLIGHT_RADIUS) {
           dot.highlight = Math.min(1, dot.highlight + 0.15)
         } else {
           dot.highlight = Math.max(0, dot.highlight - HIGHLIGHT_DECAY)
@@ -142,9 +161,11 @@ export default function DotMatrixBackground({
     return () => {
       if (animationRef.current) cancelAnimationFrame(animationRef.current)
       window.removeEventListener('resize', handleResize)
-      window.removeEventListener('mousemove', handleMouseMove)
+      if (interactive) {
+        window.removeEventListener('mousemove', handleMouseMove)
+      }
     }
-  }, [backgroundColor, dotColor, dotSize, dotSpacing, dotOpacity, mouseInfluence, breathingSpeed, breathingIntensity])
+  }, [backgroundColor, dotColor, dotSize, dotSpacing, dotOpacity, mouseInfluence, interactive, breathingSpeed, breathingIntensity])
 
   return (
     <canvas

@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import SocialIcons from '@/components/SocialIcons';
+import ContactHeaderButton from '@/components/ContactHeaderButton';
 
 export default function ServiceDesktopHeader() {
   return (
@@ -14,8 +14,8 @@ export default function ServiceDesktopHeader() {
           priority
         />
       </div>
-      <div className="absolute top-16 right-4 sm:right-6 md:right-[5vw] lg:right-[7.5vw] hidden md:flex space-x-4 xl:space-x-6">
-        <SocialIcons className="[&>a>img]:w-[clamp(2rem,4.5vmin,2.75rem)] [&>a>img]:h-[clamp(2rem,4.5vmin,2.75rem)]" />
+      <div className="absolute top-[3.75rem] right-4 sm:right-6 md:right-[5vw] lg:right-[7.5vw] hidden md:flex [@media(max-height:800px)]:top-[3.5rem]">
+        <ContactHeaderButton />
       </div>
     </div>
   );
