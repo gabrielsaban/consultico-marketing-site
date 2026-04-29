@@ -6,6 +6,7 @@ import Container from '@/components/Container';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
+import { useRef, useState } from 'react';
 
 interface TeamMember {
   id: number;
@@ -30,6 +31,13 @@ const teamMembers: TeamMember[] = [
   { id: 7, name: 'Name Placeholder', role: 'Role Title', cvLink: '#' },
   { id: 8, name: 'Name Placeholder', role: 'Role Title', cvLink: '#' },
 ];
+
+const teamPages = teamMembers.reduce<TeamMember[][]>((pages, member, index) => {
+  const pageIndex = Math.floor(index / 4);
+  if (!pages[pageIndex]) pages[pageIndex] = [];
+  pages[pageIndex].push(member);
+  return pages;
+}, []);
 
 const philosophyPoints: PhilosophyPoint[] = [
   {
@@ -73,6 +81,16 @@ const PhilosophyIcon = () => {
 
 export default function AboutSection(): React.JSX.Element {
   const router = useRouter();
+  const teamScrollerRef = useRef<HTMLDivElement | null>(null);
+  const [teamPage, setTeamPage] = useState(0);
+
+  const handleTeamScroll = () => {
+    const scroller = teamScrollerRef.current;
+    if (!scroller) return;
+    const nextPage = Math.round(scroller.scrollLeft / scroller.clientWidth);
+    setTeamPage(nextPage);
+  };
+
   return (
     <section id="about" className="py-16 md:py-20 lg:py-24 scroll-mt-24">
       <Container>
@@ -140,20 +158,20 @@ export default function AboutSection(): React.JSX.Element {
           viewport={{ once: true, amount: 0.5 }}
         >
           <motion.div
-            className="flex items-center gap-6 mb-2"
+            className="flex items-center gap-2 min-[600px]:gap-6 mb-2"
             variants={{
               hidden: { opacity: 0 },
               show: { opacity: 1, transition: { duration: 0.8, ease: 'easeOut' } },
             }}
           >
             <div className="flex-1 h-[2px] bg-gradient-to-r from-transparent via-black to-black dark:via-gray-600 dark:to-gray-600" />
-            <p className="text-[clamp(1.25rem,2vw,1.75rem)] leading-[1.5] text-gray-800 dark:text-gray-200 font-helvetica text-center max-w-4xl whitespace-nowrap">
+            <p className="text-[clamp(0.78rem,3.2vw,1.75rem)] min-[600px]:text-[clamp(1.25rem,2vw,1.75rem)] leading-[1.5] text-gray-800 dark:text-gray-200 font-helvetica text-center max-w-4xl whitespace-nowrap">
               The average person sees thousands of brands every day.
             </p>
             <div className="flex-1 h-[2px] bg-gradient-to-l from-transparent via-black to-black dark:via-gray-600 dark:to-gray-600" />
           </motion.div>
           <motion.p
-            className="text-[clamp(1.25rem,2vw,1.75rem)] leading-[1.5] text-gray-800 dark:text-gray-200 font-helvetica text-center mb-6"
+            className="text-[clamp(0.78rem,3.2vw,1.75rem)] min-[600px]:text-[clamp(1.25rem,2vw,1.75rem)] leading-[1.5] text-gray-800 dark:text-gray-200 font-helvetica text-center mb-6"
             variants={{
               hidden: { opacity: 0 },
               show: { opacity: 1, transition: { duration: 0.8, ease: 'easeOut' } },
@@ -162,14 +180,14 @@ export default function AboutSection(): React.JSX.Element {
             Most are forgotten instantly.
           </motion.p>
           <motion.div
-            className="flex items-center gap-6"
+            className="flex items-center gap-2 min-[600px]:gap-6"
             variants={{
               hidden: { opacity: 0 },
               show: { opacity: 1, transition: { duration: 0.8, ease: 'easeOut' } },
             }}
           >
             <div className="flex-1 h-[2px] bg-gradient-to-r from-transparent via-brand-blue to-brand-blue" />
-            <p className="text-[clamp(1.25rem,2vw,1.75rem)] leading-[1.5] text-brand-blue font-helvetica font-medium text-center max-w-4xl whitespace-nowrap">
+            <p className="text-[clamp(0.78rem,3.2vw,1.75rem)] min-[600px]:text-[clamp(1.25rem,2vw,1.75rem)] leading-[1.5] text-brand-blue font-helvetica font-medium text-center max-w-4xl whitespace-nowrap">
               <b>We exist to make sure yours isn&apos;t.</b>
             </p>
             <div className="flex-1 h-[2px] bg-gradient-to-l from-transparent via-brand-blue to-brand-blue" />
@@ -179,7 +197,7 @@ export default function AboutSection(): React.JSX.Element {
         {/* Team Section */}
         <div className="grid grid-cols-1 lg:grid-cols-[70%_auto] gap-12 lg:gap-16">
           {/* Team Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+          <div className="hidden md:grid md:grid-cols-4 gap-6">
             {teamMembers.map((member) => (
               <div
                 key={member.id}
@@ -221,6 +239,68 @@ export default function AboutSection(): React.JSX.Element {
             ))}
           </div>
 
+          <div className="md:hidden">
+            <div
+              ref={teamScrollerRef}
+              onScroll={handleTeamScroll}
+              className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar"
+            >
+              {teamPages.map((page, pageIndex) => (
+                <div key={pageIndex} className="w-full flex-none snap-start px-1">
+                  <div className="grid grid-cols-2 gap-4">
+                    {page.map((member) => (
+                      <div
+                        key={member.id}
+                        className="relative bg-gray-50 dark:bg-gray-900 rounded-lg overflow-hidden flex flex-col"
+                      >
+                        <div className="w-full aspect-square bg-gray-200 dark:bg-gray-800" />
+                        <div className="p-3 flex-grow flex flex-col justify-end">
+                          <h3 className="font-futura font-bold text-[clamp(0.875rem,3.8vw,1rem)] text-brand-blue mb-1">
+                            {member.name}
+                          </h3>
+                          <p className="font-helvetica-light text-[clamp(0.75rem,3vw,0.875rem)] text-gray-600 dark:text-gray-400">
+                            {member.role}
+                          </p>
+                        </div>
+                        <Link
+                          href={member.cvLink}
+                          className="absolute top-3 right-3 w-8 h-8 bg-white dark:bg-gray-900 dark:border dark:border-gray-700 rounded-full flex items-center justify-center shadow-md hover:shadow-lg transition-shadow"
+                          aria-label={`View ${member.name}'s CV`}
+                        >
+                          <svg
+                            className="w-4 h-4 text-brand-blue"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            viewBox="0 0 24 24"
+                          >
+                            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                            <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" />
+                          </svg>
+                        </Link>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {teamPages.length > 1 && (
+              <div className="mt-6 flex justify-center gap-2" aria-hidden="true">
+                {teamPages.map((_, index) => (
+                  <span
+                    key={index}
+                    className={`h-1.5 rounded-full transition-all duration-200 ${
+                      teamPage === index ? 'w-8 bg-brand-blue' : 'w-3 bg-brand-blue/25'
+                    }`}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+
           {/* Team Description */}
           <div className="flex flex-col justify-between">
             <div>
@@ -241,7 +321,7 @@ export default function AboutSection(): React.JSX.Element {
             </div>
 
             <motion.button
-              className="bg-brand-blue text-white font-helvetica font-medium text-[clamp(1rem,1.2vw,1.125rem)] px-8 py-3 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2 self-start"
+              className="bg-brand-blue text-white font-helvetica font-medium text-[clamp(1rem,1.2vw,1.125rem)] px-8 py-3 rounded-lg transition-colors duration-200 hover:bg-[#006FE6] active:bg-[#0067D6] focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2 self-start"
               whileHover={{ scale: 1.06 }}
               whileTap={{ scale: 0.98 }}
               onClick={() => router.push('/careers')}

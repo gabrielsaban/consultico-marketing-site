@@ -6,6 +6,7 @@ import { motion, useReducedMotion } from 'framer-motion';
 import Link from 'next/link';
 import ThemeToggle from '@/components/ThemeToggle';
 import { useRouter } from 'next/navigation';
+import { navigateToHomeSection } from '@/lib/homeNavigation';
 
 const navItems = [
   { name: 'home',     href: '#home'     },
@@ -24,12 +25,7 @@ export default function RouteAwareNavbar() {
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     const targetId = href.slice(1);
-    if (pathname !== '/') {
-      sessionStorage.setItem('consultico_scroll_target', targetId);
-      router.push('/');
-      return;
-    }
-    document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    navigateToHomeSection(router, pathname, targetId);
   };
 
   useEffect(() => {
@@ -86,7 +82,7 @@ export default function RouteAwareNavbar() {
 
   return (
     <motion.nav 
-      data-native-cursor
+      data-cursor-theme="light"
       className="hidden md:flex fixed left-0 top-0 h-full w-16 bg-brand-blue z-50 flex-col justify-center"
       initial={prefersReduced ? false : { x: -100, opacity: 0 }}
       animate={prefersReduced ? { x: 0, opacity: 1 } : { x: 0, opacity: 1 }}
@@ -98,7 +94,7 @@ export default function RouteAwareNavbar() {
           return (
             <Link
               key={item.name}
-              href={item.href}
+              href={`/${item.href}`}
               onClick={(e) => handleNavClick(e, item.href)}
               className={`
                 relative flex items-center justify-center

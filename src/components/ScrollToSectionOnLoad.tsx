@@ -1,19 +1,35 @@
 'use client';
 
-import { useEffect } from 'react';
-
-const STORAGE_KEY = 'consultico_scroll_target';
+import { useLayoutEffect } from 'react';
+import { consumePendingHomeSection, scrollToHomeSection } from '@/lib/homeNavigation';
 
 export default function ScrollToSectionOnLoad() {
-  useEffect(() => {
-    const targetId = sessionStorage.getItem(STORAGE_KEY);
+  useLayoutEffect(() => {
+    const targetId = consumePendingHomeSection();
     if (!targetId) return;
-    sessionStorage.removeItem(STORAGE_KEY);
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-    });
+
+    let attempts = 0;
+    let frame = 0;
+
+    const restoreScroll = () => {
+      attempts += 1;
+      const didScroll = scrollToHomeSection(targetId, 'auto');
+      if (didScroll) {
+        requestAnimationFrame(() => {
+          window.dispatchEvent(new Event('scroll'));
+          window.dispatchEvent(new Event('resize'));
+        });
+      }
+      if (!didScroll && attempts < 8) {
+        frame = requestAnimationFrame(restoreScroll);
+      }
+    };
+
+    restoreScroll();
+
+    return () => {
+      if (frame) cancelAnimationFrame(frame);
+    };
   }, []);
 
   return null;

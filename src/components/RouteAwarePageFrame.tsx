@@ -2,74 +2,21 @@
 
 import { usePathname } from 'next/navigation'
 import Footer from '@/components/Footer'
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 
 export default function RouteAwarePageFrame({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
-  const prefersReduced = useReducedMotion()
-  const prevPathRef = useRef<string | null>(null)
-  const isService = [
-    '/market-strategy',
-    '/branding',
-    '/content-creation',
-    '/seo',
-    '/web-development',
-    '/social-media',
-    '/think-first',
-    '/careers',
-  ].includes(pathname || '')
-  const isHome = pathname === '/'
-  const cameFromService = prevPathRef.current
-    ? [
-        '/market-strategy',
-        '/branding',
-        '/content-creation',
-        '/seo',
-        '/web-development',
-        '/social-media',
-        '/think-first',
-        '/careers',
-      ].includes(prevPathRef.current)
-    : false
-  useEffect(() => {
-    prevPathRef.current = pathname || null
-  }, [pathname])
 
   useEffect(() => {
     if (typeof window === 'undefined') return
+    if (pathname === '/' && window.location.hash.length > 1) return
+    window.dispatchEvent(new Event('consultico:scroll-to-top'))
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
   }, [pathname])
 
   return (
     <div className="relative z-10 min-h-screen flex flex-col pl-0 md:pl-16">
-      <div className="flex-1">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={pathname}
-            initial={
-              !prefersReduced && isService
-                ? { x: 120, opacity: 0 }
-                : !prefersReduced && isHome && cameFromService
-                  ? { x: -120, opacity: 0 }
-                  : false
-            }
-            animate={{ x: 0, opacity: 1 }}
-            exit={
-              isService && !prefersReduced
-                ? { x: -40, opacity: 0 }
-                : undefined
-            }
-            transition={
-              (isService || (isHome && cameFromService)) && !prefersReduced
-                ? { duration: 0.45, ease: [0.22, 1, 0.36, 1] }
-                : { duration: 0 }
-            }
-          >
-            {children}
-          </motion.div>
-        </AnimatePresence>
-      </div>
+      <div className="flex-1">{children}</div>
       <Footer />
     </div>
   )

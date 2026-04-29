@@ -6,14 +6,15 @@ import { motion, useInView } from 'framer-motion';
 interface AnimatedCounterProps {
   value: string;
   duration?: number;
+  className?: string;
 }
 
-export default function AnimatedCounter({ value, duration = 2 }: AnimatedCounterProps) {
+export default function AnimatedCounter({ value, duration = 2, className = '' }: AnimatedCounterProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const prefersReduced = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const [displayValue, setDisplayValue] = useState(0);
-  
+
   // Parse the target value
   const getTargetValue = () => {
     if (value.includes('%')) {
@@ -37,14 +38,14 @@ export default function AnimatedCounter({ value, duration = 2 }: AnimatedCounter
         const progress = Math.min(elapsed / duration, 1);
         const easeOut = 1 - Math.pow(1 - progress, 3);
         const currentValue = targetValue * easeOut;
-        
+
         setDisplayValue(currentValue);
-        
+
         if (progress < 1) {
           requestAnimationFrame(animate);
         }
       };
-      
+
       requestAnimationFrame(animate);
     }
   }, [isInView, targetValue, duration, prefersReduced]);
@@ -68,9 +69,9 @@ export default function AnimatedCounter({ value, duration = 2 }: AnimatedCounter
       animate={{ opacity: isInView ? 1 : 0 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="text-5xl md:text-6xl font-bold text-blue-primary mb-4 font-futura">
+      <div className={`${className || 'text-5xl md:text-6xl'} font-bold text-blue-primary mb-4 font-futura`}>
         {prefersReduced ? value : formatValue(displayValue)}
       </div>
     </motion.div>
   );
-} 
+}

@@ -10,7 +10,7 @@ export default function ThinkFirstSection(): JSX.Element {
   return (
     <section className="relative py-12 md:py-16 lg:py-20 bg-gray-50 dark:bg-gray-900 shadow-[0_8px_20px_rgba(0,0,0,0.1)] overflow-hidden">
       {/* Decorative scroll-reactive globe — positioned absolutely, bottom-right, bottom 1/3 clipped by section overflow */}
-      <div className="hidden md:block absolute right-[10vw] lg:right-[25vw] bottom-0 w-[clamp(260px,28vw,420px)] translate-y-[25%]">
+      <div className="hidden md:block absolute right-[10vw] lg:right-[8vw] xl:right-[10vw] [@media(min-width:1800px)]:right-[25vw] bottom-0 w-[clamp(260px,28vw,420px)] translate-y-[25%]">
         <ScrollGlobe className="w-full text-brand-blue/50 dark:text-brand-blue/30" />
       </div>
 
@@ -41,7 +41,7 @@ export default function ThinkFirstSection(): JSX.Element {
           </p>
 
           <motion.button
-            className="bg-blue-primary text-white font-helvetica font-medium text-[clamp(1rem,1.2vw,1.125rem)] px-8 py-3 rounded-lg hover:opacity-90 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-primary focus:ring-offset-2"
+            className="bg-blue-primary text-white font-helvetica font-medium text-[clamp(1rem,1.2vw,1.125rem)] px-8 py-3 rounded-lg transition-colors duration-200 hover:bg-[#006FE6] active:bg-[#0067D6] focus:outline-none focus:ring-2 focus:ring-blue-primary focus:ring-offset-2"
             whileHover={{ scale: 1.06 }}
             whileTap={{ scale: 0.98 }}
             aria-label="See how it works"

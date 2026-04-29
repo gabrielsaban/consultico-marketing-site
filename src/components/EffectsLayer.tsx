@@ -104,12 +104,13 @@ export default function EffectsLayer({ children }: EffectsLayerProps) {
     <>
       {!reducedMotion && (
         <DynamicDots
-          backgroundColor={isDark ? '#272727' : '#FFFFFF'}
-          dotColor={isDark ? '#575757' : '#c0c4ca'}
+          backgroundColor={isDark ? '#0f1117' : '#FFFFFF'}
+          dotColor={isDark ? '#7b8798' : '#c0c4ca'}
           dotSize={1.7}
           dotSpacing={40}
-          dotOpacity={isDark ? 0.25 : 0.6}
+          dotOpacity={isDark ? 0.22 : 0.6}
           mouseInfluence={coarsePointer ? 0 : 0.2}
+          highlightColor={isDark ? '#60a5fa' : '#007BFE'}
           interactive={!coarsePointer}
           breathingSpeed={0.0015}
           breathingIntensity={0.2}

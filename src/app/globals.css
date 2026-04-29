@@ -46,6 +46,11 @@ body {
   font-family: var(--font-helvetica);
 }
 
+.custom-cursor-active,
+.custom-cursor-active * {
+  cursor: none !important;
+}
+
 /* Font utilities used across components */
 .font-futura {
   font-family: var(--font-futura) !important;
@@ -75,29 +80,13 @@ body {
 .text-b-12 { font-size: 12px; line-height: 18px; }
 .text-b-10 { font-size: 10px; line-height: 14px; }
 
-/* Color utilities referenced in components */
-/* New brand utilities */
-.text-brand-blue { color: var(--brand-blue) !important; }
-.text-brand-silk { color: var(--brand-silk) !important; }
-.text-brand-black { color: var(--brand-black) !important; }
-.bg-brand-blue { background-color: var(--brand-blue) !important; }
-.bg-brand-silk { background-color: var(--brand-silk) !important; }
-.bg-brand-black { background-color: var(--brand-black) !important; }
-/* Border/Ring/Stroke/Fill helpers */
-.border-brand-blue { border-color: var(--brand-blue) !important; }
-.ring-brand-blue { --tw-ring-color: var(--brand-blue) !important; }
-.stroke-brand-blue { stroke: var(--brand-blue) !important; }
-.fill-brand-blue { fill: var(--brand-blue) !important; }
-/* Hover/focus variants for brand */
-.hover\:bg-brand-blue:hover { background-color: var(--brand-blue) !important; }
-.hover\:text-brand-blue:hover { color: var(--brand-blue) !important; }
-.focus-visible\:ring-brand-blue:focus-visible { --tw-ring-color: var(--brand-blue) !important; }
-/* Backwards-compat for existing usages */
-.text-blue-primary { color: var(--brand-blue) !important; }
-.bg-blue-primary { background-color: var(--brand-blue) !important; }
-/* Remove secondary: map to brand blue for now to avoid breakage */
-.text-blue-secondary { color: var(--brand-blue) !important; }
-.bg-blue-secondary { background-color: var(--brand-blue) !important; }
+@utility text-blue-secondary {
+  color: var(--brand-blue);
+}
+
+@utility bg-blue-secondary {
+  background-color: var(--brand-blue);
+}
 
 /* Footer slide-in basic helper classes (optional, not used if using motion) */
 .footer-slide-enter {

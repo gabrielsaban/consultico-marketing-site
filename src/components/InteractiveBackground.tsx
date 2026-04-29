@@ -9,6 +9,7 @@ interface DotMatrixBackgroundProps {
   dotSpacing?: number
   dotOpacity?: number
   mouseInfluence?: number
+  highlightColor?: string
   interactive?: boolean
   breathingSpeed?: number
   breathingIntensity?: number
@@ -22,6 +23,7 @@ export default function DotMatrixBackground({
   dotSpacing = 40,
   dotOpacity = 0,
   mouseInfluence = 0.12,
+  highlightColor = '#007BFE',
   interactive = true,
   breathingSpeed = 0.002,
   breathingIntensity = 0.15,
@@ -51,6 +53,18 @@ export default function DotMatrixBackground({
     }
 
     let dots: Dot[] = []
+
+    const hexToRgb = (hex: string) => {
+      const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
+      return result
+        ? { r: parseInt(result[1], 16), g: parseInt(result[2], 16), b: parseInt(result[3], 16) }
+        : { r: 200, g: 200, b: 200 }
+    }
+
+    const baseRgb = hexToRgb(dotColor)
+    const trailRgb = hexToRgb(highlightColor)
+    const HIGHLIGHT_RADIUS = 75
+    const HIGHLIGHT_DECAY = 0.005 // per-frame decay — smooth ~2s fade
 
     const buildDots = () => {
       const cols = Math.ceil(width / dotSpacing) + 1
@@ -96,23 +110,6 @@ export default function DotMatrixBackground({
       mouse.current.y = e.clientY
     }
 
-    window.addEventListener('resize', handleResize)
-    if (interactive) {
-      window.addEventListener('mousemove', handleMouseMove, { passive: true })
-    }
-
-    // Parse the default dot color RGB for interpolation
-    const hexToRgb = (hex: string) => {
-      const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
-      return result
-        ? { r: parseInt(result[1], 16), g: parseInt(result[2], 16), b: parseInt(result[3], 16) }
-        : { r: 200, g: 200, b: 200 }
-    }
-    const baseRgb = hexToRgb(dotColor)
-    const trailRgb = { r: 0, g: 123, b: 254 } // brand-blue #007BFE
-    const HIGHLIGHT_RADIUS = 75
-    const HIGHLIGHT_DECAY = 0.005 // per-frame decay — smooth ~2s fade
-
     const render = (time: number) => {
       // Fill canvas background
       ctx.fillStyle = backgroundColor
@@ -156,6 +153,11 @@ export default function DotMatrixBackground({
       animationRef.current = requestAnimationFrame(render)
     }
 
+    window.addEventListener('resize', handleResize)
+    if (interactive) {
+      window.addEventListener('mousemove', handleMouseMove, { passive: true })
+    }
+
     animationRef.current = requestAnimationFrame(render)
 
     return () => {
@@ -165,7 +167,7 @@ export default function DotMatrixBackground({
         window.removeEventListener('mousemove', handleMouseMove)
       }
     }
-  }, [backgroundColor, dotColor, dotSize, dotSpacing, dotOpacity, mouseInfluence, interactive, breathingSpeed, breathingIntensity])
+  }, [backgroundColor, dotColor, dotSize, dotSpacing, dotOpacity, mouseInfluence, highlightColor, interactive, breathingSpeed, breathingIntensity])
 
   return (
     <canvas

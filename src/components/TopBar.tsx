@@ -6,6 +6,7 @@ import Image from 'next/image';
 import ThemeToggle from '@/components/ThemeToggle';
 import ContactHeaderButton from '@/components/ContactHeaderButton';
 import { usePathname, useRouter } from 'next/navigation';
+import { navigateToHomeSection } from '@/lib/homeNavigation';
 
 export default function TopBar() {
   const [open, setOpen] = useState(false);
@@ -53,11 +54,10 @@ export default function TopBar() {
               <div className="shrink-0 flex items-center">
                 <Image src="/brand/logo_main.svg" alt="Consultico" width={140} height={28} className="block h-7 w-auto" priority />
               </div>
-              <div className="flex-1 flex items-center justify-center">
-                <ContactHeaderButton variant="mobile" />
-              </div>
+              <div className="flex-1" />
               <div className="shrink-0 flex items-center gap-2">
-                <ThemeToggle className="w-9 h-9" />
+                <ContactHeaderButton variant="mobile" />
+                <ThemeToggle size="compact" />
                 <button
                   aria-label={open ? 'Close menu' : 'Open menu'}
                   onClick={() => setOpen((v) => !v)}
@@ -101,21 +101,12 @@ export default function TopBar() {
                 ].map((item) => (
                   <a
                     key={item.name}
-                    href={item.href}
+                    href={`/${item.href}`}
                     onClick={(e) => {
                       e.preventDefault();
                       setOpen(false);
                       const targetId = item.href.slice(1);
-                      if (pathname !== '/') {
-                        sessionStorage.setItem('consultico_scroll_target', targetId);
-                        router.push('/');
-                        return;
-                      }
-                      requestAnimationFrame(() => {
-                        requestAnimationFrame(() => {
-                          document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        });
-                      });
+                      navigateToHomeSection(router, pathname, targetId);
                     }}
                     className="px-4 py-3 text-brand-blue font-futura text-lg rounded-lg"
                   >

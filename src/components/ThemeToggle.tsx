@@ -4,12 +4,14 @@ import { useEffect, useState } from 'react';
 
 type ThemeToggleProps = {
   className?: string;
+  size?: 'default' | 'compact';
 };
 
 const THEME_KEY = 'theme';
 
-export default function ThemeToggle({ className = '' }: ThemeToggleProps) {
+export default function ThemeToggle({ className = '', size = 'default' }: ThemeToggleProps) {
   const [isDark, setIsDark] = useState(false);
+  const sizeClass = size === 'compact' ? 'w-9 h-9' : 'w-10 h-10';
 
   useEffect(() => {
     const sync = () => setIsDark(document.documentElement.classList.contains('dark'));
@@ -35,7 +37,7 @@ export default function ThemeToggle({ className = '' }: ThemeToggleProps) {
       type="button"
       aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
       onClick={toggleTheme}
-      className={`inline-flex items-center justify-center w-10 h-10 rounded-full border border-brand-blue text-brand-blue hover:bg-brand-blue/10 transition-colors ${className}`}
+      className={`inline-flex items-center justify-center ${sizeClass} rounded-full border border-brand-blue text-brand-blue hover:bg-brand-blue/10 transition-colors ${className}`}
     >
       {isDark ? (
         <svg aria-hidden viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor">

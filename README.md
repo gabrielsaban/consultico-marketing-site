@@ -58,7 +58,6 @@ public/
 - **tsconfig.json** - TypeScript compiler options
 - **eslint.config.mjs** - Linting rules
 - **postcss.config.mjs** - PostCSS with Tailwind plugin
-- **AGENTS.md** - local working rules for coding agents, intentionally Git-ignored
 
 ## To-Do
 
@@ -69,15 +68,20 @@ public/
 - [X] Add more scroll-in animations (e.g. stat number bump, smooth pops)
 - [X] Add animated site entry screen
 - [ ] Gather context files
-- [ ] Fix dark-mode bugs
-- [ ] Retouch hero spacing
-- [ ] Replace 'Branding & Image' with 'PPC'
-- [ ] Replace social media icons with 'Contact Us'
-- [ ] Add 'Campaign Management' service
+- [X] Fix dark-mode bugs
+- [X] Retouch hero spacing
+- [X] Replace social media icons with 'Contact Us'
+
+- [X] Replace 'Branding & Image' with 'PPC'
+- [X] Add 'Campaign Management' service
+
+- [ ] Consider where 'Reviews', 'Case Studies' live
 - [ ] Add 'Articles' footer page
+
+- [ ] Develop service pages
 - [ ] Develop ThinkFirst page
 - [ ] Develop careers page
-- [ ] Develop service pages
-- [ ] Add CMS for projects, reviews, staff & resumes
 - [ ] Make webinar registration & contact form functional
-- [ ] Ensure full mobile responsive design
+
+- [ ] Add custom cursor state for selecting text
+- [ ] Add CMS for projects, reviews, staff & resumes

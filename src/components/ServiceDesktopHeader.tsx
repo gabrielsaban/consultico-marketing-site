@@ -14,7 +14,7 @@ export default function ServiceDesktopHeader() {
           priority
         />
       </div>
-      <div className="absolute top-[3.75rem] right-4 sm:right-6 md:right-[5vw] lg:right-[7.5vw] hidden md:flex [@media(max-height:800px)]:top-[3.5rem]">
+      <div className="absolute top-[3.25rem] right-4 sm:right-6 md:right-[5vw] lg:right-[7.5vw] hidden md:flex">
         <ContactHeaderButton />
       </div>
     </div>

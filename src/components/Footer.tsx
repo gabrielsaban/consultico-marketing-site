@@ -4,23 +4,23 @@ import Container from '@/components/Container';
 
 export default function Footer() {
   const quickLinks1 = [
-    { name: 'Home', href: '/' },
-    { name: 'Services', href: '#services' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'About', href: '#about' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Home', href: '/#home' },
+    { name: 'Services', href: '/#services' },
+    { name: 'Projects', href: '/#projects' },
+    { name: 'About', href: '/#about' },
+    { name: 'Contact', href: '/#contact' },
   ];
 
   const quickLinks2 = [
-    { name: 'Think-First', href: '#think-first' },
-    { name: 'SEO', href: '#seo' },
-    { name: 'Marketing', href: '#marketing' },
-    { name: 'Paid Ads', href: '#paid-ads' },
-    { name: 'Careers', href: '#careers' },
+    { name: 'Think-First', href: '/think-first' },
+    { name: 'SEO', href: '/seo' },
+    { name: 'Marketing', href: '/market-strategy' },
+    { name: 'PPC', href: '/ppc' },
+    { name: 'Careers', href: '/careers' },
   ];
 
   return (
-    <footer className="bg-brand-blue text-white mt-auto">
+    <footer data-cursor-theme="light" className="bg-brand-blue text-white mt-auto">
       <Container className="py-8 md:py-10 lg:py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-8 lg:gap-12 items-start justify-items-center">
           {/* Column 1: Logo + Description */}
@@ -69,7 +69,7 @@ export default function Footer() {
           </div>
 
           {/* Column 2: Quick Links - Two columns side by side */}
-          <div className="w-full">
+          <div className="w-full max-w-xs md:max-w-none">
             <h3 className="text-[clamp(1.125rem,1.3vw,1.25rem)] font-futura font-bold mb-4">
               Quick Links
             </h3>
@@ -213,4 +213,3 @@ export default function Footer() {
     </footer>
   );
 }
-

@@ -148,7 +148,7 @@ export default function ThinkFirstPage() {
               <div className="mb-4">
                 <a
                   href="#apply"
-                  className="inline-flex items-center justify-center bg-brand-blue text-white font-helvetica font-medium text-[clamp(1rem,1.2vw,1.125rem)] px-8 py-3 rounded-lg hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2"
+                  className="inline-flex items-center justify-center bg-brand-blue text-white font-helvetica font-medium text-[clamp(1rem,1.2vw,1.125rem)] px-8 py-3 rounded-lg transition-colors duration-200 hover:bg-[#006FE6] active:bg-[#0067D6] focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2"
                 >
                   Apply For The Strategy Workshop
                 </a>
@@ -493,7 +493,7 @@ export default function ThinkFirstPage() {
           </p>
           <Link
             href="/#contact"
-            className="inline-flex items-center justify-center bg-white text-brand-blue font-helvetica font-medium text-[clamp(1rem,1.2vw,1.125rem)] px-8 py-3 rounded-lg hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-brand-blue"
+            className="inline-flex items-center justify-center bg-white text-brand-blue font-helvetica font-medium text-[clamp(1rem,1.2vw,1.125rem)] px-8 py-3 rounded-lg transition-colors duration-200 hover:bg-gray-100 active:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-brand-blue"
           >
             Apply For The Strategy Workshop
           </Link>

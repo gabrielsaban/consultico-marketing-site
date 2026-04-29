@@ -1,10 +1,12 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useState } from 'react';
 import Image from 'next/image';
 import Container from '@/components/Container';
 import ImageFilledText from '@/components/ImageFilledText';
 import ContactHeaderButton from '@/components/ContactHeaderButton';
+import { consumeHomeEntryAnimationSkip, scrollToHomeSection } from '@/lib/homeNavigation';
 
 // Animation variants for staggered content reveal
 const containerVariants = {
@@ -31,6 +33,11 @@ const itemVariants = {
 };
 
 export default function HeroSection() {
+  const [skipEntryAnimation] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return consumeHomeEntryAnimationSkip();
+  });
+
   return (
     <div className="min-h-[100svh] relative flex items-center pt-24 pb-16 md:pt-32 md:pb-20 lg:pt-36 lg:pb-24 xl:pt-28">
       {/* Background gradient */}
@@ -39,7 +46,7 @@ export default function HeroSection() {
       {/* Brand logo SVG - positioned near top-left on desktop (hidden on phones; TopBar shows logo) */}
       <motion.div 
         className="absolute top-[3.25rem] left-4 sm:left-6 md:left-[5vw] lg:left-[7.5vw] hidden md:block"
-        initial={{ opacity: 0, y: -40 }}
+        initial={skipEntryAnimation ? false : { opacity: 0, y: -40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ 
           delay: 0.15, 
@@ -59,8 +66,8 @@ export default function HeroSection() {
       
       {/* Header contact button - hidden on phones; TopBar shows compact contact shortcut */}
       <motion.div 
-        className="absolute top-[3.75rem] right-4 sm:right-6 md:right-[5vw] lg:right-[7.5vw] hidden md:flex [@media(max-height:800px)]:top-[3.5rem]"
-        initial={{ opacity: 0, y: -40 }}
+        className="absolute top-[3.25rem] right-4 sm:right-6 md:right-[5vw] lg:right-[7.5vw] hidden md:flex"
+        initial={skipEntryAnimation ? false : { opacity: 0, y: -40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ 
           delay: 0.15, 
@@ -76,7 +83,7 @@ export default function HeroSection() {
         <motion.div
           className="text-center [@media(max-height:800px)]:translate-y-6"
           variants={containerVariants}
-          initial="hidden"
+          initial={skipEntryAnimation ? false : 'hidden'}
           animate="visible"
         >
           {/* Slogan */}
@@ -122,12 +129,12 @@ export default function HeroSection() {
           {/* CTA Button */}
           <motion.div variants={itemVariants}>
             <motion.button
-              className="bg-blue-primary text-white font-helvetica font-medium text-[clamp(1rem,1.2vw,1.125rem)] px-8 py-3 rounded-lg hover:opacity-90 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-primary focus:ring-offset-2"
+              className="bg-blue-primary text-white font-helvetica font-medium text-[clamp(1rem,1.2vw,1.125rem)] px-8 py-3 rounded-lg transition-colors duration-200 hover:bg-[#006FE6] active:bg-[#0067D6] focus:outline-none focus:ring-2 focus:ring-blue-primary focus:ring-offset-2"
               whileHover={{ scale: 1.06 }}
               whileTap={{ scale: 0.98 }}
               aria-label="Get in touch with Consultico"
               onClick={() => {
-                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                scrollToHomeSection('contact');
               }}
             >
               Get in touch

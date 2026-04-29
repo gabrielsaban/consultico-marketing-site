@@ -156,7 +156,8 @@ export default function ContactSection() {
             </div>
 
             <motion.button
-              className="bg-brand-blue text-white font-helvetica font-medium text-[clamp(1rem,1.2vw,1.125rem)] px-8 py-3 mb-8 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2 w-full"
+              type="button"
+              className="bg-brand-blue text-white font-helvetica font-medium text-[clamp(1rem,1.2vw,1.125rem)] px-8 py-3 mb-8 rounded-lg transition-colors duration-200 hover:bg-[#006FE6] active:bg-[#0067D6] focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2 w-full"
               whileHover={{ scale: 1.06 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -259,7 +260,7 @@ export default function ContactSection() {
 
               <motion.button
                 type="submit"
-                className="w-full bg-brand-blue text-white font-helvetica font-medium text-[clamp(1rem,1.2vw,1.125rem)] px-8 py-3 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2"
+                className="w-full bg-brand-blue text-white font-helvetica font-medium text-[clamp(1rem,1.2vw,1.125rem)] px-8 py-3 rounded-lg transition-colors duration-200 hover:bg-[#006FE6] active:bg-[#0067D6] focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2"
                 whileHover={{ scale: 1.06 }}
                 whileTap={{ scale: 0.98 }}
               >
