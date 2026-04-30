@@ -2,6 +2,7 @@
 
 import { motion, useInView, AnimatePresence, LayoutGroup } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import Container from '@/components/Container';
 
@@ -13,6 +14,7 @@ interface Service {
   cta: string;
   icon: string;
   slug: string;
+  image?: string;
 }
 
 const services: Service[] = [
@@ -28,6 +30,7 @@ const services: Service[] = [
     cta: 'Explore Market Strategy',
     icon: 'compass',
     slug: 'market-strategy',
+    image: '/services/market_strategy.avif',
   },
   {
     id: 'ppc',
@@ -41,6 +44,7 @@ const services: Service[] = [
     cta: 'Explore PPC',
     icon: 'target',
     slug: 'ppc',
+    image: '/services/ppc.avif',
   },
   {
     id: 'content',
@@ -54,6 +58,7 @@ const services: Service[] = [
     cta: 'Explore Content Creation',
     icon: 'sparkles',
     slug: 'content-creation',
+    image: '/services/content_creation.avif',
   },
   {
     id: 'seo',
@@ -67,6 +72,7 @@ const services: Service[] = [
     cta: 'Explore SEO',
     icon: 'trending-up',
     slug: 'seo',
+    image: '/services/seo.avif',
   },
   {
     id: 'web',
@@ -80,6 +86,7 @@ const services: Service[] = [
     cta: 'Explore Web Development',
     icon: 'code',
     slug: 'web-development',
+    image: '/services/web_dev.avif',
   },
   {
     id: 'social',
@@ -93,6 +100,7 @@ const services: Service[] = [
     cta: 'Explore Social Media',
     icon: 'share-2',
     slug: 'social-media',
+    image: '/services/social_media.avif',
   },
   {
     id: 'campaign',
@@ -106,6 +114,7 @@ const services: Service[] = [
     cta: 'Explore Campaign Management',
     icon: 'calendar-check',
     slug: 'campaign-management',
+    image: '/services/campaign.avif',
   },
 ];
 
@@ -150,6 +159,23 @@ const ServiceIcon = ({ icon, className }: { icon: string; className?: string }) 
   );
 };
 
+const ServicePreviewImage = ({ service }: { service: Service }) => {
+  if (!service.image) {
+    return <div className="h-full w-full bg-brand-silk dark:bg-gray-900" />;
+  }
+
+  return (
+    <Image
+      src={service.image}
+      alt=""
+      width={640}
+      height={640}
+      className="h-full w-full object-cover"
+      sizes="(min-width: 900px) 34vw, 35vw"
+    />
+  );
+};
+
 function MobileServicePreview({
   service,
   onCta,
@@ -172,7 +198,9 @@ function MobileServicePreview({
       className="[@media(min-width:900px)]:hidden overflow-hidden"
     >
       <div className="grid grid-cols-1 [@media(min-width:600px)]:grid-cols-[minmax(7.5rem,35%)_1fr] gap-4 sm:gap-5 items-start px-2 sm:px-4 pt-5 sm:pt-6">
-        <div className="hidden [@media(min-width:600px)]:block w-full aspect-square bg-brand-silk dark:bg-gray-900 rounded-[10px]" />
+        <div className="hidden [@media(min-width:600px)]:block w-full aspect-square overflow-hidden bg-brand-silk dark:bg-gray-900 rounded-[10px]">
+          <ServicePreviewImage service={service} />
+        </div>
         <div className="min-w-0 self-stretch flex flex-col">
           <p className="text-[clamp(0.95rem,2.4vw,1.05rem)] leading-[1.55] text-gray-800 dark:text-gray-200 font-helvetica-light mb-3">
             {service.outcome}
@@ -377,13 +405,17 @@ export default function ServicesBubbleList() {
               </motion.button>
 
               {/* Image Placeholder - Bottom */}
-              <div className="w-full aspect-square bg-brand-silk dark:bg-gray-900 rounded-[10px] mt-auto" />
+              <div className="w-full aspect-square overflow-hidden bg-brand-silk dark:bg-gray-900 rounded-[10px] mt-auto">
+                <ServicePreviewImage service={currentService} />
+              </div>
             </>
           ) : (
             // Latter services: Image top, info anchored to the bottom of the preview column
             <>
               {/* Image Placeholder - Top */}
-              <div className="w-full aspect-square bg-brand-silk dark:bg-gray-900 rounded-[10px]" />
+              <div className="w-full aspect-square overflow-hidden bg-brand-silk dark:bg-gray-900 rounded-[10px]">
+                <ServicePreviewImage service={currentService} />
+              </div>
 
               <div className="mt-auto flex flex-col gap-6">
                 {/* Outcome Line */}
