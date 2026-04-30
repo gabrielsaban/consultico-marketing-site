@@ -75,8 +75,8 @@ public/
 - [X] Add 'Campaign Management' service
 - [X] Consider where 'Reviews', 'Case Studies' live
 - [X] Develop service pages
-- [ ] Update Boiler Co. project
-- [ ] Make webinar registration & contact form functional
+- [X] Update project summaries
+- [X] Make webinar registration & contact form functional
 - [ ] Develop careers page
 - [ ] Design articles (links, articles, yt videos) & social media (service page)
 - [ ] Add CMS for projects, reviews, staff & resumes
