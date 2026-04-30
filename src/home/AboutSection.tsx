@@ -3,6 +3,7 @@
 // ARCHIVED: Full about section content moved to archive/sections/AboutSection_archived.tsx
 
 import Container from '@/components/Container';
+import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
@@ -13,6 +14,7 @@ interface TeamMember {
   name: string;
   role: string;
   cvLink: string;
+  image?: string;
 }
 
 interface PhilosophyPoint {
@@ -22,12 +24,12 @@ interface PhilosophyPoint {
 }
 
 const teamMembers: TeamMember[] = [
-  { id: 1, name: 'Name Placeholder', role: 'Role Title', cvLink: '#' },
-  { id: 2, name: 'Name Placeholder', role: 'Role Title', cvLink: '#' },
-  { id: 3, name: 'Name Placeholder', role: 'Role Title', cvLink: '#' },
-  { id: 4, name: 'Name Placeholder', role: 'Role Title', cvLink: '#' },
-  { id: 5, name: 'Name Placeholder', role: 'Role Title', cvLink: '#' },
-  { id: 6, name: 'Name Placeholder', role: 'Role Title', cvLink: '#' },
+  { id: 1, name: 'Paul Wilson', role: 'Founder', cvLink: '#', image: '/team/paul_wilson.avif' },
+  { id: 2, name: 'Connor Brooks', role: 'Brand Manager', cvLink: '#', image: '/team/connor_brooks.avif' },
+  { id: 3, name: 'Leona Wade', role: 'Associate', cvLink: '#', image: '/team/leona_wade.avif' },
+  { id: 4, name: 'Chloe Chan', role: 'Associate', cvLink: '#', image: '/team/chloe_chan.avif' },
+  { id: 5, name: 'Zsa Zsa Kerr-Bennie', role: 'Assistant', cvLink: '#' },
+  { id: 6, name: 'Lucy Dinse', role: 'Assistant', cvLink: '#' },
   { id: 7, name: 'Name Placeholder', role: 'Role Title', cvLink: '#' },
   { id: 8, name: 'Name Placeholder', role: 'Role Title', cvLink: '#' },
 ];
@@ -76,6 +78,33 @@ const PhilosophyIcon = () => {
       <path d="M5 12h14" />
       <path d="M12 5l7 7-7 7" />
     </svg>
+  );
+};
+
+const TeamPortrait = ({ member }: { member: TeamMember }) => {
+  if (member.image) {
+    return (
+      <Image
+        src={member.image}
+        alt={member.name}
+        width={420}
+        height={420}
+        className="h-full w-full object-cover"
+        sizes="(min-width: 768px) 18vw, 46vw"
+      />
+    );
+  }
+
+  return (
+    <div className="flex h-full w-full items-center justify-center bg-gray-200 dark:bg-gray-800">
+      <span className="font-futura text-[clamp(2rem,6vw,3.5rem)] font-bold text-brand-blue/45">
+        {member.name
+          .split(' ')
+          .map((part) => part[0])
+          .join('')
+          .slice(0, 2)}
+      </span>
+    </div>
   );
 };
 
@@ -203,8 +232,9 @@ export default function AboutSection(): React.JSX.Element {
                 key={member.id}
                 className="relative bg-gray-50 dark:bg-gray-900 rounded-lg overflow-hidden flex flex-col"
               >
-                {/* Profile Picture Placeholder */}
-                <div className="w-full aspect-square bg-gray-200 dark:bg-gray-800" />
+                <div className="w-full aspect-square overflow-hidden bg-gray-200 dark:bg-gray-800">
+                  <TeamPortrait member={member} />
+                </div>
                 
                 {/* Info Section */}
                 <div className="p-3 md:p-4 flex-grow flex flex-col justify-end">
@@ -253,7 +283,9 @@ export default function AboutSection(): React.JSX.Element {
                         key={member.id}
                         className="relative bg-gray-50 dark:bg-gray-900 rounded-lg overflow-hidden flex flex-col"
                       >
-                        <div className="w-full aspect-square bg-gray-200 dark:bg-gray-800" />
+                        <div className="w-full aspect-square overflow-hidden bg-gray-200 dark:bg-gray-800">
+                          <TeamPortrait member={member} />
+                        </div>
                         <div className="p-3 flex-grow flex flex-col justify-end">
                           <h3 className="font-futura font-bold text-[clamp(0.875rem,3.8vw,1rem)] text-brand-blue mb-1">
                             {member.name}
