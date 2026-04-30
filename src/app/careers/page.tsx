@@ -1,6 +1,7 @@
 import Container from '@/components/Container';
 import ServiceDesktopHeader from '@/components/ServiceDesktopHeader';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const principles = [
   'Student-friendly employer',
@@ -293,13 +294,13 @@ export default function CareersPage() {
             <p className="font-helvetica text-[clamp(1rem,1.2vw,1.12rem)] leading-[1.55] text-gray-800 dark:text-gray-200">
               Interested in future opportunities? You can still reach us through the contact form and tell us what kind of work you are looking for.
             </p>
-            <a
+            <Link
               href="/#contact"
               className="mt-6 inline-flex items-center justify-center gap-2 rounded-lg bg-brand-blue px-6 py-3 text-[clamp(0.98rem,1.08vw,1.05rem)] font-helvetica font-medium text-white transition-colors duration-200 hover:bg-[#006FE6] active:bg-[#0067D6] focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2"
             >
               Contact the Team
               <ArrowIcon />
-            </a>
+            </Link>
           </div>
         </Container>
       </section>
