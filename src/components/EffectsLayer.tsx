@@ -12,8 +12,12 @@ interface EffectsLayerProps {
 }
 
 export default function EffectsLayer({ children }: EffectsLayerProps) {
-  const [reducedMotion, setReducedMotion] = useState(false);
-  const [coarsePointer, setCoarsePointer] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(() => (
+    typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
+  ));
+  const [coarsePointer, setCoarsePointer] = useState(() => (
+    typeof window !== 'undefined' && window.matchMedia?.('(pointer: coarse)').matches
+  ));
   const [isDark, setIsDark] = useState(false);
   const [projectModalOpen, setProjectModalOpen] = useState(false);
 
@@ -70,11 +74,11 @@ export default function EffectsLayer({ children }: EffectsLayerProps) {
       setIsDark(checkDarkMode());
     };
     
-    // Check periodically for DarkReader changes
-    const interval = setInterval(syncTheme, 500);
-    
     // Listen for class changes
     window.addEventListener('themechange', syncTheme);
+    const observer = new MutationObserver(syncTheme);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class', 'style'] });
+    observer.observe(document.body, { attributes: true, attributeFilter: ['class', 'style'] });
     
     // Listen for system preference changes
     const mq = window.matchMedia('(prefers-color-scheme: dark)');
@@ -85,8 +89,8 @@ export default function EffectsLayer({ children }: EffectsLayerProps) {
     }
     
     return () => {
-      clearInterval(interval);
       window.removeEventListener('themechange', syncTheme);
+      observer.disconnect();
       if (typeof mq.removeEventListener === 'function') {
         mq.removeEventListener('change', syncTheme);
       } else {
