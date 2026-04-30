@@ -3,7 +3,7 @@ import ContactHeaderButton from '@/components/ContactHeaderButton';
 
 export default function ServiceDesktopHeader() {
   return (
-    <div className="relative">
+    <div className="pointer-events-none relative z-20">
       <div className="absolute top-[3.25rem] left-4 sm:left-6 md:left-[5vw] lg:left-[7.5vw] hidden md:block">
         <Image
           src="/brand/logo_main.svg"
@@ -14,7 +14,7 @@ export default function ServiceDesktopHeader() {
           priority
         />
       </div>
-      <div className="absolute top-[3.25rem] right-4 sm:right-6 md:right-[5vw] lg:right-[7.5vw] hidden md:flex">
+      <div className="pointer-events-auto absolute top-[3.25rem] right-4 sm:right-6 md:right-[5vw] lg:right-[7.5vw] hidden md:flex">
         <ContactHeaderButton />
       </div>
     </div>

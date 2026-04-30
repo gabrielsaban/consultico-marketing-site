@@ -184,7 +184,7 @@ export default function PpcPage() {
       <section className="relative min-h-screen overflow-hidden pb-16 md:pb-20 lg:pb-0">
         <ServiceDesktopHeader />
         <div className="absolute inset-0 dot-grid-premium opacity-70 dark:opacity-25" aria-hidden="true" />
-        <Container className="relative pt-[10.5rem] md:pt-[12rem] lg:min-h-screen lg:pt-0 lg:flex lg:items-center">
+        <Container className="relative pt-[10.5rem] md:pt-[12rem] lg:min-h-screen lg:pt-[13.5rem] xl:pt-[14.5rem] 2xl:pt-[15rem] lg:pb-20 lg:flex lg:items-start">
           <div className="w-full">
             <div className="max-w-6xl">
               <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-brand-blue/25 bg-white/80 px-4 py-2 text-[0.78rem] font-helvetica font-semibold uppercase tracking-[0.14em] text-brand-blue shadow-sm dark:bg-gray-950/75">
@@ -192,7 +192,7 @@ export default function PpcPage() {
                 Pay-Per-Click Advertising
               </div>
 
-              <h1 className="max-w-5xl font-futura text-[clamp(2.35rem,5vw,5.8rem)] font-bold leading-[0.98] text-gray-900 dark:text-white">
+              <h1 className="max-w-5xl font-futura text-[clamp(2.25rem,4vw,4.75rem)] font-bold leading-[1.02] text-gray-900 dark:text-white">
                 <span className="block">Turn ad spend into</span>
                 <span className="block text-brand-blue">predictable revenue.</span>
               </h1>
