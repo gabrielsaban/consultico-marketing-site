@@ -16,6 +16,23 @@ interface Project {
   metricLabel?: string;
   detail: string;
   results?: string[];
+  proofPoints?: {
+    value: string;
+    label: string;
+    detail: string;
+  }[];
+  caseSections?: {
+    title: string;
+    body: string;
+  }[];
+  resultCards?: {
+    value: string;
+    label: string;
+    title: string;
+    body: string;
+  }[];
+  pdfHref?: string;
+  pdfLabel?: string;
 }
 
 const projects: Project[] = [
@@ -54,21 +71,81 @@ const projects: Project[] = [
     category: 'Community Concept',
     tags: ['Community', 'Concept writing', 'Game preservation'],
     detail: "The GTA 5 concept project focused on community preservation: packaging a player-facing Newswire idea with language that respected the game's audience and long-running culture.",
+    pdfHref: '/projects/gta.pdf',
+    pdfLabel: 'Open concept PDF',
   },
   {
     id: 5,
     title: 'The Boiler Co.',
-    description: "Boosted The Boiler Co.'s organic traffic by nearly 400% in 3 months through SEO, increasing visibility, clicks, and traffic value without paid ads.",
+    description: 'A targeted 3-month SEO campaign improving visibility, organic traffic, search rankings, and lead generation for The Boiler Co.',
     image: '/projects/boiler.avif',
     category: 'SEO',
     tags: ['SEO', 'Organic traffic', 'Lead generation'],
-    metric: 'Nearly 400%',
-    metricLabel: 'organic traffic growth',
-    detail: "The Boiler Co. needed more visibility without leaning on paid ads. The SEO work improved rankings, clicks, and traffic value while building a more dependable organic acquisition channel.",
+    metric: '+340%',
+    metricLabel: 'organic traffic increase',
+    detail: 'Over 3 months, we implemented a targeted SEO strategy for The Boiler Co. to improve visibility, drive organic traffic, and boost lead generation. By monitoring and optimising as the campaign progressed, we significantly improved key performance metrics and established a strong basis for ongoing growth.',
     results: [
-      'Nearly 400% organic traffic growth in 3 months',
-      'Improved visibility and click volume',
-      'Traffic value increased to around $1,200/month without paid ads',
+      '+165% impressions, increasing Google impressions from 35,800 to 94,000 in just three months.',
+      '+25% organic clicks, moving total clicks from 258 to 303 during the campaign period.',
+      'Average Google site rank position improved from 37.7 to 35.9.',
+      '+340% organic traffic, growing site traffic more than threefold between February and its April peak.',
+      '$1,200/month SEO value, achieving organic traffic value equivalent to paid ad spend.',
+    ],
+    proofPoints: [
+      {
+        value: '+165%',
+        label: 'Impressions',
+        detail: 'Google impressions increased from 35,800 to 94,000 in just three months.',
+      },
+      {
+        value: '+25%',
+        label: 'Clicks',
+        detail: 'Total organic clicks grew from 258 to 303 during the campaign period.',
+      },
+      {
+        value: '+340%',
+        label: 'Organic traffic',
+        detail: 'Site traffic grew more than threefold between February and its peak in April.',
+      },
+      {
+        value: '$1,200/mo',
+        label: 'SEO value',
+        detail: 'Organic traffic reached an equivalent ad-spend value of around $1,200 per month.',
+      },
+    ],
+    caseSections: [
+      {
+        title: 'The Starting Audit',
+        body: 'When work with The Boiler Co. began, their online presence was minimal, with low traffic and limited keyword visibility. We began with a full SEO audit, identifying on-site issues, untapped keyword opportunities, and gaps in local optimisation. From there, we prioritised technical fixes and implemented targeted content updates to help Google better understand and rank the site.',
+      },
+      {
+        title: 'Finding the Growth Strategy',
+        body: 'With the fixes in place, we moved into active optimisation. We targeted high-intent local keywords relevant to plumbing services in Bristol, improved metadata across key pages, built out supporting content, refined internal linking, and monitored performance through SEMrush so tactics could respond to live search behaviour.',
+      },
+      {
+        title: 'Achieving Results & Future Potential',
+        body: 'Within just 3 months, the site saw a dramatic rise in visibility, traffic, and search value. The Boiler Co. is now ranking for a wider set of valuable keywords, receiving more local interest, and benefiting from lead generation caused by SEO, with a stronger structure in place for long-term growth.',
+      },
+    ],
+    resultCards: [
+      {
+        value: '$1,200',
+        label: 'Traffic value',
+        title: 'Greater SEO Value',
+        body: "With organic performance valued this highly, The Boiler Co. does not need to rely so heavily on paid advertisements. Customers can find them naturally.",
+      },
+      {
+        value: '1.70',
+        label: 'Rank increase',
+        title: 'Higher Search Visibility',
+        body: "Ranking better on Google means The Boiler Co.'s website can sit above competitors when users search for relevant keywords.",
+      },
+      {
+        value: '340%',
+        label: 'Traffic increase',
+        title: 'Increased Website Activity',
+        body: 'More organic traffic means more people reached the website without needing a paid ad, creating stronger natural discovery and better quality visits.',
+      },
     ],
   },
   {
@@ -248,6 +325,45 @@ function ProjectDetailModal({
                   {project.detail}
                 </p>
 
+                {project.proofPoints && (
+                  <div className="mb-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
+                    {project.proofPoints.map((point) => (
+                      <div
+                        key={`${project.id}-${point.label}`}
+                        className="border-l-2 border-brand-blue bg-white/70 px-4 py-3 shadow-sm dark:bg-gray-900/70"
+                      >
+                        <p className="font-futura text-[clamp(1.45rem,2.2vw,2rem)] font-bold leading-none text-brand-blue">
+                          {point.value}
+                        </p>
+                        <p className="mt-1 font-helvetica text-[0.82rem] font-semibold uppercase tracking-[0.12em] text-gray-700 dark:text-gray-300">
+                          {point.label}
+                        </p>
+                        <p className="mt-2 font-helvetica-light text-[clamp(0.82rem,0.95vw,0.92rem)] leading-[1.45] text-gray-700 dark:text-gray-300">
+                          {point.detail}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {project.caseSections && (
+                  <div className="mb-6 space-y-4">
+                    {project.caseSections.map((section) => (
+                      <section
+                        key={`${project.id}-${section.title}`}
+                        className="rounded-lg border border-gray-200 bg-white/70 p-4 dark:border-gray-800 dark:bg-gray-900/70"
+                      >
+                        <h4 className="font-futura text-[clamp(1.1rem,1.35vw,1.3rem)] font-bold text-brand-blue">
+                          {section.title}
+                        </h4>
+                        <p className="mt-2 font-helvetica-light text-[clamp(0.9rem,1vw,0.98rem)] leading-[1.6] text-gray-700 dark:text-gray-300">
+                          {section.body}
+                        </p>
+                      </section>
+                    ))}
+                  </div>
+                )}
+
                 {project.results && (
                   <ul className="mb-6 space-y-3">
                     {project.results.map((result) => (
@@ -259,6 +375,65 @@ function ProjectDetailModal({
                       </li>
                     ))}
                   </ul>
+                )}
+
+                {project.resultCards && (
+                  <div className="mb-6 grid grid-cols-1 gap-3">
+                    {project.resultCards.map((card) => (
+                      <article
+                        key={`${project.id}-${card.title}`}
+                        className="rounded-lg border border-brand-blue/20 bg-brand-blue/5 p-4"
+                      >
+                        <div className="mb-3 flex flex-wrap items-end gap-x-3 gap-y-1">
+                          <p className="font-futura text-[clamp(1.65rem,2.5vw,2.35rem)] font-bold leading-none text-brand-blue">
+                            {card.value}
+                          </p>
+                          <p className="font-helvetica text-[0.82rem] font-semibold uppercase tracking-[0.12em] text-gray-600 dark:text-gray-400">
+                            {card.label}
+                          </p>
+                        </div>
+                        <h4 className="font-futura text-[clamp(1.05rem,1.25vw,1.2rem)] font-bold text-gray-900 dark:text-gray-100">
+                          {card.title}
+                        </h4>
+                        <p className="mt-2 font-helvetica-light text-[clamp(0.88rem,1vw,0.96rem)] leading-[1.55] text-gray-700 dark:text-gray-300">
+                          {card.body}
+                        </p>
+                      </article>
+                    ))}
+                  </div>
+                )}
+
+                {project.pdfHref && (
+                  <div className="mb-6 flex flex-wrap gap-3">
+                    <a
+                      href={project.pdfHref}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand-blue px-5 py-2.5 font-helvetica text-[clamp(0.9rem,1vw,1rem)] font-medium text-white transition-colors duration-200 hover:bg-[#006FE6] active:bg-[#0067D6] focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2"
+                    >
+                      {project.pdfLabel ?? 'Open project file'}
+                      <svg
+                        className="h-4 w-4"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                      >
+                        <path d="M7 17L17 7" />
+                        <path d="M7 7h10v10" />
+                      </svg>
+                    </a>
+                    <a
+                      href={project.pdfHref}
+                      download
+                      className="inline-flex items-center justify-center rounded-lg border border-brand-blue/35 bg-white/80 px-5 py-2.5 font-helvetica text-[clamp(0.9rem,1vw,1rem)] font-medium text-brand-blue transition-colors duration-200 hover:bg-brand-blue/10 active:bg-brand-blue/15 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2 dark:bg-gray-950/70"
+                    >
+                      Download PDF
+                    </a>
+                  </div>
                 )}
 
                 <div className="flex flex-wrap gap-2">
