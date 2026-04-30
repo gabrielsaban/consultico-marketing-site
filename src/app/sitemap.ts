@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/web-development',
     '/social-media',
     '/think-first',
+    '/articles',
     '/careers',
   ]
   const entries: MetadataRoute.Sitemap = routes.map((route): MetadataRoute.Sitemap[number] => ({

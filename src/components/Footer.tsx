@@ -13,9 +13,7 @@ export default function Footer() {
 
   const quickLinks2 = [
     { name: 'Think-First', href: '/think-first' },
-    { name: 'SEO', href: '/seo' },
-    { name: 'Marketing', href: '/market-strategy' },
-    { name: 'PPC', href: '/ppc' },
+    { name: 'Articles', href: '/articles' },
     { name: 'Careers', href: '/careers' },
   ];
 
