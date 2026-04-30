@@ -77,6 +77,6 @@ public/
 - [X] Develop service pages
 - [X] Update project summaries
 - [X] Make webinar registration & contact form functional
-- [ ] Develop careers page
+- [X] Develop careers page
 - [ ] Design articles (links, articles, yt videos) & social media (service page)
 - [ ] Add CMS for projects, reviews, staff & resumes
