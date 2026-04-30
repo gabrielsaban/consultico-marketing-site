@@ -1,5 +1,6 @@
 import Container from '@/components/Container';
 import ServiceDesktopHeader from '@/components/ServiceDesktopHeader';
+import Image from 'next/image';
 import Link from 'next/link';
 
 const scalingPainPoints = [
@@ -129,7 +130,7 @@ export default function ThinkFirstPage() {
       <section className="min-h-screen relative pb-16 md:pb-20 lg:pb-0">
         <ServiceDesktopHeader />
         <Container className="pt-[10.5rem] md:pt-[12rem] lg:pt-0 lg:min-h-screen lg:flex lg:items-center">
-          <div className="w-full grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 xl:gap-16 items-start lg:items-stretch">
+          <div className="w-full grid grid-cols-1 lg:grid-cols-[minmax(0,0.95fr)_minmax(28rem,1.05fr)] gap-8 lg:gap-10 xl:gap-12 items-start">
             <div>
               <p className="text-[clamp(0.75rem,1vw,0.875rem)] uppercase tracking-[0.16em] text-gray-600 dark:text-gray-400 font-helvetica mb-4">
                 Done-With-You Digital Marketing Workshop
@@ -163,11 +164,17 @@ export default function ThinkFirstPage() {
               </div>
             </div>
 
-            <div className="bg-white/85 dark:bg-gray-900/85 border border-gray-200 dark:border-gray-700 rounded-xl p-4 md:p-5 shadow-[0_8px_30px_rgba(0,0,0,0.08)] lg:h-full">
-              <div className="rounded-lg border-2 border-dashed border-brand-blue/60 bg-brand-silk dark:bg-gray-800 flex items-center justify-center min-h-[22rem] lg:min-h-0 lg:h-full">
-                <p className="text-brand-blue font-futura text-[clamp(1rem,1.5vw,1.5rem)] tracking-wide text-center px-4">
-                  strategic presentation
-                </p>
+            <div className="bg-white/85 dark:bg-gray-900/85 border border-gray-200 dark:border-gray-700 rounded-xl p-3 md:p-4 shadow-[0_8px_30px_rgba(0,0,0,0.08)] lg:mt-[2.35rem]">
+              <div className="overflow-hidden rounded-lg bg-brand-silk dark:bg-gray-800">
+                <Image
+                  src="/think_first/think.png"
+                  alt=""
+                  width={2245}
+                  height={1587}
+                  className="h-auto w-full"
+                  sizes="(min-width: 1280px) 48vw, (min-width: 1024px) 46vw, 100vw"
+                  priority
+                />
               </div>
             </div>
           </div>
@@ -483,7 +490,7 @@ export default function ThinkFirstPage() {
         </Container>
       </section>
 
-      <section id="apply" className="py-16 md:py-20 lg:py-24 bg-brand-blue text-white">
+      <section id="apply" data-cursor-theme="light" className="py-16 md:py-20 lg:py-24 bg-brand-blue text-white">
         <Container>
           <h2 className="text-[clamp(1.6rem,2.6vw,2.8rem)] leading-[1.14] font-futura font-bold mb-5 max-w-[20ch]">
             Stop Spending Blindly. Start Scaling Intelligently.

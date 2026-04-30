@@ -37,7 +37,7 @@ export default function ThinkFirstSection(): JSX.Element {
           </ul>
 
           <p className="text-[clamp(0.875rem,1.1vw,1rem)] leading-[1.5] text-gray-600 dark:text-gray-400 font-helvetica italic mb-6">
-            (For B2C brands already doing £x+/month and ready to scale deliberately)
+            (For B2C brands already doing £50K+/month and ready to scale deliberately)
           </p>
 
           <motion.button
