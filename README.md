@@ -67,21 +67,16 @@ public/
 - [X] Redirect CTAs to sections, footer buttons to relevant pages
 - [X] Add more scroll-in animations (e.g. stat number bump, smooth pops)
 - [X] Add animated site entry screen
-- [ ] Gather context files
+- [X] Gather context files
 - [X] Fix dark-mode bugs
 - [X] Retouch hero spacing
 - [X] Replace social media icons with 'Contact Us'
-
 - [X] Replace 'Branding & Image' with 'PPC'
 - [X] Add 'Campaign Management' service
-
-- [ ] Consider where 'Reviews', 'Case Studies' live
-- [ ] Add 'Articles' footer page
-
-- [ ] Develop service pages
-- [ ] Develop ThinkFirst page
-- [ ] Develop careers page
+- [X] Consider where 'Reviews', 'Case Studies' live
+- [X] Develop service pages
+- [ ] Update Boiler Co. project
 - [ ] Make webinar registration & contact form functional
-
-- [ ] Add custom cursor state for selecting text
+- [ ] Develop careers page
+- [ ] Design articles (links, articles, yt videos) & social media (service page)
 - [ ] Add CMS for projects, reviews, staff & resumes
