@@ -7,6 +7,7 @@ import Container from '@/components/Container';
 interface Review {
   id: number;
   text: string;
+  highlights: string[];
   name: string;
   company: string;
 }
@@ -14,51 +15,45 @@ interface Review {
 const reviews: Review[] = [
   {
     id: 1,
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    name: 'Name',
-    company: 'Company',
+    text: "Consultico were professional, patient, and genuinely invested in my project. Paul took my brief and delivered a custom website on time, keeping me informed throughout and ensuring every detail met my expectations. From initial contact to final tutorial, his support was outstanding. I'm thrilled with the result: stress-free, fully functional, and far beyond anything I could've built alone.",
+    highlights: ['professional, patient', 'custom website on time', 'support was outstanding', "far beyond anything I could've built alone"],
+    name: 'Keiren',
+    company: 'Custom Crafts by KJB',
   },
   {
     id: 2,
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    name: 'Name',
-    company: 'Company',
+    text: "I've worked with Marcus for 2 years and now with Paul. Together they've got Easyline ranking on page 1 of Google for multiple keywords. Both are quick to respond and always open to new ideas, regularly meeting to plan next steps. Reliable, efficient, and results-driven. I'm confident they'll continue delivering great SEO and digital marketing support.",
+    highlights: ['ranking on page 1 of Google', 'multiple keywords', 'Reliable, efficient, and results-driven', 'SEO and digital marketing support'],
+    name: 'John',
+    company: 'Easy Line Laundry Chutes',
   },
   {
     id: 3,
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    name: 'Name',
-    company: 'Company',
+    text: "I can't thank Consultico enough. My business had hit a slump - busy with existing clients but getting no new ones. After dealing with pushy agencies and expensive quotes, I almost lost hope. Then I found Paul, who was genuine, knowledgeable, and always willing to explain things clearly.",
+    highlights: ['getting no new ones', 'almost lost hope', 'genuine, knowledgeable', 'explain things clearly'],
+    name: 'Ant Vitale',
+    company: 'The Boiler Co.',
   },
   {
     id: 4,
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    name: 'Name',
-    company: 'Company',
+    text: "I've worked with Consultico for four months and couldn't be happier. Paul is always available, delivering fast, effective support. They built a professional website, launched a successful Google Ads campaign, and now handle all my marketing with precision and care. Highly recommended for anyone needing quality marketing and web development.",
+    highlights: ["couldn't be happier", 'professional website', 'successful Google Ads campaign', 'all my marketing'],
+    name: 'Graeme',
+    company: 'MCD Gas',
   },
   {
     id: 5,
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    name: 'Name',
-    company: 'Company',
+    text: "This workshop came at exactly the right time. It was highly relevant to our business and gave us clear, actionable guidance that made a real difference. It had far more impact than any generic advice we'd seen before.",
+    highlights: ['exactly the right time', 'clear, actionable guidance', 'real difference', 'far more impact'],
+    name: 'Peter Davis',
+    company: 'Norfolk Boards',
   },
   {
     id: 6,
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    name: 'Name',
-    company: 'Company',
-  },
-  {
-    id: 7,
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    name: 'Name',
-    company: 'Company',
-  },
-  {
-    id: 8,
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    name: 'Name',
-    company: 'Company',
+    text: "Consultico are a pleasure to work with. The team is incredibly friendly, knowledgeable, and always willing to go the extra mile. They made the whole process straightforward and effective. I couldn't recommend them more highly.",
+    highlights: ['pleasure to work with', 'go the extra mile', 'straightforward and effective', "couldn't recommend them more highly"],
+    name: 'Marcus Binnie',
+    company: 'Promo Designs',
   },
 ];
 
@@ -82,6 +77,52 @@ const StarIcon = () => (
     <path d="M10 0L12.2451 6.90983H19.5106L13.6327 11.1803L15.8779 18.0902L10 13.8197L4.12215 18.0902L6.36729 11.1803L0.489435 6.90983H7.75486L10 0Z" />
   </svg>
 );
+
+const ProfileIcon = ({ className = '' }: { className?: string }) => (
+  <svg
+    aria-hidden="true"
+    className={className}
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.8"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    viewBox="0 0 24 24"
+  >
+    <path d="M20 21a8 8 0 10-16 0" />
+    <circle cx="12" cy="8" r="4" />
+  </svg>
+);
+
+function HighlightedReviewText({
+  text,
+  highlights,
+}: {
+  text: string;
+  highlights: string[];
+}) {
+  if (highlights.length === 0) return <>{text}</>;
+
+  const escapedHighlights = highlights.map((highlight) =>
+    highlight.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  );
+  const pattern = new RegExp(`(${escapedHighlights.join('|')})`, 'g');
+
+  return (
+    <>
+      {text.split(pattern).map((part, index) => {
+        const isHighlight = highlights.includes(part);
+        return isHighlight ? (
+          <strong key={`${part}-${index}`} className="font-bold text-brand-blue">
+            {part}
+          </strong>
+        ) : (
+          <span key={`${part}-${index}`}>{part}</span>
+        );
+      })}
+    </>
+  );
+}
 
 export default function ReviewsCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -151,7 +192,7 @@ export default function ReviewsCarousel() {
                 {/* Review Text with inline quotes */}
                 <p className="font-helvetica text-[clamp(0.875rem,1.1vw,1.125rem)] text-gray-800 dark:text-gray-200 leading-[1.7] mb-6 flex-grow">
                   <span className="text-[clamp(1.75rem,2vw,2rem)] text-brand-blue mr-1 inline-block align-top leading-none">&ldquo;</span>
-                  {review.text}
+                  <HighlightedReviewText text={review.text} highlights={review.highlights} />
                   <span className="text-[clamp(1.75rem,2vw,2rem)] text-brand-blue ml-1 inline-block align-top leading-none">&rdquo;</span>
                 </p>
 
@@ -161,7 +202,9 @@ export default function ReviewsCarousel() {
                 {/* Author Info */}
                 <div className="flex items-start gap-7">
                   {/* Avatar Placeholder - matches height of text+stars div */}
-                  <div className="rounded-full bg-gray-300 dark:bg-gray-800 flex-shrink-0 w-[70px] h-[70px] xl:w-[75px] xl:h-[75px] 2xl:w-[90px] 2xl:h-[90px]" />
+                  <div className="grid rounded-full bg-gray-300 text-gray-500 dark:bg-gray-800 dark:text-gray-500 flex-shrink-0 w-[70px] h-[70px] xl:w-[75px] xl:h-[75px] 2xl:w-[90px] 2xl:h-[90px] place-items-center">
+                    <ProfileIcon className="h-[48%] w-[48%]" />
+                  </div>
                   
                   <div className="flex flex-col">
                     {/* Name and Company */}
@@ -287,14 +330,16 @@ export default function ReviewsCarousel() {
                   >
                     <p className="font-helvetica text-[clamp(0.8rem,2vw,0.95rem)] text-gray-800 dark:text-gray-200 leading-[1.55] mb-4 flex-grow">
                       <span className="text-[clamp(1.35rem,3vw,1.6rem)] text-brand-blue mr-1 inline-block align-top leading-none">&ldquo;</span>
-                      {review.text}
+                      <HighlightedReviewText text={review.text} highlights={review.highlights} />
                       <span className="text-[clamp(1.35rem,3vw,1.6rem)] text-brand-blue ml-1 inline-block align-top leading-none">&rdquo;</span>
                     </p>
 
                     <div className="w-full h-[2px] bg-brand-blue mb-4 flex-shrink-0" />
 
                     <div className="flex items-start gap-3 sm:gap-4">
-                      <div className="rounded-full bg-gray-300 dark:bg-gray-800 flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14" />
+                      <div className="grid rounded-full bg-gray-300 text-gray-500 dark:bg-gray-800 dark:text-gray-500 flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 place-items-center">
+                        <ProfileIcon className="h-[48%] w-[48%]" />
+                      </div>
                       <div className="flex flex-col min-w-0">
                         <p className="font-helvetica text-[clamp(0.8rem,2vw,0.95rem)] text-gray-900 dark:text-gray-100">
                           {review.name}
