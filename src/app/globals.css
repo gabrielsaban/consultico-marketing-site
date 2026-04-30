@@ -22,8 +22,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-helvetica);
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --font-futura: 'FuturaHeavyBT', 'Futura', Arial, sans-serif;
   --font-helvetica: 'Helvetica', Arial, sans-serif;
   /* Expose brand tokens to Tailwind theme */

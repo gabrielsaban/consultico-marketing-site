@@ -3,12 +3,15 @@
 import { usePreloader } from './PreloaderContext';
 
 /**
- * Defers rendering its children until the preloader signals "ready".
- * This ensures viewport-triggered hero animations fire as visitors
- * first see the content rather than playing behind the overlay.
+ * Keeps the page DOM mounted while the preloader is active.
+ * This preserves headings and links for crawlers while the overlay
+ * still controls the visitor's first visual reveal.
  */
 export default function PreloaderGate({ children }: { children: React.ReactNode }) {
   const { ready } = usePreloader();
-  if (!ready) return null;
-  return <>{children}</>;
+  return (
+    <div className={ready ? 'opacity-100' : 'pointer-events-none opacity-0'}>
+      {children}
+    </div>
+  );
 }
