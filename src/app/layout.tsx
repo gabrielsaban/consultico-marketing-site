@@ -66,6 +66,19 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/',
   },
+  icons: {
+    icon: [
+      {
+        url: '/icon.svg',
+        type: 'image/svg+xml',
+      },
+      {
+        url: '/brand/c-lettermark.svg',
+        type: 'image/svg+xml',
+      },
+    ],
+    shortcut: '/icon.svg',
+  },
 };
 
 const themeScript = `
