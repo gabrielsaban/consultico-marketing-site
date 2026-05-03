@@ -5,7 +5,6 @@ import Container from '@/components/Container';
 export default function Footer() {
   const quickLinks1 = [
     { name: 'Home', href: '/#home' },
-    { name: 'Services', href: '/#services' },
     { name: 'Projects', href: '/#projects' },
     { name: 'About', href: '/#about' },
     { name: 'Contact', href: '/#contact' },
@@ -13,7 +12,6 @@ export default function Footer() {
 
   const quickLinks2 = [
     { name: 'Think-First', href: '/think-first' },
-    { name: 'Articles', href: '/articles' },
     { name: 'Careers', href: '/careers' },
   ];
 
