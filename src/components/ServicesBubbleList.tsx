@@ -3,118 +3,115 @@
 import { motion, useInView, AnimatePresence, LayoutGroup } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 import Container from '@/components/Container';
 
 interface Service {
   id: string;
   name: string;
-  outcome: string;
-  bullets: string[];
-  cta: string;
+  description: string[];
+  highlights: string[];
   icon: string;
-  slug: string;
+  // Temporarily dormant while launch keeps service detail on the homepage.
+  futureSlug: string;
   image?: string;
 }
 
 const services: Service[] = [
   {
     id: 'strategy',
-    name: 'Market Strategy',
-    outcome: 'Define exactly what will work, why it will work, and what it is worth — before investing in execution.',
-    bullets: [
-      'Clear market positioning and growth levers',
-      'ROI projections tied to realistic assumptions',
-      'A prioritised, step-by-step implementation plan',
+    name: 'Marketing Strategy',
+    description: [
+      'Most businesses spend money on marketing before they genuinely understand what their marketing is doing for them. How does your social media presence actually connect through to your website? Are you tracking which channels are driving revenue and which ones are quietly burning budget with nothing to show for it? Are you spending money wisely - or just spending it? These are the questions most business owners cannot answer with real confidence, and that is exactly the problem we are built to solve.',
+      'Think First is our flagship strategy workshop - a structured process that maps out your entire marketing landscape before a single pound is committed to a campaign. Using our S.T.E.P. framework, we build a clear picture of where your marketing stands today, where the gaps are, and the most direct path to where you need to be. Every Consultico client relationship starts here, because without a clear strategy, everything else is guesswork.',
     ],
-    cta: 'Explore Market Strategy',
+    highlights: ['tracking which channels are driving revenue', 'Think First', 'S.T.E.P. framework'],
     icon: 'compass',
-    slug: 'market-strategy',
+    futureSlug: 'market-strategy',
     image: '/services/market_strategy.avif',
   },
   {
     id: 'ppc',
     name: 'PPC',
-    outcome: 'Paid campaigns structured to reach the right audience, control spend, and turn qualified clicks into measurable demand.',
-    bullets: [
-      'Keyword, audience, and budget planning',
-      'Conversion-focused ad structures',
-      'Performance tracking tied to clear outcomes',
+    description: [
+      'When managed correctly, paid advertising across Google and Meta is one of the most powerful growth levers available to a consumer brand. The ability to reach exactly the right person - at the right moment, on the right platform - and measure every penny of return is genuinely transformative. The problem is that most brands either run ads without a proper strategy behind them, or hand their budget to platforms that are not incentivised to spend it efficiently. The result is wasted spend, inconsistent returns, and campaigns that never quite hit their potential.',
+      'We manage Google and Meta ad accounts with a focus on margin-aware, data-driven performance. That means building campaigns around your actual unit economics - not just clicks and impressions - testing creative, refining audiences, and optimising continuously until the numbers stack up. We bring the same strategic clarity from Think First into every paid campaign we run: no campaign goes live without a clear understanding of what it is trying to do and how success will be measured.',
     ],
-    cta: 'Explore PPC',
+    highlights: ['Google and Meta', 'unit economics', 'how success will be measured'],
     icon: 'target',
-    slug: 'ppc',
+    futureSlug: 'ppc',
     image: '/services/ppc.avif',
   },
   {
     id: 'content',
     name: 'Content Creation',
-    outcome: 'Content designed to attract, qualify, and convert — not just fill feeds.',
-    bullets: [
-      'Funnel-aligned content strategy',
-      'Platform-specific messaging and formats',
-      'Performance-led creative direction',
+    description: [
+      'Content creation and social media management are two different things, and understanding the distinction matters. Content creation is the process of producing the actual assets - the video scripts, ad copy, long-form articles, product copy, landing page content, and campaign creatives that fuel your marketing across every channel. It is the raw material your entire marketing ecosystem runs on. When it is done well, it earns attention, builds trust, and moves people through a funnel. When it is done poorly, it disappears into the noise.',
+      'We produce content with a clear purpose behind every piece. That means starting with your audience, your funnel stage, and your business goals - then building content designed to perform. Whether you need ad scripts that convert, articles that rank and educate, or campaign assets that hold up across every platform, we treat content creation as a strategic function, not just a production task. Everything we produce is built to work as part of a broader system, not sit in isolation.',
     ],
-    cta: 'Explore Content Creation',
+    highlights: ['Content creation', 'actual assets', 'strategic function'],
     icon: 'sparkles',
-    slug: 'content-creation',
+    futureSlug: 'content-creation',
     image: '/services/content_creation.avif',
   },
   {
     id: 'seo',
     name: 'SEO',
-    outcome: 'Build long-term demand by capturing high-intent search traffic that compounds over time.',
-    bullets: [
-      'Keyword strategy tied to revenue intent',
-      'On-site optimisation and content planning',
-      'Sustainable growth without ad dependency',
+    description: [
+      'The best way to understand SEO versus PPC is through the difference between buying a building and renting one. Paid ads put you in front of people immediately - and the moment you stop paying, you disappear. The traffic is rented. SEO, by contrast, is an investment in a long-term asset. The work you put in today - technical fixes, quality content, authoritative backlinks - keeps delivering value for months and years after the initial effort. Your cost per lead decreases over time as your domain authority grows. That is how compounding works, and it is why the most successful businesses treat SEO as a core investment, not a line item to cut.',
+      'We build SEO strategies that treat your website as the asset it should be. That starts with a full technical audit to identify anything holding your site back, followed by on-page optimisation, content development targeted at the terms your customers actually search for, and link building to strengthen your authority over time. SEO is not a quick win - but for brands serious about long-term growth, it is consistently one of the highest-returning investments in the entire marketing mix.',
     ],
-    cta: 'Explore SEO',
+    highlights: ['long-term asset', 'compounding', 'technical audit', 'long-term growth'],
     icon: 'trending-up',
-    slug: 'seo',
+    futureSlug: 'seo',
     image: '/services/seo.avif',
   },
   {
     id: 'web',
     name: 'Web Development',
-    outcome: 'Websites built to support conversion, scalability, and performance — not just aesthetics.',
-    bullets: [
-      'Conversion-focused structure and UX',
-      'Technical performance and optimisation',
-      'Seamless integration with marketing systems',
+    description: [
+      'Your website is the hardest-working member of your team - or it should be. It is open every hour of every day, it speaks to every potential customer before anyone at your business does, and it either builds trust and converts or loses people in seconds. A well-built website is not a digital brochure. It is a conversion asset built around how people actually navigate, what they are looking for, and what it takes to move them from interest to action.',
+      'We design and build websites that earn their place in your marketing stack. That means clean, fast-loading builds structured around the user journey, with every design decision tied to a clear conversion goal. SEO foundations are baked in from day one, not bolted on at the end - and everything is built to perform across every device and screen size. If your current website is not working as hard as your marketing, that is the problem we are here to fix.',
     ],
-    cta: 'Explore Web Development',
+    highlights: ['hardest-working member of your team', 'conversion asset', 'SEO foundations'],
     icon: 'code',
-    slug: 'web-development',
+    futureSlug: 'web-development',
     image: '/services/web_dev.avif',
   },
   {
     id: 'social',
     name: 'Social Media',
-    outcome: 'Turn attention into measurable demand through intentional distribution and messaging.',
-    bullets: [
-      'Channel-specific growth strategies',
-      'Content distribution with purpose',
-      'Measurable engagement tied to outcomes',
+    description: [
+      'Social media management is not the same as content creation. Content creation produces the assets - social media management is about what happens to those assets once they exist. A social media manager is the custodian of your brand voice across every platform: planning and scheduling posts, monitoring and responding to comments and messages, tracking what is resonating with your audience, and making sure everything that goes out is consistent with how your brand needs to be seen - every single day.',
+      'We manage your social presence end-to-end, so you are not constantly context-switching between running your business and managing your feeds. That means a structured content calendar, platform-specific publishing, community engagement handled properly, and regular reporting on what is and is not working. Your job is to run your business. Our job is to make sure your social presence keeps showing up for it.',
     ],
-    cta: 'Explore Social Media',
+    highlights: ['Social media management', 'brand voice', 'community engagement'],
     icon: 'share-2',
-    slug: 'social-media',
+    futureSlug: 'social-media',
     image: '/services/social_media.avif',
   },
   {
     id: 'campaign',
     name: 'Campaign Management',
-    outcome: 'Keep campaigns aligned, optimised, and accountable from launch through reporting.',
-    bullets: [
-      'Campaign planning across channels',
-      'Ongoing performance management',
-      'Clear reporting and next-step recommendations',
+    description: [
+      'Most marketing efforts involve a lot of moving parts - paid ads, content, email, social, seasonal campaigns, product launches, and everything else sitting in between. When those parts are not coordinated, the result is inconsistent messaging, duplicated effort, and results that are much harder to attribute than they should be. Campaign management is what ties it all together: a single, coordinated effort that plans, builds, launches, and optimises across every channel with a clear goal, a clear timeline, and a clear picture of what success looks like.',
+      'We take the strategic foundation from Think First and turn it into live, coordinated campaign delivery. That means everything from initial planning and asset briefing right through to launch, performance monitoring, and ongoing optimisation. You get a team that owns the campaign from end to end - so nothing falls through the cracks, every pound is working toward the same objective, and your marketing is finally moving in one direction.',
     ],
-    cta: 'Explore Campaign Management',
+    highlights: ['Campaign management', 'coordinated effort', 'coordinated campaign delivery'],
     icon: 'calendar-check',
-    slug: 'campaign-management',
+    futureSlug: 'campaign-management',
     image: '/services/campaign.avif',
+  },
+  {
+    id: 'podcasting',
+    name: 'Podcasting',
+    description: [
+      'Podcasting has become one of the most powerful tools available to brands that want to build genuine authority - not just visibility. While other marketing channels can feel transient (an ad scrolled past, a post forgotten within the hour), a well-produced podcast creates a fundamentally different relationship with your audience. It earns an hour of someone\'s undivided attention during their commute, their workout, or their working day. That level of access is rare, and the brands that use it well consistently emerge as the most trusted voices in their space.',
+      'We produce professional podcasts from concept to distribution - covering show strategy and format development, recording and post-production, publishing, and promotion. Every show we produce is built around a clear audience and a clear brand positioning: not audio content for the sake of it, but a show people genuinely want to come back to, designed to build trust and credibility with every episode.',
+    ],
+    highlights: ['Podcasting', 'genuine authority', 'concept to distribution', 'build trust and credibility'],
+    icon: 'mic',
+    futureSlug: 'podcasting',
+    image: '/services/podcasting.avif',
   },
 ];
 
@@ -140,6 +137,9 @@ const ServiceIcon = ({ icon, className }: { icon: string; className?: string }) 
     ),
     'calendar-check': (
       <path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 012 2v13a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2zM8.5 15.5l2 2 5-5" />
+    ),
+    mic: (
+      <path d="M12 14a3 3 0 003-3V5a3 3 0 00-6 0v6a3 3 0 003 3zM19 11a7 7 0 01-14 0M12 18v4M8 22h8" />
     ),
   };
 
@@ -176,13 +176,27 @@ const ServicePreviewImage = ({ service }: { service: Service }) => {
   );
 };
 
-function MobileServicePreview({
-  service,
-  onCta,
-}: {
-  service: Service;
-  onCta: () => void;
-}) {
+const escapeRegExp = (value: string) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+const renderHighlightedText = (text: string, highlights: string[]) => {
+  if (!highlights.length) return text;
+
+  const pattern = new RegExp(`(${highlights.map(escapeRegExp).join('|')})`, 'gi');
+
+  return text.split(pattern).map((part, index) => {
+    const isHighlighted = highlights.some((highlight) => highlight.toLowerCase() === part.toLowerCase());
+
+    return isHighlighted ? (
+      <strong key={`${part}-${index}`} className="font-helvetica font-semibold text-brand-blue">
+        {part}
+      </strong>
+    ) : (
+      <span key={`${part}-${index}`}>{part}</span>
+    );
+  });
+};
+
+function MobileServicePreview({ service }: { service: Service }) {
   return (
     <motion.div
       layout
@@ -202,29 +216,16 @@ function MobileServicePreview({
           <ServicePreviewImage service={service} />
         </div>
         <div className="min-w-0 self-stretch flex flex-col">
-          <p className="text-[clamp(0.95rem,2.4vw,1.05rem)] leading-[1.55] text-gray-800 dark:text-gray-200 font-helvetica-light mb-3">
-            {service.outcome}
-          </p>
-          <ul className="space-y-2 pl-5 mb-4">
-            {service.bullets.map((bullet) => (
-              <li
-                key={bullet}
-                className="text-[clamp(0.85rem,2.2vw,0.98rem)] leading-[1.45] text-gray-700 dark:text-gray-300 font-helvetica-light relative before:content-['•'] before:absolute before:left-[-1rem] before:text-brand-blue before:font-bold"
+          <div className="space-y-3">
+            {service.description.map((paragraph) => (
+              <p
+                key={paragraph}
+                className="text-[clamp(0.9rem,2.2vw,1rem)] leading-[1.58] text-gray-800 dark:text-gray-200 font-helvetica-light"
               >
-                {bullet}
-              </li>
+                {renderHighlightedText(paragraph, service.highlights)}
+              </p>
             ))}
-          </ul>
-          <motion.button
-            type="button"
-            className="w-full mt-auto bg-blue-primary text-white font-helvetica font-medium text-[clamp(0.85rem,2.2vw,0.98rem)] px-4 py-2.5 rounded-lg transition-colors duration-200 hover:bg-[#006FE6] active:bg-[#0067D6] focus:outline-none focus:ring-2 focus:ring-blue-primary focus:ring-offset-2"
-            whileHover={{ scale: 1.06 }}
-            whileTap={{ scale: 0.98 }}
-            aria-label={service.cta}
-            onClick={onCta}
-          >
-            {service.cta}
-          </motion.button>
+          </div>
         </div>
       </div>
     </motion.div>
@@ -234,7 +235,6 @@ function MobileServicePreview({
 export default function ServicesBubbleList() {
   const [selectedService, setSelectedService] = useState<string>('strategy');
   const [previewService, setPreviewService] = useState<string>('strategy');
-  const router = useRouter();
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const selectionTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const previewTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -339,11 +339,7 @@ export default function ServicesBubbleList() {
                   </motion.button>
                   <AnimatePresence mode="wait" initial={false}>
                     {showInlinePreview && (
-                      <MobileServicePreview
-                        key={service.id}
-                        service={service}
-                        onCta={() => router.push(`/${service.slug}`)}
-                      />
+                      <MobileServicePreview key={service.id} service={service} />
                     )}
                   </AnimatePresence>
                 </motion.div>
@@ -365,44 +361,19 @@ export default function ServicesBubbleList() {
           {isTopThree ? (
             // Top 3: Info top, Image bottom
             <>
-              {/* Outcome Line */}
-              <motion.p
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.05, duration: 0.3 }}
-                className="text-[clamp(1rem,1.3vw,1.2rem)] leading-[1.6] text-gray-800 dark:text-gray-200 font-helvetica-light"
-              >
-                {currentService.outcome}
-              </motion.p>
-
-              {/* Bullets */}
-              <ul className="space-y-3 pl-8">
-                {currentService.bullets.map((bullet, index) => (
-                  <motion.li
-                    key={index}
-                    initial={{ opacity: 0, y: 8 }}
+              <div className="space-y-4">
+                {currentService.description.map((paragraph, index) => (
+                  <motion.p
+                    key={paragraph}
+                    initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.12 + index * 0.08, duration: 0.3 }}
-                    className="text-[clamp(0.95rem,1.2vw,1.1rem)] leading-[1.6] text-gray-700 dark:text-gray-300 font-helvetica-light relative before:content-['•'] before:absolute before:left-[-1.5rem] before:text-brand-blue before:font-bold"
+                    transition={{ delay: 0.05 + index * 0.08, duration: 0.3 }}
+                    className="text-[clamp(0.94rem,1.05vw,1.06rem)] leading-[1.58] text-gray-800 dark:text-gray-200 font-helvetica-light"
                   >
-                    {bullet}
-                  </motion.li>
+                    {renderHighlightedText(paragraph, currentService.highlights)}
+                  </motion.p>
                 ))}
-              </ul>
-
-              {/* CTA Button */}
-              <motion.button
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.36, duration: 0.3 }}
-                className="w-full bg-blue-primary text-white font-helvetica font-medium text-[clamp(0.95rem,1.2vw,1.1rem)] px-6 py-3 rounded-lg transition-colors duration-200 hover:bg-[#006FE6] active:bg-[#0067D6] focus:outline-none focus:ring-2 focus:ring-blue-primary focus:ring-offset-2"
-                whileHover={{ scale: 1.06 }}
-                whileTap={{ scale: 0.98 }}
-                aria-label={currentService.cta}
-                onClick={() => router.push(`/${currentService.slug}`)}
-              >
-                {currentService.cta}
-              </motion.button>
+              </div>
 
               {/* Image Placeholder - Bottom */}
               <div className="w-full aspect-square overflow-hidden bg-brand-silk dark:bg-gray-900 rounded-[10px] mt-auto">
@@ -418,44 +389,17 @@ export default function ServicesBubbleList() {
               </div>
 
               <div className="mt-auto flex flex-col gap-6">
-                {/* Outcome Line */}
-                <motion.p
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.05, duration: 0.3 }}
-                  className="text-[clamp(1rem,1.3vw,1.2rem)] leading-[1.6] text-gray-800 dark:text-gray-200 font-helvetica-light"
-                >
-                  {currentService.outcome}
-                </motion.p>
-
-                {/* Bullets */}
-                <ul className="space-y-3 pl-8">
-                  {currentService.bullets.map((bullet, index) => (
-                    <motion.li
-                      key={index}
-                      initial={{ opacity: 0, y: 8 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.12 + index * 0.08, duration: 0.3 }}
-                      className="text-[clamp(0.95rem,1.2vw,1.1rem)] leading-[1.6] text-gray-700 dark:text-gray-300 font-helvetica-light relative before:content-['•'] before:absolute before:left-[-1.5rem] before:text-brand-blue before:font-bold"
-                    >
-                      {bullet}
-                    </motion.li>
-                  ))}
-                </ul>
-
-                {/* CTA Button */}
-                <motion.button
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.36, duration: 0.3 }}
-                  className="w-full bg-blue-primary text-white font-helvetica font-medium text-[clamp(0.95rem,1.2vw,1.1rem)] px-6 py-3 rounded-lg transition-colors duration-200 hover:bg-[#006FE6] active:bg-[#0067D6] focus:outline-none focus:ring-2 focus:ring-blue-primary focus:ring-offset-2"
-                  whileHover={{ scale: 1.06 }}
-                  whileTap={{ scale: 0.98 }}
-                  aria-label={currentService.cta}
-                  onClick={() => router.push(`/${currentService.slug}`)}
-                >
-                  {currentService.cta}
-                </motion.button>
+                {currentService.description.map((paragraph, index) => (
+                  <motion.p
+                    key={paragraph}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.05 + index * 0.08, duration: 0.3 }}
+                    className="text-[clamp(0.94rem,1.05vw,1.06rem)] leading-[1.58] text-gray-800 dark:text-gray-200 font-helvetica-light"
+                  >
+                    {renderHighlightedText(paragraph, currentService.highlights)}
+                  </motion.p>
+                ))}
               </div>
             </>
           )}

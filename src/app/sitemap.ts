@@ -5,13 +5,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date().toISOString()
   const routes = [
     '/',
-    '/market-strategy',
-    '/ppc',
-    '/campaign-management',
-    '/content-creation',
-    '/seo',
-    '/web-development',
-    '/social-media',
     '/think-first',
     '/articles',
     '/careers',
