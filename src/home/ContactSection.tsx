@@ -13,26 +13,6 @@ const ContactMap = dynamic(() => import('@/components/ContactMap'), {
   loading: () => <div className={`${mapShellClassName} bg-white/70 dark:bg-gray-900/70`} aria-hidden="true" />,
 });
 
-const WebinarQuizModal = dynamic(() => import('@/components/quiz/WebinarQuizModal'), { ssr: false });
-
-const claritySteps = [
-  {
-    step: '01',
-    title: 'Share the basics',
-    body: 'Add your contact and business details so the score can be linked to your current stage.',
-  },
-  {
-    step: '02',
-    title: 'Answer 6 quick questions',
-    body: 'Cover positioning, channels, confidence, tracking, and where growth feels unclear.',
-  },
-  {
-    step: '03',
-    title: 'Receive your next step',
-    body: 'Get your clarity score, key opportunities, and a route into the free webinar.',
-  },
-];
-
 const initialContactFormData = {
   name: '',
   business: '',
@@ -123,7 +103,6 @@ function LazyContactMap() {
 }
 
 export default function ContactSection() {
-  const [isQuizOpen, setIsQuizOpen] = useState(false);
   const [formData, setFormData] = useState(initialContactFormData);
   const [contactSessionId, setContactSessionId] = useState(() => createSessionId());
   const [contactSubmitState, setContactSubmitState] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
@@ -266,67 +245,32 @@ export default function ContactSection() {
           </div>
         </div>
 
-        {/* Two Column Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 mb-16 md:mb-20">
-          {/* Left Column - Marketing Clarity Info */}
-          <div className="flex flex-col items-center text-center">
-            <h3 className="max-w-[32ch] text-[clamp(1.55rem,2vw,2.1rem)] font-bold leading-[1.18] text-brand-blue font-futura mb-5">
-              Discover Your Marketing Clarity Score & Register for the Free Webinar
-            </h3>
-            <p className="max-w-[44rem] text-[clamp(0.95rem,1.1vw,1.05rem)] leading-[1.55] text-gray-700 dark:text-gray-300 font-helvetica mb-6">
-              You&apos;ll instantly discover where your marketing stands, what growth opportunities you&apos;re missing, and get a personalised roadmap based on your current stage.
-            </p>
+        {/* Booking CTA and Contact Form */}
+        <div className="mx-auto mb-16 flex max-w-4xl flex-col gap-10 md:mb-20">
+          {/* Booking CTA */}
+          <div className="flex h-full flex-col items-center justify-center text-center">
+            <div className="flex w-full flex-col items-center justify-center px-2 py-4 sm:px-8">
+              <h3 className="max-w-[22ch] text-[clamp(2.1rem,3vw,3.4rem)] font-bold leading-[1.02] text-brand-blue font-futura mb-5">
+                Ready to think first?
+              </h3>
+              <p className="max-w-[36rem] text-[clamp(1rem,1.15vw,1.12rem)] leading-[1.6] text-gray-700 dark:text-gray-300 font-helvetica mb-8">
+                Book a free discovery call and let&apos;s figure out exactly where your marketing should be going - and what it&apos;s going to take to get there.
+              </p>
 
-            <div className="mb-6 flex w-full flex-grow flex-col overflow-hidden rounded-lg border border-gray-200 bg-white/85 text-left shadow-[0_10px_30px_rgba(0,0,0,0.07)] dark:border-gray-800 dark:bg-gray-900/80 lg:min-h-[33rem]">
-              <div className="border-b border-gray-200 bg-brand-silk/75 px-6 py-5 dark:border-gray-800 dark:bg-gray-950/45">
-                <div className="mb-2.5 flex flex-wrap items-center justify-between gap-3">
-                  <p className="inline-flex items-center gap-2 rounded-full border border-brand-blue/25 bg-white px-3 py-1 text-[0.74rem] font-helvetica font-semibold uppercase tracking-[0.14em] text-brand-blue dark:bg-gray-950">
-                    <span className="h-2 w-2 rounded-full bg-brand-blue" />
-                    3 minute check
-                  </p>
-                  <p className="font-helvetica text-[0.82rem] text-gray-500 dark:text-gray-400">
-                    Free score and webinar invite
-                  </p>
-                </div>
-                <p className="font-futura text-[clamp(1.2rem,1.55vw,1.55rem)] font-bold leading-[1.16] text-gray-900 dark:text-white">
-                  See where your marketing is clear, stuck, or leaking opportunity.
-                </p>
-              </div>
-
-              <ol className="flex flex-1 flex-col justify-evenly px-6 py-7">
-                {claritySteps.map((item, index) => (
-                  <li key={item.step} className="relative grid grid-cols-[2.5rem_1fr] gap-4 pb-6 last:pb-0">
-                    {index < claritySteps.length - 1 && (
-                      <span className="absolute left-5 top-9 h-[calc(100%-2rem)] w-px bg-brand-blue/25" aria-hidden="true" />
-                    )}
-                    <span className="relative z-10 flex h-10 w-10 items-center justify-center rounded-lg bg-brand-blue font-futura text-[0.9rem] font-bold text-white shadow-[0_8px_18px_rgba(0,123,255,0.22)]">
-                      {item.step}
-                    </span>
-                    <span className="block pt-0.5">
-                      <span className="block font-futura text-[clamp(1rem,1.15vw,1.12rem)] font-bold text-gray-900 dark:text-white">
-                        {item.title}
-                      </span>
-                      <span className="mt-1 block font-helvetica-light text-[clamp(0.86rem,0.95vw,0.95rem)] leading-[1.45] text-gray-700 dark:text-gray-300">
-                        {item.body}
-                      </span>
-                    </span>
-                  </li>
-                ))}
-              </ol>
+              <motion.a
+                href="https://calendar.app.google/qpXRWnCiG3XKi8iG6"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex w-full max-w-[18rem] items-center justify-center rounded-lg bg-brand-blue px-8 py-3 font-helvetica text-[clamp(1rem,1.15vw,1.08rem)] font-medium text-white transition-colors duration-200 hover:bg-[#006FE6] active:bg-[#0067D6] focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2"
+                whileHover={{ scale: 1.06 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                Book a Call
+              </motion.a>
             </div>
-
-            <motion.button
-              type="button"
-              onClick={() => setIsQuizOpen(true)}
-              className="bg-brand-blue text-white font-helvetica font-medium text-[clamp(1rem,1.15vw,1.08rem)] px-8 py-3 mb-8 rounded-lg transition-colors duration-200 hover:bg-[#006FE6] active:bg-[#0067D6] focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2 w-full"
-              whileHover={{ scale: 1.06 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              Start registration
-            </motion.button>
           </div>
 
-          {/* Right Column - Contact Form */}
+          {/* Contact Form */}
           <div className="flex h-full bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg p-6 md:p-8 shadow-[0_2px_12px_rgba(0,0,0,0.08)]">
             <form onSubmit={handleSubmit} className="flex min-h-full w-full flex-col gap-6">
               <div>
@@ -457,7 +401,6 @@ export default function ContactSection() {
 
         <LazyContactMap />
       </Container>
-      {isQuizOpen && <WebinarQuizModal isOpen={isQuizOpen} onClose={() => setIsQuizOpen(false)} />}
     </section>
   );
 }
