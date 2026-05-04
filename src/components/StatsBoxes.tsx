@@ -6,29 +6,24 @@ import AnimatedCounter from '@/components/AnimatedCounter';
 interface Stat {
   value: string;
   name: string;
-  info: string;
 }
 
 const stats: Stat[] = [
   {
-    value: '1134%',
-    name: 'Visibility increase',
-    info: 'Using SEO for search engine results.',
+    value: '120,000',
+    name: 'Organic views in 30 days',
   },
   {
-    value: '2000%',
-    name: 'More daily traffic',
-    info: 'For our SEO clients, curated over 8 quarters',
+    value: '7',
+    name: 'Page-one rankings in one quarter',
   },
   {
-    value: '50x',
-    name: 'Return on ad spend',
-    info: 'Adding new life to PPC client lead generation.',
+    value: '£2,000',
+    name: 'Saved in one recommendation',
   },
   {
-    value: '£1.2M',
-    name: "Increase in clients' work",
-    info: "Increase in our clients' quotes resulting from our work.",
+    value: '5',
+    name: 'Bespoke recommendations, every time',
   },
 ];
 
@@ -55,11 +50,6 @@ export default function StatsBoxes() {
             <h4 className="font-helvetica font-medium text-[clamp(0.95rem,3.8vw,1.125rem)] min-[600px]:text-[clamp(1.125rem,1.4vw,1.75rem)] leading-tight text-black dark:text-gray-100 mb-1.5 min-[600px]:mb-2">
               {stat.name}
             </h4>
-
-            {/* Stat Info */}
-            <p className="font-helvetica leading-tight text-[clamp(0.72rem,3vw,0.875rem)] min-[600px]:text-[clamp(0.875rem,1vw,1.25rem)] text-black dark:text-gray-200">
-              {stat.info}
-            </p>
           </div>
         ))}
       </div>

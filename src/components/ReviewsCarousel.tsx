@@ -57,6 +57,9 @@ const reviews: Review[] = [
   },
 ];
 
+const googleReviewsUrl =
+  'https://www.google.com/search?sca_esv=8c24cb2666462953&sxsrf=ANbL-n4Rk0-LxWFMGkfEQXMRlhy83EK7vw:1777926480236&si=AL3DRZEsmMGCryMMFSHJ3StBhOdZ2-6yYkXd_doETEE1OR-qObYQ8amRJv93GEmSXpn94_QXurzlpJUU9cJz5Nj5ZPGXRqCfJKljhLxA8Dbc5bP2KyaBacicfO0Fe8_8eW432aBm772G&q=Consultico+Reviews&sa=X&ved=2ahUKEwjR-amivKCUAxXbW0EAHeRBMG4Q0bkNegQIRRAH&biw=2560&bih=1271&dpr=1';
+
 const chunkItems = <T,>(items: T[], size: number): T[][] => {
   const chunks: T[][] = [];
   for (let i = 0; i < items.length; i += size) {
@@ -75,22 +78,6 @@ const StarIcon = () => (
     className="text-brand-blue"
   >
     <path d="M10 0L12.2451 6.90983H19.5106L13.6327 11.1803L15.8779 18.0902L10 13.8197L4.12215 18.0902L6.36729 11.1803L0.489435 6.90983H7.75486L10 0Z" />
-  </svg>
-);
-
-const ProfileIcon = ({ className = '' }: { className?: string }) => (
-  <svg
-    aria-hidden="true"
-    className={className}
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="1.8"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    viewBox="0 0 24 24"
-  >
-    <path d="M20 21a8 8 0 10-16 0" />
-    <circle cx="12" cy="8" r="4" />
   </svg>
 );
 
@@ -200,12 +187,7 @@ export default function ReviewsCarousel() {
                 <div className="w-full h-[2px] bg-brand-blue mb-6 flex-shrink-0" />
 
                 {/* Author Info */}
-                <div className="flex items-start gap-7">
-                  {/* Avatar Placeholder - matches height of text+stars div */}
-                  <div className="grid rounded-full bg-gray-300 text-gray-500 dark:bg-gray-800 dark:text-gray-500 flex-shrink-0 w-[70px] h-[70px] xl:w-[75px] xl:h-[75px] 2xl:w-[90px] 2xl:h-[90px] place-items-center">
-                    <ProfileIcon className="h-[48%] w-[48%]" />
-                  </div>
-                  
+                <div className="flex items-start">
                   <div className="flex flex-col">
                     {/* Name and Company */}
                     <p className="font-helvetica text-[clamp(0.875rem,1vw,1.125rem)] text-gray-900 dark:text-gray-100">
@@ -336,10 +318,7 @@ export default function ReviewsCarousel() {
 
                     <div className="w-full h-[2px] bg-brand-blue mb-4 flex-shrink-0" />
 
-                    <div className="flex items-start gap-3 sm:gap-4">
-                      <div className="grid rounded-full bg-gray-300 text-gray-500 dark:bg-gray-800 dark:text-gray-500 flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 place-items-center">
-                        <ProfileIcon className="h-[48%] w-[48%]" />
-                      </div>
+                    <div className="flex items-start">
                       <div className="flex flex-col min-w-0">
                         <p className="font-helvetica text-[clamp(0.8rem,2vw,0.95rem)] text-gray-900 dark:text-gray-100">
                           {review.name}
@@ -375,6 +354,19 @@ export default function ReviewsCarousel() {
             ))}
           </div>
         )}
+      </div>
+
+      <div className="mt-10 flex justify-center">
+        <motion.a
+          href={googleReviewsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center justify-center rounded-lg bg-brand-blue px-8 py-3 font-helvetica text-[clamp(1rem,1.15vw,1.08rem)] font-medium text-white transition-colors duration-200 hover:bg-[#006FE6] active:bg-[#0067D6] focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2"
+          whileHover={{ scale: 1.06 }}
+          whileTap={{ scale: 0.98 }}
+        >
+          See all reviews on Google
+        </motion.a>
       </div>
     </Container>
   );

@@ -22,7 +22,10 @@ export default function AnimatedCounter({ value, duration = 2, className = '' }:
     } else if (value.includes('x')) {
       return parseFloat(value.replace('x', ''));
     } else if (value.includes('£')) {
-      return parseFloat(value.replace('£', '').replace('M', '')) * 1000000;
+      const numericValue = parseFloat(value.replace('£', '').replace(/,/g, '').replace(/[kKmM]/g, ''));
+      if (value.toLowerCase().includes('m')) return numericValue * 1000000;
+      if (value.toLowerCase().includes('k')) return numericValue * 1000;
+      return numericValue;
     } else {
       return parseFloat(value.replace(/,/g, ''));
     }
@@ -56,7 +59,9 @@ export default function AnimatedCounter({ value, duration = 2, className = '' }:
     } else if (value.includes('x')) {
       return Math.round(num) + 'x';
     } else if (value.includes('£')) {
-      return '£' + (num / 1000000).toFixed(1) + 'M';
+      if (value.toLowerCase().includes('m')) return '£' + (num / 1000000).toFixed(1) + 'M';
+      if (value.toLowerCase().includes('k')) return '£' + Math.round(num / 1000).toLocaleString() + 'K';
+      return '£' + Math.round(num).toLocaleString();
     } else {
       return Math.round(num).toLocaleString();
     }
