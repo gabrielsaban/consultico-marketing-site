@@ -170,15 +170,10 @@ export default function ContactSection() {
   return (
     <section id="contact" className="bg-gray-50 dark:bg-gray-950 shadow-[0_4px_20px_rgba(0,0,0,0.1)] py-16 md:py-20 lg:py-24 scroll-mt-24">
       <Container>
-        {/* Heading */}
-        <h2 className="text-[clamp(2rem,3vw,3.125rem)] font-bold text-brand-blue font-futura text-center mb-8">
-          Contact us
-        </h2>
-
         {/* Contact Info - Center Aligned with Spacing */}
         <div className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-12 lg:gap-24 mb-12 md:mb-16">
           <a
-            href="mailto:email@consultico.co.uk"
+            href="mailto:paul@consultico.co.uk"
             className="flex items-center gap-3 text-[clamp(0.95rem,1.1vw,1.125rem)] font-helvetica text-gray-700 dark:text-gray-300 hover:text-brand-blue transition-colors"
           >
             <svg
@@ -193,7 +188,7 @@ export default function ContactSection() {
               <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
               <path d="M22 6l-10 7L2 6" />
             </svg>
-            email@consultico.co.uk
+            paul@consultico.co.uk
           </a>
           
           {/* Decorative Dots */}
@@ -268,6 +263,15 @@ export default function ContactSection() {
                 Book a Call
               </motion.a>
             </div>
+          </div>
+
+          <div className="text-center">
+            <h3 className="text-[clamp(1.5rem,2.3vw,2.4rem)] font-bold leading-[1.08] text-brand-blue font-futura mb-3">
+              Got a question first?
+            </h3>
+            <p className="text-[clamp(1rem,1.15vw,1.12rem)] leading-[1.55] text-gray-700 dark:text-gray-300 font-helvetica">
+              Fill in the form below and we&apos;ll get back to you.
+            </p>
           </div>
 
           {/* Contact Form */}
