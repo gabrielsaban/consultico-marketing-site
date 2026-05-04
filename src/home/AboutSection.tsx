@@ -6,7 +6,6 @@ import Container from '@/components/Container';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { useRouter } from 'next/navigation';
 import { useRef, useState } from 'react';
 
 interface TeamMember {
@@ -44,7 +43,7 @@ const teamPages = teamMembers.reduce<TeamMember[][]>((pages, member, index) => {
 const philosophyPoints: PhilosophyPoint[] = [
   {
     title: 'No Guesswork',
-    description: "We don't rely on gut feeling or hope. If something isn't working, we say so.",
+    description: "Every recommendation is backed by data. We track and report everything we do, so you always know what's working and what isn't.",
     icon: 'target',
   },
   {
@@ -53,13 +52,13 @@ const philosophyPoints: PhilosophyPoint[] = [
     icon: 'blueprint',
   },
   {
-    title: 'Built To Carry Weight',
-    description: 'Everything we create is designed to carry meaning, not just look good.',
+    title: 'Your Own Dedicated Account Manager',
+    description: 'One person who knows your business, your goals, and is always on the other end of the phone.',
     icon: 'weight',
   },
   {
-    title: 'No Templates Or Shortcuts',
-    description: 'Every strategy is custom-built. No copy-paste solutions or borrowed frameworks.',
+    title: 'A Proven Process',
+    description: 'Every engagement runs through our in-house framework, developed and refined across real client work. Structure that works, built by us.',
     icon: 'unique',
   },
 ];
@@ -109,7 +108,6 @@ const TeamPortrait = ({ member }: { member: TeamMember }) => {
 };
 
 export default function AboutSection(): React.JSX.Element {
-  const router = useRouter();
   const teamScrollerRef = useRef<HTMLDivElement | null>(null);
   const [teamPage, setTeamPage] = useState(0);
 
@@ -126,14 +124,14 @@ export default function AboutSection(): React.JSX.Element {
         {/* Intro */}
         <div className="mb-16 md:mb-20 lg:mb-24">
           <h2 className="text-[clamp(2rem,3vw,3.125rem)] font-bold text-brand-blue font-futura mb-8">
-            About Consultico
+            Built around brands
           </h2>
           <div className="max-w-3xl space-y-4">
             <p className="text-[clamp(1rem,1.3vw,1.2rem)] leading-[1.6] text-gray-800 dark:text-gray-200 font-helvetica">
-              In business, very few teams can afford a full in-house marketing department - that&apos;s where we come in.
+              In the summer of 2025, Consultico was awarded a fellowship from the University of Strathclyde. Over the following six months, everything from that fellowship went into researching and developing the Think First Workshop - drawing on data across hundreds of B2C businesses. The result is a service that makes quality marketing strategy accessible, consistently reliable, and fully understood. Consultico has been operating since February 2024.
             </p>
             <p className="text-[clamp(1rem,1.3vw,1.2rem)] leading-[1.6] text-gray-800 dark:text-gray-200 font-helvetica">
-              We act as a strategy-led marketing partner, helping brands cut through saturated markets with clarity, structure, and intent.
+              We run a full-service marketing agency - building websites, optimising for search, and running paid advertising. Our team is fully equipped to help you reach your goals. This ecosystem works together to give you clear insight into exactly where your budget and time will have the most impact.
             </p>
           </div>
         </div>
@@ -341,25 +339,13 @@ export default function AboutSection(): React.JSX.Element {
               </h3>
               <div className="space-y-4 mb-8">
                 <p className="text-[clamp(0.95rem,1.1vw,1.05rem)] leading-[1.6] text-gray-700 dark:text-gray-300 font-helvetica">
-                  We build our work around sharp, digitally-native thinkers who understand modern platforms instinctively.
+                  We prioritise talent over tenure. Our team combines fresh digital thinking with experienced strategic oversight - including advisors who have built and scaled brands across a range of industries. Every piece of work is held to the same standard, regardless of who produces it.
                 </p>
                 <p className="text-[clamp(0.95rem,1.1vw,1.05rem)] leading-[1.6] text-gray-700 dark:text-gray-300 font-helvetica-light">
-                  Many of our team are students — not because they&apos;re cheap or inexperienced, but because they&apos;re closest to how audiences actually behave today and are guided by skilled oversight.
-                </p>
-                <p className="text-[clamp(0.95rem,1.1vw,1.05rem)] leading-[1.6] text-gray-700 dark:text-gray-300 font-helvetica-light">
-                  We trust their thinking, give them real responsibility, and hold all work to the same strategic standard.
+                  Click on any team member to learn more about their background, what they specialise in, and how they contribute to your work.
                 </p>
               </div>
             </div>
-
-            <motion.button
-              className="bg-brand-blue text-white font-helvetica font-medium text-[clamp(1rem,1.2vw,1.125rem)] px-8 py-3 rounded-lg transition-colors duration-200 hover:bg-[#006FE6] active:bg-[#0067D6] focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2 self-start"
-              whileHover={{ scale: 1.06 }}
-              whileTap={{ scale: 0.98 }}
-              onClick={() => router.push('/careers')}
-            >
-              Explore open positions
-            </motion.button>
           </div>
         </div>
       </Container>
