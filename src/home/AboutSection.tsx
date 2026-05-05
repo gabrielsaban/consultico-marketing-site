@@ -29,8 +29,6 @@ const teamMembers: TeamMember[] = [
   { id: 4, name: 'Chloe Chan', role: 'Associate', cvLink: '#', image: '/team/chloe_chan.avif' },
   { id: 5, name: 'Zsa Zsa Kerr-Bennie', role: 'Assistant', cvLink: '#' },
   { id: 6, name: 'Lucy Dinse', role: 'Assistant', cvLink: '#' },
-  { id: 7, name: 'Name Placeholder', role: 'Role Title', cvLink: '#' },
-  { id: 8, name: 'Name Placeholder', role: 'Role Title', cvLink: '#' },
 ];
 
 const teamPages = teamMembers.reduce<TeamMember[][]>((pages, member, index) => {
@@ -98,10 +96,12 @@ const TeamPortrait = ({ member }: { member: TeamMember }) => {
     <div className="flex h-full w-full items-center justify-center bg-gray-200 dark:bg-gray-800">
       <span className="font-futura text-[clamp(2rem,6vw,3.5rem)] font-bold text-brand-blue/45">
         {member.name
-          .split(' ')
-          .map((part) => part[0])
-          .join('')
-          .slice(0, 2)}
+          ? member.name
+              .split(' ')
+              .map((part) => part[0])
+              .join('')
+              .slice(0, 2)
+          : null}
       </span>
     </div>
   );
