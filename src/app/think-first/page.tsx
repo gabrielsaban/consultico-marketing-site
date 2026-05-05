@@ -11,19 +11,19 @@ const scalingPainPoints = [
 ];
 
 const precisionInputs = [
-  'your unit economics',
-  'your customer behaviour',
-  'your margin structure',
-  'your growth constraints',
+  'how your business actually makes money',
+  'how your customers behave and what makes them buy',
+  "where your margins are and what's eating into them",
+  "what's stopping you from growing faster right now",
 ];
 
 const walkAwayOutcomes = [
-  'A revenue model mapped to your business',
-  'Channel prioritisation based on projected ROI',
-  'Clear cost-per-acquisition thresholds',
-  'A 90-day execution roadmap',
-  'Defined testing framework',
-  'Full clarity before committing to spend',
+  'A marketing model built around your business',
+  'Visual examples ready for you to use',
+  'A clear explanation of why each recommendation will work',
+  'A 12-month execution roadmap',
+  'In-depth, easy-to-read reports on everything we find',
+  'Two months of post-workshop support - any questions, answered directly via Slack.',
 ];
 
 const processSteps = [
@@ -82,16 +82,17 @@ const caseStudies = [
   },
   {
     title: 'E-Commerce Brand',
-    situation: 'Owner hesitant to scale due to uncertainty and seasonal bottlenecks.',
-    finding: 'Missed leverage in retention and a specific paid traffic channel.',
+    situation: 'Owner unsure where to focus next - website, social, or paid.',
+    finding: "Three clear areas being underutilised - photography quality holding back conversions, no structured social content plan, and the website wasn't set up to upsell effectively.",
     metrics: [
-      { value: '£65k', label: 'Monthly Growth Potential' },
-      { value: '1', label: 'Primary Bottleneck Removed' },
-      { value: '90d', label: 'Expansion Model Planned' },
+      { value: '3', label: 'Areas Of Immediate Opportunity Identified' },
+      { value: '£0', label: 'Additional Ad Spend Required' },
+      { value: '30d', label: 'From Workshop To Full Roadmap' },
     ],
     outcomes: [
-      'Identified £65,000/month additional growth potential',
-      'Built structured expansion model',
+      'A photography brief they could action immediately',
+      'A social media roadmap',
+      'CRO recommendations to increase average order value',
     ],
   },
 ];
@@ -133,18 +134,18 @@ export default function ThinkFirstPage() {
           <div className="w-full grid grid-cols-1 lg:grid-cols-[minmax(0,0.95fr)_minmax(28rem,1.05fr)] gap-8 lg:gap-10 xl:gap-12 items-start">
             <div>
               <p className="text-[clamp(0.75rem,1vw,0.875rem)] uppercase tracking-[0.16em] text-gray-600 dark:text-gray-400 font-helvetica mb-4">
-                Done-With-You Digital Marketing Workshop
+                The Think First Workshop
               </p>
-              <h1 className="font-futura font-bold mb-5 max-w-[34rem]">
-                <span className="block text-[clamp(1.55rem,2.3vw,2.55rem)] leading-[1.2] text-gray-800 dark:text-gray-100 mb-2">
-                  For B2C businesses already doing £50K+ per month
-                </span>
+              <h1 className="font-futura font-bold mb-4 max-w-[38rem]">
                 <span className="block text-[clamp(1.55rem,2.35vw,2.65rem)] leading-[1.1] text-brand-blue">
-                  Discover Exactly What Will Scale Your Revenue
+                  Your complete marketing strategy, built and delivered in 30 days.
                 </span>
               </h1>
+              <p className="text-[clamp(0.9rem,1.05vw,1rem)] leading-[1.5] text-gray-600 dark:text-gray-400 font-helvetica mb-5">
+                For B2C businesses already doing £50K+ per month
+              </p>
               <p className="text-[clamp(1rem,1.35vw,1.25rem)] leading-[1.65] text-gray-800 dark:text-gray-200 font-helvetica-light max-w-3xl mb-8">
-                A done-with-you strategic workshop showing which channels will work, why they will work, and what they are worth before you invest even another pound in ads.
+                A strategic workshop built around your business - showing which channels will work, why they&apos;ll work, and exactly what they&apos;re worth before you invest another pound.
               </p>
               <div className="mb-4">
                 <a
@@ -155,7 +156,7 @@ export default function ThinkFirstPage() {
                 </a>
               </div>
               <p className="text-[clamp(0.875rem,1vw,1rem)] text-gray-600 dark:text-gray-400 font-helvetica-light mb-8">
-                Limited places each month to ensure depth of work
+                We only take a limited number of clients each month - so every workshop gets the attention it deserves.
               </p>
               <div className="border-l-2 border-brand-blue pl-4">
                 <p className="text-[clamp(0.95rem,1.15vw,1.1rem)] leading-[1.6] text-gray-700 dark:text-gray-300 font-helvetica">
@@ -214,16 +215,16 @@ export default function ThinkFirstPage() {
               </p>
               <ul className="space-y-3 pl-7 mb-5">
                 <li className="text-[clamp(0.95rem,1.15vw,1.05rem)] text-white/90 font-helvetica-light relative before:content-['•'] before:absolute before:left-[-1.4rem] before:text-white before:font-bold">
-                  your real acquisition cost ceiling
+                  how much you can actually afford to spend acquiring a customer
                 </li>
                 <li className="text-[clamp(0.95rem,1.15vw,1.05rem)] text-white/90 font-helvetica-light relative before:content-['•'] before:absolute before:left-[-1.4rem] before:text-white before:font-bold">
-                  your channel economics
+                  which channels will work for your specific business model
                 </li>
                 <li className="text-[clamp(0.95rem,1.15vw,1.05rem)] text-white/90 font-helvetica-light relative before:content-['•'] before:absolute before:left-[-1.4rem] before:text-white before:font-bold">
-                  your compounding levers
+                  where your biggest growth opportunity is sitting untapped
                 </li>
                 <li className="text-[clamp(0.95rem,1.15vw,1.05rem)] text-white/90 font-helvetica-light relative before:content-['•'] before:absolute before:left-[-1.4rem] before:text-white before:font-bold">
-                  your bottlenecks
+                  what&apos;s quietly blocking your progress
                 </li>
               </ul>
               <p className="text-[clamp(1rem,1.2vw,1.1rem)] leading-[1.6] text-white font-helvetica">
@@ -266,14 +267,14 @@ export default function ThinkFirstPage() {
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-2">
                 <li className="text-[clamp(0.95rem,1.1vw,1.05rem)] font-helvetica-light">What will scale?</li>
                 <li className="text-[clamp(0.95rem,1.1vw,1.05rem)] font-helvetica-light">Why will it scale?</li>
-                <li className="text-[clamp(0.95rem,1.1vw,1.05rem)] font-helvetica-light">At what return?</li>
-                <li className="text-[clamp(0.95rem,1.1vw,1.05rem)] font-helvetica-light">In what order?</li>
-                <li className="text-[clamp(0.95rem,1.1vw,1.05rem)] font-helvetica-light">Over what time horizon?</li>
+                <li className="text-[clamp(0.95rem,1.1vw,1.05rem)] font-helvetica-light">What&apos;s the expected return?</li>
+                <li className="text-[clamp(0.95rem,1.1vw,1.05rem)] font-helvetica-light">In what order should we move?</li>
+                <li className="text-[clamp(0.95rem,1.1vw,1.05rem)] font-helvetica-light">How quickly can we realistically get there?</li>
               </ul>
             </div>
           </div>
           <p className="text-[clamp(1rem,1.3vw,1.15rem)] text-gray-800 dark:text-gray-200 font-helvetica text-center mx-auto max-w-4xl">
-            You don&apos;t leave with ideas. You leave with a financial model and implementation roadmap.
+            You don&apos;t leave with ideas. You leave with a clear plan, a financial model, and a step-by-step roadmap.
           </p>
         </Container>
       </section>
@@ -298,7 +299,7 @@ export default function ThinkFirstPage() {
             ))}
           </div>
           <p className="text-[clamp(1rem,1.3vw,1.2rem)] text-gray-800 dark:text-gray-200 font-helvetica-light">
-            This is the difference between spending money and deploying capital.
+            This is the difference between guessing and knowing.
           </p>
         </Container>
       </section>
