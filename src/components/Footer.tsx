@@ -125,7 +125,7 @@ export default function Footer() {
             </h3>
             <div className="space-y-3">
               <a
-                href="mailto:email@consultico.co.uk"
+                href="mailto:paul@consultico.co.uk"
                 className="flex items-start gap-3 text-[clamp(0.875rem,1vw,1rem)] font-helvetica-light text-gray-100 hover:text-white transition-colors"
               >
                 <svg
@@ -140,7 +140,7 @@ export default function Footer() {
                   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                   <path d="M22 6l-10 7L2 6" />
                 </svg>
-                email@consultico.co.uk
+                paul@consultico.co.uk
               </a>
               <a
                 href="tel:01414291351"
