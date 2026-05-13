@@ -80,7 +80,7 @@ export async function POST(request: Request) {
     const data = normalisePayload(payload);
     const status: FormSessionStatus = payload.status === 'submitted' ? 'submitted' : 'draft';
 
-    await upsertFormSession({
+    const saveFormSession = () => upsertFormSession({
       id: payload.sessionId,
       formType: 'contact',
       status,
@@ -98,6 +98,13 @@ export async function POST(request: Request) {
 
     if (status === 'submitted') {
       await sendContactEmails(data);
+      await saveFormSession().catch((error: unknown) => {
+        console.error('Contact form session save failed after email send:', error);
+      });
+    } else {
+      await saveFormSession().catch((error: unknown) => {
+        console.error('Contact form draft save failed:', error);
+      });
     }
 
     return NextResponse.json({ ok: true });
