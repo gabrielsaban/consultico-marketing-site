@@ -101,11 +101,12 @@ export async function POST(request: Request) {
       return NextResponse.json({ ok: false, error: 'Invalid submission' }, { status: 400 });
     }
 
+    const sessionId = payload.sessionId;
     const data = normalisePayload(payload);
     const status: FormSessionStatus = payload.status === 'submitted' ? 'submitted' : 'draft';
 
     const saveFormSession = () => upsertFormSession({
-      id: payload.sessionId,
+      id: sessionId,
       formType: 'contact',
       status,
       contact: {
