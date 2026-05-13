@@ -4,9 +4,8 @@
 
 import Container from '@/components/Container';
 import Image from 'next/image';
-import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface TeamMember {
   id: number;
@@ -14,6 +13,10 @@ interface TeamMember {
   role: string;
   cvLink: string;
   image?: string;
+  location?: string;
+  bio?: string[];
+  credentials?: string[];
+  linkedIn?: string;
 }
 
 interface PhilosophyPoint {
@@ -23,12 +26,78 @@ interface PhilosophyPoint {
 }
 
 const teamMembers: TeamMember[] = [
-  { id: 1, name: 'Paul Wilson', role: 'Founder', cvLink: '#', image: '/team/paul_wilson.avif' },
+  {
+    id: 1,
+    name: 'Paul Wilson',
+    role: 'Founder',
+    cvLink: '#',
+    image: '/team/paul_wilson.avif',
+    location: 'Glasgow, Scotland',
+    bio: [
+      'Paul Wilson is the founder of Consultico, a strategy-led digital marketing consultancy based in Glasgow. He has been building websites since 2017 and studied marketing at the University of Strathclyde before launching Consultico while still a student.',
+      'In 2025, Paul was awarded a fellowship from the University of Strathclyde Inspire accelerator programme, funding research and development into the Think First Workshop. He brings experience across marketing strategy, web development, and brand growth to client work.',
+    ],
+    credentials: [
+      'Certified by the Market Research Society',
+      'University of Strathclyde fellowship recipient, 2025',
+      'Finalist, Undergraduate of the Year Awards, 2023',
+      'Agency experience with Blue Economy Agency, San Francisco',
+    ],
+    linkedIn: 'https://www.linkedin.com/in/think-first-marketing',
+  },
   { id: 2, name: 'Connor Brooks', role: 'Brand Manager', cvLink: '#', image: '/team/connor_brooks.avif' },
-  { id: 3, name: 'Leona Wade', role: 'Associate', cvLink: '#', image: '/team/leona_wade.avif' },
+  {
+    id: 3,
+    name: 'Leona Wade',
+    role: 'Account Manager',
+    cvLink: '#',
+    image: '/team/leona_wade.avif',
+    location: 'United Kingdom',
+    bio: [
+      'Leona Wade is an Account Manager at Consultico with over a year of experience across the business. She joined as a technical marketing assistant, working across SEO, social media, and marketing strategy projects, before moving into a central Client Success role.',
+      "Leona graduated in Marketing and Entrepreneurship from the University of Strathclyde and has completed additional courses in SEO and Google Advertising. She manages Consultico's portfolio of client companies and acts as a key point of contact across the partner network.",
+    ],
+    credentials: [
+      'BA in Marketing and Entrepreneurship, University of Strathclyde',
+      'Certified in SEO and Google Advertising',
+      'Client work with The Boiler Co, Tiny Changes, Strathclyde Inspire, and Scotia Biotech',
+    ],
+  },
   { id: 4, name: 'Chloe Chan', role: 'Associate', cvLink: '#', image: '/team/chloe_chan.avif' },
   { id: 5, name: 'Zsa Zsa Kerr-Bennie', role: 'Assistant', cvLink: '#' },
-  { id: 6, name: 'Lucy Dinse', role: 'Assistant', cvLink: '#' },
+  {
+    id: 6,
+    name: 'Lucy Dinse',
+    role: 'Lead Beta Tester',
+    cvLink: '#',
+    location: 'Glasgow, Scotland',
+    bio: [
+      "Lucy Dinse has been part of the Consultico team for over a year, joining as an intern and growing into one of the most active members of the internship programme. She has completed training across personal development and technical marketing skills.",
+      "Lucy is currently a student at the University of Strathclyde and serves as Lead Beta Tester for Consultico's student internship programme, helping shape how the programme is structured and delivered for future interns.",
+    ],
+    credentials: [
+      'Current student, University of Strathclyde',
+      'Completed training in personal development and technical marketing',
+      'Lead Beta Tester, Consultico Student Internship Programme',
+    ],
+  },
+  {
+    id: 7,
+    name: 'Juan Canals Marti',
+    role: 'Senior Meta Analytics Partner',
+    cvLink: '#',
+    location: 'United Kingdom',
+    bio: [
+      'Juan Canals Marti is the founder of Marti Clearpath Ltd, a performance-driven social media marketing agency, and serves as Senior Meta Analytics Partner at Consultico. He holds a BSc in Mathematics and Economics, shaping his data-led approach to paid media and strategy.',
+      'Juan works across Meta advertising, content strategy, marketing automation, and Generative Engine Optimisation. He oversees the paid media lifecycle from funnel architecture and creative strategy through to feed enrichment, catalogue segmentation, and conversion tracking.',
+    ],
+    credentials: [
+      'BSc in Mathematics and Economics',
+      'Founder, Marti Clearpath Ltd',
+      'Notable clients include American Life Investment, BB Insurance, and Unmissable Ventures',
+      'Specialisms include Meta advertising, funnel architecture, marketing automation, and GEO',
+    ],
+  },
 ];
 
 const teamPages = teamMembers.reduce<TeamMember[][]>((pages, member, index) => {
@@ -107,9 +176,55 @@ const TeamPortrait = ({ member }: { member: TeamMember }) => {
   );
 };
 
+const TeamCvButton = ({
+  member,
+  onSelect,
+}: {
+  member: TeamMember;
+  onSelect: (member: TeamMember) => void;
+}) => {
+  if (!member.bio) return null;
+
+  return (
+    <button
+      type="button"
+      onClick={() => onSelect(member)}
+      className="absolute top-3 right-3 w-8 h-8 bg-white dark:bg-gray-900 dark:border dark:border-gray-700 rounded-full flex items-center justify-center shadow-md hover:shadow-lg transition-shadow"
+      aria-label={`View ${member.name}'s CV`}
+    >
+      <svg
+        className="w-4 h-4 text-brand-blue"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        viewBox="0 0 24 24"
+      >
+        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+        <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" />
+      </svg>
+    </button>
+  );
+};
+
 export default function AboutSection(): React.JSX.Element {
   const teamScrollerRef = useRef<HTMLDivElement | null>(null);
   const [teamPage, setTeamPage] = useState(0);
+  const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
+
+  useEffect(() => {
+    if (!selectedMember) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setSelectedMember(null);
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [selectedMember]);
 
   const handleTeamScroll = () => {
     const scroller = teamScrollerRef.current;
@@ -245,24 +360,7 @@ export default function AboutSection(): React.JSX.Element {
                 </div>
                 
                 {/* CV/Portfolio Link Icon */}
-                <Link
-                  href={member.cvLink}
-                  className="absolute top-3 right-3 w-8 h-8 bg-white dark:bg-gray-900 dark:border dark:border-gray-700 rounded-full flex items-center justify-center shadow-md hover:shadow-lg transition-shadow"
-                  aria-label={`View ${member.name}'s CV`}
-                >
-                  <svg
-                    className="w-4 h-4 text-brand-blue"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
-                    <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" />
-                  </svg>
-                </Link>
+                <TeamCvButton member={member} onSelect={setSelectedMember} />
               </div>
             ))}
           </div>
@@ -292,24 +390,7 @@ export default function AboutSection(): React.JSX.Element {
                             {member.role}
                           </p>
                         </div>
-                        <Link
-                          href={member.cvLink}
-                          className="absolute top-3 right-3 w-8 h-8 bg-white dark:bg-gray-900 dark:border dark:border-gray-700 rounded-full flex items-center justify-center shadow-md hover:shadow-lg transition-shadow"
-                          aria-label={`View ${member.name}'s CV`}
-                        >
-                          <svg
-                            className="w-4 h-4 text-brand-blue"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            viewBox="0 0 24 24"
-                          >
-                            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
-                            <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" />
-                          </svg>
-                        </Link>
+                        <TeamCvButton member={member} onSelect={setSelectedMember} />
                       </div>
                     ))}
                   </div>
@@ -348,6 +429,94 @@ export default function AboutSection(): React.JSX.Element {
             </div>
           </div>
         </div>
+
+        {selectedMember && (
+          <div
+            className="fixed inset-0 z-[10000] flex items-center justify-center bg-black/55 px-4 py-6 backdrop-blur-sm"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="team-cv-title"
+            onClick={() => setSelectedMember(null)}
+          >
+            <motion.div
+              className="relative max-h-[min(86vh,46rem)] w-full max-w-2xl overflow-y-auto rounded-lg bg-white p-6 shadow-2xl dark:bg-gray-950 sm:p-8"
+              initial={{ opacity: 0, y: 18, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.2, ease: 'easeOut' }}
+              onClick={(event) => event.stopPropagation()}
+            >
+              <button
+                type="button"
+                onClick={() => setSelectedMember(null)}
+                className="absolute right-4 top-4 grid h-9 w-9 place-items-center rounded-full border border-gray-200 text-gray-500 transition-colors hover:border-brand-blue hover:text-brand-blue dark:border-gray-800 dark:text-gray-400"
+                aria-label="Close CV"
+              >
+                <svg
+                  className="h-4 w-4"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path d="M18 6L6 18" />
+                  <path d="M6 6l12 12" />
+                </svg>
+              </button>
+
+              <div className="pr-10">
+                <p className="mb-2 font-helvetica text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-brand-blue">
+                  {selectedMember.location}
+                </p>
+                <h3 id="team-cv-title" className="font-futura text-[clamp(1.8rem,4vw,2.8rem)] font-bold leading-tight text-brand-blue">
+                  {selectedMember.name}
+                </h3>
+                <p className="mt-2 font-helvetica text-[clamp(1rem,1.2vw,1.12rem)] text-gray-600 dark:text-gray-300">
+                  {selectedMember.role}
+                </p>
+              </div>
+
+              <div className="mt-6 space-y-4">
+                {selectedMember.bio?.map((paragraph) => (
+                  <p key={paragraph} className="font-helvetica-light text-[clamp(0.95rem,1.1vw,1.05rem)] leading-[1.65] text-gray-700 dark:text-gray-300">
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+
+              {selectedMember.credentials && (
+                <div className="mt-7 border-t border-gray-200 pt-6 dark:border-gray-800">
+                  <h4 className="font-futura text-[clamp(1.1rem,1.4vw,1.3rem)] font-bold text-brand-blue">
+                    Credentials & Notable Work
+                  </h4>
+                  <ul className="mt-4 space-y-3">
+                    {selectedMember.credentials.map((credential) => (
+                      <li
+                        key={credential}
+                        className="relative pl-5 font-helvetica text-[clamp(0.9rem,1vw,1rem)] leading-[1.5] text-gray-700 before:absolute before:left-0 before:text-brand-blue before:content-['•'] dark:text-gray-300"
+                      >
+                        {credential}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {selectedMember.linkedIn && (
+                <a
+                  href={selectedMember.linkedIn}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-7 inline-flex items-center justify-center rounded-lg bg-brand-blue px-5 py-2.5 font-helvetica text-[clamp(0.9rem,1vw,1rem)] font-medium text-white transition-colors duration-200 hover:bg-[#006FE6] active:bg-[#0067D6] focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2"
+                >
+                  LinkedIn
+                </a>
+              )}
+            </motion.div>
+          </div>
+        )}
       </Container>
     </section>
   );
