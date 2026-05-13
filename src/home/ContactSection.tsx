@@ -19,6 +19,7 @@ const initialContactFormData = {
   email: '',
   phone: '',
   message: '',
+  website: '',
 };
 
 function createSessionId() {
@@ -33,12 +34,18 @@ function createSessionId() {
   });
 }
 
+function getSubmissionStartedAt() {
+  return Date.now();
+}
+
 async function persistContactForm({
   sessionId,
+  startedAt,
   status,
   data,
 }: {
   sessionId: string;
+  startedAt: number;
   status: 'draft' | 'submitted';
   data: typeof initialContactFormData;
 }) {
@@ -49,6 +56,7 @@ async function persistContactForm({
     },
     body: JSON.stringify({
       sessionId,
+      startedAt,
       status,
       ...data,
     }),
@@ -105,6 +113,7 @@ function LazyContactMap() {
 export default function ContactSection() {
   const [formData, setFormData] = useState(initialContactFormData);
   const [contactSessionId, setContactSessionId] = useState(() => createSessionId());
+  const [startedAt, setStartedAt] = useState(() => getSubmissionStartedAt());
   const [contactSubmitState, setContactSubmitState] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const draftTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const submittedRef = useRef(false);
@@ -119,6 +128,7 @@ export default function ContactSection() {
     draftTimerRef.current = setTimeout(() => {
       persistContactForm({
         sessionId: contactSessionId,
+        startedAt,
         status: 'draft',
         data: formData,
       }).catch((error: unknown) => {
@@ -131,7 +141,7 @@ export default function ContactSection() {
         clearTimeout(draftTimerRef.current);
       }
     };
-  }, [contactSessionId, formData]);
+  }, [contactSessionId, formData, startedAt]);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -144,6 +154,7 @@ export default function ContactSection() {
 
       await persistContactForm({
         sessionId: contactSessionId,
+        startedAt,
         status: 'submitted',
         data: formData,
       });
@@ -152,6 +163,7 @@ export default function ContactSection() {
       setContactSubmitState('success');
       setFormData(initialContactFormData);
       setContactSessionId(createSessionId());
+      setStartedAt(getSubmissionStartedAt());
     } catch (error) {
       console.error('Contact submit failed:', error);
       setContactSubmitState('error');
@@ -277,6 +289,19 @@ export default function ContactSection() {
           {/* Contact Form */}
           <div className="flex h-full bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg p-6 md:p-8 shadow-[0_2px_12px_rgba(0,0,0,0.08)]">
             <form onSubmit={handleSubmit} className="flex min-h-full w-full flex-col gap-6">
+              <div className="hidden" aria-hidden="true">
+                <label htmlFor="website">Website</label>
+                <input
+                  type="text"
+                  id="website"
+                  name="website"
+                  value={formData.website}
+                  onChange={handleChange}
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+              </div>
+
               <div>
                 <label htmlFor="name" className="flex items-center gap-2 text-[clamp(0.9rem,1vw,1rem)] font-helvetica font-medium text-gray-700 dark:text-gray-300 mb-2">
                   <svg className="w-4 h-4 text-brand-blue" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">

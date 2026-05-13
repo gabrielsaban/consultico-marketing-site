@@ -3,16 +3,36 @@ import { getNotificationRecipient, sendResendEmail, upsertFormSession, type Form
 
 type ContactFormPayload = {
   sessionId?: string;
+  startedAt?: number;
   status?: FormSessionStatus;
   name?: string;
   business?: string;
   email?: string;
   phone?: string;
   message?: string;
+  website?: string;
 };
+
+const MIN_SUBMIT_TIME_MS = 2500;
 
 function isValidEmail(email: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function isLikelyBotSubmission(payload: ContactFormPayload): boolean {
+  if (payload.website?.trim()) {
+    return true;
+  }
+
+  if (payload.status !== 'submitted') {
+    return false;
+  }
+
+  if (typeof payload.startedAt !== 'number' || !Number.isFinite(payload.startedAt)) {
+    return true;
+  }
+
+  return Date.now() - payload.startedAt < MIN_SUBMIT_TIME_MS;
 }
 
 function normalisePayload(payload: ContactFormPayload) {
@@ -75,6 +95,10 @@ export async function POST(request: Request) {
 
     if (!payload.sessionId) {
       return NextResponse.json({ ok: false, error: 'Missing session id' }, { status: 400 });
+    }
+
+    if (isLikelyBotSubmission(payload)) {
+      return NextResponse.json({ ok: false, error: 'Invalid submission' }, { status: 400 });
     }
 
     const data = normalisePayload(payload);
