@@ -39,7 +39,7 @@ const helveticaUI = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://www.consultico.example'),
   title: {
-    default: 'Consultico - Digital Marketing Consultancy',
+    default: 'Consultico - Digital Marketing',
     template: '%s | Consultico',
   },
   description: 'Marketing made for you. Our digital marketing consultants build tailored strategies for your business.',
