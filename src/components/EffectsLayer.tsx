@@ -20,6 +20,7 @@ export default function EffectsLayer({ children }: EffectsLayerProps) {
   ));
   const [isDark, setIsDark] = useState(false);
   const [projectModalOpen, setProjectModalOpen] = useState(false);
+  const [teamModalOpen, setTeamModalOpen] = useState(false);
 
   useEffect(() => {
     if (typeof window === 'undefined' || !window.matchMedia) return;
@@ -108,6 +109,15 @@ export default function EffectsLayer({ children }: EffectsLayerProps) {
     return () => window.removeEventListener('consultico:project-modal', handleProjectModal);
   }, []);
 
+  useEffect(() => {
+    const handleTeamModal = (event: Event) => {
+      setTeamModalOpen(Boolean((event as CustomEvent<{ open?: boolean }>).detail?.open));
+    };
+
+    window.addEventListener('consultico:team-modal', handleTeamModal);
+    return () => window.removeEventListener('consultico:team-modal', handleTeamModal);
+  }, []);
+
   const content = reducedMotion ? (
     children
   ) : (
@@ -116,7 +126,7 @@ export default function EffectsLayer({ children }: EffectsLayerProps) {
 
   return (
     <>
-      {!reducedMotion && !projectModalOpen && (
+      {!reducedMotion && !projectModalOpen && !teamModalOpen && (
         <DynamicDots
           backgroundColor={isDark ? '#0f1117' : '#FFFFFF'}
           dotColor={isDark ? '#7b8798' : '#c0c4ca'}
