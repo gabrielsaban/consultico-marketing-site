@@ -31,6 +31,10 @@ interface Project {
     title: string;
     body: string;
   }[];
+  testimonial?: {
+    quote: string;
+    attribution: string;
+  };
   pdfHref?: string;
   pdfLabel?: string;
 }
@@ -38,6 +42,163 @@ interface Project {
 const projects: Project[] = [
   {
     id: 1,
+    title: 'The Boiler Co.',
+    description: 'An SEO foundation that kept a trades business visible, busy, and less dependent on paid advertising.',
+    image: '/projects/boiler.avif',
+    category: 'SEO - 14+ months',
+    tags: ['SEO', 'Lead generation', 'Retained client'],
+    metric: '21,000',
+    metricLabel: 'weekly impressions',
+    detail: "The Boiler Co is a trades business where a full calendar is everything. With an average job value of £1,200 and a team to keep busy, inconsistent lead flow isn't just an inconvenience - it threatens the whole operation. Since working with Consultico, the team has grown - a sign of a business that's now able to take on more work consistently.",
+    proofPoints: [
+      {
+        value: '21,000',
+        label: 'Weekly impressions',
+        detail: 'In terms of search performance, a typical week when we started showed around 6,000 impressions. After consistent work, that moved to 21,000 impressions.',
+      },
+      {
+        value: '3x',
+        label: 'Click growth',
+        detail: 'A typical week when we started showed around 20 clicks. After consistent work, that moved to 58 clicks per week.',
+      },
+      {
+        value: '14+',
+        label: 'Months retained',
+        detail: "The Boiler Co have now been a retained SEO client for over 14 months. They've since returned for additional website work.",
+      },
+      {
+        value: '3',
+        label: 'Months to results',
+        detail: 'Within three months, The Boiler Co reported that their calendar was getting consistently filled through organic search alone.',
+      },
+    ],
+    caseSections: [
+      {
+        title: 'The Situation',
+        body: 'When they came to Consultico, lead generation was stalling. They were relying entirely on paid advertising, and it was becoming unpredictable. At one point, performance issues forced them to pause paid ads altogether. With no organic presence to fall back on, their diary was at the mercy of whatever their ad spend was doing on any given week.',
+      },
+      {
+        title: 'What We Did',
+        body: 'We identified SEO as the missing piece. Not as a replacement for paid - as a foundation that would keep working regardless of what happened with ad budget. We built and implemented a full SEO strategy focused on high-intent search terms - people actively looking for boiler services in their area, ready to book. Within three months, The Boiler Co reported that their calendar was getting consistently filled through organic search alone.',
+      },
+      {
+        title: 'The Outcome',
+        body: "When paid ads had to be paused, SEO kept the business running. That's the result that matters most - not a percentage uplift on a dashboard, but a team of four staying busy and a business that stopped being dependent on a single channel. In terms of search performance, a typical week when we started showed around 6,000 impressions and 20 clicks - low volume, low intent. After consistent work, that moved to 21,000 impressions and 58 clicks per week, with significantly higher intent traffic converting into booked appointments. The Boiler Co have now been a retained SEO client for over 14 months. They've since returned for additional website work. The relationship continues.",
+      },
+    ],
+    results: [
+      "They've since returned for additional website work. The relationship continues.",
+      'After consistent work, weekly performance moved to 21,000 impressions and 58 clicks, with significantly higher intent traffic converting into booked appointments.',
+    ],
+    testimonial: {
+      quote: 'After a frustrating run with agencies, this gave us genuine clarity on what to do and why it would work.',
+      attribution: 'Ant Vitale, The Boiler Co',
+    },
+  },
+  {
+    id: 2,
+    title: 'Garden Games Brand',
+    description: 'Turning a seasonal business with one working SEO asset into a more structured marketing operation.',
+    image: '/projects/garden_games.jpg',
+    category: 'Website Refresh - Strategy Advisory',
+    tags: ['Think First', 'Website refresh', 'SEO', 'Social media'],
+    metric: '3',
+    metricLabel: 'websites refreshed',
+    detail: 'This UK-based brand sells American garden games into the British market. They had built genuine SEO authority on their core product keyword over several years - enough to sustain a seasonal summer sales cycle. But outside of that one ranking, there was almost nothing. No real marketing infrastructure, no social presence, no email activity.',
+    proofPoints: [
+      {
+        value: '3',
+        label: 'Websites refreshed',
+        detail: 'From there, we refreshed all three of their websites as a package, tightening the user experience, improving conversion pathways, and adding new CTAs and promotions throughout.',
+      },
+      {
+        value: '16+',
+        label: 'Months retained',
+        detail: 'Consultico continues to work with them as part of their ongoing marketing advisory team.',
+      },
+      {
+        value: '4',
+        label: 'Channels activated',
+        detail: 'A brand that arrived with one working channel now has a proper marketing infrastructure - website, SEO, email, social, and a paid advertising pipeline in development.',
+      },
+      {
+        value: '1',
+        label: 'Think First consultation',
+        detail: 'We started with a Think First consultation - getting under the hood of the business, understanding the strategy, and mapping out where the real opportunities were.',
+      },
+    ],
+    caseSections: [
+      {
+        title: 'The Situation',
+        body: "They had built genuine SEO authority on their core product keyword over several years - enough to sustain a seasonal summer sales cycle. But outside of that one ranking, there was almost nothing. No real marketing infrastructure, no social presence, no email activity. A couple of years of slowing sales had made it clear that a single SEO asset wasn't enough to carry the business forward. They came to Consultico through a recommendation from a previous agency, initially looking for a website refresh. What we found suggested the need for something more substantial.",
+      },
+      {
+        title: 'What We Did',
+        body: "We started with a Think First consultation - getting under the hood of the business, understanding the strategy, and mapping out where the real opportunities were. From there, we refreshed all three of their websites as a package, tightening the user experience, improving conversion pathways, and adding new CTAs and promotions throughout. We solidified their existing SEO foundations and looked at how to extend their reach beyond the one keyword they had been relying on. Their product photography was holding them back visually, so we overhauled it at minimal cost using online tools - the same quality output, without the expense of a professional shoot. We reactivated their dormant email marketing list, giving them a direct channel to existing customers they hadn't been using. A new Instagram account was launched and is now growing, with a social media strategy in development focused on awareness and community building. UGC video creative work is underway to expand reach and lay the groundwork for paid advertising when the time is right.",
+      },
+      {
+        title: 'The Outcome',
+        body: 'A brand that arrived with one working channel now has a proper marketing infrastructure - website, SEO, email, social, and a paid advertising pipeline in development. The business has moved from reactive and seasonal to structured and building. Consultico continues to work with them as part of their ongoing marketing advisory team.',
+      },
+    ],
+    results: [
+      'Client identity kept anonymous at their request.',
+      'Results and case study details shared with permission.',
+    ],
+  },
+  {
+    id: 3,
+    title: 'Tiny Changes',
+    description: 'Organic podcast promotion and social content distribution for an Edinburgh mental health charity.',
+    image: '/projects/tiny_changes_podcast.jpeg',
+    category: 'Podcast Promotion - Social Media',
+    tags: ['Podcast promotion', 'Content distribution', 'Organic social'],
+    metric: '110k',
+    metricLabel: 'Instagram views in 30 days',
+    detail: 'Tiny Changes is an Edinburgh-based mental health charity. In late 2025, they completed recording a six-episode podcast series - but with the content in the can, they needed a team to handle the release and promotion. They came to Consultico through a recommendation, looking for end-to-end support getting the series out to the widest possible audience.',
+    proofPoints: [
+      {
+        value: '110k',
+        label: 'Instagram views',
+        detail: 'In the first 30 days, the campaign generated over 110,000 views on Instagram alone.',
+      },
+      {
+        value: '13k',
+        label: 'Facebook reach',
+        detail: 'In the first 30 days, the campaign generated over 110,000 views on Instagram alone, with an additional 13,000 reach on Facebook.',
+      },
+      {
+        value: '140+',
+        label: 'YouTube views',
+        detail: 'The strongest episode hit over 140 YouTube views within 24 hours of release and continues to grow.',
+      },
+      {
+        value: '4/6',
+        label: 'Episodes released',
+        detail: 'Four of the six episodes have been released so far.',
+      },
+    ],
+    caseSections: [
+      {
+        title: 'The Situation',
+        body: 'Tiny Changes is an Edinburgh-based mental health charity. In late 2025, they completed recording a six-episode podcast series - but with the content in the can, they needed a team to handle the release and promotion. They came to Consultico through a recommendation, looking for end-to-end support getting the series out to the widest possible audience.',
+      },
+      {
+        title: 'What We Did',
+        body: 'We took on the full release and promotion process for the series. Each episode was uploaded to Podcastics and YouTube, with captions edited by hand and descriptions written and optimised for each platform. Nothing was automated or templated - every episode was treated individually. Alongside the audio releases, we worked with the Tiny Changes team to understand what they wanted each episode to communicate, then turned the long-form content into short social media clips. These were distributed across Instagram and Facebook, with each clip crafted to work natively on the platform it was posted to. Four of the six episodes have been released so far. A TikTok rollout is in development to drive a second wave of interest and reach a new audience as the series builds momentum.',
+      },
+      {
+        title: 'The Outcome',
+        body: 'In the first 30 days, the campaign generated over 110,000 views on Instagram alone, with an additional 13,000 reach on Facebook. The strongest episode hit over 140 YouTube views within 24 hours of release and continues to grow. For a charity podcast with no existing audience on launch, these are significant numbers - built entirely through organic content strategy, with no paid promotion. The campaign is ongoing. With two episodes still to release and TikTok distribution coming, the numbers will continue to build.',
+      },
+    ],
+    results: [
+      'Client quote coming soon.',
+      "Case study published with Tiny Changes' permission.",
+    ],
+  },
+  {
+    id: 4,
     title: 'Prebio Fibres',
     description: "Supporting one of the UK's first dedicated prebiotic health brands in establishing its retail presence through promotional development and testing.",
     image: '/projects/prebio.avif',
@@ -46,7 +207,7 @@ const projects: Project[] = [
     detail: "Prebio Fibres needed to move from early brand promise into a credible retail-facing presence. The work focused on shaping promotional materials, testing positioning, and supporting a clearer commercial route into market.",
   },
   {
-    id: 2,
+    id: 5,
     title: 'Drink Japan',
     description: 'A proof-of-concept campaign designed to draw the next generation of whiskey enjoyers to the luxury feel of Japanese exclusivity.',
     image: '/projects/drink_japan.avif',
@@ -55,7 +216,7 @@ const projects: Project[] = [
     detail: 'Drink Japan explored how a younger audience could be introduced to Japanese whiskey through exclusivity, atmosphere, and luxury-led campaign framing.',
   },
   {
-    id: 3,
+    id: 6,
     title: 'Minecraft: In Abstract',
     description: 'A research project analysing physical brand asset placement in commonplace service spaces for a brand as recognisable as Minecraft.',
     image: '/projects/minecraft.avif',
@@ -64,7 +225,7 @@ const projects: Project[] = [
     detail: 'This research-led project studied how recognisable brand assets behave when placed in everyday physical environments, using Minecraft as a distinctive example of modern visual memory.',
   },
   {
-    id: 4,
+    id: 7,
     title: 'GTA 5: Player Preservation',
     description: "A community-facing concept Newswire dedicated to GTA 5's end-of-product preservation, designed by community coders and written by Consultico.",
     image: '/projects/gta.avif',
@@ -75,81 +236,7 @@ const projects: Project[] = [
     pdfLabel: 'Open concept PDF',
   },
   {
-    id: 5,
-    title: 'The Boiler Co.',
-    description: 'A targeted 3-month SEO campaign improving visibility, organic traffic, search rankings, and lead generation for The Boiler Co.',
-    image: '/projects/boiler.avif',
-    category: 'SEO',
-    tags: ['SEO', 'Organic traffic', 'Lead generation'],
-    metric: '+340%',
-    metricLabel: 'organic traffic increase',
-    detail: 'Over 3 months, we implemented a targeted SEO strategy for The Boiler Co. to improve visibility, drive organic traffic, and boost lead generation. By monitoring and optimising as the campaign progressed, we significantly improved key performance metrics and established a strong basis for ongoing growth.',
-    results: [
-      '+165% impressions, increasing Google impressions from 35,800 to 94,000 in just three months.',
-      '+25% organic clicks, moving total clicks from 258 to 303 during the campaign period.',
-      'Average Google site rank position improved from 37.7 to 35.9.',
-      '+340% organic traffic, growing site traffic more than threefold between February and its April peak.',
-      '$1,200/month SEO value, achieving organic traffic value equivalent to paid ad spend.',
-    ],
-    proofPoints: [
-      {
-        value: '+165%',
-        label: 'Impressions',
-        detail: 'Google impressions increased from 35,800 to 94,000 in just three months.',
-      },
-      {
-        value: '+25%',
-        label: 'Clicks',
-        detail: 'Total organic clicks grew from 258 to 303 during the campaign period.',
-      },
-      {
-        value: '+340%',
-        label: 'Organic traffic',
-        detail: 'Site traffic grew more than threefold between February and its peak in April.',
-      },
-      {
-        value: '$1,200/mo',
-        label: 'SEO value',
-        detail: 'Organic traffic reached an equivalent ad-spend value of around $1,200 per month.',
-      },
-    ],
-    caseSections: [
-      {
-        title: 'The Starting Audit',
-        body: 'When work with The Boiler Co. began, their online presence was minimal, with low traffic and limited keyword visibility. We began with a full SEO audit, identifying on-site issues, untapped keyword opportunities, and gaps in local optimisation. From there, we prioritised technical fixes and implemented targeted content updates to help Google better understand and rank the site.',
-      },
-      {
-        title: 'Finding the Growth Strategy',
-        body: 'With the fixes in place, we moved into active optimisation. We targeted high-intent local keywords relevant to plumbing services in Bristol, improved metadata across key pages, built out supporting content, refined internal linking, and monitored performance through SEMrush so tactics could respond to live search behaviour.',
-      },
-      {
-        title: 'Achieving Results & Future Potential',
-        body: 'Within just 3 months, the site saw a dramatic rise in visibility, traffic, and search value. The Boiler Co. is now ranking for a wider set of valuable keywords, receiving more local interest, and benefiting from lead generation caused by SEO, with a stronger structure in place for long-term growth.',
-      },
-    ],
-    resultCards: [
-      {
-        value: '$1,200',
-        label: 'Traffic value',
-        title: 'Greater SEO Value',
-        body: "With organic performance valued this highly, The Boiler Co. does not need to rely so heavily on paid advertisements. Customers can find them naturally.",
-      },
-      {
-        value: '1.70',
-        label: 'Rank increase',
-        title: 'Higher Search Visibility',
-        body: "Ranking better on Google means The Boiler Co.'s website can sit above competitors when users search for relevant keywords.",
-      },
-      {
-        value: '340%',
-        label: 'Traffic increase',
-        title: 'Increased Website Activity',
-        body: 'More organic traffic means more people reached the website without needing a paid ad, creating stronger natural discovery and better quality visits.',
-      },
-    ],
-  },
-  {
-    id: 6,
+    id: 8,
     title: 'Hepburn Holistic',
     description: "Delivering one of Scotland's most indulgent massage studios a brand remodel package and bringing them online with a bespoke website.",
     image: '/projects/hepburn_holistic.avif',
@@ -231,11 +318,12 @@ function ProjectDetailModal({
       if (event.key === 'Escape') onClose();
     };
 
+    const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
     window.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      document.body.style.overflow = '';
+      document.body.style.overflow = previousOverflow;
       window.dispatchEvent(new CustomEvent('consultico:project-modal', { detail: { open: false } }));
       window.removeEventListener('keydown', handleKeyDown);
     };
@@ -273,7 +361,11 @@ function ProjectDetailModal({
               <div className="absolute inset-0 bg-white/82 dark:bg-gray-950/86" />
             </div>
 
-            <div className="relative grid max-h-[86vh] overflow-y-auto lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+            <div
+              className="relative grid max-h-[86vh] overflow-y-auto lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]"
+              onWheel={(event) => event.stopPropagation()}
+              onTouchMove={(event) => event.stopPropagation()}
+            >
               <div className="relative min-h-[18rem] lg:min-h-full">
                 <Image
                   src={project.image}
@@ -375,6 +467,17 @@ function ProjectDetailModal({
                       </li>
                     ))}
                   </ul>
+                )}
+
+                {project.testimonial && (
+                  <figure className="mb-6 border-l-2 border-brand-blue bg-brand-blue/5 px-4 py-3">
+                    <blockquote className="font-helvetica-light text-[clamp(0.95rem,1.05vw,1.05rem)] leading-[1.6] text-gray-800 dark:text-gray-200">
+                      &quot;{project.testimonial.quote}&quot;
+                    </blockquote>
+                    <figcaption className="mt-3 font-helvetica text-[clamp(0.85rem,0.95vw,0.95rem)] text-gray-600 dark:text-gray-400">
+                      {project.testimonial.attribution}
+                    </figcaption>
+                  </figure>
                 )}
 
                 {project.resultCards && (
