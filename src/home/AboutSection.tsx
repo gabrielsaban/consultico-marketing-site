@@ -5,7 +5,7 @@
 import Container from '@/components/Container';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useLayoutEffect, useRef, useState } from 'react';
 
 interface TeamMember {
   id: number;
@@ -196,7 +196,10 @@ const TeamCvButton = ({
   return (
     <button
       type="button"
-      onClick={() => onSelect(member)}
+      onClick={() => {
+        window.dispatchEvent(new CustomEvent('consultico:team-modal', { detail: { open: true } }));
+        onSelect(member);
+      }}
       className="absolute top-3 right-3 w-8 h-8 bg-white dark:bg-gray-900 dark:border dark:border-gray-700 rounded-full flex items-center justify-center shadow-md hover:shadow-lg transition-shadow"
       aria-label={`View ${member.name}'s CV`}
     >
@@ -221,31 +224,51 @@ export default function AboutSection(): React.JSX.Element {
   const [teamPage, setTeamPage] = useState(0);
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
 
-  useEffect(() => {
-    window.dispatchEvent(new CustomEvent('consultico:team-modal', { detail: { open: Boolean(selectedMember) } }));
+  const closeTeamModal = useCallback(() => {
+    window.dispatchEvent(new CustomEvent('consultico:team-modal', { detail: { open: false } }));
+    setSelectedMember(null);
+  }, []);
 
-    return () => {
-      window.dispatchEvent(new CustomEvent('consultico:team-modal', { detail: { open: false } }));
-    };
-  }, [selectedMember]);
-
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!selectedMember) return;
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
-        setSelectedMember(null);
+        closeTeamModal();
       }
     };
 
+    const scrollY = window.scrollY;
+    const previousHtmlOverflow = document.documentElement.style.overflow;
+    const previousHtmlOverscroll = document.documentElement.style.overscrollBehavior;
     const previousOverflow = document.body.style.overflow;
+    const previousOverscroll = document.body.style.overscrollBehavior;
+    const previousPosition = document.body.style.position;
+    const previousTop = document.body.style.top;
+    const previousWidth = document.body.style.width;
+
+    document.documentElement.style.overflow = 'hidden';
+    document.documentElement.style.overscrollBehavior = 'none';
     document.body.style.overflow = 'hidden';
+    document.body.style.overscrollBehavior = 'none';
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = '100%';
+
     document.addEventListener('keydown', handleKeyDown);
     return () => {
+      window.dispatchEvent(new CustomEvent('consultico:team-modal', { detail: { open: false } }));
+      document.documentElement.style.overflow = previousHtmlOverflow;
+      document.documentElement.style.overscrollBehavior = previousHtmlOverscroll;
       document.body.style.overflow = previousOverflow;
+      document.body.style.overscrollBehavior = previousOverscroll;
+      document.body.style.position = previousPosition;
+      document.body.style.top = previousTop;
+      document.body.style.width = previousWidth;
+      window.scrollTo(0, scrollY);
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [selectedMember]);
+  }, [closeTeamModal, selectedMember]);
 
   const handleTeamScroll = () => {
     const scroller = teamScrollerRef.current;
@@ -453,14 +476,16 @@ export default function AboutSection(): React.JSX.Element {
 
         {selectedMember && (
           <div
-            className="fixed inset-0 z-[10000] flex items-center justify-center bg-black/55 px-4 py-6 backdrop-blur-sm"
+            className="fixed inset-0 z-[10000] flex items-center justify-center overflow-hidden bg-black/55 px-4 py-6"
             role="dialog"
             aria-modal="true"
             aria-labelledby="team-cv-title"
-            onClick={() => setSelectedMember(null)}
+            onClick={closeTeamModal}
+            onWheel={(event) => event.preventDefault()}
+            onTouchMove={(event) => event.preventDefault()}
           >
             <motion.div
-              className="relative max-h-[min(86vh,46rem)] w-full max-w-2xl overflow-y-auto rounded-lg bg-white p-6 shadow-2xl dark:bg-gray-950 sm:p-8"
+              className="relative max-h-[min(86vh,46rem)] w-full max-w-2xl overflow-y-auto overscroll-contain rounded-lg bg-white p-6 shadow-2xl dark:bg-gray-950 sm:p-8"
               initial={{ opacity: 0, y: 18, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.2, ease: 'easeOut' }}
@@ -470,7 +495,7 @@ export default function AboutSection(): React.JSX.Element {
             >
               <button
                 type="button"
-                onClick={() => setSelectedMember(null)}
+                onClick={closeTeamModal}
                 className="absolute right-4 top-4 grid h-9 w-9 place-items-center rounded-full border border-gray-200 text-gray-500 transition-colors hover:border-brand-blue hover:text-brand-blue dark:border-gray-800 dark:text-gray-400"
                 aria-label="Close CV"
               >
