@@ -13,6 +13,8 @@ interface TeamMember {
   role: string;
   cvLink: string;
   image?: string;
+  portraitPosition?: string;
+  portraitScale?: number;
   location?: string;
   bio?: string[];
   credentials?: string[];
@@ -31,7 +33,8 @@ const teamMembers: TeamMember[] = [
     name: 'Paul Wilson',
     role: 'Founder',
     cvLink: '#',
-    image: '/team/paul_wilson.avif',
+    image: '/team/paul_wilson.png',
+    portraitScale: 1.18,
     location: 'Glasgow, Scotland',
     bio: [
       'Paul Wilson is the founder of Consultico, a strategy-led digital marketing consultancy based in Glasgow. He has been building websites since 2017 and studied marketing at the University of Strathclyde before launching Consultico while still a student.',
@@ -45,13 +48,13 @@ const teamMembers: TeamMember[] = [
     ],
     linkedIn: 'https://www.linkedin.com/in/think-first-marketing',
   },
-  { id: 2, name: 'Connor Brooks', role: 'Brand Manager', cvLink: '#', image: '/team/connor_brooks.avif' },
   {
     id: 3,
     name: 'Leona Wade',
     role: 'Account Manager',
     cvLink: '#',
-    image: '/team/leona_wade.avif',
+    image: '/team/leona_wade.png',
+    portraitScale: 1.36,
     location: 'United Kingdom',
     bio: [
       'Leona Wade is an Account Manager at Consultico with over a year of experience across the business. She joined as a technical marketing assistant, working across SEO, social media, and marketing strategy projects, before moving into a central Client Success role.',
@@ -63,7 +66,6 @@ const teamMembers: TeamMember[] = [
       'Client work with The Boiler Co, Tiny Changes, Strathclyde Inspire, and Scotia Biotech',
     ],
   },
-  { id: 4, name: 'Chloe Chan', role: 'Associate', cvLink: '#', image: '/team/chloe_chan.avif' },
   { id: 5, name: 'Zsa Zsa Kerr-Bennie', role: 'Assistant', cvLink: '#' },
   {
     id: 6,
@@ -86,6 +88,8 @@ const teamMembers: TeamMember[] = [
     name: 'Juan Canals Marti',
     role: 'Senior Meta Analytics Partner',
     cvLink: '#',
+    image: '/team/juan_canals_marti.png',
+    portraitScale: 1.36,
     location: 'United Kingdom',
     bio: [
       'Juan Canals Marti is the founder of Marti Clearpath Ltd, a performance-driven social media marketing agency, and serves as Senior Meta Analytics Partner at Consultico. He holds a BSc in Mathematics and Economics, shaping his data-led approach to paid media and strategy.',
@@ -153,10 +157,14 @@ const TeamPortrait = ({ member }: { member: TeamMember }) => {
       <Image
         src={member.image}
         alt={member.name}
-        width={420}
-        height={420}
-        className="h-full w-full object-cover"
-        sizes="(min-width: 768px) 18vw, 46vw"
+        fill
+        quality={90}
+        className="object-cover"
+        sizes="(min-width: 1024px) 320px, (min-width: 768px) 25vw, 50vw"
+        style={{
+          objectPosition: member.portraitPosition ?? 'center center',
+          transform: `scale(${member.portraitScale ?? 1.12})`,
+        }}
       />
     );
   }
@@ -214,6 +222,14 @@ export default function AboutSection(): React.JSX.Element {
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
 
   useEffect(() => {
+    window.dispatchEvent(new CustomEvent('consultico:team-modal', { detail: { open: Boolean(selectedMember) } }));
+
+    return () => {
+      window.dispatchEvent(new CustomEvent('consultico:team-modal', { detail: { open: false } }));
+    };
+  }, [selectedMember]);
+
+  useEffect(() => {
     if (!selectedMember) return;
 
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -222,8 +238,13 @@ export default function AboutSection(): React.JSX.Element {
       }
     };
 
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
     document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener('keydown', handleKeyDown);
+    };
   }, [selectedMember]);
 
   const handleTeamScroll = () => {
@@ -345,7 +366,7 @@ export default function AboutSection(): React.JSX.Element {
                 key={member.id}
                 className="relative bg-gray-50 dark:bg-gray-900 rounded-lg overflow-hidden flex flex-col"
               >
-                <div className="w-full aspect-square overflow-hidden bg-gray-200 dark:bg-gray-800">
+                <div className="relative w-full aspect-square overflow-hidden bg-gray-200 dark:bg-gray-800">
                   <TeamPortrait member={member} />
                 </div>
                 
@@ -379,7 +400,7 @@ export default function AboutSection(): React.JSX.Element {
                         key={member.id}
                         className="relative bg-gray-50 dark:bg-gray-900 rounded-lg overflow-hidden flex flex-col"
                       >
-                        <div className="w-full aspect-square overflow-hidden bg-gray-200 dark:bg-gray-800">
+                        <div className="relative w-full aspect-square overflow-hidden bg-gray-200 dark:bg-gray-800">
                           <TeamPortrait member={member} />
                         </div>
                         <div className="p-3 flex-grow flex flex-col justify-end">
@@ -444,6 +465,8 @@ export default function AboutSection(): React.JSX.Element {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.2, ease: 'easeOut' }}
               onClick={(event) => event.stopPropagation()}
+              onWheel={(event) => event.stopPropagation()}
+              onTouchMove={(event) => event.stopPropagation()}
             >
               <button
                 type="button"
