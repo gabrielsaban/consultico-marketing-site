@@ -382,7 +382,7 @@ export default function AboutSection(): React.JSX.Element {
         {/* Team Section */}
         <div className="grid grid-cols-1 lg:grid-cols-[70%_auto] gap-12 lg:gap-16">
           {/* Team Grid */}
-          <div className="hidden md:grid md:grid-cols-4 gap-6">
+          <div className="hidden self-start md:grid md:grid-cols-4 items-start gap-6">
             {teamMembers.map((member) => (
               <div
                 key={member.id}
@@ -393,7 +393,7 @@ export default function AboutSection(): React.JSX.Element {
                 </div>
                 
                 {/* Info Section */}
-                <div className="p-3 md:p-4 flex-grow flex flex-col justify-end">
+                <div className="p-3 md:p-4">
                   <h3 className="font-futura font-bold text-[clamp(0.875rem,1.1vw,1rem)] text-brand-blue mb-1">
                     {member.name}
                   </h3>
@@ -425,7 +425,7 @@ export default function AboutSection(): React.JSX.Element {
                         <div className="relative w-full aspect-square overflow-hidden bg-gray-200 dark:bg-gray-800">
                           <TeamPortrait member={member} />
                         </div>
-                        <div className="p-3 flex-grow flex flex-col justify-end">
+                        <div className="p-3">
                           <h3 className="font-futura font-bold text-[clamp(0.875rem,3.8vw,1rem)] text-brand-blue mb-1">
                             {member.name}
                           </h3>
