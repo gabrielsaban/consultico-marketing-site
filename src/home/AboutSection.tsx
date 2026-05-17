@@ -66,7 +66,6 @@ const teamMembers: TeamMember[] = [
       'Client work with The Boiler Co, Tiny Changes, Strathclyde Inspire, and Scotia Biotech',
     ],
   },
-  { id: 5, name: 'Zsa Zsa Kerr-Bennie', role: 'Assistant', cvLink: '#' },
   {
     id: 6,
     name: 'Lucy Dinse',
