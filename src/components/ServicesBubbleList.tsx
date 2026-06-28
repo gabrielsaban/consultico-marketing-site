@@ -101,18 +101,6 @@ const services: Service[] = [
     futureSlug: 'campaign-management',
     image: '/services/campaign.avif',
   },
-  {
-    id: 'podcasting',
-    name: 'Podcasting',
-    description: [
-      'Podcasting has become one of the most powerful tools available to brands that want to build genuine authority - not just visibility. While other marketing channels can feel transient (an ad scrolled past, a post forgotten within the hour), a well-produced podcast creates a fundamentally different relationship with your audience. It earns an hour of someone\'s undivided attention during their commute, their workout, or their working day. That level of access is rare, and the brands that use it well consistently emerge as the most trusted voices in their space.',
-      'We produce professional podcasts from concept to distribution - covering show strategy and format development, recording and post-production, publishing, and promotion. Every show we produce is built around a clear audience and a clear brand positioning: not audio content for the sake of it, but a show people genuinely want to come back to, designed to build trust and credibility with every episode.',
-    ],
-    highlights: ['Podcasting', 'genuine authority', 'concept to distribution', 'build trust and credibility'],
-    icon: 'mic',
-    futureSlug: 'podcasting',
-    image: '/services/podcasting.avif',
-  },
 ];
 
 const ServiceIcon = ({ icon, className }: { icon: string; className?: string }) => {
@@ -137,9 +125,6 @@ const ServiceIcon = ({ icon, className }: { icon: string; className?: string }) 
     ),
     'calendar-check': (
       <path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 012 2v13a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2zM8.5 15.5l2 2 5-5" />
-    ),
-    mic: (
-      <path d="M12 14a3 3 0 003-3V5a3 3 0 00-6 0v6a3 3 0 003 3zM19 11a7 7 0 01-14 0M12 18v4M8 22h8" />
     ),
   };
 
