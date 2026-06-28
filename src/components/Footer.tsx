@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import Container from '@/components/Container';
+import { CONSULTICO_PHONE_DISPLAY, CONSULTICO_PHONE_TEL } from '@/lib/contact';
 
 export default function Footer() {
   const quickLinks1 = [
@@ -143,7 +144,7 @@ export default function Footer() {
                 paul@consultico.co.uk
               </a>
               <a
-                href="tel:01414291351"
+                href={CONSULTICO_PHONE_TEL}
                 className="flex items-start gap-3 text-[clamp(0.875rem,1vw,1rem)] font-helvetica-light text-gray-100 hover:text-white transition-colors"
               >
                 <svg
@@ -157,7 +158,7 @@ export default function Footer() {
                 >
                   <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
                 </svg>
-                0141 429 1351
+                {CONSULTICO_PHONE_DISPLAY}
               </a>
               <div className="flex items-start gap-3 text-[clamp(0.875rem,1vw,1rem)] font-helvetica-light text-gray-100">
                 <svg
