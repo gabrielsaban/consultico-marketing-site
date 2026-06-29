@@ -50,9 +50,9 @@ export const SERVICE_PAGES = {
     serviceType: 'Search engine optimisation',
   },
   ppc: {
-    title: 'PPC & Google Ads Management, Glasgow',
+    title: 'PPC & Google Ads Management in Glasgow | Consultico',
     description:
-      'Margin-aware Google and Meta ad management built around your unit economics. No campaign goes live without a defined objective. Glasgow-based, UK-wide.',
+      'Honest, margin-aware Google and Meta Ads management from a Glasgow consultancy. We start with your numbers and tell you when paid ads are worth it.',
     path: '/ppc',
     serviceName: 'PPC & Google Ads Management',
     serviceType: 'Pay-per-click advertising management',

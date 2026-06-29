@@ -30,29 +30,29 @@ export const SERVICE_FAQS: Record<Exclude<ServicePageKey, 'careers'>, { question
   ],
   ppc: [
     {
+      question: 'Do you manage both Google and Meta ads?',
+      answer:
+        'Yes. We manage Google Ads and Meta Ads across Facebook and Instagram, and we can build and launch campaigns for you to run yourself if you prefer. Every campaign is set up with proper conversion tracking so the results are measurable.',
+    },
+    {
       question: 'How much does PPC management cost?',
       answer:
-        'Expect two costs: your ad spend and a management fee. UK cost per click averages £3.50 to £3.65 in many sectors, though SMEs often sit between £1.50 and £2.50. We manage to margin and defined objectives, not vanity metrics.',
+        'It depends on your goals, your market and how much you are spending, so we set the budget after an initial audit rather than quoting blind. You will always know what you are paying for and what return to expect.',
     },
     {
-      question: 'Do you manage both Google Ads and Meta?',
+      question: 'Should I invest in PPC or SEO?',
       answer:
-        'Yes. We manage Google and Meta accounts around your unit economics. No campaign goes live without a defined objective and a clear success measure.',
+        'Often both, but in the right order for your situation. PPC gives you speed, SEO builds a cheaper, compounding channel over time. We will give you an honest recommendation based on your margins and timeline, even if that means spending less on ads than you expected.',
     },
     {
-      question: 'How quickly does PPC deliver results?',
+      question: 'How quickly will I see results from paid ads?',
       answer:
-        'Faster than SEO: ads can appear within days of launch. Meaningful optimisation usually needs a few weeks of conversion data, with compounding efficiency over the first two to three months.',
+        'Faster than SEO. Ads can appear at the top of search within days of launch. Meaningful optimisation takes a few weeks of conversion data, with efficiency improving over the first couple of months as we refine targeting and bidding.',
     },
     {
-      question: 'What makes Consultico different from other PPC agencies?',
+      question: 'Will you take over my existing account, or start fresh?',
       answer:
-        'We start with strategy. Every client relationship can begin with Think First, our workshop that maps channels and economics before budget is committed. PPC execution is margin-aware, not dashboard-led.',
-    },
-    {
-      question: 'Can you take over an existing Google Ads account?',
-      answer:
-        'Yes. We audit existing accounts for wasted spend, tracking gaps, and structural issues before scaling. You retain account ownership throughout.',
+        'Either. We often start by auditing your existing account, because there is usually value to recover before rebuilding. If a fresh build is the better option, we will explain why before we do it.',
     },
   ],
   'web-development': [
