@@ -18,11 +18,15 @@ const sections = [
   },
   {
     title: 'What we collect',
-    body: 'We may collect contact details (name, email, phone, business name), messages you send via our contact form, website usage data via analytics, and marketing preferences where you opt in.',
+    body: 'We may collect contact details (name, email, phone, business name), messages you send via our contact form, email addresses submitted for our free SEO audit offer, website URLs you provide for audit fulfilment, website usage data via analytics, and marketing preferences where you opt in.',
+  },
+  {
+    title: 'Marketing emails and audit signups',
+    body: 'If you sign up for a free SEO audit, we collect your email address and, if provided, your website URL. By submitting, you agree we may email you to deliver the audit and send occasional marketing emails about Consultico services. You can unsubscribe from marketing at any time by replying to any email. We store the date and version of the consent text shown at signup.',
   },
   {
     title: 'How we use your data',
-    body: 'We use personal data to respond to enquiries, deliver services, improve our website, and send relevant communications where you have agreed. We do not sell personal data.',
+    body: 'We use personal data to respond to enquiries, deliver requested audits, deliver services, improve our website, and send marketing communications where you have agreed. We do not sell personal data.',
   },
   {
     title: 'Legal basis (UK GDPR)',

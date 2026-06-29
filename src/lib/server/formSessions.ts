@@ -1,4 +1,4 @@
-export type FormSessionType = 'webinar' | 'workshop_apply' | 'contact';
+export type FormSessionType = 'webinar' | 'workshop_apply' | 'contact' | 'audit_signup';
 export type FormSessionStatus = 'draft' | 'submitted';
 
 export interface FormSessionContact {
