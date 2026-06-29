@@ -10,7 +10,7 @@ export const SERVICE_FAQS: Record<Exclude<ServicePageKey, 'careers'>, { question
     {
       question: 'Do you do SEO for trades businesses?',
       answer:
-        'Yes. Consultico has delivered retained SEO for The Boiler Co, a Glasgow-area trades business. Within three months their calendar was consistently filled through organic search when paid ads had to pause, with weekly impressions growing from around 6,000 to 21,000 over 14 months of retained work.',
+        'Yes. Consultico has delivered retained SEO for The Boiler Co, a Bristol-based trades business. Within three months their calendar was consistently filled through organic search when paid ads had to pause, with weekly impressions growing from around 6,000 to 21,000 over 14 months of retained work.',
     },
     {
       question: 'What is included in your SEO service?',

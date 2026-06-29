@@ -264,6 +264,13 @@ export default function SeoPage() {
                 <p className={`mb-8 font-helvetica text-[clamp(1rem,1.35vw,1.25rem)] leading-[1.65] text-gray-900 dark:text-gray-100`}>
                   We turn search visibility into booked enquiries, not rankings for their own sake. Most clients start seeing meaningful results within 90 days, depending on market and competition.
                 </p>
+                <p className={`mb-8 font-helvetica-light text-[clamp(0.95rem,1.1vw,1.05rem)] leading-[1.6] ${secondaryTextClass}`}>
+                  Based in Glasgow.{' '}
+                  <Link href="/seo-glasgow" className="font-medium text-brand-blue underline-offset-2 hover:underline">
+                    See our Glasgow SEO service
+                  </Link>
+                  .
+                </p>
                 <CtaLink />
                 <div className="mt-8 border-l-2 border-brand-blue pl-4">
                   <p className={`font-helvetica text-[clamp(0.95rem,1.15vw,1.1rem)] leading-[1.6] ${bodyTextClass}`}>
@@ -672,9 +679,21 @@ export default function SeoPage() {
           </Container>
         </section>
 
+        <section className="border-t border-gray-200 bg-brand-silk/50 py-10 dark:border-gray-800 dark:bg-gray-900/40">
+          <Container>
+            <p className={`mx-auto max-w-3xl text-center font-helvetica-light text-[clamp(0.95rem,1.1vw,1.05rem)] leading-[1.65] ${secondaryTextClass}`}>
+              Based in Glasgow?{' '}
+              <Link href="/seo-glasgow" className="font-medium text-brand-blue underline-offset-2 hover:underline">
+                See our SEO agency in Glasgow
+              </Link>{' '}
+              for local search, map pack visibility, and on-the-ground support when you need it.
+            </p>
+          </Container>
+        </section>
+
         <section className="bg-white dark:bg-gray-950">
           <Container>
-            <FaqSection faqs={SERVICE_FAQS.seo} includeSchema={false} />
+            <FaqSection faqs={SERVICE_FAQS.seo} />
           </Container>
         </section>
 

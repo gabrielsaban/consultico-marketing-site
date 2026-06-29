@@ -7,7 +7,7 @@ import { pageMeta } from '@/lib/seo';
 export const metadata: Metadata = pageMeta({
   title: 'Case Study: The Boiler Co',
   description:
-    'How Consultico used SEO to turn inconsistent trades leads into a consistent source of new business for The Boiler Co, a Glasgow-area plumbing company.',
+    'How Consultico used SEO to turn inconsistent trades leads into a consistent source of new business for The Boiler Co, a Bristol-based plumbing company.',
   path: '/case-studies/boiler-co',
 });
 
@@ -26,7 +26,7 @@ export default function BoilerCoCaseStudyPage() {
             The Boiler Co: from inconsistent leads to SEO as a consistent growth channel
           </h1>
           <p className="mt-5 font-helvetica-light text-[clamp(1rem,1.2vw,1.1rem)] leading-[1.65] text-gray-800 dark:text-gray-200">
-            A Glasgow-area trades business where a full calendar matters. SEO replaced unreliable paid ads as a consistent source of new business.
+            A Bristol-based trades business where a full calendar matters. SEO replaced unreliable paid ads as a consistent source of new business.
           </p>
 
           <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4">

@@ -59,9 +59,9 @@ Consultico offers generative engine optimisation: structuring brand content, ent
 
 ## Results and case evidence
 
-### The Boiler Co (trades / plumbing, SEO)
+### The Boiler Co (trades / plumbing, Bristol, SEO)
 
-The Boiler Co is a trades business where a full calendar is critical (average job value circa £1,200). They relied heavily on paid ads; when ads had to pause, lead flow was at risk. Consultico built an SEO foundation focused on high-intent local boiler-service searches.
+The Boiler Co is a Bristol-based trades business where a full calendar is critical (average job value circa £1,200). They relied heavily on paid ads; when ads had to pause, lead flow was at risk. Consultico built an SEO foundation focused on high-intent local boiler-service searches in their market.
 
 Within three months, the calendar was consistently filled through organic search alone when paid ads had to pause. Over 14 months of retained SEO work, typical weekly search performance moved from approximately 6,000 impressions and 20 clicks to 21,000 impressions and 58 clicks, with higher-intent traffic converting to booked appointments.
 
@@ -96,7 +96,7 @@ Think First is a 30-day marketing strategy workshop for B2C businesses already d
 
 ### Does Consultico do SEO for trades businesses and plumbers?
 
-Yes. Consultico has delivered retained SEO for The Boiler Co, a trades/plumbing business, including high-intent local search terms for boiler services. Organic search filled their calendar within three months when paid ads were paused, with impressions growing from around 6,000 to 21,000 per week over 14 months of retained work. See case evidence on the homepage projects section.
+Yes. Consultico has delivered retained SEO for The Boiler Co, a Bristol-based trades and plumbing business, including high-intent local search terms for boiler services. Organic search filled their calendar within three months when paid ads were paused, with impressions growing from around 6,000 to 21,000 per week over 14 months of retained work. See case evidence on the homepage projects section.
 
 ### What is generative engine optimisation (GEO)?
 
@@ -130,6 +130,7 @@ Email paul@consultico.co.uk, call 0141 459 1351, use the contact form at https:/
 ## Service detail pages
 
 - [SEO](https://www.consultico.co.uk/seo): Search engine optimisation services.
+- [SEO agency in Glasgow](https://www.consultico.co.uk/seo-glasgow): Local SEO for Glasgow and central Scotland.
 - [PPC](https://www.consultico.co.uk/ppc): Google and Meta paid advertising.
 - [Web development](https://www.consultico.co.uk/web-development): Conversion-focused websites with SEO foundations.
 - [Content creation](https://www.consultico.co.uk/content-creation): Strategic content and copy production.

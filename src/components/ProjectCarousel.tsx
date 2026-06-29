@@ -49,7 +49,7 @@ const projects: Project[] = [
     tags: ['SEO', 'Lead generation', 'Retained client'],
     metric: '21,000',
     metricLabel: 'weekly impressions',
-    detail: "The Boiler Co is a trades business where a full calendar is everything. With an average job value of £1,200 and a team to keep busy, inconsistent lead flow isn't just an inconvenience - it threatens the whole operation. Since working with Consultico, the team has grown - a sign of a business that's now able to take on more work consistently.",
+    detail: "The Boiler Co is a Bristol-based trades business where a full calendar is everything. With an average job value of £1,200 and a team to keep busy, inconsistent lead flow isn't just an inconvenience - it threatens the whole operation. Since working with Consultico, the team has grown - a sign of a business that's now able to take on more work consistently.",
     proofPoints: [
       {
         value: '21,000',

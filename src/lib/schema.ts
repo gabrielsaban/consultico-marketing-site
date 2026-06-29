@@ -1,4 +1,5 @@
 import { CONSULTICO_GBP_URL, CONSULTICO_PHONE_E164, CONSULTICO_EMAIL, CONSULTICO_ADDRESS } from '@/lib/contact';
+import { SEO_GLASGOW_FAQS, SEO_GLASGOW_PATH } from '@/lib/seo-glasgow';
 import { hasDedicatedArticleImage } from '@/lib/articles/display';
 import type { Article } from '@/lib/articles/types';
 import { SERVICE_PAGES, type ServicePageKey } from '@/lib/seo';
@@ -140,6 +141,71 @@ export function faqPageJsonLd(faqs: { question: string; answer: string }[]) {
       name: faq.question,
       acceptedAnswer: { '@type': 'Answer', text: faq.answer },
     })),
+  };
+}
+
+export function seoGlasgowPageJsonLd() {
+  const pageUrl = `${SITE_ORIGIN}${SEO_GLASGOW_PATH}`;
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Service',
+        '@id': `${pageUrl}#service`,
+        name: 'SEO Agency in Glasgow',
+        serviceType: 'Search engine optimisation',
+        description:
+          'Glasgow-based SEO agency helping businesses across the city and central Scotland get found on Google and AI search.',
+        provider: { '@id': `${SITE_ORIGIN}/#org` },
+        areaServed: [
+          { '@type': 'City', name: 'Glasgow' },
+          { '@type': 'AdministrativeArea', name: 'Scotland' },
+        ],
+        url: pageUrl,
+      },
+      {
+        '@type': 'LocalBusiness',
+        '@id': `${pageUrl}#local`,
+        name: 'Consultico',
+        url: SITE_ORIGIN,
+        telephone: CONSULTICO_PHONE_E164,
+        email: CONSULTICO_EMAIL,
+        image: `${SITE_ORIGIN}/og.jpg`,
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: CONSULTICO_ADDRESS.streetAddress,
+          addressLocality: CONSULTICO_ADDRESS.addressLocality,
+          addressRegion: CONSULTICO_ADDRESS.addressRegion,
+          postalCode: CONSULTICO_ADDRESS.postalCode,
+          addressCountry: CONSULTICO_ADDRESS.addressCountry,
+        },
+        geo: { '@type': 'GeoCoordinates', latitude: '55.8609282', longitude: '-4.2418232' },
+        parentOrganization: { '@id': `${SITE_ORIGIN}/#org` },
+        areaServed: [
+          { '@type': 'City', name: 'Glasgow' },
+          { '@type': 'AdministrativeArea', name: 'Scotland' },
+        ],
+        sameAs: [CONSULTICO_GBP_URL],
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_ORIGIN}/` },
+          { '@type': 'ListItem', position: 2, name: 'SEO', item: `${SITE_ORIGIN}/seo` },
+          { '@type': 'ListItem', position: 3, name: 'SEO Agency in Glasgow', item: pageUrl },
+        ],
+      },
+      {
+        '@type': 'FAQPage',
+        '@id': `${pageUrl}#faq`,
+        mainEntity: SEO_GLASGOW_FAQS.map((faq) => ({
+          '@type': 'Question',
+          name: faq.question,
+          acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+        })),
+      },
+    ],
   };
 }
 
