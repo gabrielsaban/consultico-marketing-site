@@ -1,3 +1,5 @@
+import { CONSULTICO_PHONE_E164 } from '@/lib/contact';
+
 export const SITE_ORIGIN = 'https://www.consultico.co.uk';
 
 export function serializeJsonLd(data: object): string {
@@ -16,8 +18,7 @@ export const siteJsonLd = {
       logo: `${SITE_ORIGIN}/brand/logo_main.svg`,
       image: `${SITE_ORIGIN}/og.jpg`,
       email: 'paul@consultico.co.uk',
-      // TODO: replace placeholder phone with the real public number in E.164 format before shipping.
-      telephone: '+44XXXXXXXXXX',
+      telephone: CONSULTICO_PHONE_E164,
       founder: { '@type': 'Person', name: 'Paul Wilson' },
       address: {
         '@type': 'PostalAddress',
