@@ -3,15 +3,16 @@
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 
-const DynamicLenisProvider = dynamic(() => import('@/components/LenisProvider'), { ssr: false });
+const DynamicLenisInit = dynamic(() => import('@/components/LenisInit'), { ssr: false });
 const DynamicCursor = dynamic(() => import('@/components/CustomCursor'), { ssr: false });
 const DynamicDots = dynamic(() => import('@/components/InteractiveBackground'), { ssr: false });
 
-interface EffectsLayerProps {
-  children: React.ReactNode;
-}
-
-export default function EffectsLayer({ children }: EffectsLayerProps) {
+/**
+ * Client-only visual effects (dots, cursor, smooth scroll).
+ * Mounted as a sibling to page content — never wraps {children},
+ * so server-rendered HTML is not bailed out to CSR.
+ */
+export default function ClientEffectsRoot() {
   const [reducedMotion, setReducedMotion] = useState(() => (
     typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
   ));
@@ -31,7 +32,6 @@ export default function EffectsLayer({ children }: EffectsLayerProps) {
       mq.addEventListener('change', update);
       return () => mq.removeEventListener('change', update);
     } else {
-      // Safari
       mq.addListener(update);
       return () => mq.removeListener(update);
     }
@@ -52,43 +52,37 @@ export default function EffectsLayer({ children }: EffectsLayerProps) {
 
   useEffect(() => {
     const checkDarkMode = () => {
-      // Check class-based dark mode
       if (document.documentElement.classList.contains('dark')) {
         return true;
       }
-      
-      // Check computed background color (works with DarkReader)
+
       const bgColor = window.getComputedStyle(document.body).backgroundColor;
-      // Parse RGB values
       const rgb = bgColor.match(/\d+/g);
       if (rgb) {
         const [r, g, b] = rgb.map(Number);
-        // If the background is dark (low RGB values), we're in dark mode
         const brightness = (r * 299 + g * 587 + b * 114) / 1000;
         return brightness < 128;
       }
-      
+
       return false;
     };
-    
+
     const syncTheme = () => {
       setIsDark(checkDarkMode());
     };
-    
-    // Listen for class changes
+
     window.addEventListener('themechange', syncTheme);
     const observer = new MutationObserver(syncTheme);
     observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class', 'style'] });
     observer.observe(document.body, { attributes: true, attributeFilter: ['class', 'style'] });
-    
-    // Listen for system preference changes
+
     const mq = window.matchMedia('(prefers-color-scheme: dark)');
     if (typeof mq.addEventListener === 'function') {
       mq.addEventListener('change', syncTheme);
     } else {
       mq.addListener(syncTheme);
     }
-    
+
     return () => {
       window.removeEventListener('themechange', syncTheme);
       observer.disconnect();
@@ -118,14 +112,9 @@ export default function EffectsLayer({ children }: EffectsLayerProps) {
     return () => window.removeEventListener('consultico:team-modal', handleTeamModal);
   }, []);
 
-  const content = reducedMotion ? (
-    children
-  ) : (
-    <DynamicLenisProvider>{children}</DynamicLenisProvider>
-  );
-
   return (
     <>
+      {!reducedMotion && <DynamicLenisInit />}
       {!reducedMotion && !projectModalOpen && !teamModalOpen && (
         <DynamicDots
           backgroundColor={isDark ? '#0f1117' : '#FFFFFF'}
@@ -141,7 +130,6 @@ export default function EffectsLayer({ children }: EffectsLayerProps) {
         />
       )}
       {!reducedMotion && !coarsePointer && <DynamicCursor size={8} color="#3B82F6" />}
-      {content}
     </>
   );
 }

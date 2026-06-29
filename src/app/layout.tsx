@@ -5,7 +5,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import RouteAwareNavbar from "@/components/RouteAwareNavbar";
 import RouteAwarePageFrame from "@/components/RouteAwarePageFrame";
-import EffectsLayer from "@/components/EffectsLayer";
+import ClientEffectsRoot from "@/components/ClientEffectsRoot";
 import TopBar from "@/components/TopBar";
 import SitePreloader from "@/components/SitePreloader";
 import { PreloaderProvider } from "@/components/PreloaderContext";
@@ -105,15 +105,14 @@ export default function RootLayout({
         <PreloaderProvider>
           <SitePreloader />
           <PreloaderGate>
-            <EffectsLayer>
-              {/* Mobile-only top bar */}
-              <TopBar />
-              <RouteAwareNavbar />
-              <RouteAwarePageFrame>
-                {children}
-              </RouteAwarePageFrame>
-            </EffectsLayer>
+            {/* Mobile-only top bar */}
+            <TopBar />
+            <RouteAwareNavbar />
+            <RouteAwarePageFrame>
+              {children}
+            </RouteAwarePageFrame>
           </PreloaderGate>
+          <ClientEffectsRoot />
         </PreloaderProvider>
         <Analytics />
         <SpeedInsights />
