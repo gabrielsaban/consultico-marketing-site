@@ -288,24 +288,6 @@ export default function PpcPage() {
                   Consultico is a Glasgow-based marketing consultancy that manages Google and Meta paid ads for businesses across the UK. We run paid media the way a strategist would, not a button-pusher: around your margins, your real numbers and a defined objective, so every pound of spend is tied to a return you can measure. Most clients have a clear picture of what their ads are actually doing within the first 90 days, depending on market and starting point. And if the honest answer is that paid ads are not where your next pound should go, we will tell you that too.
                 </p>
 
-                <div className="mb-8 flex items-start gap-4 border-y border-gray-200 py-6 dark:border-gray-800">
-                  <div className="font-helvetica">
-                    <p className="text-[0.8rem] font-semibold uppercase tracking-[0.12em] text-gray-600 dark:text-gray-400">
-                      Author
-                    </p>
-                    <p className="mt-1 text-[1rem] font-medium text-gray-900 dark:text-gray-100">Paul Wilson</p>
-                    <p className="text-[0.9rem] text-gray-600 dark:text-gray-400">Founder, Consultico</p>
-                    <a
-                      href="https://www.linkedin.com/in/think-first-marketing"
-                      className="mt-2 inline-block text-[0.9rem] text-brand-blue hover:underline"
-                      rel="noreferrer"
-                      target="_blank"
-                    >
-                      LinkedIn profile
-                    </a>
-                  </div>
-                </div>
-
                 <CtaLink />
                 <div className="mt-8 border-l-2 border-brand-blue pl-4">
                   <p className={`font-helvetica text-[clamp(0.95rem,1.15vw,1.1rem)] leading-[1.6] ${bodyTextClass}`}>

@@ -3,8 +3,8 @@
 import { motion, useInView, AnimatePresence, LayoutGroup } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import Container from '@/components/Container';
+import ServiceExploreLink from '@/components/ServiceExploreLink';
 import { services, type Service } from '@/lib/servicesData';
 
 const ServiceIcon = ({ icon, className }: { icon: string; className?: string }) => {
@@ -85,22 +85,27 @@ const renderHighlightedText = (text: string, highlights: string[]) => {
   });
 };
 
-const renderServiceParagraph = (service: Service, paragraph: string, paragraphIndex: number) => {
-  if (service.id === 'strategy' && paragraphIndex === 1) {
-    const [before, after] = paragraph.split('Think First strategy workshop');
-    return (
-      <>
-        {renderHighlightedText(before, service.highlights)}
-        <Link href="/think-first" className="font-helvetica font-semibold text-brand-blue underline underline-offset-2 hover:text-[#006FE6]">
-          Think First strategy workshop
-        </Link>
-        {renderHighlightedText(after, service.highlights)}
-      </>
-    );
-  }
+const renderServiceParagraph = (service: Service, paragraph: string) =>
+  renderHighlightedText(paragraph, service.highlights);
 
-  return renderHighlightedText(paragraph, service.highlights);
-};
+function ServicePreviewCopy({
+  service,
+  paragraphClassName,
+}: {
+  service: Service;
+  paragraphClassName: string;
+}) {
+  return (
+    <div className="space-y-4">
+      {service.description.map((paragraph, paragraphIndex) => (
+        <p key={`${service.id}-${paragraphIndex}`} className={paragraphClassName}>
+          {renderServiceParagraph(service, paragraph)}
+        </p>
+      ))}
+      <ServiceExploreLink href={service.detailHref} label={service.detailCtaLabel} />
+    </div>
+  );
+}
 
 function MobileServicePreview({ service }: { service: Service }) {
   return (
@@ -122,16 +127,10 @@ function MobileServicePreview({ service }: { service: Service }) {
           <ServicePreviewImage service={service} />
         </div>
         <div className="min-w-0 self-stretch flex flex-col">
-          <div className="space-y-3">
-            {service.description.map((paragraph, paragraphIndex) => (
-              <p
-                key={`${service.id}-${paragraphIndex}`}
-                className="text-[clamp(0.9rem,2.2vw,1rem)] leading-[1.58] text-gray-800 dark:text-gray-200 font-helvetica-light"
-              >
-                {renderServiceParagraph(service, paragraph, paragraphIndex)}
-              </p>
-            ))}
-          </div>
+          <ServicePreviewCopy
+            service={service}
+            paragraphClassName="text-[clamp(0.9rem,2.2vw,1rem)] leading-[1.58] text-gray-800 dark:text-gray-200 font-helvetica-light"
+          />
         </div>
       </div>
     </motion.div>
@@ -265,47 +264,27 @@ export default function ServicesBubbleList() {
             className="hidden [@media(min-width:900px)]:flex flex-col gap-6 h-full min-h-[400px]"
           >
           {isTopThree ? (
-            // Top 3: Info top, Image bottom
             <>
-              <div className="space-y-4">
-                {currentService.description.map((paragraph, index) => (
-                  <motion.p
-                    key={`${currentService.id}-${index}`}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.05 + index * 0.08, duration: 0.3 }}
-                    className="text-[clamp(0.94rem,1.05vw,1.06rem)] leading-[1.58] text-gray-800 dark:text-gray-200 font-helvetica-light"
-                  >
-                    {renderServiceParagraph(currentService, paragraph, index)}
-                  </motion.p>
-                ))}
-              </div>
+              <ServicePreviewCopy
+                service={currentService}
+                paragraphClassName="text-[clamp(0.94rem,1.05vw,1.06rem)] leading-[1.58] text-gray-800 dark:text-gray-200 font-helvetica-light"
+              />
 
-              {/* Image Placeholder - Bottom */}
               <div className="w-full aspect-square overflow-hidden bg-brand-silk dark:bg-gray-900 rounded-[10px] mt-auto">
                 <ServicePreviewImage service={currentService} />
               </div>
             </>
           ) : (
-            // Latter services: Image top, info anchored to the bottom of the preview column
             <>
-              {/* Image Placeholder - Top */}
               <div className="w-full aspect-square overflow-hidden bg-brand-silk dark:bg-gray-900 rounded-[10px]">
                 <ServicePreviewImage service={currentService} />
               </div>
 
-              <div className="mt-auto flex flex-col gap-6">
-                {currentService.description.map((paragraph, index) => (
-                  <motion.p
-                    key={`${currentService.id}-${index}`}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.05 + index * 0.08, duration: 0.3 }}
-                    className="text-[clamp(0.94rem,1.05vw,1.06rem)] leading-[1.58] text-gray-800 dark:text-gray-200 font-helvetica-light"
-                  >
-                    {renderServiceParagraph(currentService, paragraph, index)}
-                  </motion.p>
-                ))}
+              <div className="mt-auto">
+                <ServicePreviewCopy
+                  service={currentService}
+                  paragraphClassName="text-[clamp(0.94rem,1.05vw,1.06rem)] leading-[1.58] text-gray-800 dark:text-gray-200 font-helvetica-light"
+                />
               </div>
             </>
           )}

@@ -5,6 +5,8 @@ export interface Service {
   highlights: string[];
   icon: string;
   futureSlug: string;
+  detailHref: string;
+  detailCtaLabel: string;
   image?: string;
   imageAlt?: string;
 }
@@ -20,6 +22,8 @@ export const services: Service[] = [
     highlights: ['tracking which channels are driving revenue', 'Think First', 'S.T.E.P. framework', 'Think First strategy workshop'],
     icon: 'compass',
     futureSlug: 'market-strategy',
+    detailHref: '/think-first',
+    detailCtaLabel: 'Explore Think First',
     image: '/services/market_strategy.avif',
     imageAlt: 'Marketing strategy workshop planning with Consultico',
   },
@@ -33,6 +37,8 @@ export const services: Service[] = [
     highlights: ['unit economics', 'Google and Meta', 'how success will be measured'],
     icon: 'target',
     futureSlug: 'ppc',
+    detailHref: '/ppc',
+    detailCtaLabel: 'Explore PPC',
     image: '/services/ppc.avif',
     imageAlt: 'PPC and paid media management for Glasgow businesses',
   },
@@ -46,6 +52,8 @@ export const services: Service[] = [
     highlights: ['Content creation', 'actual assets', 'strategic function'],
     icon: 'sparkles',
     futureSlug: 'content-creation',
+    detailHref: '/content-creation',
+    detailCtaLabel: 'Explore content',
     image: '/services/content_creation.avif',
     imageAlt: 'Strategic content creation for digital marketing campaigns',
   },
@@ -59,6 +67,8 @@ export const services: Service[] = [
     highlights: ['long-term organic visibility', 'generative engine optimisation (GEO)', 'compounding traffic'],
     icon: 'trending-up',
     futureSlug: 'seo',
+    detailHref: '/seo',
+    detailCtaLabel: 'Explore SEO',
     image: '/services/seo.avif',
     imageAlt: 'SEO services for Glasgow businesses and trades',
   },
@@ -72,6 +82,8 @@ export const services: Service[] = [
     highlights: ['SEO foundations', 'conversion goal', 'fast-loading builds'],
     icon: 'code',
     futureSlug: 'web-development',
+    detailHref: '/web-development',
+    detailCtaLabel: 'Explore web',
     image: '/services/web_dev.avif',
     imageAlt: 'Web design and development for Glasgow businesses',
   },
@@ -85,6 +97,8 @@ export const services: Service[] = [
     highlights: ['Social media management', 'brand voice', 'community engagement'],
     icon: 'share-2',
     futureSlug: 'social-media',
+    detailHref: '/social-media',
+    detailCtaLabel: 'Explore social media',
     image: '/services/social_media.avif',
     imageAlt: 'Social media management for brand growth',
   },
@@ -98,6 +112,8 @@ export const services: Service[] = [
     highlights: ['Campaign management', 'coordinated effort', 'Think First'],
     icon: 'calendar-check',
     futureSlug: 'campaign-management',
+    detailHref: '/campaign-management',
+    detailCtaLabel: 'Explore campaigns',
     image: '/services/campaign.avif',
     imageAlt: 'Cross-channel campaign management for growing brands',
   },
