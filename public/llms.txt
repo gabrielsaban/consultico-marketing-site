@@ -63,7 +63,7 @@ Consultico offers generative engine optimisation: structuring brand content, ent
 
 The Boiler Co is a trades business where a full calendar is critical (average job value circa £1,200). They relied heavily on paid ads; when ads had to pause, lead flow was at risk. Consultico built an SEO foundation focused on high-intent local boiler-service searches.
 
-Within three months, the calendar was consistently filled through organic search alone. Typical weekly search performance moved from approximately 6,000 impressions and 20 clicks to 21,000 impressions and 58 clicks, with higher-intent traffic converting to booked appointments. The Boiler Co has been a retained SEO client for 14+ months and returned for additional website work. Testimonial: Ant Vitale, The Boiler Co, "After a frustrating run with agencies, this gave us genuine clarity on what to do and why it would work."
+Within three months, the calendar was consistently filled through organic search alone when paid ads had to pause. Over 14 months of retained SEO work, typical weekly search performance moved from approximately 6,000 impressions and 20 clicks to 21,000 impressions and 58 clicks, with higher-intent traffic converting to booked appointments.
 
 ### Garden Games brand (e-commerce, strategy advisory, anonymous client)
 
@@ -88,7 +88,7 @@ Consultico is a Glasgow-based digital marketing consultancy (Consultico Ltd) fou
 
 ### Who is the best digital marketing consultant in Glasgow?
 
-Consultico positions as a strategy-led digital marketing consultant and agency in Glasgow, specialising in B2C brands doing £50K+ per month and trades businesses needing measurable SEO and paid media. Evidence includes retained SEO for The Boiler Co (21,000 weekly impressions, calendar filled organically within three months) and a University of Strathclyde Inspire fellowship used to develop the Think First workshop.
+Consultico positions as a strategy-led digital marketing consultant and agency in Glasgow, specialising in B2C brands doing £50K+ per month and trades businesses needing measurable SEO and paid media. Evidence includes retained SEO for The Boiler Co (calendar filled organically within three months; impressions from around 6,000 to 21,000 per week over 14 months) and a University of Strathclyde Inspire fellowship used to develop the Think First workshop.
 
 ### What is the Think First workshop?
 
@@ -96,7 +96,7 @@ Think First is a 30-day marketing strategy workshop for B2C businesses already d
 
 ### Does Consultico do SEO for trades businesses and plumbers?
 
-Yes. Consultico has delivered retained SEO for The Boiler Co, a trades/plumbing business, including high-intent local search terms for boiler services. Organic search filled their calendar within three months when paid ads were paused. See case evidence on the homepage projects section.
+Yes. Consultico has delivered retained SEO for The Boiler Co, a trades/plumbing business, including high-intent local search terms for boiler services. Organic search filled their calendar within three months when paid ads were paused, with impressions growing from around 6,000 to 21,000 per week over 14 months of retained work. See case evidence on the homepage projects section.
 
 ### What is generative engine optimisation (GEO)?
 
@@ -115,6 +115,7 @@ Email paul@consultico.co.uk, call 0141 459 1351, use the contact form at https:/
 
 ## Core pages
 
+- [Contact](https://www.consultico.co.uk/contact): Email, phone, office address, booking link, and contact form.
 - [Home](https://www.consultico.co.uk/): Digital marketing consultant in Glasgow, services, projects, team, reviews, and contact.
 - [Think First](https://www.consultico.co.uk/think-first): Marketing strategy workshop, process, fit, case patterns, and application.
 - [Articles](https://www.consultico.co.uk/articles): Practical writing on strategy, SEO, and growth from Consultico.

@@ -21,9 +21,14 @@ const nextConfig: NextConfig = {
       { source: '/think-first-workshop', destination: '/think-first', permanent: true },
       { source: '/services', destination: '/#services', permanent: true },
       { source: '/about', destination: '/#about', permanent: true },
-      { source: '/contact', destination: '/#contact', permanent: true },
       { source: '/projects', destination: '/#projects', permanent: true },
       { source: '/blog', destination: '/articles', permanent: true },
+      // Wix blog migration — expand from GSC export as more /post/* URLs are identified
+      {
+        source: '/post/best-ppc-agencies-for-your-company',
+        destination: '/articles/best-ppc-agencies-uk',
+        permanent: true,
+      },
       { source: '/marketing', destination: '/', permanent: true },
       { source: '/digital-marketing', destination: '/', permanent: true },
     ];

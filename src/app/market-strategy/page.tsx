@@ -1,6 +1,13 @@
+import type { Metadata } from 'next';
 import Container from '@/components/Container';
+import FaqSection from '@/components/FaqSection';
 import ServiceDesktopHeader from '@/components/ServiceDesktopHeader';
+import ServicePageJsonLd from '@/components/ServicePageJsonLd';
 import Link from 'next/link';
+import { SERVICE_FAQS } from '@/lib/service-faqs';
+import { servicePageMeta } from '@/lib/seo';
+
+export const metadata: Metadata = servicePageMeta('market-strategy');
 
 const stats = [
   { number: '180%', label: 'Average revenue growth' },
@@ -166,7 +173,9 @@ const ArrowIcon = () => (
 
 export default function MarketStrategyPage() {
   return (
-    <main className="relative">
+    <>
+      <ServicePageJsonLd pageKey="market-strategy" />
+      <main className="relative">
       <section className="relative min-h-screen overflow-hidden pb-16 md:pb-20 lg:pb-0">
         <ServiceDesktopHeader />
         <div className="absolute inset-0 dot-grid-premium opacity-70 dark:opacity-25" aria-hidden="true" />
@@ -446,6 +455,12 @@ export default function MarketStrategyPage() {
         </Container>
       </section>
 
+      <section className="bg-white dark:bg-gray-950">
+        <Container>
+          <FaqSection faqs={SERVICE_FAQS['market-strategy']} includeSchema={false} />
+        </Container>
+      </section>
+
       <section className="bg-brand-blue py-16 text-white md:py-20 lg:py-24" data-cursor-theme="light">
         <Container>
           <div className="mx-auto max-w-4xl text-center">
@@ -466,5 +481,6 @@ export default function MarketStrategyPage() {
         </Container>
       </section>
     </main>
+    </>
   );
 }

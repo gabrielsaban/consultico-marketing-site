@@ -1,29 +1,39 @@
 import type { MetadataRoute } from 'next';
 import { getAllArticles } from '@/lib/articles/loader';
 
+const BASE = 'https://www.consultico.co.uk';
+
+const STATIC_ROUTES: { path: string; priority: number; changeFrequency: MetadataRoute.Sitemap[0]['changeFrequency'] }[] = [
+  { path: '', priority: 1, changeFrequency: 'monthly' },
+  { path: '/think-first', priority: 0.9, changeFrequency: 'monthly' },
+  { path: '/seo', priority: 0.8, changeFrequency: 'monthly' },
+  { path: '/ppc', priority: 0.8, changeFrequency: 'monthly' },
+  { path: '/web-development', priority: 0.8, changeFrequency: 'monthly' },
+  { path: '/content-creation', priority: 0.8, changeFrequency: 'monthly' },
+  { path: '/market-strategy', priority: 0.8, changeFrequency: 'monthly' },
+  { path: '/campaign-management', priority: 0.8, changeFrequency: 'monthly' },
+  { path: '/careers', priority: 0.6, changeFrequency: 'monthly' },
+  { path: '/articles', priority: 0.8, changeFrequency: 'weekly' },
+  { path: '/contact', priority: 0.7, changeFrequency: 'monthly' },
+  { path: '/privacy', priority: 0.3, changeFrequency: 'yearly' },
+  { path: '/terms', priority: 0.3, changeFrequency: 'yearly' },
+];
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = 'https://www.consultico.co.uk';
   const articles = getAllArticles();
 
   return [
-    { url: base, lastModified: new Date(), changeFrequency: 'monthly', priority: 1 },
-    {
-      url: `${base}/think-first`,
+    ...STATIC_ROUTES.map((route) => ({
+      url: `${BASE}${route.path}`,
       lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${base}/articles`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
+      changeFrequency: route.changeFrequency,
+      priority: route.priority,
+    })),
     ...articles.map((article) => ({
-      url: `${base}/articles/${article.slug}`,
+      url: `${BASE}/articles/${article.slug}`,
       lastModified: new Date(article.updated ?? article.date),
       changeFrequency: 'monthly' as const,
-      priority: 0.7,
+      priority: article.slug === 'best-ppc-agencies-uk' ? 0.85 : 0.7,
     })),
   ];
 }

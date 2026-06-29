@@ -29,6 +29,11 @@ export interface ArticleCtaConfig {
   label?: string;
 }
 
+export interface ArticleFaq {
+  question: string;
+  answer: string;
+}
+
 export interface ArticleAuthor {
   name: string;
   role: string;
@@ -47,6 +52,9 @@ export interface ArticleFrontmatter {
   imageAlt?: string;
   author?: ArticleAuthor;
   cta?: ArticleCtaConfig;
+  seoTitle?: string;
+  faqs?: ArticleFaq[];
+  itemList?: string[];
 }
 
 export interface Article extends ArticleFrontmatter {

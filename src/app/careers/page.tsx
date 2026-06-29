@@ -1,7 +1,12 @@
+import type { Metadata } from 'next';
 import Container from '@/components/Container';
 import ServiceDesktopHeader from '@/components/ServiceDesktopHeader';
+import ServicePageJsonLd from '@/components/ServicePageJsonLd';
 import Image from 'next/image';
 import Link from 'next/link';
+import { servicePageMeta } from '@/lib/seo';
+
+export const metadata: Metadata = servicePageMeta('careers');
 
 const principles = [
   'Student-friendly employer',
@@ -113,7 +118,9 @@ const CheckIcon = () => (
 
 export default function CareersPage() {
   return (
-    <main className="relative">
+    <>
+      <ServicePageJsonLd pageKey="careers" />
+      <main className="relative">
       <section className="relative min-h-screen overflow-hidden pb-16 md:pb-20 lg:pb-0">
         <ServiceDesktopHeader />
         <div className="absolute inset-0 dot-grid-premium opacity-70 dark:opacity-25" aria-hidden="true" />
@@ -337,5 +344,6 @@ export default function CareersPage() {
         </Container>
       </section>
     </main>
+    </>
   );
 }

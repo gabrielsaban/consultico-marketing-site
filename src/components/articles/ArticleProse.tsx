@@ -1,4 +1,5 @@
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 interface ArticleProseProps {
   content: string;
@@ -8,6 +9,7 @@ export default function ArticleProse({ content }: ArticleProseProps) {
   return (
     <div className="article-prose">
       <ReactMarkdown
+        remarkPlugins={[remarkGfm]}
         components={{
           h2: ({ children }) => (
             <h2 className="mb-4 mt-10 font-futura text-[clamp(1.35rem,2vw,1.75rem)] font-bold text-brand-blue first:mt-0">
@@ -47,6 +49,19 @@ export default function ArticleProse({ content }: ArticleProseProps) {
             <blockquote className="my-6 border-l-4 border-brand-blue pl-5 font-helvetica-light italic text-gray-700 dark:text-gray-300">
               {children}
             </blockquote>
+          ),
+          table: ({ children }) => (
+            <div className="mb-6 overflow-x-auto">
+              <table className="w-full min-w-[32rem] border-collapse text-left text-[0.9rem]">{children}</table>
+            </div>
+          ),
+          th: ({ children }) => (
+            <th className="border border-gray-200 bg-brand-silk px-3 py-2 font-helvetica font-semibold dark:border-gray-700 dark:bg-gray-800">
+              {children}
+            </th>
+          ),
+          td: ({ children }) => (
+            <td className="border border-gray-200 px-3 py-2 font-helvetica-light dark:border-gray-700">{children}</td>
           ),
         }}
       >

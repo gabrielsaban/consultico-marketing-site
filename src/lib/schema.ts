@@ -1,6 +1,7 @@
-import { CONSULTICO_PHONE_E164 } from '@/lib/contact';
+import { CONSULTICO_GBP_URL, CONSULTICO_PHONE_E164, CONSULTICO_EMAIL, CONSULTICO_ADDRESS } from '@/lib/contact';
 import { hasDedicatedArticleImage } from '@/lib/articles/display';
 import type { Article } from '@/lib/articles/types';
+import { SERVICE_PAGES, type ServicePageKey } from '@/lib/seo';
 
 export const SITE_ORIGIN = 'https://www.consultico.co.uk';
 
@@ -12,23 +13,47 @@ export const siteJsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
     {
-      '@type': 'ProfessionalService',
+      '@type': ['LocalBusiness', 'ProfessionalService'],
       '@id': `${SITE_ORIGIN}/#org`,
       name: 'Consultico',
       legalName: 'Consultico Ltd',
       url: SITE_ORIGIN,
-      logo: `${SITE_ORIGIN}/brand/logo_main.svg`,
+      logo: { '@type': 'ImageObject', url: `${SITE_ORIGIN}/brand/logo_main.svg` },
       image: `${SITE_ORIGIN}/og.jpg`,
-      email: 'paul@consultico.co.uk',
+      email: CONSULTICO_EMAIL,
       telephone: CONSULTICO_PHONE_E164,
-      founder: { '@type': 'Person', name: 'Paul Wilson' },
+      priceRange: '££',
+      description:
+        'Strategy-led digital marketing consultancy in Glasgow. We start with strategy, then deliver SEO, GEO, paid media, web, content and campaigns for B2C brands and trades businesses across the UK and US.',
+      founder: {
+        '@type': 'Person',
+        '@id': `${SITE_ORIGIN}/#paul-wilson`,
+        name: 'Paul Wilson',
+        sameAs: ['https://www.linkedin.com/in/think-first-marketing'],
+      },
       address: {
         '@type': 'PostalAddress',
-        name: 'Strathclyde Inspire',
-        streetAddress: '50 Richmond Street',
-        addressLocality: 'Glasgow',
-        postalCode: 'G1 1XN',
-        addressCountry: 'GB',
+        streetAddress: CONSULTICO_ADDRESS.streetAddress,
+        addressLocality: CONSULTICO_ADDRESS.addressLocality,
+        addressRegion: CONSULTICO_ADDRESS.addressRegion,
+        postalCode: CONSULTICO_ADDRESS.postalCode,
+        addressCountry: CONSULTICO_ADDRESS.addressCountry,
+      },
+      geo: { '@type': 'GeoCoordinates', latitude: '55.8609282', longitude: '-4.2418232' },
+      openingHoursSpecification: [
+        {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+          opens: '09:00',
+          closes: '17:30',
+        },
+      ],
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: '5',
+        reviewCount: '11',
+        bestRating: '5',
+        worstRating: '1',
       },
       areaServed: [
         { '@type': 'Country', name: 'United Kingdom' },
@@ -37,7 +62,7 @@ export const siteJsonLd = {
       sameAs: [
         'https://www.linkedin.com/company/consultico-ltd/',
         'https://www.instagram.com/consultico_marketing/',
-        'https://www.google.com/maps/place/Consultico/@55.8609282,-4.2443981,641m/data=!3m3!1e3!4b1!5s0x488846a710ae8043:0x4c27d014396277a0!4m6!3m5!1s0x23d34cdec57c3e91:0x69bb0edabecd9001!8m2!3d55.8609282!4d-4.2418232!16s%2Fg%2F11ldh2jgj6',
+        CONSULTICO_GBP_URL,
       ],
     },
     {
@@ -45,6 +70,7 @@ export const siteJsonLd = {
       '@id': `${SITE_ORIGIN}/#website`,
       url: SITE_ORIGIN,
       name: 'Consultico',
+      inLanguage: 'en-GB',
       publisher: { '@id': `${SITE_ORIGIN}/#org` },
     },
   ],
@@ -56,18 +82,8 @@ export const thinkFirstPageJsonLd = {
     {
       '@type': 'BreadcrumbList',
       itemListElement: [
-        {
-          '@type': 'ListItem',
-          position: 1,
-          name: 'Home',
-          item: `${SITE_ORIGIN}/`,
-        },
-        {
-          '@type': 'ListItem',
-          position: 2,
-          name: 'Think First',
-          item: `${SITE_ORIGIN}/think-first`,
-        },
+        { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_ORIGIN}/` },
+        { '@type': 'ListItem', position: 2, name: 'Think First', item: `${SITE_ORIGIN}/think-first` },
       ],
     },
     {
@@ -85,55 +101,110 @@ export const thinkFirstPageJsonLd = {
   ],
 };
 
-export function articlePageJsonLd(article: Article) {
-  const author = article.author!;
-  const published = article.date;
-  const modified = article.updated ?? article.date;
+export function servicePageJsonLd(key: ServicePageKey) {
+  const page = SERVICE_PAGES[key];
+  const breadcrumbName = page.path === '/careers' ? 'Careers' : page.serviceName;
 
   return {
     '@context': 'https://schema.org',
     '@graph': [
       {
-        '@type': 'BreadcrumbList',
-        itemListElement: [
-          {
-            '@type': 'ListItem',
-            position: 1,
-            name: 'Home',
-            item: `${SITE_ORIGIN}/`,
-          },
-          {
-            '@type': 'ListItem',
-            position: 2,
-            name: 'Articles',
-            item: `${SITE_ORIGIN}/articles`,
-          },
-          {
-            '@type': 'ListItem',
-            position: 3,
-            name: article.title,
-            item: `${SITE_ORIGIN}/articles/${article.slug}`,
-          },
+        '@type': 'Service',
+        '@id': `${SITE_ORIGIN}${page.path}#service`,
+        name: page.serviceName,
+        serviceType: page.serviceType,
+        provider: { '@id': `${SITE_ORIGIN}/#org` },
+        areaServed: [
+          { '@type': 'Country', name: 'United Kingdom' },
+          { '@type': 'Country', name: 'United States' },
         ],
+        url: `${SITE_ORIGIN}${page.path}`,
       },
       {
-        '@type': 'BlogPosting',
-        headline: article.title,
-        description: article.excerpt,
-        datePublished: published,
-        dateModified: modified,
-        author: {
-          '@type': 'Person',
-          name: author.name,
-          jobTitle: author.role,
-        },
-        publisher: { '@id': `${SITE_ORIGIN}/#org` },
-        mainEntityOfPage: `${SITE_ORIGIN}/articles/${article.slug}`,
-        image: hasDedicatedArticleImage(article)
-          ? `${SITE_ORIGIN}${article.image}`
-          : `${SITE_ORIGIN}/articles/${article.slug}/opengraph-image`,
-        articleSection: article.category,
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_ORIGIN}/` },
+          { '@type': 'ListItem', position: 2, name: breadcrumbName, item: `${SITE_ORIGIN}${page.path}` },
+        ],
       },
     ],
   };
+}
+
+export function faqPageJsonLd(faqs: { question: string; answer: string }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+    })),
+  };
+}
+
+export function articlePageJsonLd(article: Article) {
+  const author = article.author!;
+  const published = article.date;
+  const modified = article.updated ?? article.date;
+  const graph: object[] = [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_ORIGIN}/` },
+        { '@type': 'ListItem', position: 2, name: 'Articles', item: `${SITE_ORIGIN}/articles` },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: article.title,
+          item: `${SITE_ORIGIN}/articles/${article.slug}`,
+        },
+      ],
+    },
+    {
+      '@type': 'BlogPosting',
+      headline: article.title,
+      description: article.excerpt,
+      datePublished: published,
+      dateModified: modified,
+      author: {
+        '@type': 'Person',
+        name: author.name,
+        jobTitle: author.role,
+        '@id': `${SITE_ORIGIN}/#paul-wilson`,
+      },
+      publisher: { '@id': `${SITE_ORIGIN}/#org` },
+      mainEntityOfPage: `${SITE_ORIGIN}/articles/${article.slug}`,
+      image: hasDedicatedArticleImage(article)
+        ? `${SITE_ORIGIN}${article.image}`
+        : `${SITE_ORIGIN}/articles/${article.slug}/opengraph-image`,
+      articleSection: article.category,
+    },
+  ];
+
+  if (article.itemList?.length) {
+    graph.push({
+      '@type': 'ItemList',
+      name: article.title,
+      itemListOrder: 'https://schema.org/ItemListOrderAscending',
+      itemListElement: article.itemList.map((name, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name,
+      })),
+    });
+  }
+
+  if (article.faqs?.length) {
+    graph.push({
+      '@type': 'FAQPage',
+      mainEntity: article.faqs.map((faq) => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+      })),
+    });
+  }
+
+  return { '@context': 'https://schema.org', '@graph': graph };
 }

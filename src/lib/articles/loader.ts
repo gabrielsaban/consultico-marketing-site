@@ -38,6 +38,9 @@ function parseArticleFile(slug: string, fileContents: string): Article {
     imageAlt: frontmatter.imageAlt,
     author: frontmatter.author ?? DEFAULT_AUTHOR,
     cta: frontmatter.cta,
+    seoTitle: frontmatter.seoTitle,
+    faqs: frontmatter.faqs,
+    itemList: frontmatter.itemList,
     content: content.trim(),
   };
 }

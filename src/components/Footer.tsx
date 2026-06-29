@@ -1,14 +1,20 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import Container from '@/components/Container';
-import { CONSULTICO_PHONE_DISPLAY, CONSULTICO_PHONE_TEL } from '@/lib/contact';
+import {
+  CONSULTICO_ADDRESS,
+  CONSULTICO_EMAIL,
+  CONSULTICO_GBP_URL,
+  CONSULTICO_PHONE_DISPLAY,
+  CONSULTICO_PHONE_TEL,
+} from '@/lib/contact';
 
 export default function Footer() {
   const quickLinks1 = [
     { name: 'Home', href: '/#home' },
     { name: 'Projects', href: '/#projects' },
     { name: 'About', href: '/#about' },
-    { name: 'Contact', href: '/#contact' },
+    { name: 'Contact', href: '/contact' },
   ];
 
   const quickLinks2 = [
@@ -127,7 +133,7 @@ export default function Footer() {
             </h3>
             <div className="space-y-3">
               <a
-                href="mailto:paul@consultico.co.uk"
+                href={`mailto:${CONSULTICO_EMAIL}`}
                 className="flex items-start gap-3 text-[clamp(0.875rem,1vw,1rem)] font-helvetica-light text-gray-100 hover:text-white transition-colors"
               >
                 <svg
@@ -142,7 +148,7 @@ export default function Footer() {
                   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                   <path d="M22 6l-10 7L2 6" />
                 </svg>
-                paul@consultico.co.uk
+                {CONSULTICO_EMAIL}
               </a>
               <a
                 href={CONSULTICO_PHONE_TEL}
@@ -161,7 +167,12 @@ export default function Footer() {
                 </svg>
                 {CONSULTICO_PHONE_DISPLAY}
               </a>
-              <div className="flex items-start gap-3 text-[clamp(0.875rem,1vw,1rem)] font-helvetica-light text-gray-100">
+              <a
+                href={CONSULTICO_GBP_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-start gap-3 text-[clamp(0.875rem,1vw,1rem)] font-helvetica-light text-gray-100 hover:text-white transition-colors"
+              >
                 <svg
                   className="w-5 h-5 flex-shrink-0 mt-0.5"
                   fill="none"
@@ -175,11 +186,11 @@ export default function Footer() {
                   <circle cx="12" cy="10" r="3" />
                 </svg>
                 <div>
-                  Glasgow, Scotland
+                  {CONSULTICO_ADDRESS.display}
                   <br />
                   United Kingdom
                 </div>
-              </div>
+              </a>
             </div>
           </div>
         </div>
@@ -194,14 +205,14 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-[clamp(0.75rem,0.9vw,0.875rem)] font-helvetica-light text-gray-200">
             <p>© 2026 Consultico. All rights reserved.</p>
             <div className="flex gap-6">
-              <Link href="#" className="hover:text-white transition-colors">
+              <Link href="/privacy" className="hover:text-white transition-colors">
                 Privacy Policy
               </Link>
-              <Link href="#" className="hover:text-white transition-colors">
+              <Link href="/terms" className="hover:text-white transition-colors">
                 Terms & Conditions
               </Link>
-              <Link href="#" className="hover:text-white transition-colors">
-                Cookie Policy
+              <Link href="/contact" className="hover:text-white transition-colors">
+                Contact
               </Link>
             </div>
           </div>

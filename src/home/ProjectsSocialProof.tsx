@@ -3,6 +3,7 @@
 
 // import StatsCta from './StatsCta';
 import ProjectCarousel from '@/components/ProjectCarousel';
+import ReviewStrip from '@/components/ReviewStrip';
 import StatsBoxes from '@/components/StatsBoxes';
 import ReviewsCarousel from '@/components/ReviewsCarousel';
 import Container from '@/components/Container';
@@ -17,7 +18,7 @@ export default function ProjectsSocialProof() {
             Results you can measure
           </h2>
           <p className="text-[clamp(1rem,1.35vw,1.2rem)] leading-[1.6] text-gray-800 dark:text-gray-200 font-helvetica-light max-w-3xl mx-auto text-center">
-            Our SEO for tradesmen work includes The Boiler Co, a Glasgow-area plumbing business that filled its calendar through organic search when paid ads had to pause. Impressions grew from approximately 6,000 to 21,000 per week over 14 months of retained work.
+            Our SEO for tradesmen work includes The Boiler Co, a Glasgow-area plumbing business that filled its calendar through organic search within three months when paid ads had to pause. Over 14 months of retained work, weekly impressions grew from approximately 6,000 to 21,000.
           </p>
         </Container>
         
@@ -33,7 +34,9 @@ export default function ProjectsSocialProof() {
         </Container>
         
         <StatsBoxes />
-        
+
+        <ReviewStrip />
+
         {/* Reviews Section */}
         <div className="mt-16 md:mt-20 lg:mt-24">
           <ReviewsCarousel />

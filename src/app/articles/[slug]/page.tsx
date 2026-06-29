@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Container from '@/components/Container';
+import FaqSection from '@/components/FaqSection';
 import ServiceDesktopHeader from '@/components/ServiceDesktopHeader';
 import ArticleAuthor from '@/components/articles/ArticleAuthor';
 import ArticleCta from '@/components/articles/ArticleCta';
@@ -32,12 +33,14 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
     return { title: 'Article not found' };
   }
 
+  const title = article.seoTitle ?? article.title;
+
   return {
-    title: article.title,
+    title: article.seoTitle ? { absolute: article.seoTitle } : article.title,
     description: article.excerpt,
     alternates: { canonical: `/articles/${article.slug}` },
     openGraph: {
-      title: article.title,
+      title,
       description: article.excerpt,
       url: `/articles/${article.slug}`,
       type: 'article',
@@ -45,7 +48,7 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
       modifiedTime: article.updated ?? article.date,
     },
     twitter: {
-      title: article.title,
+      title,
       description: article.excerpt,
     },
   };
@@ -131,6 +134,12 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                   )}
 
                   <ArticleProse content={article.content} />
+
+                  {article.faqs && article.faqs.length > 0 && (
+                    <div className="mt-12">
+                      <FaqSection faqs={article.faqs} includeSchema={false} />
+                    </div>
+                  )}
 
                   <p className="mt-8 border-t border-gray-200 pt-6 font-helvetica text-[0.875rem] text-gray-500 dark:border-gray-800 dark:text-gray-400">
                     Published {formatArticleDate(article.date)}

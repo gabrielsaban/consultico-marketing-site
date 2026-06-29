@@ -3,27 +3,16 @@ import Container from '@/components/Container';
 import ServiceDesktopHeader from '@/components/ServiceDesktopHeader';
 import Image from 'next/image';
 import Link from 'next/link';
+import { pageMeta } from '@/lib/seo';
 import { serializeJsonLd, thinkFirstPageJsonLd } from '@/lib/schema';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: 'Think First: Marketing Strategy Workshop | Consultico',
   description:
     'Think First is Consultico\'s 30-day marketing strategy workshop for B2C brands. Clarity, projections, and a step-by-step roadmap before you spend on SEO, PPC, or web.',
-  alternates: { canonical: '/think-first' },
-  openGraph: {
-    title: 'Think First: Marketing Strategy Workshop | Consultico',
-    description:
-      'A strategy workshop for B2C brands doing £50K+/month. Map channels, economics, and growth before you commit budget.',
-    url: '/think-first',
-    images: ['/og.jpg'],
-  },
-  twitter: {
-    title: 'Think First: Marketing Strategy Workshop | Consultico',
-    description:
-      'A strategy workshop for B2C brands doing £50K+/month. Map channels, economics, and growth before you commit budget.',
-    images: ['/og.jpg'],
-  },
-};
+  path: '/think-first',
+  absoluteTitle: true,
+});
 
 const scalingPainPoints = [
   'Tried paid ads without knowing true breakeven numbers',
