@@ -1,14 +1,17 @@
 import HeroSection from '@/components/HeroSection';
-import HeroHeadline from './HeroHeadline';
 import MarketingIntro from './MarketingIntro';
 import ThinkFirstSection from './ThinkFirstSection';
+// import KeywordSection from './KeywordSection';
 
 export default function HomeSection() {
   return (
     <section id="home">
-      <HeroSection headline={<HeroHeadline />} />
+      <HeroSection />
       <MarketingIntro />
       <ThinkFirstSection />
+      {/* <KeywordSection /> */}
     </section>
   );
 }
+
+
