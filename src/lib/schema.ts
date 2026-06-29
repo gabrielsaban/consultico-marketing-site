@@ -1,4 +1,6 @@
 import { CONSULTICO_PHONE_E164 } from '@/lib/contact';
+import { hasDedicatedArticleImage } from '@/lib/articles/display';
+import type { Article } from '@/lib/articles/types';
 
 export const SITE_ORIGIN = 'https://www.consultico.co.uk';
 
@@ -82,3 +84,56 @@ export const thinkFirstPageJsonLd = {
     },
   ],
 };
+
+export function articlePageJsonLd(article: Article) {
+  const author = article.author!;
+  const published = article.date;
+  const modified = article.updated ?? article.date;
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: `${SITE_ORIGIN}/`,
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Articles',
+            item: `${SITE_ORIGIN}/articles`,
+          },
+          {
+            '@type': 'ListItem',
+            position: 3,
+            name: article.title,
+            item: `${SITE_ORIGIN}/articles/${article.slug}`,
+          },
+        ],
+      },
+      {
+        '@type': 'BlogPosting',
+        headline: article.title,
+        description: article.excerpt,
+        datePublished: published,
+        dateModified: modified,
+        author: {
+          '@type': 'Person',
+          name: author.name,
+          jobTitle: author.role,
+        },
+        publisher: { '@id': `${SITE_ORIGIN}/#org` },
+        mainEntityOfPage: `${SITE_ORIGIN}/articles/${article.slug}`,
+        image: hasDedicatedArticleImage(article)
+          ? `${SITE_ORIGIN}${article.image}`
+          : `${SITE_ORIGIN}/articles/${article.slug}/opengraph-image`,
+        articleSection: article.category,
+      },
+    ],
+  };
+}

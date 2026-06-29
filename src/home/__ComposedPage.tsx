@@ -1,6 +1,7 @@
 import HomeSection from './HomeSection';
 import ServicesSection from './ServicesSection';
 import ProjectsSocialProof from './ProjectsSocialProof';
+import LatestArticlesSection from './LatestArticlesSection';
 import AboutSection from './AboutSection';
 import ContactSection from './ContactSection';
 import ScrollToSectionOnLoad from '@/components/ScrollToSectionOnLoad';
@@ -12,6 +13,7 @@ export default function ComposedPage() {
       <HomeSection />
       <ServicesSection />
       <ProjectsSocialProof />
+      <LatestArticlesSection />
       <AboutSection />
       <ContactSection />
     </main>

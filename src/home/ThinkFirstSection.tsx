@@ -7,7 +7,7 @@ export default function ThinkFirstSection() {
         The Think First Workshop
       </p>
       <h2 className="text-[clamp(1.5rem,2.5vw,2.5rem)] font-bold text-blue-primary mb-8 font-futura">
-        Need a marketing strategy consultant in Glasgow?
+        Think before you spend
       </h2>
 
       <p className="text-[clamp(1rem,1.4vw,1.25rem)] leading-[1.6] text-gray-800 dark:text-gray-200 font-helvetica-light mb-8">
