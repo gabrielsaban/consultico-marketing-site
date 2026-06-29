@@ -1,17 +1,23 @@
-import type { MetadataRoute } from 'next'
+import type { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
-  const site = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.consultico.example'
+  // Keep preview deployments out of the index.
+  if (process.env.VERCEL_ENV !== 'production') {
+    return { rules: [{ userAgent: '*', disallow: '/' }] };
+  }
+
   return {
     rules: [
-      {
-        userAgent: '*',
-        allow: '/',
-      },
+      { userAgent: '*', allow: '/' },
+      { userAgent: 'GPTBot', allow: '/' },
+      { userAgent: 'OAI-SearchBot', allow: '/' },
+      { userAgent: 'PerplexityBot', allow: '/' },
+      { userAgent: 'ClaudeBot', allow: '/' },
+      { userAgent: 'anthropic-ai', allow: '/' },
+      { userAgent: 'Google-Extended', allow: '/' },
+      { userAgent: 'Applebot-Extended', allow: '/' },
     ],
-    sitemap: [`${site}/sitemap.xml`],
-    host: site,
-  }
+    sitemap: 'https://www.consultico.co.uk/sitemap.xml',
+    host: 'https://www.consultico.co.uk',
+  };
 }
-
-

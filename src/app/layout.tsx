@@ -10,6 +10,7 @@ import TopBar from "@/components/TopBar";
 import SitePreloader from "@/components/SitePreloader";
 import { PreloaderProvider } from "@/components/PreloaderContext";
 import PreloaderGate from "@/components/PreloaderGate";
+import { serializeJsonLd, siteJsonLd } from "@/lib/schema";
 
 // Brand fonts (local woff2)
 const futuraHV = localFont({
@@ -37,36 +38,29 @@ const helveticaUI = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://www.consultico.example'),
+  metadataBase: new URL('https://www.consultico.co.uk'),
   title: {
-    default: 'Consultico - Digital Marketing',
+    default: 'Digital Marketing Consultant in Glasgow | Consultico',
     template: '%s | Consultico',
   },
-  description: 'Marketing made for you. Our digital marketing consultants build tailored strategies for your business.',
+  description:
+    'Glasgow digital marketing consultancy. We start with strategy, then deliver SEO, GEO, paid ads and web. Serving the UK and US.',
   openGraph: {
     type: 'website',
-    url: '/',
-    title: 'Consultico - Digital Marketing Consultancy',
-    description: 'Marketing made for you. Our digital marketing consultants build tailored strategies for your business.',
-    siteName: 'Consultico',
-    images: [
-      {
-        url: '/og.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Consultico',
-      },
-    ],
     locale: 'en_GB',
+    siteName: 'Consultico',
+    url: 'https://www.consultico.co.uk',
+    title: 'Digital Marketing Consultant in Glasgow | Consultico',
+    description:
+      'Glasgow digital marketing consultancy. Strategy first, then SEO, GEO, paid ads and web. Serving the UK and US.',
+    images: ['/og.jpg'],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Consultico | Digital Marketing Consultancy',
-    description: 'Marketing made for you. Our digital marketing consultants build tailored strategies for your business.',
+    title: 'Digital Marketing Consultant in Glasgow | Consultico',
+    description:
+      'Glasgow digital marketing consultancy. Strategy first, then SEO, GEO, paid ads and web.',
     images: ['/og.jpg'],
-  },
-  alternates: {
-    canonical: '/',
   },
   icons: {
     icon: [
@@ -103,6 +97,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${futuraHV.variable} ${helveticaNow.variable} ${helveticaUI.variable} antialiased font-sans relative`}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(siteJsonLd) }}
+        />
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <PreloaderProvider>
           <SitePreloader />

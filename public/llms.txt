@@ -1,0 +1,10 @@
+# Consultico
+
+> Consultico is a Glasgow-based digital marketing consultancy led by founder Paul Wilson. It runs a consult-first model with a "Think First" workshop as the entry point, serving B2C brands and trades businesses across the UK and the United States.
+
+## Core pages
+- [Home](https://www.consultico.co.uk/): Overview of Consultico's digital marketing consulting, services and approach.
+- [Think First](https://www.consultico.co.uk/think-first): The entry-point strategy workshop that defines scope before any execution.
+
+## Optional
+- [Contact](https://www.consultico.co.uk/#contact): How to reach Paul Wilson and the team.

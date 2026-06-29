@@ -1,7 +1,29 @@
+import type { Metadata } from 'next';
 import Container from '@/components/Container';
 import ServiceDesktopHeader from '@/components/ServiceDesktopHeader';
 import Image from 'next/image';
 import Link from 'next/link';
+import { serializeJsonLd, thinkFirstPageJsonLd } from '@/lib/schema';
+
+export const metadata: Metadata = {
+  title: 'Think First: Marketing Strategy Workshop | Consultico',
+  description:
+    'Think First is Consultico\'s 30-day marketing strategy workshop for B2C brands. Clarity, projections, and a step-by-step roadmap before you spend on SEO, PPC, or web.',
+  alternates: { canonical: '/think-first' },
+  openGraph: {
+    title: 'Think First: Marketing Strategy Workshop | Consultico',
+    description:
+      'A strategy workshop for B2C brands doing £50K+/month. Map channels, economics, and growth before you commit budget.',
+    url: '/think-first',
+    images: ['/og.jpg'],
+  },
+  twitter: {
+    title: 'Think First: Marketing Strategy Workshop | Consultico',
+    description:
+      'A strategy workshop for B2C brands doing £50K+/month. Map channels, economics, and growth before you commit budget.',
+    images: ['/og.jpg'],
+  },
+};
 
 const scalingPainPoints = [
   'Tried paid ads without knowing true breakeven numbers',
@@ -127,7 +149,12 @@ const sectionHeadingClass =
 
 export default function ThinkFirstPage() {
   return (
-    <main className="relative">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(thinkFirstPageJsonLd) }}
+      />
+      <main className="relative">
       <section className="min-h-screen relative pb-16 md:pb-20 lg:pb-0">
         <ServiceDesktopHeader />
         <Container className="pt-[10.5rem] md:pt-[12rem] lg:pt-0 lg:min-h-screen lg:flex lg:items-center">
@@ -511,5 +538,6 @@ export default function ThinkFirstPage() {
         </Container>
       </section>
     </main>
+    </>
   );
 }
