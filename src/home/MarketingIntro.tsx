@@ -18,9 +18,9 @@ export default function MarketingIntro(): JSX.Element {
     <section className="py-12 md:py-16 lg:py-20 bg-brand-silk dark:bg-gray-950 shadow-[0_4px_20px_rgba(0,0,0,0.1)]" ref={marketingRef}>
       <div className="px-4 sm:px-6 md:px-[5vw] lg:px-[7.5vw]">
         <div className="text-left max-w-4xl mx-auto">
-          <h3 className="text-[clamp(1.5rem,2.5vw,2.5rem)] font-bold text-blue-primary mb-8 font-futura">
-            Your marketing spend is being wasted.
-          </h3>
+          <h2 className="text-[clamp(1.5rem,2.5vw,2.5rem)] font-bold text-blue-primary mb-8 font-futura">
+            Your marketing spend is being wasted without a strategy.
+          </h2>
           <div className="relative pl-8">
             <AnimatedText
               paragraphs={[

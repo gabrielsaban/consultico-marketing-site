@@ -3,105 +3,9 @@
 import { motion, useInView, AnimatePresence, LayoutGroup } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import Container from '@/components/Container';
-
-interface Service {
-  id: string;
-  name: string;
-  description: string[];
-  highlights: string[];
-  icon: string;
-  // Temporarily dormant while launch keeps service detail on the homepage.
-  futureSlug: string;
-  image?: string;
-}
-
-const services: Service[] = [
-  {
-    id: 'strategy',
-    name: 'Marketing Strategy',
-    description: [
-      'Most businesses spend money on marketing before they genuinely understand what their marketing is doing for them. How does your social media presence actually connect through to your website? Are you tracking which channels are driving revenue and which ones are quietly burning budget with nothing to show for it? Are you spending money wisely - or just spending it? These are the questions most business owners cannot answer with real confidence, and that is exactly the problem we are built to solve.',
-      'Think First is our flagship strategy workshop - a structured process that maps out your entire marketing landscape before a single pound is committed to a campaign. Using our S.T.E.P. framework, we build a clear picture of where your marketing stands today, where the gaps are, and the most direct path to where you need to be. Every Consultico client relationship starts here, because without a clear strategy, everything else is guesswork.',
-    ],
-    highlights: ['tracking which channels are driving revenue', 'Think First', 'S.T.E.P. framework'],
-    icon: 'compass',
-    futureSlug: 'market-strategy',
-    image: '/services/market_strategy.avif',
-  },
-  {
-    id: 'ppc',
-    name: 'PPC',
-    description: [
-      'When managed correctly, paid advertising across Google and Meta is one of the most powerful growth levers available to a consumer brand. The ability to reach exactly the right person - at the right moment, on the right platform - and measure every penny of return is genuinely transformative. The problem is that most brands either run ads without a proper strategy behind them, or hand their budget to platforms that are not incentivised to spend it efficiently. The result is wasted spend, inconsistent returns, and campaigns that never quite hit their potential.',
-      'We manage Google and Meta ad accounts with a focus on margin-aware, data-driven performance. That means building campaigns around your actual unit economics - not just clicks and impressions - testing creative, refining audiences, and optimising continuously until the numbers stack up. We bring the same strategic clarity from Think First into every paid campaign we run: no campaign goes live without a clear understanding of what it is trying to do and how success will be measured.',
-    ],
-    highlights: ['Google and Meta', 'unit economics', 'how success will be measured'],
-    icon: 'target',
-    futureSlug: 'ppc',
-    image: '/services/ppc.avif',
-  },
-  {
-    id: 'content',
-    name: 'Content Creation',
-    description: [
-      'Content creation and social media management are two different things, and understanding the distinction matters. Content creation is the process of producing the actual assets - the video scripts, ad copy, long-form articles, product copy, landing page content, and campaign creatives that fuel your marketing across every channel. It is the raw material your entire marketing ecosystem runs on. When it is done well, it earns attention, builds trust, and moves people through a funnel. When it is done poorly, it disappears into the noise.',
-      'We produce content with a clear purpose behind every piece. That means starting with your audience, your funnel stage, and your business goals - then building content designed to perform. Whether you need ad scripts that convert, articles that rank and educate, or campaign assets that hold up across every platform, we treat content creation as a strategic function, not just a production task. Everything we produce is built to work as part of a broader system, not sit in isolation.',
-    ],
-    highlights: ['Content creation', 'actual assets', 'strategic function'],
-    icon: 'sparkles',
-    futureSlug: 'content-creation',
-    image: '/services/content_creation.avif',
-  },
-  {
-    id: 'seo',
-    name: 'SEO',
-    description: [
-      'The best way to understand SEO versus PPC is through the difference between buying a building and renting one. Paid ads put you in front of people immediately - and the moment you stop paying, you disappear. The traffic is rented. SEO, by contrast, is an investment in a long-term asset. The work you put in today - technical fixes, quality content, authoritative backlinks - keeps delivering value for months and years after the initial effort. Your cost per lead decreases over time as your domain authority grows. That is how compounding works, and it is why the most successful businesses treat SEO as a core investment, not a line item to cut.',
-      'We build SEO strategies that treat your website as the asset it should be. That starts with a full technical audit to identify anything holding your site back, followed by on-page optimisation, content development targeted at the terms your customers actually search for, and link building to strengthen your authority over time. SEO is not a quick win - but for brands serious about long-term growth, it is consistently one of the highest-returning investments in the entire marketing mix.',
-    ],
-    highlights: ['long-term asset', 'compounding', 'technical audit', 'long-term growth'],
-    icon: 'trending-up',
-    futureSlug: 'seo',
-    image: '/services/seo.avif',
-  },
-  {
-    id: 'web',
-    name: 'Web Development',
-    description: [
-      'Your website is the hardest-working member of your team - or it should be. It is open every hour of every day, it speaks to every potential customer before anyone at your business does, and it either builds trust and converts or loses people in seconds. A well-built website is not a digital brochure. It is a conversion asset built around how people actually navigate, what they are looking for, and what it takes to move them from interest to action.',
-      'We design and build websites that earn their place in your marketing stack. That means clean, fast-loading builds structured around the user journey, with every design decision tied to a clear conversion goal. SEO foundations are baked in from day one, not bolted on at the end - and everything is built to perform across every device and screen size. If your current website is not working as hard as your marketing, that is the problem we are here to fix.',
-    ],
-    highlights: ['hardest-working member of your team', 'conversion asset', 'SEO foundations'],
-    icon: 'code',
-    futureSlug: 'web-development',
-    image: '/services/web_dev.avif',
-  },
-  {
-    id: 'social',
-    name: 'Social Media',
-    description: [
-      'Social media management is not the same as content creation. Content creation produces the assets - social media management is about what happens to those assets once they exist. A social media manager is the custodian of your brand voice across every platform: planning and scheduling posts, monitoring and responding to comments and messages, tracking what is resonating with your audience, and making sure everything that goes out is consistent with how your brand needs to be seen - every single day.',
-      'We manage your social presence end-to-end, so you are not constantly context-switching between running your business and managing your feeds. That means a structured content calendar, platform-specific publishing, community engagement handled properly, and regular reporting on what is and is not working. Your job is to run your business. Our job is to make sure your social presence keeps showing up for it.',
-    ],
-    highlights: ['Social media management', 'brand voice', 'community engagement'],
-    icon: 'share-2',
-    futureSlug: 'social-media',
-    image: '/services/social_media.avif',
-  },
-  {
-    id: 'campaign',
-    name: 'Campaign Management',
-    description: [
-      'Most marketing efforts involve a lot of moving parts - paid ads, content, email, social, seasonal campaigns, product launches, and everything else sitting in between. When those parts are not coordinated, the result is inconsistent messaging, duplicated effort, and results that are much harder to attribute than they should be. Campaign management is what ties it all together: a single, coordinated effort that plans, builds, launches, and optimises across every channel with a clear goal, a clear timeline, and a clear picture of what success looks like.',
-      'We take the strategic foundation from Think First and turn it into live, coordinated campaign delivery. That means everything from initial planning and asset briefing right through to launch, performance monitoring, and ongoing optimisation. You get a team that owns the campaign from end to end - so nothing falls through the cracks, every pound is working toward the same objective, and your marketing is finally moving in one direction.',
-    ],
-    highlights: ['Campaign management', 'coordinated effort', 'coordinated campaign delivery'],
-    icon: 'calendar-check',
-    futureSlug: 'campaign-management',
-    image: '/services/campaign.avif',
-  },
-];
+import { services, type Service } from '@/lib/servicesData';
 
 const ServiceIcon = ({ icon, className }: { icon: string; className?: string }) => {
   const iconPaths: Record<string, React.JSX.Element> = {
@@ -152,7 +56,7 @@ const ServicePreviewImage = ({ service }: { service: Service }) => {
   return (
     <Image
       src={service.image}
-      alt=""
+      alt={service.imageAlt ?? `${service.name} — Consultico`}
       width={640}
       height={640}
       className="h-full w-full object-cover"
@@ -181,6 +85,23 @@ const renderHighlightedText = (text: string, highlights: string[]) => {
   });
 };
 
+const renderServiceParagraph = (service: Service, paragraph: string, paragraphIndex: number) => {
+  if (service.id === 'strategy' && paragraphIndex === 1) {
+    const [before, after] = paragraph.split('Think First strategy workshop');
+    return (
+      <>
+        {renderHighlightedText(before, service.highlights)}
+        <Link href="/think-first" className="font-helvetica font-semibold text-brand-blue underline underline-offset-2 hover:text-[#006FE6]">
+          Think First strategy workshop
+        </Link>
+        {renderHighlightedText(after, service.highlights)}
+      </>
+    );
+  }
+
+  return renderHighlightedText(paragraph, service.highlights);
+};
+
 function MobileServicePreview({ service }: { service: Service }) {
   return (
     <motion.div
@@ -202,12 +123,12 @@ function MobileServicePreview({ service }: { service: Service }) {
         </div>
         <div className="min-w-0 self-stretch flex flex-col">
           <div className="space-y-3">
-            {service.description.map((paragraph) => (
+            {service.description.map((paragraph, paragraphIndex) => (
               <p
-                key={paragraph}
+                key={`${service.id}-${paragraphIndex}`}
                 className="text-[clamp(0.9rem,2.2vw,1rem)] leading-[1.58] text-gray-800 dark:text-gray-200 font-helvetica-light"
               >
-                {renderHighlightedText(paragraph, service.highlights)}
+                {renderServiceParagraph(service, paragraph, paragraphIndex)}
               </p>
             ))}
           </div>
@@ -349,13 +270,13 @@ export default function ServicesBubbleList() {
               <div className="space-y-4">
                 {currentService.description.map((paragraph, index) => (
                   <motion.p
-                    key={paragraph}
+                    key={`${currentService.id}-${index}`}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.05 + index * 0.08, duration: 0.3 }}
                     className="text-[clamp(0.94rem,1.05vw,1.06rem)] leading-[1.58] text-gray-800 dark:text-gray-200 font-helvetica-light"
                   >
-                    {renderHighlightedText(paragraph, currentService.highlights)}
+                    {renderServiceParagraph(currentService, paragraph, index)}
                   </motion.p>
                 ))}
               </div>
@@ -376,13 +297,13 @@ export default function ServicesBubbleList() {
               <div className="mt-auto flex flex-col gap-6">
                 {currentService.description.map((paragraph, index) => (
                   <motion.p
-                    key={paragraph}
+                    key={`${currentService.id}-${index}`}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.05 + index * 0.08, duration: 0.3 }}
                     className="text-[clamp(0.94rem,1.05vw,1.06rem)] leading-[1.58] text-gray-800 dark:text-gray-200 font-helvetica-light"
                   >
-                    {renderHighlightedText(paragraph, currentService.highlights)}
+                    {renderServiceParagraph(currentService, paragraph, index)}
                   </motion.p>
                 ))}
               </div>

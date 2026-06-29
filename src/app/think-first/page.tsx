@@ -165,7 +165,7 @@ export default function ThinkFirstPage() {
               </p>
               <h1 className="font-futura font-bold mb-4 max-w-[38rem]">
                 <span className="block text-[clamp(1.55rem,2.35vw,2.65rem)] leading-[1.1] text-brand-blue">
-                  Your complete marketing strategy, built and delivered in 30 days.
+                  Think First: your marketing strategy workshop, built in 30 days
                 </span>
               </h1>
               <p className="text-[clamp(0.9rem,1.05vw,1rem)] leading-[1.5] text-gray-600 dark:text-gray-400 font-helvetica mb-5">
@@ -196,7 +196,7 @@ export default function ThinkFirstPage() {
               <div className="overflow-hidden rounded-lg bg-brand-silk dark:bg-gray-800">
                 <Image
                   src="/think_first/think.png"
-                  alt=""
+                  alt="Think First marketing strategy workshop overview diagram"
                   width={2245}
                   height={1587}
                   className="h-auto w-full"
