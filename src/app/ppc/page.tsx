@@ -565,7 +565,11 @@ export default function PpcPage() {
               <h2 id="ppc-case-study-heading" className={`${sectionHeadingClass} mb-8`}>Honest advice, in practice</h2>
               <div className={`space-y-6 font-helvetica-light text-[clamp(1rem,1.1vw,1.05rem)] leading-[1.65] ${bodyTextClass}`}>
                 <p>
-                  We treat paid media as one tool, not the whole answer. The clearest example is a contrast. The Boiler Co, a trades business based in Bristol, came to us relying heavily on paid ads. When those ads had to pause, their lead flow was suddenly at risk. The right advice there was not more PPC. It was to build an SEO foundation so organic search could carry the calendar, which it now does. That is the same judgement we bring to every paid account: spend where it pays back, and be honest when another channel is the better bet.
+                  We treat paid media as one tool, not the whole answer. The clearest example is a contrast. The Boiler Co, a trades business based in Bristol, came to us relying heavily on paid ads. When those ads had to pause, their lead flow was suddenly at risk. The right advice there was not more PPC. It was to build an{' '}
+                  <Link href="/seo" className="font-medium text-brand-blue underline-offset-2 hover:underline">
+                    SEO foundation
+                  </Link>{' '}
+                  so organic search could carry the calendar, which it now does. That is the same judgement we bring to every paid account: spend where it pays back, and be honest when another channel is the better bet.
                 </p>
                 <p>
                   {/* PAUL: confirm figures — ~£8 cost per lead within 3 months; £28 average cost per conversion in best month */}
@@ -668,6 +672,26 @@ export default function PpcPage() {
                 </ul>
               </div>
             </div>
+          </Container>
+        </section>
+
+        <section className="border-t border-gray-200 bg-brand-silk/50 py-10 dark:border-gray-800 dark:bg-gray-900/40">
+          <Container>
+            <p className={`mx-auto max-w-3xl text-center font-helvetica-light text-[clamp(0.95rem,1.1vw,1.05rem)] leading-[1.65] ${secondaryTextClass}`}>
+              Related reading:{' '}
+              <Link href="/articles/best-ppc-agencies-uk" className="font-medium text-brand-blue underline-offset-2 hover:underline">
+                Best PPC agencies in the UK
+              </Link>
+              . Need organic as well?{' '}
+              <Link href="/seo" className="font-medium text-brand-blue underline-offset-2 hover:underline">
+                See our SEO services
+              </Link>
+              . Strategy first?{' '}
+              <Link href="/articles/why-strategy-before-seo" className="font-medium text-brand-blue underline-offset-2 hover:underline">
+                Why strategy should come before SEO
+              </Link>
+              .
+            </p>
           </Container>
         </section>
 

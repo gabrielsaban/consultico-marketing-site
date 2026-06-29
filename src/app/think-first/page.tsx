@@ -507,6 +507,26 @@ export default function ThinkFirstPage() {
         </Container>
       </section>
 
+      <section className="border-t border-gray-200 bg-brand-silk/60 py-12 dark:border-gray-800 dark:bg-gray-900/50 md:py-14">
+        <Container>
+          <p className="mx-auto max-w-3xl text-center font-helvetica-light text-[clamp(0.95rem,1.1vw,1.05rem)] leading-[1.65] text-gray-700 dark:text-gray-300">
+            Related reading:{' '}
+            <Link href="/articles/why-strategy-before-seo" className="font-medium text-brand-blue underline-offset-2 hover:underline">
+              Why strategy should come before SEO
+            </Link>
+            . Explore{' '}
+            <Link href="/seo" className="font-medium text-brand-blue underline-offset-2 hover:underline">
+              SEO
+            </Link>{' '}
+            and{' '}
+            <Link href="/ppc" className="font-medium text-brand-blue underline-offset-2 hover:underline">
+              PPC
+            </Link>{' '}
+            services when you are ready to execute.
+          </p>
+        </Container>
+      </section>
+
       <section id="apply" data-cursor-theme="light" className="py-16 md:py-20 lg:py-24 bg-brand-blue text-white">
         <Container>
           <h2 className="text-[clamp(1.6rem,2.6vw,2.8rem)] leading-[1.14] font-futura font-bold mb-5 max-w-[20ch]">

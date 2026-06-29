@@ -26,7 +26,7 @@ If those answers are fuzzy, more blog posts will not fix the underlying issue. Y
 
 ## SEO works best as a compounding asset
 
-Paid ads put you in front of people immediately. The moment spend stops, visibility drops. SEO is different: it is an investment in a long-term asset that can keep delivering when ad budgets tighten.
+Paid ads put you in front of people immediately. The moment spend stops, visibility drops. [SEO](/seo) is different: it is an investment in a long-term asset that can keep delivering when ad budgets tighten.
 
 That is exactly what we saw with trades clients who had to pause paid campaigns. Businesses with an organic foundation kept filling diaries. Businesses without one had nothing to fall back on.
 
@@ -34,7 +34,7 @@ The lesson is not "never run ads." It is that organic and paid should be sequenc
 
 ## How we sequence channels at Consultico
 
-Every client relationship starts with Think First, our strategy workshop. We map channels, economics, and growth path before budget goes to SEO, PPC, or web.
+Every client relationship starts with [Think First](/think-first), our strategy workshop. We map channels, economics, and growth path before budget goes to [SEO](/seo), [PPC](/ppc), or web.
 
 That usually means:
 
@@ -49,4 +49,4 @@ SEO still matters. It matters more when it has a job.
 
 If you are already spending on marketing but cannot explain which channels are paying back, start with strategy, not more content.
 
-Map the model first. Then build the assets that compound.
+Map the model first. Then build the assets that compound. For a deeper comparison of paid options, read [our guide to the best PPC agencies in the UK](/articles/best-ppc-agencies-uk).

@@ -682,6 +682,18 @@ export default function SeoPage() {
         <section className="border-t border-gray-200 bg-brand-silk/50 py-10 dark:border-gray-800 dark:bg-gray-900/40">
           <Container>
             <p className={`mx-auto max-w-3xl text-center font-helvetica-light text-[clamp(0.95rem,1.1vw,1.05rem)] leading-[1.65] ${secondaryTextClass}`}>
+              Related reading:{' '}
+              <Link href="/articles/why-strategy-before-seo" className="font-medium text-brand-blue underline-offset-2 hover:underline">
+                Why strategy should come before SEO
+              </Link>
+              .
+            </p>
+          </Container>
+        </section>
+
+        <section className="border-t border-gray-200 bg-brand-silk/50 py-10 dark:border-gray-800 dark:bg-gray-900/40">
+          <Container>
+            <p className={`mx-auto max-w-3xl text-center font-helvetica-light text-[clamp(0.95rem,1.1vw,1.05rem)] leading-[1.65] ${secondaryTextClass}`}>
               Based in Glasgow?{' '}
               <Link href="/seo-glasgow" className="font-medium text-brand-blue underline-offset-2 hover:underline">
                 See our SEO agency in Glasgow

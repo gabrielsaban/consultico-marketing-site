@@ -118,7 +118,9 @@ Email paul@consultico.co.uk, call 0141 459 1351, use the contact form at https:/
 - [Contact](https://www.consultico.co.uk/contact): Email, phone, office address, booking link, and contact form.
 - [Home](https://www.consultico.co.uk/): Digital marketing consultant in Glasgow, services, projects, team, reviews, and contact.
 - [Think First](https://www.consultico.co.uk/think-first): Marketing strategy workshop, process, fit, case patterns, and application.
-- [Articles](https://www.consultico.co.uk/articles): Practical writing on strategy, SEO, and growth from Consultico.
+- [Articles](https://www.consultico.co.uk/articles): Practical writing on strategy, SEO, PPC, and growth from Consultico.
+- [Why strategy should come before SEO](https://www.consultico.co.uk/articles/why-strategy-before-seo): Why to map economics and channels before committing to SEO or content.
+- [Best PPC agencies in the UK](https://www.consultico.co.uk/articles/best-ppc-agencies-uk): How to compare UK PPC agencies and choose on margin, not vanity metrics.
 
 ## Homepage sections
 
@@ -129,9 +131,9 @@ Email paul@consultico.co.uk, call 0141 459 1351, use the contact form at https:/
 
 ## Service detail pages
 
-- [SEO](https://www.consultico.co.uk/seo): Search engine optimisation services.
+- [PPC](https://www.consultico.co.uk/ppc): Google and Meta paid advertising. See also the [best UK PPC agencies comparison article](https://www.consultico.co.uk/articles/best-ppc-agencies-uk).
+- [SEO](https://www.consultico.co.uk/seo): Search engine optimisation services. See also [why strategy should come before SEO](https://www.consultico.co.uk/articles/why-strategy-before-seo).
 - [SEO agency in Glasgow](https://www.consultico.co.uk/seo-glasgow): Local SEO for Glasgow and central Scotland.
-- [PPC](https://www.consultico.co.uk/ppc): Google and Meta paid advertising.
 - [Web development](https://www.consultico.co.uk/web-development): Conversion-focused websites with SEO foundations.
 - [Content creation](https://www.consultico.co.uk/content-creation): Strategic content and copy production.
 - [Market strategy](https://www.consultico.co.uk/market-strategy): Marketing strategy consulting.

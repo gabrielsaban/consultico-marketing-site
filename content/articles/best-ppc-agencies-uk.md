@@ -126,7 +126,7 @@ Expect two costs: a management fee plus ad spend. UK CPCs average £3.50–£3.6
 
 ### Is PPC better than SEO?
 
-They solve different problems. PPC delivers visibility and traffic almost immediately, while SEO compounds slowly into lower-cost, durable rankings. Most growing businesses run both, PPC for speed and testing, SEO for long-term cost efficiency. The best agencies sequence the two around your economics rather than selling one in isolation.
+They solve different problems. PPC delivers visibility and traffic almost immediately, while [SEO](/seo) compounds slowly into lower-cost, durable rankings. Most growing businesses run both, PPC for speed and testing, SEO for long-term cost efficiency. The best agencies sequence the two around your economics rather than selling one in isolation.
 
 ### What does a PPC agency actually do?
 
@@ -146,7 +146,7 @@ Key takeaways:
 - UK CPCs are rising for 87% of industries, agency quality increasingly determines profitability.
 - Choose on fit and margin discipline, not logo size or the lowest fee.
 
-If you want paid media built around your unit economics rather than vanity metrics, [book a PPC strategy call with Consultico](/#contact). Strategy without execution is slow; execution without strategy is expensive, the right agency gives you both.
+If you want paid media built around your unit economics rather than vanity metrics, [start with a PPC audit](/contact?interest=ppc). Strategy without execution is slow; execution without strategy is expensive, the right agency gives you both.
 
 ---
 

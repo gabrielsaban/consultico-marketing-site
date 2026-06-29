@@ -96,3 +96,15 @@ export function getServiceLinkForCategory(category: ArticleCategory): { href: st
   };
   return map[category];
 }
+
+const ARTICLE_SECONDARY_SERVICE_LINKS: Record<string, { href: string; label: string }[]> = {
+  'best-ppc-agencies-uk': [{ href: '/seo', label: 'SEO services' }],
+  'why-strategy-before-seo': [
+    { href: '/seo', label: 'SEO services' },
+    { href: '/ppc', label: 'PPC services' },
+  ],
+};
+
+export function getSecondaryServiceLinks(slug: string): { href: string; label: string }[] {
+  return ARTICLE_SECONDARY_SERVICE_LINKS[slug] ?? [];
+}

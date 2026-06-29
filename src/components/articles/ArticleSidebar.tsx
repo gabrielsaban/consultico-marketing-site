@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { formatArticleDate } from '@/lib/articles/format';
-import { getServiceLinkForCategory } from '@/lib/articles/cta';
+import { getServiceLinkForCategory, getSecondaryServiceLinks } from '@/lib/articles/cta';
 import type { Article } from '@/lib/articles/types';
 import type { ResolvedArticleCta } from '@/lib/articles/cta';
 import ArticleSidebarCta from './ArticleSidebarCta';
@@ -9,6 +9,7 @@ interface ArticleSidebarProps {
   exploreArticles: Article[];
   cta: ResolvedArticleCta;
   currentCategory: Article['category'];
+  articleSlug: string;
   className?: string;
 }
 
@@ -16,9 +17,11 @@ export default function ArticleSidebar({
   exploreArticles,
   cta,
   currentCategory,
+  articleSlug,
   className = '',
 }: ArticleSidebarProps) {
   const serviceLink = getServiceLinkForCategory(currentCategory);
+  const secondaryServiceLinks = getSecondaryServiceLinks(articleSlug);
 
   return (
     <aside className={`space-y-6 ${className}`}>
@@ -72,6 +75,20 @@ export default function ArticleSidebar({
         >
           {serviceLink.label} →
         </Link>
+        {secondaryServiceLinks.length > 0 && (
+          <ul className="mt-4 space-y-2 border-t border-gray-100 pt-4 dark:border-gray-800">
+            {secondaryServiceLinks.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className="font-helvetica text-[0.88rem] font-medium text-brand-blue hover:underline"
+                >
+                  {link.label} →
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </aside>
   );

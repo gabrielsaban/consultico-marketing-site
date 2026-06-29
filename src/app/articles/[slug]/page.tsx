@@ -154,6 +154,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                 exploreArticles={exploreArticles}
                 cta={cta}
                 currentCategory={article.category}
+                articleSlug={article.slug}
                 className="xl:sticky xl:top-28"
               />
             </div>
