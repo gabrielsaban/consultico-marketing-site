@@ -64,7 +64,7 @@ export default function DotMatrixBackground({
     const baseRgb = hexToRgb(dotColor)
     const trailRgb = hexToRgb(highlightColor)
     const HIGHLIGHT_RADIUS = 75
-    const HIGHLIGHT_DECAY = 0.005 // per-frame decay — smooth ~2s fade
+    const HIGHLIGHT_DECAY = 0.005 // per-frame decay, smooth ~2s fade
 
     const buildDots = () => {
       const cols = Math.ceil(width / dotSpacing) + 1

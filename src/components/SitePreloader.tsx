@@ -35,7 +35,7 @@ export default function SitePreloader() {
         return;
       }
     } catch {
-      // sessionStorage unavailable — show preloader anyway
+      // sessionStorage unavailable: show preloader anyway
     }
 
     if (initialized.current) return;
@@ -83,7 +83,7 @@ export default function SitePreloader() {
           : { duration: 0 }
       }
     >
-      {/* Logo wrapper — fades out as the overlay slides away */}
+      {/* Logo wrapper: fades out as the overlay slides away */}
       <motion.div
         animate={{ opacity: isRevealing ? 0 : 1 }}
         transition={{ duration: 0.35, ease: 'easeIn' }}

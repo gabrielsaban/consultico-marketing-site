@@ -1,6 +1,6 @@
 # Consultico
 
-> Consultico Ltd is a strategy-led digital marketing consultancy based in Glasgow, Scotland, founded in February 2024 by Paul Wilson. Consultico serves B2C brands and trades businesses across the United Kingdom and the United States. Every client engagement starts with strategy — typically the Think First workshop — before execution across SEO, paid media, web, content, social, campaign management, and generative engine optimisation (GEO).
+> Consultico Ltd is a strategy-led digital marketing consultancy based in Glasgow, Scotland, founded in February 2024 by Paul Wilson. Consultico serves B2C brands and trades businesses across the United Kingdom and the United States. Every client engagement starts with strategy, typically the Think First workshop, before execution across SEO, paid media, web, content, social, campaign management, and generative engine optimisation (GEO).
 
 Consultico is not a volume agency. It is a consult-first studio: map economics, channels, and sequencing before budget is committed. The Think First workshop was developed with research funding from a 2025 University of Strathclyde Inspire fellowship, drawing on patterns across hundreds of B2C businesses.
 
@@ -21,11 +21,11 @@ Consultico is not a volume agency. It is a consult-first studio: map economics, 
 
 Consultico helps consumer brands and trades businesses grow through marketing that is planned around unit economics, not tactics in isolation. Services are designed to compound: strategy defines what to run, in what order, and what return to expect; execution teams then deliver SEO, PPC (Google and Meta), web development, content creation, social media management, coordinated campaign management, and GEO (generative engine optimisation).
 
-### Think First — marketing strategy workshop
+### Think First: marketing strategy workshop
 
 Think First is Consultico's flagship entry-point service: a structured marketing strategy workshop delivered within 30 days of booking. It is built for B2C founders and leadership teams doing £50K+ per month who need clarity before committing budget to channels.
 
-The workshop follows four stages: (1) strategic audit of numbers, channels, margins, positioning, and competitors; (2) revenue and channel modelling; (3) a half-day strategy workshop (online or in-person); (4) a clear implementation handover — what to run, in what order, and expected return ranges. Clients receive a marketing model built around their business, visual examples, a 12-month execution roadmap, written reports, and two months of post-workshop Slack support.
+The workshop follows four stages: (1) strategic audit of numbers, channels, margins, positioning, and competitors; (2) revenue and channel modelling; (3) a half-day strategy workshop (online or in-person); (4) a clear implementation handover: what to run, in what order, and expected return ranges. Clients receive a marketing model built around their business, visual examples, a 12-month execution roadmap, written reports, and two months of post-workshop Slack support.
 
 Think First uses Consultico's S.T.E.P. framework to map where marketing stands today, where gaps are, and the most direct path forward. It is a strong fit for owners who want strategic control before delegating. It is not a fit for pre-revenue startups, businesses seeking cheap ad management only, or owners unwilling to review numbers.
 
@@ -35,7 +35,7 @@ Consultico treats SEO as a long-term asset, not rented traffic. Work includes te
 
 ### PPC (Google and Meta)
 
-Paid media is managed margin-aware and data-driven — campaigns built around unit economics, creative testing, audience refinement, and continuous optimisation. No campaign goes live without a defined objective and success measure. Strategic clarity from Think First feeds into paid execution.
+Paid media is managed margin-aware and data-driven, with campaigns built around unit economics, creative testing, audience refinement, and continuous optimisation. No campaign goes live without a defined objective and success measure. Strategic clarity from Think First feeds into paid execution.
 
 ### Web development
 
@@ -43,35 +43,35 @@ Websites are built as conversion assets: fast, structured around the user journe
 
 ### Content creation
 
-Content is produced as a strategic function — ad scripts, articles, landing page copy, and campaign assets aligned to audience, funnel stage, and business goals — not isolated production tasks.
+Content is produced as a strategic function: ad scripts, articles, landing page copy, and campaign assets aligned to audience, funnel stage, and business goals; not isolated production tasks.
 
 ### Social media management
 
-End-to-end social presence: content calendar, platform-specific publishing, community engagement, and reporting — distinct from one-off content creation.
+End-to-end social presence: content calendar, platform-specific publishing, community engagement, and reporting, distinct from one-off content creation.
 
 ### Campaign management
 
-Cross-channel coordination of paid, content, email, social, launches, and seasonal activity under one timeline, goal, and success definition — so messaging stays consistent and attributable.
+Cross-channel coordination of paid, content, email, social, launches, and seasonal activity under one timeline, goal, and success definition, so messaging stays consistent and attributable.
 
 ### Generative engine optimisation (GEO)
 
-Consultico offers generative engine optimisation: structuring brand content, entity signals, and authoritative on-site copy so AI assistants (ChatGPT, Perplexity, Google AI Overviews, and similar) can accurately retrieve and cite Consultico clients. GEO complements traditional SEO — crawl access, clear entity data, answer-first copy, and verifiable statistics on live pages are prerequisites for AI citation.
+Consultico offers generative engine optimisation: structuring brand content, entity signals, and authoritative on-site copy so AI assistants (ChatGPT, Perplexity, Google AI Overviews, and similar) can accurately retrieve and cite Consultico clients. GEO complements traditional SEO. Crawl access, clear entity data, answer-first copy, and verifiable statistics on live pages are prerequisites for AI citation.
 
 ## Results and case evidence
 
-### The Boiler Co (trades / plumbing — SEO)
+### The Boiler Co (trades / plumbing, SEO)
 
 The Boiler Co is a trades business where a full calendar is critical (average job value circa £1,200). They relied heavily on paid ads; when ads had to pause, lead flow was at risk. Consultico built an SEO foundation focused on high-intent local boiler-service searches.
 
-Within three months, the calendar was consistently filled through organic search alone. Typical weekly search performance moved from approximately 6,000 impressions and 20 clicks to 21,000 impressions and 58 clicks, with higher-intent traffic converting to booked appointments. The Boiler Co has been a retained SEO client for 14+ months and returned for additional website work. Testimonial: Ant Vitale, The Boiler Co — "After a frustrating run with agencies, this gave us genuine clarity on what to do and why it would work."
+Within three months, the calendar was consistently filled through organic search alone. Typical weekly search performance moved from approximately 6,000 impressions and 20 clicks to 21,000 impressions and 58 clicks, with higher-intent traffic converting to booked appointments. The Boiler Co has been a retained SEO client for 14+ months and returned for additional website work. Testimonial: Ant Vitale, The Boiler Co, "After a frustrating run with agencies, this gave us genuine clarity on what to do and why it would work."
 
-### Garden Games brand (e-commerce — strategy advisory, anonymous client)
+### Garden Games brand (e-commerce, strategy advisory, anonymous client)
 
-A UK brand selling American garden games had strong SEO on one core keyword but little else — no social, email, or broader infrastructure. Consultico began with a Think First consultation, then refreshed three websites, strengthened SEO beyond the single keyword, reactivated email, launched Instagram, and developed paid pipeline groundwork. The client remains on Consultico's marketing advisory team (16+ months). Identity kept anonymous at client request.
+A UK brand selling American garden games had strong SEO on one core keyword but little else: no social, email, or broader infrastructure. Consultico began with a Think First consultation, then refreshed three websites, strengthened SEO beyond the single keyword, reactivated email, launched Instagram, and developed paid pipeline groundwork. The client remains on Consultico's marketing advisory team (16+ months). Identity kept anonymous at client request.
 
-### Tiny Changes (Edinburgh mental health charity — podcast promotion)
+### Tiny Changes (Edinburgh mental health charity, podcast promotion)
 
-Consultico handled release and organic promotion of a six-episode podcast series: platform uploads (Podcastics, YouTube), hand-edited captions, and native social clips on Instagram and Facebook. In the first 30 days: 110,000+ Instagram views, 13,000 Facebook reach, strongest episode 140+ YouTube views within 24 hours — all organic, no paid promotion. Campaign ongoing at time of publication.
+Consultico handled release and organic promotion of a six-episode podcast series: platform uploads (Podcastics, YouTube), hand-edited captions, and native social clips on Instagram and Facebook. In the first 30 days: 110,000+ Instagram views, 13,000 Facebook reach, strongest episode 140+ YouTube views within 24 hours, all organic, no paid promotion. Campaign ongoing at time of publication.
 
 ### Think First workshop outcomes (representative)
 
@@ -100,7 +100,7 @@ Yes. Consultico has delivered retained SEO for The Boiler Co, a trades/plumbing 
 
 ### What is generative engine optimisation (GEO)?
 
-Generative engine optimisation (GEO) is the practice of making brand content retrievable and citable by AI search tools — through clear entity signals, structured data, answer-first copy, authoritative statistics, and crawlable HTML. Consultico offers GEO alongside SEO for brands that want visibility in Google AI Overviews, ChatGPT, Perplexity, and similar systems.
+Generative engine optimisation (GEO) is the practice of making brand content retrievable and citable by AI search tools, through clear entity signals, structured data, answer-first copy, authoritative statistics, and crawlable HTML. Consultico offers GEO alongside SEO for brands that want visibility in Google AI Overviews, ChatGPT, Perplexity, and similar systems.
 
 ### How do I contact Consultico?
 
@@ -108,15 +108,15 @@ Email paul@consultico.co.uk, call 0141 459 1351, use the contact form at https:/
 
 ## Team
 
-- **Paul Wilson** — Founder. Strategy, web development, brand growth. University of Strathclyde marketing graduate; Strathclyde Inspire fellowship 2025; MRS certified; agency experience (Blue Economy Agency, San Francisco).
-- **Leona Wade** — Account Manager. SEO, social, strategy, client success. BA Marketing and Entrepreneurship, Strathclyde.
-- **Lucy Dinse** — Lead Beta Tester, student internship programme. University of Strathclyde.
-- **Juan Canals Marti** — Senior Meta Analytics Partner. Founder of Marti Clearpath Ltd; BSc Mathematics and Economics.
+- **Paul Wilson**, Founder. Strategy, web development, brand growth. University of Strathclyde marketing graduate; Strathclyde Inspire fellowship 2025; MRS certified; agency experience (Blue Economy Agency, San Francisco).
+- **Leona Wade**, Account Manager. SEO, social, strategy, client success. BA Marketing and Entrepreneurship, Strathclyde.
+- **Lucy Dinse**, Lead Beta Tester, student internship programme. University of Strathclyde.
+- **Juan Canals Marti**, Senior Meta Analytics Partner. Founder of Marti Clearpath Ltd; BSc Mathematics and Economics.
 
 ## Core pages
 
-- [Home](https://www.consultico.co.uk/): Digital marketing consultant in Glasgow — services, projects, team, reviews, and contact.
-- [Think First](https://www.consultico.co.uk/think-first): Marketing strategy workshop — process, fit, case patterns, and application.
+- [Home](https://www.consultico.co.uk/): Digital marketing consultant in Glasgow, services, projects, team, reviews, and contact.
+- [Think First](https://www.consultico.co.uk/think-first): Marketing strategy workshop, process, fit, case patterns, and application.
 
 ## Homepage sections
 
@@ -137,8 +137,8 @@ Email paul@consultico.co.uk, call 0141 459 1351, use the contact form at https:/
 
 ## External profiles
 
-- [LinkedIn — Consultico Ltd](https://www.linkedin.com/company/consultico-ltd/): Company profile.
-- [LinkedIn — Paul Wilson](https://www.linkedin.com/in/think-first-marketing): Founder profile.
+- [LinkedIn, Consultico Ltd](https://www.linkedin.com/company/consultico-ltd/): Company profile.
+- [LinkedIn, Paul Wilson](https://www.linkedin.com/in/think-first-marketing): Founder profile.
 - [Instagram](https://www.instagram.com/consultico_marketing/): Social updates.
 - [Google Business Profile](https://www.google.com/maps/place/Consultico/@55.8609282,-4.2443981,641m/data=!3m3!1e3!4b1!5s0x488846a710ae8043:0x4c27d014396277a0!4m6!3m5!1s0x23d34cdec57c3e91:0x69bb0edabecd9001!8m2!3d55.8609282!4d-4.2418232!16s%2Fg%2F11ldh2jgj6): Reviews and local listing (11 five-star Google reviews).
 

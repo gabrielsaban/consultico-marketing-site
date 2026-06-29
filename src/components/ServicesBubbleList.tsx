@@ -56,7 +56,7 @@ const ServicePreviewImage = ({ service }: { service: Service }) => {
   return (
     <Image
       src={service.image}
-      alt={service.imageAlt ?? `${service.name} — Consultico`}
+      alt={service.imageAlt ?? `${service.name}, Consultico`}
       width={640}
       height={640}
       className="h-full w-full object-cover"

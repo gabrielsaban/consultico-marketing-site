@@ -16,7 +16,7 @@ export default function ScrollGlobe({ className = '' }: { className?: string }) 
     offset: ['start end', 'end start'], // 0 → 1 as section traverses viewport
   });
 
-  // Scroll-driven 3D tilt — crank values for visible movement
+  // Scroll-driven 3D tilt: crank values for visible movement
   const rotateY = useTransform(scrollYProgress, [0, 1], [-50, 0]);
   const rotateX = useTransform(scrollYProgress, [0, 1], [10 ,0]);
   const translateY = useTransform(scrollYProgress, [0, 1], [0,0]);
@@ -53,7 +53,7 @@ export default function ScrollGlobe({ className = '' }: { className?: string }) 
             opacity="1"
           />
 
-          {/* Latitude lines (horizontal rings as ellipses) — thicker near equator, thinner at poles */}
+          {/* Latitude lines (horizontal rings as ellipses), thicker near equator, thinner at poles */}
           {([-120, -60, 0, 60, 120] as const).map((offset) => {
             const dist = Math.abs(offset);
             const sw = dist === 0 ? 1.2 : dist <= 60 ? 0.8 : 0.4;
@@ -71,7 +71,7 @@ export default function ScrollGlobe({ className = '' }: { className?: string }) 
             );
           })}
 
-          {/* Longitude arcs (vertical meridians) — wider arcs thicker (facing viewer), narrow ones thinner */}
+          {/* Longitude arcs (vertical meridians), wider arcs thicker (facing viewer), narrow ones thinner */}
           {([0.15, 0.4, 0.7, 1] as const).map((rx, i) => (
             <g key={`lon-${i}`}>
               <ellipse
@@ -86,7 +86,7 @@ export default function ScrollGlobe({ className = '' }: { className?: string }) 
             </g>
           ))}
 
-          {/* Centre vertical meridian (prime meridian — slightly bolder) */}
+          {/* Centre vertical meridian (prime meridian, slightly bolder) */}
           <line
             x1="200"
             y1="20"
@@ -97,7 +97,7 @@ export default function ScrollGlobe({ className = '' }: { className?: string }) 
             opacity="1"
           />
 
-          {/* Horizontal equator — bolder than other latitudes */}
+          {/* Horizontal equator, bolder than other latitudes */}
           <line
             x1="20"
             y1="200"
