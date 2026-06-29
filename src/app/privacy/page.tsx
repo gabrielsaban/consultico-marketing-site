@@ -42,7 +42,7 @@ const sections = [
   },
   {
     title: 'Cookies and analytics',
-    body: 'We use cookies and similar technologies for essential site function and analytics. You can control cookies through your browser settings.',
+    body: 'We use cookies and similar technologies for essential site function and analytics, including Google Analytics 4 (usage data such as pages visited and general location). Vercel Analytics and Speed Insights may also collect anonymised performance data. You can control cookies through your browser settings.',
   },
 ];
 
