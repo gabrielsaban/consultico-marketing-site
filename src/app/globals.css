@@ -14,6 +14,7 @@
   --brand-blue: #007BFF;      /* Our blue */
   --brand-silk: #f2f2f2;      /* Bleached silk */
   --brand-black: #141414;     /* Chinese black */
+  --brand-navy: #1B2A4A;      /* Secondary accent only - never full sections */
   /* Backwards-compat: alias old primary to brand blue */
   --blue-primary: var(--brand-blue);
   color-scheme: light;
@@ -30,6 +31,7 @@
   --color-brand-blue: var(--brand-blue);
   --color-brand-silk: var(--brand-silk);
   --color-brand-black: var(--brand-black);
+  --color-brand-navy: var(--brand-navy);
   /* Backwards-compat mapping */
   --color-blue-primary: var(--brand-blue);
 }

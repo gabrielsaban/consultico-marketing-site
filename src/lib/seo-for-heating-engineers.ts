@@ -35,7 +35,7 @@ export const SEO_FOR_HEATING_ENGINEERS_FAQS = [
   {
     question: 'Why does showing Gas Safe registration matter for SEO and trust?',
     answer:
-      'Because it is the law and the deciding trust signal. It is illegal to work on gas without being Gas Safe registered, and around 1.1 million gas jobs a year are done by illegal fitters (Gas Safe Register, 2016). Homeowners increasingly check the official register, so showing your Gas Safe number reassures customers and strengthens local trust signals.',
+      'Because it is the law and the deciding trust signal. It is illegal to work on gas without being Gas Safe registered, and Gas Safe Register estimates around 250,000 illegal gas jobs are carried out every year. Homeowners increasingly check the official register, so showing your Gas Safe number reassures customers and strengthens local trust signals.',
   },
 ] as const;
 
@@ -69,7 +69,7 @@ export const SEO_FOR_HEATING_ENGINEERS_FAQS_SCHEMA = [
   {
     question: 'Why does showing Gas Safe registration matter for SEO and trust?',
     answer:
-      'Because it is the law and the deciding trust signal. It is illegal to work on gas without being Gas Safe registered, and around 1.1 million gas jobs a year are done by illegal fitters (Gas Safe Register, 2016). Homeowners increasingly check the official register, so showing your Gas Safe number on your site and profile both reassures customers and strengthens local trust signals.',
+      'Because it is the law and the deciding trust signal. It is illegal to work on gas without being Gas Safe registered, and Gas Safe Register estimates around 250,000 illegal gas jobs are carried out every year. Homeowners increasingly check the official register, so showing your Gas Safe number on your site and profile both reassures customers and strengthens local trust signals.',
   },
 ] as const;
 

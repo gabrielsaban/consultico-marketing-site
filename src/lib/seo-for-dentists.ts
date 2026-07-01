@@ -13,7 +13,7 @@ export const SEO_FOR_DENTISTS_FAQS = [
   {
     question: 'Is dental SEO worth it when NHS demand is already so high?',
     answer:
-      'Demand is high, but it does not automatically reach your chair. The BDA estimates around 13 million people had unmet dental need in 2024, roughly 28 percent of adults (BDA, 2024), and those patients search online before they call. SEO puts your practice in front of them when they choose who to trust, especially for private and cosmetic work where the fee matters to you.',
+      'Demand is high, but it does not automatically reach your chair. 13 million adults in England - 28% of the adult population - had an unmet need for NHS dentistry in 2024 (British Dental Association, July 2024), and those patients search online before they call. SEO puts your practice in front of them when they choose who to trust, especially for private and cosmetic work where the fee matters to you.',
   },
   {
     question: 'Can SEO content stay within GDC advertising rules?',
@@ -47,7 +47,7 @@ export const SEO_FOR_DENTISTS_FAQS_SCHEMA = [
   {
     question: 'Is dental SEO worth it when NHS demand is already so high?',
     answer:
-      'Demand is high, but it does not automatically reach your practice. The BDA estimates around 13 million people had unmet dental need in 2024, roughly 28 percent of adults (BDA, 2024), and those patients search online before they call. SEO puts you in front of them when they choose who to trust, especially for private and cosmetic treatments where the fee income matters.',
+      'Demand is high, but it does not automatically reach your practice. 13 million adults in England - 28% of the adult population - had an unmet need for NHS dentistry in 2024 (British Dental Association, July 2024), and those patients search online before they call. SEO puts you in front of them when they choose who to trust, especially for private and cosmetic treatments where the fee income matters.',
   },
   {
     question: 'Can SEO content stay within GDC advertising rules?',
@@ -74,7 +74,7 @@ export const SEO_FOR_DENTISTS_FAQS_SCHEMA = [
 export const DENTIST_SEO_PAIN_POINTS = [
   {
     title: 'NHS demand you cannot capture',
-    body: 'millions of people need a dentist but cannot access NHS care. The BDA estimates around 13 million had unmet dental need in 2024, roughly 28 percent of adults (BDA, 2024). Without search visibility, that demand goes to whichever practice ranks, not necessarily yours.',
+    body: 'millions of people need a dentist but cannot access NHS care. 13 million adults in England - 28% of the adult population - had an unmet need for NHS dentistry in 2024 (British Dental Association, July 2024). Without search visibility, that demand goes to whichever practice ranks, not necessarily yours.',
   },
   {
     title: 'Cosmetic journeys that need trust first',

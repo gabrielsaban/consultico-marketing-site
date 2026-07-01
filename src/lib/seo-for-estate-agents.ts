@@ -13,7 +13,7 @@ export const SEO_FOR_ESTATE_AGENTS_FAQS = [
   {
     question: 'Is SEO worth it when Rightmove and Zoopla already have the buyers?',
     answer:
-      'The portals win buyers, but they do not win you instructions. Over 80 percent of portal time is on Rightmove (Rightmove, 2024), yet vendors choose their agent on Google, and almost half of sellers invite three agents to value before deciding (Zoopla, 2025). SEO gets you onto that shortlist, where your fee income actually comes from.',
+      'The portals win buyers, but they do not win you instructions. Over 80 percent of portal time is on Rightmove (Rightmove, 2024), yet vendors choose their agent on Google, and 49% of sellers invite three agents to value their home before choosing one (Zoopla/YouGov survey of recent sellers, June 2025). SEO gets you onto that shortlist, where your fee income actually comes from.',
   },
   {
     question: 'Should estate agents do SEO or pay for more portal advertising?',
@@ -47,7 +47,7 @@ export const SEO_FOR_ESTATE_AGENTS_FAQS_SCHEMA = [
   {
     question: 'Is SEO worth it when Rightmove and Zoopla already have the buyers?',
     answer:
-      'The portals win buyers, but they do not win you instructions. Over 80 percent of portal time is on Rightmove (Rightmove, 2024), yet vendors choose their agent on Google, and almost half of sellers invite three agents to value before deciding (Zoopla, 2025). SEO gets you onto that shortlist, which is where your fee income actually comes from.',
+      'The portals win buyers, but they do not win you instructions. Over 80 percent of portal time is on Rightmove (Rightmove, 2024), yet vendors choose their agent on Google, and 49% of sellers invite three agents to value their home before choosing one (Zoopla/YouGov survey of recent sellers, June 2025). SEO gets you onto that shortlist, which is where your fee income actually comes from.',
   },
   {
     question: 'Should estate agents do SEO or pay for more portal advertising?',

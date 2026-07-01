@@ -28,7 +28,7 @@ export const SEO_INDUSTRIES: SeoIndustryEntry[] = [
     name: 'Electricians',
     label: 'SEO for Electricians',
     category: 'Trades',
-    related: ['seo-for-plumbers', 'seo-for-heating-engineers', 'seo-for-builders'],
+    related: ['seo-for-plumbers', 'seo-for-heating-engineers', 'seo-for-estate-agents'],
     live: true,
     blurb:
       'Strategy-led SEO for electricians across the UK: Google Business Profile, local search, technical SEO and content that turns emergency, EICR, EV charger and rewire searches into booked jobs.',
@@ -48,7 +48,7 @@ export const SEO_INDUSTRIES: SeoIndustryEntry[] = [
     name: 'Estate Agents',
     label: 'SEO for Estate Agents',
     category: 'Professional Services',
-    related: ['seo-for-solicitors', 'seo-for-accountants'],
+    related: ['seo-for-estate-agents', 'seo-for-accountants', 'seo-for-dentists'],
     live: true,
     blurb:
       'Strategy-led SEO for estate and letting agents across the UK: Google Business Profile, local search, reviews and content that win more vendor instructions and landlord enquiries.',
@@ -58,7 +58,7 @@ export const SEO_INDUSTRIES: SeoIndustryEntry[] = [
     name: 'Dentists',
     label: 'SEO for Dentists',
     category: 'Healthcare',
-    related: ['seo-for-vets', 'seo-for-chiropractors'],
+    related: ['seo-for-dentists', 'seo-for-estate-agents', 'seo-for-accountants'],
     live: true,
     blurb:
       'Strategy-led SEO for dental practices across the UK: Google Business Profile, local search, reviews and treatment content that attract private, cosmetic and new NHS patients.',
@@ -68,7 +68,7 @@ export const SEO_INDUSTRIES: SeoIndustryEntry[] = [
     name: 'Accountants',
     label: 'SEO for Accountants',
     category: 'Professional Services',
-    related: ['seo-for-estate-agents', 'seo-for-solicitors'],
+    related: ['seo-for-estate-agents', 'seo-for-accountants', 'seo-for-dentists'],
     live: true,
     blurb:
       'Strategy-led SEO for accountancy firms across the UK: Google Business Profile, local and specialist search, reviews and content that win the right long-term clients and capture Making Tax Digital demand.',

@@ -86,19 +86,19 @@ export default function AuditSignupBlock({ source = 'contact-page', variant = 's
       className={
         isSection
           ? 'rounded-2xl border border-gray-200 bg-white/90 p-6 shadow-[0_8px_30px_rgba(0,0,0,0.06)] dark:border-gray-800 dark:bg-gray-900/90 md:p-8'
-          : 'rounded-xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-gray-900'
+          : 'rounded-xl border border-dashed border-gray-300 bg-white/60 p-5 dark:border-gray-700 dark:bg-gray-900/60'
       }
     >
       {step === 1 ? (
         <>
           <p className="mb-2 font-helvetica text-[0.75rem] font-semibold uppercase tracking-[0.14em] text-brand-blue">
-            Free SEO audit
+            Optional
           </p>
-          <h2 className="font-futura text-[clamp(1.35rem,2vw,1.75rem)] font-bold text-brand-blue">
-            Get a customised audit of your site
+          <h2 className={`font-futura font-bold text-brand-blue ${isSection ? 'text-[clamp(1.35rem,2vw,1.75rem)]' : 'text-[clamp(1.05rem,1.5vw,1.25rem)]'}`}>
+            {isSection ? 'Get a customised audit of your site' : 'Want a free SEO audit by email instead?'}
           </h2>
-          <p className="mt-2 font-helvetica-light text-[clamp(0.95rem,1.1vw,1.05rem)] text-gray-700 dark:text-gray-300">
-            Leave your email. We&apos;ll be in touch.
+          <p className={`mt-2 font-helvetica-light text-gray-700 dark:text-gray-300 ${isSection ? 'text-[clamp(0.95rem,1.1vw,1.05rem)]' : 'text-[0.9rem]'}`}>
+            {isSection ? 'Leave your email. We\'ll be in touch.' : 'Leave your email and we\'ll send a tailored audit - no form required.'}
           </p>
 
           <form onSubmit={handleStep1} className="mt-6 space-y-4">

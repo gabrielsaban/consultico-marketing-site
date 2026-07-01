@@ -23,7 +23,7 @@ export const SEO_FOR_ACCOUNTANTS_FAQS = [
   {
     question: 'Can SEO help accountants win clients from Making Tax Digital?',
     answer:
-      'Yes. Around 850,000 businesses enter Making Tax Digital for Income Tax from April 2026 (HMRC, 2025), and many sole traders and landlords will look for an accountant for the first time. Clear MTD pages that explain the rules and deadlines capture that demand ahead of firms that have published nothing on it.',
+      'Yes. Around 780,000 sole traders and landlords join Making Tax Digital from April 2026 (HMRC), with almost a million more following in 2027. Many will look for an accountant for the first time. Clear MTD pages that explain the rules and deadlines capture that demand ahead of firms that have published nothing on it.',
   },
   {
     question: 'How much does SEO for accountants cost?',
@@ -57,7 +57,7 @@ export const SEO_FOR_ACCOUNTANTS_FAQS_SCHEMA = [
   {
     question: 'Can SEO help accountants win clients from Making Tax Digital?',
     answer:
-      'Yes. Around 850,000 businesses enter Making Tax Digital for Income Tax from April 2026 (HMRC, 2025), and many sole traders and landlords will look for an accountant for the first time. Clear MTD pages that explain the rules and deadlines capture that demand ahead of firms that have published nothing on it.',
+      'Yes. Around 780,000 sole traders and landlords join Making Tax Digital from April 2026 (HMRC), with almost a million more following in 2027. Many will look for an accountant for the first time. Clear MTD pages that explain the rules and deadlines capture that demand ahead of firms that have published nothing on it.',
   },
   {
     question: 'How much does SEO for accountants cost?',

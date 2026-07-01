@@ -62,7 +62,7 @@ We've ordered this list by fit for growing UK businesses rather than by raw size
 
 Consultico is a Glasgow-based digital marketing consultancy that manages Google Ads and Meta paid media around your unit economics rather than vanity metrics. Services span campaign setup and optimisation, media creation, copywriting, and clear analytics and reporting. The approach is deliberately margin-aware: no campaign goes live without a defined objective and a success measure, so spend is always tied to a target return. It's a strong fit for B2C brands and trades businesses that are already selling and want paid media to scale profitably.
 
-When we audit a new PPC account, the most common leak isn't the bidding, it's spend flowing toward searches that look relevant but never convert into booked revenue. Consultico holds 11 five-star Google reviews, offers competitive pricing suited to growing businesses, and was developed with research backing from a University of Strathclyde Inspire fellowship. For owners who want strategic control before delegating budget, it pairs hands-on management with the bigger-picture thinking most ad shops skip.
+When we audit a new PPC account, the most common leak isn't the bidding, it's spend flowing toward searches that look relevant but never convert into booked revenue. Consultico is rated 5.0 on Google, offers competitive pricing suited to growing businesses, and was developed with research backing from a University of Strathclyde Inspire fellowship. For owners who want strategic control before delegating budget, it pairs hands-on management with the bigger-picture thinking most ad shops skip.
 
 ### 2. Jellyfish, best for global, multi-market campaigns
 

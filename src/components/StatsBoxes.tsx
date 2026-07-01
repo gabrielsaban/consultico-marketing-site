@@ -1,54 +1,57 @@
-'use client';
-
 import Container from '@/components/Container';
-import AnimatedCounter from '@/components/AnimatedCounter';
 
 interface Stat {
-  value: string;
-  name: string;
+  headline: string;
+  label: string;
+  variant: 'numeric' | 'phrase';
 }
 
 const stats: Stat[] = [
   {
-    value: '120,000',
-    name: 'Organic views in 30 days',
+    headline: '3×',
+    label: 'Organic clicks in 14 months',
+    variant: 'numeric',
   },
   {
-    value: '7',
-    name: 'Page-one rankings in one quarter',
+    headline: '90 days',
+    label: 'A full diary from organic search with paid ads paused - The Boiler Co',
+    variant: 'phrase',
   },
   {
-    value: '£2,000',
-    name: 'Saved in one recommendation',
+    headline: '5.0★',
+    label: 'Rated on Google',
+    variant: 'numeric',
   },
   {
-    value: '5',
-    name: 'Bespoke recommendations, every time',
+    headline: '40+',
+    label: 'Page-one rankings for our clients',
+    variant: 'numeric',
   },
 ];
 
 export default function StatsBoxes() {
   return (
     <Container className="py-14 sm:py-20 lg:py-24">
-      <div className="grid grid-cols-2 xl:grid-cols-4 gap-4 min-[600px]:gap-6 md:gap-8 lg:gap-10 xl:gap-12 2xl:gap-17">
-        {stats.map((stat, index) => (
+      <div className="grid grid-cols-1 gap-6 min-[600px]:grid-cols-2 xl:grid-cols-4 min-[600px]:gap-8 lg:gap-10 xl:gap-12">
+        {stats.map((stat) => (
           <div
-            key={index}
-            className="flex flex-col min-h-[9.75rem] min-[600px]:min-h-[12rem] xl:h-[12rem] 2xl:h-[15rem]"
+            key={stat.label}
+            className="flex min-h-[9.75rem] flex-col min-[600px]:min-h-[12rem] xl:min-h-[12rem]"
           >
-            {/* Stat Value */}
-            <AnimatedCounter
-              value={stat.value}
-              duration={1.4}
-              className="text-[clamp(2rem,9vw,3rem)] min-[600px]:text-5xl md:text-6xl"
-            />
+            <div
+              className={`mb-4 font-bold font-futura text-brand-blue ${
+                stat.variant === 'numeric'
+                  ? 'text-[clamp(2rem,9vw,3rem)] min-[600px]:text-5xl md:text-6xl'
+                  : 'text-[clamp(1.35rem,4vw,1.75rem)] min-[600px]:text-2xl md:text-3xl leading-tight'
+              }`}
+            >
+              {stat.headline}
+            </div>
 
-            {/* Blue Divider */}
-            <div className="w-full h-[2px] bg-brand-blue mb-3 min-[600px]:mb-4 flex-shrink-0" />
+            <div className="mb-3 h-[2px] w-full flex-shrink-0 bg-brand-blue min-[600px]:mb-4" />
 
-            {/* Stat Name */}
-            <h4 className="font-helvetica font-medium text-[clamp(0.95rem,3.8vw,1.125rem)] min-[600px]:text-[clamp(1.125rem,1.4vw,1.75rem)] leading-tight text-black dark:text-gray-100 mb-1.5 min-[600px]:mb-2">
-              {stat.name}
+            <h4 className="mb-1.5 font-helvetica font-medium text-[clamp(0.95rem,3.8vw,1.125rem)] leading-tight text-brand-black min-[600px]:mb-2 min-[600px]:text-[clamp(1rem,1.4vw,1.25rem)] dark:text-gray-100">
+              {stat.label}
             </h4>
           </div>
         ))}
