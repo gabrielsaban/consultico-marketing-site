@@ -22,7 +22,6 @@ export default function Footer() {
     { name: 'Articles', href: '/articles' },
     { name: 'SEO', href: '/seo' },
     { name: 'PPC', href: '/ppc' },
-    { name: 'Glasgow SEO', href: '/seo-glasgow' },
   ];
 
   return (

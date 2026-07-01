@@ -1,5 +1,6 @@
 import { CONSULTICO_GBP_URL, CONSULTICO_PHONE_E164, CONSULTICO_EMAIL, CONSULTICO_ADDRESS } from '@/lib/contact';
 import { SEO_GLASGOW_FAQS, SEO_GLASGOW_PATH } from '@/lib/seo-glasgow';
+import { SEO_FOR_PLUMBERS_FAQS_SCHEMA, SEO_FOR_PLUMBERS_PATH } from '@/lib/seo-for-plumbers';
 import { hasDedicatedArticleImage } from '@/lib/articles/display';
 import type { Article } from '@/lib/articles/types';
 import { SERVICE_PAGES, type ServicePageKey } from '@/lib/seo';
@@ -200,6 +201,46 @@ export function seoGlasgowPageJsonLd() {
         '@type': 'FAQPage',
         '@id': `${pageUrl}#faq`,
         mainEntity: SEO_GLASGOW_FAQS.map((faq) => ({
+          '@type': 'Question',
+          name: faq.question,
+          acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+        })),
+      },
+    ],
+  };
+}
+
+export function seoForPlumbersPageJsonLd() {
+  const pageUrl = `${SITE_ORIGIN}${SEO_FOR_PLUMBERS_PATH}`;
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Service',
+        '@id': `${pageUrl}#service`,
+        name: 'SEO for Plumbers',
+        serviceType: 'Search engine optimisation for plumbing and trades businesses',
+        provider: { '@id': `${SITE_ORIGIN}/#org` },
+        areaServed: { '@type': 'Country', name: 'United Kingdom' },
+        audience: { '@type': 'Audience', audienceType: 'Plumbing and heating businesses' },
+        description:
+          'Strategy-led SEO for plumbers and heating engineers across the UK: Google Business Profile, local search, technical SEO and content that turns searches into booked jobs.',
+        url: pageUrl,
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${pageUrl}#breadcrumb`,
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_ORIGIN },
+          { '@type': 'ListItem', position: 2, name: 'SEO', item: `${SITE_ORIGIN}/seo` },
+          { '@type': 'ListItem', position: 3, name: 'SEO for Plumbers', item: pageUrl },
+        ],
+      },
+      {
+        '@type': 'FAQPage',
+        '@id': `${pageUrl}#faq`,
+        mainEntity: SEO_FOR_PLUMBERS_FAQS_SCHEMA.map((faq) => ({
           '@type': 'Question',
           name: faq.question,
           acceptedAnswer: { '@type': 'Answer', text: faq.answer },
