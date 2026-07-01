@@ -133,6 +133,13 @@ Email paul@consultico.co.uk, call 0141 459 1351, use the contact form at https:/
 
 - [PPC](https://www.consultico.co.uk/ppc): Google and Meta paid advertising. See also the [best UK PPC agencies comparison article](https://www.consultico.co.uk/articles/best-ppc-agencies-uk).
 - [SEO](https://www.consultico.co.uk/seo): Search engine optimisation services. See also [why strategy should come before SEO](https://www.consultico.co.uk/articles/why-strategy-before-seo).
+- [SEO by industry](https://www.consultico.co.uk/seo-by-industry): Industry-specific SEO guides for trades and service businesses across the UK.
+- [SEO for plumbers](https://www.consultico.co.uk/seo-for-plumbers): Plumber SEO playbook for local search, Google Business Profile and booked jobs.
+- [SEO for electricians](https://www.consultico.co.uk/seo-for-electricians): Electrician SEO for emergencies, EICRs, EV chargers and planned electrical work.
+- [SEO for gas and heating engineers](https://www.consultico.co.uk/seo-for-heating-engineers): Gas and heating engineer SEO for boiler repairs, installs, services and year-round work.
+- [SEO for estate agents](https://www.consultico.co.uk/seo-for-estate-agents): Estate agent SEO for vendor instructions, Google Business Profile, reviews and local search.
+- [SEO for dentists](https://www.consultico.co.uk/seo-for-dentists): Dental SEO for private and cosmetic patients, GDC-aware content, Google Business Profile and local search.
+- [SEO for accountants](https://www.consultico.co.uk/seo-for-accountants): Accountancy SEO for specialist clients, Making Tax Digital demand, reviews and credentials.
 - [SEO agency in Glasgow](https://www.consultico.co.uk/seo-glasgow): Local SEO for Glasgow and central Scotland.
 - [Web development](https://www.consultico.co.uk/web-development): Conversion-focused websites with SEO foundations.
 - [Content creation](https://www.consultico.co.uk/content-creation): Strategic content and copy production.

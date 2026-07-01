@@ -10,7 +10,8 @@ export default function ServiceDesktopHeader() {
           alt="Consultico"
           width={420}
           height={120}
-          className="block w-[min(36vw,520px)] h-auto"
+          className="block h-auto w-[min(36vw,520px)]"
+          style={{ maxWidth: 'min(36vw, 520px)', height: 'auto' }}
           priority
         />
       </div>

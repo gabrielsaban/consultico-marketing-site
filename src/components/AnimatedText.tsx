@@ -91,7 +91,7 @@ function Word({
 }) {
   const wordProgress = useTransform(progress, [index / total, (index + 1) / total], [0, 1]);
   const opacity = useTransform(wordProgress, [0, 1], [0.3, 1]);
-  const color = useTransform(wordProgress, [0, 1], ['#798596', 'inherit']);
+  const color = useTransform(wordProgress, [0, 1], ['#798596', '#171717']);
   const cls = `${isSpace ? '' : 'inline-block'}${
     highlight && !isSpace ? ' text-blue-primary' : ''
   }`;

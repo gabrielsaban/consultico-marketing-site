@@ -1,6 +1,17 @@
 import { CONSULTICO_GBP_URL, CONSULTICO_PHONE_E164, CONSULTICO_EMAIL, CONSULTICO_ADDRESS } from '@/lib/contact';
 import { SEO_GLASGOW_FAQS, SEO_GLASGOW_PATH } from '@/lib/seo-glasgow';
-import { SEO_FOR_PLUMBERS_FAQS_SCHEMA, SEO_FOR_PLUMBERS_PATH } from '@/lib/seo-for-plumbers';
+import {
+  SEO_BY_INDUSTRY_PATH,
+  getIndustryPath,
+  getLiveSeoIndustries,
+  getSeoIndustryBySlug,
+} from '@/lib/seo-industries';
+import { SEO_FOR_PLUMBERS_FAQS_SCHEMA } from '@/lib/seo-for-plumbers';
+import { SEO_FOR_ESTATE_AGENTS_FAQS_SCHEMA } from '@/lib/seo-for-estate-agents';
+import { SEO_FOR_DENTISTS_FAQS_SCHEMA } from '@/lib/seo-for-dentists';
+import { SEO_FOR_ACCOUNTANTS_FAQS_SCHEMA } from '@/lib/seo-for-accountants';
+import { SEO_FOR_ELECTRICIANS_FAQS_SCHEMA } from '@/lib/seo-for-electricians';
+import { SEO_FOR_HEATING_ENGINEERS_FAQS_SCHEMA } from '@/lib/seo-for-heating-engineers';
 import { hasDedicatedArticleImage } from '@/lib/articles/display';
 import type { Article } from '@/lib/articles/types';
 import { SERVICE_PAGES, type ServicePageKey } from '@/lib/seo';
@@ -211,7 +222,8 @@ export function seoGlasgowPageJsonLd() {
 }
 
 export function seoForPlumbersPageJsonLd() {
-  const pageUrl = `${SITE_ORIGIN}${SEO_FOR_PLUMBERS_PATH}`;
+  const entry = getSeoIndustryBySlug('seo-for-plumbers');
+  const pageUrl = `${SITE_ORIGIN}${getIndustryPath('seo-for-plumbers')}`;
 
   return {
     '@context': 'https://schema.org',
@@ -225,6 +237,7 @@ export function seoForPlumbersPageJsonLd() {
         areaServed: { '@type': 'Country', name: 'United Kingdom' },
         audience: { '@type': 'Audience', audienceType: 'Plumbing and heating businesses' },
         description:
+          entry?.blurb ??
           'Strategy-led SEO for plumbers and heating engineers across the UK: Google Business Profile, local search, technical SEO and content that turns searches into booked jobs.',
         url: pageUrl,
       },
@@ -245,6 +258,254 @@ export function seoForPlumbersPageJsonLd() {
           name: faq.question,
           acceptedAnswer: { '@type': 'Answer', text: faq.answer },
         })),
+      },
+    ],
+  };
+}
+
+export function seoForEstateAgentsPageJsonLd() {
+  const entry = getSeoIndustryBySlug('seo-for-estate-agents');
+  const pageUrl = `${SITE_ORIGIN}${getIndustryPath('seo-for-estate-agents')}`;
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Service',
+        '@id': `${pageUrl}#service`,
+        name: 'SEO for Estate Agents',
+        serviceType: 'Search engine optimisation for estate and letting agents',
+        provider: { '@id': `${SITE_ORIGIN}/#org` },
+        areaServed: { '@type': 'Country', name: 'United Kingdom' },
+        audience: { '@type': 'Audience', audienceType: 'Estate and letting agencies' },
+        description:
+          entry?.blurb ??
+          'Strategy-led SEO for estate and letting agents across the UK: Google Business Profile, local search, reviews and content that win more vendor instructions and landlord enquiries.',
+        url: pageUrl,
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${pageUrl}#breadcrumb`,
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_ORIGIN },
+          { '@type': 'ListItem', position: 2, name: 'SEO', item: `${SITE_ORIGIN}/seo` },
+          { '@type': 'ListItem', position: 3, name: 'SEO for Estate Agents', item: pageUrl },
+        ],
+      },
+      {
+        '@type': 'FAQPage',
+        '@id': `${pageUrl}#faq`,
+        mainEntity: SEO_FOR_ESTATE_AGENTS_FAQS_SCHEMA.map((faq) => ({
+          '@type': 'Question',
+          name: faq.question,
+          acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+        })),
+      },
+    ],
+  };
+}
+
+export function seoForDentistsPageJsonLd() {
+  const entry = getSeoIndustryBySlug('seo-for-dentists');
+  const pageUrl = `${SITE_ORIGIN}${getIndustryPath('seo-for-dentists')}`;
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Service',
+        '@id': `${pageUrl}#service`,
+        name: 'SEO for Dentists',
+        serviceType: 'Search engine optimisation for dental practices',
+        provider: { '@id': `${SITE_ORIGIN}/#org` },
+        areaServed: { '@type': 'Country', name: 'United Kingdom' },
+        audience: { '@type': 'Audience', audienceType: 'Dental practices' },
+        description:
+          entry?.blurb ??
+          'Strategy-led SEO for dental practices across the UK: Google Business Profile, local search, reviews and treatment content that attract private, cosmetic and new NHS patients.',
+        url: pageUrl,
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${pageUrl}#breadcrumb`,
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_ORIGIN },
+          { '@type': 'ListItem', position: 2, name: 'SEO', item: `${SITE_ORIGIN}/seo` },
+          { '@type': 'ListItem', position: 3, name: 'SEO for Dentists', item: pageUrl },
+        ],
+      },
+      {
+        '@type': 'FAQPage',
+        '@id': `${pageUrl}#faq`,
+        mainEntity: SEO_FOR_DENTISTS_FAQS_SCHEMA.map((faq) => ({
+          '@type': 'Question',
+          name: faq.question,
+          acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+        })),
+      },
+    ],
+  };
+}
+
+export function seoForAccountantsPageJsonLd() {
+  const entry = getSeoIndustryBySlug('seo-for-accountants');
+  const pageUrl = `${SITE_ORIGIN}${getIndustryPath('seo-for-accountants')}`;
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Service',
+        '@id': `${pageUrl}#service`,
+        name: 'SEO for Accountants',
+        serviceType: 'Search engine optimisation for accountancy practices',
+        provider: { '@id': `${SITE_ORIGIN}/#org` },
+        areaServed: { '@type': 'Country', name: 'United Kingdom' },
+        audience: { '@type': 'Audience', audienceType: 'Accountancy practices' },
+        description:
+          entry?.blurb ??
+          'Strategy-led SEO for accountancy firms across the UK: Google Business Profile, local and specialist search, reviews and content that win the right long-term clients and capture Making Tax Digital demand.',
+        url: pageUrl,
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${pageUrl}#breadcrumb`,
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_ORIGIN },
+          { '@type': 'ListItem', position: 2, name: 'SEO', item: `${SITE_ORIGIN}/seo` },
+          { '@type': 'ListItem', position: 3, name: 'SEO for Accountants', item: pageUrl },
+        ],
+      },
+      {
+        '@type': 'FAQPage',
+        '@id': `${pageUrl}#faq`,
+        mainEntity: SEO_FOR_ACCOUNTANTS_FAQS_SCHEMA.map((faq) => ({
+          '@type': 'Question',
+          name: faq.question,
+          acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+        })),
+      },
+    ],
+  };
+}
+
+export function seoForElectriciansPageJsonLd() {
+  const entry = getSeoIndustryBySlug('seo-for-electricians');
+  const pageUrl = `${SITE_ORIGIN}${getIndustryPath('seo-for-electricians')}`;
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Service',
+        '@id': `${pageUrl}#service`,
+        name: 'SEO for Electricians',
+        serviceType: 'Search engine optimisation for electricians and electrical contractors',
+        provider: { '@id': `${SITE_ORIGIN}/#org` },
+        areaServed: { '@type': 'Country', name: 'United Kingdom' },
+        audience: { '@type': 'Audience', audienceType: 'Electricians and electrical contractors' },
+        description:
+          entry?.blurb ??
+          'Strategy-led SEO for electricians across the UK: Google Business Profile, local search, technical SEO and content that turns emergency, EICR, EV charger and rewire searches into booked jobs.',
+        url: pageUrl,
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${pageUrl}#breadcrumb`,
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_ORIGIN },
+          { '@type': 'ListItem', position: 2, name: 'SEO', item: `${SITE_ORIGIN}/seo` },
+          { '@type': 'ListItem', position: 3, name: 'SEO for Electricians', item: pageUrl },
+        ],
+      },
+      {
+        '@type': 'FAQPage',
+        '@id': `${pageUrl}#faq`,
+        mainEntity: SEO_FOR_ELECTRICIANS_FAQS_SCHEMA.map((faq) => ({
+          '@type': 'Question',
+          name: faq.question,
+          acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+        })),
+      },
+    ],
+  };
+}
+
+export function seoForHeatingEngineersPageJsonLd() {
+  const entry = getSeoIndustryBySlug('seo-for-heating-engineers');
+  const pageUrl = `${SITE_ORIGIN}${getIndustryPath('seo-for-heating-engineers')}`;
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Service',
+        '@id': `${pageUrl}#service`,
+        name: 'SEO for Gas and Heating Engineers',
+        serviceType: 'Search engine optimisation for gas and heating engineers',
+        provider: { '@id': `${SITE_ORIGIN}/#org` },
+        areaServed: { '@type': 'Country', name: 'United Kingdom' },
+        audience: { '@type': 'Audience', audienceType: 'Gas and heating engineers' },
+        description:
+          entry?.blurb ??
+          'Strategy-led SEO for gas and heating engineers across the UK: Google Business Profile, local search, technical SEO and content that turns boiler repair, service, installation and gas safety searches into booked jobs all year round.',
+        url: pageUrl,
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${pageUrl}#breadcrumb`,
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_ORIGIN },
+          { '@type': 'ListItem', position: 2, name: 'SEO', item: `${SITE_ORIGIN}/seo` },
+          { '@type': 'ListItem', position: 3, name: 'SEO for Gas and Heating Engineers', item: pageUrl },
+        ],
+      },
+      {
+        '@type': 'FAQPage',
+        '@id': `${pageUrl}#faq`,
+        mainEntity: SEO_FOR_HEATING_ENGINEERS_FAQS_SCHEMA.map((faq) => ({
+          '@type': 'Question',
+          name: faq.question,
+          acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+        })),
+      },
+    ],
+  };
+}
+
+export function seoByIndustryPageJsonLd() {
+  const pageUrl = `${SITE_ORIGIN}${SEO_BY_INDUSTRY_PATH}`;
+  const liveIndustries = getLiveSeoIndustries();
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${pageUrl}#breadcrumb`,
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_ORIGIN },
+          { '@type': 'ListItem', position: 2, name: 'SEO', item: `${SITE_ORIGIN}/seo` },
+          { '@type': 'ListItem', position: 3, name: 'SEO by Industry', item: pageUrl },
+        ],
+      },
+      {
+        '@type': 'CollectionPage',
+        '@id': `${pageUrl}#collection`,
+        name: 'SEO by Industry',
+        url: pageUrl,
+        description:
+          'Industry-specific SEO guides for trades and service businesses across the UK, from Consultico.',
+        publisher: { '@id': `${SITE_ORIGIN}/#org` },
+        mainEntity: {
+          '@type': 'ItemList',
+          itemListElement: liveIndustries.map((industry, index) => ({
+            '@type': 'ListItem',
+            position: index + 1,
+            name: industry.label,
+            url: `${SITE_ORIGIN}${getIndustryPath(industry)}`,
+          })),
+        },
       },
     ],
   };

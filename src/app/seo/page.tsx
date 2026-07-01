@@ -5,12 +5,14 @@ import ServiceDesktopHeader from '@/components/ServiceDesktopHeader';
 import ServicePageJsonLd from '@/components/ServicePageJsonLd';
 import SeoCustomerJourneyDiagram from '@/components/services/SeoCustomerJourneyDiagram';
 import SeoGeoDiagram from '@/components/services/SeoGeoDiagram';
+import SeoIndustryGrid from '@/components/services/SeoIndustryGrid';
 import ServiceCaseStudyCard from '@/components/services/ServiceCaseStudyCard';
 import ServiceCtaBand from '@/components/services/ServiceCtaBand';
 import Link from 'next/link';
 import { CONSULTICO_GBP_URL } from '@/lib/contact';
 import { seoPageGoogleReviews } from '@/lib/google-reviews';
 import { SERVICE_FAQS } from '@/lib/service-faqs';
+import { SEO_BY_INDUSTRY_PATH, getLiveSeoIndustries } from '@/lib/seo-industries';
 import { servicePageMeta } from '@/lib/seo';
 
 export const metadata: Metadata = servicePageMeta('seo');
@@ -238,6 +240,8 @@ function CtaLink({ className = '' }: { className?: string }) {
 }
 
 export default function SeoPage() {
+  const liveIndustryPages = getLiveSeoIndustries();
+
   return (
     <>
       <ServicePageJsonLd pageKey="seo" />
@@ -684,15 +688,23 @@ export default function SeoPage() {
           </Container>
         </section>
 
-        <section className="border-t border-gray-200 bg-brand-silk/50 py-10 dark:border-gray-800 dark:bg-gray-900/40">
+        <section className="border-t border-gray-200 bg-white py-12 dark:border-gray-800 dark:bg-gray-950 md:py-16" aria-labelledby="seo-industry-heading">
           <Container>
-            <p className={`mx-auto max-w-3xl text-center font-helvetica-light text-[clamp(0.95rem,1.1vw,1.05rem)] leading-[1.65] ${secondaryTextClass}`}>
-              Running a plumbing or trades business?{' '}
-              <Link href="/seo-for-plumbers" className="font-medium text-brand-blue underline-offset-2 hover:underline">
-                See our SEO for plumbers
-              </Link>
-              .
-            </p>
+            <div className="mx-auto max-w-5xl">
+              <h2 id="seo-industry-heading" className={`${sectionHeadingClass} mb-4`}>
+                SEO by industry
+              </h2>
+              <p className={`mb-8 max-w-3xl font-helvetica-light text-[clamp(1rem,1.1vw,1.05rem)] leading-[1.65] ${secondaryTextClass}`}>
+                Trades and service businesses often need sector-specific SEO: different searches, different map-pack
+                competition, different job values. Browse our industry guides for playbooks tailored to your market, or
+                see the full{' '}
+                <Link href={SEO_BY_INDUSTRY_PATH} className="font-medium text-brand-blue underline-offset-2 hover:underline">
+                  SEO by industry hub
+                </Link>
+                .
+              </p>
+              <SeoIndustryGrid industries={liveIndustryPages} />
+            </div>
           </Container>
         </section>
 

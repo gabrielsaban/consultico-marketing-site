@@ -8,8 +8,18 @@ import {
   CONSULTICO_PHONE_DISPLAY,
   CONSULTICO_PHONE_TEL,
 } from '@/lib/contact';
+import {
+  SEO_BY_INDUSTRY_PATH,
+  getFeaturedSeoIndustries,
+  getIndustryPath,
+} from '@/lib/seo-industries';
 
 export default function Footer() {
+  const featuredIndustryLinks = getFeaturedSeoIndustries(3).map((industry) => ({
+    name: industry.label,
+    href: getIndustryPath(industry),
+  }));
+
   const quickLinks1 = [
     { name: 'Home', href: '/#home' },
     { name: 'Projects', href: '/#projects' },
@@ -22,6 +32,8 @@ export default function Footer() {
     { name: 'Articles', href: '/articles' },
     { name: 'SEO', href: '/seo' },
     { name: 'PPC', href: '/ppc' },
+    { name: 'SEO by Industry', href: SEO_BY_INDUSTRY_PATH },
+    ...featuredIndustryLinks,
   ];
 
   return (

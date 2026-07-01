@@ -59,7 +59,8 @@ export default function HeroSection() {
           alt="Consultico"
           width={420}
           height={120}
-          className="block w-[min(36vw,520px)] [@media(max-height:800px)]:w-[min(32vw,460px)] h-auto"
+          className="block h-auto w-[min(36vw,520px)] [@media(max-height:800px)]:w-[min(32vw,460px)]"
+          style={{ maxWidth: 'min(36vw, 520px)', height: 'auto' }}
           priority
         />
       </motion.div>

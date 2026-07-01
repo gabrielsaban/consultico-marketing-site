@@ -66,7 +66,7 @@ export default function SitePreloader() {
       clearTimeout(doneTimer);
       style.overflow = '';
     };
-  }, []);
+  }, [markReady]);
 
   if (!active) return null;
 
@@ -91,8 +91,11 @@ export default function SitePreloader() {
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="-2 12 98 118"
-          className="w-20 sm:w-24"
+          width={96}
+          height={96}
+          className="h-20 w-20 sm:h-24 sm:w-24"
           fill="none"
+          aria-hidden="true"
         >
           <motion.path
             d={C_MARK_PATH}

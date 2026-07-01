@@ -103,24 +103,6 @@ export default function SeoGlasgowPage() {
                   </a>
                 </p>
               </div>
-
-              <div className="mb-10 flex items-start gap-4 border-y border-gray-200 py-6 dark:border-gray-800">
-                <div className="font-helvetica">
-                  <p className="text-[0.8rem] font-semibold uppercase tracking-[0.12em] text-gray-600 dark:text-gray-400">
-                    Author
-                  </p>
-                  <p className="mt-1 text-[1rem] font-medium text-gray-900 dark:text-gray-100">Paul Wilson</p>
-                  <p className="text-[0.9rem] text-gray-600 dark:text-gray-400">Founder, Consultico</p>
-                  <a
-                    href="https://www.linkedin.com/in/think-first-marketing"
-                    className="mt-2 inline-block text-[0.9rem] text-brand-blue hover:underline"
-                    rel="noreferrer"
-                    target="_blank"
-                  >
-                    LinkedIn profile
-                  </a>
-                </div>
-              </div>
             </article>
           </Container>
         </section>

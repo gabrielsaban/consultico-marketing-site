@@ -1,4 +1,7 @@
-export const SEO_FOR_PLUMBERS_PATH = '/seo-for-plumbers';
+import { getIndustryPath } from '@/lib/seo-industries';
+
+export const SEO_FOR_PLUMBERS_SLUG = 'seo-for-plumbers';
+export const SEO_FOR_PLUMBERS_PATH = getIndustryPath(SEO_FOR_PLUMBERS_SLUG);
 
 /** Visible FAQ copy (section 3 of brief). */
 export const SEO_FOR_PLUMBERS_FAQS = [
@@ -20,7 +23,7 @@ export const SEO_FOR_PLUMBERS_FAQS = [
   {
     question: 'Do I need a new website for plumber SEO to work?',
     answer:
-      'Usually no. Most plumbing sites can rank far better with the existing pages fixed — clear service and location pages, faster mobile loading, proper local information. We start with what you have and only suggest a rebuild when the current site is genuinely holding you back.',
+      'Usually no. Most plumbing sites can rank far better with the existing pages fixed: clear service and location pages, faster mobile loading, proper local information. We start with what you have and only suggest a rebuild when the current site is genuinely holding you back.',
   },
   {
     question: 'How much does SEO for plumbers cost?',
@@ -86,7 +89,7 @@ export const PLUMBER_SEO_PAIN_POINTS = [
 export const PLUMBER_SEO_COVERAGE = [
   {
     title: 'Google Business Profile and the map pack',
-    body: 'For local plumbing searches, your Google Business Profile is the highest-return thing to fix first. We complete and optimise it, keep your name, address and phone details consistent everywhere they appear, and build a steady review habit — the signals that get you into the three-result map pack where the calls come from.',
+    body: 'For local plumbing searches, your Google Business Profile is the highest-return thing to fix first. We complete and optimise it, keep your name, address and phone details consistent everywhere they appear, and build a steady review habit, the signals that get you into the three-result map pack where the calls come from.',
   },
   {
     title: 'Local and technical SEO',
@@ -94,22 +97,22 @@ export const PLUMBER_SEO_COVERAGE = [
   },
   {
     title: 'Content that answers what customers ask',
-    body: 'We build the pages and answers around the real questions your customers search — "how much to replace a boiler", "why is my radiator cold" — so you get found earlier and trusted sooner. Useful content is also what AI search tools like ChatGPT and Google\'s AI Overviews quote when people ask them to recommend a plumber.',
+    body: 'We build the pages and answers around the real questions your customers search, "how much to replace a boiler", "why is my radiator cold", so you get found earlier and trusted sooner. Useful content is also what AI search tools like ChatGPT and Google\'s AI Overviews quote when people ask them to recommend a plumber.',
   },
   {
     title: 'Honest measurement',
-    body: 'We track what matters — enquiries and booked jobs — not just rankings. If something isn\'t earning its place, we say so.',
+    body: 'We track what matters, enquiries and booked jobs, not just rankings. If something isn\'t earning its place, we say so.',
   },
 ] as const;
 
 export const PLUMBER_SEO_PROCESS_STEPS = [
   {
     title: 'A look at your numbers and your market.',
-    body: 'Your average job value, your area\'s competition, and where your site and profile stand today — so any recommendation is grounded in what a job is actually worth to you.',
+    body: 'Your average job value, your area\'s competition, and where your site and profile stand today, so any recommendation is grounded in what a job is actually worth to you.',
   },
   {
     title: 'Fix the foundations first.',
-    body: 'Google Business Profile, the highest-impact website fixes, and your local pages — the work that moves enquiries fastest.',
+    body: 'Google Business Profile, the highest-impact website fixes, and your local pages, the work that moves enquiries fastest.',
   },
   {
     title: 'Build and measure.',
