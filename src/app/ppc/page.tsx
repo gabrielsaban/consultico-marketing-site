@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
 import Container from '@/components/Container';
 import FaqSection from '@/components/FaqSection';
-import ServiceDesktopHeader from '@/components/ServiceDesktopHeader';
 import ServicePageJsonLd from '@/components/ServicePageJsonLd';
-import PpcSixChecksDiagram from '@/components/services/PpcSixChecksDiagram';
+import ServiceHero from '@/components/services/ServiceHero';
+import McdCplTrendChart from '@/components/services/McdCplTrendChart';
 import ServiceCtaBand from '@/components/services/ServiceCtaBand';
 import Link from 'next/link';
 import { CONSULTICO_GBP_URL } from '@/lib/contact';
+import { PPC_CONTACT, PPC_CTA_LABEL, SERVICE_HERO_TRUST_LINE } from '@/lib/cta';
 import { ppcPageGoogleReviews } from '@/lib/google-reviews';
 import { SERVICE_FAQS } from '@/lib/service-faqs';
 import { pageMeta } from '@/lib/seo';
@@ -18,9 +19,6 @@ export const metadata: Metadata = pageMeta({
   path: '/ppc',
   absoluteTitle: true,
 });
-
-const PPC_CONTACT = '/contact?interest=ppc';
-const PPC_CTA_LABEL = 'Start with a PPC audit';
 
 const sectionHeadingClass =
   'relative text-[clamp(1.5rem,2.4vw,2.6rem)] leading-[1.1] font-futura font-bold text-brand-blue';
@@ -222,15 +220,6 @@ function CheckIcon({ className = 'text-brand-blue' }: { className?: string }) {
   );
 }
 
-function ArrowIcon() {
-  return (
-    <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M5 12h14" />
-      <path d="M13 5l7 7-7 7" />
-    </svg>
-  );
-}
-
 function BulletList({ items, className = '' }: { items: string[]; className?: string }) {
   return (
     <ul className={`space-y-3 pl-7 ${className}`}>
@@ -250,10 +239,9 @@ function CtaLink({ className = '' }: { className?: string }) {
   return (
     <Link
       href={PPC_CONTACT}
-      className={`inline-flex items-center justify-center gap-2 rounded-lg bg-brand-blue px-8 py-3 font-helvetica text-[clamp(1rem,1.2vw,1.125rem)] font-medium text-white transition-colors hover:bg-[#006FE6] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-950 ${className}`}
+      className={`inline-flex items-center justify-center rounded-lg bg-brand-blue px-8 py-3 font-helvetica text-[clamp(1rem,1.2vw,1.125rem)] font-medium text-white transition-colors hover:bg-[#006FE6] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-950 ${className}`}
     >
       {PPC_CTA_LABEL}
-      <ArrowIcon />
     </Link>
   );
 }
@@ -265,48 +253,22 @@ export default function PpcPage() {
     <>
       <ServicePageJsonLd pageKey="ppc" />
       <main className="relative" id="main-content">
-        {/* Section 1: Hero */}
-        <section className="relative pb-16 md:pb-20 lg:pb-24" aria-labelledby="ppc-hero-heading">
-          <ServiceDesktopHeader />
-          <div className="absolute inset-0 dot-grid-premium opacity-30 dark:opacity-15" aria-hidden="true" />
-          <Container className="relative pt-[10.5rem] md:pt-[12rem] lg:pt-[13.5rem] xl:pt-[14.5rem] 2xl:pt-[15rem]">
-            <div className="flex w-full max-w-3xl flex-col gap-10 md:max-w-4xl lg:max-w-6xl">
-              <div className="rounded-xl border border-gray-200/80 bg-white/80 p-6 shadow-sm backdrop-blur-sm dark:border-gray-700/80 dark:bg-gray-950/80 md:p-7">
-                <p className="mb-4 font-helvetica text-[clamp(0.75rem,1vw,0.875rem)] uppercase tracking-[0.16em] text-gray-700 dark:text-gray-300">
-                  PPC & Paid Media
-                </p>
-                <h1
-                  id="ppc-hero-heading"
-                  className="mb-4 font-futura text-[clamp(1.55rem,2.35vw,2.65rem)] font-bold leading-[1.1] text-brand-blue"
-                >
-                  Get paid ads that pay you back
-                </h1>
-                <p className={`mb-5 font-helvetica text-[clamp(0.9rem,1.05vw,1rem)] leading-[1.5] ${secondaryTextClass}`}>
-                  For trades and B2C brands with real demand, already spending on Google or Meta and unsure it is working.
-                </p>
-                <p className={`mb-8 font-helvetica text-[clamp(1rem,1.35vw,1.25rem)] leading-[1.65] text-gray-900 dark:text-gray-100`}>
-                  Consultico is a Glasgow-based marketing consultancy that manages Google and Meta paid ads for businesses across the UK. We run paid media the way a strategist would, not a button-pusher: around your margins, your real numbers and a defined objective, so every pound of spend is tied to a return you can measure. Most clients have a clear picture of what their ads are actually doing within the first 90 days, depending on market and starting point. And if the honest answer is that paid ads are not where your next pound should go, we will tell you that too.
-                </p>
-
-                <CtaLink />
-                <div className="mt-8 border-l-2 border-brand-blue pl-4">
-                  <p className={`font-helvetica text-[clamp(0.95rem,1.15vw,1.1rem)] leading-[1.6] ${bodyTextClass}`}>
-                    No vanity metrics. No guaranteed ROAS. We set honest expectations from the audit, and we will tell you plainly if paid ads are the wrong spend for you right now.
-                  </p>
-                </div>
-              </div>
-
-              <div className="w-full rounded-xl border border-gray-200 bg-white/95 p-3 shadow-[0_8px_30px_rgba(0,0,0,0.08)] dark:border-gray-700 dark:bg-gray-900/95 md:p-4">
-                <div className="overflow-hidden rounded-lg bg-brand-silk dark:bg-gray-800">
-                  <PpcSixChecksDiagram />
-                </div>
-                <p className={`mt-4 text-center font-helvetica text-[0.95rem] leading-[1.5] ${secondaryTextClass}`}>
-                  Where paid budget leaks, and where it should go: tracking, targeting, creative, landing page, budget, reporting.
-                </p>
-              </div>
-            </div>
-          </Container>
-        </section>
+        <ServiceHero
+          eyebrow="PPC & Paid Media"
+          heading="Paid ads that pay you back."
+          headingAccent="pay you back"
+          subhead="Google and Meta ads managed around your margins, not vanity metrics."
+          body="Every pound is tied to a return you can measure. If paid ads are the wrong spend for you right now, we will say so."
+          proofChips={[
+            { value: '~£8', label: 'Cost per lead - MCD Gas' },
+            { value: '~£28', label: 'Best-month CPA - MCD Gas' },
+            { value: 'Google + Meta', label: 'Platforms we manage' },
+          ]}
+          primaryHref={PPC_CONTACT}
+          primaryLabel={PPC_CTA_LABEL}
+          trustLine={SERVICE_HERO_TRUST_LINE}
+          visual={<McdCplTrendChart />}
+        />
 
         {/* Section 2: Problem */}
         <section className="relative overflow-hidden bg-brand-silk/90 py-16 shadow-[0_4px_20px_rgba(0,0,0,0.08)] dark:bg-gray-900/85 md:py-20 lg:py-24" aria-labelledby="ppc-problem-heading">
@@ -392,7 +354,7 @@ export default function PpcPage() {
             </div>
 
             <p className={`mx-auto mt-8 max-w-2xl text-center font-helvetica-light text-[0.95rem] leading-[1.6] ${secondaryTextClass}`}>
-              11 five-star reviews on Google. The thinking behind our strategy work was developed with research funding from a 2025 University of Strathclyde Inspire fellowship.
+              The thinking behind our strategy work was developed with research funding from a 2025 University of Strathclyde Inspire fellowship.
             </p>
 
             <div className="mt-10 flex justify-center">
@@ -414,24 +376,17 @@ export default function PpcPage() {
                   For a trades business, that means knowing what a booked job is worth before you bid on the search that wins it. For a B2C brand, it means knowing your margin and repeat rate before you scale spend. We work that out first, wherever you are in the UK.
                 </p>
               </div>
-              <Link
-                href={PPC_CONTACT}
-                className="mt-8 inline-flex items-center justify-center gap-2 rounded-lg bg-white px-7 py-3 font-helvetica font-medium text-brand-blue transition-colors hover:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-blue"
-              >
-                {PPC_CTA_LABEL}
-                <ArrowIcon />
-              </Link>
             </div>
           </Container>
         </section>
 
-        {/* Section 6: Framework */}
-        <section className="py-16 md:py-20 lg:py-24" aria-labelledby="ppc-framework-heading">
+        {/* What we fix and how (merged framework + implementation) */}
+        <section className="py-16 md:py-20 lg:py-24" aria-labelledby="ppc-fix-heading">
           <Container>
             <div className="mb-10 max-w-3xl">
-              <p className="mb-3 font-helvetica text-[0.8rem] font-semibold uppercase tracking-[0.16em] text-brand-blue">Self-diagnosis</p>
-              <h2 id="ppc-framework-heading" className={sectionHeadingClass}>
-                Six things decide whether your paid ads make money. We check all six.
+              <p className="mb-3 font-helvetica text-[0.8rem] font-semibold uppercase tracking-[0.16em] text-brand-blue">What we fix and how</p>
+              <h2 id="ppc-fix-heading" className={sectionHeadingClass}>
+                Six checks that decide whether your paid ads make money - and what we build to fix them
               </h2>
             </div>
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -441,6 +396,23 @@ export default function PpcPage() {
                   <p className="mb-3 mt-2 font-helvetica text-[0.75rem] font-semibold uppercase tracking-[0.12em] text-brand-blue">{item.label}</p>
                   <h3 className="font-futura text-[clamp(1rem,1.2vw,1.1rem)] font-bold text-gray-900 dark:text-white">{item.question}</h3>
                   <p className={`mt-3 font-helvetica-light text-[0.9rem] leading-[1.5] ${secondaryTextClass}`}>{item.cost}</p>
+                </article>
+              ))}
+            </div>
+
+            <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2">
+              {ppcIncludes.map((item) => (
+                <article key={item.title} className="rounded-lg border border-gray-200 bg-white/85 p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900/75">
+                  <h3 className="font-futura text-[clamp(1.25rem,1.6vw,1.5rem)] font-bold text-brand-blue">{item.title}</h3>
+                  <p className={`mt-3 font-helvetica-light text-[0.98rem] leading-[1.6] ${secondaryTextClass}`}>{item.description}</p>
+                  <ul className="mt-6 space-y-3">
+                    {item.features.map((feature) => (
+                      <li key={feature} className={`flex gap-3 font-helvetica-light text-[0.92rem] ${secondaryTextClass}`}>
+                        <CheckIcon />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </article>
               ))}
             </div>
@@ -465,32 +437,6 @@ export default function PpcPage() {
                   <p className="mb-2 font-helvetica text-[0.8rem] font-semibold uppercase tracking-wide text-brand-blue">{step.phase}</p>
                   <h3 className="font-futura text-[clamp(1.15rem,1.4vw,1.35rem)] font-bold text-gray-900 dark:text-white">{step.title}</h3>
                   <p className={`mx-auto mt-3 max-w-sm font-helvetica-light text-[0.95rem] leading-[1.55] ${secondaryTextClass}`}>{step.body}</p>
-                </article>
-              ))}
-            </div>
-          </Container>
-        </section>
-
-        {/* Section 8: What we implement */}
-        <section className="py-16 md:py-20 lg:py-24" aria-labelledby="ppc-implement-heading">
-          <Container>
-            <div className="mb-10 max-w-3xl">
-              <p className="mb-3 font-helvetica text-[0.8rem] font-semibold uppercase tracking-[0.16em] text-brand-blue">What we build</p>
-              <h2 id="ppc-implement-heading" className={sectionHeadingClass}>Everything needed to make paid media accountable.</h2>
-            </div>
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-              {ppcIncludes.map((item) => (
-                <article key={item.title} className="rounded-lg border border-gray-200 bg-white/85 p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900/75">
-                  <h3 className="font-futura text-[clamp(1.25rem,1.6vw,1.5rem)] font-bold text-brand-blue">{item.title}</h3>
-                  <p className={`mt-3 font-helvetica-light text-[0.98rem] leading-[1.6] ${secondaryTextClass}`}>{item.description}</p>
-                  <ul className="mt-6 space-y-3">
-                    {item.features.map((feature) => (
-                      <li key={feature} className={`flex gap-3 font-helvetica-light text-[0.92rem] ${secondaryTextClass}`}>
-                        <CheckIcon />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
                 </article>
               ))}
             </div>

@@ -15,7 +15,7 @@ Consultico is not a volume agency. It is a consult-first studio: map economics, 
 - **Phone:** 0141 459 1351
 - **Primary markets:** United Kingdom, United States
 - **Ideal client profile:** B2C businesses generating £50K+ per month, already selling successfully, seeking strategic clarity before scaling
-- **Google reviews:** 11 public Google reviews, all 5-star (see Google Business Profile link below)
+- **Google reviews:** Rated 5.0 on Google (see Google Business Profile link below)
 
 ## What Consultico does
 
@@ -63,7 +63,7 @@ Consultico offers generative engine optimisation: structuring brand content, ent
 
 The Boiler Co is a Bristol-based trades business where a full calendar is critical (average job value circa £1,200). They relied heavily on paid ads; when ads had to pause, lead flow was at risk. Consultico built an SEO foundation focused on high-intent local boiler-service searches in their market.
 
-Within three months, the calendar was consistently filled through organic search alone when paid ads had to pause. Over 14 months of retained SEO work, typical weekly search performance moved from approximately 6,000 impressions and 20 clicks to 21,000 impressions and 58 clicks, with higher-intent traffic converting to booked appointments.
+Within three months, the calendar was consistently filled through organic search alone when paid ads had to pause. Over 14 months of retained SEO work, typical weekly search performance moved from approximately 6,000 impressions and 20 clicks to 21,000 impressions and 58 clicks, with higher-intent traffic converting to booked appointments. Full case study: https://www.consultico.co.uk/case-studies/boiler-co
 
 ### Garden Games brand (e-commerce, strategy advisory, anonymous client)
 
@@ -141,6 +141,7 @@ Email paul@consultico.co.uk, call 0141 459 1351, use the contact form at https:/
 - [SEO for dentists](https://www.consultico.co.uk/seo-for-dentists): Dental SEO for private and cosmetic patients, GDC-aware content, Google Business Profile and local search.
 - [SEO for accountants](https://www.consultico.co.uk/seo-for-accountants): Accountancy SEO for specialist clients, Making Tax Digital demand, reviews and credentials.
 - [SEO agency in Glasgow](https://www.consultico.co.uk/seo-glasgow): Local SEO for Glasgow and central Scotland.
+- [The Boiler Co case study](https://www.consultico.co.uk/case-studies/boiler-co): Trades SEO case study - calendar filled organically within three months.
 - [Web development](https://www.consultico.co.uk/web-development): Conversion-focused websites with SEO foundations.
 - [Content creation](https://www.consultico.co.uk/content-creation): Strategic content and copy production.
 - [Market strategy](https://www.consultico.co.uk/market-strategy): Marketing strategy consulting.
@@ -152,7 +153,7 @@ Email paul@consultico.co.uk, call 0141 459 1351, use the contact form at https:/
 - [LinkedIn, Consultico Ltd](https://www.linkedin.com/company/consultico-ltd/): Company profile.
 - [LinkedIn, Paul Wilson](https://www.linkedin.com/in/think-first-marketing): Founder profile.
 - [Instagram](https://www.instagram.com/consultico_marketing/): Social updates.
-- [Google Business Profile](https://www.google.com/maps/place/Consultico/@55.8609282,-4.2443981,641m/data=!3m3!1e3!4b1!5s0x488846a710ae8043:0x4c27d014396277a0!4m6!3m5!1s0x23d34cdec57c3e91:0x69bb0edabecd9001!8m2!3d55.8609282!4d-4.2418232!16s%2Fg%2F11ldh2jgj6): Reviews and local listing (11 five-star Google reviews).
+- [Google Business Profile](https://www.google.com/maps/place/Consultico/@55.8609282,-4.2443981,641m/data=!3m3!1e3!4b1!5s0x488846a710ae8043:0x4c27d014396277a0!4m6!3m5!1s0x23d34cdec57c3e91:0x69bb0edabecd9001!8m2!3d55.8609282!4d-4.2418232!16s%2Fg%2F11ldh2jgj6): Reviews and local listing (rated 5.0 on Google).
 
 ## Optional
 

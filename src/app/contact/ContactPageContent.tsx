@@ -30,8 +30,26 @@ export default function ContactPageContent() {
               <p className="mt-4 max-w-md font-helvetica-light text-[clamp(1rem,1.2vw,1.1rem)] leading-[1.65] text-gray-800 dark:text-gray-200">
                 Tell us about your business and what you need. We work with B2C brands and trades businesses across the UK and United States.
               </p>
-              <p className="mt-6 border-l-2 border-brand-blue pl-4 font-helvetica-light text-[0.95rem] leading-[1.6] text-gray-700 dark:text-gray-300">
-                Prefer a call? Book below once you have sent a message, or use email and phone.
+
+              <blockquote className="mt-8 border-l-2 border-brand-blue pl-4">
+                <p className="font-helvetica-light text-[0.98rem] italic leading-[1.65] text-gray-800 dark:text-gray-200">
+                  &ldquo;Paul kept me informed throughout and delivered on time - his support was outstanding.&rdquo;
+                </p>
+                <footer className="mt-3 font-helvetica text-[0.875rem] font-medium not-italic text-gray-900 dark:text-gray-100">
+                  Keiren, Custom Crafts by KJB
+                </footer>
+              </blockquote>
+
+              <p className="mt-6 font-helvetica-light text-[0.92rem] leading-[1.6] text-gray-600 dark:text-gray-400">
+                Prefer a call?{' '}
+                <a href={CONSULTICO_BOOKING_URL} target="_blank" rel="noreferrer" className="font-medium text-brand-blue hover:underline">
+                  Book a free call
+                </a>{' '}
+                or email{' '}
+                <a href={`mailto:${CONSULTICO_EMAIL}`} className="font-medium text-brand-blue hover:underline">
+                  {CONSULTICO_EMAIL}
+                </a>
+                .
               </p>
             </div>
 
@@ -67,10 +85,10 @@ export default function ContactPageContent() {
         </Container>
       </section>
 
-      <section className="bg-brand-silk/80 py-14 dark:bg-gray-900/80 md:py-16">
+      <section className="bg-brand-silk/80 py-10 dark:bg-gray-900/80 md:py-12">
         <Container>
           <div className="mx-auto max-w-3xl">
-            <AuditSignupBlock source="contact-page" variant="section" />
+            <AuditSignupBlock source="contact-page" variant="compact" />
           </div>
         </Container>
       </section>

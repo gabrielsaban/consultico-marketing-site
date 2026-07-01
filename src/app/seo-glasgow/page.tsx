@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Container from '@/components/Container';
 import FaqSection from '@/components/FaqSection';
-import ServiceDesktopHeader from '@/components/ServiceDesktopHeader';
+import NicheHero from '@/components/services/NicheHero';
 import ServiceCtaBand from '@/components/services/ServiceCtaBand';
 import {
   CONSULTICO_EMAIL,
@@ -10,12 +10,11 @@ import {
   CONSULTICO_PHONE_DISPLAY,
   CONSULTICO_PHONE_TEL,
 } from '@/lib/contact';
+import { SEO_CONTACT, SEO_CTA_LABEL } from '@/lib/cta';
+import { GLASGOW_HERO_CONTENT } from '@/lib/niche-hero-content';
 import { pageMeta } from '@/lib/seo';
 import { GLASGOW_SEO_COVERAGE, SEO_GLASGOW_FAQS, SEO_GLASGOW_PATH } from '@/lib/seo-glasgow';
 import { seoGlasgowPageJsonLd, serializeJsonLd } from '@/lib/schema';
-
-const SEO_CONTACT = '/contact?interest=seo';
-const SEO_CTA_LABEL = 'Start with an SEO audit';
 
 const MAP_EMBED_SRC =
   'https://www.google.com/maps?q=Consultico,50+Richmond+Street,Glasgow,G1+1XN&z=15&output=embed';
@@ -41,51 +40,25 @@ export default function SeoGlasgowPage() {
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(seoGlasgowPageJsonLd()) }}
       />
       <main className="relative min-h-screen" id="main-content">
-        <section className="relative pb-12 md:pb-16" aria-labelledby="seo-glasgow-heading">
-          <ServiceDesktopHeader />
-          <div className="absolute inset-0 dot-grid-premium opacity-30 dark:opacity-15" aria-hidden="true" />
-          <Container className="relative pt-[10.5rem] md:pt-[12rem] lg:pt-[13.5rem] xl:pt-[14.5rem]">
-            <nav
-              aria-label="Breadcrumb"
-              className="mb-6 font-helvetica text-[0.875rem] text-gray-600 dark:text-gray-400"
-            >
-              <ol className="flex flex-wrap items-center gap-2">
-                <li>
-                  <Link href="/" className="hover:text-brand-blue">
-                    Home
-                  </Link>
-                </li>
-                <li aria-hidden="true">/</li>
-                <li>
-                  <Link href="/seo" className="hover:text-brand-blue">
-                    SEO
-                  </Link>
-                </li>
-                <li aria-hidden="true">/</li>
-                <li className="text-gray-800 dark:text-gray-200">SEO Agency in Glasgow</li>
-              </ol>
-            </nav>
+        <NicheHero
+          breadcrumbs={[
+            { label: 'Home', href: '/' },
+            { label: 'SEO', href: '/seo' },
+            { label: 'SEO Agency in Glasgow' },
+          ]}
+          heading={GLASGOW_HERO_CONTENT.heading}
+          subhead={GLASGOW_HERO_CONTENT.subhead}
+          bullets={GLASGOW_HERO_CONTENT.bullets}
+          primaryHref={SEO_CONTACT}
+          primaryLabel={SEO_CTA_LABEL}
+        />
 
-            <article className="mx-auto max-w-3xl">
-              <h1
-                id="seo-glasgow-heading"
-                className="mb-6 font-futura text-[clamp(2rem,3.2vw,2.75rem)] font-bold leading-[1.1] text-brand-blue"
-              >
-                SEO Agency in Glasgow
-              </h1>
+        <section className="border-t border-gray-200 bg-white py-10 dark:border-gray-800 dark:bg-gray-950 md:py-12">
+          <Container>
+            <article className="mx-auto max-w-3xl space-y-8">
+              <p className={bodyClass}>{GLASGOW_HERO_CONTENT.intro}</p>
 
-              <p className={`mb-8 ${bodyClass}`}>
-                Consultico is a Glasgow-based SEO agency, working from Strathclyde Inspire at 50 Richmond Street. We
-                help businesses across Glasgow and central Scotland get found on Google, and increasingly inside AI
-                search tools like ChatGPT, Perplexity and Google&apos;s AI Overviews. Our approach is strategy-led: we
-                start with your numbers, your margins and the searches your customers actually make, then build the
-                technical foundations, on-page content and authority that move you there. SEO done well compounds, so
-                the cost of winning a new customer falls as your visibility grows. If you want a Glasgow SEO partner
-                who sets honest expectations and ties rankings to real enquiries rather than vanity metrics,
-                that&apos;s what we do.
-              </p>
-
-              <div className="mb-10 rounded-xl border border-gray-200 bg-white/90 p-5 dark:border-gray-700 dark:bg-gray-950/80">
+              <div className="rounded-xl border border-gray-200 bg-brand-silk/50 p-5 dark:border-gray-700 dark:bg-gray-950/80">
                 <p className="mb-2 font-helvetica text-[0.8rem] font-semibold uppercase tracking-[0.12em] text-gray-600 dark:text-gray-400">
                   Contact
                 </p>
@@ -103,6 +76,18 @@ export default function SeoGlasgowPage() {
                   </a>
                 </p>
               </div>
+
+              <p className={bodyClass}>
+                Explore our{' '}
+                <Link href="/seo-by-industry" className="font-medium text-brand-blue underline-offset-2 hover:underline">
+                  SEO by industry hub
+                </Link>{' '}
+                for trade and service guides, or read the main{' '}
+                <Link href="/seo" className="font-medium text-brand-blue underline-offset-2 hover:underline">
+                  SEO service page
+                </Link>
+                .
+              </p>
             </article>
           </Container>
         </section>
@@ -158,8 +143,12 @@ export default function SeoGlasgowPage() {
                   6,000 impressions and 20 clicks to 21,000 impressions and 58 clicks, with higher-intent visitors
                   turning into booked jobs. They&apos;ve stayed with us for over 14 months with additional website work
                   since. That work was delivered remotely from Glasgow, the same way we support clients across the UK.
-                  We also hold 11 five-star reviews on Google, and the thinking behind our strategy work was developed
-                  with research funding from a 2025 University of Strathclyde Inspire fellowship.
+                  We are rated 5.0 on Google, and the thinking behind our strategy work was developed with research
+                  funding from a 2025 University of Strathclyde Inspire fellowship.{' '}
+                  <Link href="/case-studies/boiler-co" className="font-medium text-brand-blue underline-offset-2 hover:underline">
+                    Read the Boiler Co case study
+                  </Link>
+                  .
                 </p>
               </div>
 

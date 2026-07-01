@@ -227,7 +227,7 @@ export default function ContactForm({
           </div>
           <div>
             <label htmlFor={fieldId('phone')} className="mb-2 block font-helvetica text-[0.9rem] font-medium text-gray-700 dark:text-gray-300">
-              Phone
+              Phone (if you&apos;d rather we call)
             </label>
             <input
               type="tel"
@@ -235,7 +235,6 @@ export default function ContactForm({
               name="phone"
               value={formData.phone}
               onChange={handleChange}
-              required
               className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 font-helvetica text-gray-900 transition-all focus:border-brand-blue focus:outline-none focus:ring-1 focus:ring-brand-blue dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100"
             />
           </div>
@@ -274,7 +273,7 @@ export default function ContactForm({
 
         {showResponseNote && (
           <p className="text-center font-helvetica-light text-[0.85rem] text-gray-500 dark:text-gray-400">
-            We typically reply within two business days.
+            We usually reply within a few hours - same working day, guaranteed.
           </p>
         )}
       </form>

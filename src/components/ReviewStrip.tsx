@@ -10,15 +10,15 @@ const featuredReviews = [
   },
   {
     quote:
-      'This workshop came at exactly the right time. It was highly relevant to our business and gave us clear, actionable guidance that made a real difference.',
-    name: 'Peter Davis',
-    company: 'Norfolk Boards',
+      "Together they've got Easyline ranking on page 1 of Google for multiple keywords. Reliable, efficient, and results-driven.",
+    name: 'John',
+    company: 'Easy Line Laundry Chutes',
   },
   {
     quote:
-      "Consultico are a pleasure to work with. The team is incredibly friendly, knowledgeable, and always willing to go the extra mile.",
-    name: 'Marcus Binnie',
-    company: 'Promo Designs',
+      'Paul is always available, delivering fast, effective support. They built a professional website, launched a successful Google Ads campaign, and now handle all my marketing with precision and care.',
+    name: 'Graeme',
+    company: 'MCD Gas',
   },
 ];
 
@@ -30,10 +30,10 @@ export default function ReviewStrip() {
           Google reviews
         </p>
         <h2 className="mb-3 font-futura text-[clamp(1.35rem,2.2vw,1.75rem)] font-bold text-brand-blue">
-          11 five-star reviews on Google
+          Rated 5.0 on Google
         </h2>
         <p className="mb-8 font-helvetica-light text-[clamp(0.95rem,1.1vw,1.05rem)] leading-[1.65] text-gray-700 dark:text-gray-300">
-          Verified feedback from clients and workshop attendees.{' '}
+          Verified feedback from clients.{' '}
           <Link href={CONSULTICO_GBP_URL} className="font-medium text-brand-blue hover:underline">
             Read all reviews on Google
           </Link>
@@ -41,7 +41,7 @@ export default function ReviewStrip() {
         <ul className="space-y-4 text-left">
           {featuredReviews.map((review) => (
             <li
-              key={review.name}
+              key={`${review.name}-${review.company}`}
               className="rounded-2xl border border-gray-200 bg-brand-silk/50 p-5 dark:border-gray-800 dark:bg-gray-900"
             >
               <blockquote className="font-helvetica-light text-[clamp(0.95rem,1.1vw,1.05rem)] leading-[1.65] text-gray-800 dark:text-gray-200">

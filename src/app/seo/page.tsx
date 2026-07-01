@@ -1,24 +1,22 @@
 import type { Metadata } from 'next';
 import Container from '@/components/Container';
 import FaqSection from '@/components/FaqSection';
-import ServiceDesktopHeader from '@/components/ServiceDesktopHeader';
 import ServicePageJsonLd from '@/components/ServicePageJsonLd';
-import SeoCustomerJourneyDiagram from '@/components/services/SeoCustomerJourneyDiagram';
+import ServiceHero from '@/components/services/ServiceHero';
+import BoilerCoImpressionsChart from '@/components/services/BoilerCoImpressionsChart';
 import SeoGeoDiagram from '@/components/services/SeoGeoDiagram';
 import SeoIndustryGrid from '@/components/services/SeoIndustryGrid';
 import ServiceCaseStudyCard from '@/components/services/ServiceCaseStudyCard';
 import ServiceCtaBand from '@/components/services/ServiceCtaBand';
 import Link from 'next/link';
 import { CONSULTICO_GBP_URL } from '@/lib/contact';
+import { SEO_CONTACT, SEO_CTA_LABEL, SERVICE_HERO_TRUST_LINE } from '@/lib/cta';
 import { seoPageGoogleReviews } from '@/lib/google-reviews';
 import { SERVICE_FAQS } from '@/lib/service-faqs';
 import { SEO_BY_INDUSTRY_PATH, getLiveSeoIndustries } from '@/lib/seo-industries';
 import { servicePageMeta } from '@/lib/seo';
 
 export const metadata: Metadata = servicePageMeta('seo');
-
-const SEO_CONTACT = '/contact?interest=seo';
-const SEO_CTA_LABEL = 'Start with an SEO audit';
 
 const sectionHeadingClass =
   'relative text-[clamp(1.5rem,2.4vw,2.6rem)] leading-[1.1] font-futura font-bold text-brand-blue';
@@ -203,15 +201,6 @@ function CheckIcon({ className = 'text-brand-blue' }: { className?: string }) {
   );
 }
 
-function ArrowIcon() {
-  return (
-    <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M5 12h14" />
-      <path d="M13 5l7 7-7 7" />
-    </svg>
-  );
-}
-
 function BulletList({ items, className = '' }: { items: string[]; className?: string }) {
   return (
     <ul className={`space-y-3 pl-7 ${className}`}>
@@ -231,10 +220,9 @@ function CtaLink({ className = '' }: { className?: string }) {
   return (
     <Link
       href={SEO_CONTACT}
-      className={`inline-flex items-center justify-center gap-2 rounded-lg bg-brand-blue px-8 py-3 font-helvetica text-[clamp(1rem,1.2vw,1.125rem)] font-medium text-white transition-colors hover:bg-[#006FE6] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-950 ${className}`}
+      className={`inline-flex items-center justify-center rounded-lg bg-brand-blue px-8 py-3 font-helvetica text-[clamp(1rem,1.2vw,1.125rem)] font-medium text-white transition-colors hover:bg-[#006FE6] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-950 ${className}`}
     >
       {SEO_CTA_LABEL}
-      <ArrowIcon />
     </Link>
   );
 }
@@ -246,47 +234,22 @@ export default function SeoPage() {
     <>
       <ServicePageJsonLd pageKey="seo" />
       <main className="relative" id="main-content">
-        {/* Stage 1: Awareness */}
-        <section className="relative pb-16 md:pb-20 lg:pb-24" aria-labelledby="seo-hero-heading">
-          <ServiceDesktopHeader />
-          <div className="absolute inset-0 dot-grid-premium opacity-30 dark:opacity-15" aria-hidden="true" />
-          <Container className="relative pt-[10.5rem] md:pt-[12rem] lg:pt-[13.5rem] xl:pt-[14.5rem] 2xl:pt-[15rem]">
-            <div className="flex w-full max-w-3xl flex-col gap-10 md:max-w-4xl lg:max-w-6xl">
-              <div className="rounded-xl border border-gray-200/80 bg-white/80 p-6 shadow-sm backdrop-blur-sm dark:border-gray-700/80 dark:bg-gray-950/80 md:p-7">
-                <p className="mb-4 font-helvetica text-[clamp(0.75rem,1vw,0.875rem)] uppercase tracking-[0.16em] text-gray-700 dark:text-gray-300">
-                  SEO & GEO
-                </p>
-                <h1
-                  id="seo-hero-heading"
-                  className="mb-4 font-futura text-[clamp(1.55rem,2.35vw,2.65rem)] font-bold leading-[1.1] text-brand-blue"
-                >
-                  Get new business from Google and AI search, within 90 days
-                </h1>
-                <p className={`mb-5 font-helvetica text-[clamp(0.9rem,1.05vw,1rem)] leading-[1.5] ${secondaryTextClass}`}>
-                  For trades, local services, and growing B2C brands
-                </p>
-                <p className={`mb-8 font-helvetica text-[clamp(1rem,1.35vw,1.25rem)] leading-[1.65] text-gray-900 dark:text-gray-100`}>
-                  We turn search visibility into booked enquiries, not rankings for their own sake. Most clients start seeing meaningful results within 90 days, depending on market and competition.
-                </p>
-                <CtaLink />
-                <div className="mt-8 border-l-2 border-brand-blue pl-4">
-                  <p className={`font-helvetica text-[clamp(0.95rem,1.15vw,1.1rem)] leading-[1.6] ${bodyTextClass}`}>
-                    No vanity metrics. No guaranteed rankings. Honest expectations set from the audit, with a clear plan for what to fix first.
-                  </p>
-                </div>
-              </div>
-
-              <div className="w-full rounded-xl border border-gray-200 bg-white/95 p-3 shadow-[0_8px_30px_rgba(0,0,0,0.08)] dark:border-gray-700 dark:bg-gray-900/95 md:p-4">
-                <div className="overflow-hidden rounded-lg bg-brand-silk dark:bg-gray-800">
-                  <SeoCustomerJourneyDiagram />
-                </div>
-                <p className={`mt-4 text-center font-helvetica text-[0.95rem] leading-[1.5] ${secondaryTextClass}`}>
-                  Most businesses have the demand. They lack the visibility.
-                </p>
-              </div>
-            </div>
-          </Container>
-        </section>
+        <ServiceHero
+          eyebrow="SEO & GEO"
+          heading="Get found on Google and AI search. Turn it into booked work."
+          headingAccent="booked work"
+          subhead="We turn search visibility into real enquiries, not rankings for their own sake."
+          body="Most clients see meaningful results within 90 days. We set honest expectations from the first audit."
+          proofChips={[
+            { value: '21k', label: 'Weekly impressions - The Boiler Co' },
+            { value: '3×', label: 'Click growth over 14 months' },
+            { value: '14+ months', label: 'Retained and counting' },
+          ]}
+          primaryHref={SEO_CONTACT}
+          primaryLabel={SEO_CTA_LABEL}
+          trustLine={SERVICE_HERO_TRUST_LINE}
+          visual={<BoilerCoImpressionsChart />}
+        />
 
         {/* Stage 2: Problem */}
         <section className="relative overflow-hidden bg-brand-silk/90 py-16 shadow-[0_4px_20px_rgba(0,0,0,0.08)] dark:bg-gray-900/85 md:py-20 lg:py-24" aria-labelledby="seo-problem-heading">
@@ -401,38 +364,17 @@ export default function SeoPage() {
           </Container>
         </section>
 
-        {/* Stage 4a: Blue thesis */}
-        <section className="relative overflow-hidden bg-brand-blue py-16 text-white md:py-20" data-cursor-theme="light" aria-labelledby="seo-thesis-heading">
-          <div className="absolute inset-0 dot-grid-premium opacity-20" aria-hidden="true" />
-          <Container className="relative">
-            <div className="mx-auto max-w-4xl text-center">
-              <h2 id="seo-thesis-heading" className="font-futura text-[clamp(2rem,3.2vw,3.5rem)] font-bold leading-[1.05] text-white">
-                Your customers are searching right now. The only question is whether they find you, or your competitor.
-              </h2>
-              <div className="mx-auto mt-8 max-w-3xl space-y-4 text-left font-helvetica text-[clamp(1rem,1.15vw,1.1rem)] leading-[1.65] text-white sm:text-center">
-                <p>A trades business with a team to keep busy. A skincare brand selling nationwide. A B2C brand ready to scale.</p>
-                <p>They all have the same problem: demand exists, but it&apos;s going elsewhere.</p>
-                <p>SEO fixes that. It puts you in front of people already looking, without paying for every click.</p>
-              </div>
-              <Link
-                href={SEO_CONTACT}
-                className="mt-8 inline-flex items-center justify-center gap-2 rounded-lg bg-white px-7 py-3 font-helvetica font-medium text-brand-blue transition-colors hover:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-blue"
-              >
-                {SEO_CTA_LABEL}
-                <ArrowIcon />
-              </Link>
-            </div>
-          </Container>
-        </section>
-
-        {/* Stage 4b: Five signals */}
-        <section className="py-16 md:py-20 lg:py-24" aria-labelledby="seo-signals-heading">
+        {/* What we fix and how (merged signals, framework, implementation) */}
+        <section className="py-16 md:py-20 lg:py-24" aria-labelledby="seo-fix-heading">
           <Container>
             <div className="mb-10 max-w-3xl">
-              <p className="mb-3 font-helvetica text-[0.8rem] font-semibold uppercase tracking-[0.16em] text-brand-blue">Why search is not working yet</p>
-              <h2 id="seo-signals-heading" className={sectionHeadingClass}>
-                Five reasons you are not getting new business from search, even if you have tried SEO before
+              <p className="mb-3 font-helvetica text-[0.8rem] font-semibold uppercase tracking-[0.16em] text-brand-blue">What we fix and how</p>
+              <h2 id="seo-fix-heading" className={sectionHeadingClass}>
+                Five blockers, one framework, and the work we implement behind the scenes
               </h2>
+              <p className={`mt-4 font-helvetica-light text-[clamp(1rem,1.1vw,1.05rem)] leading-[1.6] ${secondaryTextClass}`}>
+                Our audit finds which of these is blocking you, fixes them in order, and builds the organic channel that makes the 90-day promise real.
+              </p>
             </div>
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-5">
               {visibilityChecks.map((item) => (
@@ -445,9 +387,6 @@ export default function SeoPage() {
                 </article>
               ))}
             </div>
-            <p className={`mt-8 font-helvetica-light text-[clamp(1rem,1.1vw,1.05rem)] leading-[1.6] ${secondaryTextClass}`}>
-              Our audit finds which of these is blocking you, and what to fix first for the fastest return. Fix the blockers in order, starting with what returns fastest.
-            </p>
 
             <div className="mt-12 overflow-hidden rounded-xl border border-gray-200 bg-white/85 p-3 shadow-sm dark:border-gray-700 dark:bg-gray-950/80 md:p-4">
               <div className="mb-4 px-2 md:px-3">
@@ -462,6 +401,23 @@ export default function SeoPage() {
               <div className="overflow-hidden rounded-lg bg-brand-silk dark:bg-gray-800">
                 <SeoGeoDiagram />
               </div>
+            </div>
+
+            <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2">
+              {seoIncludes.map((item) => (
+                <article key={item.title} className="rounded-lg border border-gray-200 bg-white/85 p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900/75">
+                  <h3 className="font-futura text-[clamp(1.25rem,1.6vw,1.5rem)] font-bold text-brand-blue">{item.title}</h3>
+                  <p className={`mt-3 font-helvetica-light text-[0.98rem] leading-[1.6] ${secondaryTextClass}`}>{item.description}</p>
+                  <ul className="mt-6 space-y-3">
+                    {item.features.map((feature) => (
+                      <li key={feature} className={`flex gap-3 font-helvetica-light text-[0.92rem] ${secondaryTextClass}`}>
+                        <CheckIcon />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
             </div>
           </Container>
         </section>
@@ -487,35 +443,6 @@ export default function SeoPage() {
                   <p className="mb-2 font-helvetica text-[0.8rem] font-semibold uppercase tracking-wide text-brand-blue">{step.phase}</p>
                   <h3 className="font-futura text-[clamp(1.15rem,1.4vw,1.35rem)] font-bold text-gray-900 dark:text-white">{step.title}</h3>
                   <p className={`mx-auto mt-3 max-w-sm font-helvetica-light text-[0.95rem] leading-[1.55] ${secondaryTextClass}`}>{step.body}</p>
-                </article>
-              ))}
-            </div>
-          </Container>
-        </section>
-
-        {/* Stage 5b: What we implement */}
-        <section className="py-16 md:py-20 lg:py-24" aria-labelledby="seo-implement-heading">
-          <Container>
-            <div className="mb-10 max-w-3xl">
-              <p className="mb-3 font-helvetica text-[0.8rem] font-semibold uppercase tracking-[0.16em] text-brand-blue">What we build</p>
-              <h2 id="seo-implement-heading" className={sectionHeadingClass}>What we implement behind the scenes</h2>
-              <p className={`mt-4 font-helvetica-light text-[clamp(1rem,1.1vw,1.05rem)] leading-[1.6] ${secondaryTextClass}`}>
-                Here is what we build to make the 90-day promise real.
-              </p>
-            </div>
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-              {seoIncludes.map((item) => (
-                <article key={item.title} className="rounded-lg border border-gray-200 bg-white/85 p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900/75">
-                  <h3 className="font-futura text-[clamp(1.25rem,1.6vw,1.5rem)] font-bold text-brand-blue">{item.title}</h3>
-                  <p className={`mt-3 font-helvetica-light text-[0.98rem] leading-[1.6] ${secondaryTextClass}`}>{item.description}</p>
-                  <ul className="mt-6 space-y-3">
-                    {item.features.map((feature) => (
-                      <li key={feature} className={`flex gap-3 font-helvetica-light text-[0.92rem] ${secondaryTextClass}`}>
-                        <CheckIcon />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
                 </article>
               ))}
             </div>
