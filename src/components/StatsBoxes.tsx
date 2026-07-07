@@ -50,9 +50,9 @@ export default function StatsBoxes() {
 
             <div className="mb-3 h-[2px] w-full flex-shrink-0 bg-brand-blue min-[600px]:mb-4" />
 
-            <h4 className="mb-1.5 font-helvetica font-medium text-[clamp(0.95rem,3.8vw,1.125rem)] leading-tight text-brand-black min-[600px]:mb-2 min-[600px]:text-[clamp(1rem,1.4vw,1.25rem)] dark:text-gray-100">
+            <p className="mb-1.5 font-helvetica font-medium text-[clamp(0.95rem,3.8vw,1.125rem)] leading-tight text-brand-black min-[600px]:mb-2 min-[600px]:text-[clamp(1rem,1.4vw,1.25rem)] dark:text-gray-100">
               {stat.label}
-            </h4>
+            </p>
           </div>
         ))}
       </div>

@@ -8,26 +8,28 @@ import ImageFilledText from '@/components/ImageFilledText';
 import ContactHeaderButton from '@/components/ContactHeaderButton';
 import { consumeHomeEntryAnimationSkip, scrollToHomeSection } from '@/lib/homeNavigation';
 
-// Animation variants for staggered content reveal
-const containerVariants = {
+// Animation variants for non-LCP hero chrome (divider, supporting copy, CTA).
+// Headline text stays static/visible for first paint — animated opacity here
+// delayed LCP by ~1.2s in Lighthouse (element render delay on the hero h2).
+const belowFoldVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.45,
+      staggerChildren: 0.1,
+      delayChildren: 0.15,
     },
   },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 16 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.45,
-      ease: [0.4, 0, 0.2, 1] as const, // easeOut bezier
+      duration: 0.4,
+      ease: [0.4, 0, 0.2, 1] as const,
     },
   },
 };
@@ -81,33 +83,31 @@ export default function HeroSection() {
 
       {/* Main Hero Content - Centered Slogan */}
       <Container className="w-full">
-        <motion.div
-          className="text-center [@media(max-height:800px)]:translate-y-6"
-          variants={containerVariants}
-          initial={skipEntryAnimation ? false : 'hidden'}
-          animate="visible"
-        >
-          {/* Slogan */}
-          <motion.div className="mb-12" variants={itemVariants}>
+        <div className="text-center [@media(max-height:800px)]:translate-y-6">
+          {/* LCP headline — static, always visible on first paint */}
+          <div className="mb-12">
             <div className="flex flex-col items-center gap-4 md:gap-6">
-              {/* Line 1: "in a world of noise" */}
               <div className="flex flex-wrap items-baseline justify-center gap-3 md:gap-4">
                 <h1 className="text-blue-primary font-futura font-[750] text-[clamp(1.65rem,4.55vmin,3.35rem)] [@media(max-height:800px)]:text-[clamp(1.9rem,5.3vmin,3.9rem)] 2xl:text-[clamp(2rem,3.9vw,4rem)] leading-[1.1]">
                   in a world of
                 </h1>
-                <ImageFilledText 
-                  text="noise" 
+                <ImageFilledText
+                  text="noise"
                   className="font-futura font-[750] text-[clamp(3rem,8.75vmin,7.5rem)] [@media(max-height:800px)]:text-[clamp(3.5rem,10.15vmin,8.7rem)] 2xl:text-[clamp(3.75rem,7.75vw,9.75rem)] leading-[1]"
                 />
               </div>
-              
-              {/* Line 2: "we make your brand heard" */}
+
               <h2 className="text-blue-primary font-futura font-[750] text-[clamp(1.65rem,4.55vmin,3.35rem)] [@media(max-height:800px)]:text-[clamp(1.9rem,5.3vmin,3.9rem)] 2xl:text-[clamp(2rem,3.9vw,4rem)] leading-[1.1]">
                 we make your brand heard
               </h2>
             </div>
-          </motion.div>
+          </div>
 
+          <motion.div
+            variants={belowFoldVariants}
+            initial={skipEntryAnimation ? false : 'hidden'}
+            animate="visible"
+          >
           {/* Decorative Divider */}
           <motion.div className="mb-14" variants={itemVariants}>
             <div className="h-[2px] bg-gradient-to-r from-transparent via-blue-primary to-transparent mx-auto w-[30vw]"  />
@@ -141,7 +141,8 @@ export default function HeroSection() {
               Get in touch
             </motion.button>
           </motion.div>
-        </motion.div>
+          </motion.div>
+        </div>
       </Container>
     </div>
   );

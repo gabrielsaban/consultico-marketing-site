@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import localFont from 'next/font/local';
 import { Analytics } from "@vercel/analytics/next";
-import { GoogleAnalytics } from "@next/third-parties/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import DeferredGoogleAnalytics from "@/components/DeferredGoogleAnalytics";
 import "./globals.css";
 import RouteAwareNavbar from "@/components/RouteAwareNavbar";
 import RouteAwarePageFrame from "@/components/RouteAwarePageFrame";
@@ -12,7 +12,6 @@ import SitePreloader from "@/components/SitePreloader";
 import { PreloaderProvider } from "@/components/PreloaderContext";
 import PreloaderGate from "@/components/PreloaderGate";
 import { serializeJsonLd, siteJsonLd } from "@/lib/schema";
-import { GA_MEASUREMENT_ID } from "@/lib/google-analytics";
 
 // Brand fonts (local woff2)
 const futuraHV = localFont({
@@ -118,8 +117,8 @@ export default function RootLayout({
         </PreloaderProvider>
         <Analytics />
         <SpeedInsights />
+        <DeferredGoogleAnalytics />
       </body>
-      <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
     </html>
   );
 }

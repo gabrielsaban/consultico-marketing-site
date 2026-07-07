@@ -319,9 +319,9 @@ export default function AboutSection(): React.JSX.Element {
                   <PhilosophyIcon />
                 </div>
                 <div>
-                  <h4 className="font-futura font-bold text-[clamp(1.125rem,1.4vw,1.35rem)] text-brand-blue mb-2">
+                  <h3 className="font-futura font-bold text-[clamp(1.125rem,1.4vw,1.35rem)] text-brand-blue mb-2">
                     {point.title}
-                  </h4>
+                  </h3>
                   <p className="text-[clamp(0.95rem,1.1vw,1.25rem)] leading-[1.6] text-gray-700 dark:text-gray-300 font-helvetica-light">
                     {point.description}
                   </p>
