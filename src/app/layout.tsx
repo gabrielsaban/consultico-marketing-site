@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import localFont from 'next/font/local';
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import DeferredGoogleAnalytics from "@/components/DeferredGoogleAnalytics";
+import TrackingRoot from "@/components/TrackingRoot";
 import "./globals.css";
 import RouteAwareNavbar from "@/components/RouteAwareNavbar";
 import RouteAwarePageFrame from "@/components/RouteAwarePageFrame";
@@ -78,6 +78,21 @@ export const metadata: Metadata = {
   },
 };
 
+const consentBootstrapScript = `
+(() => {
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  window.gtag = gtag;
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    wait_for_update: 500,
+  });
+})();
+`;
+
 const themeScript = `
 (() => {
   try {
@@ -102,6 +117,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: serializeJsonLd(siteJsonLd) }}
         />
+        <script dangerouslySetInnerHTML={{ __html: consentBootstrapScript }} />
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <PreloaderProvider>
           <SitePreloader />
@@ -117,7 +133,7 @@ export default function RootLayout({
         </PreloaderProvider>
         <Analytics />
         <SpeedInsights />
-        <DeferredGoogleAnalytics />
+        <TrackingRoot />
       </body>
     </html>
   );

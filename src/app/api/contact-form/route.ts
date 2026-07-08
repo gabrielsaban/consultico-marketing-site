@@ -1,4 +1,6 @@
 import { NextResponse } from 'next/server';
+import { sendGa4ServerEvent } from '@/lib/tracking/ga4-measurement-protocol';
+import type { TrackingPayload } from '@/lib/tracking/types';
 import { getNotificationRecipient, sendResendEmail, upsertFormSession, type FormSessionStatus } from '@/lib/server/formSessions';
 
 type ContactFormPayload = {
@@ -11,6 +13,8 @@ type ContactFormPayload = {
   phone?: string;
   message?: string;
   website?: string;
+  tracking?: TrackingPayload;
+  formId?: string;
 };
 
 const MIN_SUBMIT_TIME_MS = 2500;
@@ -123,6 +127,14 @@ export async function POST(request: Request) {
 
     if (status === 'submitted') {
       await sendContactEmails(data);
+      await sendGa4ServerEvent(payload.tracking, {
+        name: 'generate_lead',
+        params: {
+          form_id: payload.formId ?? 'contact',
+          interest: payload.tracking?.interest ?? '',
+          page_path: payload.tracking?.pagePath ?? '',
+        },
+      });
       await saveFormSession().catch((error: unknown) => {
         console.error('Contact form session save failed after email send:', error);
       });

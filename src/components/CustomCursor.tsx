@@ -11,6 +11,63 @@ interface CustomCursorProps {
   className?: string
 }
 
+const BRAND_BLUE = { r: 0, g: 123, b: 255 }
+const BLUE_TOLERANCE = 30
+
+function parseRgb(color: string): [number, number, number] | null {
+  const match = color.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/)
+  if (!match) return null
+  return [Number(match[1]), Number(match[2]), Number(match[3])]
+}
+
+function isNearBrandBlue(color: string): boolean {
+  const rgb = parseRgb(color)
+  if (!rgb) return false
+  const [r, g, b] = rgb
+  return (
+    Math.abs(r - BRAND_BLUE.r) <= BLUE_TOLERANCE &&
+    Math.abs(g - BRAND_BLUE.g) <= BLUE_TOLERANCE &&
+    Math.abs(b - BRAND_BLUE.b) <= BLUE_TOLERANCE
+  )
+}
+
+function isTransparentColor(color: string): boolean {
+  return (
+    !color ||
+    color === 'transparent' ||
+    color === 'none' ||
+    color.endsWith(', 0)') ||
+    color === 'rgba(0, 0, 0, 0)'
+  )
+}
+
+function getEffectiveSurfaceColor(el: Element | null): string | null {
+  let current = el as HTMLElement | null
+  while (current && current !== document.documentElement) {
+    const style = window.getComputedStyle(current)
+    const bg = style.backgroundColor
+    if (!isTransparentColor(bg)) return bg
+
+    if (current instanceof SVGElement) {
+      const fill = style.fill
+      if (!isTransparentColor(fill)) return fill
+    }
+
+    current = current.parentElement
+  }
+  return null
+}
+
+function isOnBrandBlueSurface(x: number, y: number): boolean {
+  const el = document.elementFromPoint(x, y)
+  if (!el) return false
+
+  if ((el as HTMLElement).closest?.('[data-cursor-on-blue]')) return true
+
+  const surfaceColor = getEffectiveSurfaceColor(el)
+  return surfaceColor ? isNearBrandBlue(surfaceColor) : false
+}
+
 export default function CustomCursor({
   size = 9,
   color = '#3B82F6',
@@ -25,6 +82,7 @@ export default function CustomCursor({
   const mouse = useRef({ x: 0, y: 0 })
   const isHovering = useRef(false)
   const isLightTheme = useRef(false)
+  const isOnBlueSurface = useRef(false)
   const frameRef = useRef<number | null>(null)
 
   useEffect(() => {
@@ -49,27 +107,46 @@ export default function CustomCursor({
 
     const update = () => {
       const hoverScale = isHovering.current ? 1.65 : 1
-      const ringScale = isHovering.current ? 1.28 : 1
+      const blueSurfaceRingScale = isOnBlueSurface.current && !isLightTheme.current ? 1.1 : 1
+      const ringScale = (isHovering.current ? 1.28 : 1) * blueSurfaceRingScale
       const cursorTransform = `translate3d(${mouse.current.x}px, ${mouse.current.y}px, 0) translate(-50%, -50%) scale(${hoverScale})`
       const ringTransform = `translate3d(${mouse.current.x}px, ${mouse.current.y}px, 0) translate(-50%, -50%) scale(${ringScale})`
 
       if (cursorRef.current) {
         cursorRef.current.style.transform = cursorTransform
-        cursorRef.current.style.backgroundColor = isLightTheme.current ? '#FFFFFF' : color
-        cursorRef.current.style.boxShadow = isLightTheme.current
-          ? '0 0 16px rgba(255,255,255,0.5)'
-          : '0 0 16px rgba(0,123,255,0.42)'
+
+        if (isLightTheme.current) {
+          cursorRef.current.style.backgroundColor = '#FFFFFF'
+          cursorRef.current.style.boxShadow = '0 0 16px rgba(255,255,255,0.5)'
+        } else if (isOnBlueSurface.current) {
+          cursorRef.current.style.backgroundColor = '#B8ECFF'
+          cursorRef.current.style.boxShadow = '0 0 16px rgba(255,255,255,0.45)'
+        } else {
+          cursorRef.current.style.backgroundColor = color
+          cursorRef.current.style.boxShadow = '0 0 16px rgba(0,123,255,0.42)'
+        }
       }
 
       if (ringRef.current) {
         ringRef.current.style.transform = ringTransform
-        ringRef.current.style.opacity = isLightTheme.current ? '0.82' : isHovering.current ? '0.62' : '0.42'
-        ringRef.current.style.borderColor = isLightTheme.current ? '#FFFFFF' : ringColor
-        ringRef.current.style.backgroundColor = isLightTheme.current
-          ? 'rgba(255, 255, 255, 0.16)'
-          : isHovering.current
+
+        if (isLightTheme.current) {
+          ringRef.current.style.opacity = '0.82'
+          ringRef.current.style.borderColor = '#FFFFFF'
+          ringRef.current.style.backgroundColor = 'rgba(255, 255, 255, 0.16)'
+        } else if (isOnBlueSurface.current) {
+          ringRef.current.style.opacity = isHovering.current ? '0.72' : '0.55'
+          ringRef.current.style.borderColor = '#FFFFFF'
+          ringRef.current.style.backgroundColor = isHovering.current
+            ? 'rgba(255, 255, 255, 0.24)'
+            : 'rgba(255, 255, 255, 0.18)'
+        } else {
+          ringRef.current.style.opacity = isHovering.current ? '0.62' : '0.42'
+          ringRef.current.style.borderColor = ringColor
+          ringRef.current.style.backgroundColor = isHovering.current
             ? 'rgba(0, 123, 255, 0.12)'
             : 'rgba(0, 123, 255, 0.055)'
+        }
       }
 
       frameRef.current = requestAnimationFrame(update)
@@ -82,6 +159,7 @@ export default function CustomCursor({
 
     const handleMouseMove = (e: MouseEvent) => {
       mouse.current = { x: e.clientX, y: e.clientY }
+      isOnBlueSurface.current = isOnBrandBlueSurface(e.clientX, e.clientY)
     }
 
     const handleMouseOver = (e: MouseEvent) => {
@@ -124,7 +202,7 @@ export default function CustomCursor({
       {/* Blue dot */}
       <div
         ref={cursorRef}
-        className={`fixed left-0 top-0 z-[1000] rounded-full pointer-events-none transition-transform duration-150 ease-out will-change-transform ${className}`}
+        className={`fixed left-0 top-0 z-[10050] rounded-full pointer-events-none transition-[transform,background-color,box-shadow] duration-200 ease-out will-change-transform ${className}`}
         style={{
           backgroundColor: color,
           width: `${size}px`,
@@ -135,7 +213,7 @@ export default function CustomCursor({
       {/* Grey ring */}
       <div
         ref={ringRef}
-        className="fixed left-0 top-0 z-[999] rounded-full pointer-events-none border transition-[transform,opacity,background-color] duration-200 ease-out will-change-transform"
+        className="fixed left-0 top-0 z-[10049] rounded-full pointer-events-none border transition-[transform,opacity,background-color,border-color] duration-200 ease-out will-change-transform"
         style={{
           borderColor: ringColor,
           borderWidth: '1px',

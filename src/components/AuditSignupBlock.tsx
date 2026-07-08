@@ -3,6 +3,11 @@
 import Link from 'next/link';
 import { useState, type FormEvent } from 'react';
 import {
+  buildTrackingPayload,
+  trackGenerateLead,
+  trackSignUp,
+} from '@/lib/tracking';
+import {
   AUDIT_SIGNUP_CONSENT_TEXT,
 } from '@/lib/audit-signup-consent';
 import { createFormSessionId, getFormSubmissionStartedAt } from '@/components/ContactForm';
@@ -37,6 +42,7 @@ export default function AuditSignupBlock({ source = 'contact-page', variant = 's
           email,
           source,
           company: honeypot,
+          tracking: buildTrackingPayload(),
         }),
       });
 
@@ -44,6 +50,7 @@ export default function AuditSignupBlock({ source = 'contact-page', variant = 's
         throw new Error('Signup failed');
       }
 
+      trackSignUp({ method: 'seo_audit', source });
       setSubmitState('success');
       setStep(2);
     } catch (error) {
@@ -65,6 +72,7 @@ export default function AuditSignupBlock({ source = 'contact-page', variant = 's
           sessionId,
           email,
           website,
+          tracking: buildTrackingPayload(),
         }),
       });
 
@@ -72,6 +80,10 @@ export default function AuditSignupBlock({ source = 'contact-page', variant = 's
         throw new Error('Website submit failed');
       }
 
+      trackGenerateLead({
+        formId: 'audit_signup',
+        leadType: 'audit_with_url',
+      });
       setStep2State('success');
     } catch (error) {
       console.error('Audit signup step 2 failed:', error);

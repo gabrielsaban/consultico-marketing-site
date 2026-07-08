@@ -3,6 +3,8 @@ import {
   AUDIT_SIGNUP_CONSENT_TEXT,
   AUDIT_SIGNUP_CONSENT_VERSION,
 } from '@/lib/audit-signup-consent';
+import { sendGa4ServerEvent } from '@/lib/tracking/ga4-measurement-protocol';
+import type { TrackingPayload } from '@/lib/tracking/types';
 import {
   getNotificationRecipient,
   sendResendEmail,
@@ -19,6 +21,7 @@ type AuditSignupPayload = {
   website?: string;
   source?: string;
   company?: string;
+  tracking?: TrackingPayload;
 };
 
 function isValidEmail(email: string): boolean {
@@ -138,6 +141,14 @@ export async function POST(request: Request) {
 
       await sendStep1Emails(email, source);
 
+      await sendGa4ServerEvent(payload.tracking, {
+        name: 'sign_up',
+        params: {
+          method: 'seo_audit',
+          signup_source: source,
+        },
+      });
+
       await upsertFormSession({
         id: payload.sessionId,
         formType: 'audit_signup',
@@ -172,6 +183,14 @@ export async function POST(request: Request) {
     }
 
     await sendStep2Emails(email, website);
+
+    await sendGa4ServerEvent(payload.tracking, {
+      name: 'generate_lead',
+      params: {
+        form_id: 'audit_signup',
+        lead_type: 'audit_with_url',
+      },
+    });
 
     await upsertFormSession({
       id: payload.sessionId,

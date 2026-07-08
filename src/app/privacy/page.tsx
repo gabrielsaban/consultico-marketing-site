@@ -42,7 +42,7 @@ const sections = [
   },
   {
     title: 'Cookies and analytics',
-    body: 'We use cookies and similar technologies for essential site function and analytics, including Google Analytics 4 (usage data such as pages visited and general location). Vercel Analytics and Speed Insights may also collect anonymised performance data. You can control cookies through your browser settings.',
+    body: 'We use cookies for essential site function and analytics. Google Tag Manager loads Google Analytics 4 (usage data such as pages visited and general location) only if you accept analytics cookies. We may add advertising tags in future when running paid campaigns; these remain off until then. Vercel Analytics and Speed Insights may also collect anonymised performance data. You can change your choice anytime by clearing site data or using the cookie banner. See your browser settings for broader cookie controls.',
   },
 ];
 

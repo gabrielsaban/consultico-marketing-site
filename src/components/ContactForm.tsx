@@ -2,6 +2,11 @@
 
 import { motion } from 'framer-motion';
 import { useEffect, useRef, useState, type ChangeEvent, type FormEvent } from 'react';
+import {
+  buildTrackingPayload,
+  trackGenerateLead,
+} from '@/lib/tracking';
+import type { TrackingPayload } from '@/lib/tracking/types';
 
 const INTEREST_LABELS: Record<string, string> = {
   seo: 'SEO',
@@ -43,16 +48,20 @@ async function persistContactForm({
   startedAt,
   status,
   data,
+  tracking,
+  formId,
 }: {
   sessionId: string;
   startedAt: number;
   status: 'draft' | 'submitted';
   data: typeof initialContactFormData;
+  tracking?: TrackingPayload;
+  formId?: string;
 }) {
   const response = await fetch('/api/contact-form', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ sessionId, startedAt, status, ...data }),
+    body: JSON.stringify({ sessionId, startedAt, status, tracking, formId, ...data }),
   });
 
   if (!response.ok) {
@@ -90,11 +99,13 @@ export default function ContactForm({
   const draftTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const submittedRef = useRef(false);
   const interestAppliedRef = useRef(false);
+  const interestRef = useRef<string | undefined>(undefined);
 
   useEffect(() => {
     if (interestAppliedRef.current || typeof window === 'undefined') return;
     const params = new URLSearchParams(window.location.search);
-    const interest = params.get('interest');
+    const interest = params.get('interest') ?? undefined;
+    if (interest) interestRef.current = interest;
     if (!interest) return;
 
     const label = INTEREST_LABELS[interest] ?? interest.replace(/-/g, ' ');
@@ -118,6 +129,7 @@ export default function ContactForm({
         startedAt,
         status: 'draft',
         data: formData,
+        formId: idPrefix,
       }).catch((error: unknown) => {
         console.error('Contact draft save failed:', error);
       });
@@ -140,6 +152,13 @@ export default function ContactForm({
         startedAt,
         status: 'submitted',
         data: formData,
+        tracking: buildTrackingPayload(interestRef.current),
+        formId: idPrefix,
+      });
+
+      trackGenerateLead({
+        formId: idPrefix,
+        interest: interestRef.current,
       });
 
       submittedRef.current = true;

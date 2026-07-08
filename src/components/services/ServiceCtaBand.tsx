@@ -1,14 +1,26 @@
+'use client';
+
 import Link from 'next/link';
 import Container from '@/components/Container';
+import { trackServiceCta } from '@/lib/tracking';
 
 interface ServiceCtaBandProps {
   title: string;
   body: string;
   buttonLabel: string;
   href: string;
+  trackingId?: string;
 }
 
-export default function ServiceCtaBand({ title, body, buttonLabel, href }: ServiceCtaBandProps) {
+export default function ServiceCtaBand({
+  title,
+  body,
+  buttonLabel,
+  href,
+  trackingId,
+}: ServiceCtaBandProps) {
+  const itemId = trackingId ?? (href.replace(/^\//, '').split('?')[0] || 'cta');
+
   return (
     <section className="bg-brand-blue py-16 text-white md:py-20 lg:py-24" data-cursor-theme="light">
       <Container>
@@ -19,6 +31,7 @@ export default function ServiceCtaBand({ title, body, buttonLabel, href }: Servi
           </p>
           <Link
             href={href}
+            onClick={() => trackServiceCta({ itemId, ctaLocation: 'service_cta_band' })}
             className="mt-8 inline-flex items-center justify-center rounded-lg bg-white px-8 py-3 font-helvetica text-[clamp(1rem,1.15vw,1.1rem)] font-medium text-brand-blue transition-colors hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-brand-blue"
           >
             {buttonLabel}

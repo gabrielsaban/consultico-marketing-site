@@ -1,4 +1,6 @@
 import { NextResponse } from 'next/server';
+import { sendGa4ServerEvent } from '@/lib/tracking/ga4-measurement-protocol';
+import type { TrackingPayload } from '@/lib/tracking/types';
 import {
   calculateQ3Score,
   getSingleChoiceAnswerText,
@@ -17,6 +19,7 @@ type WebinarQuizPayload = {
   score?: number | null;
   stage?: string | null;
   currentStep?: number | null;
+  tracking?: TrackingPayload;
 };
 
 const defaultAnswers: QuizAnswers = {
@@ -221,6 +224,15 @@ export async function POST(request: Request) {
 
     if (status === 'submitted') {
       await sendSubmissionEmails(payload, answers);
+      await sendGa4ServerEvent(payload.tracking, {
+        name: 'generate_lead',
+        params: {
+          form_id: 'webinar_quiz',
+          lead_type: 'quiz_complete',
+          quiz_score: payload.score ?? 0,
+          quiz_tier: payload.stage ?? '',
+        },
+      });
     }
 
     return NextResponse.json({ ok: true });

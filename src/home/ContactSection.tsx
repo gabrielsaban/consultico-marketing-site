@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+import TrackedOutboundLink from '@/components/TrackedOutboundLink';
 import Container from '@/components/Container';
 import ContactForm from '@/components/ContactForm';
 import ContactLazyMap from '@/components/ContactLazyMap';
@@ -16,18 +18,20 @@ export default function ContactSection() {
     <section id="contact" className="scroll-mt-24 bg-gray-50 py-16 shadow-[0_4px_20px_rgba(0,0,0,0.1)] dark:bg-gray-950 md:py-20 lg:py-24">
       <Container>
         <div className="mb-12 flex flex-col items-center justify-center gap-8 md:mb-16 md:flex-row md:gap-12 lg:gap-24">
-          <a
+          <TrackedOutboundLink
             href={`mailto:${CONSULTICO_EMAIL}`}
+            ctaLocation="home_contact_email"
             className="flex items-center gap-3 font-helvetica text-[clamp(0.95rem,1.1vw,1.125rem)] text-gray-700 transition-colors hover:text-brand-blue dark:text-gray-300"
           >
             {CONSULTICO_EMAIL}
-          </a>
-          <a
+          </TrackedOutboundLink>
+          <TrackedOutboundLink
             href={CONSULTICO_PHONE_TEL}
+            ctaLocation="home_contact_phone"
             className="flex items-center gap-3 font-helvetica text-[clamp(0.95rem,1.1vw,1.125rem)] text-gray-700 transition-colors hover:text-brand-blue dark:text-gray-300"
           >
             {CONSULTICO_PHONE_DISPLAY}
-          </a>
+          </TrackedOutboundLink>
           <span className="font-helvetica text-[clamp(0.95rem,1.1vw,1.125rem)] text-gray-700 dark:text-gray-300">
             Glasgow, Scotland
           </span>
@@ -41,16 +45,17 @@ export default function ContactSection() {
             <p className="mb-8 max-w-[36rem] font-helvetica text-[clamp(1rem,1.15vw,1.12rem)] leading-[1.6] text-gray-700 dark:text-gray-300">
               Book a free discovery call and let&apos;s figure out exactly where your marketing should be going, and what it&apos;s going to take to get there.
             </p>
-            <motion.a
-              href={CONSULTICO_BOOKING_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex w-full max-w-[18rem] items-center justify-center rounded-lg bg-brand-blue px-8 py-3 font-helvetica text-[clamp(1rem,1.15vw,1.08rem)] font-medium text-white transition-colors duration-200 hover:bg-[#006FE6] active:bg-[#0067D6] focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2"
-              whileHover={{ scale: 1.06 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              Book a Call
-            </motion.a>
+            <motion.div whileHover={{ scale: 1.06 }} whileTap={{ scale: 0.98 }}>
+              <TrackedOutboundLink
+                href={CONSULTICO_BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                ctaLocation="home_contact_book_call"
+                className="inline-flex w-full max-w-[18rem] items-center justify-center rounded-lg bg-brand-blue px-8 py-3 font-helvetica text-[clamp(1rem,1.15vw,1.08rem)] font-medium text-white transition-colors duration-200 hover:bg-[#006FE6] active:bg-[#0067D6] focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2"
+              >
+                Book a Call
+              </TrackedOutboundLink>
+            </motion.div>
           </div>
 
           <div className="text-center">

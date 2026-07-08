@@ -13,6 +13,11 @@ import {
   type QuizQuestion,
   type SingleChoiceQuestionId,
 } from '@/lib/quiz';
+import {
+  buildTrackingPayload,
+  trackQuizComplete,
+} from '@/lib/tracking';
+import type { TrackingPayload } from '@/lib/tracking/types';
 
 interface WebinarQuizModalProps {
   isOpen: boolean;
@@ -81,6 +86,7 @@ async function persistQuizSession({
   score,
   stage,
   currentStep,
+  tracking,
 }: {
   sessionId: string;
   status: 'draft' | 'submitted';
@@ -89,6 +95,7 @@ async function persistQuizSession({
   score?: number | null;
   stage?: string | null;
   currentStep?: number | null;
+  tracking?: TrackingPayload;
 }) {
   const response = await fetch('/api/webinar-quiz', {
     method: 'POST',
@@ -103,6 +110,7 @@ async function persistQuizSession({
       score,
       stage,
       currentStep,
+      tracking,
     }),
   });
 
@@ -471,7 +479,11 @@ export default function WebinarQuizModal({ isOpen, onClose }: WebinarQuizModalPr
         score,
         stage: tier,
         currentStep: quizQuestions.length + 1,
+        tracking: buildTrackingPayload(),
       })
+        .then(() => {
+          trackQuizComplete({ score, quizTier: tier });
+        })
         .catch((error: unknown) => {
           console.error('Quiz submit failed:', error);
           setSubmitError(error instanceof Error ? error.message : 'Submission failed');

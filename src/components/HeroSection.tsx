@@ -7,6 +7,7 @@ import Container from '@/components/Container';
 import ImageFilledText from '@/components/ImageFilledText';
 import ContactHeaderButton from '@/components/ContactHeaderButton';
 import { consumeHomeEntryAnimationSkip, scrollToHomeSection } from '@/lib/homeNavigation';
+import { trackOutboundClick } from '@/lib/tracking';
 
 // Animation variants for non-LCP hero chrome (divider, supporting copy, CTA).
 // Headline text stays static/visible for first paint — animated opacity here
@@ -135,6 +136,10 @@ export default function HeroSection() {
               whileTap={{ scale: 0.98 }}
               aria-label="Get in touch with Consultico"
               onClick={() => {
+                trackOutboundClick({
+                  linkUrl: '#contact',
+                  ctaLocation: 'hero_get_in_touch',
+                });
                 scrollToHomeSection('contact');
               }}
             >

@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import Container from '@/components/Container';
+import TrackedOutboundLink from '@/components/TrackedOutboundLink';
 import AuditSignupBlock from '@/components/AuditSignupBlock';
 import ContactForm from '@/components/ContactForm';
 import ContactLazyMap from '@/components/ContactLazyMap';
@@ -42,13 +43,23 @@ export default function ContactPageContent() {
 
               <p className="mt-6 font-helvetica-light text-[0.92rem] leading-[1.6] text-gray-600 dark:text-gray-400">
                 Prefer a call?{' '}
-                <a href={CONSULTICO_BOOKING_URL} target="_blank" rel="noreferrer" className="font-medium text-brand-blue hover:underline">
+                <TrackedOutboundLink
+                  href={CONSULTICO_BOOKING_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  ctaLocation="contact_intro_book_call"
+                  className="font-medium text-brand-blue hover:underline"
+                >
                   Book a free call
-                </a>{' '}
+                </TrackedOutboundLink>{' '}
                 or email{' '}
-                <a href={`mailto:${CONSULTICO_EMAIL}`} className="font-medium text-brand-blue hover:underline">
+                <TrackedOutboundLink
+                  href={`mailto:${CONSULTICO_EMAIL}`}
+                  ctaLocation="contact_intro_email"
+                  className="font-medium text-brand-blue hover:underline"
+                >
                   {CONSULTICO_EMAIL}
-                </a>
+                </TrackedOutboundLink>
                 .
               </p>
             </div>
@@ -61,26 +72,29 @@ export default function ContactPageContent() {
       <section className="border-y border-gray-200 bg-white py-8 dark:border-gray-800 dark:bg-gray-950 md:py-10">
         <Container>
           <div className="flex flex-col items-stretch justify-center gap-4 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center md:gap-6">
-            <a
+            <TrackedOutboundLink
               href={CONSULTICO_BOOKING_URL}
               target="_blank"
               rel="noreferrer"
+              ctaLocation="contact_bar_book_call"
               className="inline-flex items-center justify-center rounded-lg border border-brand-blue px-6 py-3 font-helvetica font-medium text-brand-blue transition-colors hover:bg-brand-blue hover:text-white"
             >
               Book a free call
-            </a>
-            <a
+            </TrackedOutboundLink>
+            <TrackedOutboundLink
               href={`mailto:${CONSULTICO_EMAIL}`}
+              ctaLocation="contact_bar_email"
               className="inline-flex items-center justify-center rounded-lg border border-gray-200 px-6 py-3 font-helvetica text-gray-800 transition-colors hover:border-brand-blue hover:text-brand-blue dark:border-gray-700 dark:text-gray-200"
             >
               {CONSULTICO_EMAIL}
-            </a>
-            <a
+            </TrackedOutboundLink>
+            <TrackedOutboundLink
               href={CONSULTICO_PHONE_TEL}
+              ctaLocation="contact_bar_phone"
               className="inline-flex items-center justify-center rounded-lg border border-gray-200 px-6 py-3 font-helvetica text-gray-800 transition-colors hover:border-brand-blue hover:text-brand-blue dark:border-gray-700 dark:text-gray-200"
             >
               {CONSULTICO_PHONE_DISPLAY}
-            </a>
+            </TrackedOutboundLink>
           </div>
         </Container>
       </section>
