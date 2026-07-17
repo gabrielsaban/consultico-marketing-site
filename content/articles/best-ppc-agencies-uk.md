@@ -1,6 +1,6 @@
 ---
 title: "Best PPC Agencies in the UK (2026): 7 Top Pay-Per-Click Companies Compared"
-seoTitle: "Best PPC Agencies in the UK (2026): 7 Top Companies Compared | Consultico"
+seoTitle: "Best PPC Agencies in the UK (2026) | Consultico"
 excerpt: "The best PPC agencies in the UK for 2026, compared. Google Ads returns about £2 for every £1 spent. Here is how to pick an agency that actually delivers it."
 date: 2026-06-29
 updated: 2026-06-29
