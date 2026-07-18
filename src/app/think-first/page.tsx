@@ -9,7 +9,7 @@ import { serializeJsonLd, thinkFirstPageJsonLd } from '@/lib/schema';
 export const metadata: Metadata = pageMeta({
   title: 'Think First: Marketing Strategy Workshop | Consultico',
   description:
-    'Think First is Consultico\'s 30-day marketing strategy workshop for B2C brands. Clarity, projections, and a step-by-step roadmap before you spend on SEO, PPC, or web.',
+    'Think First is Consultico\'s 30-day marketing strategy workshop for B2C brands. Clarity, projections, and a roadmap before you spend on SEO, PPC, or web.',
   path: '/think-first',
   absoluteTitle: true,
 });

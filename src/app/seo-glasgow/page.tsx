@@ -22,7 +22,7 @@ const MAP_EMBED_SRC =
 export const metadata: Metadata = pageMeta({
   title: 'SEO Agency in Glasgow | Consultico',
   description:
-    'Glasgow-based SEO agency helping businesses across the city and central Scotland get found on Google and AI search. Strategy-led, honest, results that compound.',
+    'Glasgow-based SEO agency helping businesses across central Scotland get found on Google and AI search. Strategy-led, honest, results that compound.',
   path: SEO_GLASGOW_PATH,
   absoluteTitle: true,
 });

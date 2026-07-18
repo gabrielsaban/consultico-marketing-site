@@ -90,7 +90,7 @@ export const SERVICE_PAGES = {
     serviceType: 'Marketing campaign management',
   },
   careers: {
-    title: 'Careers at Consultico',
+    title: 'Careers',
     description:
       'Join Consultico: internships and roles in a strategy-led Glasgow marketing consultancy. See current opportunities and our student programme.',
     path: '/careers',

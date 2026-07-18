@@ -379,7 +379,13 @@ export function articlePageJsonLd(article: Article) {
         '@type': 'Person',
         name: author.name,
         jobTitle: author.role,
-        '@id': `${SITE_ORIGIN}/#paul-wilson`,
+        // Derive the @id from the author's name so a future team-member byline
+        // gets its own Person entity instead of being bound to Paul's #id.
+        // 'Paul Wilson' -> '#paul-wilson', matching the canonical founder node.
+        '@id': `${SITE_ORIGIN}/#${author.name
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/^-+|-+$/g, '')}`,
       },
       publisher: { '@id': `${SITE_ORIGIN}/#org` },
       mainEntityOfPage: `${SITE_ORIGIN}/articles/${article.slug}`,

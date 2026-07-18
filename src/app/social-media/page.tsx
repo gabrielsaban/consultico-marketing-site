@@ -1,5 +1,18 @@
+import type { Metadata } from 'next';
 import Container from '@/components/Container';
 import ServiceDesktopHeader from '@/components/ServiceDesktopHeader';
+import { pageMeta } from '@/lib/seo';
+
+export const metadata: Metadata = {
+  ...pageMeta({
+    title: 'Social Media Management',
+    description:
+      'Strategy-led social media management from Consultico, a Glasgow marketing consultancy. Full details coming soon.',
+    path: '/social-media',
+  }),
+  // Placeholder page — keep out of the index (avoids duplicate title / thin content) until it has real content.
+  robots: { index: false, follow: true },
+};
 
 export default function SocialMediaPage() {
   return (
