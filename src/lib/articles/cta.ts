@@ -103,6 +103,10 @@ const ARTICLE_SECONDARY_SERVICE_LINKS: Record<string, { href: string; label: str
     { href: '/seo', label: 'SEO services' },
     { href: '/ppc', label: 'PPC services' },
   ],
+  'how-to-choose-an-seo-agency-in-glasgow': [
+    { href: '/seo-glasgow', label: 'SEO in Glasgow' },
+    { href: '/think-first', label: 'Think First workshop' },
+  ],
 };
 
 export function getSecondaryServiceLinks(slug: string): { href: string; label: string }[] {
