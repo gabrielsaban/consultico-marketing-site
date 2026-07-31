@@ -25,7 +25,8 @@ export const services: Service[] = [
     detailHref: '/think-first',
     detailCtaLabel: 'Explore Think First',
     image: '/services/market_strategy.avif',
-    imageAlt: 'Marketing strategy workshop planning with Consultico',
+    imageAlt:
+      'A pack of racing cyclists leaning into a corner at speed, captured with motion blur so the riders and the road streak past.',
   },
   {
     id: 'ppc',
@@ -40,7 +41,8 @@ export const services: Service[] = [
     detailHref: '/ppc',
     detailCtaLabel: 'Explore PPC',
     image: '/services/ppc.avif',
-    imageAlt: 'PPC and paid media management for Glasgow businesses',
+    imageAlt:
+      'An analytics dashboard on a screen angled away from the camera. A line chart shows two tall spikes, beside counters reading 128 over thirty days, 22 over seven days and 2 over one day, next to a blue user-retention grid.',
   },
   {
     id: 'content',
@@ -55,7 +57,8 @@ export const services: Service[] = [
     detailHref: '/content-creation',
     detailCtaLabel: 'Explore content',
     image: '/services/content_creation.avif',
-    imageAlt: 'Strategic content creation for digital marketing campaigns',
+    imageAlt:
+      'The flip-out screen of a video camera in a dark venue, showing the shot it is recording along with its exposure settings. Out-of-focus orange and purple stage lights glow behind it.',
   },
   {
     id: 'seo',
@@ -70,7 +73,8 @@ export const services: Service[] = [
     detailHref: '/seo',
     detailCtaLabel: 'Explore SEO',
     image: '/services/seo.avif',
-    imageAlt: 'SEO services for Glasgow businesses and trades',
+    imageAlt:
+      'A close-up of the Google homepage on a screen, showing the coloured Google logo above the Google Search and Feeling Lucky buttons.',
   },
   {
     id: 'web',
@@ -85,7 +89,8 @@ export const services: Service[] = [
     detailHref: '/web-development',
     detailCtaLabel: 'Explore web',
     image: '/services/web_dev.avif',
-    imageAlt: 'Web design and development for Glasgow businesses',
+    imageAlt:
+      'Hand-drawn website wireframes on paper, with boxes crossed through to mark where images will sit, squiggled lines standing in for text, and a video play button.',
   },
   {
     id: 'social',
@@ -100,7 +105,8 @@ export const services: Service[] = [
     detailHref: '/social-media',
     detailCtaLabel: 'Explore social media',
     image: '/services/social_media.avif',
-    imageAlt: 'Social media management for brand growth',
+    imageAlt:
+      'An extreme close-up of the Facebook app icon on a screen, a white lower-case f on a blue rounded square with the word Facebook beneath it.',
   },
   {
     id: 'campaign',
@@ -115,6 +121,7 @@ export const services: Service[] = [
     detailHref: '/campaign-management',
     detailCtaLabel: 'Explore campaigns',
     image: '/services/campaign.avif',
-    imageAlt: 'Cross-channel campaign management for growing brands',
+    imageAlt:
+      'Someone leaning over a large sheet of paper on a wooden table, laying out rows of handwritten yellow and pink sticky notes, with marker pens and a notebook scattered around.',
   },
 ];
