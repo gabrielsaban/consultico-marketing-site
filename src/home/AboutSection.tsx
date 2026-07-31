@@ -16,6 +16,12 @@ interface TeamMember {
   image?: string;
   portraitPosition?: string;
   portraitScale?: number;
+  /**
+   * A real description of the photograph for screen-reader users. Describe
+   * what is actually visible, not the person's job title, and never repeat
+   * information that already sits in adjacent visible text.
+   */
+  imageAlt?: string;
   location?: string;
   bio?: string[];
   credentials?: string[];
@@ -35,6 +41,8 @@ const teamMembers: TeamMember[] = [
     role: 'Founder',
     cvLink: '#',
     image: '/team/paul_wilson.png',
+    imageAlt:
+      'Paul Wilson, a young man with short fair hair in a green and white checked shirt over a white t-shirt, speaking mid-sentence with one hand raised. A presentation screen behind him reads "Sessions, for wondering minds".',
     portraitScale: 1.18,
     location: 'Glasgow, Scotland',
     bio: [
@@ -55,6 +63,8 @@ const teamMembers: TeamMember[] = [
     role: 'Account Manager',
     cvLink: '#',
     image: '/team/leona_wade.png',
+    imageAlt:
+      'Leona Wade, a young woman with long dark hair, smiling at the camera in a grey and yellow horizontally striped zip-up top against a plain light grey wall.',
     portraitScale: 1.36,
     location: 'United Kingdom',
     bio: [
@@ -89,6 +99,8 @@ const teamMembers: TeamMember[] = [
     role: 'Senior Meta Analytics Partner',
     cvLink: '#',
     image: '/team/juan_canals_marti.png',
+    imageAlt:
+      'Juan Canals Marti, a young man with short light brown hair, looking directly at the camera with a neutral expression, wearing a navy shirt with an orange and white check, against a plain white backdrop.',
     portraitScale: 1.36,
     location: 'United Kingdom',
     bio: [
@@ -156,7 +168,7 @@ const TeamPortrait = ({ member }: { member: TeamMember }) => {
     return (
       <Image
         src={member.image}
-        alt={member.name}
+        alt={member.imageAlt ?? member.name}
         fill
         quality={90}
         className="object-cover"

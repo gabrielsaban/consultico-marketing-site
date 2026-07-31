@@ -60,27 +60,27 @@ export default function Footer() {
                 target="_blank"
                 rel="noreferrer"
                 className="hover:opacity-80 transition-opacity"
-                aria-label="Instagram"
+                aria-label="Consultico on Instagram"
               >
-                <Image src="/icons/instagram.svg" alt="Instagram" width={24} height={24} className="brightness-0 invert" />
+                <Image src="/icons/instagram.svg" alt="" width={24} height={24} className="brightness-0 invert" />
               </a>
               <a
                 href="https://www.linkedin.com/company/consultico-ltd/"
                 target="_blank"
                 rel="noreferrer"
                 className="hover:opacity-80 transition-opacity"
-                aria-label="LinkedIn"
+                aria-label="Consultico on LinkedIn"
               >
-                <Image src="/icons/linkedin.svg" alt="LinkedIn" width={24} height={24} className="brightness-0 invert" />
+                <Image src="/icons/linkedin.svg" alt="" width={24} height={24} className="brightness-0 invert" />
               </a>
               <a
                 href="https://www.facebook.com/profile.php?id=61562303216944"
                 target="_blank"
                 rel="noreferrer"
                 className="hover:opacity-80 transition-opacity"
-                aria-label="Facebook"
+                aria-label="Consultico on Facebook"
               >
-                <Image src="/icons/facebook.svg" alt="Facebook" width={24} height={24} className="brightness-0 invert" />
+                <Image src="/icons/facebook.svg" alt="" width={24} height={24} className="brightness-0 invert" />
               </a>
             </div>
           </div>

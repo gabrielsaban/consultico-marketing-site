@@ -185,7 +185,7 @@ export default function ThinkFirstPage() {
               <div className="overflow-hidden rounded-lg bg-brand-silk dark:bg-gray-800">
                 <Image
                   src="/think_first/think.png"
-                  alt="Think First marketing strategy workshop overview diagram"
+                  alt="Two women sitting in armchairs with laptops on their knees, laughing, in a bright room with floor-to-ceiling sheer curtains and a mirrored side table holding an open magazine."
                   width={2245}
                   height={1587}
                   className="h-auto w-full"

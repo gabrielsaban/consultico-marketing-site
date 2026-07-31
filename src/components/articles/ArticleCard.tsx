@@ -73,7 +73,7 @@ export default function ArticleCard({
           >
             <Image
               src={author.image}
-              alt={author.name}
+              alt=""
               fill
               className="object-cover"
               sizes={compact ? '32px' : '36px'}

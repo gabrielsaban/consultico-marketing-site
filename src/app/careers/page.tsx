@@ -179,7 +179,7 @@ export default function CareersPage() {
               <div className="relative overflow-hidden rounded-[1.4rem] border border-gray-200 bg-white p-3 shadow-xl shadow-brand-blue/10 dark:border-gray-800 dark:bg-gray-950">
                 <Image
                   src="/careers/team.png"
-                  alt="Consultico team working together"
+                  alt="Five members of the Consultico team sitting along a white arched alcove bench. Two are working on laptops, one is scrolling a phone, one is writing in a notebook, and one crouches at the front holding a camera."
                   width={1460}
                   height={1090}
                   priority
