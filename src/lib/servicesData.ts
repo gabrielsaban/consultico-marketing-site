@@ -24,9 +24,9 @@ export const services: Service[] = [
     futureSlug: 'market-strategy',
     detailHref: '/think-first',
     detailCtaLabel: 'Explore Think First',
-    image: '/services/market_strategy.avif',
+    image: '/services/market_strategy.jpg',
     imageAlt:
-      'A pack of racing cyclists leaning into a corner at speed, captured with motion blur so the riders and the road streak past.',
+      'Two women sitting in armchairs either side of a mirrored side table, each working on a laptop, in a bright room with floor-to-ceiling sheer curtains.',
   },
   {
     id: 'ppc',
