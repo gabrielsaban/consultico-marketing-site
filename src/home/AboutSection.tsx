@@ -4,6 +4,7 @@
 
 import Container from '@/components/Container';
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useCallback, useLayoutEffect, useRef, useState } from 'react';
 
@@ -289,7 +290,27 @@ export default function AboutSection(): React.JSX.Element {
               In the summer of 2025, Consultico was awarded a fellowship from the University of Strathclyde. Over the following six months, everything from that fellowship went into researching and developing the Think First Workshop, grounded in research into how B2C businesses actually grow. The result is a service that makes quality marketing strategy accessible, consistently reliable, and fully understood. Consultico has been operating since February 2024.
             </p>
             <p className="text-[clamp(1rem,1.3vw,1.2rem)] leading-[1.6] text-gray-800 dark:text-gray-200 font-helvetica">
-              We run a full-service marketing agency - building websites, optimising for search, and running paid advertising. Our team is fully equipped to help you reach your goals. This ecosystem works together to give you clear insight into exactly where your budget and time will have the most impact.
+              We run a full-service marketing agency,{' '}
+              <Link href="/web-development" className="font-medium text-brand-blue underline-offset-2 hover:underline">
+                building websites
+              </Link>
+              ,{' '}
+              <Link href="/seo" className="font-medium text-brand-blue underline-offset-2 hover:underline">
+                optimising for search
+              </Link>
+              ,{' '}
+              <Link href="/content-creation" className="font-medium text-brand-blue underline-offset-2 hover:underline">
+                creating content
+              </Link>
+              , and running{' '}
+              <Link href="/ppc" className="font-medium text-brand-blue underline-offset-2 hover:underline">
+                paid advertising
+              </Link>{' '}
+              and{' '}
+              <Link href="/campaign-management" className="font-medium text-brand-blue underline-offset-2 hover:underline">
+                campaigns
+              </Link>
+              . Our team is fully equipped to help you reach your goals. This ecosystem works together to give you clear insight into exactly where your budget and time will have the most impact.
             </p>
           </div>
         </div>

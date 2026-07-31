@@ -514,7 +514,11 @@ export default function ThinkFirstPage() {
             <Link href="/articles/why-strategy-before-seo" className="font-medium text-brand-blue underline-offset-2 hover:underline">
               Why strategy should come before SEO
             </Link>
-            . Explore{' '}
+. For the wider picture of how we approach{' '}
+            <Link href="/market-strategy" className="font-medium text-brand-blue underline-offset-2 hover:underline">
+              marketing strategy
+            </Link>
+            , start there. Explore{' '}
             <Link href="/seo" className="font-medium text-brand-blue underline-offset-2 hover:underline">
               SEO
             </Link>{' '}
