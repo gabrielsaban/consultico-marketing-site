@@ -493,7 +493,11 @@ export default function PpcPage() {
               <h2 id="ppc-case-study-heading" className={`${sectionHeadingClass} mb-8`}>Honest advice, in practice</h2>
               <div className={`space-y-6 font-helvetica-light text-[clamp(1rem,1.1vw,1.05rem)] leading-[1.65] ${bodyTextClass}`}>
                 <p>
-                  We treat paid media as one tool, not the whole answer. The clearest example is a contrast. The Boiler Co, a trades business based in Bristol, came to us relying heavily on paid ads. When those ads had to pause, their lead flow was suddenly at risk. The right advice there was not more PPC. It was to build an{' '}
+                  We treat paid media as one tool, not the whole answer. The clearest example is a contrast.{' '}
+                  <Link href="/case-studies/boiler-co" className="font-medium text-brand-blue underline-offset-2 hover:underline">
+                    The Boiler Co
+                  </Link>
+                  , a trades business based in Bristol, came to us relying heavily on paid ads. When those ads had to pause, their lead flow was suddenly at risk. The right advice there was not more PPC. It was to build an{' '}
                   <Link href="/seo" className="font-medium text-brand-blue underline-offset-2 hover:underline">
                     SEO foundation
                   </Link>{' '}

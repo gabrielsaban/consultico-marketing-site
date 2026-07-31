@@ -261,7 +261,10 @@ export const SEO_INDUSTRY_PAGE_DATA: Record<string, SeoIndustryPageData> = {
         '49% of sellers invite three agents to value their home before choosing one (Zoopla/YouGov survey of recent sellers, June 2025). That shortlist is increasingly decided on Google, not on Rightmove.',
         'Area pages for vendors and landlords need different content from buyer-facing portal listings. We build the local visibility that wins instructions.',
       ],
-      inlineLinks: [{ label: 'SEO for accountants', href: '/seo-for-accountants' }],
+      inlineLinks: [
+        { label: 'SEO for accountants', href: '/seo-for-accountants' },
+        { label: 'Think First strategy workshop', href: '/think-first' },
+      ],
     },
     cta: {
       title: 'Win more instructions from Google',
@@ -299,7 +302,10 @@ export const SEO_INDUSTRY_PAGE_DATA: Record<string, SeoIndustryPageData> = {
         'Making Tax Digital for Income Tax began in April 2026 for sole traders and landlords with qualifying income over £50,000, and the threshold falls to £30,000 in April 2027 and £20,000 in April 2028 (GOV.UK). Each wave brings people searching for an accountant for the first time.',
         'Clear MTD pages that explain the rules and deadlines capture that demand ahead of firms that have published nothing on it.',
       ],
-      inlineLinks: [{ label: 'SEO for estate agents', href: '/seo-for-estate-agents' }],
+      inlineLinks: [
+        { label: 'SEO for estate agents', href: '/seo-for-estate-agents' },
+        { label: 'Think First strategy workshop', href: '/think-first' },
+      ],
     },
     cta: {
       title: 'Win the right accountancy clients from Google',
