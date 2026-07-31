@@ -31,6 +31,12 @@ const nextConfig: NextConfig = {
       },
       { source: '/marketing', destination: '/', permanent: true },
       { source: '/digital-marketing', destination: '/', permanent: true },
+      // Legacy URLs still holding GSC impressions but 404ing (found in the
+      // 2026-07-31 sitemap/redirect sweep).
+      { source: '/about/services', destination: '/#services', permanent: true },
+      { source: '/terms-conditions-and-privacy', destination: '/terms', permanent: true },
+      { source: '/privacy-policy', destination: '/privacy', permanent: true },
+      { source: '/case-studies', destination: '/case-studies/boiler-co', permanent: true },
     ];
   },
 };
