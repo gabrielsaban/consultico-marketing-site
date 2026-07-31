@@ -286,7 +286,7 @@ export default function AboutSection(): React.JSX.Element {
           </h2>
           <div className="max-w-3xl space-y-4">
             <p className="text-[clamp(1rem,1.3vw,1.2rem)] leading-[1.6] text-gray-800 dark:text-gray-200 font-helvetica">
-              In the summer of 2025, Consultico was awarded a fellowship from the University of Strathclyde. Over the following six months, everything from that fellowship went into researching and developing the Think First Workshop - drawing on data across hundreds of B2C businesses. The result is a service that makes quality marketing strategy accessible, consistently reliable, and fully understood. Consultico has been operating since February 2024.
+              In the summer of 2025, Consultico was awarded a fellowship from the University of Strathclyde. Over the following six months, everything from that fellowship went into researching and developing the Think First Workshop, grounded in research into how B2C businesses actually grow. The result is a service that makes quality marketing strategy accessible, consistently reliable, and fully understood. Consultico has been operating since February 2024.
             </p>
             <p className="text-[clamp(1rem,1.3vw,1.2rem)] leading-[1.6] text-gray-800 dark:text-gray-200 font-helvetica">
               We run a full-service marketing agency - building websites, optimising for search, and running paid advertising. Our team is fully equipped to help you reach your goals. This ecosystem works together to give you clear insight into exactly where your budget and time will have the most impact.
