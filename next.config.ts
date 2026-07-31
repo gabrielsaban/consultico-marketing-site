@@ -6,6 +6,24 @@ const nextConfig: NextConfig = {
     dirs: ['src/app', 'src/components', 'src/sections', 'src/hooks'],
   },
   trailingSlash: false,
+  async headers() {
+    return [
+      {
+        // Files in /public are not fingerprinted, so Next serves them with
+        // "max-age=0, must-revalidate" by default. That means a round trip for
+        // every static image on every page view. A week of caching with
+        // stale-while-revalidate keeps them fast without making updates
+        // impossible to roll out.
+        source: '/:path*.(jpg|jpeg|png|webp|avif|gif|svg|ico|woff|woff2)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=604800, stale-while-revalidate=86400',
+          },
+        ],
+      },
+    ];
+  },
   async redirects() {
     return [
       {
