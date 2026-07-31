@@ -10,10 +10,10 @@ import { servicePageMeta } from '@/lib/seo';
 export const metadata: Metadata = servicePageMeta('web-development');
 
 const stats = [
-  { number: '150+', label: 'Websites launched' },
   { number: '99.9%', label: 'Uptime target' },
-  { number: '2.5s', label: 'Average load time' },
-  { number: '100%', label: 'Client satisfaction' },
+  { number: '3', label: 'Sites rebuilt for one retained brand' },
+  { number: '14 mo+', label: 'Retained client who returned for web work' },
+  { number: '5.0', label: 'Rated on Google' },
 ];
 
 const buildStack = [

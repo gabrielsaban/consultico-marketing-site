@@ -10,10 +10,10 @@ import { servicePageMeta } from '@/lib/seo';
 export const metadata: Metadata = servicePageMeta('market-strategy');
 
 const stats = [
-  { number: '180%', label: 'Average revenue growth' },
-  { number: '92%', label: 'Client success rate' },
-  { number: '100+', label: 'Strategies delivered' },
-  { number: '12 mo', label: 'Average partnership' },
+  { number: '12 mo', label: 'Average client partnership' },
+  { number: '3 mo', label: 'Calendar filled from organic, paid ads paused (Boiler Co)' },
+  { number: '16 mo', label: 'Longest retained advisory relationship' },
+  { number: '5.0', label: 'Rated on Google' },
 ];
 
 const painPoints = [

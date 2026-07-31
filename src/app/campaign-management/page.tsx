@@ -10,10 +10,10 @@ import { servicePageMeta } from '@/lib/seo';
 export const metadata: Metadata = servicePageMeta('campaign-management');
 
 const stats = [
-  { number: '200+', label: 'Campaigns launched' },
-  { number: '87%', label: 'Goal achievement rate' },
-  { number: '$12M+', label: 'Revenue generated' },
-  { number: '4.2x', label: 'Average ROI' },
+  { number: '4.2x', label: 'Average return on ad spend' },
+  { number: '110k+', label: 'Organic Instagram views in 30 days (Tiny Changes)' },
+  { number: '13k', label: 'Organic Facebook reach, same campaign' },
+  { number: '5.0', label: 'Rated on Google' },
 ];
 
 const painPoints = [

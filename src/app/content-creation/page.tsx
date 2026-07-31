@@ -10,10 +10,10 @@ import { servicePageMeta } from '@/lib/seo';
 export const metadata: Metadata = servicePageMeta('content-creation');
 
 const stats = [
-  { number: '500K+', label: 'Words written' },
-  { number: '94%', label: 'Client retention' },
-  { number: '3.5x', label: 'Average traffic increase' },
-  { number: '200+', label: 'Content campaigns' },
+  { number: '110k+', label: 'Organic Instagram views in 30 days (Tiny Changes)' },
+  { number: '13k', label: 'Organic Facebook reach, same campaign' },
+  { number: '21k', label: 'Weekly search impressions, up from 6k (Boiler Co)' },
+  { number: '5.0', label: 'Rated on Google' },
 ];
 
 const painPoints = [
