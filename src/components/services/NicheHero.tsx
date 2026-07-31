@@ -10,6 +10,13 @@ export interface NicheHeroBreadcrumb {
 export interface NicheHeroStatCallout {
   stat: string;
   attribution: string;
+  /**
+   * Link to the primary source for this statistic. These pages are YMYL
+   * (financial, medical, safety), so every figure should be traceable to the
+   * authoritative body that published it. Only set this when the URL has been
+   * checked and genuinely contains the figure.
+   */
+  sourceHref?: string;
 }
 
 export interface NicheHeroProps {
@@ -94,7 +101,18 @@ export default function NicheHero({
                 {statCallout.stat}
               </p>
               <p className="mt-3 font-helvetica-light text-[0.88rem] leading-[1.55] text-gray-600 dark:text-gray-400">
-                {statCallout.attribution}
+                {statCallout.sourceHref ? (
+                  <a
+                    href={statCallout.sourceHref}
+                    target="_blank"
+                    rel="noopener"
+                    className="text-brand-blue underline underline-offset-2 hover:no-underline"
+                  >
+                    {statCallout.attribution}
+                  </a>
+                ) : (
+                  statCallout.attribution
+                )}
               </p>
             </aside>
           )}

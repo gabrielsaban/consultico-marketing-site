@@ -55,6 +55,8 @@ export const NICHE_HERO_CONTENT: Record<string, NichePageHeroContent> = {
     statCallout: {
       stat: '13 million adults in England - 28% of the adult population - had an unmet need for NHS dentistry in 2024',
       attribution: 'British Dental Association, July 2024',
+      sourceHref:
+        'https://www.bda.org/news-and-opinion/news/13-million-unmet-need-for-nhs-dentistry-breaks-records/',
     },
   },
   'seo-for-estate-agents': {
@@ -69,7 +71,9 @@ export const NICHE_HERO_CONTENT: Record<string, NichePageHeroContent> = {
       'Portals bring buyers. Instructions come from vendors who search, compare and shortlist agents on Google. We build the local SEO that puts your agency on that list when fees actually get decided.',
     statCallout: {
       stat: '49% of sellers invite three agents to value their home before choosing one',
-      attribution: 'Zoopla/YouGov survey of recent sellers, June 2025',
+      attribution: 'Zoopla/YouGov survey of recent sellers, August 2025',
+      sourceHref:
+        'https://www.zoopla.co.uk/discover/selling/how-many-estate-agents-should-you-speak-to-before-selling-your-home/',
     },
   },
   'seo-for-accountants': {
@@ -83,8 +87,10 @@ export const NICHE_HERO_CONTENT: Record<string, NichePageHeroContent> = {
     intro:
       'Accountancy SEO works when it targets the right client economics - not generic traffic. We build local and specialist visibility around the services and search moments that bring retained clients, not one-off queries.',
     statCallout: {
-      stat: 'Around 780,000 sole traders and landlords join Making Tax Digital from April 2026',
-      attribution: 'HMRC - with almost a million more following in 2027',
+      stat: 'The Making Tax Digital threshold falls from £50,000 to £30,000 in April 2027, and to £20,000 in April 2028',
+      attribution: 'HMRC guidance, GOV.UK',
+      sourceHref:
+        'https://www.gov.uk/guidance/find-out-if-and-when-you-need-to-use-making-tax-digital-for-income-tax',
     },
   },
 };

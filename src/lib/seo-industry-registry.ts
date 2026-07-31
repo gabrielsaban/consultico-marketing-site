@@ -296,7 +296,7 @@ export const SEO_INDUSTRY_PAGE_DATA: Record<string, SeoIndustryPageData> = {
     uniqueSection: {
       title: 'Accountant SEO and Making Tax Digital',
       paragraphs: [
-        'Around 780,000 sole traders and landlords join Making Tax Digital from April 2026 (HMRC), with almost a million more following in 2027. Many will search for an accountant for the first time.',
+        'Making Tax Digital for Income Tax began in April 2026 for sole traders and landlords with qualifying income over £50,000, and the threshold falls to £30,000 in April 2027 and £20,000 in April 2028 (GOV.UK). Each wave brings people searching for an accountant for the first time.',
         'Clear MTD pages that explain the rules and deadlines capture that demand ahead of firms that have published nothing on it.',
       ],
       inlineLinks: [{ label: 'SEO for estate agents', href: '/seo-for-estate-agents' }],
