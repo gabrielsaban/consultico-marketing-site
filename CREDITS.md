@@ -59,15 +59,19 @@ should be replaced during the redesign.
 
 | File | Used on | Issue |
 |---|---|---|
-| `projects/gta.avif` | Project carousel, "GTA 5: Player Preservation" | Grand Theft Auto visuals are Rockstar Games IP |
-| `projects/minecraft.avif` | Project carousel, "Minecraft: In Abstract" | Minecraft visuals are Mojang / Microsoft IP |
 | `services/social_media.avif` | Homepage service card | Facebook logo is Meta IP |
 
 Using a third party's brand assets to illustrate our own commercial services
 is a different risk from ordinary stock photography. Editorial or commentary
 use of a brand can be defensible; using it as decoration on a services page is
-weaker ground. Worth a view from the designer, and from Paul on whether the
-GTA and Minecraft projects still fit the audience the site is selling to.
+weaker ground. Worth a view from the designer.
+
+**Removed 2026-08-01:** `projects/gta.avif`, `projects/gta.pdf` and
+`projects/minecraft.avif`, along with the two project carousel entries they
+belonged to ("GTA 5: Player Preservation" and "Minecraft: In Abstract").
+Rockstar and Mojang/Microsoft IP used as decoration on a commercial site, and
+the projects sat awkwardly beside an audience of B2C brands and trades
+businesses. Paul's call.
 
 ---
 
