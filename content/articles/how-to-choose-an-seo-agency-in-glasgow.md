@@ -13,7 +13,7 @@ faqs:
   - question: Is SEO worth it for a Glasgow business?
     answer: "For most businesses with customers who search online, yes. SEO brings people who are already looking for what you sell, and unlike ads it keeps working after you stop paying. It's rarely the fastest channel, but it's often the most durable. The honest exception is a business that needs customers this week, where paid ads usually come first."
   - question: How long does SEO take to work?
-    answer: "Expect meaningful movement in three to six months, and stronger results beyond that. Newer sites and more competitive markets take longer. Anyone promising results in a few weeks is either very lucky or not being straight with you."
+    answer: "Expect meaningful movement within about 90 days on most local terms, and stronger results beyond that. Newer sites and more competitive markets take longer. Anyone promising results in a few weeks is either very lucky or not being straight with you."
   - question: Do I need a Glasgow-based SEO agency?
     answer: "Not necessarily. SEO is delivered the same way wherever the team is. A local agency helps most when you're chasing local customers and need someone who understands the Glasgow market and your Google Business Profile, but the deciding factor is whether they understand your business, not their postcode."
   - question: What's the difference between SEO and local SEO?
@@ -48,7 +48,7 @@ If an agency jumps straight to "we'll target these 20 keywords" without asking w
 | Starts with your business goals and numbers | Jumps straight to a keyword list |
 | Clear, regular reporting tied to enquiries | Vague updates you can't make sense of |
 | You own your site, content and accounts | They keep your accounts locked away |
-| Honest about timelines (three to six months and beyond) | Guarantees a number-one ranking |
+| Honest about timelines (about 90 days for early movement) | Guarantees a number-one ranking |
 | Earns its renewal through results | Long lock-in contracts with no way out |
 | Builds authority the proper way | Buys cheap links in bulk |
 
@@ -91,7 +91,7 @@ The honest truth is that SEO takes time, and there are no shortcuts worth taking
 
 For the delivery of SEO, location barely matters; the work happens the same way wherever the team sits. What a Glasgow-based agency can offer is context: an understanding of the local market, the competitors you're up against, and how customers here actually search. If most of your customers are in and around Glasgow, that local knowledge and a properly optimised Google Business Profile genuinely help. Business Profile signals drive roughly a third of what decides the local map pack, and review recency is now one of the fastest-rising local ranking factors ([Whitespark](https://whitespark.ca/local-search-ranking-factors/), 2026).
 
-Local reputation matters more than it used to, and increasingly it feeds AI too. 82% of people now read AI-generated review summaries, and ChatGPT has become the third most-used way to check a business ([BrightLocal](https://www.brightlocal.com/research/), 2026). A good Glasgow agency should treat your reviews and Google Business Profile as part of the SEO job, not an afterthought.
+Local reputation matters more than it used to, and increasingly it feeds AI too: review summaries are now generated directly into search results, and people increasingly check a business through an assistant rather than a search page. A good Glasgow agency should treat your reviews and Google Business Profile as part of the SEO job, not an afterthought.
 
 We're based at Strathclyde Inspire on Richmond Street, so Glasgow is home for us, and it's why we built a dedicated page on [SEO in Glasgow](/seo-glasgow). But we work with businesses across the UK, because good SEO is good SEO. The right question isn't "are they local?" so much as "do they understand my market and my customers?"
 
@@ -105,10 +105,10 @@ This is why we start with strategy rather than a package. Our [Think First](/thi
 
 Give it time, then watch the right signals in order. Positions move first, then impressions and clicks, then enquiries. Enquiries are the only number that pays the bills. A good agency will show you all three and be honest about the lag.
 
-When we worked on organic search with [a plumbing business](/case-studies/boiler-co), their weekly impressions grew from around 6,000 to 21,000 and clicks from roughly 20 to 58. When they paused their paid ads, organic filled the calendar within about three months. It took patience, and the traffic was never really the point. The booked jobs were.
+When we worked on organic search with [The Boiler Co, a Bristol-based plumbing business](/case-studies/boiler-co), their weekly impressions grew from around 6,000 to 21,000 and clicks from roughly 20 to 58. It is not a Glasgow client, and we would rather say so than imply local proof we do not have. When they paused their paid ads, organic filled the calendar within about three months. It took patience, and the traffic was never really the point. The booked jobs were.
 
 ## The bottom line
 
 Choosing an SEO agency in Glasgow means looking past the boldest promises and finding the agency that starts with your business, tells you the truth, and can show you results that turned into customers. Ask hard questions, watch for the red flags, and be wary of anyone selling certainty in a channel that doesn't offer any.
 
-If you'd like a straight answer on whether SEO is the right first move for your business, take a look at [our SEO service](/seo) or [book a call](/contact). And if you want to get the strategy right before spending a penny on execution, that's exactly what [Think First](/think-first) is for.
+If you'd like a straight answer on whether SEO is the right first move for your business, take a look at what we do for [SEO in Glasgow](/seo-glasgow) or [book a call](/contact). And if you want to get the strategy right before spending a penny on execution, that's exactly what [Think First](/think-first) is for.

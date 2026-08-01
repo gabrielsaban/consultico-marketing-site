@@ -40,7 +40,7 @@ That changes what you are optimising for. Instead of asking "does this page rank
 
 They share most of their foundations. Fast, crawlable, well-structured pages with genuine expertise behind them do well in both. [Google's own position](https://developers.google.com/search/docs/appearance/ai-features) is that there is no separate trick for AI features, and the advice it gives for AI search is largely the advice it has always given.
 
-The gap opens on which pages get chosen. Ahrefs found that the proportion of AI Overview citations coming from Google's own top ten results fell from roughly 76% to roughly 38% between mid-2025 and early 2026. Ranking first used to more or less guarantee you would be cited. It no longer does, which means AI visibility now has to be measured separately from rankings rather than assumed from them.
+The gap opens on which pages get chosen. Ahrefs found that the proportion of AI Overview citations coming from Google's own top ten results [fell from roughly 76%](https://ahrefs.com/blog/search-rankings-ai-citations/) to [roughly 38%](https://ahrefs.com/blog/ai-overview-citations-top-10/) between mid-2025 and early 2026. Ranking first used to more or less guarantee you would be cited. It no longer does, which means AI visibility now has to be measured separately from rankings rather than assumed from them.
 
 There is a second difference that surprises people. Length barely matters. Ahrefs' analysis found effectively no correlation between content length and citation (r≈0.04), and that 53% of AI Overview citations went to pages under 1,000 words. A focused page that answers one question cleanly beats a sprawling guide that answers thirty questions adequately.
 
@@ -56,7 +56,7 @@ There is a second difference that surprises people. Length barely matters. Ahref
 
 ## Does GEO actually matter yet?
 
-Honestly, less than the amount of noise about it suggests. AI search still accounts for under 1% of traffic for most websites, a point Glenn Gabe has made repeatedly and one worth holding onto when someone tries to sell you an urgent AI overhaul.
+Honestly, less than the amount of noise about it suggests. Measured in analytics, AI search still accounts for under 1% of traffic for most websites, a point Glenn Gabe has made repeatedly and one worth holding onto when someone tries to sell you an urgent AI overhaul. Treat that figure as a floor rather than the whole picture, for the reason set out below.
 
 So why do the work now? Three reasons. The share is small but growing. Most of what earns citations also improves ordinary search performance, so the effort is rarely wasted. And the businesses establishing themselves as sources today are doing it while the field is uncontested.
 
@@ -66,7 +66,7 @@ There is also a measurement problem to be upfront about: GA4 captures only a fra
 
 ## What actually earns AI citations?
 
-The most-cited research on this is the original GEO paper from Princeton researchers ([arXiv](https://arxiv.org/abs/2311.09735), 2023). It ran on an older generation of model, so treat the exact percentages as directional rather than literal, but the ranking of what works has held up and matches what Google now says publicly.
+The most-cited research on this is the original GEO paper from researchers at Princeton, Georgia Tech, IIT Delhi and the Allen Institute for AI ([arXiv](https://arxiv.org/abs/2311.09735), 2023). It ran on an older generation of model, so treat the exact percentages as directional rather than literal, but the ranking of what works has held up and matches what Google now says publicly.
 
 The levers that tested strongest:
 
@@ -81,17 +81,17 @@ The most useful finding for smaller businesses is about who benefits. The effect
 
 ## Why brand mentions now matter more than backlinks
 
-This is the finding that should change how most businesses spend their off-site budget.
+Brand mentions correlate with AI Overview visibility roughly three times more strongly than backlinks do. That single finding should change how most businesses spend their off-site budget.
 
 Analysing 75,000 brands, [Ahrefs found](https://ahrefs.com/blog/ai-overview-brand-correlation/) that **brand mentions correlate with AI Overview visibility roughly three times more strongly than backlinks do** (web mentions r=0.664, backlinks r=0.218). That is correlation rather than proof of causation, and it deserves that caveat. But the direction is clear, and it is reinforced by Muck Rack's analysis of more than 25 million links, which found that roughly 84% of AI citations come from earned media.
 
-Put together, the implication is uncomfortable for the traditional link-building industry. Being *talked about* on credible sites appears to matter more than accumulating links. That reframes off-site work as digital PR and entity building rather than link acquisition: getting named in press, being a quotable expert, having a consistent identity across the web.
+Worth noting that both Ahrefs and Muck Rack sell products into this market, so read their conclusions with that in mind. Even allowing for it, the implication is uncomfortable for the traditional link-building industry. Being *talked about* on credible sites appears to matter more than accumulating links. That reframes off-site work as digital PR and entity building rather than link acquisition: getting named in press, being a quotable expert, having a consistent identity across the web.
 
 One more practical note. Only about 2.4% of cited URLs overlap across ChatGPT, Perplexity and AI Overviews for the same prompt, according to Kevin Indig's analysis of 3.7 million citations. "AI" is not one target. Each engine draws on different sources, so being cited by one tells you very little about the others.
 
 ## Can AI engines even read your site?
 
-This is the part that gets skipped, and it is the part that silently undoes everything else.
+Most AI crawlers do not run JavaScript, so a site that builds its content in the browser is invisible to them. This is the part that gets skipped, and it silently undoes everything else.
 
 Most AI crawlers do not run JavaScript. GPTBot, ClaudeBot and PerplexityBot read the HTML your server sends and nothing more. If your site builds its content in the browser, as many modern JavaScript sites do, those engines see an empty page even though Google indexes you fine. Server-side rendering is no longer just a performance question; it is the difference between being readable and being invisible.
 
@@ -108,7 +108,7 @@ Worth correcting a common belief while we are here: "ChatGPT just uses Bing" is 
 
 A fair amount of what gets sold as GEO has no evidence behind it. Being able to spot it saves money, and it is worth applying the same scepticism you would when [choosing an SEO agency](/articles/how-to-choose-an-seo-agency-in-glasgow) or [a PPC agency](/articles/how-to-choose-a-ppc-agency-uk).
 
-**llms.txt.** The most oversold idea in the field. No major AI search engine consumes third-party llms.txt files for citations or ranking, and Google has stated this directly. Ahrefs logged that **97% of llms.txt files received zero AI requests** as of May 2026, and a Zyppy meta-analysis of 54 studies scored it 2.0 out of 10 for evidence. It costs nothing to publish and does no harm, so keep one if you have it. Just do not let anyone bill you for it as an AI visibility tactic.
+**llms.txt.** The most oversold idea in the field. No major AI search engine consumes third-party llms.txt files for citations or ranking, and Google has stated this directly. Across 137,000 domains, [Ahrefs found that 97% of llms.txt files received zero requests](https://ahrefs.com/blog/llmstxt-study/) in May 2026, and a Zyppy review of 54 studies scored it 2.0 out of 10 for evidence. It costs nothing to publish and does no harm, so keep one if you have it. Just do not let anyone bill you for it as an AI visibility tactic.
 
 **Precise citation multipliers.** You will see confident claims that passages of a specific word count earn some exact multiple of citations, or that a particular markup choice lifts citations by a stated percentage. These trace back to single small studies and do not survive scrutiny. The qualitative point stands, which is that self-contained, well-structured passages get cited more often. The specific numbers do not.
 
@@ -135,7 +135,7 @@ If you want to do something useful this month rather than buy a strategy:
 3. **Fix the obvious gaps.** Where competitors are cited and you are absent, you almost certainly have no page answering that question properly.
 4. **Write to be quoted.** One question per section, answered directly in the first two sentences, with a real statistic and a named source.
 5. **Get talked about.** Given how strongly mentions correlate with visibility, being named on credible sites is likely worth more than another batch of links.
-6. **Keep things current.** AI-cited content skews around 25% fresher than typical organic results, so genuine updates matter. Changing a date is not an update.
+6. **Keep things current.** Across 17 million citations, URLs cited by AI assistants were on average 25.7% "fresher" than those in organic results ([Ahrefs](https://ahrefs.com/blog/do-ai-assistants-prefer-to-cite-fresh-content/), 2026), so genuine updates matter. Changing a date is not an update.
 
 ## The bottom line
 
