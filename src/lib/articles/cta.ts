@@ -107,6 +107,10 @@ const ARTICLE_SECONDARY_SERVICE_LINKS: Record<string, { href: string; label: str
     { href: '/seo-glasgow', label: 'SEO in Glasgow' },
     { href: '/think-first', label: 'Think First workshop' },
   ],
+  'what-is-generative-engine-optimisation': [
+    { href: '/seo', label: 'SEO & GEO services' },
+    { href: '/think-first', label: 'Think First workshop' },
+  ],
   'how-to-choose-a-ppc-agency-uk': [
     { href: '/think-first', label: 'Think First workshop' },
     { href: '/seo', label: 'SEO services' },
