@@ -3,10 +3,21 @@ title: "How to Choose an SEO Agency in Glasgow"
 seoTitle: "How to Choose an SEO Agency in Glasgow (2026) | Consultico"
 excerpt: "Choosing an SEO agency in Glasgow: what should happen in your first month, what to ask before you sign, and why the postcode matters less than you'd think."
 date: 2026-07-28
-updated: 2026-08-01
+updated: 2026-08-02
 category: SEO
 type: Article
-readTime: 11 min read
+readTime: 12 min read
+review:
+  score: 89
+  categories:
+    content: 22
+    seo: 18
+    eeat: 18
+    technical: 13
+    citability: 18
+  reviewer: paul
+  date: 2026-08-02
+  hash: cb434f31b892ce6c
 cta:
   preset: seo
 faqs:
@@ -30,7 +41,7 @@ The fastest way to tell them apart is to watch what happens before anyone mentio
 
 What follows is how we'd judge one ourselves, including the parts where we've talked ourselves out of the work.
 
-> **The short version:** the work itself doesn't change with an agency's postcode, so judge them on how they think rather than where they are. Ask what they'd do in your first month, who owns your site and accounts, and how they'd tie the work back to actual enquiries. Expect the groundwork to take around six months, with movement showing earlier than that. And know that SEO on its own won't fix lead generation.
+> **The short version:** the work itself doesn't change with an agency's postcode, so judge them on how they think rather than where they are. Ask what they'd do in your first month, who owns your site and accounts, and how they'd tie the work back to actual enquiries. Expect the groundwork to take around six months, with movement showing earlier than that, and expect to pay from around £750 a month. And know that SEO on its own won't fix lead generation.
 
 ## What should happen in the first month?
 
@@ -111,9 +122,19 @@ We're based at Strathclyde Inspire on Richmond Street, so this is home, and it's
 
 ## How much should SEO cost, and what makes it worth it?
 
-There's no single right number, and any agency quoting a flat price before understanding your business is guessing. Cost depends on how competitive your market is, the state of your site, and how much ground you're trying to make up. What matters more than the monthly figure is the return: a few extra customers a month from organic search will usually dwarf the fee, while cheap SEO that does nothing is expensive at any price.
+A common starting point with us is **£750 a month**. Packages for small businesses tend to sit between **£2,000 and £3,000**, and businesses pushing hard for growth spend upwards of **£10,000 a month**. Consultation on its own is £75 an hour, so £750 is roughly a ten-hour package.
 
-This is why we start with strategy rather than a package. Our [Think First](/think-first) workshop, developed with a University of Strathclyde Inspire fellowship, exists precisely so a business knows what it's buying and why before committing budget. Sometimes that conversation ends with us recommending you spend on something other than SEO first, which is a good outcome rather than a lost sale.
+The range is that wide because SEO covers so much ground. At £750 nearly all of it is hands-on work on your site, done by us, using software you'd otherwise be licensing yourself. Higher up you're paying for a great deal more content, sometimes a rebuild of the site's architecture, serious work on backlinks, PR that gives people a reason to come to you, and optimisation of what happens after someone arrives.
+
+What you're working towards is the point where you've got an account manager who has you as one of a handful of clients rather than one of many, with specialists behind them for things like technical SEO. That's the version of this that works best, and it's worth knowing that's what the budget is buying.
+
+If that reads as expensive, compare it with the alternative. Put the same money into advertising and you're paying a management fee, plus the ads themselves, plus specialist production on top when the job needs it. It goes again every month, and when you stop, it stops. **With SEO there's no ad spend.** The content is made in-house unless you need a specialist, so what you pay is what it costs.
+
+One thing we tell clients who want to put more in: increase the backlinks before you increase the retainer. That tends to move things faster than buying more hours.
+
+The reason nobody can quote you properly on a first call is that it depends on what you're trying to do and what you can spend. We work more as budget allocators than a fixed price list. Under £1,000 a month we can make a £750 retainer work and show you what it returns. At £8,000 it's a different conversation entirely. And it's worth saying plainly that any agency, ours included, will recommend you spend the budget you have. If you'd rather settle that question before committing money anywhere, our [Think First](/think-first) workshop, developed with a University of Strathclyde Inspire fellowship, exists for exactly that decision.
+
+The audit itself is free. It's a call, twenty or thirty minutes, where we run your site through our own in-house audit tool and go through what it finds with you. If we don't think we can help, we'll tell you, because we'd rather say that than take the money.
 
 ## How do you know it's working?
 
