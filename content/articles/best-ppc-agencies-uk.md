@@ -6,7 +6,7 @@ date: 2026-06-29
 updated: 2026-08-01
 category: PPC
 type: Article
-readTime: 11 min read
+readTime: 9 min read
 cta:
   preset: ppc
 itemList:

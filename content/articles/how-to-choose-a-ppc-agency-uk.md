@@ -6,7 +6,7 @@ date: 2026-07-31
 updated: 2026-07-31
 category: PPC
 type: Article
-readTime: 8 min read
+readTime: 7 min read
 cta:
   preset: ppc
 faqs:

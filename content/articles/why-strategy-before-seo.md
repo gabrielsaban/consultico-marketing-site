@@ -6,7 +6,7 @@ date: 2026-06-15
 updated: 2026-08-01
 category: Strategy
 type: Article
-readTime: 6 min read
+readTime: 5 min read
 cta:
   preset: think-first
 faqs:

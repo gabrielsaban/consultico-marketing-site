@@ -6,7 +6,7 @@ date: 2026-08-01
 updated: 2026-08-01
 category: GEO
 type: Article
-readTime: 9 min read
+readTime: 10 min read
 cta:
   preset: geo
 faqs:
