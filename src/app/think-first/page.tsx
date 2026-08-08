@@ -113,6 +113,7 @@ const testimonials = [
     quote: 'This workshop was highly relevant to our business and gave us clear, actionable direction that made a real difference.',
     name: 'Peter Davis',
     company: 'Norfolk Boards',
+    caseStudyHref: '/case-studies/norfolk-boards',
   },
   {
     quote: 'The team made the process straightforward and effective. Clear thinking, no fluff, and practical next steps.',
@@ -123,6 +124,7 @@ const testimonials = [
     quote: 'After a frustrating run with agencies, this gave us genuine clarity on what to do and why it would work.',
     name: 'Ant Vitale',
     company: 'The Boiler Co',
+    caseStudyHref: '/case-studies/boiler-co',
   },
 ];
 
@@ -432,6 +434,14 @@ export default function ThinkFirstPage() {
                 <p className="text-[clamp(0.82rem,0.92vw,0.9rem)] uppercase tracking-wide text-gray-600 dark:text-gray-400 font-helvetica-light mt-1">
                   {item.company}
                 </p>
+                {'caseStudyHref' in item && item.caseStudyHref && (
+                  <Link
+                    href={item.caseStudyHref}
+                    className="mt-3 inline-block font-helvetica text-[0.85rem] text-brand-blue underline underline-offset-4 hover:no-underline"
+                  >
+                    Read the {item.company} case study
+                  </Link>
+                )}
               </article>
             ))}
           </div>

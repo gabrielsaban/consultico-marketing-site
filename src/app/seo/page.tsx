@@ -514,6 +514,13 @@ export default function SeoPage() {
               attribution="Ant Vitale, The Boiler Co"
               caseStudyHref="/case-studies/boiler-co"
             />
+            <p className={`mx-auto mt-6 max-w-2xl text-center font-helvetica-light text-[0.95rem] leading-[1.6] ${secondaryTextClass}`}>
+              For a different shape of result, we moved{' '}
+              <Link href="/case-studies/norfolk-boards" className="font-helvetica font-medium text-brand-blue hover:underline">
+                Norfolk Boards
+              </Link>{' '}
+              off SEO in December 2025 once the foundation was in good shape. Their organic search kept growing through the following year without us.
+            </p>
           </Container>
         </section>
 

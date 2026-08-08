@@ -743,6 +743,91 @@ export default function ProjectCarousel() {
         )}
       </div>
       <ProjectDetailModal project={selectedProject} onClose={() => setSelectedProject(null)} />
+      <ProjectDetailsForCrawlers />
     </Container>
+  );
+}
+
+/**
+ * The project write-ups live inside a modal that only mounts on click, which means
+ * neither Googlebot (which runs JavaScript but never clicks) nor the AI crawlers
+ * (which do not run JavaScript at all) have ever been able to read them. This renders
+ * the same prose unconditionally, so it is present in the server HTML.
+ *
+ * Deliberately native <details> rather than hidden text: the content stays genuinely
+ * reachable by a person without JavaScript, which keeps it indexable and well clear of
+ * anything that could read as cloaking.
+ */
+function ProjectDetailsForCrawlers() {
+  return (
+    <section className="mt-16 border-t border-gray-200 pt-10 dark:border-gray-800" aria-labelledby="project-writeups-heading">
+      <h3
+        id="project-writeups-heading"
+        className="font-futura text-[clamp(1.1rem,1.5vw,1.35rem)] font-bold text-gray-900 dark:text-white"
+      >
+        Project write-ups
+      </h3>
+      <p className="mt-2 font-helvetica-light text-[0.9rem] text-gray-600 dark:text-gray-400">
+        The full story behind each project, in text.
+      </p>
+
+      <div className="mt-6 space-y-3">
+        {projects.map((project) => (
+          <details
+            key={`writeup-${project.id}`}
+            className="rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-900"
+          >
+            <summary className="cursor-pointer font-helvetica font-medium text-gray-900 dark:text-gray-100">
+              {project.title}
+              <span className="ml-2 font-helvetica-light text-[0.8rem] text-gray-500 dark:text-gray-400">
+                {project.category}
+              </span>
+            </summary>
+
+            <div className="mt-4 space-y-4">
+              <p className="font-helvetica-light text-[0.92rem] leading-[1.7] text-gray-700 dark:text-gray-300">
+                {project.detail}
+              </p>
+
+              {project.caseSections?.map((section) => (
+                <div key={`writeup-${project.id}-${section.title}`}>
+                  <h4 className="font-helvetica text-[0.92rem] font-semibold text-gray-900 dark:text-gray-100">
+                    {section.title}
+                  </h4>
+                  <p className="mt-1 font-helvetica-light text-[0.92rem] leading-[1.7] text-gray-700 dark:text-gray-300">
+                    {section.body}
+                  </p>
+                </div>
+              ))}
+
+              {project.proofPoints && project.proofPoints.length > 0 && (
+                <ul className="space-y-2">
+                  {project.proofPoints.map((point) => (
+                    <li
+                      key={`writeup-${project.id}-${point.label}`}
+                      className="font-helvetica-light text-[0.92rem] leading-[1.7] text-gray-700 dark:text-gray-300"
+                    >
+                      <strong className="font-helvetica font-semibold text-gray-900 dark:text-gray-100">
+                        {point.value} {point.label}.
+                      </strong>{' '}
+                      {point.detail}
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              {project.testimonial && (
+                <blockquote className="border-l-2 border-brand-blue/40 pl-4 font-helvetica-light text-[0.92rem] italic leading-[1.7] text-gray-700 dark:text-gray-300">
+                  &ldquo;{project.testimonial.quote}&rdquo;
+                  <footer className="mt-1 not-italic font-helvetica text-[0.82rem] text-gray-600 dark:text-gray-400">
+                    {project.testimonial.attribution}
+                  </footer>
+                </blockquote>
+              )}
+            </div>
+          </details>
+        ))}
+      </div>
+    </section>
   );
 }
