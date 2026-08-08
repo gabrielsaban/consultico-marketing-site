@@ -59,7 +59,7 @@ export default function BoilerCoCaseStudyPage() {
             <section>
               <h2 className="font-futura text-[clamp(1.25rem,1.8vw,1.5rem)] font-bold text-gray-900 dark:text-white">The outcome</h2>
               <p className="mt-3 font-helvetica-light text-[0.98rem] leading-[1.7] text-gray-700 dark:text-gray-300">
-                Within three months, the calendar was consistently filled through organic search. Weekly impressions grew from around 6,000 to 21,000, with clicks rising from about 20 to 58 per week. The Boiler Co have been a retained SEO client for 14+ months and returned for additional website work.
+                Within three months, the calendar was consistently filled through organic search. Weekly impressions grew from around 8,000 to a peak above 21,000, and weekly clicks rose from about 20 to a peak of 74. Average position improved from 37.8 to 13.7. The Boiler Co were a retained SEO client for over 14 months and returned for additional website work.
               </p>
             </section>
           </div>

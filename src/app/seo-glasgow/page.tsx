@@ -140,7 +140,7 @@ export default function SeoGlasgowPage() {
                   We treat SEO as a long-term asset, not rented traffic. For The Boiler Co, a Bristol-based trades
                   business, we built an SEO foundation around high-intent boiler-service searches. Within three months
                   their calendar was filling through organic search alone: typical weekly performance moved from roughly
-                  6,000 impressions and 20 clicks to 21,000 impressions and 58 clicks, with higher-intent visitors
+                  8,000 impressions and 20 clicks to a peak above 21,000 impressions and 55 clicks, with higher-intent visitors
                   turning into booked jobs. They&apos;ve stayed with us for over 14 months with additional website work
                   since. That work was delivered remotely from Glasgow, the same way we support clients across the UK.
                   We are rated 5.0 on Google, and the thinking behind our strategy work was developed with research

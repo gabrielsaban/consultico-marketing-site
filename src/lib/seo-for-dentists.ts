@@ -120,6 +120,19 @@ export const DENTIST_SEO_PROCESS_STEPS = [
   },
 ] as const;
 
+/**
+ * Anonymised at the client's discretion (Paul, 2026-08-08): a healthcare and wellness
+ * practice, not named. Figures are taken directly from their Google Search Console
+ * export covering the 12 months to 2026-08-06, for an engagement running September 2025
+ * to mid-March 2026. Do not add click, patient or revenue claims to this block: brand
+ * search accounted for the majority of clicks and non-brand click-through was low, so
+ * position and page-one coverage are the only figures the data honestly supports.
+ */
+export const DENTIST_WELLNESS_PROOF = {
+  title: 'Proof it works: a healthcare and wellness practice',
+  body: 'Over a six-month engagement with a UK healthcare and wellness practice, their average position in Google moved from 19.2 to 7.3. Twenty-one of their condition pages reached page one, covering osteoporosis, low back pain, menopause, osteoarthritis and Parkinson\'s disease, and monthly search impressions grew from roughly 8,500 to over 22,000.',
+} as const;
+
 export const DENTIST_WORKSHOP_TESTIMONIAL = {
   quote:
     'The team made the process straightforward and effective. Clear thinking, no fluff, and practical next steps.',

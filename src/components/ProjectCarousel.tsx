@@ -54,12 +54,12 @@ const projects: Project[] = [
       {
         value: '21,000',
         label: 'Weekly impressions',
-        detail: 'In terms of search performance, a typical week when we started showed around 6,000 impressions. After consistent work, that moved to 21,000 impressions.',
+        detail: 'In terms of search performance, a typical week when we started showed around 8,000 impressions. After consistent work, that peaked above 21,000 impressions.',
       },
       {
         value: '3x',
         label: 'Click growth',
-        detail: 'A typical week when we started showed around 20 clicks. After consistent work, that moved to 58 clicks per week.',
+        detail: 'A typical week when we started showed around 20 clicks. After consistent work, that peaked at 74 clicks in a week.',
       },
       {
         value: '14+',
@@ -83,12 +83,12 @@ const projects: Project[] = [
       },
       {
         title: 'The Outcome',
-        body: "When paid ads had to be paused, SEO kept the business running. That's the result that matters most - not a percentage uplift on a dashboard, but a team of four staying busy and a business that stopped being dependent on a single channel. In terms of search performance, a typical week when we started showed around 6,000 impressions and 20 clicks - low volume, low intent. After consistent work, that moved to 21,000 impressions and 58 clicks per week, with significantly higher intent traffic converting into booked appointments. The Boiler Co have now been a retained SEO client for over 14 months. They've since returned for additional website work. The relationship continues.",
+        body: "When paid ads had to be paused, SEO kept the business running. That's the result that matters most - not a percentage uplift on a dashboard, but a team of four staying busy and a business that stopped being dependent on a single channel. In terms of search performance, a typical week when we started showed around 8,000 impressions and 20 clicks - low volume, low intent. After consistent work, that peaked above 21,000 impressions and 55 clicks in the same week, with significantly higher intent traffic converting into booked appointments. Average position improved from 37.8 to 13.7. The Boiler Co were a retained SEO client for over 14 months and returned for additional website work.",
       },
     ],
     results: [
       "They've since returned for additional website work. The relationship continues.",
-      'After consistent work, weekly performance moved to 21,000 impressions and 58 clicks, with significantly higher intent traffic converting into booked appointments.',
+      'After consistent work, weekly performance peaked above 21,000 impressions and 55 clicks, with significantly higher intent traffic converting into booked appointments.',
     ],
     testimonial: {
       quote: 'After a frustrating run with agencies, this gave us genuine clarity on what to do and why it would work.',

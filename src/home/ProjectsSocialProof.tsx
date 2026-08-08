@@ -31,7 +31,7 @@ export default function ProjectsSocialProof() {
             >
               The Boiler Co
             </Link>
-            , a Bristol-based plumbing business that filled its calendar through organic search within three months when paid ads had to pause. Over 14 months of retained work, weekly impressions grew from approximately 6,000 to 21,000.
+            , a Bristol-based plumbing business that filled its calendar through organic search within three months when paid ads had to pause. Over more than 14 months of retained work, weekly impressions grew from approximately 8,000 to a peak above 21,000.
           </p>
         </Container>
 

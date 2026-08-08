@@ -34,6 +34,7 @@ import {
   SEO_FOR_DENTISTS_FAQS,
   SEO_FOR_DENTISTS_PATH,
   SEO_FOR_DENTISTS_SLUG,
+  DENTIST_WELLNESS_PROOF,
   DENTIST_WORKSHOP_TESTIMONIAL,
 } from '@/lib/seo-for-dentists';
 import {
@@ -77,7 +78,7 @@ export const SEO_INDUSTRY_PAGE_DATA: Record<string, SeoIndustryPageData> = {
     coverage: [...PLUMBER_SEO_COVERAGE],
     proof: {
       title: 'Proof it works: The Boiler Co',
-      body: 'The Boiler Co is a Bristol plumbing and heating business. When paid ads paused, organic search filled the calendar within roughly three months. Weekly impressions grew from about 6,000 to 21,000, with clicks rising from 20 to 58 - 14+ months retained and counting.',
+      body: 'The Boiler Co is a Bristol plumbing and heating business. When paid ads paused, organic search filled the calendar within roughly three months. Weekly impressions grew from about 8,000 to a peak above 21,000, weekly clicks from about 20 to a peak of 74, and average position from 37.8 to 13.7 across a retained engagement of more than 14 months.',
       quote: BOILER_CO_TRADES_TESTIMONIAL.quote,
       quoteAttribution: `${BOILER_CO_TRADES_TESTIMONIAL.name}, ${BOILER_CO_TRADES_TESTIMONIAL.company}`,
       caseStudyHref: BOILER_CO_CASE_STUDY_PATH,
@@ -122,7 +123,7 @@ export const SEO_INDUSTRY_PAGE_DATA: Record<string, SeoIndustryPageData> = {
     coverage: [...ELECTRICIAN_SEO_COVERAGE],
     proof: {
       title: 'Proof it works: trades SEO in practice',
-      body: 'We applied the same local SEO approach to a trades business where planned jobs - not just callouts - matter. Organic visibility grew from roughly 6,000 to 21,000 weekly impressions, with enquiries continuing when paid ads paused. 14+ months retained and counting.',
+      body: 'We applied the same local SEO approach to a trades business where planned jobs - not just callouts - matter. Organic visibility grew from roughly 8,000 to a peak above 21,000 weekly impressions, with enquiries continuing when paid ads paused, across more than 14 months of retained work.',
       quote: BOILER_CO_TRADES_TESTIMONIAL.quote,
       quoteAttribution: `${BOILER_CO_TRADES_TESTIMONIAL.name}, ${BOILER_CO_TRADES_TESTIMONIAL.company}`,
       caseStudyHref: BOILER_CO_CASE_STUDY_PATH,
@@ -167,7 +168,7 @@ export const SEO_INDUSTRY_PAGE_DATA: Record<string, SeoIndustryPageData> = {
     coverage: [...HEATING_ENGINEER_SEO_COVERAGE],
     proof: {
       title: 'Proof it works: The Boiler Co',
-      body: 'The Boiler Co needed year-round boiler work, not just breakdown callouts. Organic search filled the diary within roughly three months when paid ads paused, with weekly impressions growing from about 6,000 to 21,000. 14+ months retained and counting.',
+      body: 'The Boiler Co needed year-round boiler work, not just breakdown callouts. Organic search filled the diary within roughly three months when paid ads paused, with weekly impressions growing from about 8,000 to a peak above 21,000, across more than 14 months of retained work.',
       quote: BOILER_CO_TESTIMONIAL.quote,
       quoteAttribution: `${BOILER_CO_TESTIMONIAL.name}, ${BOILER_CO_TESTIMONIAL.company}`,
       caseStudyHref: BOILER_CO_CASE_STUDY_PATH,
@@ -209,6 +210,10 @@ export const SEO_INDUSTRY_PAGE_DATA: Record<string, SeoIndustryPageData> = {
       'Patients search before they call - especially for private and cosmetic treatment. If your practice is not visible, they book elsewhere. Three things usually cost dentists that visibility:',
     painPoints: [...DENTIST_SEO_PAIN_POINTS],
     coverage: [...DENTIST_SEO_COVERAGE],
+    proof: {
+      title: DENTIST_WELLNESS_PROOF.title,
+      body: DENTIST_WELLNESS_PROOF.body,
+    },
     workshopTestimonial: {
       quote: DENTIST_WORKSHOP_TESTIMONIAL.quote,
       attribution: `${DENTIST_WORKSHOP_TESTIMONIAL.name}, ${DENTIST_WORKSHOP_TESTIMONIAL.company}`,

@@ -17,7 +17,7 @@ review:
     citability: 17
   reviewer: paul
   date: 2026-08-08
-  hash: 67f8b5b0e2286c5d
+  hash: 74ff3a3380b7c18e
 cta:
   preset: think-first
 faqs:
@@ -77,7 +77,7 @@ None of this means organic search stopped working. It means the measure changed,
 
 Paid advertising puts you in front of people while you are paying. Stop, and it stops. Organic search is slower and behaves like an asset.
 
-Take [The Boiler Co](/case-studies/boiler-co), a plumbing business in Bristol. Over fourteen months of retained work their weekly search impressions moved from roughly 6,000 to 21,000. Neither of those figures is the point. The point is what happened when their paid advertising had to stop: the diary kept filling from organic alone, inside about a quarter.
+Take [The Boiler Co](/case-studies/boiler-co), a plumbing business in Bristol. Over more than fourteen months of retained work their weekly search impressions moved from roughly 8,000 to a peak above 21,000. Neither of those figures is the point. The point is what happened when their paid advertising had to stop: the diary kept filling from organic alone, inside about a quarter.
 
 That is one business, and we would rather give you one case we can evidence than imply a pattern from a sample of one. But it shows the shape of the argument: the value was not the traffic. It was that the business stopped depending on a single channel it had to keep paying for.
 

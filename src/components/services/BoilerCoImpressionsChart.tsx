@@ -1,9 +1,9 @@
-/** Weekly impressions curve for The Boiler Co (approx. GSC trend: ~6k → ~21k over 14 months). */
+/** Weekly impressions curve for The Boiler Co (GSC: ~8k at engagement start to a peak above 21k). */
 const DATA_POINTS = [
-  { x: 0, y: 6000 },
-  { x: 1, y: 7200 },
-  { x: 2, y: 9000 },
-  { x: 3, y: 11000 },
+  { x: 0, y: 8000 },
+  { x: 1, y: 9200 },
+  { x: 2, y: 10500 },
+  { x: 3, y: 12500 },
   { x: 4, y: 13500 },
   { x: 5, y: 16000 },
   { x: 6, y: 18500 },
@@ -33,7 +33,7 @@ export default function BoilerCoImpressionsChart() {
     <svg
       viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
       role="img"
-      aria-label="The Boiler Co organic search impressions grew from around 6,000 to 21,000 weekly impressions over 14 months"
+      aria-label="The Boiler Co organic search impressions grew from around 8,000 to a peak above 21,000 weekly impressions over the engagement"
       className="h-auto w-full"
     >
       <defs>

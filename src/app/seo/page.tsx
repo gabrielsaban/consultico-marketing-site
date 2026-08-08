@@ -243,7 +243,7 @@ export default function SeoPage() {
           proofChips={[
             { value: '21k', label: 'Weekly impressions - The Boiler Co' },
             { value: '3×', label: 'Click growth over 14 months' },
-            { value: '14+ months', label: 'Retained and counting' },
+            { value: '14+ months', label: 'Longest retained SEO engagement' },
           ]}
           primaryHref={SEO_CONTACT}
           primaryLabel={SEO_CTA_LABEL}
@@ -508,7 +508,7 @@ export default function SeoPage() {
               image="/projects/boiler.avif"
               imageAlt="The Boiler Co trades business SEO case study"
               situation="Lead flow was extremely inconsistent: mainly referrals and existing customers, with paid ads as the only real attempt at new business. When ads underperformed or had to pause, the diary became unpredictable."
-              outcome="SEO became a consistent source of new business. Within three months organic search was delivering regular enquiries. Impressions grew from around 6,000 to 21,000 per week, with clicks rising from about 20 to 58. Retained for 14+ months with additional website work since."
+              outcome="SEO became a consistent source of new business. Within three months organic search was delivering regular enquiries. Impressions grew from around 8,000 to a peak above 21,000 per week, with clicks rising from about 20 to a peak of 74, and average position improved from 37.8 to 13.7. Retained for over 14 months with additional website work."
               metrics={caseStudyMetrics}
               quote="After a frustrating run with agencies, this gave us genuine clarity on what to do and why it would work."
               attribution="Ant Vitale, The Boiler Co"
