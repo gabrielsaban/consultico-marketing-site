@@ -7,6 +7,17 @@ updated: 2026-08-01
 category: GEO
 type: Article
 readTime: 10 min read
+review:
+  score: 82
+  categories:
+    content: 20
+    seo: 17
+    eeat: 15
+    technical: 13
+    citability: 17
+  reviewer: paul
+  date: 2026-08-08
+  hash: a1b76b6fa8385444
 cta:
   preset: geo
 faqs:

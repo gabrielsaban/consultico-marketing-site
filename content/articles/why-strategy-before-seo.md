@@ -7,6 +7,17 @@ updated: 2026-08-01
 category: Strategy
 type: Article
 readTime: 5 min read
+review:
+  score: 83
+  categories:
+    content: 20
+    seo: 16
+    eeat: 17
+    technical: 13
+    citability: 17
+  reviewer: paul
+  date: 2026-08-08
+  hash: 67f8b5b0e2286c5d
 cta:
   preset: think-first
 faqs:
