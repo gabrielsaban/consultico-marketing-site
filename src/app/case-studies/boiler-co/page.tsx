@@ -32,9 +32,9 @@ export default function BoilerCoCaseStudyPage() {
           <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4">
             {[
               { value: '3 mo', label: 'To calendar fill' },
-              { value: '21k', label: 'Weekly impressions' },
-              { value: '58', label: 'Weekly clicks' },
-              { value: '14+', label: 'Months retained' },
+              { value: '21k', label: 'Peak weekly impressions' },
+              { value: '74', label: 'Peak weekly clicks' },
+              { value: '37.8→13.7', label: 'Average position' },
             ].map((metric) => (
               <div key={metric.label} className="rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-900">
                 <p className="font-futura text-[clamp(1.2rem,1.6vw,1.5rem)] font-bold text-brand-blue">{metric.value}</p>

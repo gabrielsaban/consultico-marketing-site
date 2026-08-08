@@ -97,14 +97,14 @@ const projects: Project[] = [
   },
   {
     id: 2,
-    title: 'Garden Games Brand',
+    title: 'Norfolk Boards',
     description: 'Turning a seasonal business with one working SEO asset into a more structured marketing operation.',
     image: '/projects/garden_games.jpg',
     category: 'Website Refresh - Strategy Advisory',
     tags: ['Think First', 'Website refresh', 'SEO', 'Social media'],
     metric: '3',
     metricLabel: 'websites refreshed',
-    detail: 'This UK-based brand sells American garden games into the British market. They had built genuine SEO authority on their core product keyword over several years - enough to sustain a seasonal summer sales cycle. But outside of that one ranking, there was almost nothing. No real marketing infrastructure, no social presence, no email activity.',
+    detail: 'Norfolk Boards sells American garden games into the British market across three sites, Cornhole and Shuffleboard among them. They had built genuine SEO authority on their core product keyword over several years - enough to sustain a seasonal summer sales cycle. But outside of that one ranking, there was almost nothing. No real marketing infrastructure, no social presence, no email activity.',
     proofPoints: [
       {
         value: '3',
@@ -112,7 +112,7 @@ const projects: Project[] = [
         detail: 'From there, we refreshed all three of their websites as a package, tightening the user experience, improving conversion pathways, and adding new CTAs and promotions throughout.',
       },
       {
-        value: '16+',
+        value: '20+',
         label: 'Months retained',
         detail: 'Consultico continues to work with them as part of their ongoing marketing advisory team.',
       },
