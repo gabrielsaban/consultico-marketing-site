@@ -506,6 +506,8 @@ export default function AboutSection(): React.JSX.Element {
           </div>
         </div>
 
+        <TeamBiosForCrawlers />
+
         {selectedMember && (
           <div
             className="fixed inset-0 z-[10000] flex items-center justify-center overflow-hidden bg-black/55 px-4 py-6"
@@ -598,6 +600,74 @@ export default function AboutSection(): React.JSX.Element {
           </div>
         )}
       </Container>
+    </section>
+  );
+}
+
+/**
+ * Team biographies live inside a modal that only mounts when someone clicks a
+ * portrait, so they have never appeared in the server HTML. Googlebot runs
+ * JavaScript but does not click, and the AI crawlers do not run JavaScript at all.
+ * These are our Person and E-E-A-T signals, so of everything on the page they are
+ * the worst thing to have invisible.
+ *
+ * Rendered here unconditionally as native <details>, matching the project
+ * write-ups on the same page: reachable without JavaScript, so indexable and
+ * nowhere near cloaking.
+ */
+function TeamBiosForCrawlers() {
+  const withBios = teamMembers.filter((member) => member.bio && member.bio.length > 0);
+  if (withBios.length === 0) return null;
+
+  return (
+    <section className="mt-14 border-t border-gray-200 pt-10 dark:border-gray-800" aria-labelledby="team-bios-heading">
+      <h3
+        id="team-bios-heading"
+        className="font-futura text-[clamp(1.1rem,1.5vw,1.35rem)] font-bold text-gray-900 dark:text-white"
+      >
+        The team, in more detail
+      </h3>
+
+      <div className="mt-6 space-y-3">
+        {withBios.map((member) => (
+          <details
+            key={`bio-${member.id}`}
+            className="rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-900"
+          >
+            <summary className="cursor-pointer font-helvetica font-medium text-gray-900 dark:text-gray-100">
+              {member.name}
+              <span className="ml-2 font-helvetica-light text-[0.8rem] text-gray-500 dark:text-gray-400">
+                {member.role}
+                {member.location ? ` · ${member.location}` : ''}
+              </span>
+            </summary>
+
+            <div className="mt-4 space-y-3">
+              {member.bio?.map((paragraph, index) => (
+                <p
+                  key={`bio-${member.id}-${index}`}
+                  className="font-helvetica-light text-[0.92rem] leading-[1.7] text-gray-700 dark:text-gray-300"
+                >
+                  {paragraph}
+                </p>
+              ))}
+
+              {member.credentials && member.credentials.length > 0 && (
+                <ul className="list-disc space-y-1 pl-5">
+                  {member.credentials.map((credential) => (
+                    <li
+                      key={`cred-${member.id}-${credential}`}
+                      className="font-helvetica-light text-[0.9rem] leading-[1.6] text-gray-700 dark:text-gray-300"
+                    >
+                      {credential}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </details>
+        ))}
+      </div>
     </section>
   );
 }
