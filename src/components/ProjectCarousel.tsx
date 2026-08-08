@@ -766,7 +766,7 @@ function ProjectDetailsForCrawlers() {
         Project write-ups
       </summary>
 
-      <div className="mt-6 space-y-8 border-l border-gray-200 pl-5 dark:border-gray-800">
+      <div className="mt-6 max-h-[22rem] space-y-8 overflow-y-auto overscroll-contain border-l border-gray-200 pl-5 pr-3 dark:border-gray-800">
         {projects.map((project) => (
           <div key={`writeup-${project.id}`}>
             <h4 className="font-helvetica text-[0.85rem] font-semibold text-gray-700 dark:text-gray-300">

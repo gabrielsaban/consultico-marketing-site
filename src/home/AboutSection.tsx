@@ -625,7 +625,7 @@ function TeamBiosForCrawlers() {
         Team biographies
       </summary>
 
-      <div className="mt-6 space-y-6 border-l border-gray-200 pl-5 dark:border-gray-800">
+      <div className="mt-6 max-h-[22rem] space-y-6 overflow-y-auto overscroll-contain border-l border-gray-200 pl-5 pr-3 dark:border-gray-800">
         {withBios.map((member) => (
           <div key={`bio-${member.id}`}>
             <h4 className="font-helvetica text-[0.85rem] font-semibold text-gray-700 dark:text-gray-300">
