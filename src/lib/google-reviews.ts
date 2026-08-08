@@ -4,7 +4,7 @@ export interface GoogleReviewExcerpt {
   company: string;
 }
 
-/** Short excerpts from verified Google reviews (full text in ReviewsCarousel). */
+/** Short excerpts from verified Google reviews. Full verbatim text is below. */
 export const seoPageGoogleReviews: GoogleReviewExcerpt[] = [
   {
     quote:
@@ -58,3 +58,15 @@ export const ppcPageGoogleReviews: GoogleReviewExcerpt[] = [
     company: 'The Boiler Co.',
   },
 ];
+
+/**
+ * Verbatim Google review preserved from the former ReviewsCarousel component,
+ * which was deleted 2026-08-08 after being found unrendered on any page. This
+ * was the only review in it that was not already stored elsewhere.
+ */
+export const customCraftsGoogleReview: GoogleReviewExcerpt = {
+  quote:
+    "Consultico were professional, patient, and genuinely invested in my project. Paul took my brief and delivered a custom website on time, keeping me informed throughout and ensuring every detail met my expectations. From initial contact to final tutorial, his support was outstanding. I'm thrilled with the result: stress-free, fully functional, and far beyond anything I could've built alone.",
+  name: 'Keiren',
+  company: 'Custom Crafts by KJB',
+};
