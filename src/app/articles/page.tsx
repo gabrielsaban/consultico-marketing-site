@@ -5,6 +5,11 @@ import ArticleCategoryFilter from '@/components/articles/ArticleCategoryFilter';
 import ArticleCta from '@/components/articles/ArticleCta';
 import { getAllArticles } from '@/lib/articles/loader';
 
+// Articles can be scheduled with a future `date` (see src/lib/articles/loader.ts).
+// Revalidate hourly so a scheduled article appears on its publish day without a rebuild.
+export const revalidate = 3600;
+
+
 export const metadata: Metadata = {
   title: 'Articles',
   description:

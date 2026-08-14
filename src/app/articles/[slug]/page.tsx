@@ -20,6 +20,10 @@ interface ArticlePageProps {
   params: Promise<{ slug: string }>;
 }
 
+// Articles can be scheduled with a future `date` (see src/lib/articles/loader.ts).
+// Revalidate hourly so a scheduled article appears on its publish day without a rebuild.
+export const revalidate = 3600;
+
 export async function generateStaticParams() {
   const { getAllArticles } = await import('@/lib/articles/loader');
   return getAllArticles().map((article) => ({ slug: article.slug }));

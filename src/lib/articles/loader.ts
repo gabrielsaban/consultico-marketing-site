@@ -45,6 +45,25 @@ function parseArticleFile(slug: string, fileContents: string): Article {
   };
 }
 
+/**
+ * Scheduling.
+ *
+ * An article goes live once its `date` has arrived. Until then it is excluded from
+ * listings, the sitemap, related-article rails and its own URL, so a future-dated file
+ * can sit committed in the repo and publish itself on the day.
+ *
+ * Note this is evaluated at render time, so the routes that surface articles set
+ * `revalidate` — without that, a static build would never notice the date arriving.
+ *
+ * Set ARTICLES_SHOW_SCHEDULED=1 to preview scheduled articles locally.
+ */
+function isPublished(article: Article): boolean {
+  if (process.env.ARTICLES_SHOW_SCHEDULED === '1') return true;
+  const publishAt = new Date(article.date).getTime();
+  if (Number.isNaN(publishAt)) return true;
+  return publishAt <= Date.now();
+}
+
 export function getAllArticles(): Article[] {
   if (!fs.existsSync(articlesDirectory)) {
     return [];
@@ -54,12 +73,14 @@ export function getAllArticles(): Article[] {
     .readdirSync(articlesDirectory)
     .filter((fileName) => fileName.endsWith('.md'));
 
-  const articles = fileNames.map((fileName) => {
-    const slug = fileName.replace(/\.md$/, '');
-    const fullPath = path.join(articlesDirectory, fileName);
-    const fileContents = fs.readFileSync(fullPath, 'utf8');
-    return parseArticleFile(slug, fileContents);
-  });
+  const articles = fileNames
+    .map((fileName) => {
+      const slug = fileName.replace(/\.md$/, '');
+      const fullPath = path.join(articlesDirectory, fileName);
+      const fileContents = fs.readFileSync(fullPath, 'utf8');
+      return parseArticleFile(slug, fileContents);
+    })
+    .filter(isPublished);
 
   return articles.sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
@@ -74,7 +95,10 @@ export function getArticleBySlug(slug: string): Article | undefined {
   }
 
   const fileContents = fs.readFileSync(fullPath, 'utf8');
-  return parseArticleFile(slug, fileContents);
+  const article = parseArticleFile(slug, fileContents);
+
+  // A scheduled article 404s on its own URL until its publish date.
+  return isPublished(article) ? article : undefined;
 }
 
 export function getArticlesByCategory(category: ArticleCategory): Article[] {

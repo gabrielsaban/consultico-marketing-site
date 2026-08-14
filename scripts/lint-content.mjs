@@ -141,11 +141,21 @@ function checkArticle(file, raw, fm, body, slug) {
   const d = fm.date ? new Date(fm.date) : null;
   const u = fm.updated ? new Date(fm.updated) : null;
   const tomorrow = Date.now() + 864e5;
+  // Scheduling is supported: a future `date` holds the article back until that day
+  // (see src/lib/articles/loader.ts). So a future date is a warning, not an error.
+  // A date far beyond the scheduling horizon is still an error, because that is a typo.
+  const scheduleHorizon = Date.now() + 180 * 864e5;
   if (d && isNaN(+d)) err(slug, 'date does not parse');
   if (u && isNaN(+u)) err(slug, 'updated does not parse');
   if (d && u && !isNaN(+d) && !isNaN(+u) && +u < +d) err(slug, 'updated is earlier than date');
-  if (d && +d > tomorrow) err(slug, 'date is in the future');
-  if (u && +u > tomorrow) err(slug, 'updated is in the future');
+  if (d && +d > scheduleHorizon)
+    err(slug, 'date is more than 180 days in the future', 'That looks like a typo, not a schedule.');
+  else if (d && +d > tomorrow)
+    warn(slug, `scheduled: publishes ${d.toISOString().slice(0, 10)}, hidden until then`);
+  if (u && +u > scheduleHorizon)
+    err(slug, 'updated is more than 180 days in the future', 'That looks like a typo, not a schedule.');
+  else if (u && +u > tomorrow)
+    warn(slug, `updated is in the future (${u.toISOString().slice(0, 10)})`);
 
   // --- lengths
   if (fm.seoTitle) {
