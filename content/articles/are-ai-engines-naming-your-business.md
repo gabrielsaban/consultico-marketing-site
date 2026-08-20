@@ -1,6 +1,6 @@
 ---
 title: "How to tell whether AI engines are naming your business, and what to do about it"
-seoTitle: "Are AI Engines Naming Your Business? How to Check"
+seoTitle: "Are AI Engines Naming Your Business? | Consultico"
 excerpt: "Build a prompt panel, run it engine by engine, record named, linked or absent. Plus what our own log showed about the enquiries that arrive off the back of it."
 date: 2026-08-25
 updated: 2026-08-25
@@ -17,7 +17,7 @@ review:
     citability: 18
   reviewer: paul
   date: 2026-08-13
-  hash: d4176d3bdc05e383
+  hash: 5d5a0cb2c629704e
 cta:
   preset: geo
 faqs:

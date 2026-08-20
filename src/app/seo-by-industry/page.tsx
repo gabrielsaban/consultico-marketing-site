@@ -17,9 +17,9 @@ const sectionHeadingClass =
 const bodyClass = 'font-helvetica-light text-[clamp(1rem,1.15vw,1.0625rem)] leading-[1.75] text-gray-800 dark:text-gray-200';
 
 export const metadata: Metadata = pageMeta({
-  title: 'SEO by Industry | Trades & Service Businesses | Consultico',
+  title: 'SEO by Industry | Trades, Services, Healthcare | Consultico',
   description:
-    'Industry-specific SEO guides for trades and service businesses across the UK. Strategy-led, margin-aware SEO by sector from Consultico.',
+    'Industry-specific SEO for trades, professional services and healthcare businesses across the UK. Pick your sector and see how we approach the search.',
   path: SEO_BY_INDUSTRY_PATH,
   absoluteTitle: true,
 });

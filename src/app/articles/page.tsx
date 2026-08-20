@@ -11,21 +11,21 @@ export const revalidate = 3600;
 
 
 export const metadata: Metadata = {
-  title: 'Articles',
+  title: 'Articles on SEO, GEO and Marketing Strategy',
   description:
-    'Practical writing on strategy, SEO, PPC, and growth from Consultico. No filler, no generic agency advice.',
+    'Practical writing on marketing strategy, SEO, GEO and paid ads from Consultico in Glasgow. Real data from our own accounts, no generic agency advice.',
   alternates: { canonical: '/articles' },
   openGraph: {
-    title: 'Articles | Consultico',
+    title: 'Articles on SEO, GEO and Marketing Strategy | Consultico',
     description:
-      'Practical writing on strategy, SEO, PPC, and growth from Consultico. No filler, no generic agency advice.',
+      'Practical writing on marketing strategy, SEO, GEO and paid ads from Consultico in Glasgow. Real data from our own accounts, no generic agency advice.',
     url: '/articles',
     images: ['/og.jpg'],
   },
   twitter: {
-    title: 'Articles | Consultico',
+    title: 'Articles on SEO, GEO and Marketing Strategy | Consultico',
     description:
-      'Practical writing on strategy, SEO, PPC, and growth from Consultico. No filler, no generic agency advice.',
+      'Practical writing on marketing strategy, SEO, GEO and paid ads from Consultico in Glasgow. Real data from our own accounts, no generic agency advice.',
     images: ['/og.jpg'],
   },
 };

@@ -18,12 +18,17 @@ export function pageMeta({
   const url = `${BASE}${path}`;
   const imageUrl = ogImage.startsWith('http') ? ogImage : `${BASE}${ogImage}`;
 
+  // The root layout's `%s | Consultico` template only applies to the document
+  // title, never to openGraph/twitter. Pages that relied on it were shipping a
+  // brandless og:title, which is the string AI engines and social previews lift.
+  const socialTitle = absoluteTitle ? title : `${title} | Consultico`;
+
   return {
     title: absoluteTitle ? { absolute: title } : title,
     description,
     alternates: { canonical: path },
     openGraph: {
-      title,
+      title: socialTitle,
       description,
       url: path,
       siteName: 'Consultico',
@@ -33,7 +38,7 @@ export function pageMeta({
     },
     twitter: {
       card: 'summary_large_image',
-      title,
+      title: socialTitle,
       description,
       images: [imageUrl],
     },
@@ -42,7 +47,10 @@ export function pageMeta({
 
 export const SERVICE_PAGES = {
   seo: {
-    title: 'SEO Services in Glasgow',
+    // National, deliberately. /seo is the main SEO page and /seo-glasgow is the
+    // local one (Paul's steer, 2026-07-28); both leading on "Glasgow" had them
+    // competing for the same terms.
+    title: 'SEO Services UK: Strategy-Led SEO Agency',
     description:
       'Strategy-led SEO for Glasgow and UK businesses: technical audits, on-page, content and authority building that compounds. Proven with trades clients.',
     path: '/seo',

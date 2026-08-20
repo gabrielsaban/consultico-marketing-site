@@ -7,7 +7,7 @@ import { pageMeta } from '@/lib/seo';
 export const metadata: Metadata = pageMeta({
   title: 'Case Study: Norfolk Boards',
   description:
-    'We advised Norfolk Boards to move their budget off SEO in December 2025. It carried on growing all year without us. A 20-month partnership across three websites, strategy, search and social.',
+    'We advised Norfolk Boards to move their budget off SEO in December 2025, and it carried on growing all year. A 20-month partnership across three websites.',
   path: '/case-studies/norfolk-boards',
 });
 

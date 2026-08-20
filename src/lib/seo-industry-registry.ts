@@ -108,7 +108,7 @@ export const SEO_INDUSTRY_PAGE_DATA: Record<string, SeoIndustryPageData> = {
     slug: SEO_FOR_ELECTRICIANS_SLUG,
     breadcrumbLabel: 'SEO for Electricians',
     metadata: {
-      title: 'SEO for Electricians | Get More Jobs from Google | Consultico',
+      title: 'SEO for Electricians | More Jobs from Google | Consultico',
       description:
         'SEO for electricians across the UK - emergency callouts, EICRs, EV chargers and rewires. Strategy-led, margin-aware, with documented trades results.',
       path: SEO_FOR_ELECTRICIANS_PATH,
@@ -153,9 +153,9 @@ export const SEO_INDUSTRY_PAGE_DATA: Record<string, SeoIndustryPageData> = {
     slug: SEO_FOR_HEATING_ENGINEERS_SLUG,
     breadcrumbLabel: 'SEO for Gas & Heating Engineers',
     metadata: {
-      title: 'SEO for Gas & Heating Engineers | Consultico',
+      title: 'SEO for Gas & Heating Engineers | More Jobs | Consultico',
       description:
-        'SEO for gas and heating engineers across the UK - boiler repairs, services, installs and gas safety. Strategy-led and margin-aware.',
+        'SEO for gas and heating engineers across the UK: boiler repairs, servicing, installs and gas safety searches turned into a diary that stays full.',
       path: SEO_FOR_HEATING_ENGINEERS_PATH,
     },
     hero: NICHE_HERO_CONTENT[SEO_FOR_HEATING_ENGINEERS_SLUG],
@@ -198,7 +198,7 @@ export const SEO_INDUSTRY_PAGE_DATA: Record<string, SeoIndustryPageData> = {
     slug: SEO_FOR_DENTISTS_SLUG,
     breadcrumbLabel: 'SEO for Dentists',
     metadata: {
-      title: 'SEO for Dentists | Consultico',
+      title: 'SEO for Dentists | Get More Private Patients | Consultico',
       description:
         'SEO for dental practices across the UK - private, cosmetic and NHS-facing. Strategy-led local search that fills the chair with the right patients.',
       path: SEO_FOR_DENTISTS_PATH,
@@ -239,9 +239,9 @@ export const SEO_INDUSTRY_PAGE_DATA: Record<string, SeoIndustryPageData> = {
     slug: SEO_FOR_ESTATE_AGENTS_SLUG,
     breadcrumbLabel: 'SEO for Estate Agents',
     metadata: {
-      title: 'SEO for Estate Agents | Consultico',
+      title: 'SEO for Estate Agents | Win More Instructions | Consultico',
       description:
-        'SEO for estate and letting agents - vendor instructions, local visibility and reviews. Strategy-led, UK-wide.',
+        'SEO for estate and letting agents across the UK: local search, reviews and content that win vendor instructions and landlord enquiries, not portal traffic.',
       path: SEO_FOR_ESTATE_AGENTS_PATH,
     },
     hero: NICHE_HERO_CONTENT[SEO_FOR_ESTATE_AGENTS_SLUG],
@@ -280,9 +280,9 @@ export const SEO_INDUSTRY_PAGE_DATA: Record<string, SeoIndustryPageData> = {
     slug: SEO_FOR_ACCOUNTANTS_SLUG,
     breadcrumbLabel: 'SEO for Accountants',
     metadata: {
-      title: 'SEO for Accountants | Consultico',
+      title: 'SEO for Accountants | Win Better Clients | Consultico',
       description:
-        'SEO for accountancy firms - local search, specialist services and Making Tax Digital demand. Strategy-led, UK-wide.',
+        'SEO for accountancy firms across the UK: local search, specialist service pages and Making Tax Digital demand, aimed at the clients worth keeping.',
       path: SEO_FOR_ACCOUNTANTS_PATH,
     },
     hero: NICHE_HERO_CONTENT[SEO_FOR_ACCOUNTANTS_SLUG],

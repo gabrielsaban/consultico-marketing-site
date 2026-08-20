@@ -20,7 +20,7 @@ const MAP_EMBED_SRC =
   'https://www.google.com/maps?q=Consultico,50+Richmond+Street,Glasgow,G1+1XN&z=15&output=embed';
 
 export const metadata: Metadata = pageMeta({
-  title: 'SEO Agency in Glasgow | Consultico',
+  title: 'SEO Agency in Glasgow | SEO Services Scotland | Consultico',
   description:
     'Glasgow-based SEO agency helping businesses across central Scotland get found on Google and AI search. Strategy-led, honest, results that compound.',
   path: SEO_GLASGOW_PATH,
