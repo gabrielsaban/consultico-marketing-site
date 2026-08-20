@@ -6,6 +6,23 @@ const nextConfig: NextConfig = {
     dirs: ['src/app', 'src/components', 'src/sections', 'src/hooks'],
   },
   trailingSlash: false,
+  // The article loader reads content/articles at request time (see
+  // src/lib/articles/loader.ts). Next traces a route's file dependencies
+  // statically, and a path built with path.join(process.cwd(), ...) is
+  // invisible to that tracer, so the markdown is only bundled into a route's
+  // serverless function when something else pulls it in at build time.
+  //
+  // /articles and /articles/[slug] get it for free because they read the
+  // files while prerendering. /sitemap.xml did not: it rendered correctly at
+  // build, then dropped every article on its first hourly revalidation,
+  // because the function had no content/ directory to read. Declaring the
+  // dependency explicitly is what keeps a scheduled article able to add
+  // itself to the sitemap on its publish day.
+  outputFileTracingIncludes: {
+    '/sitemap.xml': ['./content/articles/**/*.md'],
+    '/articles': ['./content/articles/**/*.md'],
+    '/articles/[slug]': ['./content/articles/**/*.md'],
+  },
   async headers() {
     return [
       {

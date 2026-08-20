@@ -65,8 +65,18 @@ function isPublished(article: Article): boolean {
 }
 
 export function getAllArticles(): Article[] {
+  // Never return an empty list here. The directory is committed, so a missing
+  // one means the markdown was not bundled into this route's serverless
+  // function rather than that we have no articles — and the two are
+  // indistinguishable to every caller. Returning [] silently emptied the
+  // sitemap of all nine live articles for six days. Throwing instead means a
+  // revalidation fails loudly and the last good response keeps being served.
+  // The fix when this fires is outputFileTracingIncludes in next.config.ts.
   if (!fs.existsSync(articlesDirectory)) {
-    return [];
+    throw new Error(
+      `Articles directory not found at ${articlesDirectory}. If this is a ` +
+        `deployed route, add it to outputFileTracingIncludes in next.config.ts.`
+    );
   }
 
   const fileNames = fs
