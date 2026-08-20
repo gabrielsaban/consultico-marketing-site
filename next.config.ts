@@ -20,6 +20,7 @@ const nextConfig: NextConfig = {
   // itself to the sitemap on its publish day.
   outputFileTracingIncludes: {
     '/sitemap.xml': ['./content/articles/**/*.md'],
+    '/llms.txt': ['./content/articles/**/*.md'],
     '/articles': ['./content/articles/**/*.md'],
     '/articles/[slug]': ['./content/articles/**/*.md'],
   },
