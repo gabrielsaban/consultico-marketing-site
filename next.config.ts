@@ -9,6 +9,20 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
+        // Retired articles. The file has been moved out of content/articles so
+        // the route 404s, which is the signal that actually removes a URL from
+        // the index. This header rides along on that response so the page is
+        // explicitly non-indexable for anything that reaches it before the
+        // 404 is recrawled, including AI crawlers that treat a 404 loosely.
+        source: '/articles/eight-search-console-accounts-click-through-rate',
+        headers: [
+          {
+            key: 'X-Robots-Tag',
+            value: 'noindex, nofollow, noarchive, nosnippet',
+          },
+        ],
+      },
+      {
         // Files in /public are not fingerprinted, so Next serves them with
         // "max-age=0, must-revalidate" by default. That means a round trip for
         // every static image on every page view. A week of caching with

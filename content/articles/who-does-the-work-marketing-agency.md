@@ -17,7 +17,7 @@ review:
     citability: 18
   reviewer: paul
   date: 2026-08-13
-  hash: 5707fe4e5d50c56e
+  hash: a0a5a025fabe0c6d
 cta:
   preset: think-first
 faqs:
@@ -98,7 +98,7 @@ The same exercise produced the second rule. Every external source now gets opene
 
 On client accounts the checking is more ordinary than that. The account manager sees everything before it goes out, and anything technical goes past whoever owns that discipline. [Organic search](/seo) is Leona's and mine. [Paid media](/ppc) is Juan's. The first step of [Think First](/think-first), our strategy workshop, is also a check on us: somebody from the team who knows nothing about the business researches it on their own, then presents it back to the rest of us as if they were recommending it to a friend. If they can't explain what the business does, either we've misread it or there's something worth knowing about how the business explains itself.
 
-We publish the unflattering results as well as the good ones. The most recent is [what eight Search Console accounts told us about click-through rate](/articles/eight-search-console-accounts-click-through-rate), where our own site came bottom of the eight.
+We publish the findings that complicate the story as well as the ones that flatter it. The most recent is [six near-identical pages we shipped on one day](/articles/six-identical-pages-different-results), where the explanation we expected to find fell apart the moment we looked at all six rather than two.
 
 ## The team is young, and that cuts both ways
 

@@ -1,7 +1,7 @@
 ---
 title: "What eight Search Console accounts say about click-through rate"
 seoTitle: "Organic CTR: What Eight Accounts Show | Consultico"
-excerpt: "We pulled twelve months of Search Console data from eight accounts we work on, including our own, to test one question about organic click-through rate."
+excerpt: "We pulled twelve months of Search Console data from eight accounts we have access to, to test one question about organic click-through rate."
 date: 2026-08-18
 updated: 2026-08-18
 category: SEO
@@ -17,7 +17,7 @@ review:
     citability: 17
   reviewer: paul
   date: 2026-08-13
-  hash: 45e28233bdb7108c
+  hash: f67dc1f5a2b70b6b
 cta:
   preset: seo
 itemList:
@@ -45,7 +45,7 @@ Every so often a finding turns up in client data that we can't check against any
 
 The question was simple. Does organic click-through rate follow how visible a site is, or does it follow how specific the searches are?
 
-We're publishing what came back because the raw data isn't available anywhere else, and because one of the eight results is embarrassing for us. What we're not doing is presenting it as a rule. Eight accounts we happen to have access to isn't a study, so there's a section below on what this can't tell you and it's worth reading before you quote anything from the table.
+We're publishing what came back because the raw data isn't available anywhere else. What we're not doing is presenting it as a rule. Eight accounts we happen to have access to isn't a study, so there's a section below on what this can't tell you and it's worth reading before you quote anything from the table.
 
 > **The finding:** click-through rate tracked the specificity of the search, not the volume of impressions.
 > The accounts serving the broadest questions converted worst, however many impressions they had collected.
@@ -54,9 +54,9 @@ We're publishing what came back because the raw data isn't available anywhere el
 
 The method, so you can judge it or repeat it.
 
-**The sample.** Eight Google Search Console properties: sites we currently work on, sites we used to work on, and our own. Not all of that work is SEO. They span the UK and the US, e-commerce and local services, healthcare and trades, and businesses from a few months old in search to several years in. We did not select them for their numbers. They're the accounts we have access to, which is the single biggest weakness in what follows.
+**The sample.** Eight Google Search Console properties we have legitimate access to: sites we currently work on, sites we used to work on, and one we run ourselves. Not all of that work is SEO. They span the UK and the US, e-commerce and local services, healthcare and trades, and businesses from a few months old in search to several years in. We did not select them for their numbers, which is both the reason the sample is honest and the single biggest weakness in what follows.
 
-**What none of it is.** None of these figures is a claim about our work. Several of the windows include long stretches before we were involved at all, and one account we haven't worked on for months. The comparison between the accounts is the point, not credit for any of them.
+**What none of it is.** None of these figures is a claim about anyone's work, ours included. Several of the windows include long stretches before we were involved at all, and one account we haven't worked on for months. The comparison between the accounts is the point, not credit or blame for any of them.
 
 **The period.** Twelve months to 6 August 2026, except the heating and plumbing account, where sixteen months were available and we used all of it. Every other figure on this page, including all three accounts we break down below, covers the same twelve months.
 
@@ -75,9 +75,9 @@ The method, so you can judge it or repeat it.
 | Healthcare practice, a page per condition | Broad | 0.71% |
 | Home improvement services | Very broad | 0.24% |
 | Heating and plumbing | Broad | 0.22% |
-| consultico.co.uk, a marketing agency | Very broad | **0.18%** |
+| Professional services, national | Very broad | **0.18%** |
 
-Accounts are anonymised except our own. We don't put client names next to numbers unless the result is theirs to be proud of and they've agreed to it, and applying that rule selectively would be worse than not applying it at all.
+All eight accounts are anonymised, ours included. We don't put a name next to a number unless the business it belongs to has agreed to it, and the only way that rule means anything is if it applies to every row without exception.
 
 ## What the table says
 
@@ -89,13 +89,13 @@ Nothing about the second site is broken. It's being served against people at the
 
 The middle of the table is where it gets more interesting. The e-commerce account carries one of the largest impression counts in the sample, 541,225 of them, and still returns 1.47% and 7,943 clicks in the year. Volume didn't hurt it, because the volume is people wanting to buy the product it sells. Whatever's driving the spread, it isn't impressions on their own.
 
-## The account at the bottom is ours
+## Why the bottom of the table looks like that
 
-consultico.co.uk has the worst click-through rate of the eight at 0.18%.
+The two lowest rows share a feature that has nothing to do with how well either site is built. Both compete on comparison and research queries: the kind of results page where ten near-identical options sit under a block of definitions, and the person searching is still deciding what they want rather than who they want it from. A result on that page is one of ten, and most of the people seeing it were never going to click any of them yet.
 
-We've written before about [six near-identical pages of ours](/articles/six-identical-pages-different-results) where one earned 5,926 impressions and another earned 6, and about [what our own query data showed](/articles/why-strategy-before-seo) when we split it by intent. This is the same problem measured a different way. We rank for comparison and research terms, on the most saturated search results pages there are, where our result is one of ten agencies and the person searching is browsing rather than buying.
+That is a description of a keyword footprint, not a verdict on a site. We've written before about [six near-identical pages where one earned 5,926 impressions and another earned 6](/articles/six-identical-pages-different-results), and about [what happens when you split query data by intent](/articles/why-strategy-before-seo). This is the same mechanism measured a different way: research-stage impressions accumulate quickly and convert into very little, and no amount of on-page work changes that while the targets stay where they are.
 
-That's a diagnosis of our own content strategy, and it's the reason the terms we go after are changing. It would be strange to publish this table and leave ourselves off it.
+Which is why the useful response to a row near the bottom of this table is to change what the site competes for, not to rewrite its title tags.
 
 ## Where the pattern gets messy
 

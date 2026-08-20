@@ -17,7 +17,7 @@ review:
     citability: 16
   reviewer: paul
   date: 2026-08-13
-  hash: 540fbe82b841c228
+  hash: 4acf4b3ffb794136
 cta:
   preset: seo
 itemList:
@@ -89,7 +89,7 @@ Cornhole.co.uk is the bigger of the two, and the evidence there is softer, becau
 
 Comparing its 2026 selling season against the same months of 2025, its average position went from 10.6 to 6.9, impressions from 40,543 to 71,259, and monthly clicks from 1,041 to 1,156. Across both sites the group took 9,804 organic clicks from 768,096 impressions over the twelve months.
 
-Look at those two middle figures together and there's something in them we'd rather point out than leave for somebody else to spot. Impressions rose about 76% and clicks rose about 11%, so a much smaller share of the people who saw the site went on to visit it. Visibility grew a great deal faster than traffic did, which is the same thing we found when we compared [eight Search Console accounts side by side](/articles/eight-search-console-accounts-click-through-rate). A good summer explains part of Cornhole's year, that gap explains another part, and neither of them is the compounding story. Shuffleboard's month-by-month climb is what does the work here. Cornhole is a second site that didn't contradict it.
+Look at those two middle figures together and there's something in them we'd rather point out than leave for somebody else to spot. Impressions rose about 76% and clicks rose about 11%, so a much smaller share of the people who saw the site went on to visit it. Visibility grew a great deal faster than traffic did, which is the same gap we've found on [pages that rank without being clicked](/articles/why-strategy-before-seo). A good summer explains part of Cornhole's year, that gap explains another part, and neither of them is the compounding story. Shuffleboard's month-by-month climb is what does the work here. Cornhole is a second site that didn't contradict it.
 
 ## Do rankings switch off when the invoice does?
 
