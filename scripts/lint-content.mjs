@@ -237,6 +237,61 @@ function checkArticle(file, raw, fm, body, slug) {
 }
 
 /** Layer 2: a score must exist, clear the bar, and still apply to these bytes. */
+/**
+ * Paid placements. Two things go wrong with sponsored content and neither is
+ * caught by reading the prose: the disclosure gets dropped in an edit, and the
+ * placement outlives the money because nobody remembers the end date.
+ */
+function checkSponsored(fm, body, slug) {
+  const placements = fm.sponsored;
+  if (!placements) return;
+  if (!Array.isArray(placements)) {
+    err(slug, 'sponsored must be a list of placements');
+    return;
+  }
+
+  const today = new Date().toISOString().slice(0, 10);
+
+  for (const p of placements) {
+    const label = p?.name ?? '(unnamed)';
+    if (!p?.name) err(slug, 'a sponsored placement has no name');
+    if (!Array.isArray(p?.urls) || !p.urls.length) {
+      err(slug, `sponsored placement "${label}" lists no urls`,
+        'Every advertiser URL in the article must be listed so it gets rel="sponsored".');
+    } else {
+      for (const u of p.urls) {
+        if (!body.includes(u)) {
+          warn(slug, `sponsored url ${u} ("${label}") is not linked anywhere in the body`);
+        }
+      }
+    }
+
+    // YAML turns an unquoted 2027-08-23 into a Date, so normalise before comparing.
+    const until =
+      p?.until instanceof Date
+        ? p.until.toISOString().slice(0, 10)
+        : typeof p?.until === 'string'
+          ? p.until.trim()
+          : null;
+
+    if (!until) {
+      err(slug, `sponsored placement "${label}" has no "until" date`,
+        'A placement without an end date silently becomes a free advert. Use YYYY-MM-DD.');
+    } else if (!/^\d{4}-\d{2}-\d{2}$/.test(until)) {
+      err(slug, `sponsored placement "${label}" has an unparseable "until" (${p.until})`, 'Use YYYY-MM-DD.');
+    } else if (until < today) {
+      err(slug, `sponsored placement "${label}" expired on ${until}`,
+        'The paid term is over. Either renew it and move the date, or take the placement and its disclosure out.');
+    }
+  }
+
+  // The disclosure is the whole basis on which this is allowed to be published.
+  if (!/\bsponsor(ed|ship)?\b/i.test(body)) {
+    err(slug, 'declares a sponsored placement but the body never says so',
+      'UK rules require paid placement to be obviously identifiable to the reader. Label it at the placement, not only in a footnote.');
+  }
+}
+
 function checkReview(fm, body, slug) {
   const today = new Date().toISOString().slice(0, 10);
   const until = R.GRANDFATHERED[slug];
@@ -305,6 +360,7 @@ for (const name of files) {
 
   const { implied } = checkArticle(file, raw, fm, body, slug);
   checkReview(fm, body, slug);
+  checkSponsored(fm, body, slug);
 
   if (fixReadTime) {
     const label = `${implied} min read`;

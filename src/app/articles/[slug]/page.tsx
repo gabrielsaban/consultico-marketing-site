@@ -137,7 +137,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                     </div>
                   )}
 
-                  <ArticleProse content={article.content} />
+                  <ArticleProse content={article.content} sponsored={article.sponsored} />
 
                   {article.faqs && article.faqs.length > 0 && (
                     <div className="mt-12">

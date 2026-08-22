@@ -40,6 +40,21 @@ export interface ArticleAuthor {
   image: string;
 }
 
+/**
+ * A paid placement inside an article. Declaring it here rather than marking the
+ * link up inline keeps it auditable: the renderer adds rel="sponsored" from this
+ * list, and the content linter refuses to build once `until` has passed, so a
+ * placement cannot quietly outlive the money.
+ */
+export interface ArticleSponsoredPlacement {
+  /** Advertiser name, as it appears on the page. */
+  name: string;
+  /** Every URL of theirs in the article. Each gets rel="sponsored". */
+  urls: string[];
+  /** Last day the placement is paid for, YYYY-MM-DD. */
+  until: string;
+}
+
 export interface ArticleFrontmatter {
   title: string;
   excerpt: string;
@@ -55,6 +70,7 @@ export interface ArticleFrontmatter {
   seoTitle?: string;
   faqs?: ArticleFaq[];
   itemList?: string[];
+  sponsored?: ArticleSponsoredPlacement[];
 }
 
 export interface Article extends ArticleFrontmatter {

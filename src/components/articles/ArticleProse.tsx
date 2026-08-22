@@ -1,11 +1,24 @@
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import type { ArticleSponsoredPlacement } from '@/lib/articles/types';
 
 interface ArticleProseProps {
   content: string;
+  /** Paid placements declared in frontmatter. Their links must not pass PageRank. */
+  sponsored?: ArticleSponsoredPlacement[];
 }
 
-export default function ArticleProse({ content }: ArticleProseProps) {
+export default function ArticleProse({ content, sponsored }: ArticleProseProps) {
+  const sponsoredHrefs = new Set((sponsored ?? []).flatMap((p) => p.urls));
+
+  // Google requires paid links to be qualified. Getting this wrong is a link
+  // scheme violation, and the manual action lands on us rather than on the
+  // advertiser, so it is derived from data instead of remembered per article.
+  const relFor = (href?: string) => {
+    if (!href || !/^https?:/i.test(href)) return undefined;
+    return sponsoredHrefs.has(href) ? 'sponsored noopener' : 'noopener';
+  };
+
   return (
     <div className="article-prose">
       <ReactMarkdown
@@ -41,7 +54,11 @@ export default function ArticleProse({ content }: ArticleProseProps) {
             <strong className="font-helvetica font-semibold text-gray-900 dark:text-gray-100">{children}</strong>
           ),
           a: ({ href, children }) => (
-            <a href={href} className="font-medium text-brand-blue underline-offset-2 hover:underline">
+            <a
+              href={href}
+              rel={relFor(href)}
+              className="font-medium text-brand-blue underline-offset-2 hover:underline"
+            >
               {children}
             </a>
           ),
