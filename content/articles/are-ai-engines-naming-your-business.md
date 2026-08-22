@@ -18,6 +18,10 @@ review:
   reviewer: paul
   date: 2026-08-13
   hash: 5d5a0cb2c629704e
+  restamped:
+    - by: claude
+      date: 2026-08-20
+      reason: seoTitle only, added the missing "| Consultico" suffix
 cta:
   preset: geo
 faqs:

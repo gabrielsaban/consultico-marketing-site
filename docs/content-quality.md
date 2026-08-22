@@ -69,6 +69,37 @@ score of 84 travels along with a rewrite forever.
 
 Bumping `updated` or swapping a `cta` preset does not invalidate it.
 
+### Re-stamping: when the hash may be refreshed without a re-judgement
+
+The hash covers `seoTitle` as well as the body, so a purely presentational fix, correcting
+a SERP title length, adding the `| Consultico` suffix, expires a score that nothing about
+the writing has changed. Re-judging the whole article for that is theatre, but silently
+re-stamping it means `reviewer` ends up vouching for an edit they never saw.
+
+The rule:
+
+- **`reviewer` names the person who judged the score, and nothing else may claim to.**
+- A hash may be **re-stamped without a re-judgement only when the edit cannot move any
+  rubric category.** In practice that means `seoTitle` alone. Anything touching the body,
+  `excerpt`, `faqs` or `itemList` is a real edit and needs a real rescore.
+- A re-stamp must record itself:
+
+```yaml
+review:
+  score: 89
+  categories: { ... }
+  reviewer: paul
+  date: 2026-08-13
+  hash: 5d5a0cb2c629704e
+  restamped:
+    - by: claude
+      date: 2026-08-20
+      reason: seoTitle only, added the missing "| Consultico" suffix
+```
+
+`restamped` is append-only. If the list is getting long, or an entry is hard to justify in
+one line, that is the signal the article has drifted and wants a proper rescore.
+
 ## Grandfathering
 
 Articles predating the gate are listed in `GRANDFATHERED` with an expiry date. They skip
