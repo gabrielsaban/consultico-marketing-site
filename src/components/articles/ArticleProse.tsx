@@ -11,13 +11,16 @@ interface ArticleProseProps {
 export default function ArticleProse({ content, sponsored }: ArticleProseProps) {
   const sponsoredHrefs = new Set((sponsored ?? []).flatMap((p) => p.urls));
 
-  // Google requires paid links to be qualified. Getting this wrong is a link
-  // scheme violation, and the manual action lands on us rather than on the
+  // Only paid links get qualified. Google requires it, and getting it wrong is a
+  // link scheme violation whose manual action lands on us rather than on the
   // advertiser, so it is derived from data instead of remembered per article.
-  const relFor = (href?: string) => {
-    if (!href || !/^https?:/i.test(href)) return undefined;
-    return sponsoredHrefs.has(href) ? 'sponsored noopener' : 'noopener';
-  };
+  //
+  // Everything else is left bare on purpose: editorial outbound links should pass
+  // weight normally. rel="noopener" is a security attribute with no SEO effect,
+  // and it does nothing at all for links that do not open a new tab, so adding it
+  // here would only be markup that looks like it means something.
+  const relFor = (href?: string) =>
+    href && /^https?:/i.test(href) && sponsoredHrefs.has(href) ? 'sponsored' : undefined;
 
   return (
     <div className="article-prose">
