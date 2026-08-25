@@ -94,8 +94,24 @@ export function getAllArticles(): Article[] {
     .filter(isPublished);
 
   return articles.sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+    (a, b) => effectiveDate(b).getTime() - effectiveDate(a).getTime()
   );
+}
+
+/**
+ * Articles are ordered by how recently they were meaningfully changed, not by
+ * when they first went up, so a substantive refresh earns its place at the top
+ * of the index. A rewritten guide is more useful to a reader today than a
+ * thinner piece that happens to be newer.
+ *
+ * Deliberately a general rule rather than a per-article pin: the index should
+ * never promote a page for a reason a reader cannot see on the page itself.
+ */
+function effectiveDate(article: { date: string; updated?: string }): Date {
+  const published = new Date(article.date);
+  if (!article.updated) return published;
+  const updated = new Date(article.updated);
+  return updated > published ? updated : published;
 }
 
 export function getArticleBySlug(slug: string): Article | undefined {

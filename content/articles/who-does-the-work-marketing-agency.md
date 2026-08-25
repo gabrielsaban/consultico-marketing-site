@@ -8,16 +8,16 @@ category: Strategy
 type: Article
 readTime: 9 min read
 review:
-  score: 86
+  score: 87
   categories:
-    content: 21
+    content: 22
     seo: 16
-    eeat: 18
+    eeat: 17
     technical: 13
-    citability: 18
-  reviewer: paul
-  date: 2026-08-13
-  hash: a0a5a025fabe0c6d
+    citability: 19
+  reviewer: claude
+  date: 2026-08-25
+  hash: 9a8bdeb9d74e9cf6
 cta:
   preset: think-first
 faqs:
@@ -108,9 +108,9 @@ I'm not going to argue that being young makes the work better. It doesn't on its
 
 Here's the version I actually believe. A team that's been doing this for twenty years can work from instinct, and much of the time the instinct is right. We haven't got twenty years of it, so we write things down instead. The framework is written down. The scoring is written down. The rule about sources is written down. That's slower and a lot more boring. It also means you can read the method before you commit to it, which you can't do with somebody's instinct.
 
-The limits are real too. Four people plus partners means we're deep in some things and not in others, and when a job needs something we haven't got, we say so and bring somebody in. We're also small enough that a sudden pile of work has to be sequenced rather than absorbed, which occasionally means telling someone not yet.
+There are limits to a team this size. We're deep in search, paid media and strategy, and where a job needs something we haven't got, we say so and bring somebody in rather than learn it on your account. We're also small enough that a sudden pile of work gets sequenced rather than absorbed, which sometimes means telling someone not yet.
 
-There's also a decent argument that none of this should be taken from us anyway. Google's guidelines for the people it pays to assess search results tell them that judgements should rest on "the information you find during reputation research, verifiable credentials, etc, not just website or content creator claims of 'I'm an expert!'" ([Google](https://static.googleusercontent.com/media/guidelines.raterhub.com/en//searchqualityevaluatorguidelines.pdf), 2025). The same document says that where a business and independent sources disagree, "trust the independent sources". That applies to this page as much as to anyone else's. Our reviews, the work itself and the people who've worked with us are better evidence than a paragraph I've written about my own team.
+Google's own guidelines for the people it pays to assess search results tell them to weigh "the information you find during reputation research, verifiable credentials, etc, not just website or content creator claims of 'I'm an expert!'" ([Google](https://static.googleusercontent.com/media/guidelines.raterhub.com/en//searchqualityevaluatorguidelines.pdf), 2025). That's the right test, and this page is built so you can run it. Every name above links to a biography and the work behind it, our Google reviews are public, and the clients are named in our case studies. Check us against those rather than against this page.
 
 ## How to find out who's on your own account
 

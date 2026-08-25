@@ -82,7 +82,12 @@ export default function ArticleCard({
           <div className="min-w-0 font-helvetica text-[0.75rem] text-gray-600 dark:text-gray-400 md:text-[0.8rem]">
             <div className="truncate font-medium text-gray-800 dark:text-gray-200">{author.name}</div>
             <div className="truncate">
-              {formatArticleDate(article.date)}
+              {/* The index is ordered by last update, so a refreshed article can sit
+                  above a newer one. Showing the update date is what makes that read
+                  as deliberate rather than as a broken sort. */}
+              {article.updated && article.updated !== article.date
+                ? `Updated ${formatArticleDate(article.updated)}`
+                : formatArticleDate(article.date)}
               {showCategories ? ` · ${article.readTime}` : ''}
             </div>
           </div>
