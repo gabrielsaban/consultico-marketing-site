@@ -170,6 +170,7 @@ Email paul@consultico.co.uk, call 0141 459 1351, use the contact form at ${BASE}
 - [Contact](${BASE}/contact): Email, phone, office address, booking link, and contact form.
 - [Articles](${BASE}/articles): Practical writing on strategy, SEO, PPC, and growth from Consultico.
 - [Careers](${BASE}/careers): Internship and hiring information.
+- [Sponsored placements](${BASE}/sponsored-placements): How paid positions in our comparison guides work, what an advertiser buys, and what stays under our editorial control.
 
 ## Service pages
 

@@ -24,6 +24,7 @@ const STATIC_ROUTES: { path: string; priority: number; changeFrequency: Metadata
   { path: '/contact', priority: 0.7, changeFrequency: 'monthly' },
   { path: '/case-studies/boiler-co', priority: 0.4, changeFrequency: 'monthly' },
   { path: '/case-studies/norfolk-boards', priority: 0.4, changeFrequency: 'monthly' },
+  { path: '/sponsored-placements', priority: 0.4, changeFrequency: 'yearly' },
   { path: '/privacy', priority: 0.3, changeFrequency: 'yearly' },
   { path: '/terms', priority: 0.3, changeFrequency: 'yearly' },
 ];

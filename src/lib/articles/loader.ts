@@ -41,6 +41,7 @@ function parseArticleFile(slug: string, fileContents: string): Article {
     seoTitle: frontmatter.seoTitle,
     faqs: frontmatter.faqs,
     itemList: frontmatter.itemList,
+    sponsored: frontmatter.sponsored,
     content: content.trim(),
   };
 }
