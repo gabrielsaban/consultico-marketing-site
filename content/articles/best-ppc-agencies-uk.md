@@ -17,7 +17,7 @@ review:
     citability: 18
   reviewer: claude
   date: 2026-08-25
-  hash: 7668623d77e171e1
+  hash: 1fe44155195d5f96
 cta:
   preset: ppc
 sponsored:
@@ -48,11 +48,7 @@ faqs:
 
 Choosing a pay-per-click agency is one of the most expensive decisions a growing business makes, and one of the easiest to get wrong. Paid search takes 44% of a UK digital ad market worth £40.5bn ([IAB UK](https://www.iabuk.com/news-article/digital-adspend-2025-uks-digital-ad-market-reaches-ps405bn), 2025), so there is no shortage of agencies willing to manage your budget. The right one pushes your return well above average; the wrong one quietly burns spend while you wait for results that never compound. This guide compares six PPC agencies operating in the UK in 2026, what each is best for, and how to choose between them.
 
-We publish this guide ourselves, so we have set out our own offer separately rather than ranking it against the agencies we are comparing.
-
 > **TL;DR:** The best UK PPC agency for you depends on size, sector and budget. Global enterprises and regulated-sector brands lean toward Jellyfish, Croud or NinjaPromo, while growing B2C and trades businesses are usually better served by a focused, margin-aware partner or a regional specialist. Most UK SMEs pay between £1.50 and £2.50 per click ([Whito](https://whito.co.uk/research/uk-ppc-costs/), 2026), so agency selection decides whether paid media is an asset or a leak.
-
-> **How this list was put together.** We selected agencies operating in the UK across a range of sizes and specialisms, and assessed each on who it is genuinely best suited to rather than on scale or awards. Assessed August 2026. One entry is a sponsored placement, marked where it appears and explained in [how placements work](/sponsored-placements). **Consultico publishes this page.** We have set out our own offer separately at the end rather than ranking ourselves against the agencies we are comparing.
 
 ## Best PPC agencies in the UK at a glance
 
@@ -185,6 +181,12 @@ Key takeaways:
 - Choose on fit and margin discipline, not logo size or the lowest fee.
 
 If you want paid media built around your unit economics rather than vanity metrics, [start with a PPC audit](/contact?interest=ppc). Strategy without execution is slow. Execution without strategy is expensive. The right agency gives you both.
+
+## How this list was put together
+
+We selected agencies operating in the UK across a range of sizes and specialisms, and assessed each on who it is genuinely best suited to rather than on scale or awards. Assessed August 2026.
+
+One entry is a sponsored placement, marked where it appears and explained in [how placements work](/sponsored-placements). Consultico publishes this page, so we have set out our own offer separately rather than ranking ourselves against the agencies we are comparing.
 
 ---
 

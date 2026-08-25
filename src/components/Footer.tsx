@@ -25,6 +25,7 @@ export default function Footer() {
     { name: 'Projects', href: '/#projects' },
     { name: 'About', href: '/#about' },
     { name: 'Careers', href: '/careers' },
+    { name: 'Advertise', href: '/sponsored-placements' },
     { name: 'Contact', href: '/contact' },
   ];
 
