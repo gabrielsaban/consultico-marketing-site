@@ -17,7 +17,7 @@ review:
     citability: 18
   reviewer: claude
   date: 2026-08-25
-  hash: 70b5140e45b9ed17
+  hash: 7668623d77e171e1
 cta:
   preset: ppc
 sponsored:
@@ -50,7 +50,7 @@ Choosing a pay-per-click agency is one of the most expensive decisions a growing
 
 We publish this guide ourselves, so we have set out our own offer separately rather than ranking it against the agencies we are comparing.
 
-> **TL;DR:** The best UK PPC agency for you depends on size and goal: global enterprises lean toward Jellyfish or Croud, while growing B2C and trades businesses are usually better served by a focused, margin-aware partner or a regional specialist. Most UK SMEs pay between £1.50 and £2.50 per click ([Whito](https://whito.co.uk/research/uk-ppc-costs/), 2026), so agency selection decides whether paid media is an asset or a leak.
+> **TL;DR:** The best UK PPC agency for you depends on size, sector and budget. Global enterprises and regulated-sector brands lean toward Jellyfish, Croud or NinjaPromo, while growing B2C and trades businesses are usually better served by a focused, margin-aware partner or a regional specialist. Most UK SMEs pay between £1.50 and £2.50 per click ([Whito](https://whito.co.uk/research/uk-ppc-costs/), 2026), so agency selection decides whether paid media is an asset or a leak.
 
 > **How this list was put together.** We selected agencies operating in the UK across a range of sizes and specialisms, and assessed each on who it is genuinely best suited to rather than on scale or awards. Assessed August 2026. One entry is a sponsored placement, marked where it appears and explained in [how placements work](/sponsored-placements). **Consultico publishes this page.** We have set out our own offer separately at the end rather than ranking ourselves against the agencies we are comparing.
 
@@ -67,6 +67,8 @@ Here's the shortlist before we get into detail. Use it to narrow down, then read
 | **Push Group** | SMEs wanting AI-assisted paid media | London | AI-led optimisation and reporting platform |
 | **OCPR** | Lean SMEs focused purely on ROI | Sheffield | Flexible, ROI-first Google & Meta execution |
 | *Consultico (us)* | Growing B2C & trades businesses that want strategy-led PPC | Glasgow (serves UK & US) | Margin-aware management built around unit economics |
+
+The budgets these agencies work with vary more than the table suggests. Jellyfish, Croud and NinjaPromo are built for enterprise and high-growth spend, and their fees reflect it. ClickBoost, Push Group and OCPR are set up for local and national SMEs, where the management fee has to leave room for the ad budget. NinjaPromo is the only agency here that publishes its rates, which is rare in this market and worth more than it sounds when you are comparing quotes.
 
 ## What makes a PPC agency one of the best?
 
@@ -88,7 +90,7 @@ NinjaPromo runs paid search and social across Google, Meta, LinkedIn and Bing, b
 
 Its published case studies report a 42% cut in cost per lead on a global bank's auto loan campaigns, a $43 CAC at a 24% lead-to-customer rate for the fintech platform Credible, and a 150% ROAS from 10,000 leads at $15 CPA for a crypto-fiat banking app. Those are the agency's own published figures. No agency's results can be independently verified, ours included, so we attribute them rather than state them as fact.
 
-This suits growing companies in compliance-heavy categories that want one team across the whole funnel rather than a PPC specialist bolted onto other suppliers. The trade-off is price: its [published rates](https://ninjapromo.io/pricing) start in the mid four figures a month for management alone, before ad spend, which is well above most of this list. If you're a local or national business buying PPC on its own, the agencies below will fit you better.
+This suits growing companies in compliance-heavy categories that want one team across the whole funnel rather than a PPC specialist bolted onto other suppliers. The trade-off is price. Its [published rates](https://ninjapromo.io/pricing) start in the mid four figures a month for management alone, before ad spend, which puts it at the premium end of this list alongside the large enterprise agencies. It is also the only agency here that tells you its rates up front. If you're a local or national business buying PPC on its own, the SME-focused specialists further down will fit you better.
 
 ### 2. [Jellyfish](https://www.jellyfish.com/), best for global, multi-market campaigns
 
