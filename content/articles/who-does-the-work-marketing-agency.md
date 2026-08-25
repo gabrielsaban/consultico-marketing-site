@@ -17,7 +17,7 @@ review:
     citability: 19
   reviewer: claude
   date: 2026-08-25
-  hash: 9a8bdeb9d74e9cf6
+  hash: 99ab24ca8c05dd1b
 cta:
   preset: think-first
 faqs:
@@ -110,7 +110,7 @@ Here's the version I actually believe. A team that's been doing this for twenty 
 
 There are limits to a team this size. We're deep in search, paid media and strategy, and where a job needs something we haven't got, we say so and bring somebody in rather than learn it on your account. We're also small enough that a sudden pile of work gets sequenced rather than absorbed, which sometimes means telling someone not yet.
 
-Google's own guidelines for the people it pays to assess search results tell them to weigh "the information you find during reputation research, verifiable credentials, etc, not just website or content creator claims of 'I'm an expert!'" ([Google](https://static.googleusercontent.com/media/guidelines.raterhub.com/en//searchqualityevaluatorguidelines.pdf), 2025). That's the right test, and this page is built so you can run it. Every name above links to a biography and the work behind it, our Google reviews are public, and the clients are named in our case studies. Check us against those rather than against this page.
+Google's own guidelines for the people it pays to assess search results tell them to weigh "the information you find during reputation research, verifiable credentials, etc, not just website or content creator claims of 'I'm an expert!'" ([Google](https://static.googleusercontent.com/media/guidelines.raterhub.com/en//searchqualityevaluatorguidelines.pdf), 2025). That's the right test, and this page is built so you can run it. Every name above links to a biography and the work behind it, our Google reviews are public, and the clients are named in our case studies. We're proud of that work, and confident it stands up to a closer look.
 
 ## How to find out who's on your own account
 
