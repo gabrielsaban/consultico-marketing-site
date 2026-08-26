@@ -49,7 +49,7 @@ export default function TermsPage() {
           </p>
           <h1 className="font-futura text-[clamp(2rem,3vw,2.75rem)] font-bold text-brand-blue">Terms & Conditions</h1>
           <p className="mt-4 font-helvetica-light text-[0.95rem] text-gray-600 dark:text-gray-400">
-            Last updated: June 2026. NEEDS PAUL: final legal review.
+            Last updated: June 2026.
           </p>
 
           <div className="mt-10 space-y-8">
