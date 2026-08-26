@@ -16,8 +16,8 @@ review:
     technical: 13
     citability: 18
   reviewer: claude
-  date: 2026-08-25
-  hash: 1fe44155195d5f96
+  date: 2026-08-26
+  hash: 36dc64561a5d269d
 cta:
   preset: ppc
 sponsored:
@@ -80,7 +80,7 @@ We've ordered the agencies below by fit for growing UK businesses rather than by
 
 ### 1. [NinjaPromo](https://ninjapromo.io/), best for cross-channel PPC in fintech, SaaS and regulated sectors
 
-> **Sponsored placement.** NinjaPromo paid for this position. We researched and wrote the entry, and they had no say over it or over the rest of the list. [How placements work](/sponsored-placements).
+> **Sponsored placement.** NinjaPromo paid for this position. We researched and wrote the entry, and they had no say over it or over the rest of the list.
 
 NinjaPromo runs paid search and social across Google, Meta, LinkedIn and Bing, but the model is what separates it from the other agencies here. Clients subscribe to a cross-functional team rather than buying a PPC retainer, so the same people cover landing pages, creative, CRO and analytics. In a regulated category that matters more than it sounds, because the ad account is rarely the thing holding performance back.
 

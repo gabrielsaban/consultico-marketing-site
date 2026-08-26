@@ -1,11 +1,20 @@
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import type { ArticleSponsoredPlacement } from '@/lib/articles/types';
+import SponsoredDisclosure from './SponsoredDisclosure';
 
 interface ArticleProseProps {
   content: string;
   /** Paid placements declared in frontmatter. Their links must not pass PageRank. */
   sponsored?: ArticleSponsoredPlacement[];
+}
+
+/** Flatten a hast node back to its text, so a blockquote can be identified by what it says. */
+function textOf(node: unknown): string {
+  if (!node || typeof node !== 'object') return '';
+  const n = node as { type?: string; value?: string; children?: unknown[] };
+  if (n.type === 'text') return n.value ?? '';
+  return (n.children ?? []).map(textOf).join('');
 }
 
 export default function ArticleProse({ content, sponsored }: ArticleProseProps) {
@@ -65,11 +74,21 @@ export default function ArticleProse({ content, sponsored }: ArticleProseProps) 
               {children}
             </a>
           ),
-          blockquote: ({ children }) => (
-            <blockquote className="my-6 border-l-4 border-brand-blue pl-5 font-helvetica-light italic text-gray-700 dark:text-gray-300">
-              {children}
-            </blockquote>
-          ),
+          // A blockquote opening with "Sponsored placement." is the paid-placement
+          // disclosure, not a pull quote. It renders collapsed, with the label
+          // itself still visible, so the ad label sits at the placement without a
+          // paragraph of legal copy interrupting the article.
+          blockquote: ({ node, children }) => {
+            if (/^\s*Sponsored placement\./i.test(textOf(node))) {
+              return <SponsoredDisclosure>{children}</SponsoredDisclosure>;
+            }
+
+            return (
+              <blockquote className="my-6 border-l-4 border-brand-blue pl-5 font-helvetica-light italic text-gray-700 dark:text-gray-300">
+                {children}
+              </blockquote>
+            );
+          },
           table: ({ children }) => (
             <div className="mb-6 overflow-x-auto">
               <table className="w-full min-w-[32rem] border-collapse text-left text-[0.9rem]">{children}</table>
