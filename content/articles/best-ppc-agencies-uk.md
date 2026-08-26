@@ -8,16 +8,16 @@ category: PPC
 type: Article
 readTime: 9 min read
 review:
-  score: 84
+  score: 83
   categories:
     content: 20
     seo: 17
-    eeat: 16
+    eeat: 15
     technical: 13
     citability: 18
   reviewer: claude
   date: 2026-08-27
-  hash: dcc07bcb921fbc43
+  hash: 1e0a4d88c87e9a02
 cta:
   preset: ppc
 sponsored:
@@ -82,7 +82,7 @@ We've ordered the agencies below by fit for growing UK businesses rather than by
 
 NinjaPromo runs paid search and social across Google, Meta, LinkedIn and Bing, but the model is what separates it from the other agencies here. Clients subscribe to a cross-functional team rather than buying a PPC retainer, so the same people cover landing pages, creative, CRO and analytics. In a regulated category that matters more than it sounds, because the ad account is rarely the thing holding performance back.
 
-Its published case studies report a 42% cut in cost per lead on a global bank's auto loan campaigns, a $43 CAC at a 24% lead-to-customer rate for the fintech platform Credible, and a 150% ROAS from 10,000 leads at $15 CPA for a crypto-fiat banking app. Those are the agency's own published figures. No agency's results can be independently verified, ours included, so we attribute them rather than state them as fact.
+Its published case studies report a 42% cut in cost per lead on a global bank's auto loan campaigns, a $43 CAC at a 24% lead-to-customer rate for the fintech platform Credible, and a 150% ROAS from 10,000 leads at $15 CPA for a crypto-fiat banking app. Those are the agency's own published figures.
 
 This suits growing companies in compliance-heavy categories that want one team across the whole funnel rather than a PPC specialist bolted onto other suppliers. The trade-off is price. Its [published rates](https://ninjapromo.io/pricing) start in the mid four figures a month for management alone, before ad spend, which puts it at the premium end of this list alongside the large enterprise agencies. It is also the only agency here that tells you its rates up front. If you're a local or national business buying PPC on its own, the SME-focused specialists further down will fit you better.
 
@@ -107,8 +107,6 @@ Push Group is a London-based agency that has built AI into its paid-media offeri
 Founded in Sheffield in 2020, OCPR is a younger agency that has built a varied portfolio with a sharp focus on return on investment. Working primarily across Google and Meta ads, it has shown that strong PPC execution doesn't require a large team, and that an agency attuned to SME budget constraints can outperform bigger firms on efficiency. For smaller businesses where every pound of ad spend has to justify itself, OCPR's ROI-first, flexible approach is a sensible fit.
 
 ### Our own offer: Consultico, for strategy-led PPC in growing businesses
-
-**Disclosure: Consultico publishes this guide.** We have kept ourselves out of the ranking above rather than score our own work against the agencies we are comparing, but it would be odd to write this and not say what we do.
 
 Consultico is a Glasgow-based digital marketing consultancy whose [PPC service](/ppc) manages Google Ads and Meta paid media around your unit economics rather than vanity metrics. Services span campaign setup and optimisation, media creation, copywriting, and analytics and reporting. No campaign goes live without a defined objective and a success measure, so spend is always tied to a target return. It suits B2C brands and trades businesses that are already selling and want paid media to scale profitably.
 
