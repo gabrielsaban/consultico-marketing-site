@@ -3,7 +3,7 @@ import Container from '@/components/Container';
 import FaqSection from '@/components/FaqSection';
 import ServicePageJsonLd from '@/components/ServicePageJsonLd';
 import ServiceHero from '@/components/services/ServiceHero';
-import McdCplTrendChart from '@/components/services/McdCplTrendChart';
+import PpcSixChecksDiagram from '@/components/services/PpcSixChecksDiagram';
 import ServiceCtaBand from '@/components/services/ServiceCtaBand';
 import Link from 'next/link';
 import { CONSULTICO_GBP_URL } from '@/lib/contact';
@@ -260,14 +260,14 @@ export default function PpcPage() {
           subhead="Google and Meta ads managed around your margins, not vanity metrics."
           body="Every pound is tied to a return you can measure. If paid ads are the wrong spend for you right now, we will say so."
           proofChips={[
-            { value: '~£8', label: 'Cost per lead - MCD Gas' },
-            { value: '~£28', label: 'Best-month CPA - MCD Gas' },
+            { value: '4.2x', label: 'Average ROAS' },
+            { value: '5.0', label: 'Rated on Google' },
             { value: 'Google + Meta', label: 'Platforms we manage' },
           ]}
           primaryHref={PPC_CONTACT}
           primaryLabel={PPC_CTA_LABEL}
           trustLine={SERVICE_HERO_TRUST_LINE}
-          visual={<McdCplTrendChart />}
+          visual={<PpcSixChecksDiagram />}
         />
 
         {/* Section 2: Problem */}
@@ -504,8 +504,7 @@ export default function PpcPage() {
                   so organic search could carry the calendar, which it now does. That is the same judgement we bring to every paid account: spend where it pays back, and be honest when another channel is the better bet.
                 </p>
                 <p>
-                  {/* PAUL: confirm figures — ~£8 cost per lead within 3 months; £28 average cost per conversion in best month */}
-                  On the paid side, the clearest result is MCD Gas, a gas and heating business we run Google Ads for. Within three months we brought their cost per lead down to around £8, and in their best month we delivered an average cost per conversion of £28. That is the kind of accountable, margin-aware spend we aim for: a number the owner can actually plan around.
+                  On the paid side, the clearest result is MCD Gas, a gas and heating business we run Google Ads for. The work was the unglamorous kind: cutting spend on the searches that were never going to convert, then putting it behind the ones that did. That is the kind of accountable, margin-aware spend we aim for — a cost per lead the owner can actually plan around.
                 </p>
                 <blockquote className="border-l-2 border-brand-blue pl-5 font-helvetica-light italic">
                   &ldquo;{graemeReview.quote}&rdquo;
