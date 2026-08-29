@@ -3,21 +3,21 @@ title: "What is Generative Engine Optimisation (GEO)?"
 seoTitle: "What is Generative Engine Optimisation? | Consultico"
 excerpt: "Generative engine optimisation explained: what GEO is, how it differs from SEO, what the evidence says actually earns AI citations, and what does not work."
 date: 2026-08-01
-updated: 2026-08-01
+updated: 2026-08-29
 category: GEO
 type: Article
 readTime: 10 min read
 review:
-  score: 82
+  score: 87
   categories:
-    content: 20
-    seo: 17
-    eeat: 15
+    content: 21
+    seo: 18
+    eeat: 17
     technical: 13
-    citability: 17
-  reviewer: paul
-  date: 2026-08-08
-  hash: a1b76b6fa8385444
+    citability: 18
+  reviewer: claude
+  date: 2026-08-29
+  hash: 2fa91a648a5b2c2f
 cta:
   preset: geo
 faqs:
@@ -53,7 +53,7 @@ They share most of their foundations. Fast, crawlable, well-structured pages wit
 
 The gap opens on which pages get chosen. Ahrefs found that the proportion of AI Overview citations coming from Google's own top ten results [fell from roughly 76%](https://ahrefs.com/blog/search-rankings-ai-citations/) to [roughly 38%](https://ahrefs.com/blog/ai-overview-citations-top-10/) between mid-2025 and early 2026. Ranking first used to more or less guarantee you would be cited. It no longer does, which means AI visibility now has to be measured separately from rankings rather than assumed from them.
 
-There is a second difference that surprises people. Length barely matters. Ahrefs' analysis found effectively no correlation between content length and citation (r≈0.04), and that 53% of AI Overview citations went to pages under 1,000 words. A focused page that answers one question cleanly beats a sprawling guide that answers thirty questions adequately.
+There is a second difference that surprises people. Length barely matters. Across 174,048 cited pages, [Ahrefs found](https://ahrefs.com/blog/short-vs-long-content-in-ai-overviews/) the correlation between word count and citation position was 0.04, which is effectively zero, and that 53% of AI Overview citations went to pages under 1,000 words. A focused page that answers one question cleanly beats a sprawling guide that answers thirty questions adequately.
 
 ### GEO and SEO at a glance
 
@@ -67,7 +67,7 @@ There is a second difference that surprises people. Length barely matters. Ahref
 
 ## Does GEO actually matter yet?
 
-Honestly, less than the amount of noise about it suggests. Measured in analytics, AI search still accounts for under 1% of traffic for most websites, a point Glenn Gabe has made repeatedly and one worth holding onto when someone tries to sell you an urgent AI overhaul. Treat that figure as a floor rather than the whole picture, for the reason set out below.
+Honestly, less than the amount of noise about it suggests. Measured in analytics, AI search still accounts for under 1% of traffic for most websites, [a point Glenn Gabe has made repeatedly](https://www.gsqi.com/marketing-blog/ai-search-traffic-compared-to-google/) after setting up AI referrer tracking across many properties, and one worth holding onto when someone tries to sell you an urgent AI overhaul. Treat that figure as a floor rather than the whole picture, for the reason set out below.
 
 So why do the work now? Three reasons. The share is small but growing. Most of what earns citations also improves ordinary search performance, so the effort is rarely wasted. And the businesses establishing themselves as sources today are doing it while the field is uncontested.
 
@@ -94,17 +94,17 @@ The most useful finding for smaller businesses is about who benefits. The effect
 
 Brand mentions correlate with AI Overview visibility roughly three times more strongly than backlinks do. That single finding should change how most businesses spend their off-site budget.
 
-Analysing 75,000 brands, [Ahrefs found](https://ahrefs.com/blog/ai-overview-brand-correlation/) that **brand mentions correlate with AI Overview visibility roughly three times more strongly than backlinks do** (web mentions r=0.664, backlinks r=0.218). That is correlation rather than proof of causation, and it deserves that caveat. But the direction is clear, and it is reinforced by Muck Rack's analysis of more than 25 million links, which found that roughly 84% of AI citations come from earned media.
+The figure comes from [Ahrefs' analysis](https://ahrefs.com/blog/ai-overview-brand-correlation/) of 75,000 brands, which put **web mentions at r=0.664 against backlinks at r=0.218**. That is correlation rather than proof of causation, and it deserves that caveat. But the direction is clear, and it is reinforced by [Muck Rack's analysis](https://muckrack.com/blog/what-is-ai-reading-may-2026) of more than 25 million links across ChatGPT, Claude and Gemini, which found that roughly 84% of AI citations come from earned media.
 
 Worth noting that both Ahrefs and Muck Rack sell products into this market, so read their conclusions with that in mind. Even allowing for it, the implication is uncomfortable for the traditional link-building industry. Being *talked about* on credible sites appears to matter more than accumulating links. That reframes off-site work as digital PR and entity building rather than link acquisition: getting named in press, being a quotable expert, having a consistent identity across the web.
 
-One more practical note. Only about 2.4% of cited URLs overlap across ChatGPT, Perplexity and AI Overviews for the same prompt, according to Kevin Indig's analysis of 3.7 million citations. "AI" is not one target. Each engine draws on different sources, so being cited by one tells you very little about the others.
+One more practical note. Only about 2.4% of cited URLs overlap across ChatGPT, Perplexity and AI Overviews for the same prompt, according to [Kevin Indig's analysis](https://www.growth-memo.com/p/the-consensus-gap) of 3.7 million citations, which also found 91% of citations appearing in a single engine only. "AI" is not one target. Each engine draws on different sources, so being cited by one tells you very little about the others.
 
 ## Can AI engines even read your site?
 
 Most AI crawlers do not run JavaScript, so a site that builds its content in the browser is invisible to them. This is the part that gets skipped, and it silently undoes everything else.
 
-Most AI crawlers do not run JavaScript. GPTBot, ClaudeBot and PerplexityBot read the HTML your server sends and nothing more. If your site builds its content in the browser, as many modern JavaScript sites do, those engines see an empty page even though Google indexes you fine. Server-side rendering is no longer just a performance question; it is the difference between being readable and being invisible.
+GPTBot, ClaudeBot and PerplexityBot read the HTML your server sends and nothing more. If your site builds its content in the browser, as many modern JavaScript sites do, those engines see an empty page even though Google indexes you fine. Server-side rendering is no longer just a performance question; it is the difference between being readable and being invisible.
 
 Second, check what your robots.txt actually allows. There is a meaningful distinction between two kinds of AI crawler:
 
@@ -119,7 +119,9 @@ Worth correcting a common belief while we are here: "ChatGPT just uses Bing" is 
 
 A fair amount of what gets sold as GEO has no evidence behind it. Being able to spot it saves money, and it is worth applying the same scepticism you would when [choosing an SEO agency](/articles/how-to-choose-an-seo-agency-in-glasgow) or [a PPC agency](/articles/how-to-choose-a-ppc-agency-uk).
 
-**llms.txt.** The most oversold idea in the field. No major AI search engine consumes third-party llms.txt files for citations or ranking, and Google has stated this directly. Across 137,000 domains, [Ahrefs found that 97% of llms.txt files received zero requests](https://ahrefs.com/blog/llmstxt-study/) in May 2026, and a Zyppy review of 54 studies scored it 2.0 out of 10 for evidence. It costs nothing to publish and does no harm, so keep one if you have it. Just do not let anyone bill you for it as an AI visibility tactic.
+**llms.txt.** The most oversold idea in the field. No major AI search engine consumes third-party llms.txt files for citations or ranking, and Google has stated this directly.
+
+Across 137,000 domains, [Ahrefs found that 97% of llms.txt files received zero requests](https://ahrefs.com/blog/llmstxt-study/) in May 2026, and [a Zyppy review](https://signal.zyppy.com/p/ai-citation-ranking-factors) that weighed 23 citation factors against 54 studies, experiments and patents scored it 2.0 out of 10 for evidence. It costs nothing to publish and does no harm, so keep one if you have it. Just do not let anyone bill you for it as an AI visibility tactic.
 
 **Precise citation multipliers.** You will see confident claims that passages of a specific word count earn some exact multiple of citations, or that a particular markup choice lifts citations by a stated percentage. These trace back to single small studies and do not survive scrutiny. The qualitative point stands, which is that self-contained, well-structured passages get cited more often. The specific numbers do not.
 

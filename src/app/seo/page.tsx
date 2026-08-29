@@ -479,6 +479,13 @@ export default function SeoPage() {
                 <p className={`mt-5 font-helvetica-light text-[clamp(1rem,1.15vw,1.1rem)] leading-[1.65] ${secondaryTextClass}`}>
                   If AI cannot find or cite you, you are missing a growing channel. We structure your entity signals, schema, and answer-first copy so ChatGPT, Perplexity, and Google AI Overviews retrieve and cite your brand accurately.
                 </p>
+                <p className={`mt-4 font-helvetica-light text-[clamp(1rem,1.15vw,1.1rem)] leading-[1.65] ${secondaryTextClass}`}>
+                  If you want the detail first, our guide to{' '}
+                  <Link href="/articles/what-is-generative-engine-optimisation" className="font-medium text-brand-blue underline-offset-2 hover:underline">
+                    what generative engine optimisation actually is
+                  </Link>{' '}
+                  sets out what the evidence says earns citations, and what gets sold as GEO with nothing behind it.
+                </p>
               </div>
               <ul className="space-y-3">
                 {geoDeliverables.map((item) => (
@@ -616,6 +623,10 @@ export default function SeoPage() {
               Related reading:{' '}
               <Link href="/articles/why-strategy-before-seo" className="font-medium text-brand-blue underline-offset-2 hover:underline">
                 Why strategy should come before SEO
+              </Link>
+              {' '}and{' '}
+              <Link href="/articles/what-is-generative-engine-optimisation" className="font-medium text-brand-blue underline-offset-2 hover:underline">
+                what generative engine optimisation actually is
               </Link>
               .
             </p>
