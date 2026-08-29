@@ -34,15 +34,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const industryRoutes = getSeoIndustrySitemapRoutes();
 
   return [
+    // No lastModified on these routes, deliberately. It used to be `new Date()`,
+    // which combined with this route's hourly revalidate meant every money page
+    // claimed to have changed minutes ago, every hour, forever. Google only uses
+    // lastmod while it stays accurate and discounts it once it doesn't, so we were
+    // spending the signal on a lie. Omitting it lets Google fall back to its own
+    // crawl scheduling, which is strictly better than being ignored for cause.
+    // Articles below keep a real date because theirs is genuinely accurate.
     ...STATIC_ROUTES.map((route) => ({
       url: `${BASE}${route.path}`,
-      lastModified: new Date(),
       changeFrequency: route.changeFrequency,
       priority: route.priority,
     })),
     ...industryRoutes.map((route) => ({
       url: `${BASE}${route.path}`,
-      lastModified: new Date(),
       changeFrequency: 'monthly' as const,
       priority: route.priority,
     })),
