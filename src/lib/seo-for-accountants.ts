@@ -120,6 +120,19 @@ export const ACCOUNTANT_SEO_PROCESS_STEPS = [
   },
 ] as const;
 
+/**
+ * Paid-side proof for accountancy. IMPORTANT, read before editing:
+ * these are our Meta partner Marti Clearpath's OWN client results, not Consultico's.
+ * Attribution rules are in the skill's verified-facts.md. Publish the cost-per-lead
+ * range and the total spend, which are both stated on screen; the lead COUNT is
+ * derived (spend / cost per lead) and is deliberately left out.
+ */
+export const ACCOUNTANT_PAID_PROOF = {
+  title: 'What paid leads cost for an accountancy practice',
+  body:
+    'Paid and organic pull in different directions, and it is worth knowing what each one costs. On the paid side, our Meta partner Marti Clearpath brought leads in at between £1.48 and £4.87 each for a UK accountancy practice, across three campaigns on £752 of total ad spend.',
+} as const;
+
 export const ACCOUNTANT_WORKSHOP_TESTIMONIAL = {
   quote:
     'The team made the process straightforward and effective. Clear thinking, no fluff, and practical next steps.',

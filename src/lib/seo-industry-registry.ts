@@ -53,6 +53,7 @@ import {
   SEO_FOR_ACCOUNTANTS_FAQS,
   SEO_FOR_ACCOUNTANTS_PATH,
   SEO_FOR_ACCOUNTANTS_SLUG,
+  ACCOUNTANT_PAID_PROOF,
   ACCOUNTANT_WORKSHOP_TESTIMONIAL,
 } from '@/lib/seo-for-accountants';
 
@@ -292,6 +293,10 @@ export const SEO_INDUSTRY_PAGE_DATA: Record<string, SeoIndustryPageData> = {
       'Business owners search for an accountant when they start, scale or face MTD deadlines. If you are not visible for those moments, they choose a competitor. Three things usually cost firms that visibility:',
     painPoints: [...ACCOUNTANT_SEO_PAIN_POINTS],
     coverage: [...ACCOUNTANT_SEO_COVERAGE],
+    proof: {
+      title: ACCOUNTANT_PAID_PROOF.title,
+      body: ACCOUNTANT_PAID_PROOF.body,
+    },
     workshopTestimonial: {
       quote: ACCOUNTANT_WORKSHOP_TESTIMONIAL.quote,
       attribution: `${ACCOUNTANT_WORKSHOP_TESTIMONIAL.name}, ${ACCOUNTANT_WORKSHOP_TESTIMONIAL.company}`,

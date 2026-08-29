@@ -260,7 +260,6 @@ export default function PpcPage() {
           subhead="Google and Meta ads managed around your margins, not vanity metrics."
           body="Every pound is tied to a return you can measure. If paid ads are the wrong spend for you right now, we will say so."
           proofChips={[
-            { value: '4.2x', label: 'Average ROAS' },
             { value: '5.0', label: 'Rated on Google' },
             { value: 'Google + Meta', label: 'Platforms we manage' },
           ]}
@@ -481,6 +480,36 @@ export default function PpcPage() {
                 </Link>
                 .
               </p>
+            </div>
+          </Container>
+        </section>
+
+        {/* Section 10b: Who runs your Meta ads */}
+        <section className="bg-brand-silk/50 py-16 dark:bg-gray-900/40 md:py-20" aria-labelledby="ppc-meta-partner-heading">
+          <Container>
+            <div className="max-w-3xl">
+              <p className="mb-3 font-helvetica text-[0.8rem] font-semibold uppercase tracking-[0.16em] text-brand-blue">Meta</p>
+              <h2 id="ppc-meta-partner-heading" className={sectionHeadingClass}>Who runs your Meta ads</h2>
+              <p className={`mt-6 font-helvetica-light text-[clamp(1rem,1.15vw,1.1rem)] leading-[1.65] ${secondaryTextClass}`}>
+                Juan Canals Marti is our Senior Meta Analytics Partner. He runs Meta through his own agency, Marti Clearpath.
+              </p>
+              <p className={`mt-5 font-helvetica-light text-[clamp(1rem,1.15vw,1.1rem)] leading-[1.65] ${secondaryTextClass}`}>
+                From his client accounts:
+              </p>
+              <ul className="mt-5 space-y-3">
+                <li className={`flex gap-3 rounded-lg border border-gray-200 bg-white/70 p-4 font-helvetica-light text-[0.95rem] ${bodyTextClass} dark:border-gray-800 dark:bg-gray-900`}>
+                  <CheckIcon />
+                  <span>
+                    A UK accountancy practice at <strong className="font-helvetica font-semibold">£1.48 to £4.87 per lead</strong>, across three campaigns on £752 of spend.
+                  </span>
+                </li>
+                <li className={`flex gap-3 rounded-lg border border-gray-200 bg-white/70 p-4 font-helvetica-light text-[0.95rem] ${bodyTextClass} dark:border-gray-800 dark:bg-gray-900`}>
+                  <CheckIcon />
+                  <span>
+                    UK e-commerce returning <strong className="font-helvetica font-semibold">between 3.5x and 7x on ad spend</strong>, with £33,825 of spend producing £144,628 in tracked revenue.
+                  </span>
+                </li>
+              </ul>
             </div>
           </Container>
         </section>

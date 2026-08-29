@@ -486,6 +486,15 @@ export default function SeoPage() {
                   </Link>{' '}
                   sets out what the evidence says earns citations, and what gets sold as GEO with nothing behind it.
                 </p>
+                <div className="mt-6 rounded-lg border border-gray-200 bg-brand-silk/60 p-5 dark:border-gray-800 dark:bg-gray-900">
+                  <p className="mb-2 font-helvetica text-[0.8rem] font-semibold uppercase tracking-[0.16em] text-brand-blue">Proof</p>
+                  <p className={`font-helvetica-light text-[0.98rem] leading-[1.6] ${bodyTextClass}`}>
+                    One enquiry a month to three or four bookings a week, inside ninety days. That is Marti Clearpath&apos;s figure for Mortha Wellness.
+                  </p>
+                  <p className={`mt-3 font-helvetica-light text-[0.98rem] leading-[1.6] ${secondaryTextClass}`}>
+                    We did the search work behind it: the audit, the technical fixes, and the GEO that made the site readable to Google and to AI engines.
+                  </p>
+                </div>
               </div>
               <ul className="space-y-3">
                 {geoDeliverables.map((item) => (
