@@ -65,7 +65,7 @@ export const siteJsonLd = {
       aggregateRating: {
         '@type': 'AggregateRating',
         ratingValue: '5',
-        reviewCount: '11',
+        reviewCount: '14',
         bestRating: '5',
         worstRating: '1',
       },

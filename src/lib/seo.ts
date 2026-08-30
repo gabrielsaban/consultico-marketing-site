@@ -82,9 +82,9 @@ export const SERVICE_PAGES = {
     serviceType: 'Content marketing',
   },
   'market-strategy': {
-    title: 'Marketing Strategy Consulting, Glasgow',
+    title: 'Marketing Strategy Consultants, Glasgow & UK',
     description:
-      'Marketing strategy built around your numbers: economics, channels and sequencing before budget. The thinking that defines what to run and in what order.',
+      'Strategy-led marketing consultants in Glasgow, working across Scotland and the UK. We work out what your numbers can support, and what should happen first.',
     path: '/market-strategy',
     serviceName: 'Marketing Strategy Consulting',
     serviceType: 'Marketing strategy consulting',
