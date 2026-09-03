@@ -221,6 +221,9 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-[clamp(0.75rem,0.9vw,0.875rem)] font-helvetica-light text-gray-200">
             <p>© 2026 Consultico. All rights reserved.</p>
             <div className="flex gap-6">
+              <Link href="/research-participants" className="hover:text-white transition-colors">
+                Research Participants
+              </Link>
               <Link href="/privacy" className="hover:text-white transition-colors">
                 Privacy Policy
               </Link>
