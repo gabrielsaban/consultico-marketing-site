@@ -34,12 +34,12 @@ import { getAttribution } from '@/lib/attribution';
 // the free thing grows into the paid thing, it competes with it.
 // ─────────────────────────────────────────────────────────────────────────────
 const EYEBROW = 'Free roadmap when you join';
-const HEADING = 'Our monthly strategy email';
+const HEADING = 'Hi, I’m Paul. I send one email a month.';
 const BODY =
-  'The strategies we’re using, what we’re seeing work and stop working across our clients’ accounts, and news from us. Join and we’ll send you a free roadmap for your business to start with.';
+  'It’s mostly about strategy, because that’s where most of the difference gets made. What we’re trying at the moment, what’s working, what’s changed, and what we’re up to as a company. Join and I’ll send you a free roadmap for your business to start with.';
 const BODY_SHORT =
-  'Strategies, what we’re seeing across our clients’ accounts, and news from us. Join and we’ll send you a free roadmap for your business.';
-const BUTTON_IDLE = 'Sign me up';
+  'One email a month from me. Mostly strategy: what we’re trying, what’s working, and what we’re up to. Join and I’ll send you a free roadmap for your business.';
+const BUTTON_IDLE = 'Go on then';
 const BUTTON_SENDING = 'Signing you up…';
 
 const FIELD_BASE =
@@ -203,12 +203,12 @@ export default function NewsletterSignup({
         // otherwise a silent change to a screen reader.
         <div aria-live="polite">
           <h2 id={headingId} className={`mb-1.5 ${headingClass}`}>
-            You&apos;re on the list — check your inbox
+            You&apos;re on the list. Check your inbox.
           </h2>
           <p className={bodyClass}>
             {gaveWebsite
-              ? 'Paul will take a look at your site and send your roadmap over.'
-              : 'Reply to the email we’ve just sent with your website address and we’ll get your roadmap over.'}
+              ? 'I’ll take a look at your site and send your roadmap over.'
+              : 'Reply to the email I’ve just sent with your website address and I’ll get your roadmap over.'}
           </p>
         </div>
       ) : (
@@ -219,7 +219,7 @@ export default function NewsletterSignup({
             </p>
           )}
           <h2 id={headingId} className={`mb-2 ${headingClass}`}>
-            {onBlue ? 'Get our strategy email' : HEADING}
+            {onBlue ? 'One email a month, from me' : HEADING}
           </h2>
           <p className={`mb-5 max-w-2xl ${bodyClass}`}>
             {variant === 'strip' ? BODY : BODY_SHORT}

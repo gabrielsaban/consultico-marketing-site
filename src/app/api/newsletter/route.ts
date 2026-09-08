@@ -101,23 +101,25 @@ export async function POST(request: Request) {
     ].join('\n');
 
     const subscriberText = [
-      "You're on the list.",
+      'Hi,',
+      '',
+      'Thanks for signing up, genuinely.',
       '',
       // Keep this matched to the on-site copy. If the page promises strategy
       // and the welcome email promises something else, the first impression of
       // the list is that we do not know what it is.
       // ⚠️ "News from us" stays generic on purpose - there is embargoed company
       // news this list exists to carry, and nothing public should pre-empt it.
-      "Once a month you'll get the strategies we're using, what we're seeing work and stop working across our clients' accounts, and news from us.",
+      "Once a month I'll send you what we're working on: the strategies we're trying, what's working at the moment, what's changed, and what we're up to as a company. Mostly strategy, because that's where most of the difference gets made.",
       '',
       website
-        ? `And your free roadmap: we've got your site (${website}). Paul will take a look and send back what we'd fix first, what we'd leave alone, and what it would take to move.`
-        : "For your free roadmap, just reply to this email with your website address and Paul will take a look.",
+        ? `On your free roadmap: I've got your site (${website}). I'll have a look and send back what I'd fix first, what I'd leave alone, and what it would take to move.`
+        : "For your free roadmap, just reply to this email with your website address and I'll have a look.",
       '',
       // ⚠️ "Reply", not "click the link" — this email goes out through Resend,
       // which is transactional and has no unsubscribe link behind it. Update
       // this once the newsletter moves to its ESP.
-      "Want out at any point? Just reply and say so - we won't chase you.",
+      "If it ever stops being worth your time, just reply and say so. I won't chase you.",
       '',
       'Paul Wilson',
       'Consultico',
@@ -131,7 +133,7 @@ export async function POST(request: Request) {
       }),
       sendResendEmail({
         to: email,
-        subject: "You're on the list — and your roadmap",
+        subject: "You're on the list, and your roadmap",
         text: subscriberText,
       }),
     ]);
