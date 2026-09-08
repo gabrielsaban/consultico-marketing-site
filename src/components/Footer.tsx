@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import Container from '@/components/Container';
+import NewsletterSignup from '@/components/NewsletterSignup';
 import {
   CONSULTICO_ADDRESS,
   CONSULTICO_EMAIL,
@@ -208,6 +209,21 @@ export default function Footer() {
                 </div>
               </a>
             </div>
+          </div>
+        </div>
+
+        {/*
+          Sitewide signup. The footer is the one place that appears on every
+          page including the ones with no other capture, so it is the floor
+          under the whole thing rather than the main event — the homepage strip
+          and the article copies do the heavy lifting.
+
+          It reports source="footer", so if it turns out to convert on a page we
+          did not expect, we will see that rather than guess it.
+        */}
+        <div className="mt-10 border-t border-white/20 pt-8">
+          <div className="max-w-2xl">
+            <NewsletterSignup source="footer" variant="footer" />
           </div>
         </div>
       </Container>

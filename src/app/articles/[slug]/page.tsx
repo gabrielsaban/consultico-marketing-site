@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Container from '@/components/Container';
 import FaqSection from '@/components/FaqSection';
+import NewsletterSignup from '@/components/NewsletterSignup';
 import ServiceDesktopHeader from '@/components/ServiceDesktopHeader';
 import ArticleAuthor from '@/components/articles/ArticleAuthor';
 import ArticleCta from '@/components/articles/ArticleCta';
@@ -164,6 +165,20 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             </div>
           </Container>
         </section>
+
+        {/*
+          Placed after the article and BEFORE the service CTA, in that order on
+          purpose: someone who has just finished reading is at peak interest,
+          and joining a list is a far smaller ask than booking a call. The
+          service CTA still follows for the minority ready for it.
+
+          source is the slug, so the reports answer "which articles produce
+          subscribers" rather than just "articles produce subscribers" — which
+          is what decides where the next piece of content goes.
+        */}
+        <Container className="pb-2">
+          <NewsletterSignup source={`article:${article.slug}`} variant="inline" />
+        </Container>
 
         <ArticleCta
           variant="light"

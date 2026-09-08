@@ -3,6 +3,7 @@ import Container from '@/components/Container';
 import ServiceDesktopHeader from '@/components/ServiceDesktopHeader';
 import ArticleCategoryFilter from '@/components/articles/ArticleCategoryFilter';
 import ArticleCta from '@/components/articles/ArticleCta';
+import NewsletterSignup from '@/components/NewsletterSignup';
 import { getAllArticles } from '@/lib/articles/loader';
 
 // Articles can be scheduled with a future `date` (see src/lib/articles/loader.ts).
@@ -53,6 +54,10 @@ export default function ArticlesPage() {
           <ArticleCategoryFilter articles={articles} />
         </Container>
       </section>
+
+      <Container className="pb-2">
+        <NewsletterSignup source="articles-index" variant="inline" />
+      </Container>
 
       <ArticleCta
         title="Want a plan before you publish?"
