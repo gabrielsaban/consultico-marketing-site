@@ -46,9 +46,9 @@ const BODY_SHORT = 'Be part of the journey.';
 // at the moment someone looks at it. The roadmap is the SECOND thing said, not
 // the headline (Paul, 2026-09-09): the list is what we are asking people to
 // join, and the roadmap is a reason to add one more optional detail. Saying
-// "entirely optional" out loud makes the whole thing a lower-commitment ask.
+// "(Optional)" out loud makes the whole thing a lower-commitment ask.
 const ROADMAP_LINE =
-  'Plus, add your website and I’ll send you a personal roadmap when you join. Entirely optional.';
+  'Plus, add your website and I’ll send you a personal roadmap when you join. (Optional)';
 const BUTTON_IDLE = 'Go on then';
 const BUTTON_SENDING = 'Signing you up…';
 
