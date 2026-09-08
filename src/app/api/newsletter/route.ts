@@ -113,7 +113,10 @@ export async function POST(request: Request) {
         ? `And your free roadmap: we've got your site (${website}). Paul will take a look and send back what we'd fix first, what we'd leave alone, and what it would take to move.`
         : "For your free roadmap, just reply to this email with your website address and Paul will take a look.",
       '',
-      "There's an unsubscribe link in every email and we won't chase you.",
+      // ⚠️ "Reply", not "click the link" — this email goes out through Resend,
+      // which is transactional and has no unsubscribe link behind it. Update
+      // this once the newsletter moves to its ESP.
+      "Want out at any point? Just reply and say so - we won't chase you.",
       '',
       'Paul Wilson',
       'Consultico',

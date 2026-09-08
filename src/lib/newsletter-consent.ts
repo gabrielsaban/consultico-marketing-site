@@ -29,5 +29,17 @@
 // wording the person actually agreed to.
 export const NEWSLETTER_CONSENT_VERSION = '2026-09-v1';
 
+// ⚠️ Says "reply", NOT "click the link in any email", and that is deliberate.
+// The newsletter is moving to a proper ESP (Loops / GoHighLevel — decided
+// 2026-09-08) which will handle one-click unsubscribe, but until it does, the
+// welcome email goes out through Resend, which is a TRANSACTIONAL sender with
+// no unsubscribe link and no unsubscribe endpoint behind it.
+//
+// Promising a link that does not exist is both a broken first impression and a
+// real compliance weakness — withdrawing consent has to be as easy as giving
+// it. Replying is a mechanism we genuinely honour today.
+//
+// ✅ WHEN THE ESP IS LIVE: switch this back to the link wording and BUMP THE
+// VERSION, because by then real records will exist.
 export const NEWSLETTER_CONSENT_TEXT =
-  'Yes — sign me up to the monthly strategy email and send my free roadmap. I can unsubscribe at any time using the link in any email.';
+  'Yes — sign me up to the monthly strategy email and send my free roadmap. I can unsubscribe at any time by replying to any email.';
