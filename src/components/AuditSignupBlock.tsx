@@ -6,6 +6,7 @@ import {
   AUDIT_SIGNUP_CONSENT_TEXT,
 } from '@/lib/audit-signup-consent';
 import { createFormSessionId, getFormSubmissionStartedAt } from '@/components/ContactForm';
+import { identify, track } from '@/lib/analytics';
 
 interface AuditSignupBlockProps {
   source?: string;
@@ -46,9 +47,17 @@ export default function AuditSignupBlock({ source = 'contact-page', variant = 's
 
       setSubmitState('success');
       setStep(2);
+
+      // Step 1 is the conversion — the address is captured here. Step 2 is a
+      // qualifier, so it gets its own event rather than being folded in; if we
+      // only counted completed step 2s we would undercount real signups by
+      // however many people skip it.
+      track('audit_signup', { source, variant, step: 1 });
+      identify(email.trim(), { source: `audit:${source}` });
     } catch (error) {
       console.error('Audit signup step 1 failed:', error);
       setSubmitState('error');
+      track('audit_signup_error', { source, variant, step: 1 });
     }
   };
 
@@ -73,9 +82,11 @@ export default function AuditSignupBlock({ source = 'contact-page', variant = 's
       }
 
       setStep2State('success');
+      track('audit_signup_website_added', { source, variant });
     } catch (error) {
       console.error('Audit signup step 2 failed:', error);
       setStep2State('idle');
+      track('audit_signup_error', { source, variant, step: 2 });
     }
   };
 
