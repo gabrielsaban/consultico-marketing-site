@@ -110,7 +110,7 @@ export async function POST(request: Request) {
       // the list is that we do not know what it is.
       // ⚠️ "News from us" stays generic on purpose - there is embargoed company
       // news this list exists to carry, and nothing public should pre-empt it.
-      "Once a month I'll send you what we're working on: the strategies we're trying, what's working at the moment, what's changed, and what we're up to as a company. Mostly strategy, because that's where most of the difference gets made.",
+      "An email or two a month, and it's what we're working on: the strategies we're trying, what's working at the moment, what's changed, and what we're up to as a company. Mostly strategy, because that's where most of the difference gets made.",
       '',
       website
         ? `On your free roadmap: I've got your site (${website}). I'll have a look and send back what I'd fix first, what I'd leave alone, and what it would take to move.`

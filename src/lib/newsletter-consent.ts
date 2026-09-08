@@ -42,4 +42,4 @@ export const NEWSLETTER_CONSENT_VERSION = '2026-09-v1';
 // ✅ WHEN THE ESP IS LIVE: switch this back to the link wording and BUMP THE
 // VERSION, because by then real records will exist.
 export const NEWSLETTER_CONSENT_TEXT =
-  'Yes, sign me up to the monthly email and send my free roadmap. I can unsubscribe any time by replying to any email.';
+  'Yes, sign me up to the email list and send my free roadmap. I can unsubscribe any time by replying to any email.';

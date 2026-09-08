@@ -34,11 +34,11 @@ import { getAttribution } from '@/lib/attribution';
 // the free thing grows into the paid thing, it competes with it.
 // ─────────────────────────────────────────────────────────────────────────────
 const EYEBROW = 'Free roadmap when you join';
-const HEADING = 'Hi, I’m Paul. I send one email a month.';
+const HEADING = 'Hi, I’m Paul. I send an email or two a month.';
 const BODY =
   'It’s mostly about strategy, because that’s where most of the difference gets made. What we’re trying at the moment, what’s working, what’s changed, and what we’re up to as a company. Join and I’ll send you a free roadmap for your business to start with.';
 const BODY_SHORT =
-  'One email a month from me. Mostly strategy: what we’re trying, what’s working, and what we’re up to. Join and I’ll send you a free roadmap for your business.';
+  'An email or two a month from me. Mostly strategy: what we’re trying, what’s working, and what we’re up to. Join and I’ll send you a free roadmap for your business.';
 const BUTTON_IDLE = 'Go on then';
 const BUTTON_SENDING = 'Signing you up…';
 
@@ -219,7 +219,7 @@ export default function NewsletterSignup({
             </p>
           )}
           <h2 id={headingId} className={`mb-2 ${headingClass}`}>
-            {onBlue ? 'One email a month, from me' : HEADING}
+            {onBlue ? 'An email or two a month, from me' : HEADING}
           </h2>
           <p className={`mb-5 max-w-2xl ${bodyClass}`}>
             {variant === 'strip' ? BODY : BODY_SHORT}
