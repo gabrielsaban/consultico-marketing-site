@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getNotificationRecipient, sendResendEmail, upsertFormSession, type FormSessionStatus } from '@/lib/server/formSessions';
+import { sendToGhl } from '@/lib/server/ghl';
 
 type ContactFormPayload = {
   sessionId?: string;
@@ -148,6 +149,25 @@ export async function POST(request: Request) {
       await sendContactEmails(data);
       await saveFormSession().catch((error: unknown) => {
         console.error('Contact form session save failed after email send:', error);
+      });
+
+      // Enquiries go to GHL too — arguably more valuable there than
+      // subscribers, since this is the form that produces actual revenue.
+      //
+      // ⚠️ NOTE THE CONSENT DIFFERENCE, it matters: this person asked us to
+      // reply to them, they did NOT opt into marketing. So no consent fields
+      // and no newsletter tag. Adding a contact enquiry to a marketing list
+      // because they happened to land in the same CRM is precisely the kind of
+      // thing PECR exists to stop.
+      await sendToGhl({
+        email: data.email,
+        name: data.name,
+        business: data.business,
+        phone: data.phone,
+        source: 'contact-form',
+        tags: ['lead', 'contact-form'],
+        heard_about: data.heardAbout,
+        attribution: data.attribution,
       });
     } else {
       await saveFormSession().catch((error: unknown) => {

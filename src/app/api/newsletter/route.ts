@@ -8,6 +8,7 @@ import {
   sendResendEmail,
   upsertFormSession,
 } from '@/lib/server/formSessions';
+import { sendToGhl } from '@/lib/server/ghl';
 
 // The same two protections the audit signup uses, for the same reason: an
 // unauthenticated POST that sends email is worth something to a spammer. The
@@ -157,6 +158,20 @@ export async function POST(request: Request) {
       currentStep: 1,
     }).catch((error: unknown) => {
       console.error('Newsletter signup session save failed after email send:', error);
+    });
+
+    // GHL is the list, so the subscriber goes in with the consent proof
+    // attached. Last, and non-fatal — see the note in ghl.ts.
+    await sendToGhl({
+      email,
+      website,
+      source,
+      tags: ['newsletter', 'website-signup', `source:${source}`],
+      marketing_consent: true,
+      consent_text: NEWSLETTER_CONSENT_TEXT,
+      consent_version: NEWSLETTER_CONSENT_VERSION,
+      consent_at: now,
+      attribution: payload.attribution,
     });
 
     return NextResponse.json({ ok: true });
