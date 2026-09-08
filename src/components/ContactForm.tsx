@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useEffect, useRef, useState, type ChangeEvent, type FormEvent } from 'react';
+import { identify, track } from '@/lib/analytics';
 
 const INTEREST_LABELS: Record<string, string> = {
   seo: 'SEO',
@@ -143,6 +144,22 @@ export default function ContactForm({
       });
 
       submittedRef.current = true;
+
+      // Tracked BEFORE the reset below — formData is cleared on the next line,
+      // so reading the email after it would send an empty string. This is the
+      // highest-value conversion on the site: it is the form Gerald came
+      // through, and until now the only reason we knew he found us via Gemini
+      // was that Paul asked him.
+      track('contact_form_submit', {
+        has_phone: Boolean(formData.phone?.trim()),
+        has_website: Boolean(formData.website?.trim()),
+        has_business: Boolean(formData.business?.trim()),
+      });
+      identify(formData.email.trim(), {
+        source: 'contact_form',
+        business: formData.business?.trim() ?? '',
+      });
+
       setSubmitState('success');
       setFormData({ ...initialContactFormData, message: initialMessage });
       setSessionId(createFormSessionId());
@@ -150,6 +167,7 @@ export default function ContactForm({
     } catch (error) {
       console.error('Contact submit failed:', error);
       setSubmitState('error');
+      track('contact_form_error');
     }
   };
 

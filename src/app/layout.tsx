@@ -11,6 +11,7 @@ import TopBar from "@/components/TopBar";
 import SitePreloader from "@/components/SitePreloader";
 import { PreloaderProvider } from "@/components/PreloaderContext";
 import PreloaderGate from "@/components/PreloaderGate";
+import PostHogProvider from "@/components/PostHogProvider";
 import { serializeJsonLd, siteJsonLd } from "@/lib/schema";
 import { GA_MEASUREMENT_ID } from "@/lib/google-analytics";
 
@@ -118,6 +119,13 @@ export default function RootLayout({
         </PreloaderProvider>
         <Analytics />
         <SpeedInsights />
+        {/*
+          Last in the body and lazily imported, so analytics loads after the
+          page is interactive rather than competing with it. Mobile LCP on the
+          homepage is already 6.7s (measured 2026-09-08) — this must not add to
+          it. Renders nothing; it only runs effects.
+        */}
+        <PostHogProvider />
       </body>
       <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
     </html>

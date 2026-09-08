@@ -1,4 +1,14 @@
-export type FormSessionType = 'webinar' | 'workshop_apply' | 'contact' | 'audit_signup';
+// Adding a value here is REQUIRED for a new form to persist. upsertFormSession
+// types formType against this union, so a new form that skips it fails the
+// build rather than silently writing nothing — which is the failure mode that
+// has already cost us three times (getAllArticles returning [], Next output
+// file tracing, and the loader that dropped the `sponsored` frontmatter key).
+export type FormSessionType =
+  | 'webinar'
+  | 'workshop_apply'
+  | 'contact'
+  | 'audit_signup'
+  | 'newsletter';
 export type FormSessionStatus = 'draft' | 'submitted';
 
 export interface FormSessionContact {
