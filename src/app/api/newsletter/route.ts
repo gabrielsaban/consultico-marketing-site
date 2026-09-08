@@ -101,28 +101,31 @@ export async function POST(request: Request) {
     ].join('\n');
 
     const subscriberText = [
-      'Hi,',
+      // "Hey" and NOT a merge field. The newsletter form collects email and
+      // website only (Paul, 2026-09-09) to keep friction low, so a
+      // [first_name] placeholder here would render "Hi ,".
+      'Hey 👋',
       '',
-      'Thanks for signing up, genuinely.',
+      "Thanks for signing up, we're really glad you're here.",
       '',
-      // Keep this matched to the on-site copy. If the page promises strategy
-      // and the welcome email promises something else, the first impression of
-      // the list is that we do not know what it is.
-      // ⚠️ "News from us" stays generic on purpose - there is embargoed company
-      // news this list exists to carry, and nothing public should pre-empt it.
-      "An email or two a month, and it's what we're working on: the strategies we're trying, what's working at the moment, what's changed, and what we're up to as a company. Mostly strategy, because that's where most of the difference gets made.",
+      // The "young company in Glasgow" line is Paul's own wording and is
+      // deliberate. The voice guide keeps the youth angle OUT of how-to and
+      // technical writing, but allows it exactly here: relationship and
+      // why-us. Do not copy it into an article.
+      "We're building Consultico as a young company in Glasgow, and I'm looking forward to sharing our progress with you over the coming months. I'll send you the strategies and lessons we're learning and using ourselves, what we're doing as a company, and other updates from the world of digital marketing strategy.",
       '',
       website
-        ? `On your free roadmap: I've got your site (${website}). I'll have a look and send back what I'd fix first, what I'd leave alone, and what it would take to move.`
-        : "For your free roadmap, just reply to this email with your website address and I'll have a look.",
+        ? `We're going to send you a roadmap: I've got your site (${website}) and I'll send back what I'd look at first, what you're doing well, and what you could do to keep growing.`
+        : "We're going to send you a roadmap too. Just reply with your website address and I'll send back what I'd look at first, what you're doing well, and what you could do to keep growing.",
       '',
-      // ⚠️ "Reply", not "click the link" — this email goes out through Resend,
-      // which is transactional and has no unsubscribe link behind it. Update
-      // this once the newsletter moves to its ESP.
-      "If it ever stops being worth your time, just reply and say so. I won't chase you.",
+      // This IS the unsubscribe mechanism, not a nicety. Resend has no
+      // unsubscribe link, so a STOP reply has to be honoured by a human.
+      "If you ever want to stop getting updates, just reply STOP and I'll take you off the list.",
+      '',
+      'Looking forward to keeping you up to date, and to chatting some day soon.',
       '',
       'Paul Wilson',
-      'Consultico',
+      'Founder | Consultico',
     ].join('\n');
 
     await Promise.all([
@@ -133,7 +136,7 @@ export async function POST(request: Request) {
       }),
       sendResendEmail({
         to: email,
-        subject: "You're on the list, and your roadmap",
+        subject: "You're on the list",
         text: subscriberText,
       }),
     ]);
