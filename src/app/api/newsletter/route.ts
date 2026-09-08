@@ -163,6 +163,7 @@ export async function POST(request: Request) {
     // GHL is the list, so the subscriber goes in with the consent proof
     // attached. Last, and non-fatal — see the note in ghl.ts.
     await sendToGhl({
+      form_type: 'newsletter',
       email,
       website,
       source,

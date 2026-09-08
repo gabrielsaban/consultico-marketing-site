@@ -21,7 +21,19 @@ import { getServerEnv } from '@/lib/server/formSessions';
  * missing a CRM row, so this can only ever log.
  */
 
+/**
+ * Which form produced this contact.
+ *
+ * Sent as an explicit top-level field so a GHL workflow can branch on one
+ * value instead of parsing a tag array. It is set server-side, so unlike a
+ * condition typed into the GHL UI it cannot drift or be mis-edited — which
+ * matters here, because this value is what separates people who opted into
+ * marketing from people who merely asked us to reply.
+ */
+export type GhlFormType = 'newsletter' | 'contact';
+
 export interface GhlContactPayload {
+  form_type: GhlFormType;
   email: string;
   name?: string;
   business?: string;
@@ -49,8 +61,31 @@ export interface GhlContactPayload {
   attribution?: Record<string, string>;
 }
 
+/**
+ * Resolves which webhook to POST to, so ONE webhook or SEPARATE webhooks per
+ * form is a config decision rather than a code change.
+ *
+ * - Set only GHL_WEBHOOK_URL          → everything goes to one workflow, and
+ *                                       you branch inside GHL on `form_type`
+ *                                       or on the tags.
+ * - Also set GHL_WEBHOOK_URL_NEWSLETTER
+ *   and/or GHL_WEBHOOK_URL_CONTACT    → that form goes to its own workflow,
+ *                                       anything without an override falls
+ *                                       back to the shared one.
+ *
+ * Start with one, split later, and neither needs a deploy.
+ */
+function resolveWebhookUrl(formType: GhlFormType): string | undefined {
+  const specific =
+    formType === 'newsletter'
+      ? getServerEnv('GHL_WEBHOOK_URL_NEWSLETTER')
+      : getServerEnv('GHL_WEBHOOK_URL_CONTACT');
+
+  return specific ?? getServerEnv('GHL_WEBHOOK_URL');
+}
+
 export async function sendToGhl(payload: GhlContactPayload): Promise<void> {
-  const url = getServerEnv('GHL_WEBHOOK_URL');
+  const url = resolveWebhookUrl(payload.form_type);
 
   // Not configured yet is a normal state, not an error. The site has to work
   // before the webhook exists, and it has to keep working if Paul rotates it.

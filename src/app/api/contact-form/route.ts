@@ -160,6 +160,7 @@ export async function POST(request: Request) {
       // because they happened to land in the same CRM is precisely the kind of
       // thing PECR exists to stop.
       await sendToGhl({
+        form_type: 'contact',
         email: data.email,
         name: data.name,
         business: data.business,
