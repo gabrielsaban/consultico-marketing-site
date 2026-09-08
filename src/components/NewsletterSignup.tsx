@@ -33,12 +33,19 @@ import { getAttribution } from '@/lib/attribution';
 // channels, economics and growth — this is a short read of their business. If
 // the free thing grows into the paid thing, it competes with it.
 // ─────────────────────────────────────────────────────────────────────────────
-const EYEBROW = 'Free roadmap when you join';
-const HEADING = 'Hi, I’m Paul. I send an email or two a month.';
+const EYEBROW = 'An email or two a month';
+const HEADING = 'Sign up to Paul’s emails';
 const BODY =
-  'It’s mostly about strategy, because that’s where most of the difference gets made. What we’re trying at the moment, what’s working, what’s changed, and what we’re up to as a company. Join and I’ll send you a free roadmap for your business to start with.';
+  'Strategies we’re using ourselves, what’s working right now, and what we’re up to.';
 const BODY_SHORT =
-  'An email or two a month from me. Mostly strategy: what we’re trying, what’s working, and what we’re up to. Join and I’ll send you a free roadmap for your business.';
+  'Strategies we’re using, what’s working, and what we’re up to.';
+// Sits directly above the fields on purpose, so it explains the website input
+// at the moment someone looks at it. The roadmap is the SECOND thing said, not
+// the headline (Paul, 2026-09-09): the list is what we are asking people to
+// join, and the roadmap is a reason to add one more optional detail. Saying
+// "entirely optional" out loud makes the whole thing a lower-commitment ask.
+const ROADMAP_LINE =
+  'Plus, add your website and I’ll send you a personal roadmap when you join. Entirely optional.';
 const BUTTON_IDLE = 'Go on then';
 const BUTTON_SENDING = 'Signing you up…';
 
@@ -219,10 +226,19 @@ export default function NewsletterSignup({
             </p>
           )}
           <h2 id={headingId} className={`mb-2 ${headingClass}`}>
-            {onBlue ? 'An email or two a month, from me' : HEADING}
+            {HEADING}
           </h2>
-          <p className={`mb-5 max-w-2xl ${bodyClass}`}>
+          <p className={`mb-3 max-w-2xl ${bodyClass}`}>
             {variant === 'strip' ? BODY : BODY_SHORT}
+          </p>
+          <p
+            className={
+              onBlue
+                ? 'mb-5 max-w-2xl font-helvetica-light text-[0.8rem] leading-[1.5] text-gray-100'
+                : 'mb-5 max-w-2xl font-helvetica-light text-[0.85rem] leading-[1.5] text-brand-blue'
+            }
+          >
+            {ROADMAP_LINE}
           </p>
 
           <form onSubmit={handleSubmit} noValidate>
