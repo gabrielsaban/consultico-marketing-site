@@ -35,10 +35,13 @@ import { getAttribution } from '@/lib/attribution';
 // ─────────────────────────────────────────────────────────────────────────────
 const EYEBROW = 'An email or two a month';
 const HEADING = 'Sign up to Paul’s emails';
-const BODY =
-  'Strategies we’re using ourselves, what’s working right now, and what we’re up to.';
-const BODY_SHORT =
-  'Strategies we’re using, what’s working, and what we’re up to.';
+// ⚠️ Deliberately NOT a list of what is in the emails. That version was a
+// rule-of-three, which reads as compressed marketing copy and is one of the AI
+// tells named in Paul's voice guide. This is his own line: an invitation into
+// the company's story rather than a description of a content mix, which is the
+// right move when the whole list exists to carry company news.
+const BODY = 'Be part of the journey.';
+const BODY_SHORT = 'Be part of the journey.';
 // Sits directly above the fields on purpose, so it explains the website input
 // at the moment someone looks at it. The roadmap is the SECOND thing said, not
 // the headline (Paul, 2026-09-09): the list is what we are asking people to
