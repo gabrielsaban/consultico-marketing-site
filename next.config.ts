@@ -87,6 +87,12 @@ const nextConfig: NextConfig = {
       { source: '/terms-conditions-and-privacy', destination: '/terms', permanent: true },
       { source: '/privacy-policy', destination: '/privacy', permanent: true },
       { source: '/case-studies', destination: '/case-studies/boiler-co', permanent: true },
+      // Legacy Wix URL. It carries no GSC impressions, so on traffic alone it
+      // would not be worth a redirect — but the 2026-09-08 AI-citation run
+      // found an engine using it as one of its sources when answering "is
+      // consultico a good marketing agency". A 404 in the source set for a
+      // question about whether we are any good is worth a line of config.
+      { source: '/seo-agency', destination: '/seo', permanent: true },
     ];
   },
 };
