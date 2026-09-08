@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
 import {
-  ROADMAP_SIGNUP_CONSENT_TEXT,
-  ROADMAP_SIGNUP_CONSENT_VERSION,
-} from '@/lib/roadmap-signup-consent';
+  NEWSLETTER_CONSENT_TEXT,
+  NEWSLETTER_CONSENT_VERSION,
+} from '@/lib/newsletter-consent';
 import {
   getNotificationRecipient,
   sendResendEmail,
@@ -16,7 +16,7 @@ import {
 // on a two-field form costs real people more than it costs bots.
 const MIN_SUBMIT_TIME_MS = 2500;
 
-type RoadmapSignupPayload = {
+type NewsletterPayload = {
   sessionId?: string;
   startedAt?: number;
   email?: string;
@@ -30,7 +30,7 @@ function isValidEmail(email: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-function isLikelyBot(payload: RoadmapSignupPayload): boolean {
+function isLikelyBot(payload: NewsletterPayload): boolean {
   if (payload.company?.trim()) {
     return true;
   }
@@ -43,8 +43,8 @@ function isLikelyBot(payload: RoadmapSignupPayload): boolean {
 }
 
 // Matches the audit signup's handling so both routes store website the same
-// way. A person typing "acme.co.uk" means https://acme.co.uk, and storing the
-// bare host would make the two tables disagree with each other.
+// way. Someone typing "acme.co.uk" means https://acme.co.uk, and storing the
+// bare host would make the two sets of records disagree with each other.
 function normaliseWebsite(url: string): string {
   const trimmed = url.trim();
   if (!trimmed) return '';
@@ -54,7 +54,7 @@ function normaliseWebsite(url: string): string {
 
 export async function POST(request: Request) {
   try {
-    const payload = (await request.json()) as RoadmapSignupPayload;
+    const payload = (await request.json()) as NewsletterPayload;
 
     if (!payload.sessionId) {
       return NextResponse.json({ ok: false, error: 'Missing session id' }, { status: 400 });
@@ -69,39 +69,42 @@ export async function POST(request: Request) {
       return NextResponse.json({ ok: false, error: 'Valid email required' }, { status: 400 });
     }
 
-    // Enforced here as well as in the form. A disabled submit button is a UI
-    // convenience, not a legal record — anyone can POST this endpoint directly,
-    // and an address captured without consent is worse than no address.
+    // Consent is the transaction here, not an extra, and it is enforced on the
+    // server as well as in the form. A disabled button is a UI convenience, not
+    // a legal record — anyone can POST this endpoint directly, and a marketing
+    // address captured without consent is worse than no address at all.
     if (payload.consent !== true) {
       return NextResponse.json({ ok: false, error: 'Consent required' }, { status: 400 });
     }
 
-    // Website is optional by design. Requiring it would qualify the lead better
-    // but costs signups at the exact moment someone has decided to act, and we
-    // can simply ask for it in the reply — which is what the audit flow already
-    // does when step 2 is skipped.
+    // Website stays optional. It makes the roadmap deliverable and lets us
+    // identify who signed up, but requiring it costs signups at the exact
+    // moment someone has decided to act — and the list is the point. A missing
+    // one is chased in the welcome email, which is what the audit flow does.
     const website = normaliseWebsite(payload.website ?? '');
     const source = payload.source?.trim() || 'unknown';
     const now = new Date().toISOString();
 
     const internalText = [
-      'New roadmap signup',
+      'New newsletter signup',
       '',
       `Email: ${email}`,
       `Website: ${website || '(not provided - reply to ask for it)'}`,
       `Source: ${source}`,
-      `Consented to roadmap + marketing: yes (${ROADMAP_SIGNUP_CONSENT_VERSION})`,
+      `Consented to newsletter + roadmap: yes (${NEWSLETTER_CONSENT_VERSION})`,
       `At: ${now}`,
     ].join('\n');
 
     const subscriberText = [
-      'Thanks for signing up.',
+      "You're on the list.",
+      '',
+      "Once a month you'll get what our own data is telling us about search - what's earning clicks, what quietly stopped working, and what we're seeing in AI answers. Real figures from real accounts.",
       '',
       website
-        ? `We've got your site (${website}). Paul will take a look and send your roadmap - what we'd fix first, what we'd leave alone, and what it would take to move.`
-        : "One thing before we can build your roadmap: reply to this email with your website address and Paul will take a look.",
+        ? `And your free roadmap: we've got your site (${website}). Paul will take a look and send back what we'd fix first, what we'd leave alone, and what it would take to move.`
+        : "For your free roadmap, just reply to this email with your website address and Paul will take a look.",
       '',
-      "You'll also get our monthly email on what our own data is telling us about search. There's an unsubscribe link in every one and we won't chase you.",
+      "There's an unsubscribe link in every email and we won't chase you.",
       '',
       'Paul Wilson',
       'Consultico',
@@ -110,12 +113,12 @@ export async function POST(request: Request) {
     await Promise.all([
       sendResendEmail({
         to: getNotificationRecipient('contact'),
-        subject: `New roadmap signup: ${email}`,
+        subject: `New newsletter signup: ${email}`,
         text: internalText,
       }),
       sendResendEmail({
         to: email,
-        subject: 'Your Consultico roadmap',
+        subject: "You're on the list — and your roadmap",
         text: subscriberText,
       }),
     ]);
@@ -125,27 +128,27 @@ export async function POST(request: Request) {
     // signup to a 500. Mirrors the audit signup's ordering.
     await upsertFormSession({
       id: payload.sessionId,
-      formType: 'roadmap_signup',
+      formType: 'newsletter',
       status: 'submitted',
       contact: { email },
       answers: {
         marketing_consent: true,
         consent_at: now,
-        consent_text_version: ROADMAP_SIGNUP_CONSENT_VERSION,
-        consent_text: ROADMAP_SIGNUP_CONSENT_TEXT,
+        consent_text_version: NEWSLETTER_CONSENT_VERSION,
+        consent_text: NEWSLETTER_CONSENT_TEXT,
         website,
         source,
         roadmap_status: website ? 'pending_roadmap' : 'pending_website',
       },
-      stage: website ? 'pending_roadmap' : 'pending_website',
+      stage: 'subscribed',
       currentStep: 1,
     }).catch((error: unknown) => {
-      console.error('Roadmap signup session save failed after email send:', error);
+      console.error('Newsletter signup session save failed after email send:', error);
     });
 
     return NextResponse.json({ ok: true });
   } catch (error) {
-    console.error('Roadmap signup failed:', error);
+    console.error('Newsletter signup failed:', error);
     return NextResponse.json(
       {
         ok: false,

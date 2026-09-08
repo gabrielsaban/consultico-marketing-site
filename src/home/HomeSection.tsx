@@ -1,6 +1,6 @@
 import HeroSection from '@/components/HeroSection';
 import MarketingIntro from './MarketingIntro';
-import RoadmapSignup from '@/components/RoadmapSignup';
+import NewsletterSignup from '@/components/NewsletterSignup';
 import ThinkFirstSection from './ThinkFirstSection';
 // import KeywordSection from './KeywordSection';
 
@@ -25,8 +25,12 @@ export default function HomeSection() {
         Not directly under the hero: the hero is one full viewport with a single
         clear CTA, and interrupting it with a form before we have made any
         argument is what makes an email capture read as a toll gate.
+
+        Kept to a slim strip on purpose. A second band of similar weight is
+        planned for this page, and two full pitch sections stacked here would
+        flatten both of them and push Think First too far down.
       */}
-      <RoadmapSignup source="homepage" />
+      <NewsletterSignup source="homepage" />
       <ThinkFirstSection />
       {/* <KeywordSection /> */}
     </section>
