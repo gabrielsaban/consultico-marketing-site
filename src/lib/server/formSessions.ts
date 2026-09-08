@@ -8,7 +8,7 @@ export type FormSessionType =
   | 'workshop_apply'
   | 'contact'
   | 'audit_signup'
-  | 'newsletter';
+  | 'roadmap_signup';
 export type FormSessionStatus = 'draft' | 'submitted';
 
 export interface FormSessionContact {
