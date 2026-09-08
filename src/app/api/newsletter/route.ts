@@ -98,7 +98,12 @@ export async function POST(request: Request) {
     const subscriberText = [
       "You're on the list.",
       '',
-      "Once a month you'll get what our own data is telling us about search - what's earning clicks, what quietly stopped working, and what we're seeing in AI answers. Real figures from real accounts.",
+      // Keep this matched to the on-site copy. If the page promises strategy
+      // and the welcome email promises something else, the first impression of
+      // the list is that we do not know what it is.
+      // ⚠️ "News from us" stays generic on purpose - there is embargoed company
+      // news this list exists to carry, and nothing public should pre-empt it.
+      "Once a month you'll get the strategies we're using, what we're seeing work and stop working across our clients' accounts, and news from us.",
       '',
       website
         ? `And your free roadmap: we've got your site (${website}). Paul will take a look and send back what we'd fix first, what we'd leave alone, and what it would take to move.`

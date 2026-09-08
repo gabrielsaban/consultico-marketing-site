@@ -15,16 +15,29 @@ import { identify, track } from '@/lib/analytics';
 // transaction, and the copy leads with the monthly email rather than burying it
 // under a freebie.
 //
+// ⚠️ IT IS A STRATEGY EMAIL, NOT A SEARCH ONE (Paul, 2026-09-08). The first
+// version said "what we're seeing in search", which was too narrow and pointed
+// at the wrong thing: "We're focusing on strategy as we move forwards… we want
+// to be your strategy team, your strategy marketing team." Search is one input,
+// not the subject. Do not let this drift back to an SEO newsletter — the
+// strategy cluster is the standing commercial focus and this copy is part of
+// how the site says so.
+//
+// The three content types Paul named: what we're seeing, strategies, and news.
+// ⚠️ "News from us" is deliberately GENERIC and must stay that way until told
+// otherwise — there is embargoed company news that this list exists to carry,
+// and nothing on the public site should telegraph it early.
+//
 // ⚠️ "Roadmap" must stay small. Think First is the paid product that maps
-// channels, economics and growth — this is a short read of their site. If the
-// free thing grows into the paid thing, it competes with it.
+// channels, economics and growth — this is a short read of their business. If
+// the free thing grows into the paid thing, it competes with it.
 // ─────────────────────────────────────────────────────────────────────────────
 const EYEBROW = 'Free roadmap when you join';
-const HEADING = 'What we’re actually seeing in search';
+const HEADING = 'Our monthly strategy email';
 const BODY =
-  'Our monthly email — real numbers from real accounts, not recycled industry stats. Join and we’ll send you a free roadmap for your site to start with.';
+  'The strategies we’re using, what we’re seeing work and stop working across our clients’ accounts, and news from us. Join and we’ll send you a free roadmap for your business to start with.';
 const BODY_SHORT =
-  'Our monthly email — real numbers from real accounts. Join and we’ll send a free roadmap for your site.';
+  'Strategies, what we’re seeing across our clients’ accounts, and news from us. Join and we’ll send you a free roadmap for your business.';
 const BUTTON_IDLE = 'Sign me up';
 const BUTTON_SENDING = 'Signing you up…';
 
@@ -204,7 +217,7 @@ export default function NewsletterSignup({
             </p>
           )}
           <h2 id={headingId} className={`mb-2 ${headingClass}`}>
-            {onBlue ? 'Get our monthly email' : HEADING}
+            {onBlue ? 'Get our strategy email' : HEADING}
           </h2>
           <p className={`mb-5 max-w-2xl ${bodyClass}`}>
             {variant === 'strip' ? BODY : BODY_SHORT}
