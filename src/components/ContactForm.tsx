@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { useEffect, useRef, useState, type ChangeEvent, type FormEvent } from 'react';
 import { identify, track } from '@/lib/analytics';
+import { getAttribution } from '@/lib/attribution';
 
 const INTEREST_LABELS: Record<string, string> = {
   seo: 'SEO',
@@ -21,6 +22,14 @@ export const initialContactFormData = {
   phone: '',
   message: '',
   website: '',
+  // Optional, and asked on the CONTACT form only — not on the newsletter,
+  // where we deliberately keep friction low.
+  //
+  // It exists because the hidden UTM capture cannot see everything: an AI
+  // assistant, a podcast, a billboard or a recommendation from a friend all
+  // arrive with no referrer at all. Gerald is the worked example — Gemini sent
+  // him and no analytics tool on earth would have told us that.
+  heardAbout: '',
 };
 
 export function createFormSessionId() {
@@ -53,7 +62,9 @@ async function persistContactForm({
   const response = await fetch('/api/contact-form', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ sessionId, startedAt, status, ...data }),
+    // Attribution rides along on every save, drafts included. A draft that is
+    // abandoned and chased later still carries where the person came from.
+    body: JSON.stringify({ sessionId, startedAt, status, ...data, attribution: getAttribution() }),
   });
 
   if (!response.ok) {
@@ -270,6 +281,32 @@ export default function ContactForm({
             required
             rows={5}
             className="w-full resize-none rounded-lg border border-gray-300 bg-white px-4 py-3 font-helvetica text-gray-900 transition-all focus:border-brand-blue focus:outline-none focus:ring-1 focus:ring-brand-blue dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100"
+          />
+        </div>
+
+        {/*
+          Last field, optional, and phrased as a casual aside rather than a
+          required question — it sits after the message so it never blocks
+          anyone getting to the send button.
+
+          A free-text input rather than a dropdown on purpose: a dropdown can
+          only offer the answers we already thought of, and the entire reason
+          this field exists is the answers we did not (Gemini, a billboard, a
+          friend). We can categorise the text later; we cannot recover an
+          answer the dropdown never offered.
+        */}
+        <div>
+          <label htmlFor={fieldId('heardAbout')} className="mb-2 block font-helvetica text-[0.9rem] font-medium text-gray-700 dark:text-gray-300">
+            How did you hear about us? <span className="font-helvetica-light text-gray-500 dark:text-gray-400">(optional)</span>
+          </label>
+          <input
+            id={fieldId('heardAbout')}
+            name="heardAbout"
+            type="text"
+            value={formData.heardAbout}
+            onChange={handleChange}
+            placeholder="Google, ChatGPT, a recommendation…"
+            className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 font-helvetica text-gray-900 placeholder:text-gray-500 transition-all focus:border-brand-blue focus:outline-none focus:ring-1 focus:ring-brand-blue dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100 dark:placeholder:text-gray-400"
           />
         </div>
 

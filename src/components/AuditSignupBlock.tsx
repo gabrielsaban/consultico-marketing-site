@@ -7,6 +7,7 @@ import {
 } from '@/lib/audit-signup-consent';
 import { createFormSessionId, getFormSubmissionStartedAt } from '@/components/ContactForm';
 import { identify, track } from '@/lib/analytics';
+import { getAttribution } from '@/lib/attribution';
 
 interface AuditSignupBlockProps {
   source?: string;
@@ -38,6 +39,7 @@ export default function AuditSignupBlock({ source = 'contact-page', variant = 's
           email,
           source,
           company: honeypot,
+          attribution: getAttribution(),
         }),
       });
 

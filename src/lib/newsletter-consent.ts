@@ -18,13 +18,16 @@
 // informed rather than a marketing tick smuggled onto an unrelated download. If
 // the offer ever changes so that the roadmap is the headline and the newsletter
 // is buried small print, this stops being a fair exchange and needs revisiting.
-// v2 (2026-09-08): names it as the STRATEGY email rather than just "the monthly
-// email". Paul repositioned the list away from search — "we want to be your
-// strategy team" — and consent should say what a person is actually joining.
-// Version bumped rather than edited in place, which is the whole point of
-// versioning it: anyone who consented under v1 keeps v1 stored against their
-// record and stays defensible.
-export const NEWSLETTER_CONSENT_VERSION = '2026-09-v2';
+// Collapsed back to v1 on 2026-09-08. It was briefly bumped to v2 when the copy
+// changed, then Paul confirmed nobody had signed up yet — "no one has stored
+// anything at all with the content, so we can have it edited in place." With no
+// stored records to protect, a v2 would only imply a cohort of v1 consenters
+// that never existed.
+//
+// ⚠️ That freedom ends at the FIRST real signup. From then on, changing this
+// text means bumping the version, not editing it — a record has to keep the
+// wording the person actually agreed to.
+export const NEWSLETTER_CONSENT_VERSION = '2026-09-v1';
 
 export const NEWSLETTER_CONSENT_TEXT =
   'Yes — sign me up to the monthly strategy email and send my free roadmap. I can unsubscribe at any time using the link in any email.';

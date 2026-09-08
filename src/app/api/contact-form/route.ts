@@ -11,6 +11,8 @@ type ContactFormPayload = {
   phone?: string;
   message?: string;
   website?: string;
+  heardAbout?: string;
+  attribution?: Record<string, string>;
 };
 
 const MIN_SUBMIT_TIME_MS = 2500;
@@ -42,7 +44,23 @@ function normalisePayload(payload: ContactFormPayload) {
     email: payload.email?.trim() ?? '',
     phone: payload.phone?.trim() ?? '',
     message: payload.message?.trim() ?? '',
+    heardAbout: payload.heardAbout?.trim() ?? '',
+    attribution: payload.attribution ?? {},
   };
+}
+
+// Only the fields worth reading in an inbox. The full attribution object still
+// goes to Supabase; this is the summary that turns "a lead arrived" into "a
+// lead arrived from X" without opening another tool.
+function formatAttribution(a: Record<string, string>): string {
+  const first = [a.first_utm_source, a.first_utm_medium, a.first_utm_campaign].filter(Boolean).join(' / ');
+  const lines = [
+    `Heard about us: ${'{{HEARD}}'}`,
+    `First touch: ${first || a.first_referrer || 'direct / none'}`,
+    `First landed on: ${a.first_landing_page || 'unknown'}`,
+    `This visit came from: ${a.last_referrer || 'direct / none'}`,
+  ];
+  return lines.join('\n');
 }
 
 async function sendContactEmails(payload: ReturnType<typeof normalisePayload>) {
@@ -60,6 +78,9 @@ async function sendContactEmails(payload: ReturnType<typeof normalisePayload>) {
     '',
     'Message:',
     payload.message || 'Not provided',
+    '',
+    '--- Where they came from ---',
+    formatAttribution(payload.attribution).replace('{{HEARD}}', payload.heardAbout || 'Not answered'),
   ].join('\n');
 
   const userText = [
@@ -117,6 +138,8 @@ export async function POST(request: Request) {
       },
       answers: {
         message: data.message,
+        heard_about: data.heardAbout,
+        ...data.attribution,
       },
       currentStep: status === 'submitted' ? 2 : 1,
     });

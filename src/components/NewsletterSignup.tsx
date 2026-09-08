@@ -5,6 +5,7 @@ import { useEffect, useId, useRef, useState, type FormEvent } from 'react';
 import { NEWSLETTER_CONSENT_TEXT } from '@/lib/newsletter-consent';
 import { createFormSessionId, getFormSubmissionStartedAt } from '@/components/ContactForm';
 import { identify, track } from '@/lib/analytics';
+import { getAttribution } from '@/lib/attribution';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // THE OFFER — a simple exchange, stated in one line.
@@ -159,6 +160,7 @@ export default function NewsletterSignup({
           source,
           consent,
           company: honeypot,
+          attribution: getAttribution(),
         }),
       });
 

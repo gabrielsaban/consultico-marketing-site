@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
+import { captureAttribution } from '@/lib/attribution';
 import { POSTHOG_HOST, POSTHOG_KEY } from '@/lib/posthog';
 
 /**
@@ -32,6 +33,11 @@ export default function PostHogProvider() {
   // Init once.
   useEffect(() => {
     let cancelled = false;
+
+    // Runs BEFORE the PostHog import resolves and independently of it, because
+    // first-touch attribution has to survive an ad blocker killing analytics.
+    // It is plain localStorage — no network, nothing to block.
+    captureAttribution();
 
     import('posthog-js')
       .then(({ default: posthog }) => {

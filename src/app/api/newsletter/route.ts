@@ -24,6 +24,7 @@ type NewsletterPayload = {
   source?: string;
   consent?: boolean;
   company?: string;
+  attribution?: Record<string, string>;
 };
 
 function isValidEmail(email: string): boolean {
@@ -93,6 +94,9 @@ export async function POST(request: Request) {
       `Source: ${source}`,
       `Consented to newsletter + roadmap: yes (${NEWSLETTER_CONSENT_VERSION})`,
       `At: ${now}`,
+      '',
+      `First touch: ${payload.attribution?.first_utm_source || payload.attribution?.first_referrer || 'direct / none'}`,
+      `First landed on: ${payload.attribution?.first_landing_page || 'unknown'}`,
     ].join('\n');
 
     const subscriberText = [
@@ -144,6 +148,7 @@ export async function POST(request: Request) {
         website,
         source,
         roadmap_status: website ? 'pending_roadmap' : 'pending_website',
+        ...(payload.attribution ?? {}),
       },
       stage: 'subscribed',
       currentStep: 1,
