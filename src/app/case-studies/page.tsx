@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Container from '@/components/Container';
 import ServiceDesktopHeader from '@/components/ServiceDesktopHeader';
 import { pageMeta } from '@/lib/seo';
+import { CONSULTICO_PHONE_TEL } from '@/lib/contact';
 import { CASE_STUDIES } from '@/lib/case-studies';
 import { caseStudiesPageJsonLd, serializeJsonLd } from '@/lib/schema';
 
@@ -12,10 +13,10 @@ export const metadata: Metadata = pageMeta({
   // render. 44 chars, so 57 once the template has appended the brand, inside
   // the house 60 limit.
   title: 'Case Studies: Client Results and Search Data',
-  // 139 chars. Rewritten alongside the body so the SERP snippet sounds like the
-  // page it opens, rather than like a company describing itself.
+  // 149 chars. Matches the page's own register, so the snippet sounds like the
+  // page it opens rather than a company describing itself.
   description:
-    'Two Consultico case studies with the numbers in them: a Bristol plumbing company and a Norfolk garden games brand, both over a year of work.',
+    "We're proud of the companies we work with. See what we did for a Bristol plumbing company and a Norfolk garden games brand, and how we could help you.",
   path: '/case-studies',
 });
 
@@ -45,13 +46,26 @@ export default function CaseStudiesPage() {
             before. See feedback_paul_voice.md, which is meant to be read BEFORE
             drafting rather than after he sends it back.
 
+            Second pass, Paul 2026-09-10: the opening is HIS wording, and the
+            "you can see how long things actually took" closer is gone. His steer
+            was "positive, positive, positive, sales, sales, sales". This page
+            is proof being used to sell, not a methodology note. "Please give us
+            a call" is a real tel: link, because on a phone that is the whole
+            point of the sentence.
+
             The entity signal an AI engine needs is still all here, because it
             lives in the facts themselves: both clients named, both sectors, both
             locations, how long each ran and what happened. It never needed a
             sentence about our methodology to carry it.
           */}
           <p className="mt-5 font-helvetica-light text-[clamp(1rem,1.2vw,1.1rem)] leading-[1.65] text-gray-800 dark:text-gray-200">
-            Two so far. Both of them ran for well over a year, and the numbers are in each one.
+            We&apos;re so proud of the companies we work with, and we&apos;re building up a portfolio of case
+            studies here showing what we&apos;ve done with them and how we could help you too. If any of these
+            resonate with you,{' '}
+            <a href={CONSULTICO_PHONE_TEL} className="font-medium text-brand-blue underline-offset-2 hover:underline">
+              please give us a call
+            </a>
+            .
           </p>
           <p className="mt-4 font-helvetica-light text-[clamp(1rem,1.2vw,1.1rem)] leading-[1.65] text-gray-800 dark:text-gray-200">
             Norfolk Boards sell American garden games from Norfolk. We were with them for 20 months, across
@@ -62,9 +76,6 @@ export default function CaseStudiesPage() {
             The Boiler Co are a plumbing and heating company in Bristol. Their diary ran on paid ads, so when
             the spend dipped or paused, the work got unpredictable. About three months after we started on
             search they were filling the calendar from it instead, and they stayed with us for over 14 months.
-          </p>
-          <p className="mt-4 font-helvetica-light text-[0.98rem] leading-[1.7] text-gray-700 dark:text-gray-300">
-            Each one has the dates on it, so you can see how long things actually took.
           </p>
 
           <div className="mt-12 space-y-6">
@@ -112,11 +123,17 @@ export default function CaseStudiesPage() {
 
           <div className="mt-14 rounded-2xl border border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-gray-900 md:p-8">
             <h2 className="font-futura text-[clamp(1.25rem,1.8vw,1.5rem)] font-bold text-gray-900 dark:text-white">
-              Want to know what we would do for you?
+              Could we do the same for you?
             </h2>
+            {/*
+              Was "working out what the actual constraint was before anyone
+              bought a service. With Norfolk Boards it turned out not to be the
+              marketing at all." True, and a good line elsewhere, but on the page
+              whose job is to sell it hands a prospect a reason not to buy.
+            */}
             <p className="mt-3 font-helvetica-light text-[0.98rem] leading-[1.7] text-gray-700 dark:text-gray-300">
-              Both of these started with the same thing: working out what the actual constraint was before
-              anyone bought a service. With Norfolk Boards it turned out not to be the marketing at all.
+              Every one of these started with a proper conversation about the business, what it wanted to do
+              next and what was getting in the way. We&apos;d love to have that conversation with you.
             </p>
             <div className="mt-6 flex flex-wrap gap-4">
               <Link
@@ -125,6 +142,12 @@ export default function CaseStudiesPage() {
               >
                 Get in touch
               </Link>
+              <a
+                href={CONSULTICO_PHONE_TEL}
+                className="inline-flex items-center justify-center rounded-lg border border-gray-300 px-6 py-3 font-helvetica text-gray-800 transition-colors hover:border-brand-blue hover:text-brand-blue dark:border-gray-700 dark:text-gray-200"
+              >
+                Give us a call
+              </a>
               <Link
                 href="/think-first"
                 className="inline-flex items-center justify-center rounded-lg border border-gray-300 px-6 py-3 font-helvetica text-gray-800 transition-colors hover:border-brand-blue hover:text-brand-blue dark:border-gray-700 dark:text-gray-200"
