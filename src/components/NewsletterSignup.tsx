@@ -212,13 +212,19 @@ export default function NewsletterSignup({
         // aria-live because the form is replaced rather than added to, which is
         // otherwise a silent change to a screen reader.
         <div aria-live="polite">
+          {/*
+            "Check your inbox" was true when this route sent the welcome email
+            itself. It now goes out of GoHighLevel, so the promise is that one is
+            coming, not that one has already landed. Same for the no-website line,
+            which used to say "reply to the email I've just sent".
+          */}
           <h2 id={headingId} className={`mb-1.5 ${headingClass}`}>
-            You&apos;re on the list. Check your inbox.
+            You&apos;re on the list.
           </h2>
           <p className={bodyClass}>
             {gaveWebsite
-              ? 'I’ll take a look at your site and send your roadmap over.'
-              : 'Reply to the email I’ve just sent with your website address and I’ll get your roadmap over.'}
+              ? 'I’ll email you shortly, then take a look at your site and send your roadmap over.'
+              : 'I’ll email you shortly. Reply with your website address and I’ll get your roadmap over.'}
           </p>
         </div>
       ) : (

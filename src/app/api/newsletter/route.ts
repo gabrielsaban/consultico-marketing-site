@@ -98,48 +98,36 @@ export async function POST(request: Request) {
       '',
       `First touch: ${payload.attribution?.first_utm_source || payload.attribution?.first_referrer || 'direct / none'}`,
       `First landed on: ${payload.attribution?.first_landing_page || 'unknown'}`,
-    ].join('\n');
-
-    const subscriberText = [
-      // "Hey" and NOT a merge field. The newsletter form collects email and
-      // website only (Paul, 2026-09-09) to keep friction low, so a
-      // [first_name] placeholder here would render "Hi ,".
-      'Hey 👋',
       '',
-      "Thanks for signing up, we're really glad you're here.",
-      '',
-      // The "young company in Glasgow" line is Paul's own wording and is
-      // deliberate. The voice guide keeps the youth angle OUT of how-to and
-      // technical writing, but allows it exactly here: relationship and
-      // why-us. Do not copy it into an article.
-      "We're building Consultico as a young company in Glasgow, and I'm looking forward to sharing our progress with you over the coming months. I'll send you the strategies and lessons we're learning and using ourselves, what we're doing as a company, and other updates from the world of digital marketing strategy.",
-      '',
+      // The site has told them an email is coming shortly and no longer sends
+      // one, so this is the prompt to actually send it. Naming the file removes
+      // the one decision that would otherwise be made from memory each time.
+      'ACTION: send the welcome email from GoHighLevel.',
       website
-        ? `We're going to send you a roadmap: I've got your site (${website}) and I'll send back what I'd look at first, what you're doing well, and what you could do to keep growing.`
-        : "We're going to send you a roadmap too. Just reply with your website address and I'll send back what I'd look at first, what you're doing well, and what you could do to keep growing.",
-      '',
-      // This IS the unsubscribe mechanism, not a nicety. Resend has no
-      // unsubscribe link, so a STOP reply has to be honoured by a human.
-      "If you ever want to stop getting updates, just reply STOP and I'll take you off the list.",
-      '',
-      'Looking forward to keeping you up to date, and to chatting some day soon.',
-      '',
-      'Paul Wilson',
-      'Founder | Consultico',
+        ? 'Use welcome-website-given.html (swap {{contact.website}} for their URL).'
+        : 'Use welcome-no-website.html (no website given, so it asks them for it).',
+      'Both are in the brand folder under emails/newsletter-welcome/',
     ].join('\n');
 
-    await Promise.all([
-      sendResendEmail({
-        to: getNotificationRecipient('contact'),
-        subject: `New newsletter signup: ${email}`,
-        text: internalText,
-      }),
-      sendResendEmail({
-        to: email,
-        subject: "You're on the list",
-        text: subscriberText,
-      }),
-    ]);
+    // THE SUBSCRIBER WELCOME EMAIL IS NOT SENT FROM HERE (Paul, 2026-09-09).
+    //
+    // It goes out of GoHighLevel instead, so that it sends from a
+    // consultico.co.uk address with a real unsubscribe link and a reply-to that
+    // reaches a monitored inbox. RESEND_FROM_EMAIL does not currently satisfy
+    // any of those three.
+    //
+    // Sent by hand for now, so THE NOTIFICATION BELOW IS THE TRIGGER: if nobody
+    // sends it from GHL the subscriber gets nothing, and the site has already
+    // told them an email is coming shortly. This route stays the single source
+    // of the DATA and GHL owns the SENDING.
+    //
+    // Do not restore a send here until RESEND_FROM_EMAIL is on our own domain,
+    // or the reason this was removed comes straight back.
+    await sendResendEmail({
+      to: getNotificationRecipient('contact'),
+      subject: `New newsletter signup (send the welcome email): ${email}`,
+      text: internalText,
+    });
 
     // Persisted after the emails and deliberately non-fatal: if Supabase is
     // down we would rather have the address sitting in an inbox than lose the
