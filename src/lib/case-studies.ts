@@ -51,8 +51,12 @@ export const CASE_STUDIES: CaseStudy[] = [
     slug: 'norfolk-boards',
     client: 'Norfolk Boards',
     headline: 'Norfolk Boards: the SEO stopped in December and kept growing all year',
+    // Card copy, so it is read by a person first. "We advised the client" was
+    // the company talking about itself; this is how Paul would say it out loud.
+    // Deliberately worded differently from the page intro, which tells the same
+    // story in prose, so the page does not repeat itself word for word.
     summary:
-      'A 20-month partnership across three websites, where we advised the client to move their budget off SEO and the results carried on climbing without us.',
+      'Three websites, a strategy workshop, SEO and social across 20 months, and the December we told them to move their budget off search.',
     sector: 'E-commerce, garden and board games, Norfolk',
     services: ['SEO', 'Strategy workshop', 'Web development', 'Social media'],
     metrics: [
@@ -69,7 +73,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     client: 'The Boiler Co',
     headline: 'The Boiler Co: from inconsistent leads to SEO as a consistent growth channel',
     summary:
-      'A Bristol trades business whose diary depended on paid ads. SEO replaced that with a channel that kept booking work when spend paused.',
+      'A Bristol trades business that ran on paid ads, until search started filling the diary instead and kept it full for over 14 months.',
     sector: 'Trades and plumbing, Bristol',
     services: ['SEO', 'Web development'],
     metrics: [

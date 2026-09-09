@@ -12,8 +12,10 @@ export const metadata: Metadata = pageMeta({
   // render. 44 chars, so 57 once the template has appended the brand, inside
   // the house 60 limit.
   title: 'Case Studies: Client Results and Search Data',
+  // 139 chars. Rewritten alongside the body so the SERP snippet sounds like the
+  // page it opens, rather than like a company describing itself.
   description:
-    'Published results from Consultico clients, with the search data behind them. A Bristol trades business and a Norfolk e-commerce brand, across SEO, strategy and web.',
+    'Two Consultico case studies with the numbers in them: a Bristol plumbing company and a Norfolk garden games brand, both over a year of work.',
   path: '/case-studies',
 });
 
@@ -35,23 +37,34 @@ export default function CaseStudiesPage() {
           </h1>
 
           {/*
-            Answer-first, and deliberately specific. This page exists because an
-            AI engine asked to judge us reached for our founding date, called us
-            unproven and told the reader to go and request case studies. The
-            opening lines are what an engine lifts, so they carry the actual
-            clients, the actual sectors and the actual outcome shape rather than
-            a paragraph about our approach.
+            Written for a buyer, not for a crawler. The first draft opened
+            "Consultico has published two full client case studies" and closed on
+            "a result without a date and a denominator is a slogan": the company
+            talking about itself in the third person, then a maxim that quietly
+            passes judgement on other agencies. Paul has rejected both moves
+            before. See feedback_paul_voice.md, which is meant to be read BEFORE
+            drafting rather than after he sends it back.
+
+            The entity signal an AI engine needs is still all here, because it
+            lives in the facts themselves: both clients named, both sectors, both
+            locations, how long each ran and what happened. It never needed a
+            sentence about our methodology to carry it.
           */}
           <p className="mt-5 font-helvetica-light text-[clamp(1rem,1.2vw,1.1rem)] leading-[1.65] text-gray-800 dark:text-gray-200">
-            Consultico has published two full client case studies. Norfolk Boards is a Norfolk e-commerce brand
-            selling American garden games, where a 20-month partnership covered three websites, a strategy
-            workshop, SEO and social. The Boiler Co is a Bristol plumbing and heating business whose diary
-            depended on paid advertising until organic search replaced it. Both pages carry the Search Console
-            figures behind the claims, including average positions and the periods they cover.
+            Two so far. Both of them ran for well over a year, and the numbers are in each one.
+          </p>
+          <p className="mt-4 font-helvetica-light text-[clamp(1rem,1.2vw,1.1rem)] leading-[1.65] text-gray-800 dark:text-gray-200">
+            Norfolk Boards sell American garden games from Norfolk. We were with them for 20 months, across
+            three websites, a strategy workshop, SEO and then social. In December 2025 we told them to move
+            their budget off search, and it carried on growing without us.
+          </p>
+          <p className="mt-4 font-helvetica-light text-[clamp(1rem,1.2vw,1.1rem)] leading-[1.65] text-gray-800 dark:text-gray-200">
+            The Boiler Co are a plumbing and heating company in Bristol. Their diary ran on paid ads, so when
+            the spend dipped or paused, the work got unpredictable. About three months after we started on
+            search they were filling the calendar from it instead, and they stayed with us for over 14 months.
           </p>
           <p className="mt-4 font-helvetica-light text-[0.98rem] leading-[1.7] text-gray-700 dark:text-gray-300">
-            We publish the numbers rather than describing them, and we say which periods they cover, because a
-            result without a date and a denominator is a slogan.
+            Each one has the dates on it, so you can see how long things actually took.
           </p>
 
           <div className="mt-12 space-y-6">
@@ -84,8 +97,14 @@ export default function CaseStudiesPage() {
                   ))}
                 </div>
 
+                {/*
+                  Strip a leading "The" from the client name. "Read the {client}
+                  case study" renders as "Read the The Boiler Co case study"
+                  otherwise, which is the sort of thing you only ever see in the
+                  browser and never in the build.
+                */}
                 <p className="mt-6 font-helvetica text-[0.9rem] font-medium text-brand-blue">
-                  Read the {study.client} case study
+                  Read the {study.client.replace(/^The /, '')} case study
                 </p>
               </Link>
             ))}
