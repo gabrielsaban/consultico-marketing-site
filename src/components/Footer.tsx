@@ -24,6 +24,10 @@ export default function Footer() {
   const quickLinks1 = [
     { name: 'Home', href: '/#home' },
     { name: 'Projects', href: '/#projects' },
+    // Sitewide, so every page has a crawlable path to the proof. "Projects"
+    // above points at a homepage anchor, which is not the same thing and is not
+    // what anyone types or follows when they want the case studies.
+    { name: 'Case Studies', href: '/case-studies' },
     { name: 'About', href: '/#about' },
     { name: 'Careers', href: '/careers' },
     { name: 'Advertise', href: '/sponsored-placements' },

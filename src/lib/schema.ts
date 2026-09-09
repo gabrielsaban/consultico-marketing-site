@@ -15,6 +15,7 @@ import { SEO_FOR_HEATING_ENGINEERS_FAQS_SCHEMA } from '@/lib/seo-for-heating-eng
 import { hasDedicatedArticleImage } from '@/lib/articles/display';
 import type { Article } from '@/lib/articles/types';
 import { SERVICE_PAGES, type ServicePageKey } from '@/lib/seo';
+import { CASE_STUDIES, type CaseStudy } from '@/lib/case-studies';
 
 export const SITE_ORIGIN = 'https://www.consultico.co.uk';
 
@@ -421,4 +422,107 @@ export function articlePageJsonLd(article: Article) {
   }
 
   return { '@context': 'https://schema.org', '@graph': graph };
+}
+
+const CASE_STUDIES_PATH = '/case-studies';
+
+/**
+ * Schema for a single case study.
+ *
+ * ── Why Article and not something more specific ──
+ * schema.org has no CaseStudy type, and inventing one gets ignored. Article is
+ * understood everywhere and carries the two things that matter here: `about`,
+ * which names the CLIENT as its own Organization entity, and `publisher`, which
+ * ties the claim back to us. Without `about` the client is just a string in a
+ * heading, and an engine has no reason to connect the result to the company.
+ *
+ * ⚠️ This exists because of a measured problem, not a hunch. Asked whether
+ * Consultico is any good, an AI engine reached for our founding date, called us
+ * unproven and told the reader to request case studies. Neither case study
+ * appeared in the seven sources it used. Being reachable was the first fix;
+ * being a resolvable entity is the second.
+ */
+export function caseStudyPageJsonLd(study: CaseStudy) {
+  const url = `${SITE_ORIGIN}${CASE_STUDIES_PATH}/${study.slug}`;
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Article',
+        '@id': `${url}#article`,
+        headline: study.headline,
+        description: study.summary,
+        url,
+        mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+        author: { '@id': `${SITE_ORIGIN}/#paul-wilson` },
+        publisher: { '@id': `${SITE_ORIGIN}/#org` },
+        about: {
+          '@type': 'Organization',
+          name: study.client,
+        },
+        mentions: study.services.map((service) => ({
+          '@type': 'Service',
+          name: service,
+          provider: { '@id': `${SITE_ORIGIN}/#org` },
+        })),
+        // The claim as a standalone sentence. If an engine lifts one line off
+        // this page, this is the line worth having it lift.
+        abstract: study.citableClaim,
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_ORIGIN },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Case studies',
+            item: `${SITE_ORIGIN}${CASE_STUDIES_PATH}`,
+          },
+          { '@type': 'ListItem', position: 3, name: study.client, item: url },
+        ],
+      },
+    ],
+  };
+}
+
+/** Schema for the case studies hub: a list an engine can actually enumerate. */
+export function caseStudiesPageJsonLd() {
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'CollectionPage',
+        '@id': `${SITE_ORIGIN}${CASE_STUDIES_PATH}#page`,
+        name: 'Consultico case studies',
+        description:
+          'Published client results from Consultico, a strategy-led digital marketing consultancy in Glasgow.',
+        url: `${SITE_ORIGIN}${CASE_STUDIES_PATH}`,
+        publisher: { '@id': `${SITE_ORIGIN}/#org` },
+        mainEntity: {
+          '@type': 'ItemList',
+          numberOfItems: CASE_STUDIES.length,
+          itemListElement: CASE_STUDIES.map((study, index) => ({
+            '@type': 'ListItem',
+            position: index + 1,
+            name: `${study.client}: ${study.summary}`,
+            url: `${SITE_ORIGIN}${CASE_STUDIES_PATH}/${study.slug}`,
+          })),
+        },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_ORIGIN },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Case studies',
+            item: `${SITE_ORIGIN}${CASE_STUDIES_PATH}`,
+          },
+        ],
+      },
+    ],
+  };
 }

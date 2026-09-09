@@ -3,9 +3,15 @@ import Link from 'next/link';
 import Container from '@/components/Container';
 import ServiceDesktopHeader from '@/components/ServiceDesktopHeader';
 import { pageMeta } from '@/lib/seo';
+import { getCaseStudy } from '@/lib/case-studies';
+import { caseStudyPageJsonLd, serializeJsonLd } from '@/lib/schema';
 
 export const metadata: Metadata = pageMeta({
-  title: 'Case Study: The Boiler Co',
+  // 46 chars, so 59 once the root layout appends the brand. Was 25 (38 with
+  // the brand), well under the house 53-60 rule that session 19 applied to
+  // every money page and never reached the case studies. Both modifiers come
+  // straight off the page: Bristol, and trades SEO.
+  title: 'The Boiler Co Case Study: Trades SEO in Bristol',
   description:
     'How Consultico used SEO to turn inconsistent trades leads into a consistent source of new business for The Boiler Co, a Bristol-based plumbing company.',
   path: '/case-studies/boiler-co',
@@ -14,8 +20,17 @@ export const metadata: Metadata = pageMeta({
 const SEO_CONTACT = '/contact?interest=seo';
 
 export default function BoilerCoCaseStudyPage() {
+  // Throws at build time if the registry entry is ever renamed or removed,
+  // rather than rendering a case study page with no schema on it.
+  const study = getCaseStudy('boiler-co');
+  if (!study) throw new Error('Missing case study registry entry: boiler-co');
+
   return (
     <main className="relative min-h-screen bg-brand-silk dark:bg-gray-950">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(caseStudyPageJsonLd(study)) }}
+      />
       <ServiceDesktopHeader />
       <Container className="relative z-10 pb-16 pt-[11rem] md:pb-20 md:pt-[13rem] lg:pt-[14rem]">
         <article className="mx-auto max-w-3xl">
@@ -70,10 +85,6 @@ export default function BoilerCoCaseStudyPage() {
             </p>
             <footer className="mt-3 font-helvetica text-[0.875rem] font-medium text-gray-600 dark:text-gray-400">Ant Vitale, The Boiler Co</footer>
           </blockquote>
-
-          <p className="mt-8 font-helvetica-light text-[0.9rem] text-gray-600 dark:text-gray-400">
-            Full expanded case study with additional detail coming soon.
-          </p>
 
           <div className="mt-10 flex flex-wrap gap-4">
             <Link

@@ -3,9 +3,14 @@ import Link from 'next/link';
 import Container from '@/components/Container';
 import ServiceDesktopHeader from '@/components/ServiceDesktopHeader';
 import { pageMeta } from '@/lib/seo';
+import { getCaseStudy } from '@/lib/case-studies';
+import { caseStudyPageJsonLd, serializeJsonLd } from '@/lib/schema';
 
 export const metadata: Metadata = pageMeta({
-  title: 'Case Study: Norfolk Boards',
+  // 55 with the brand appended, up from 39. Modifiers taken from the page:
+  // it is a strategy and SEO engagement, and the 20 months is stated in the
+  // opening paragraph.
+  title: 'Norfolk Boards Case Study: 20 Months of SEO',
   description:
     'We advised Norfolk Boards to move their budget off SEO in December 2025, and it carried on growing all year. A 20-month partnership across three websites.',
   path: '/case-studies/norfolk-boards',
@@ -14,8 +19,17 @@ export const metadata: Metadata = pageMeta({
 const SEO_CONTACT = '/contact?interest=seo';
 
 export default function NorfolkBoardsCaseStudyPage() {
+  // Throws at build time if the registry entry is ever renamed or removed,
+  // rather than rendering a case study page with no schema on it.
+  const study = getCaseStudy('norfolk-boards');
+  if (!study) throw new Error('Missing case study registry entry: norfolk-boards');
+
   return (
     <main className="relative min-h-screen bg-brand-silk dark:bg-gray-950">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(caseStudyPageJsonLd(study)) }}
+      />
       <ServiceDesktopHeader />
       <Container className="relative z-10 pb-16 pt-[11rem] md:pb-20 md:pt-[13rem] lg:pt-[14rem]">
         <article className="mx-auto max-w-3xl">

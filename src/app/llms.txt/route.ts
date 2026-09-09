@@ -184,6 +184,7 @@ Email paul@consultico.co.uk, call 0141 459 1351, use the contact form at ${BASE}
 
 ## Case studies
 
+- [All case studies](${BASE}/case-studies): Index of every published Consultico client case study.
 - [The Boiler Co](${BASE}/case-studies/boiler-co): Trades SEO case study, calendar filled organically within around three months.
 - [Norfolk Boards](${BASE}/case-studies/norfolk-boards): Strategy and SEO case study, where the constraint turned out to be the product calendar rather than the marketing.
 `;
