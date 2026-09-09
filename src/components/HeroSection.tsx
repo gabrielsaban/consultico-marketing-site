@@ -8,11 +8,26 @@ import ImageFilledText from '@/components/ImageFilledText';
 import ContactHeaderButton from '@/components/ContactHeaderButton';
 import { consumeHomeEntryAnimationSkip, scrollToHomeSection } from '@/lib/homeNavigation';
 
-// Animation variants for staggered content reveal
+// Animation variants for staggered content reveal.
+//
+// ⚠️ NOTHING IN THE HERO MAY START AT opacity: 0 ABOVE THE FOLD. Chrome refuses
+// to treat an opacity:0 element as an LCP candidate, and framer-motion writes
+// its `hidden` variant into the SERVER-RENDERED HTML. So an opacity:0 hero does
+// not become eligible for LCP until React has hydrated and the animation has
+// run, which chains the metric to hydration cost rather than to paint.
+//
+// That is what happened here. The container shipped as style="opacity:0" and
+// mobile LCP tracked hydration all the way out: 2.5s in July, 6.7s on 08-09,
+// 8.5s on 09-09, climbing every time another client component was added to the
+// homepage (PostHog and the newsletter strip both landed on 09-08). Lighthouse
+// put 93% of an 8.5s LCP in Render Delay with the hero h2 as the element.
+//
+// The container therefore only orchestrates the stagger now, and the slogan
+// block (which CONTAINS the LCP element) animates transform only. A transformed
+// element still paints, so it is an LCP candidate from first paint.
 const containerVariants = {
-  hidden: { opacity: 0 },
+  hidden: {},
   visible: {
-    opacity: 1,
     transition: {
       staggerChildren: 0.12,
       delayChildren: 0.45,
@@ -20,6 +35,21 @@ const containerVariants = {
   },
 };
 
+// For the slogan block ONLY. Movement without opacity, so the headings are
+// painted and LCP-eligible immediately. Do not add opacity to this.
+const sloganVariants = {
+  hidden: { y: 20 },
+  visible: {
+    y: 0,
+    transition: {
+      duration: 0.45,
+      ease: [0.4, 0, 0.2, 1] as const, // easeOut bezier
+    },
+  },
+};
+
+// For everything BELOW the slogan. These are not LCP candidates, so they keep
+// the original fade.
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
@@ -87,8 +117,8 @@ export default function HeroSection() {
           initial={skipEntryAnimation ? false : 'hidden'}
           animate="visible"
         >
-          {/* Slogan */}
-          <motion.div className="mb-12" variants={itemVariants}>
+          {/* Slogan. Holds the LCP element, so it uses sloganVariants (no opacity). */}
+          <motion.div className="mb-12" variants={sloganVariants}>
             <div className="flex flex-col items-center gap-4 md:gap-6">
               {/* Line 1: "in a world of noise" */}
               <div className="flex flex-wrap items-baseline justify-center gap-3 md:gap-4">

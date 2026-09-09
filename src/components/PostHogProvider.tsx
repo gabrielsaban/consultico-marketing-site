@@ -51,6 +51,12 @@ export default function PostHogProvider() {
           // smaller answer to give if anyone asks what we retain.
           person_profiles: 'identified_only',
           capture_pageview: false,
+          // We do not run PostHog surveys and have never created one, but the
+          // SDK fetches surveys.js (33KB) at runtime regardless. Measured on the
+          // live homepage 2026-09-09, where analytics accounted for 271KB of the
+          // 582KB of JavaScript on the page. Turn this back on the day we
+          // actually build a survey, not before.
+          disable_surveys: true,
         });
       })
       .catch((error: unknown) => {
