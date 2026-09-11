@@ -251,6 +251,28 @@ export default function SeoPage() {
           visual={<BoilerCoImpressionsChart />}
         />
 
+        {/* Stage 1b: Answer-first intro. Keyword-true summary of the service for
+            readers who land cold, and for engines that had almost no body text
+            confirming what this page is (GSC 2026-09-11: 17.8k impressions across
+            34 queries at pos 4-20, led by "seo services" at 7,476 / pos 17.7). */}
+        <section className="py-12 md:py-16" aria-label="What Consultico's SEO services cover">
+          <Container>
+            <div className="max-w-3xl">
+              <p className={`font-helvetica-light text-[clamp(1.05rem,1.25vw,1.2rem)] leading-[1.7] ${bodyTextClass}`}>
+                Consultico is a strategy-led SEO agency in Glasgow, working with businesses across the UK. Our SEO
+                services cover the whole job. We start with a technical audit of what&apos;s stopping Google from showing
+                your site properly, then move to the on-page and content work that targets the searches your customers
+                actually use, local search where it matters, and authority building that keeps compounding after the
+                first few months. Search engine optimisation only earns its keep when it&apos;s pointed at commercial
+                searches, so we map keywords to enquiries before we write anything. We handle generative engine
+                optimisation too, so AI assistants like ChatGPT and Perplexity describe your business accurately when
+                someone asks them who to use. Most clients see meaningful movement within 90 days, and you&apos;ll hear
+                it from us at the audit stage if we don&apos;t think search is where your money should go.
+              </p>
+            </div>
+          </Container>
+        </section>
+
         {/* Stage 2: Problem */}
         <section className="relative overflow-hidden bg-brand-silk/90 py-16 shadow-[0_4px_20px_rgba(0,0,0,0.08)] dark:bg-gray-900/85 md:py-20 lg:py-24" aria-labelledby="seo-problem-heading">
           <Container>
@@ -403,7 +425,15 @@ export default function SeoPage() {
               </div>
             </div>
 
-            <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2">
+            <div className="mt-14 max-w-3xl">
+              <h3 className="font-futura text-[clamp(1.15rem,1.6vw,1.45rem)] font-bold text-brand-blue">
+                What our SEO services include
+              </h3>
+              <p className={`mt-2 font-helvetica-light text-[0.95rem] leading-[1.55] ${secondaryTextClass}`}>
+                Four strands of work, scoped to what your audit turns up.
+              </p>
+            </div>
+            <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
               {seoIncludes.map((item) => (
                 <article key={item.title} className="rounded-lg border border-gray-200 bg-white/85 p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900/75">
                   <h3 className="font-futura text-[clamp(1.25rem,1.6vw,1.5rem)] font-bold text-brand-blue">{item.title}</h3>
