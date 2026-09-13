@@ -183,12 +183,9 @@ export default function ThinkFirstPage() {
       <main className="relative">
       <section className="min-h-screen relative pb-16 md:pb-20 lg:pb-0">
         <ServiceDesktopHeader />
-        <Container className="pt-[10.5rem] md:pt-[12rem] lg:pt-0 lg:min-h-screen lg:flex lg:items-center">
+        <Container className="pt-[10.5rem] md:pt-[12rem] lg:pt-[12rem] lg:min-h-screen lg:flex lg:items-center">
           <div className="w-full grid grid-cols-1 lg:grid-cols-[minmax(0,0.95fr)_minmax(28rem,1.05fr)] gap-8 lg:gap-10 xl:gap-12 items-start">
             <div>
-              <p className="text-[clamp(0.75rem,1vw,0.875rem)] uppercase tracking-[0.16em] text-gray-600 dark:text-gray-400 font-helvetica mb-4">
-                The Think First Workshop
-              </p>
               <h1 className="font-futura font-bold mb-4 max-w-[38rem]">
                 <span className="block text-[clamp(1.55rem,2.35vw,2.65rem)] leading-[1.1] text-brand-blue">
                   Think First: your marketing strategy workshop, built in 30 days
