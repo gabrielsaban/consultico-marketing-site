@@ -104,11 +104,13 @@ export const thinkFirstPageJsonLd = {
     {
       '@type': 'Service',
       name: 'Think First Marketing Strategy Workshop',
+      serviceType: 'Marketing workshop',
       description:
-        'A 30-day marketing strategy workshop for B2C brands doing £50K+ per month. Maps channels, economics, and growth before budget is committed to SEO, PPC, or web.',
+        'A 30-day marketing strategy workshop for B2C brands doing £50K+ per month, delivered in person in Glasgow or online. Maps channels, economics, and growth before budget is committed to SEO, PPC, or web.',
       provider: { '@id': `${SITE_ORIGIN}/#org` },
       url: `${SITE_ORIGIN}/think-first`,
       areaServed: [
+        { '@type': 'City', name: 'Glasgow' },
         { '@type': 'Country', name: 'United Kingdom' },
         { '@type': 'Country', name: 'United States' },
       ],

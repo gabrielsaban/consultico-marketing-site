@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Container from '@/components/Container';
+import FaqSection from '@/components/FaqSection';
 import ServiceDesktopHeader from '@/components/ServiceDesktopHeader';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -9,7 +10,7 @@ import { serializeJsonLd, thinkFirstPageJsonLd } from '@/lib/schema';
 export const metadata: Metadata = pageMeta({
   title: 'Think First: Marketing Strategy Workshop | Consultico',
   description:
-    'Think First is Consultico\'s 30-day marketing strategy workshop for B2C brands. Clarity, projections, and a roadmap before you spend on SEO, PPC, or web.',
+    'Consultico\'s 30-day marketing workshop for B2C brands, in Glasgow or online. Strategy, projections and a roadmap before you spend on SEO, PPC or web.',
   path: '/think-first',
   absoluteTitle: true,
 });
@@ -53,6 +54,40 @@ const processSteps = [
   {
     title: 'Step 4 - Clear Implementation Path',
     body: 'You leave with a practical execution handover: what to run, in what order, and what return range to expect.',
+  },
+];
+
+// Visible FAQ + FAQPage schema (FaqSection emits both). The page had neither,
+// and FAQPage is the block AI engines quote. The Glasgow question is shaped
+// like the query that produced our only AI-sourced lead ("marketing workshops
+// in glasgow", Gemini). That phrase has ZERO Semrush volume, so it is a
+// citation play, not keyword targeting. Every claim below is already on this
+// page: 30 days, half day, in person or online, £50K+, two months of Slack.
+const thinkFirstFaqs = [
+  {
+    question: 'What is a marketing workshop?',
+    answer:
+      'A marketing workshop is a structured session where you and your team work through your marketing with someone from outside the business. Ours is Think First: a half day with us, built on a strategic audit and a revenue model we prepare over the 30 days before it, so the time in the room goes on decisions rather than on explaining your business to us. You leave with a marketing model, a channel order and a 12-month roadmap.',
+  },
+  {
+    question: 'Is Think First a brand strategy workshop or a marketing strategy workshop?',
+    answer:
+      'It\'s a marketing strategy workshop, and positioning is part of it rather than a separate exercise. The audit covers how you make money, who buys from you and why, and where your margins are, and your positioning comes out of that work. If positioning is the main thing you need, say so when you apply and we\'ll weight the workshop that way.',
+  },
+  {
+    question: 'Do you run marketing workshops in Glasgow?',
+    answer:
+      'Yes. We\'re based in Glasgow, and the half-day workshop is delivered in person or online, whichever suits you and your team. The process is the same wherever you are: 30 days from booking to the workshop, then two months of support afterwards.',
+  },
+  {
+    question: 'How long does Think First take?',
+    answer:
+      '30 days from booking to the workshop itself. The first few weeks go on the strategic audit and the revenue and channel model, then the half-day workshop, then you get the roadmap and two months of support over Slack for anything that comes up while you implement it.',
+  },
+  {
+    question: 'Who is the workshop for?',
+    answer:
+      'B2C businesses already doing £50K or more a month who want to know which channels to back before spending on them. If you\'ve tried ads or an agency and never got a clear model of what a customer is worth and what you can afford to pay to win one, that\'s the gap Think First closes.',
   },
 ];
 
@@ -196,6 +231,26 @@ export default function ThinkFirstPage() {
                 />
               </div>
             </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Answer-first intro. The page ranked on its title alone: "marketing
+          workshop" (260/mo, KD 8) appeared nowhere in the body, and Glasgow
+          appeared nowhere at all. Everything stated here is already on the page. */}
+      <section className="py-12 md:py-16" aria-label="What Think First is">
+        <Container>
+          <div className="max-w-3xl">
+            <p className="font-helvetica-light text-[clamp(1.05rem,1.25vw,1.2rem)] leading-[1.7] text-gray-800 dark:text-gray-200">
+              Think First is Consultico&apos;s marketing workshop for B2C businesses, run from Glasgow and delivered in
+              person or online. It takes 30 days from booking. We start with a strategic audit of your numbers, your
+              channels and your positioning, build a revenue and channel model from what we find, then bring it all into
+              a half-day workshop with you and your team. You leave with a marketing model built around your business, a
+              12-month roadmap, and two months of support afterwards while you put it into practice. It&apos;s a strategy
+              workshop first: the point is to know which channels will work and what they&apos;re worth before you spend
+              on SEO, PPC or a new website. If you&apos;ve been paying for marketing without a clear model of what a
+              customer is worth, this is the piece that was missing.
+            </p>
           </div>
         </Container>
       </section>
@@ -514,6 +569,12 @@ export default function ThinkFirstPage() {
               This isn&apos;t a template strategy. It&apos;s built around your business specifically.
             </p>
           </div>
+        </Container>
+      </section>
+
+      <section className="bg-white dark:bg-gray-950">
+        <Container>
+          <FaqSection faqs={thinkFirstFaqs} />
         </Container>
       </section>
 

@@ -15,12 +15,12 @@ export const SERVICE_FAQS: Record<Exclude<ServicePageKey, 'careers'>, { question
     {
       question: 'What is included in your SEO service?',
       answer:
-        'Our SEO services cover technical audit and fixes, on-page optimisation, content targeting high-intent search terms, local search, and authority building over time. We also offer generative engine optimisation (GEO) so AI assistants can cite your brand accurately in search answers. Everything is scoped after the audit, so you are paying for the search engine optimisation work your site actually needs.',
+        'Our SEO services cover technical audit and fixes, on-page optimisation, content targeting high-intent search terms, local search, and authority building over time. We also offer generative engine optimisation (GEO) so AI assistants can cite your brand accurately in search answers. Everything is scoped after the audit, so you\'re paying for the search engine optimisation work your site actually needs.',
     },
     {
       question: 'Do you work as an SEO agency or an SEO consultant?',
       answer:
-        'Both, depending on what you need. Some clients want a retained SEO agency handling delivery month to month. Others want SEO consultancy: a senior pair of eyes on strategy, an audit, and a plan their own team runs with. We are small enough that you deal with the people doing the work either way, and we will tell you which one fits after the first audit.',
+        'Both, depending on what you need. Some clients want a retained SEO agency handling delivery month to month. Others want SEO consultancy: a senior pair of eyes on strategy, an audit, and a plan their own team runs with. We\'re small enough that you deal with the people doing the work either way, and we\'ll tell you which one fits after the first audit.',
     },
     {
       question: 'Is SEO better than PPC?',
