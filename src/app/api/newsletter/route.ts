@@ -79,10 +79,11 @@ export async function POST(request: Request) {
       return NextResponse.json({ ok: false, error: 'Consent required' }, { status: 400 });
     }
 
-    // Website stays optional. It makes the roadmap deliverable and lets us
-    // identify who signed up, but requiring it costs signups at the exact
-    // moment someone has decided to act — and the list is the point. A missing
-    // one is chased in the welcome email, which is what the audit flow does.
+    // The form no longer has a website field (removed 2026-09-14 to make the
+    // signup one field). The route still tolerates one, so an older cached
+    // page or a future variant cannot break the signup, and stores it the same
+    // way the audit signup does. The roadmap is now asked for by reply in the
+    // welcome email.
     const website = normaliseWebsite(payload.website ?? '');
     const source = payload.source?.trim() || 'unknown';
     const now = new Date().toISOString();
@@ -91,22 +92,20 @@ export async function POST(request: Request) {
       'New newsletter signup',
       '',
       `Email: ${email}`,
-      `Website: ${website || '(not provided - reply to ask for it)'}`,
+      ...(website ? [`Website: ${website}`] : []),
       `Source: ${source}`,
-      `Consented to newsletter + roadmap: yes (${NEWSLETTER_CONSENT_VERSION})`,
+      `Consented to the newsletter: yes (${NEWSLETTER_CONSENT_VERSION})`,
       `At: ${now}`,
       '',
       `First touch: ${payload.attribution?.first_utm_source || payload.attribution?.first_referrer || 'direct / none'}`,
       `First landed on: ${payload.attribution?.first_landing_page || 'unknown'}`,
       '',
-      // The site has told them an email is coming shortly and no longer sends
+      // The site has told them an email is coming very soon and no longer sends
       // one, so this is the prompt to actually send it. Naming the file removes
       // the one decision that would otherwise be made from memory each time.
       'ACTION: send the welcome email from GoHighLevel.',
-      website
-        ? 'Use welcome-website-given.html (swap {{contact.website}} for their URL).'
-        : 'Use welcome-no-website.html (no website given, so it asks them for it).',
-      'Both are in the brand folder under emails/newsletter-welcome/',
+      'Use welcome.html in the brand folder under emails/newsletter-welcome/',
+      'It asks them to reply with their website for the roadmap (the gift).',
     ].join('\n');
 
     // THE SUBSCRIBER WELCOME EMAIL IS NOT SENT FROM HERE (Paul, 2026-09-09).

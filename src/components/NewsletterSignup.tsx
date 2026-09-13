@@ -8,49 +8,50 @@ import { identify, track } from '@/lib/analytics';
 import { getAttribution } from '@/lib/attribution';
 
 // ─────────────────────────────────────────────────────────────────────────────
-// THE OFFER — a simple exchange, stated in one line.
+// THE OFFER: one heading, one field, one tick, one button.
 //
-// The NEWSLETTER is the product; the roadmap is the reason to join it. That
-// ordering is deliberate (Paul, 2026-09-08) and it drives everything below:
-// consent is required rather than optional, because subscribing IS the
-// transaction, and the copy leads with the monthly email rather than burying it
-// under a freebie.
+// Simplified on 2026-09-14 (Paul): "I want to make the email sign up as easy
+// as possible." The previous version carried a frequency eyebrow, a body line,
+// a roadmap line and an optional website field. The roadmap line and the
+// website input were the thinking-harder moment (should I add my site, what
+// do I get, is it the same as the free audit), so both are gone. The
+// frequency line went with them: it did not add anything, and the footer
+// variant had been running without it since 09-08 anyway.
 //
-// ⚠️ IT IS A STRATEGY EMAIL, NOT A SEARCH ONE (Paul, 2026-09-08). The first
-// version said "what we're seeing in search", which was too narrow and pointed
-// at the wrong thing: "We're focusing on strategy as we move forwards… we want
-// to be your strategy team, your strategy marketing team." Search is one input,
-// not the subject. Do not let this drift back to an SEO newsletter — the
-// strategy cluster is the standing commercial focus and this copy is part of
-// how the site says so.
+// The NEWSLETTER is still the product, and consent is still required rather
+// than optional because subscribing IS the transaction (Paul, 2026-09-08).
 //
-// The three content types Paul named: what we're seeing, strategies, and news.
-// ⚠️ "News from us" is deliberately GENERIC and must stay that way until told
-// otherwise — there is embargoed company news that this list exists to carry,
-// and nothing on the public site should telegraph it early.
+// ★ THE GIFT IS REAL, and it is the roadmap, delivered by reply. The welcome
+// email (sent by hand from GoHighLevel, copy in the brand folder under
+// emails/newsletter-welcome/) asks the subscriber to reply with their website
+// and Paul sends back what he would look at first. It is deliberately unnamed
+// here: "a little gift" is a small mystery, and naming it puts the thinking
+// back. Do not promise anything on this strip that the welcome email does not
+// then deliver.
+//
+// ⚠️ IT IS A STRATEGY EMAIL, NOT A SEARCH ONE (Paul, 2026-09-08). "We're
+// focusing on strategy as we move forwards… we want to be your strategy team."
+// Do not let the welcome email or any future body copy drift back to an SEO
+// newsletter.
+//
+// ⚠️ There is embargoed company news that this list exists to carry, and
+// nothing on the public site should telegraph it early.
 //
 // ⚠️ "Roadmap" must stay small. Think First is the paid product that maps
-// channels, economics and growth — this is a short read of their business. If
+// channels, economics and growth; this is a short read of their business. If
 // the free thing grows into the paid thing, it competes with it.
 // ─────────────────────────────────────────────────────────────────────────────
-const EYEBROW = 'An email or two a month';
-const HEADING = 'Sign up to Paul’s emails';
-// ⚠️ Deliberately NOT a list of what is in the emails. That version was a
-// rule-of-three, which reads as compressed marketing copy and is one of the AI
-// tells named in Paul's voice guide. This is his own line: an invitation into
-// the company's story rather than a description of a content mix, which is the
-// right move when the whole list exists to carry company news.
-const BODY = 'Be part of the journey.';
-const BODY_SHORT = 'Be part of the journey.';
-// Sits directly above the fields on purpose, so it explains the website input
-// at the moment someone looks at it. The roadmap is the SECOND thing said, not
-// the headline (Paul, 2026-09-09): the list is what we are asking people to
-// join, and the roadmap is a reason to add one more optional detail. Saying
-// "(Optional)" out loud makes the whole thing a lower-commitment ask.
-const ROADMAP_LINE =
-  'Plus, add your website and I’ll send you a personal roadmap when you join. (Optional)';
+// Paul's own wording. The emoji is decorative and hidden from assistive tech
+// below so the accessible name of the section stays clean.
+const HEADING = 'Sign up to our newsletter and get a little gift';
+const HEADING_EMOJI = '🎁';
 const BUTTON_IDLE = 'Go on then';
 const BUTTON_SENDING = 'Signing you up…';
+// Paul's wording. "We" because it is the company writing here; the welcome
+// email that follows is signed by Paul in the first person, which is the
+// register the voice guide sets for each.
+const SUCCESS_HEADING = 'You’re on the list!';
+const SUCCESS_BODY = 'We’ll send you an email very soon.';
 
 const FIELD_BASE =
   'w-full min-w-0 rounded-lg px-4 py-2.5 font-helvetica text-[0.95rem] focus:outline-none focus:ring-2';
@@ -63,9 +64,9 @@ const FIELD_ON_BLUE =
   'border border-white/40 bg-white/10 text-white placeholder:text-white/70 focus:border-white focus:ring-white';
 
 /**
- * `strip`  — the homepage band: eyebrow, heading, body, one row of fields.
- * `inline` — end of an article. Same card, shorter copy.
- * `footer` — on brand-blue, no card, inverted colours.
+ * `strip`  is the homepage band: heading, then email and button on one row.
+ * `inline` is the end of an article. Same card.
+ * `footer` is on brand-blue, no card, inverted colours, fields stacked.
  */
 type NewsletterVariant = 'strip' | 'inline' | 'footer';
 
@@ -92,7 +93,6 @@ export default function NewsletterSignup({
   // forms' labels at whichever input the browser found first.
   const uid = useId();
   const emailId = `newsletter-email-${uid}`;
-  const websiteId = `newsletter-website-${uid}`;
   const consentId = `newsletter-consent-${uid}`;
   const companyId = `newsletter-company-${uid}`;
   const headingId = `newsletter-heading-${uid}`;
@@ -101,14 +101,11 @@ export default function NewsletterSignup({
   const [sessionId] = useState(() => createFormSessionId());
   const [startedAt] = useState(() => getFormSubmissionStartedAt());
   const [email, setEmail] = useState('');
-  const [website, setWebsite] = useState('');
   const [consent, setConsent] = useState(false);
   const [honeypot, setHoneypot] = useState('');
   const [state, setState] = useState<'idle' | 'submitting' | 'success' | 'error' | 'needs-consent'>(
     'idle',
   );
-
-  const gaveWebsite = website.trim().length > 0;
 
   // ── The denominator ──
   // Without this we would only ever see signups arriving and have no idea how
@@ -156,7 +153,7 @@ export default function NewsletterSignup({
     }
 
     setState('submitting');
-    track('newsletter_submit', { source, variant, gave_website: gaveWebsite });
+    track('newsletter_submit', { source, variant });
 
     try {
       const response = await fetch('/api/newsletter', {
@@ -166,7 +163,6 @@ export default function NewsletterSignup({
           sessionId,
           startedAt,
           email,
-          website,
           source,
           consent,
           company: honeypot,
@@ -183,8 +179,8 @@ export default function NewsletterSignup({
       // THE key event. Mark this one as a key event in GA4 and "which channel
       // produces subscribers" becomes a report rather than a guess. `identify`
       // is PostHog only — GA4 must never receive an email address.
-      track('newsletter_signup', { source, variant, gave_website: gaveWebsite });
-      identify(email.trim(), { source, signup_variant: variant, website: website.trim() });
+      track('newsletter_signup', { source, variant });
+      identify(email.trim(), { source, signup_variant: variant });
     } catch (error) {
       console.error('Newsletter signup failed:', error);
       setState('error');
@@ -213,42 +209,25 @@ export default function NewsletterSignup({
         // otherwise a silent change to a screen reader.
         <div aria-live="polite">
           {/*
-            "Check your inbox" was true when this route sent the welcome email
-            itself. It now goes out of GoHighLevel, so the promise is that one is
-            coming, not that one has already landed. Same for the no-website line,
-            which used to say "reply to the email I've just sent".
+            The welcome email goes out of GoHighLevel by hand, so the promise is
+            that one is coming, not that one has already landed. The gift is
+            explained in that email, not here.
           */}
           <h2 id={headingId} className={`mb-1.5 ${headingClass}`}>
-            You&apos;re on the list.
+            {SUCCESS_HEADING}
           </h2>
-          <p className={bodyClass}>
-            {gaveWebsite
-              ? 'I’ll email you shortly, then take a look at your site and send your roadmap over.'
-              : 'I’ll email you shortly. Reply with your website address and I’ll get your roadmap over.'}
-          </p>
+          <p className={bodyClass}>{SUCCESS_BODY}</p>
         </div>
       ) : (
         <>
-          {!onBlue && (
-            <p className="mb-1.5 font-helvetica text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-brand-blue">
-              {EYEBROW}
-            </p>
-          )}
-          <h2 id={headingId} className={`mb-2 ${headingClass}`}>
+          {/*
+            Heading only, no eyebrow and no body line (Paul, 2026-09-14). The
+            heading states the whole exchange, so the form follows it directly.
+          */}
+          <h2 id={headingId} className={`mb-4 ${headingClass}`}>
             {HEADING}
+            <span aria-hidden="true"> {HEADING_EMOJI}</span>
           </h2>
-          <p className={`mb-3 max-w-2xl ${bodyClass}`}>
-            {variant === 'strip' ? BODY : BODY_SHORT}
-          </p>
-          <p
-            className={
-              onBlue
-                ? 'mb-5 max-w-2xl font-helvetica-light text-[0.8rem] leading-[1.5] text-gray-100'
-                : 'mb-5 max-w-2xl font-helvetica-light text-[0.85rem] leading-[1.5] text-brand-blue'
-            }
-          >
-            {ROADMAP_LINE}
-          </p>
 
           <form onSubmit={handleSubmit} noValidate>
             {/* Honeypot. Hidden from people, visible to naive bots. */}
@@ -266,14 +245,14 @@ export default function NewsletterSignup({
             </div>
 
             {/*
-              All three controls on one row on desktop, stacked on mobile.
+              Email and button on one row on desktop, stacked on mobile.
               Keeping the button inline is most of what makes this read as a
               strip rather than a section. The footer stacks at every width
               because it lives in a narrow column.
 
-              Website stays optional: it makes the roadmap deliverable and
-              identifies the signup, but the list is the point and requiring it
-              costs subscribers.
+              One field only. The website input was removed on 2026-09-14: the
+              gift (a roadmap) is now asked for by reply in the welcome email,
+              so the page asks for nothing but an address.
             */}
             <div className={onBlue ? 'flex flex-col gap-2.5' : 'flex flex-col gap-2.5 sm:flex-row'}>
               <label htmlFor={emailId} className="sr-only">
@@ -288,22 +267,7 @@ export default function NewsletterSignup({
                 placeholder="you@company.com"
                 required
                 autoComplete="email"
-                className={`${fieldClass} ${onBlue ? '' : 'sm:flex-[1.1]'}`}
-              />
-
-              <label htmlFor={websiteId} className="sr-only">
-                Your website (optional)
-              </label>
-              <input
-                id={websiteId}
-                type="text"
-                inputMode="url"
-                name="website"
-                value={website}
-                onChange={(e) => setWebsite(e.target.value)}
-                placeholder="yourbusiness.com (optional)"
-                autoComplete="url"
-                className={`${fieldClass} ${onBlue ? '' : 'sm:flex-1'}`}
+                className={`${fieldClass} ${onBlue ? '' : 'sm:max-w-md sm:flex-1'}`}
               />
 
               <button
