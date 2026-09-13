@@ -22,8 +22,11 @@ export const services: Service[] = [
     highlights: ['tracking which channels are driving revenue', 'Think First', 'S.T.E.P. framework', 'Think First strategy workshop'],
     icon: 'compass',
     futureSlug: 'market-strategy',
-    detailHref: '/think-first',
-    detailCtaLabel: 'Explore Think First',
+    // Points at the strategy pillar, not the workshop (Paul, 2026-09-13). The
+    // Think First band above the services list keeps its own link, so the
+    // homepage now routes to both: the hub here, the product above.
+    detailHref: '/market-strategy',
+    detailCtaLabel: 'Explore marketing strategy',
     image: '/services/market_strategy.jpg',
     imageAlt:
       'Two women sitting in armchairs either side of a mirrored side table, each working on a laptop, in a bright room with floor-to-ceiling sheer curtains.',
