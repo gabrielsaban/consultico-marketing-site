@@ -121,9 +121,24 @@ export const SERVICE_FAQS: Record<Exclude<ServicePageKey, 'careers'>, { question
         'Think First is Consultico\'s 30-day marketing strategy workshop for B2C brands doing £50K+ per month. It maps channels, economics, and growth before budget goes to SEO, PPC, or web.',
     },
     {
+      question: 'Are you marketing consultants or a marketing agency?',
+      answer:
+        'We\'re a marketing consultancy first. The strategy work is done by us as marketing consultants: working out what your numbers can support and what should move first. If the plan says SEO, PPC, content or a website, we can deliver that too, or hand it to your own team. Whether you\'d call that a marketing strategy agency or a marketing consultant, it\'s the same people doing the thinking and, if you want, the delivery.',
+    },
+    {
+      question: 'What marketing strategy services do you offer?',
+      answer:
+        'Four things, and they build on each other: market research and analysis, strategic positioning (the brand strategy question of why someone would choose you), go-to-market strategy, and growth strategy and planning. Most of it runs through Think First, our 30-day workshop, and you leave with positioning, a channel order, the revenue logic behind it and a 90-day roadmap. Our marketing strategy services are the starting point for every other service we offer.',
+    },
+    {
       question: 'Who is strategy consulting for?',
       answer:
-        'Founders and leadership teams who want clarity before delegating budget. It suits businesses already selling successfully that need a plan built around their numbers.',
+        'Founders and leadership teams who want clarity before delegating budget. It suits businesses already selling successfully that want a marketing consultant to build a plan around their numbers.',
+    },
+    {
+      question: 'Do you work as marketing consultants across Scotland?',
+      answer:
+        'Yes. We\'re based in Glasgow and work with businesses across Scotland and the rest of the UK. Strategy work happens in person in Glasgow or online, so where you\'re based doesn\'t change the process. If you\'re looking for a marketing consultant in Glasgow or anywhere in Scotland, start with the free consultation and we\'ll tell you whether strategy is what you need first.',
     },
     {
       question: 'What do I get at the end?',
