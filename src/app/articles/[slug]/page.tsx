@@ -8,6 +8,7 @@ import NewsletterSignup from '@/components/NewsletterSignup';
 import ServiceDesktopHeader from '@/components/ServiceDesktopHeader';
 import ArticleAuthor from '@/components/articles/ArticleAuthor';
 import ArticleCta from '@/components/articles/ArticleCta';
+import PreferredSourceLink from '@/components/articles/PreferredSourceLink';
 import ArticleProse from '@/components/articles/ArticleProse';
 import ArticleReadingPanel from '@/components/articles/ArticleReadingPanel';
 import ArticleSidebar from '@/components/articles/ArticleSidebar';
@@ -178,6 +179,9 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         */}
         <Container className="pb-2">
           <NewsletterSignup source={`article:${article.slug}`} variant="inline" />
+          {/* Sits with the newsletter ask on purpose: both are "keep hearing from
+              us", and Google's preferred badge in AI Overviews is the one we sell. */}
+          <PreferredSourceLink />
         </Container>
 
         <ArticleCta
