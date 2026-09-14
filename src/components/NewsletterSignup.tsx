@@ -21,13 +21,13 @@ import { getAttribution } from '@/lib/attribution';
 // The NEWSLETTER is still the product, and consent is still required rather
 // than optional because subscribing IS the transaction (Paul, 2026-09-08).
 //
-// ★ THE GIFT IS REAL, and it is the roadmap, delivered by reply. The welcome
-// email (sent by hand from GoHighLevel, copy in the brand folder under
-// emails/newsletter-welcome/) asks the subscriber to reply with their website
-// and Paul sends back what he would look at first. It is deliberately unnamed
-// here: "a little gift" is a small mystery, and naming it puts the thinking
-// back. Do not promise anything on this strip that the welcome email does not
-// then deliver.
+// ★ THE GIFT IS REAL, and the subscriber picks it. The welcome email (sent by
+// hand from GoHighLevel, copy in the brand folder under
+// emails/newsletter-welcome/) links to a form where they choose an SEO audit,
+// a brand roadmap, or something else (Paul, 2026-09-14). It is deliberately
+// unnamed here: "a little gift" is a small mystery, and naming it puts the
+// thinking back. Do not promise anything on this strip that the welcome email
+// does not then deliver.
 //
 // ⚠️ IT IS A STRATEGY EMAIL, NOT A SEARCH ONE (Paul, 2026-09-08). "We're
 // focusing on strategy as we move forwards… we want to be your strategy team."
@@ -251,8 +251,8 @@ export default function NewsletterSignup({
               because it lives in a narrow column.
 
               One field only. The website input was removed on 2026-09-14: the
-              gift (a roadmap) is now asked for by reply in the welcome email,
-              so the page asks for nothing but an address.
+              gift is chosen on a form linked from the welcome email, so the
+              page asks for nothing but an address.
             */}
             <div className={onBlue ? 'flex flex-col gap-2.5' : 'flex flex-col gap-2.5 sm:flex-row'}>
               <label htmlFor={emailId} className="sr-only">

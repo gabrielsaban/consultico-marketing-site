@@ -82,8 +82,8 @@ export async function POST(request: Request) {
     // The form no longer has a website field (removed 2026-09-14 to make the
     // signup one field). The route still tolerates one, so an older cached
     // page or a future variant cannot break the signup, and stores it the same
-    // way the audit signup does. The roadmap is now asked for by reply in the
-    // welcome email.
+    // way the audit signup does. The gift is chosen by the subscriber on a form
+    // linked from the welcome email.
     const website = normaliseWebsite(payload.website ?? '');
     const source = payload.source?.trim() || 'unknown';
     const now = new Date().toISOString();
@@ -105,7 +105,7 @@ export async function POST(request: Request) {
       // the one decision that would otherwise be made from memory each time.
       'ACTION: send the welcome email from GoHighLevel.',
       'Use welcome.html in the brand folder under emails/newsletter-welcome/',
-      'It asks them to reply with their website for the roadmap (the gift).',
+      'It links them to the gift form, where they pick what they want from us.',
     ].join('\n');
 
     // THE SUBSCRIBER WELCOME EMAIL IS NOT SENT FROM HERE (Paul, 2026-09-09).
