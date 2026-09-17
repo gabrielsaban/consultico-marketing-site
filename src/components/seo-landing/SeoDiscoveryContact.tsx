@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState, type ChangeEvent, type FormEvent } from 'react';
 import Container from '@/components/Container';
-import TrackedOutboundLink from '@/components/TrackedOutboundLink';
 import { CONSULTICO_WHATSAPP_URL } from '@/lib/contact';
 import { SEO_LANDING_CONTACT } from '@/lib/seo-landing-content';
 import {
@@ -10,7 +9,6 @@ import {
   getFormSubmissionStartedAt,
   initialContactFormData,
 } from '@/components/ContactForm';
-import { buildTrackingPayload, trackGenerateLead } from '@/lib/tracking';
 
 async function persistForm({
   sessionId,
@@ -30,7 +28,6 @@ async function persistForm({
       sessionId,
       startedAt,
       status,
-      tracking: buildTrackingPayload('seo'),
       formId: 'seo-landing',
       ...data,
     }),
@@ -79,7 +76,6 @@ export default function SeoDiscoveryContact() {
     try {
       if (draftTimerRef.current) clearTimeout(draftTimerRef.current);
       await persistForm({ sessionId, startedAt, status: 'submitted', data: formData });
-      trackGenerateLead({ formId: 'seo-landing', interest: 'seo' });
       submittedRef.current = true;
       setSubmitState('success');
       setFormData(initialContactFormData);
@@ -186,18 +182,17 @@ export default function SeoDiscoveryContact() {
             <span className="h-px flex-1 bg-gray-200 dark:bg-gray-700" />
           </div>
 
-          <TrackedOutboundLink
+          <a
             href={CONSULTICO_WHATSAPP_URL}
             target="_blank"
             rel="noreferrer"
-            ctaLocation="seo_landing_whatsapp"
             className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl border border-[#25D366] bg-[#25D366]/10 font-helvetica text-[1rem] font-medium text-[#128C7E] transition-colors hover:bg-[#25D366]/20 dark:text-[#5CFF9B]"
           >
             <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M12.04 2C6.58 2 2.15 6.4 2.15 11.84c0 1.94.53 3.76 1.45 5.33L2 22l4.98-1.55a9.86 9.86 0 0 0 5.06 1.37h.01c5.46 0 9.89-4.4 9.89-9.84C21.94 6.4 17.5 2 12.04 2Zm5.76 14.05c-.24.68-1.4 1.25-1.94 1.33-.5.07-1.13.1-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.26-4.79-4.2-4.93-4.4-.14-.19-1.17-1.56-1.17-2.97 0-1.42.74-2.11 1-2.4.26-.29.57-.36.76-.36h.55c.17 0 .4-.07.63.48.24.56.81 1.96.88 2.1.07.14.12.31.02.5-.1.19-.14.31-.28.48-.14.17-.3.37-.42.5-.14.14-.28.29-.12.56.16.28.71 1.17 1.52 1.9 1.05.94 1.93 1.23 2.21 1.37.28.14.44.12.6-.07.17-.19.7-.81.89-1.09.19-.28.38-.23.63-.14.26.1 1.63.77 1.91.91.28.14.47.21.54.33.07.12.07.68-.17 1.36Z" />
             </svg>
             {SEO_LANDING_CONTACT.whatsappLabel}
-          </TrackedOutboundLink>
+          </a>
         </div>
       </Container>
     </section>
