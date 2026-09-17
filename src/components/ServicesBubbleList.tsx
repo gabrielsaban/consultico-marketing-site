@@ -150,12 +150,24 @@ export default function ServicesBubbleList() {
   const isTopThree = currentIndex < 3;
 
   const handleServiceSelect = (serviceId: string) => {
-    if (serviceId === selectedService) return;
     if (selectionTimerRef.current) clearTimeout(selectionTimerRef.current);
     if (previewTimerRef.current) clearTimeout(previewTimerRef.current);
 
     const isStackedLayout =
       typeof window !== 'undefined' && !window.matchMedia('(min-width: 900px)').matches;
+
+    if (serviceId === selectedService) {
+      setPreviewService('');
+
+      if (isStackedLayout) {
+        selectionTimerRef.current = setTimeout(() => {
+          setSelectedService('');
+        }, 260);
+      } else {
+        setSelectedService('');
+      }
+      return;
+    }
 
     if (!isStackedLayout) {
       setSelectedService(serviceId);
@@ -214,6 +226,8 @@ export default function ServicesBubbleList() {
                 >
                   <motion.button
                     layout
+                    type="button"
+                    aria-expanded={showInlinePreview}
                     onClick={() => handleServiceSelect(service.id)}
                     className={`
                       w-full rounded-[74px] pl-6 sm:pl-8 md:pl-10 [@media(min-width:900px)]:pl-12 pr-4 sm:pr-5 py-4 sm:py-5
@@ -255,40 +269,42 @@ export default function ServicesBubbleList() {
 
         {/* Right Column - Service Preview */}
         <AnimatePresence mode="wait">
-          <motion.div
-            key={selectedService}
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 16 }}
-            exit={{ opacity: 0, y: -12, transition: { duration: 0.2, ease: 'easeIn' } }}
-            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="hidden [@media(min-width:900px)]:flex flex-col gap-6 h-full min-h-[400px]"
-          >
-          {isTopThree ? (
-            <>
-              <ServicePreviewCopy
-                service={currentService}
-                paragraphClassName="text-[clamp(0.94rem,1.05vw,1.06rem)] leading-[1.58] text-gray-800 dark:text-gray-200 font-helvetica-light"
-              />
-
-              <div className="w-full aspect-square overflow-hidden bg-brand-silk dark:bg-gray-900 rounded-[10px] mt-auto">
-                <ServicePreviewImage service={currentService} />
-              </div>
-            </>
-          ) : (
-            <>
-              <div className="w-full aspect-square overflow-hidden bg-brand-silk dark:bg-gray-900 rounded-[10px]">
-                <ServicePreviewImage service={currentService} />
-              </div>
-
-              <div className="mt-auto">
+          {selectedService && (
+            <motion.div
+              key={selectedService}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 16 }}
+              exit={{ opacity: 0, y: -12, transition: { duration: 0.2, ease: 'easeIn' } }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              className="hidden [@media(min-width:900px)]:flex flex-col gap-6 h-full min-h-[400px]"
+            >
+            {isTopThree ? (
+              <>
                 <ServicePreviewCopy
                   service={currentService}
                   paragraphClassName="text-[clamp(0.94rem,1.05vw,1.06rem)] leading-[1.58] text-gray-800 dark:text-gray-200 font-helvetica-light"
                 />
-              </div>
-            </>
+
+                <div className="w-full aspect-square overflow-hidden bg-brand-silk dark:bg-gray-900 rounded-[10px] mt-auto">
+                  <ServicePreviewImage service={currentService} />
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="w-full aspect-square overflow-hidden bg-brand-silk dark:bg-gray-900 rounded-[10px]">
+                  <ServicePreviewImage service={currentService} />
+                </div>
+
+                <div className="mt-auto">
+                  <ServicePreviewCopy
+                    service={currentService}
+                    paragraphClassName="text-[clamp(0.94rem,1.05vw,1.06rem)] leading-[1.58] text-gray-800 dark:text-gray-200 font-helvetica-light"
+                  />
+                </div>
+              </>
+            )}
+            </motion.div>
           )}
-          </motion.div>
         </AnimatePresence>
       </div>
     </Container>
