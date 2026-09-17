@@ -30,12 +30,6 @@ export const SEO_LANDING_HERO = {
       accent: 'Maps',
       graphic: 'maps' as const,
     },
-    {
-      id: 'instagram',
-      before: 'Explore ',
-      accent: 'Instagram',
-      graphic: 'instagram' as const,
-    },
   ],
 } as const;
 

@@ -7,7 +7,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Container from '@/components/Container';
 import { SEO_LANDING_HERO, type SeoHeroGraphic } from '@/lib/seo-landing-content';
 
-const ROTATE_MS = 4000;
+const ROTATE_MS = 2200;
 const TRANSITION_MS = 0.55;
 const EASE = [0.4, 0, 0.2, 1] as const;
 
@@ -114,28 +114,6 @@ function MapsScreen() {
   );
 }
 
-function InstagramScreen() {
-  const tiles = Array.from({ length: 9 });
-  return (
-    <div className="flex h-full flex-col px-4 pt-6">
-      <div className="mb-4 flex items-center gap-2">
-        <span className="h-4 w-4 rounded-[0.25rem] bg-gradient-to-br from-[#F58529] via-[#DD2A7B] to-[#8134AF]" />
-        <span className="font-helvetica text-[0.8rem] font-semibold tracking-tight text-[#212426]">
-          Instagram
-        </span>
-      </div>
-      <div className="grid grid-cols-3 gap-1.5">
-        {tiles.map((_, i) => (
-          <div
-            key={i}
-            className={`aspect-square rounded-sm ${i % 3 === 0 ? 'bg-[#AED6FF]' : i % 2 === 0 ? 'bg-[#E5E5E5]' : 'bg-[#F4C2A0]'}`}
-          />
-        ))}
-      </div>
-    </div>
-  );
-}
-
 function HeroPhoneGraphic({
   kind,
   reduceMotion,
@@ -147,7 +125,6 @@ function HeroPhoneGraphic({
     google: <GoogleScreen />,
     ai: <AiScreen />,
     maps: <MapsScreen />,
-    instagram: <InstagramScreen />,
   };
 
   const transition = reduceMotion
@@ -175,8 +152,10 @@ function HeroPhoneGraphic({
 export default function SeoDiscoveryHero() {
   const { punchLine, primaryCta, secondaryCta, blueBand, rotateStates } = SEO_LANDING_HERO;
   const [index, setIndex] = useState(0);
+  const [animateTrack, setAnimateTrack] = useState(true);
   const [reduceMotion, setReduceMotion] = useState(false);
-  const active = rotateStates[index];
+  const active = rotateStates[index % rotateStates.length];
+  const textSlides = [...rotateStates, rotateStates[0]];
 
   useEffect(() => {
     const media = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -189,10 +168,17 @@ export default function SeoDiscoveryHero() {
   useEffect(() => {
     if (reduceMotion) return;
     const timer = window.setInterval(() => {
-      setIndex((current) => (current + 1) % rotateStates.length);
+      setAnimateTrack(true);
+      setIndex((current) => current + 1);
     }, ROTATE_MS);
     return () => window.clearInterval(timer);
   }, [reduceMotion, rotateStates.length]);
+
+  const resetLoop = () => {
+    if (index !== rotateStates.length) return;
+    setAnimateTrack(false);
+    setIndex(0);
+  };
 
   return (
     <section
@@ -223,15 +209,16 @@ export default function SeoDiscoveryHero() {
             <motion.div
               className="flex"
               animate={{ x: `${-index * 100}%` }}
+              onAnimationComplete={resetLoop}
               transition={
-                reduceMotion
+                reduceMotion || !animateTrack
                   ? { duration: 0 }
                   : { duration: TRANSITION_MS, ease: EASE }
               }
             >
-              {rotateStates.map((state, i) => (
+              {textSlides.map((state, i) => (
                 <p
-                  key={state.id}
+                  key={`${state.id}-${i}`}
                   aria-hidden={i !== index}
                   className="w-full shrink-0 font-helvetica text-[clamp(1.5rem,2.8vw,2rem)] font-bold tracking-[-0.02em] text-[#212426] dark:text-gray-100"
                 >
