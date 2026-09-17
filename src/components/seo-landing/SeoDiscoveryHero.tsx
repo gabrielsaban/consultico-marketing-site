@@ -154,6 +154,7 @@ export default function SeoDiscoveryHero() {
   const [index, setIndex] = useState(0);
   const [animateTrack, setAnimateTrack] = useState(true);
   const [reduceMotion, setReduceMotion] = useState(false);
+  const [pageVisible, setPageVisible] = useState(true);
   const active = rotateStates[index % rotateStates.length];
   const textSlides = [...rotateStates, rotateStates[0]];
 
@@ -166,13 +167,29 @@ export default function SeoDiscoveryHero() {
   }, []);
 
   useEffect(() => {
-    if (reduceMotion) return;
+    const onVisibilityChange = () => {
+      const visible = !document.hidden;
+      setPageVisible(visible);
+      setAnimateTrack(false);
+      setIndex(0);
+
+      if (visible) {
+        window.requestAnimationFrame(() => setAnimateTrack(true));
+      }
+    };
+
+    document.addEventListener('visibilitychange', onVisibilityChange);
+    return () => document.removeEventListener('visibilitychange', onVisibilityChange);
+  }, []);
+
+  useEffect(() => {
+    if (reduceMotion || !pageVisible) return;
     const timer = window.setInterval(() => {
       setAnimateTrack(true);
-      setIndex((current) => current + 1);
+      setIndex((current) => (current >= rotateStates.length ? 1 : current + 1));
     }, ROTATE_MS);
     return () => window.clearInterval(timer);
-  }, [reduceMotion, rotateStates.length]);
+  }, [pageVisible, reduceMotion, rotateStates.length]);
 
   const resetLoop = () => {
     if (index !== rotateStates.length) return;
