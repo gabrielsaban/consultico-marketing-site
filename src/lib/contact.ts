@@ -17,3 +17,6 @@ export const CONSULTICO_GBP_URL =
   'https://www.google.com/maps/place/Consultico/@55.8609282,-4.2443981,641m/data=!3m3!1e3!4b1!5s0x488846a710ae8043:0x4c27d014396277a0!4m6!3m5!1s0x23d34cdec57c3e91:0x69bb0edabecd9001!8m2!3d55.8609282!4d-4.2418232!16s%2Fg%2F11ldh2jgj6';
 
 export const CONSULTICO_BOOKING_URL = 'https://calendar.app.google/qpXRWnCiG3XKi8iG6';
+
+/** WhatsApp deep link using the public Consultico number (E.164 without +). */
+export const CONSULTICO_WHATSAPP_URL = 'https://wa.me/441414591351';
