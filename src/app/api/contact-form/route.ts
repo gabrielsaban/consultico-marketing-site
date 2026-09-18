@@ -11,7 +11,10 @@ type ContactFormPayload = {
   email?: string;
   phone?: string;
   message?: string;
+  /** Honeypot — any value means bot. */
   website?: string;
+  /** Real company site URL from the SEO landing form (not the honeypot). */
+  companyWebsite?: string;
   heardAbout?: string;
   attribution?: Record<string, string>;
 };
@@ -38,12 +41,20 @@ function isLikelyBotSubmission(payload: ContactFormPayload): boolean {
   return Date.now() - payload.startedAt < MIN_SUBMIT_TIME_MS;
 }
 
+function normaliseCompanyWebsite(value: string | undefined) {
+  const trimmed = value?.trim() ?? '';
+  if (!trimmed) return '';
+  if (/^https?:\/\//i.test(trimmed)) return trimmed;
+  return `https://${trimmed}`;
+}
+
 function normalisePayload(payload: ContactFormPayload) {
   return {
     name: payload.name?.trim() ?? '',
     business: payload.business?.trim() ?? '',
     email: payload.email?.trim() ?? '',
     phone: payload.phone?.trim() ?? '',
+    companyWebsite: normaliseCompanyWebsite(payload.companyWebsite),
     message: payload.message?.trim() ?? '',
     heardAbout: payload.heardAbout?.trim() ?? '',
     attribution: payload.attribution ?? {},
@@ -76,6 +87,7 @@ async function sendContactEmails(payload: ReturnType<typeof normalisePayload>) {
     `Business: ${payload.business || 'Not provided'}`,
     `Email: ${payload.email}`,
     `Phone: ${payload.phone || 'Not provided'}`,
+    `Website: ${payload.companyWebsite || 'Not provided'}`,
     '',
     'Message:',
     payload.message || 'Not provided',
@@ -139,6 +151,7 @@ export async function POST(request: Request) {
       },
       answers: {
         message: data.message,
+        company_website: data.companyWebsite,
         heard_about: data.heardAbout,
         ...data.attribution,
       },
@@ -165,6 +178,7 @@ export async function POST(request: Request) {
         name: data.name,
         business: data.business,
         phone: data.phone,
+        website: data.companyWebsite || undefined,
         source: 'contact-form',
         tags: ['lead', 'contact-form'],
         heard_about: data.heardAbout,
