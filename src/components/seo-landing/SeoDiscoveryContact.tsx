@@ -4,11 +4,21 @@ import { useEffect, useRef, useState, type ChangeEvent, type FormEvent } from 'r
 import Container from '@/components/Container';
 import { CONSULTICO_WHATSAPP_URL } from '@/lib/contact';
 import { SEO_LANDING_CONTACT } from '@/lib/seo-landing-content';
+import { getAttribution } from '@/lib/attribution';
 import {
   createFormSessionId,
   getFormSubmissionStartedAt,
   initialContactFormData,
 } from '@/components/ContactForm';
+
+type SeoLandingFormData = typeof initialContactFormData & {
+  companyWebsite: string;
+};
+
+const initialSeoLandingFormData: SeoLandingFormData = {
+  ...initialContactFormData,
+  companyWebsite: '',
+};
 
 async function persistForm({
   sessionId,
@@ -19,7 +29,7 @@ async function persistForm({
   sessionId: string;
   startedAt: number;
   status: 'draft' | 'submitted';
-  data: typeof initialContactFormData;
+  data: SeoLandingFormData;
 }) {
   const response = await fetch('/api/contact-form', {
     method: 'POST',
@@ -29,7 +39,15 @@ async function persistForm({
       startedAt,
       status,
       formId: 'seo-landing',
-      ...data,
+      name: data.name,
+      business: data.business,
+      email: data.email,
+      phone: data.phone,
+      message: data.message,
+      // Honeypot — must stay empty. Real site URL uses companyWebsite.
+      website: data.website,
+      companyWebsite: data.companyWebsite,
+      attribution: getAttribution(),
     }),
   });
 
@@ -40,7 +58,7 @@ async function persistForm({
 }
 
 export default function SeoDiscoveryContact() {
-  const [formData, setFormData] = useState(initialContactFormData);
+  const [formData, setFormData] = useState(initialSeoLandingFormData);
   const [sessionId, setSessionId] = useState(() => createFormSessionId());
   const [startedAt, setStartedAt] = useState(() => getFormSubmissionStartedAt());
   const [submitState, setSubmitState] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
@@ -50,7 +68,10 @@ export default function SeoDiscoveryContact() {
   useEffect(() => {
     const hasContent =
       formData.name.trim().length >= 2 ||
+      formData.business.trim().length >= 2 ||
       formData.email.trim().length >= 2 ||
+      formData.phone.trim().length >= 2 ||
+      formData.companyWebsite.trim().length >= 2 ||
       formData.message.trim().length >= 2;
     if (submittedRef.current || !hasContent) return;
 
@@ -78,7 +99,7 @@ export default function SeoDiscoveryContact() {
       await persistForm({ sessionId, startedAt, status: 'submitted', data: formData });
       submittedRef.current = true;
       setSubmitState('success');
-      setFormData(initialContactFormData);
+      setFormData(initialSeoLandingFormData);
       setSessionId(createFormSessionId());
       setStartedAt(getFormSubmissionStartedAt());
     } catch {
@@ -102,9 +123,9 @@ export default function SeoDiscoveryContact() {
 
           <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-3.5">
             <div className="hidden" aria-hidden="true">
-              <label htmlFor="seo-landing-website">Website</label>
+              <label htmlFor="seo-landing-honeypot">Website</label>
               <input
-                id="seo-landing-website"
+                id="seo-landing-honeypot"
                 name="website"
                 value={formData.website}
                 onChange={handleChange}
@@ -127,6 +148,19 @@ export default function SeoDiscoveryContact() {
               autoComplete="name"
             />
 
+            <label className="sr-only" htmlFor="seo-landing-business">
+              Business
+            </label>
+            <input
+              id="seo-landing-business"
+              name="business"
+              placeholder="Business"
+              value={formData.business}
+              onChange={handleChange}
+              className={fieldClass}
+              autoComplete="organization"
+            />
+
             <label className="sr-only" htmlFor="seo-landing-email">
               Email
             </label>
@@ -140,6 +174,35 @@ export default function SeoDiscoveryContact() {
               onChange={handleChange}
               className={fieldClass}
               autoComplete="email"
+            />
+
+            <label className="sr-only" htmlFor="seo-landing-phone">
+              Phone number
+            </label>
+            <input
+              id="seo-landing-phone"
+              name="phone"
+              type="tel"
+              placeholder="Phone number"
+              value={formData.phone}
+              onChange={handleChange}
+              className={fieldClass}
+              autoComplete="tel"
+            />
+
+            <label className="sr-only" htmlFor="seo-landing-company-website">
+              Website
+            </label>
+            <input
+              id="seo-landing-company-website"
+              name="companyWebsite"
+              type="text"
+              inputMode="url"
+              placeholder="Website"
+              value={formData.companyWebsite}
+              onChange={handleChange}
+              className={fieldClass}
+              autoComplete="url"
             />
 
             <label className="sr-only" htmlFor="seo-landing-message">
