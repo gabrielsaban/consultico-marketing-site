@@ -45,3 +45,11 @@ AGENTS.md
 
 context/*
 *:Zone.Identifier
+
+# Client reports. This repository is PUBLIC, so only the sealed .enc envelopes
+# are ever committed — see content/reports/README.md. A plaintext report dropped
+# in here by mistake would publish the whole thing on GitHub, passcode gate or
+# not, and it would stay in the history long after being deleted. Ignored so it
+# cannot happen by accident.
+content/reports/*.html
+content/reports/*.htm

@@ -23,6 +23,15 @@ const nextConfig: NextConfig = {
     '/llms.txt': ['./content/articles/**/*.md'],
     '/articles': ['./content/articles/**/*.md'],
     '/articles/[slug]': ['./content/articles/**/*.md'],
+    // Same trap as the articles above, and it would bite harder here. The
+    // sealed client reports in content/reports are read at request time through
+    // a path built with process.cwd(), which the tracer cannot see. Unlike
+    // /articles, these routes never prerender — they are force-dynamic — so
+    // nothing reads the directory at build time either. Without these two lines
+    // the functions deploy with no content/reports at all, and every report
+    // 404s in production while working perfectly on localhost.
+    '/r/[slug]': ['./content/reports/**/*.enc'],
+    '/r/[slug]/unlock': ['./content/reports/**/*.enc'],
   },
   async headers() {
     return [

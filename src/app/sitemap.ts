@@ -37,7 +37,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const articles = getAllArticles();
   const industryRoutes = getSeoIndustrySitemapRoutes();
 
-  return [
+  const entries: MetadataRoute.Sitemap = [
     // No lastModified on these routes, deliberately. It used to be `new Date()`,
     // which combined with this route's hourly revalidate meant every money page
     // claimed to have changed minutes ago, every hour, forever. Google only uses
@@ -69,4 +69,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: article.slug === 'best-ppc-agencies-uk' ? 0.85 : 0.7,
     })),
   ];
+
+  // The private client-report area (/r/<slug>) is never listed. Nothing above
+  // generates those URLs today, so this filter changes nothing right now — it
+  // exists so that it stays true. A sitemap is a list of URLs handed straight
+  // to Google, and putting a passcode-gated client report in one would undo the
+  // gate by advertising that the report exists and where it lives.
+  return entries.filter((entry) => !entry.url.startsWith(`${BASE}/r/`));
 }
