@@ -2,6 +2,8 @@
 
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
+import { isReportPath } from '@/lib/reports/is-report-path';
 
 const DynamicLenisInit = dynamic(() => import('@/components/LenisInit'), { ssr: false });
 const DynamicCursor = dynamic(() => import('@/components/CustomCursor'), { ssr: false });
@@ -13,6 +15,7 @@ const DynamicDots = dynamic(() => import('@/components/InteractiveBackground'), 
  * so server-rendered HTML is not bailed out to CSR.
  */
 export default function ClientEffectsRoot() {
+  const pathname = usePathname();
   const [reducedMotion, setReducedMotion] = useState(() => (
     typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
   ));
@@ -111,6 +114,11 @@ export default function ClientEffectsRoot() {
     window.addEventListener('consultico:team-modal', handleTeamModal);
     return () => window.removeEventListener('consultico:team-modal', handleTeamModal);
   }, []);
+
+  // Report pages own their whole frame, so the marketing chrome bows out.
+  // Placed after every hook, not before: an early return above them would
+  // change the hook order between routes and break the rules of hooks.
+  if (isReportPath(pathname)) return null;
 
   return (
     <>

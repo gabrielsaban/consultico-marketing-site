@@ -34,6 +34,18 @@ export function reportPath(slug: string): string {
   return `/r/${slug}`;
 }
 
+/**
+ * Where the legacy self-contained HTML document is served.
+ *
+ * A sub-path of reportPath() on purpose: the unlock cookie is scoped to
+ * `/r/<slug>`, and RFC 6265 path-matching sends it to everything beneath that
+ * prefix. Anything needing the cookie must live here, which is also why the
+ * progress endpoint is not under /api.
+ */
+export function docPath(slug: string): string {
+  return `/r/${slug}/doc`;
+}
+
 export function unlockPath(slug: string): string {
   return `/r/${slug}/unlock`;
 }
@@ -49,22 +61,33 @@ export function unlockPath(slug: string): string {
 export async function loadEnvelope(slug: string): Promise<ReportEnvelope | null> {
   if (!isValidSlug(slug)) return null;
 
-  const file = path.join(REPORTS_DIR, `${slug}.html.enc`);
+  // Dashboard reports first, then legacy self-contained HTML. Order matters:
+  // re-issuing a report as a dashboard means dropping a .report.enc beside the
+  // old .html.enc, and the new one should win without needing the old one
+  // deleted in the same commit.
+  const candidates = [`${slug}.report.enc`, `${slug}.html.enc`];
 
-  // Defence in depth. isValidSlug already makes traversal impossible, but this
-  // costs nothing and means a future change to the pattern cannot quietly open
-  // the door to reading arbitrary files off the deployment.
-  if (path.dirname(file) !== REPORTS_DIR) return null;
+  let raw: string | null = null;
+  for (const name of candidates) {
+    const file = path.join(REPORTS_DIR, name);
 
-  let raw: string;
-  try {
-    raw = await readFile(file, 'utf8');
-  } catch (error) {
-    if ((error as NodeJS.ErrnoException).code !== 'ENOENT') {
-      console.error(`Report ${slug}: could not be read.`, error);
+    // Defence in depth. isValidSlug already makes traversal impossible, but this
+    // costs nothing and means a future change to the pattern cannot quietly open
+    // the door to reading arbitrary files off the deployment.
+    if (path.dirname(file) !== REPORTS_DIR) return null;
+
+    try {
+      raw = await readFile(file, 'utf8');
+      break;
+    } catch (error) {
+      if ((error as NodeJS.ErrnoException).code !== 'ENOENT') {
+        console.error(`Report ${slug}: ${name} could not be read.`, error);
+        return null;
+      }
     }
-    return null;
   }
+
+  if (raw === null) return null;
 
   try {
     const envelope = JSON.parse(raw) as ReportEnvelope;
@@ -72,7 +95,9 @@ export async function loadEnvelope(slug: string): Promise<ReportEnvelope | null>
       console.error(`Report ${slug}: unrecognised envelope format.`);
       return null;
     }
-    return envelope;
+    // Absent payload means an envelope sealed before the dashboard existed.
+    // Normalise it here so no caller has to remember the default.
+    return { ...envelope, payload: envelope.payload ?? 'html' };
   } catch (error) {
     console.error(`Report ${slug}: envelope is not valid JSON.`, error);
     return null;

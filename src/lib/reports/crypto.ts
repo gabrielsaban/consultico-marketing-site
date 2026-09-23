@@ -89,11 +89,25 @@ type Body = {
   data: string;
 };
 
+/**
+ * What the sealed body decrypts to.
+ *
+ * 'html' is a complete, self-contained HTML document, served as the whole
+ * response by /r/<slug>/doc. 'json' is a ReportDoc, rendered as a dashboard by
+ * /r/<slug>/page.tsx.
+ *
+ * Optional, and absent means 'html'. Envelopes sealed before the dashboard
+ * existed carry no payload field, and they must keep opening exactly as they
+ * did — a client's live report is not something to migrate underneath them.
+ */
+export type ReportPayload = 'html' | 'json';
+
 export type ReportEnvelope = {
   v: 1;
   slug: string;
   createdAt: string;
   cipher: 'aes-256-gcm';
+  payload?: ReportPayload;
   kdf: { name: 'scrypt'; N: number; r: number; p: number; keyLength: number };
   wraps: Wrap[];
   body: Body;
@@ -259,14 +273,17 @@ function cookieMac(slug: string, key: string, secret: string): string {
 /* ------------------------------------------------------- sealing (build scripts) */
 
 /**
- * Build one envelope from plaintext HTML and the secrets that should open it.
+ * Build one envelope from a plaintext document and the secrets that open it.
+ * The body is opaque to the crypto — HTML or JSON, it is bytes either way —
+ * so `payload` records which, for the reader to branch on.
  * Only ever called from scripts/report-encrypt.mjs, never at request time — but
  * it lives here so sealing and opening cannot drift apart.
  */
 export function sealReport(
   slug: string,
-  html: string,
+  plaintext: string,
   secrets: { kind: WrapKind; value: string }[],
+  payload: ReportPayload = 'html',
 ): ReportEnvelope {
   const contentKey = randomBytes(KEY_LENGTH);
   const kdf = { name: 'scrypt' as const, N: SCRYPT_N, r: SCRYPT_R, p: SCRYPT_P, keyLength: KEY_LENGTH };
@@ -294,13 +311,14 @@ export function sealReport(
 
   const bodyIv = randomBytes(12);
   const bodyCipher = createCipheriv('aes-256-gcm', contentKey, bodyIv);
-  const data = Buffer.concat([bodyCipher.update(html, 'utf8'), bodyCipher.final()]);
+  const data = Buffer.concat([bodyCipher.update(plaintext, 'utf8'), bodyCipher.final()]);
 
   return {
     v: 1,
     slug,
     createdAt: new Date().toISOString(),
     cipher: 'aes-256-gcm',
+    payload,
     kdf,
     wraps,
     body: {

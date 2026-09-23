@@ -1,10 +1,16 @@
 import { cookies } from 'next/headers';
 import { getCookieSecret } from '@/lib/reports/config';
 import { decryptBody, readCookieValue } from '@/lib/reports/crypto';
-import { isValidSlug, loadEnvelope, reportCookieName, unlockPath } from '@/lib/reports/store';
+import { isValidSlug, loadEnvelope, reportCookieName, reportPath, unlockPath } from '@/lib/reports/store';
 
 /**
- * GET /r/<slug> — serve one private client report.
+ * GET /r/<slug>/doc — serve one private client report as a whole HTML document.
+ *
+ * This is the legacy delivery path, kept for reports sealed before the
+ * dashboard existed. /r/<slug> now renders a React dashboard for envelopes with
+ * payload 'json' and redirects here for payload 'html'. A client's live report
+ * is not something to migrate underneath them, so this stays until the last
+ * HTML report is retired, then the whole directory goes.
  *
  * THIS IS A ROUTE HANDLER, NOT A PAGE, AND THAT IS LOAD-BEARING.
  *
@@ -45,6 +51,16 @@ export async function GET(
   // key material before the key is used for anything.
   const contentKey = readCookieValue(slug, cookie.value, getCookieSecret());
   if (!contentKey) return toUnlock(slug);
+
+  // A dashboard report reached through this path means a stale link or a
+  // hand-typed URL. Send it to the page that knows how to render it rather than
+  // returning JSON to a browser expecting a document.
+  if (envelope.payload === 'json') {
+    return new Response(null, {
+      status: 307,
+      headers: { Location: reportPath(slug), 'Cache-Control': 'private, no-store' },
+    });
+  }
 
   // A cookie can outlive a re-sealed report — if a report is re-issued under a
   // new code, old content keys stop working. That is a re-prompt, not an error.

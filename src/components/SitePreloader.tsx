@@ -3,6 +3,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { usePreloader } from './PreloaderContext';
+import { usePathname } from 'next/navigation';
+import { isReportPath } from '@/lib/reports/is-report-path';
 
 const SESSION_KEY = 'consultico-preloader-seen';
 
@@ -25,8 +27,17 @@ export default function SitePreloader() {
   const [phase, setPhase] = useState<'draw' | 'reveal' | 'done'>('draw');
   const initialized = useRef(false);
   const { markReady } = usePreloader();
+  const pathname = usePathname();
 
   useEffect(() => {
+    // Report pages never show the preloader, and must not inherit its side
+    // effects either — the body scroll lock below would otherwise freeze a
+    // client report for two seconds behind an overlay that is not there.
+    if (isReportPath(pathname)) {
+      markReady();
+      return;
+    }
+
     // Skip on repeat visits within the same session
     try {
       if (sessionStorage.getItem(SESSION_KEY)) {
@@ -66,7 +77,12 @@ export default function SitePreloader() {
       clearTimeout(doneTimer);
       style.overflow = '';
     };
-  }, [markReady]);
+  }, [markReady, pathname]);
+
+  // Report pages own their whole frame, so the marketing chrome bows out.
+  // Placed after every hook, not before: an early return above them would
+  // change the hook order between routes and break the rules of hooks.
+  if (isReportPath(pathname)) return null;
 
   if (!active) return null;
 

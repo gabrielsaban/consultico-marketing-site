@@ -7,6 +7,7 @@ import Link from 'next/link';
 import ThemeToggle from '@/components/ThemeToggle';
 import { useRouter } from 'next/navigation';
 import { navigateToHomeSection } from '@/lib/homeNavigation';
+import { isReportPath } from '@/lib/reports/is-report-path';
 
 const navItems = [
   { name: 'home',     href: '#home'     },
@@ -79,6 +80,11 @@ export default function RouteAwareNavbar() {
       window.removeEventListener('resize', onScroll);
     };
   }, [pathname]);
+
+  // Report pages own their whole frame, so the marketing chrome bows out.
+  // Placed after every hook, not before: an early return above them would
+  // change the hook order between routes and break the rules of hooks.
+  if (isReportPath(pathname)) return null;
 
   return (
     <motion.nav 

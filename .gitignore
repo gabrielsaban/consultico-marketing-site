@@ -53,3 +53,6 @@ context/*
 # cannot happen by accident.
 content/reports/*.html
 content/reports/*.htm
+content/reports/*.json
+content/reports/*.md
+!content/reports/README.md

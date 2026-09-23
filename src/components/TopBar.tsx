@@ -7,6 +7,7 @@ import ThemeToggle from '@/components/ThemeToggle';
 import ContactHeaderButton from '@/components/ContactHeaderButton';
 import { usePathname, useRouter } from 'next/navigation';
 import { navigateToHomeSection } from '@/lib/homeNavigation';
+import { isReportPath } from '@/lib/reports/is-report-path';
 
 export default function TopBar() {
   const [open, setOpen] = useState(false);
@@ -33,6 +34,11 @@ export default function TopBar() {
     document.documentElement.style.overflow = open ? 'hidden' : '';
     return () => { document.documentElement.style.overflow = ''; };
   }, [open]);
+
+  // Report pages own their whole frame, so the marketing chrome bows out.
+  // Placed after every hook, not before: an early return above them would
+  // change the hook order between routes and break the rules of hooks.
+  if (isReportPath(pathname)) return null;
 
   return (
     <>

@@ -31,10 +31,31 @@ const nextConfig: NextConfig = {
     // the functions deploy with no content/reports at all, and every report
     // 404s in production while working perfectly on localhost.
     '/r/[slug]': ['./content/reports/**/*.enc'],
+    '/r/[slug]/doc': ['./content/reports/**/*.enc'],
+    '/r/[slug]/progress': ['./content/reports/**/*.enc'],
     '/r/[slug]/unlock': ['./content/reports/**/*.enc'],
   },
   async headers() {
     return [
+      {
+        // The private client-report area. The old /r/<slug> route handler set
+        // these inline on every response; a React page cannot, so they move
+        // here — and this way they also cover the unlock page, which
+        // previously had none of them, and /doc.
+        //
+        // no-store rather than merely private: a client report should not sit
+        // in a shared proxy, a CDN, or the back/forward cache of a borrowed
+        // laptop. no-referrer matters more than it looks — without it, any
+        // video embedded in a report would hand the report's URL to YouTube in
+        // the Referer header.
+        source: '/r/:path*',
+        headers: [
+          { key: 'Cache-Control', value: 'private, no-store, max-age=0, must-revalidate' },
+          { key: 'X-Robots-Tag', value: 'noindex, nofollow, noarchive' },
+          { key: 'Referrer-Policy', value: 'no-referrer' },
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+        ],
+      },
       {
         // Retired articles. The file has been moved out of content/articles so
         // the route 404s, which is the signal that actually removes a URL from
