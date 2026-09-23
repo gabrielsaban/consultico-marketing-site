@@ -41,8 +41,20 @@ export type RichText = string;
 export type Block =
   /** The one-sentence point of the section. At most one per section. */
   | { t: 'lede'; text: RichText }
-  /** Up to five. More than five is prose wearing a list's clothes. */
+  /** Up to five, and each one a single line. For genuinely short lists. */
   | { t: 'points'; items: RichText[] }
+  /**
+   * A list where each item carries its own reasoning.
+   *
+   * This exists because the first draft of this rebuild cut the *why* out of
+   * every recommendation to hit the word caps, and the why is the part a
+   * client is actually paying a consultancy for. A to-do list they can get
+   * anywhere. So the label stays short and scannable, and the reasoning sits
+   * behind a disclosure: sparse on first read, complete when asked for.
+   *
+   * "Sparse" has to mean well-layered, not thin.
+   */
+  | { t: 'items'; items: DetailItem[] }
   | { t: 'callout'; tone: 'insight' | 'warning' | 'brand'; title: string; body: RichText }
   /** Verbatim words for the client to say or send — the closing script. */
   | { t: 'quote'; kicker?: string; lines: RichText[] }
@@ -62,6 +74,14 @@ export type Block =
   | { t: 'figure'; visual: string; caption?: RichText };
 
 export type Half = { title: string; body: RichText };
+
+export type DetailItem = {
+  label: RichText;
+  /** The reasoning. Shown on demand, never truncated. */
+  why: RichText;
+  /** A short cost or timing chip: "2 min", "half a day". */
+  meta?: string;
+};
 
 /* ---------------------------------------------------------------- visuals */
 
@@ -301,6 +321,8 @@ export type Task = {
   id: string;
   phase: string;
   label: RichText;
+  /** Why this task is worth doing. Revealed on demand, as with DetailItem. */
+  why?: RichText;
   effort: string;
   owner: 'client' | 'consultico';
   /** The section this task belongs to, so the plan and the sections agree. */

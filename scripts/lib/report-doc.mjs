@@ -32,6 +32,9 @@ const LIMITS = {
   summarySentences: 4,
   blocksPerSection: 8,
   calloutWords: 70,
+  itemLabelWords: 16,
+  itemWhyWords: 65,
+  items: 6,
   findingWords: 45,
 };
 
@@ -262,6 +265,25 @@ function checkBlock(c, at, b, visualKeys, usedVisuals) {
       if (!Array.isArray(b.items) || b.items.length === 0) c.err(at, 'points has no items');
       else if (b.items.length > LIMITS.points) {
         c.err(at, `${b.items.length} points, max ${LIMITS.points} — beyond five it is prose in a list`);
+      }
+      break;
+    case 'items':
+      if (!Array.isArray(b.items) || b.items.length === 0) c.err(at, 'items block has no items');
+      else if (b.items.length > LIMITS.items) {
+        c.err(at, `${b.items.length} items, max ${LIMITS.items}`);
+      }
+      for (const [i, it] of (b.items ?? []).entries()) {
+        if (!it?.label) c.err(`${at}.items[${i}]`, 'missing label');
+        else if (words(it.label) > LIMITS.itemLabelWords) {
+          c.err(`${at}.items[${i}]`, `label is ${words(it.label)} words, max ${LIMITS.itemLabelWords} — the reasoning belongs in "why", not the label`);
+        }
+        // The why is the point of this block, so an item without one should be
+        // a plain point instead.
+        if (!it?.why) {
+          c.err(`${at}.items[${i}]`, 'missing "why" — an item with no reasoning belongs in a points block');
+        } else if (words(it.why) > LIMITS.itemWhyWords) {
+          c.err(`${at}.items[${i}]`, `why is ${words(it.why)} words, max ${LIMITS.itemWhyWords}`);
+        }
       }
       break;
     case 'callout':

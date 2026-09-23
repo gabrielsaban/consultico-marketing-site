@@ -2,6 +2,8 @@ import type { Block, VisualSpec } from '@/lib/reports/content/schema';
 import { Rich } from './Rich';
 import { Badge, type Tone } from './Primitives';
 import { LaneTimeline } from './visuals/LaneTimeline';
+import { Journey } from './visuals/Journey';
+import { Disclosure } from './Disclosure';
 import { DayStrip, Delta, StatRow } from './visuals/Simple';
 
 /**
@@ -51,6 +53,18 @@ function BlockView({ block, visuals }: { block: Block; visuals: Record<string, V
             </li>
           ))}
         </ul>
+      );
+
+    case 'items':
+      // Label visible and scannable; the reasoning one click away.
+      return (
+        <div className="rounded-[10px] border border-[var(--r-hair)] px-4">
+          {block.items.map((item, i) => (
+            <Disclosure key={i} label={<Rich text={item.label} />} meta={item.meta}>
+              <Rich text={item.why} />
+            </Disclosure>
+          ))}
+        </div>
       );
 
     case 'callout': {
@@ -178,6 +192,8 @@ export function Visual({ spec }: { spec: VisualSpec }) {
   switch (spec.t) {
     case 'lane-timeline':
       return <LaneTimeline spec={spec} />;
+    case 'journey':
+      return <Journey spec={spec} />;
     case 'day-strip':
       return <DayStrip spec={spec} />;
     case 'delta':
