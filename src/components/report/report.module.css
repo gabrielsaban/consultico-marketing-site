@@ -1,0 +1,158 @@
+/*
+ * Design tokens for the client-report area.
+ *
+ * Scoped to .scope rather than :root so none of it leaks onto the marketing
+ * site, and so the report can carry a denser, flatter, more instrument-like
+ * language than the homepage without the two fighting.
+ *
+ * The composition rules — 16px radius, 24px padding, 24px grid gap, a
+ * two-layer soft shadow, a KPI tile of muted label over large figure — are the
+ * generic dashboard conventions the NiceDash template uses. They are expressed
+ * here in Consultico's own palette and type: brand blue for action, navy for
+ * structure, silk as the canvas so cards read as white against it.
+ */
+
+.scope {
+  --r-radius: 16px;
+  --r-radius-sm: 10px;
+  --r-pad: 24px;
+  --r-gap: 24px;
+
+  --r-ink: #141414;
+  --r-ink-2: #3d4654;
+  --r-muted: #6b7482;
+  --r-hair: #e4e8ef;
+  --r-canvas: #f2f2f2;
+  --r-surface: #ffffff;
+
+  --r-brand: #007bff;
+  --r-navy: #1b2a4a;
+
+  /* Status tints at 15% alpha over a solid text colour — the badge idiom. */
+  --r-ok: #1f9d6b;
+  --r-ok-bg: rgba(31, 157, 107, 0.15);
+  --r-warn: #b97e0d;
+  --r-warn-bg: rgba(246, 181, 30, 0.18);
+  --r-risk: #d63a3a;
+  --r-risk-bg: rgba(214, 58, 58, 0.13);
+  --r-quiet: #6b7482;
+  --r-quiet-bg: rgba(107, 116, 130, 0.12);
+  --r-brand-bg: rgba(0, 123, 255, 0.11);
+
+  --r-shadow: rgba(145, 158, 171, 0.3) 0 0 2px 0, rgba(145, 158, 171, 0.12) 0 12px 24px -4px;
+
+  background: var(--r-canvas);
+  color: var(--r-ink);
+  min-height: 100vh;
+}
+
+@media (prefers-color-scheme: dark) {
+  .scope {
+    --r-ink: #e9edf3;
+    --r-ink-2: #c3cbd6;
+    --r-muted: #94a0b0;
+    --r-hair: #27303d;
+    --r-canvas: #0f141b;
+    --r-surface: #161d26;
+    --r-navy: #b9cde8;
+    --r-shadow: rgba(0, 0, 0, 0.4) 0 0 2px 0, rgba(0, 0, 0, 0.3) 0 12px 24px -4px;
+  }
+}
+
+.card {
+  background: var(--r-surface);
+  border-radius: var(--r-radius);
+  box-shadow: var(--r-shadow);
+  padding: var(--r-pad);
+}
+
+/* A placeholder the client fills in: [First name], £X. Amber, as in the source. */
+.placeholder {
+  background: var(--r-warn-bg);
+  color: var(--r-warn);
+  border-radius: 5px;
+  padding: 0.05em 0.35em;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ------------------------------------------------------------ lane timeline */
+
+/*
+ * Events positioned by percentage across a fixed window, in parallel lanes.
+ * The source already encoded its 14-day timeline this way, so nothing had to
+ * be recomputed or estimated to bring it across.
+ */
+.lanes {
+  position: relative;
+  display: grid;
+  gap: 10px;
+}
+
+.lane {
+  position: relative;
+  height: 44px;
+  border-radius: var(--r-radius-sm);
+  background: color-mix(in srgb, var(--r-canvas) 70%, transparent);
+  border: 1px solid var(--r-hair);
+}
+
+.laneName {
+  position: absolute;
+  inset-inline-start: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--r-muted);
+  pointer-events: none;
+}
+
+/* The stretch of the window with nothing in it — the point of the "before". */
+.void {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--r-risk-bg) 0 6px,
+    transparent 6px 12px
+  );
+  border-radius: var(--r-radius-sm);
+}
+
+.event {
+  position: absolute;
+  top: 50%;
+  translate: -50% -50%;
+  width: 15px;
+  height: 15px;
+  border-radius: 999px;
+  border: 2px solid var(--r-surface);
+  box-shadow: 0 0 0 1px var(--r-hair);
+}
+
+.axis {
+  position: relative;
+  height: 18px;
+  margin-top: 6px;
+}
+
+.tick {
+  position: absolute;
+  translate: -50% 0;
+  font-size: 11px;
+  color: var(--r-muted);
+  white-space: nowrap;
+}
+
+/* The window is wider than a phone; let it scroll rather than crush. */
+.scroller {
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.scrollerInner {
+  min-width: 560px;
+}

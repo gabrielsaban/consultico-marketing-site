@@ -5,6 +5,8 @@ import { getCookieSecret } from '@/lib/reports/config';
 import { decryptBody, readCookieValue } from '@/lib/reports/crypto';
 import { docPath, isValidSlug, loadEnvelope, reportCookieName, unlockPath } from '@/lib/reports/store';
 import { captureReportOpened } from '@/lib/reports/telemetry';
+import { ReportShell } from '@/components/report/ReportShell';
+import type { ReportDoc } from '@/lib/reports/content/schema';
 
 /**
  * /r/<slug> — the entry point for one private client report.
@@ -66,8 +68,6 @@ export default async function ReportPage({ params }: ReportPageProps) {
 
   captureReportOpened({ slug, payload: 'json' });
 
-  // The dashboard renderer lands in Phase 1. Until then a json envelope cannot
-  // exist in the wild, so reaching here means a report was sealed ahead of the
-  // renderer — fail visibly for us, not confusingly for a client.
-  throw new Error(`Report ${slug} is sealed as json but the dashboard renderer is not built yet.`);
+  const doc = JSON.parse(json) as ReportDoc;
+  return <ReportShell doc={doc} />;
 }

@@ -3,17 +3,19 @@
  * Seal a client report so it can be committed to this PUBLIC repository without
  * publishing its contents.
  *
- *   node scripts/report-seal.mjs --in <file.html> --slug <slug>
+ *   node scripts/report-seal.mjs --in <file.json|file.html> --slug <slug>
  *
  * Prompts for the access code (the code or mobile number the client is given),
- * generates a fallback passcode, and writes content/reports/<slug>.html.enc.
+ * generates a fallback passcode, and writes the sealed envelope to
+ * content/reports/<slug>.report.enc (a dashboard ReportDoc, from .json) or
+ * <slug>.html.enc (a legacy self-contained document, from .html).
  *
  * The code is read from a prompt rather than an argument on purpose: an
  * argument lands in shell history and in the process list, where it outlives
  * the ten seconds it was needed for.
  *
  * Flags:
- *   --in <path>         plaintext HTML to seal (required)
+ *   --in <path>         plaintext .json ReportDoc or .html document (required)
  *   --slug <slug>       report slug, [a-z0-9-] (required)
  *   --code <value>      access code, if you must pass it non-interactively
  *   --passcode <value>  fallback passcode; generated when omitted
@@ -21,7 +23,7 @@
  */
 
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
-import { join, dirname } from 'node:path';
+import { join, dirname, basename } from 'node:path';
 import {
   randomInt,
   createCipheriv,
@@ -30,6 +32,7 @@ import {
   scryptSync,
 } from 'node:crypto';
 import { createInterface } from 'node:readline/promises';
+import { validateReportDoc } from './lib/report-doc.mjs';
 import { stdin, stdout } from 'node:process';
 
 /* -------------------------------------------------------------------- config */
@@ -72,7 +75,7 @@ function deriveKey(secret, salt, kdf) {
   });
 }
 
-function sealReport(slug, html, secrets) {
+function sealReport(slug, html, secrets, payload) {
   const contentKey = randomBytes(SCRYPT.keyLength);
 
   const wraps = secrets.map(({ kind, value }) => {
@@ -100,6 +103,7 @@ function sealReport(slug, html, secrets) {
     slug,
     createdAt: new Date().toISOString(),
     cipher: 'aes-256-gcm',
+    payload,
     kdf: SCRYPT,
     wraps,
     body: {
@@ -151,24 +155,54 @@ function fail(message) {
 async function main() {
   const args = parseArgs(process.argv.slice(2));
 
-  if (!args.in) fail('Missing --in <file.html>');
+  if (!args.in) fail('Missing --in <file.json|file.html>');
   if (!args.slug) fail('Missing --slug <slug>');
   if (!SLUG_PATTERN.test(args.slug)) {
     fail(`Slug "${args.slug}" must match [a-z0-9-]. The route rejects anything else.`);
   }
   if (!existsSync(args.in)) fail(`No such file: ${args.in}`);
 
-  const out = join(REPORTS_DIR, `${args.slug}.html.enc`);
+  // Extension decides the payload kind: .json is a ReportDoc for the dashboard,
+  // anything else a self-contained HTML document for the legacy /doc route.
+  const isJson = /\.json$/i.test(args.in);
+  const payload = isJson ? 'json' : 'html';
+  const source = readFileSync(args.in, 'utf8');
+
+  const out = join(REPORTS_DIR, isJson ? `${args.slug}.report.enc` : `${args.slug}.html.enc`);
   if (existsSync(out) && !args.force) {
-    fail(`${args.slug}.html.enc already exists. Pass --force to re-seal it.`);
+    fail(`${basename(out)} already exists. Pass --force to re-seal it.`);
   }
 
-  const html = readFileSync(args.in, 'utf8');
-  if (!/<html[\s>]/i.test(html)) {
-    fail('That file does not look like a complete HTML document.');
-  }
-  if (!/<meta[^>]+name=["']robots["'][^>]*noindex/i.test(html)) {
-    console.warn('  ! Warning: no noindex meta tag found in the report itself.');
+  if (isJson) {
+    // The only gate between an authoring mistake and a client opening a broken
+    // report. The build cannot do this — it only ever sees ciphertext.
+    let doc;
+    try {
+      doc = JSON.parse(source);
+    } catch (error) {
+      fail(`That file is not valid JSON: ${error.message}`);
+    }
+    if (doc.slug && doc.slug !== args.slug) {
+      fail(`Document slug "${doc.slug}" does not match --slug "${args.slug}".`);
+    }
+    const { errors, warnings } = validateReportDoc(doc);
+    for (const w of warnings) console.warn(`  ! ${w}`);
+    if (errors.length) {
+      console.error(`\n  ✗ ${errors.length} problem${errors.length === 1 ? '' : 's'} in ${args.in}:\n`);
+      for (const e of errors) console.error(`      ${e}`);
+      console.error('');
+      process.exit(1);
+    }
+    const sectionCount = (doc.sections ?? []).length;
+    const taskCount = (doc.plan?.tasks ?? []).length;
+    console.log(`  ✓ Document valid — ${sectionCount} sections, ${taskCount} tasks${warnings.length ? `, ${warnings.length} warning${warnings.length === 1 ? '' : 's'}` : ''}`);
+  } else {
+    if (!/<html[\s>]/i.test(source)) {
+      fail('That file does not look like a complete HTML document.');
+    }
+    if (!/<meta[^>]+name=["']robots["'][^>]*noindex/i.test(source)) {
+      console.warn('  ! Warning: no noindex meta tag found in the report itself.');
+    }
   }
 
   let code = args.code;
@@ -181,23 +215,23 @@ async function main() {
 
   const passcode = args.passcode ?? generatePasscode();
 
-  const envelope = sealReport(args.slug, html, [
+  const envelope = sealReport(args.slug, source, [
     { kind: 'phone', value: code },
     { kind: 'passcode', value: passcode },
-  ]);
+  ], payload);
 
   // Open what was just sealed, with both secrets, before writing anything. A
   // report that cannot be opened is worse than no report, and it would only be
   // discovered by the client.
-  verify(envelope, code, html, 'access code');
-  verify(envelope, passcode, html, 'fallback passcode');
+  verify(envelope, code, source, 'access code');
+  verify(envelope, passcode, source, 'fallback passcode');
 
   mkdirSync(dirname(out), { recursive: true });
   writeFileSync(out, `${JSON.stringify(envelope, null, 2)}\n`, 'utf8');
 
   const sizeKb = (Buffer.byteLength(JSON.stringify(envelope)) / 1024).toFixed(0);
   console.log(`
-  ✓ Sealed content/reports/${args.slug}.html.enc (${sizeKb}KB)
+  ✓ Sealed content/reports/${basename(out)} (${sizeKb}KB)
     Both secrets verified against the sealed file.
 
     URL                 https://www.consultico.co.uk/r/${args.slug}
