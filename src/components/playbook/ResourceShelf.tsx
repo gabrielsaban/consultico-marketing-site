@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import type { Playbook } from '@/lib/reports/content/playbook';
 import type { Resource } from '@/lib/reports/content/schema';
-import { Rich } from '../report/Rich';
 import { Card, Badge, type Tone } from '../report/Primitives';
 import { Blocks } from '../report/Blocks';
 import { DataTable } from '../report/visuals/More';
