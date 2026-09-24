@@ -71,7 +71,13 @@
   background: var(--r-warn-bg);
   color: var(--r-warn);
   border-radius: 5px;
-  padding: 0.05em 0.35em;
+  /* Tight horizontal padding, pulled back by an equal negative margin.
+     The source writes these as "Hi [First name]," with no space before the
+     comma, so padding alone opened a visible gap between the chip and the
+     punctuation after it. This keeps the chip legible without changing where
+     the text sits. */
+  padding: 0.05em 0.28em;
+  margin: 0 -0.06em;
   font-weight: 600;
   white-space: nowrap;
 }

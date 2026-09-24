@@ -3,6 +3,7 @@ import { Rich } from './Rich';
 import { Badge, type Tone } from './Primitives';
 import { LaneTimeline } from './visuals/LaneTimeline';
 import { Journey } from './visuals/Journey';
+import { DataTable, FixList, IdeaLoop, SerpMock, SplitBar } from './visuals/More';
 import { Disclosure } from './Disclosure';
 import { DayStrip, Delta, StatRow } from './visuals/Simple';
 
@@ -194,6 +195,16 @@ export function Visual({ spec }: { spec: VisualSpec }) {
       return <LaneTimeline spec={spec} />;
     case 'journey':
       return <Journey spec={spec} />;
+    case 'split-bar':
+      return <SplitBar spec={spec} />;
+    case 'idea-loop':
+      return <IdeaLoop spec={spec} />;
+    case 'serp':
+      return <SerpMock spec={spec} />;
+    case 'fix-list':
+      return <FixList spec={spec} />;
+    case 'table':
+      return <DataTable spec={spec} />;
     case 'day-strip':
       return <DayStrip spec={spec} />;
     case 'delta':
