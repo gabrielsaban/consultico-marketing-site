@@ -274,10 +274,20 @@ export type Resource = {
   id: string;
   title: string;
   blurb: string;
+  /** Playbook only: how the shelf badges it. */
+  kind?: 'pack' | 'playbook' | 'template' | 'plan' | 'review';
+  /** Playbook only: one line for the index card. */
+  forWhat?: string;
+  /** Playbook only: the "from Action 3" chip. */
+  fromActionId?: string;
   /**
    * inline   sits in the section, expandable
    * drawer   a side sheet that can stay open while the client works
    * overlay  a full modal, for something that would swamp the section
+   *
+   * ReportDoc only. A playbook gives resources their own page, and a drawer
+   * over a page you deliberately navigated to is a modal for no reason — so
+   * this field is ignored there. Do not build one.
    */
   presentation: 'inline' | 'drawer' | 'overlay';
   body: ResourceBody;
@@ -327,6 +337,8 @@ export type Task = {
   owner: 'client' | 'consultico';
   /** The section this task belongs to, so the plan and the sections agree. */
   sectionId?: string;
+  /** The action this task belongs to. Playbook documents use this instead. */
+  actionId?: string;
 };
 
 export type Plan = {

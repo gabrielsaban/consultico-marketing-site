@@ -107,11 +107,28 @@ export function LaneTimeline({ spec }: { spec: LaneTimelineVisual }) {
             </div>
 
             <div className={styles.axis} aria-hidden>
-              {state.axis.map((a) => (
-                <span key={a.label} className={styles.tick} style={{ left: `${a.at}%` }}>
-                  {a.label}
-                </span>
-              ))}
+              {state.axis.map((a) => {
+                // A tick centred on 0% or 100% hangs half its width outside the
+                // track and gets clipped — "Call 2" was rendering as "Ca".
+                // Pin the two edges instead of centring them.
+                const atStart = a.at <= 0;
+                const atEnd = a.at >= 100;
+                return (
+                  <span
+                    key={a.label}
+                    className={styles.tick}
+                    style={
+                      atStart
+                        ? { left: 0, translate: 'none' }
+                        : atEnd
+                          ? { right: 0, left: 'auto', translate: 'none' }
+                          : { left: `${a.at}%` }
+                    }
+                  >
+                    {a.label}
+                  </span>
+                );
+              })}
             </div>
           </div>
         </div>

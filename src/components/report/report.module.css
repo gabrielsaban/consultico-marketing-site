@@ -156,3 +156,62 @@
 .scrollerInner {
   min-width: 560px;
 }
+
+/* ------------------------------------------------------------- playbook frame */
+
+/*
+ * Two columns: a rail that shows where you are, and one action filling the
+ * stage. Extends the report tokens rather than forking them — both document
+ * kinds should look like the same practice.
+ *
+ * The frame stays byte-identical between actions so that only the stage column
+ * swaps on navigation. With Cache-Control: no-store the RSC payload cannot be
+ * prefetched, so the round trip is real; keeping the frame stable is what makes
+ * it read as fast rather than as a page load.
+ */
+.frame {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--r-gap);
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 32px 16px 80px;
+}
+
+@media (min-width: 900px) {
+  .frame {
+    grid-template-columns: 260px minmax(0, 1fr);
+    gap: 40px;
+    padding: 40px 32px 96px;
+    align-items: start;
+  }
+  .rail {
+    position: sticky;
+    top: 32px;
+    max-height: calc(100vh - 64px);
+    overflow-y: auto;
+  }
+}
+
+.rail {
+  scrollbar-width: thin;
+}
+
+/* One action, not a stack. Generous, so it reads as one thing. */
+.stage {
+  min-width: 0;
+}
+
+.beat + .beat {
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid var(--r-hair);
+}
+
+.beatLabel {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--r-muted);
+}

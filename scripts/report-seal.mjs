@@ -33,6 +33,7 @@ import {
 } from 'node:crypto';
 import { createInterface } from 'node:readline/promises';
 import { validateReportDoc } from './lib/report-doc.mjs';
+import { validatePlaybook, PLAYBOOK_SCHEMA } from './lib/playbook-doc.mjs';
 import { stdin, stdout } from 'node:process';
 
 /* -------------------------------------------------------------------- config */
@@ -185,7 +186,11 @@ async function main() {
     if (doc.slug && doc.slug !== args.slug) {
       fail(`Document slug "${doc.slug}" does not match --slug "${args.slug}".`);
     }
-    const { errors, warnings } = validateReportDoc(doc);
+    // Two document kinds share one envelope, discriminated on `schema` rather
+    // than on the envelope's payload — so the crypto path is untouched and an
+    // already-sealed report keeps opening exactly as it did.
+    const isPlaybook = doc.schema === PLAYBOOK_SCHEMA;
+    const { errors, warnings } = isPlaybook ? validatePlaybook(doc) : validateReportDoc(doc);
     for (const w of warnings) console.warn(`  ! ${w}`);
     if (errors.length) {
       console.error(`\n  ✗ ${errors.length} problem${errors.length === 1 ? '' : 's'} in ${args.in}:\n`);
@@ -193,9 +198,11 @@ async function main() {
       console.error('');
       process.exit(1);
     }
-    const sectionCount = (doc.sections ?? []).length;
+    const unitCount = isPlaybook ? (doc.actions ?? []).length : (doc.sections ?? []).length;
+    const unitLabel = isPlaybook ? 'actions' : 'sections';
     const taskCount = (doc.plan?.tasks ?? []).length;
-    console.log(`  ✓ Document valid — ${sectionCount} sections, ${taskCount} tasks${warnings.length ? `, ${warnings.length} warning${warnings.length === 1 ? '' : 's'}` : ''}`);
+    const kind = isPlaybook ? 'Playbook' : 'Report';
+    console.log(`  ✓ ${kind} valid — ${unitCount} ${unitLabel}, ${taskCount} tasks${warnings.length ? `, ${warnings.length} warning${warnings.length === 1 ? '' : 's'}` : ''}`);
   } else {
     if (!/<html[\s>]/i.test(source)) {
       fail('That file does not look like a complete HTML document.');

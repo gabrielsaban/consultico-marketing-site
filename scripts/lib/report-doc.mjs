@@ -23,6 +23,7 @@
  */
 
 export const SCHEMA = 'consultico.report/1';
+export const LIMITS_SHARED = true;
 
 // Editorial limits. Raise them on purpose, in a commit, with a reason.
 const LIMITS = {
@@ -38,9 +39,9 @@ const LIMITS = {
   findingWords: 45,
 };
 
-const words = (s) => String(s).trim().split(/\s+/).filter(Boolean).length;
+export const words = (s) => String(s).trim().split(/\s+/).filter(Boolean).length;
 
-class Check {
+export class Check {
   constructor() {
     this.errors = [];
     this.warnings = [];
@@ -249,7 +250,7 @@ export function validateReportDoc(doc) {
   return c;
 }
 
-function checkBlock(c, at, b, visualKeys, usedVisuals) {
+export function checkBlock(c, at, b, visualKeys, usedVisuals) {
   if (!b?.t) {
     c.err(at, 'missing discriminator "t"');
     return;
@@ -326,7 +327,7 @@ function checkBlock(c, at, b, visualKeys, usedVisuals) {
 }
 
 /** [[placeholder]] must be balanced, or it renders as literal brackets. */
-function checkPlaceholders(c, at, node) {
+export function checkPlaceholders(c, at, node) {
   const walk = (v) => {
     if (typeof v === 'string') {
       const opens = (v.match(/\[\[/g) ?? []).length;
@@ -340,7 +341,7 @@ function checkPlaceholders(c, at, node) {
   walk(node);
 }
 
-function checkVisual(c, at, v) {
+export function checkVisual(c, at, v) {
   switch (v.t) {
     case 'lane-timeline': {
       if (!Array.isArray(v.states) || v.states.length === 0) {

@@ -6,7 +6,10 @@ import { decryptBody, readCookieValue } from '@/lib/reports/crypto';
 import { docPath, isValidSlug, loadEnvelope, reportCookieName, unlockPath } from '@/lib/reports/store';
 import { captureReportOpened } from '@/lib/reports/telemetry';
 import { ReportShell } from '@/components/report/ReportShell';
+import { PlaybookShell } from '@/components/playbook/PlaybookShell';
+import { isPlaybook } from '@/lib/reports/content/is-playbook';
 import type { ReportDoc } from '@/lib/reports/content/schema';
+import type { Playbook } from '@/lib/reports/content/playbook';
 
 /**
  * /r/<slug> — the entry point for one private client report.
@@ -35,10 +38,13 @@ export const dynamic = 'force-dynamic';
 
 type ReportPageProps = {
   params: Promise<{ slug: string }>;
+  /** `?a=<actionId>` selects one action of a playbook. Absent renders the opening. */
+  searchParams: Promise<{ a?: string }>;
 };
 
-export default async function ReportPage({ params }: ReportPageProps) {
+export default async function ReportPage({ params, searchParams }: ReportPageProps) {
   const { slug } = await params;
+  const { a: actionId } = await searchParams;
 
   // Checked before anything touches the filesystem.
   if (!isValidSlug(slug)) notFound();
@@ -68,6 +74,12 @@ export default async function ReportPage({ params }: ReportPageProps) {
 
   captureReportOpened({ slug, payload: 'json' });
 
-  const doc = JSON.parse(json) as ReportDoc;
+  const doc = JSON.parse(json) as ReportDoc | Playbook;
+
+  // Two document kinds behind one URL. A playbook renders one action at a time;
+  // a report renders its sections. Both decrypt identically above.
+  if (isPlaybook(doc)) {
+    return <PlaybookShell pb={doc} actionId={actionId} />;
+  }
   return <ReportShell doc={doc} />;
 }

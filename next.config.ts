@@ -33,6 +33,8 @@ const nextConfig: NextConfig = {
     '/r/[slug]': ['./content/reports/**/*.enc'],
     '/r/[slug]/doc': ['./content/reports/**/*.enc'],
     '/r/[slug]/progress': ['./content/reports/**/*.enc'],
+    '/r/[slug]/plan': ['./content/reports/**/*.enc'],
+    '/r/[slug]/resources': ['./content/reports/**/*.enc'],
     '/r/[slug]/unlock': ['./content/reports/**/*.enc'],
   },
   async headers() {

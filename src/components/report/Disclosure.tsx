@@ -20,11 +20,15 @@ export function Disclosure({
   meta,
   children,
   tone = 'default',
+  toggleLabel = 'Why',
 }: {
   label: ReactNode;
   meta?: string;
   children: ReactNode;
   tone?: 'default' | 'quiet';
+  /** What the toggle says when closed. "Why" suits a reason; an exemplar or a
+   *  template needs its own word, or the control lies about what it opens. */
+  toggleLabel?: string;
 }) {
   const [open, setOpen] = useState(false);
   const id = useId();
@@ -58,7 +62,7 @@ export function Disclosure({
             open ? 'opacity-60' : 'opacity-100'
           }`}
         >
-          {open ? 'Less' : 'Why'}
+          {open ? 'Hide' : toggleLabel}
         </span>
       </button>
 
