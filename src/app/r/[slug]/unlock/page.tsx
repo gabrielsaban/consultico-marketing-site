@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { cookies } from 'next/headers';
 import { notFound, redirect } from 'next/navigation';
 import { getCookieSecret } from '@/lib/reports/config';
-import { readCookieValue } from '@/lib/reports/crypto';
+import { decryptBody, readCookieValue } from '@/lib/reports/crypto';
 import { isValidSlug, loadEnvelope, reportCookieName, reportPath } from '@/lib/reports/store';
 
 /**
@@ -53,10 +53,25 @@ export default async function UnlockPage({ params, searchParams }: UnlockPagePro
 
   // Someone arriving here with a working cookie has already unlocked, most
   // likely by hitting the back button. Send them to the report.
+  //
+  // "Working" has to mean the cookie actually OPENS the report, not merely that
+  // we signed it. Checking only the signature caused a hard lockout: re-sealing
+  // a report mints a new content key, so an older cookie stays correctly signed
+  // while its key is dead. This page saw a valid signature and bounced to the
+  // report; the report decrypted, failed, and bounced back here —
+  // ERR_TOO_MANY_REDIRECTS, with no way out but clearing cookies.
+  //
+  // So the test here is the same test the report makes. Both must agree, or
+  // they push the visitor back and forth between them.
   const cookie = (await cookies()).get(reportCookieName(slug));
-  if (cookie?.value && readCookieValue(slug, cookie.value, getCookieSecret())) {
+  const contentKey = cookie?.value
+    ? readCookieValue(slug, cookie.value, getCookieSecret())
+    : null;
+  if (contentKey && decryptBody(envelope, contentKey)) {
     redirect(reportPath(slug));
   }
+  // A signed-but-stale cookie falls through to the form. Submitting a correct
+  // code overwrites the dead cookie, which is the way out.
 
   const error = e === '2' ? 'rate' : e === '1' ? 'code' : null;
 
