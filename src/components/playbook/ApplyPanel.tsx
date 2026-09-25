@@ -23,7 +23,12 @@ import { Disclosure } from '../report/Disclosure';
  * Saving is localStorage only at this stage. The status line below never claims
  * more than that: a client who writes two hundred words and loses them will not
  * write them again, so it must never show a confirmed tick for a local-only
- * save. Server sync lands with the progress endpoint.
+ * save.
+ *
+ * ⚠ THE DOCUMENT'S PRIVACY COPY MUST MATCH THIS FILE. The first draft told the
+ * client "Paul reads these before your next session" while the answers reached
+ * nothing but this browser. When /r/[slug]/progress is built and wired, update
+ * both together — the promise in the copy and the code that keeps it.
  */
 export function ApplyPanel({
   slug,
