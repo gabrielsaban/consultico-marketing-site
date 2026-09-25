@@ -4,6 +4,7 @@ import { useEffect, useId, useState } from 'react';
 import type { ApplyPrompt, PrivacyNotice } from '@/lib/reports/content/playbook';
 import { Rich } from '../report/Rich';
 import { Disclosure } from '../report/Disclosure';
+import styles from '../report/report.module.css';
 
 /**
  * The prompt that makes the client use the idea on their own business.
@@ -71,9 +72,19 @@ export function ApplyPanel({
   }
 
   return (
-    <div className="rounded-[12px] border border-[var(--r-brand)] bg-[var(--r-brand-bg)] p-5">
-      <p className="font-futura text-[1rem] font-bold text-[var(--r-ink)]">{apply.title}</p>
-      <p className="mt-2 font-helvetica text-[0.9rem] leading-[1.6] text-[var(--r-ink-2)]">
+    /*
+     * L4, and the only one on the page. Three nested containers — a tinted
+     * panel holding a white textarea holding a white exemplar box — became one
+     * solid block: at that point the reader was being shown a form, not asked
+     * a question. .onBrand re-declares the ink tokens, so the field, the
+     * exemplar behind its disclosure and any placeholder chips all follow
+     * without a second styling path through each of them.
+     */
+    <div className={`${styles.onBrand} rounded-[var(--radius)] p-[var(--s-3)]`}>
+      <p className="font-futura text-[length:var(--t-strong)] leading-[var(--lh-strong)]">
+        {apply.title}
+      </p>
+      <p className="mt-[var(--s-1)] font-helvetica text-[length:var(--t-body)] leading-[var(--lh-body)] text-[var(--r-ink-2)]">
         <Rich text={apply.prompt} />
       </p>
 
@@ -88,10 +99,10 @@ export function ApplyPanel({
             onChange={(e) => save(e.target.value)}
             placeholder={field.placeholder}
             rows={5}
-            className="mt-4 w-full rounded-lg border border-[var(--r-hair)] bg-[var(--r-surface)] px-4 py-3 font-helvetica text-[0.92rem] leading-[1.6] text-[var(--r-ink)] outline-none focus:border-[var(--r-brand)]"
+            className="mt-[var(--s-2)] w-full rounded-[var(--radius-inline)] border-0 bg-white/12 px-4 py-3 font-helvetica text-[length:var(--t-body)] leading-[var(--lh-body)] text-white outline-none placeholder:text-white/65 focus:bg-white/20"
           />
-          <div className="mt-2 flex flex-wrap items-center justify-between gap-2">
-            <p className="font-helvetica text-[0.72rem] text-[var(--r-muted)]">
+          <div className="mt-[var(--s-1)] flex flex-wrap items-center justify-between gap-2">
+            <p className="font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">
               {/* Never a green tick for a local-only save. */}
               {status === 'local'
                 ? 'Saved on this device'
@@ -101,8 +112,8 @@ export function ApplyPanel({
             </p>
             {maxWords ? (
               <p
-                className={`font-helvetica text-[0.72rem] ${
-                  wordCount > maxWords ? 'text-[var(--r-risk)]' : 'text-[var(--r-muted)]'
+                className={`font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] ${
+                  wordCount > maxWords ? 'text-[#ffc9c9]' : 'text-[var(--r-muted)]'
                 }`}
               >
                 {wordCount} / {maxWords} words
@@ -111,9 +122,11 @@ export function ApplyPanel({
           </div>
 
           {field.exemplar?.length ? (
-            <div className="mt-3 rounded-[10px] bg-[var(--r-surface)] px-4">
+            /* No wrapper. The disclosure's own hairline is now white-on-blue,
+               which separates it from the field above without a third box. */
+            <div className="mt-[var(--s-2)] border-t border-[var(--r-hair)]">
               {/* Behind a disclosure so it cannot anchor before they write. */}
-              <Disclosure label="See ours" tone="quiet" toggleLabel="Show">
+              <Disclosure label="See ours" toggleLabel="Show">
                 {field.exemplar.map((line, i) => (
                   <p key={i} className="mt-1 first:mt-0">
                     <Rich text={line} />
@@ -124,12 +137,12 @@ export function ApplyPanel({
           ) : null}
         </>
       ) : (
-        <p className="mt-4 font-helvetica text-[0.85rem] text-[var(--r-muted)]">
+        <p className="mt-[var(--s-2)] font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">
           This prompt type is not built yet.
         </p>
       )}
 
-      <p className="mt-4 font-helvetica text-[0.75rem] leading-snug text-[var(--r-muted)]">
+      <p className="mt-[var(--s-2)] font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">
         {privacy.short}
       </p>
     </div>

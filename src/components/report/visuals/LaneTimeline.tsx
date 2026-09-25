@@ -3,7 +3,6 @@
 import { useId, useState } from 'react';
 import type { LaneTimelineVisual } from '@/lib/reports/content/schema';
 import { Rich } from '../Rich';
-import { Badge } from '../Primitives';
 import styles from '../report.module.css';
 
 /**
@@ -26,7 +25,7 @@ const KIND_COLOUR: Record<string, string> = {
 };
 
 function colourFor(kind: string): string {
-  return KIND_COLOUR[kind] ?? 'var(--r-quiet)';
+  return KIND_COLOUR[kind] ?? 'var(--r-muted)';
 }
 
 export function LaneTimeline({ spec }: { spec: LaneTimelineVisual }) {
@@ -52,11 +51,7 @@ export function LaneTimeline({ spec }: { spec: LaneTimelineVisual }) {
               aria-controls={`${groupId}-panel`}
               type="button"
               onClick={() => setActive(i)}
-              className={`rounded-full px-4 py-1.5 font-helvetica text-[0.82rem] font-semibold transition-colors ${
-                i === active
-                  ? 'bg-[var(--r-surface)] text-[var(--r-ink)] shadow-sm'
-                  : 'text-[var(--r-muted)] hover:text-[var(--r-ink)]'
-              }`}
+              className={`rounded-full px-4 py-1.5 font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] transition-colors ${ i === active ? 'bg-[var(--r-surface)] text-[var(--r-ink)] shadow-sm' : 'text-[var(--r-muted)] hover:text-[var(--r-ink)]' }`}
             >
               {s.label}
             </button>
@@ -69,10 +64,10 @@ export function LaneTimeline({ spec }: { spec: LaneTimelineVisual }) {
           <div className="mb-5 flex flex-wrap gap-x-10 gap-y-4">
             {state.counters.map((c) => (
               <div key={c.label}>
-                <p className="font-futura text-[clamp(1.7rem,4vw,2.3rem)] leading-none font-bold text-[var(--r-ink)]">
+                <p className="font-futura text-[length:var(--t-title)] leading-[var(--lh-title)] text-[var(--r-ink)]">
                   {c.value}
                 </p>
-                <p className="mt-1 font-helvetica text-[0.78rem] text-[var(--r-muted)]">{c.label}</p>
+                <p className="mt-1 font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">{c.label}</p>
               </div>
             ))}
           </div>
@@ -156,7 +151,7 @@ export function LaneTimeline({ spec }: { spec: LaneTimelineVisual }) {
                   style={{ background: colourFor(l.kind) }}
                   aria-hidden
                 />
-                <span className="font-helvetica text-[0.75rem] text-[var(--r-muted)]">{l.label}</span>
+                <span className="font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">{l.label}</span>
               </span>
             ))}
           </div>
@@ -166,15 +161,15 @@ export function LaneTimeline({ spec }: { spec: LaneTimelineVisual }) {
           <ul className="mt-6 divide-y divide-[var(--r-hair)] border-t border-[var(--r-hair)]">
             {state.rows.map((row, i) => (
               <li key={i} className="flex flex-wrap items-baseline gap-x-3 gap-y-1 py-2.5">
-                <span className="w-24 shrink-0 font-helvetica text-[0.75rem] font-semibold text-[var(--r-muted)]">
+                <span className="w-24 shrink-0 font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">
                   {row.when}
                 </span>
-                <span className="min-w-0 flex-1 font-helvetica text-[0.88rem] leading-snug text-[var(--r-ink-2)]">
+                <span className="min-w-0 flex-1 font-helvetica text-[length:var(--t-body)] leading-[var(--lh-body)] text-[var(--r-ink-2)]">
                   <Rich text={row.text} />
                 </span>
-                <Badge tone={row.actor === 'you' ? 'brand' : row.actor === 'automatic' ? 'ok' : 'quiet'}>
+                <span className="shrink-0 font-helvetica text-[length:var(--t-label)] leading-[var(--lh-label)] tracking-[var(--ls-label)] uppercase text-[var(--r-muted)]">
                   {row.actor === 'you' ? 'You' : row.actor === 'automatic' ? 'Automatic' : 'Ambient'}
-                </Badge>
+                </span>
               </li>
             ))}
           </ul>

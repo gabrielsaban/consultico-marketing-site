@@ -60,9 +60,7 @@ export function SectionPanel({
       >
         <span
           aria-hidden
-          className={`mt-0.5 grid size-8 shrink-0 place-items-center rounded-[9px] font-futura text-[0.85rem] font-bold ${
-            open ? 'bg-[var(--r-brand)] text-white' : 'bg-[var(--r-brand-bg)] text-[var(--r-brand)]'
-          }`}
+          className={`mt-0.5 grid size-8 shrink-0 place-items-center rounded-[9px] font-futura text-[length:var(--t-small)] leading-[var(--lh-small)] ${ open ? 'bg-[var(--r-brand)] text-white' : 'bg-[var(--r-brand-bg)] text-[var(--r-brand-deep)]' }`}
         >
           {String(index + 1).padStart(2, '0')}
         </span>
@@ -70,22 +68,22 @@ export function SectionPanel({
         <span className="min-w-0 flex-1">
           <span className="flex flex-wrap items-center gap-x-3 gap-y-1">
             {section.eyebrow ? (
-              <span className="font-helvetica text-[0.68rem] font-semibold tracking-[0.14em] uppercase text-[var(--r-brand)]">
+              <span className="font-helvetica text-[length:var(--t-label)] leading-[var(--lh-label)] tracking-[0.14em] uppercase text-[var(--r-brand-deep)]">
                 {section.eyebrow}
               </span>
             ) : null}
             {section.optional ? <Badge tone="quiet">Optional</Badge> : null}
             {section.minutes ? (
-              <span className="font-helvetica text-[0.72rem] text-[var(--r-muted)]">
+              <span className="font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">
                 {section.minutes} min
               </span>
             ) : null}
           </span>
-          <span className="mt-1 block font-futura text-[clamp(1.15rem,2.4vw,1.4rem)] leading-tight font-bold text-[var(--r-ink)]">
+          <span className="mt-1 block font-futura text-[length:var(--t-title)] leading-[var(--lh-title)] text-[var(--r-ink)]">
             {section.title}
           </span>
           {!open ? (
-            <span className="mt-1.5 block font-helvetica text-[0.88rem] leading-snug text-[var(--r-muted)]">
+            <span className="mt-1.5 block font-helvetica text-[length:var(--t-body)] leading-[var(--lh-body)] text-[var(--r-muted)]">
               {section.oneLiner}
             </span>
           ) : null}
@@ -111,10 +109,10 @@ export function SectionPanel({
             <dl className="mb-6 flex flex-wrap gap-x-8 gap-y-3 border-b border-[var(--r-hair)] pb-5">
               {section.meta.map((m) => (
                 <div key={m.label}>
-                  <dt className="font-helvetica text-[0.68rem] font-semibold tracking-[0.1em] uppercase text-[var(--r-muted)]">
+                  <dt className="font-helvetica text-[length:var(--t-label)] leading-[var(--lh-label)] tracking-[0.1em] uppercase text-[var(--r-muted)]">
                     {m.label}
                   </dt>
-                  <dd className="mt-1 font-helvetica text-[0.88rem] font-medium text-[var(--r-ink)]">
+                  <dd className="mt-1 font-helvetica text-[length:var(--t-body)] leading-[var(--lh-body)] text-[var(--r-ink)]">
                     {m.value}
                   </dd>
                 </div>
@@ -125,8 +123,8 @@ export function SectionPanel({
           {children}
 
           {nextLabel ? (
-            <p className="mt-7 border-t border-[var(--r-hair)] pt-5 font-helvetica text-[0.85rem] text-[var(--r-muted)]">
-              Next: <span className="font-semibold text-[var(--r-ink)]">{nextLabel}</span>{' '}
+            <p className="mt-7 border-t border-[var(--r-hair)] pt-5 font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">
+              Next: <span className="font-futura text-[var(--r-ink)]">{nextLabel}</span>{' '}
               <span className="text-[var(--r-muted)]">
                 &middot; {index + 2} of {total}
               </span>

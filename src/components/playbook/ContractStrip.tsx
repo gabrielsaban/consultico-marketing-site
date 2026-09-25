@@ -5,17 +5,19 @@ import { Badge, type Tone } from '../report/Primitives';
 /**
  * What this action changes, before it asks for any of the client's time.
  *
- * The source report already does this well — "Effort: half a day to write ·
- * Impact on Call 2: the biggest of the three" — and it is the device that makes
- * an action justify itself to a founder deciding whether to bother.
+ * NO BOX. This used to sit in a bordered, tinted panel, which made the page's
+ * value proposition look like a sidebar — and put it in the same visual class
+ * as an editorial callout that was, absurdly, louder. It is the most important
+ * sentence on the page, so it is set as the largest text on the page beneath
+ * the title, and nothing else.
  *
  * Impact is an enum, never a number. There is no measurement behind it in this
- * document, so a percentage would be fabricated, and a fabricated return is the
- * fastest way to lose a client who checks.
+ * document, so a percentage would be fabricated, and a fabricated return is
+ * the fastest way to lose a client who checks.
  */
 
 const IMPACT: Record<Contract['impact'], { label: string; tone: Tone }> = {
-  foundational: { label: 'Everything else builds on this', tone: 'brand' },
+  foundational: { label: 'Everything else builds on this', tone: 'quiet' },
   high: { label: 'Biggest single change', tone: 'ok' },
   compounding: { label: 'Compounds over months', tone: 'ok' },
   housekeeping: { label: 'Housekeeping', tone: 'quiet' },
@@ -25,26 +27,39 @@ export function ContractStrip({ contract }: { contract: Contract }) {
   const impact = IMPACT[contract.impact];
 
   return (
-    <div className="rounded-[12px] border border-[var(--r-hair)] bg-[var(--r-canvas)] p-5">
-      <p className="font-helvetica text-[clamp(0.98rem,1.5vw,1.1rem)] leading-[1.55] text-[var(--r-ink)]">
+    <div>
+      <p className="font-helvetica text-[length:var(--t-lede)] leading-[var(--lh-lede)] tracking-[var(--ls-lede)] text-[var(--r-ink)]">
         <Rich text={contract.gives} />
       </p>
-      <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-3">
-        <span>
-          <span className="font-helvetica text-[0.68rem] font-semibold tracking-[0.1em] uppercase text-[var(--r-muted)]">
+
+      <dl className="mt-[var(--s-3)] flex flex-wrap items-baseline gap-x-[var(--s-4)] gap-y-[var(--s-2)]">
+        <div>
+          <dt className="font-helvetica text-[length:var(--t-label)] leading-[var(--lh-label)] tracking-[var(--ls-label)] uppercase text-[var(--r-muted)]">
             Effort
-          </span>
-          <span className="ml-2 font-helvetica text-[0.88rem] font-medium text-[var(--r-ink)]">
+          </dt>
+          <dd className="mt-0.5 font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-ink)]">
             {contract.effort}
-          </span>
-        </span>
-        <Badge tone={impact.tone}>{impact.label}</Badge>
+          </dd>
+        </div>
+        <div>
+          <dt className="font-helvetica text-[length:var(--t-label)] leading-[var(--lh-label)] tracking-[var(--ls-label)] uppercase text-[var(--r-muted)]">
+            Impact
+          </dt>
+          <dd className="mt-0.5">
+            <Badge tone={impact.tone}>{impact.label}</Badge>
+          </dd>
+        </div>
         {contract.needs ? (
-          <span className="font-helvetica text-[0.8rem] text-[var(--r-muted)]">
-            Needs: {contract.needs}
-          </span>
+          <div>
+            <dt className="font-helvetica text-[length:var(--t-label)] leading-[var(--lh-label)] tracking-[var(--ls-label)] uppercase text-[var(--r-muted)]">
+              Needs
+            </dt>
+            <dd className="mt-0.5 font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-ink-2)]">
+              {contract.needs}
+            </dd>
+          </div>
         ) : null}
-      </div>
+      </dl>
     </div>
   );
 }

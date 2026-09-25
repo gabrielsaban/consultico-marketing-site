@@ -20,16 +20,12 @@ import { Badge, type Tone } from '../Primitives';
 export function SplitBar({ spec }: { spec: SplitBarVisual }) {
   return (
     <div>
-      <div className="flex h-9 overflow-hidden rounded-[8px]">
+      <div className="flex h-9 overflow-hidden rounded-[var(--radius)]">
         {spec.parts.map((p) => (
           <div
             key={p.label}
             style={{ width: `${p.pct}%` }}
-            className={`grid place-items-center font-helvetica text-[0.78rem] font-semibold ${
-              p.tone === 'value'
-                ? 'bg-[var(--r-brand)] text-white'
-                : 'bg-[var(--r-quiet-bg)] text-[var(--r-muted)]'
-            }`}
+            className={`grid place-items-center font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] ${ p.tone === 'value' ? 'bg-[var(--r-brand)] text-white' : 'bg-[var(--r-quiet-bg)] text-[var(--r-muted)]' }`}
           >
             {p.pct}%
           </div>
@@ -37,12 +33,12 @@ export function SplitBar({ spec }: { spec: SplitBarVisual }) {
       </div>
       <div className="mt-2.5 flex flex-wrap gap-x-5 gap-y-1">
         {spec.parts.map((p) => (
-          <span key={p.label} className="font-helvetica text-[0.8rem] text-[var(--r-ink-2)]">
+          <span key={p.label} className="font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-ink-2)]">
             {p.label}
           </span>
         ))}
       </div>
-      <p className="mt-2 font-helvetica text-[0.78rem] text-[var(--r-muted)]">
+      <p className="mt-2 font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">
         {spec.basis === 'rule' ? 'A target to hold to — not a measurement.' : 'Measured.'}
         {spec.note ? ' ' : null}
         {spec.note ? <Rich text={spec.note} /> : null}
@@ -58,19 +54,19 @@ export function IdeaLoop({ spec }: { spec: IdeaLoopVisual }) {
       {spec.steps.map((s, i) => (
         <li
           key={i}
-          className={`rounded-[10px] border p-3.5 ${
+          className={`rounded-[var(--radius)] border p-3.5 ${
             s.gate
               ? 'border-[var(--r-warn)] bg-[var(--r-warn-bg)]'
               : 'border-[var(--r-hair)] bg-[var(--r-canvas)]'
           }`}
         >
           <div className="flex items-baseline gap-3">
-            <span className="font-futura text-[0.75rem] font-bold text-[var(--r-brand)]">
+            <span className="font-futura text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-brand-deep)]">
               {s.gate ? '?' : String(i + 1).padStart(2, '0')}
             </span>
             <div className="min-w-0 flex-1">
-              <p className="font-futura text-[0.9rem] font-bold text-[var(--r-ink)]">{s.label}</p>
-              <p className="mt-1 font-helvetica text-[0.83rem] leading-snug text-[var(--r-ink-2)]">
+              <p className="font-futura text-[length:var(--t-strong)] leading-[var(--lh-strong)] text-[var(--r-ink)]">{s.label}</p>
+              <p className="mt-1 font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-ink-2)]">
                 {s.body}
               </p>
             </div>
@@ -98,8 +94,8 @@ const VERDICT: Record<SerpVisual['results'][number]['verdict'], { label: string;
 
 export function SerpMock({ spec }: { spec: SerpVisual }) {
   return (
-    <div className="rounded-[12px] border border-[var(--r-hair)] bg-[var(--r-surface)] p-4">
-      <p className="rounded-full border border-[var(--r-hair)] px-4 py-2 font-helvetica text-[0.88rem] text-[var(--r-muted)]">
+    <div className="rounded-[var(--radius)] border border-[var(--r-hair)] bg-[var(--r-surface)] p-4">
+      <p className="rounded-full border border-[var(--r-hair)] px-4 py-2 font-helvetica text-[length:var(--t-body)] leading-[var(--lh-body)] text-[var(--r-muted)]">
         {spec.query}
       </p>
       <ol className="mt-4 flex flex-col gap-4">
@@ -108,11 +104,11 @@ export function SerpMock({ spec }: { spec: SerpVisual }) {
           return (
             <li key={i}>
               <div className="flex flex-wrap items-center gap-2">
-                <span className="font-helvetica text-[0.75rem] text-[var(--r-muted)]">{r.source}</span>
+                <span className="font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">{r.source}</span>
                 <Badge tone={v.tone}>{v.label}</Badge>
               </div>
-              <p className="mt-0.5 font-helvetica text-[0.98rem] text-[var(--r-brand)]">{r.title}</p>
-              <p className="mt-0.5 font-helvetica text-[0.83rem] leading-snug text-[var(--r-muted)]">
+              <p className="mt-0.5 font-helvetica text-[length:var(--t-body)] leading-[var(--lh-body)] text-[var(--r-brand-deep)]">{r.title}</p>
+              <p className="mt-0.5 font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">
                 <Rich text={r.note} />
               </p>
             </li>
@@ -132,8 +128,8 @@ export function SerpMock({ spec }: { spec: SerpVisual }) {
 const STATUS: Record<string, { label: string; tone: Tone }> = {
   have: { label: 'Already good', tone: 'ok' },
   update: { label: 'Update', tone: 'warn' },
-  add: { label: 'Add', tone: 'brand' },
-  reorder: { label: 'Reorder', tone: 'brand' },
+  add: { label: 'Add', tone: 'quiet' },
+  reorder: { label: 'Reorder', tone: 'quiet' },
   build: { label: 'Build', tone: 'warn' },
 };
 
@@ -145,8 +141,8 @@ export function FixList({ spec }: { spec: FixListVisual }) {
         return (
           <div key={g.title}>
             <div className="flex flex-wrap items-baseline justify-between gap-2">
-              <p className="font-futura text-[0.95rem] font-bold text-[var(--r-ink)]">{g.title}</p>
-              <p className="font-helvetica text-[0.78rem] text-[var(--r-muted)]">
+              <p className="font-futura text-[length:var(--t-strong)] leading-[var(--lh-strong)] text-[var(--r-ink)]">{g.title}</p>
+              <p className="font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">
                 {todo} of {g.items.length} to change
               </p>
             </div>
@@ -155,10 +151,10 @@ export function FixList({ spec }: { spec: FixListVisual }) {
                 const s = STATUS[item.status] ?? STATUS.update;
                 return (
                   <li key={item.label} className="flex flex-wrap items-center gap-x-3 gap-y-1 py-2.5">
-                    <span className="min-w-0 flex-1 font-helvetica text-[0.9rem] text-[var(--r-ink)]">
+                    <span className="min-w-0 flex-1 font-helvetica text-[length:var(--t-body)] leading-[var(--lh-body)] text-[var(--r-ink)]">
                       {item.label}
                       {item.note ? (
-                        <span className="ml-2 text-[0.82rem] text-[var(--r-muted)]">{item.note}</span>
+                        <span className="ml-2 text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">{item.note}</span>
                       ) : null}
                     </span>
                     <Badge tone={s.tone}>{s.label}</Badge>
@@ -183,7 +179,7 @@ export function DataTable({ spec }: { spec: TableVisual }) {
               {spec.columns.map((c) => (
                 <th
                   key={c}
-                  className="border-b border-[var(--r-hair)] pb-2 text-left font-helvetica text-[0.72rem] font-semibold tracking-[0.08em] uppercase text-[var(--r-muted)]"
+                  className="border-b border-[var(--r-hair)] pb-2 text-left font-helvetica text-[length:var(--t-label)] leading-[var(--lh-label)] tracking-[0.08em] uppercase text-[var(--r-muted)]"
                 >
                   {c}
                 </th>
@@ -196,7 +192,7 @@ export function DataTable({ spec }: { spec: TableVisual }) {
                 {row.map((cell, j) => (
                   <td
                     key={j}
-                    className="border-b border-[var(--r-hair)] py-2.5 pr-4 align-top font-helvetica text-[0.86rem] leading-snug text-[var(--r-ink-2)]"
+                    className="border-b border-[var(--r-hair)] py-2.5 pr-4 align-top font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-ink-2)]"
                   >
                     {typeof cell === 'string' ? (
                       <Rich text={cell} />
@@ -213,7 +209,7 @@ export function DataTable({ spec }: { spec: TableVisual }) {
         </table>
       </div>
       {spec.note ? (
-        <p className="mt-3 font-helvetica text-[0.8rem] text-[var(--r-muted)]">
+        <p className="mt-3 font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">
           <Rich text={spec.note} />
         </p>
       ) : null}

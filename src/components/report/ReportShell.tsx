@@ -37,20 +37,20 @@ export function ReportShell({ doc }: { doc: ReportDoc }) {
             priority
           />
 
-          <p className="mt-9 font-helvetica text-[0.72rem] font-semibold tracking-[0.18em] uppercase text-[var(--r-brand)]">
+          <p className="mt-9 font-helvetica text-[length:var(--t-label)] leading-[var(--lh-label)] tracking-[0.18em] uppercase text-[var(--r-brand-deep)]">
             {doc.title}
           </p>
-          <h1 className="mt-2 font-futura text-[clamp(1.9rem,5vw,2.9rem)] leading-[1.08] font-bold text-[var(--r-ink)]">
+          <h1 className="mt-2 font-futura text-[length:var(--t-title)] leading-[var(--lh-title)] text-[var(--r-ink)]">
             {doc.client.name}
             <span className="text-[var(--r-brand)]">.</span>
           </h1>
           {doc.subtitle ? (
-            <p className="mt-3 max-w-[54ch] font-helvetica text-[clamp(1rem,1.6vw,1.15rem)] leading-[1.55] text-[var(--r-ink-2)]">
+            <p className="mt-3 max-w-[54ch] font-helvetica text-[length:var(--t-title)] leading-[var(--lh-title)] text-[var(--r-ink-2)]">
               {doc.subtitle}
             </p>
           ) : null}
 
-          <p className="mt-5 font-helvetica text-[0.8rem] text-[var(--r-muted)]">
+          <p className="mt-5 font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">
             {issued} &middot; Prepared by {doc.preparedBy} &middot; {sections.length} sections
           </p>
         </header>
@@ -74,14 +74,14 @@ export function ReportShell({ doc }: { doc: ReportDoc }) {
 
         {doc.summary.length ? (
           <Card className="mt-6">
-            <p className="font-helvetica text-[0.7rem] font-semibold tracking-[0.14em] uppercase text-[var(--r-muted)]">
+            <p className="font-helvetica text-[length:var(--t-label)] leading-[var(--lh-label)] tracking-[0.14em] uppercase text-[var(--r-muted)]">
               The short version
             </p>
             <div className="mt-3 flex flex-col gap-3">
               {doc.summary.map((line, i) => (
                 <p
                   key={i}
-                  className="font-helvetica text-[clamp(0.95rem,1.4vw,1.05rem)] leading-[1.6] text-[var(--r-ink-2)]"
+                  className="font-helvetica text-[length:var(--t-title)] leading-[var(--lh-title)] text-[var(--r-ink-2)]"
                 >
                   <Rich text={line} />
                 </p>
@@ -91,7 +91,7 @@ export function ReportShell({ doc }: { doc: ReportDoc }) {
         ) : null}
 
         <nav aria-label="Sections" className="mt-10">
-          <p className="font-helvetica text-[0.7rem] font-semibold tracking-[0.14em] uppercase text-[var(--r-muted)]">
+          <p className="font-helvetica text-[length:var(--t-label)] leading-[var(--lh-label)] tracking-[0.14em] uppercase text-[var(--r-muted)]">
             Work through it
           </p>
           <ol className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -101,22 +101,22 @@ export function ReportShell({ doc }: { doc: ReportDoc }) {
                 <li key={s.id}>
                   <a
                     href={`#${s.id}`}
-                    className="flex h-full flex-col gap-1.5 rounded-[12px] border border-[var(--r-hair)] bg-[var(--r-surface)] p-4 transition-colors hover:border-[var(--r-brand)]"
+                    className="flex h-full flex-col gap-1.5 rounded-[var(--radius)] border border-[var(--r-hair)] bg-[var(--r-surface)] p-4 transition-colors hover:border-[var(--r-brand)]"
                   >
                     <span className="flex items-center gap-2">
-                      <span className="font-futura text-[0.78rem] font-bold text-[var(--r-brand)]">
+                      <span className="font-futura text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-brand-deep)]">
                         {String(i + 1).padStart(2, '0')}
                       </span>
                       {s.optional ? <Badge tone="quiet">Optional</Badge> : null}
                     </span>
-                    <span className="font-futura text-[0.98rem] leading-tight font-bold text-[var(--r-ink)]">
+                    <span className="font-futura text-[length:var(--t-strong)] leading-[var(--lh-strong)] text-[var(--r-ink)]">
                       {s.title}
                     </span>
-                    <span className="font-helvetica text-[0.8rem] leading-snug text-[var(--r-muted)]">
+                    <span className="font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">
                       {s.oneLiner}
                     </span>
                     {tasks ? (
-                      <span className="mt-auto pt-2 font-helvetica text-[0.72rem] text-[var(--r-brand)]">
+                      <span className="mt-auto pt-2 font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-brand-deep)]">
                         {tasks} {tasks === 1 ? 'task' : 'tasks'}
                       </span>
                     ) : null}
@@ -146,7 +146,7 @@ export function ReportShell({ doc }: { doc: ReportDoc }) {
         </div>
 
         <footer className="mt-12 border-t border-[var(--r-hair)] pt-6">
-          <p className="font-helvetica text-[0.78rem] text-[var(--r-muted)]">
+          <p className="font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">
             {doc.title} &middot; {doc.client.name} &middot; {issued} &middot; consultico.co.uk
           </p>
         </footer>

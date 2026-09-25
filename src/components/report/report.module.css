@@ -13,20 +13,100 @@
  */
 
 .scope {
-  --r-radius: 16px;
-  --r-radius-sm: 10px;
-  --r-pad: 24px;
-  --r-gap: 24px;
+  /* ---------------------------------------------------------------- type
+   *
+   * Seven steps, whole pixels, each named for its job. They replace forty
+   * ad-hoc declarations that had grown one component at a time — eleven of
+   * them between 10.88px and 14.08px, where a 0.64px difference reads as
+   * inconsistency rather than as hierarchy.
+   *
+   * Only the three display steps are fluid. Body must NOT be: if body size
+   * drifts with the viewport, the character count inside a fixed measure
+   * drifts with it, and you never ship the measure you designed.
+   *
+   * --t-strong is the one worth understanding. It is body size in Futura
+   * rather than a larger size in Helvetica, so an in-flow title reads as a
+   * heading because the FACE changes, not the size. One step replaces the six
+   * different sizes that were all trying to be "card title".
+   */
+  --t-display: clamp(2rem, 1.534rem + 1.99vw, 3rem);            /* 32 → 48 */
+  --t-title: clamp(1.625rem, 1.45rem + 0.75vw, 2rem);           /* 26 → 32 */
+  --t-lede: clamp(1.1875rem, 1.13rem + 0.25vw, 1.3125rem);      /* 19 → 21 */
+  --t-body: 18px;
+  --t-strong: 18px;
+  --t-small: 15px;
+  --t-label: 12px;
+
+  --lh-display: 1.04;
+  --lh-title: 1.15;
+  --lh-lede: 1.45;
+  --lh-body: 29px;
+  --lh-strong: 26px;
+  --lh-small: 23px;
+  --lh-label: 16px;
+
+  --ls-display: -0.022em;
+  --ls-title: -0.015em;
+  --ls-lede: -0.006em;
+  --ls-body: 0.004em;
+  --ls-small: 0.008em;
+  --ls-label: 0.14em;
+
+  /* Both faces load at one weight each. Every `font-semibold` on Helvetica was
+   * therefore synthesised — the page was smeared rather than bold, which is a
+   * large part of why nothing read as more important than anything else. This
+   * makes that impossible to reintroduce. */
+  font-synthesis-weight: none;
+  font-synthesis-style: none;
+
+  /* --------------------------------------------------------------- measure
+   *
+   * 32rem = 512px = 71 characters at an 18px body, computed against the
+   * measured mean advance of HelveticaNowDisplay (0.3998em, taken from the
+   * loaded face — classic Helvetica's 0.44em would give the wrong answer).
+   *
+   * In rem, not ch: `ch` resolves against each element's own font-size, so a
+   * 21px lede and an 18px paragraph in the same column would get different
+   * measures. The measure is a property of the column, not of the text in it.
+   */
+  --measure: 32rem;
+
+  /* ---------------------------------------------------------------- space
+   * Additive — each step is the sum of the two before it. A real ratio with
+   * real skips, so 16 and 24 are visibly different and nothing between them
+   * exists. It replaces 24 values spanning every Tailwind half-step, which
+   * taught a reader nothing because every gap was available. */
+  --s-1: 8px;    /* sibling */
+  --s-2: 16px;   /* group   */
+  --s-3: 24px;   /* block   */
+  --s-4: 40px;   /* cluster */
+  --s-5: 64px;   /* section */
+  --s-6: 104px;  /* beat — one meaning, one use, and the largest interval */
+
+  /* ------------------------------------------------------------ elevation */
+  --radius-inline: 4px;
+  --radius: 12px;
+  --radius-pill: 999px;
 
   --r-ink: #141414;
   --r-ink-2: #3d4654;
   --r-muted: #6b7482;
   --r-hair: #e4e8ef;
   --r-canvas: #f2f2f2;
+  /* The missing token. `pair`, `draft` and the email annotations filled with
+   * --r-canvas, which is the page background wherever Blocks renders
+   * unwrapped — so they were padded text with no visible container. */
+  --r-tint: #ebedf1;
   --r-surface: #ffffff;
 
   --r-brand: #007bff;
   --r-navy: #1b2a4a;
+  /* L4's fill, and the reason it is not --r-brand. White on #007bff measures
+   * 3.98:1 — under AA for body text, which is most of what an L4 panel holds.
+   * Deepening the same hue to #0a58c2 takes it to 6.6:1 and still reads
+   * unmistakably as the brand, so "blue means act" survives contact with the
+   * contrast requirement instead of being quietly waived. */
+  --r-brand-deep: #0a58c2;
 
   /* Status tints at 15% alpha over a solid text colour — the badge idiom. */
   --r-ok: #1f9d6b;
@@ -35,11 +115,10 @@
   --r-warn-bg: rgba(246, 181, 30, 0.18);
   --r-risk: #d63a3a;
   --r-risk-bg: rgba(214, 58, 58, 0.13);
-  --r-quiet: #6b7482;
   --r-quiet-bg: rgba(107, 116, 130, 0.12);
   --r-brand-bg: rgba(0, 123, 255, 0.11);
 
-  --r-shadow: rgba(145, 158, 171, 0.3) 0 0 2px 0, rgba(145, 158, 171, 0.12) 0 12px 24px -4px;
+  --r-shadow: 0 1px 2px rgba(20, 20, 20, 0.04), 0 8px 24px -8px rgba(20, 20, 20, 0.1);
 
   background: var(--r-canvas);
   color: var(--r-ink);
@@ -55,15 +134,42 @@
     --r-canvas: #0f141b;
     --r-surface: #161d26;
     --r-navy: #b9cde8;
+    /* Lifted off the near-black canvas so the panel still reads as a panel. */
+    --r-brand-deep: #1459b8;
     --r-shadow: rgba(0, 0, 0, 0.4) 0 0 2px 0, rgba(0, 0, 0, 0.3) 0 12px 24px -4px;
   }
 }
 
+/* ---------------------------------------------------------------------- L4
+ *
+ * The one coloured panel per page: the thing the reader is asked to DO.
+ *
+ * It re-declares the ink tokens rather than restyling its children. Everything
+ * inside — Rich, Disclosure, the placeholder chips, the textarea's own caret
+ * and scrollbars via color-scheme — then adapts by inheritance, so a dark
+ * panel costs one class instead of a second colour pathway through every
+ * component it happens to contain.
+ */
+.onBrand {
+  background: var(--r-brand-deep);
+  color: #fff;
+  color-scheme: dark;
+
+  --r-ink: #ffffff;
+  --r-ink-2: rgba(255, 255, 255, 0.86);
+  --r-muted: rgba(255, 255, 255, 0.7);
+  --r-hair: rgba(255, 255, 255, 0.28);
+  --r-surface: rgba(255, 255, 255, 0.12);
+  --r-tint: rgba(255, 255, 255, 0.1);
+  --r-quiet-bg: rgba(255, 255, 255, 0.16);
+  --r-brand: #ffffff;
+}
+
 .card {
   background: var(--r-surface);
-  border-radius: var(--r-radius);
+  border-radius: var(--radius);
   box-shadow: var(--r-shadow);
-  padding: var(--r-pad);
+  padding: var(--s-3);
 }
 
 /* A placeholder the client fills in: [First name], £X. Amber, as in the source. */
@@ -98,7 +204,7 @@
 .lane {
   position: relative;
   height: 44px;
-  border-radius: var(--r-radius-sm);
+  border-radius: var(--radius-inline);
   background: color-mix(in srgb, var(--r-canvas) 70%, transparent);
   border: 1px solid var(--r-hair);
 }
@@ -125,7 +231,7 @@
     var(--r-risk-bg) 0 6px,
     transparent 6px 12px
   );
-  border-radius: var(--r-radius-sm);
+  border-radius: var(--radius-inline);
 }
 
 .event {
@@ -178,7 +284,7 @@
 .frame {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--r-gap);
+  gap: var(--s-3);
   max-width: 1180px;
   margin: 0 auto;
   padding: 32px 16px 80px;
@@ -208,16 +314,108 @@
   min-width: 0;
 }
 
-.beat + .beat {
-  margin-top: 40px;
-  padding-top: 32px;
-  border-top: 1px solid var(--r-hair);
+/*
+ * The measure grid.
+ *
+ * Applied to any container whose direct children are content. Children sit in
+ * the text column by default and opt out with .bleed — one mechanism, rather
+ * than width overrides scattered through a dozen components.
+ *
+ * It has to live here rather than on .stage because a flex or block child
+ * cannot opt into a grandparent's grid. Blocks, and each beat section, ARE the
+ * grid.
+ *
+ * min(100%, …) makes mobile automatic: below the measure plus gutters the text
+ * column simply becomes the available width, so there is no breakpoint to
+ * maintain.
+ */
+.measure {
+  display: grid;
+  grid-template-columns:
+    [full-start] minmax(0, 1fr)
+    [text-start] min(100%, var(--measure)) [text-end]
+    minmax(0, 1fr) [full-end];
+}
+
+.measure > * {
+  grid-column: text;
+  min-width: 0;
+}
+
+/* Wide figures: the lane timeline, tables, the SERP mock, the day strip.
+ * Captions deliberately do NOT bleed — a caption sitting back inside the
+ * measure, left-aligned to the text edge, is most of what makes a wide figure
+ * read as belonging to a document rather than to a dashboard. */
+.measure > .bleed {
+  grid-column: full;
+}
+
+/*
+ * A beat: the page's three-act structure.
+ *
+ * Three signals and no box. The largest interval in the spacing scale, used
+ * nowhere else. A rule at full width — the only horizontal element wider than
+ * the measure, so it is unambiguously the page's own structure rather than a
+ * property of any block. And the rule is drawn in --r-ink.
+ *
+ * That last point is the whole fix. The separator used to be --r-hair, about
+ * 1.1:1 against the canvas, while an editorial callout got 3px of brand blue
+ * plus a tinted fill — so an aside outranked the structure. Same 1px stroke,
+ * twelve times the contrast, and the structural element wins at no cost.
+ */
+.beat {
+  margin-top: var(--s-6);
+}
+
+.beat::before {
+  content: "";
+  display: block;
+  grid-column: full;
+  border-top: 1px solid var(--r-ink);
+  margin-bottom: var(--s-3);
+}
+
+
+.beatHead {
+  margin-bottom: var(--s-3);
 }
 
 .beatLabel {
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
+  font-size: var(--t-label);
+  line-height: var(--lh-label);
+  letter-spacing: var(--ls-label);
   text-transform: uppercase;
+  /* Full ink. Structural labels get full ink; editorial ones get muted. */
+  color: var(--r-ink);
+}
+
+/* The numeral sits in the margin the measure creates — the only element in the
+ * document outside the text column, which is why it reads as structure. */
+.beatNum {
   color: var(--r-muted);
+  font-family: var(--font-futura);
+  /* It set no size at all, so it inherited 16px from the root — the one
+     rendered size on the page that belonged to no step. Inline, it sits beside
+     the beat label and takes the label's size. */
+  font-size: var(--t-label);
+  letter-spacing: var(--ls-label);
+  margin-right: var(--s-1);
+}
+
+@media (min-width: 1100px) {
+  .beatNum {
+    position: absolute;
+    left: -72px;
+    top: -0.24em;
+    margin-right: 0;
+    /* Out in the margin it is the only element outside the text column, and
+       nothing sits near enough to compete with it — so it can carry real size.
+       A number at 32px is a graphic; at 16px it was a footnote marker. */
+    font-size: var(--t-title);
+    line-height: var(--lh-title);
+    letter-spacing: var(--ls-title);
+  }
+  .beatHead {
+    position: relative;
+  }
 }

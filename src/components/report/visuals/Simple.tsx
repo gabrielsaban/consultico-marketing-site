@@ -23,7 +23,7 @@ export function DayStrip({ spec }: { spec: DayStripVisual }) {
             <span
               key={day}
               title={label ?? `Day ${day}: nothing`}
-              className={`h-9 flex-1 min-w-[18px] rounded-[6px] border ${
+              className={`h-9 flex-1 min-w-[18px] rounded-[var(--radius-inline)] border ${
                 label
                   ? 'border-transparent bg-[var(--r-brand)]'
                   : 'border-[var(--r-hair)] bg-[var(--r-canvas)]'
@@ -32,7 +32,7 @@ export function DayStrip({ spec }: { spec: DayStripVisual }) {
           );
         })}
       </div>
-      <figcaption className="mt-3 font-helvetica text-[0.82rem] leading-snug text-[var(--r-muted)]">
+      <figcaption className="mt-3 font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">
         <Rich text={spec.caption} />
       </figcaption>
     </figure>
@@ -50,11 +50,11 @@ export function Delta({ spec }: { spec: DeltaVisual }) {
     <div>
       <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
         <Side value={spec.from.value} label={spec.from.label} muted />
-        <span aria-hidden className="font-futura text-2xl text-[var(--r-brand)]">→</span>
+        <span aria-hidden className="font-futura text-2xl text-[var(--r-brand-deep)]">→</span>
         <Side value={spec.to.value} label={spec.to.label} />
       </div>
       {spec.note ? (
-        <p className="mt-3 font-helvetica text-[0.85rem] leading-snug text-[var(--r-muted)]">
+        <p className="mt-3 font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">
           <Rich text={spec.note} />
         </p>
       ) : null}
@@ -66,13 +66,13 @@ function Side({ value, label, muted = false }: { value: string; label: string; m
   return (
     <div>
       <p
-        className={`font-futura text-[clamp(2rem,5vw,3rem)] leading-none font-bold ${
-          muted ? 'text-[var(--r-muted)]' : 'text-[var(--r-brand)]'
+        className={`font-futura text-[length:var(--t-title)] leading-[var(--lh-title)] tracking-[var(--ls-title)] ${
+          muted ? 'text-[var(--r-muted)]' : 'text-[var(--r-brand-deep)]'
         }`}
       >
         {value}
       </p>
-      <p className="mt-1.5 font-helvetica text-[0.8rem] text-[var(--r-muted)]">{label}</p>
+      <p className="mt-1.5 font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">{label}</p>
     </div>
   );
 }

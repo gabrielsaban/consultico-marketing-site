@@ -28,7 +28,17 @@ import type { Playbook } from '@/lib/reports/content/playbook';
  * next.config.ts, which covers this page, the unlock page and /doc alike.
  */
 
+/*
+ * A title of its own. Without one the page inherited the marketing site's
+ * default — "Digital Marketing Consultant in Glasgow | Consultico" — which is
+ * wrong on the tab, wrong in the client's history and wrong on a bookmark.
+ *
+ * Deliberately says no more than the unlock page does. The reader is the
+ * client and already knows whose playbook it is; a browser tab, a history
+ * entry and a shared screen are all read by people who are not.
+ */
 export const metadata: Metadata = {
+  title: 'Private playbook · Consultico',
   robots: { index: false, follow: false },
 };
 

@@ -21,13 +21,13 @@ export function PlanBoard({ pb }: { pb: Playbook }) {
   return (
     <PlaybookFrame pb={pb}>
       <header>
-        <p className="font-helvetica text-[0.68rem] font-semibold tracking-[0.14em] uppercase text-[var(--r-brand)]">
+        <p className="font-helvetica text-[length:var(--t-label)] leading-[var(--lh-label)] tracking-[0.14em] uppercase text-[var(--r-brand-deep)]">
           The plan
         </p>
-        <h1 className="mt-2 font-futura text-[clamp(1.5rem,3.6vw,2.15rem)] leading-tight font-bold text-[var(--r-ink)]">
+        <h1 className="mt-2 font-futura text-[length:var(--t-title)] leading-[var(--lh-title)] text-[var(--r-ink)]">
           {pb.plan.horizonDays} days
         </h1>
-        <p className="mt-2 font-helvetica text-[0.9rem] text-[var(--r-muted)]">
+        <p className="mt-2 font-helvetica text-[length:var(--t-body)] leading-[var(--lh-body)] text-[var(--r-muted)]">
           {pb.plan.tasks.length} things to do, across {phases.length} phases.
         </p>
       </header>
@@ -41,16 +41,16 @@ export function PlanBoard({ pb }: { pb: Playbook }) {
             <Card key={phase.id}>
               <div className="flex flex-wrap items-baseline justify-between gap-2">
                 <div>
-                  <p className="font-futura text-[1.05rem] font-bold text-[var(--r-ink)]">
+                  <p className="font-futura text-[length:var(--t-strong)] leading-[var(--lh-strong)] text-[var(--r-ink)]">
                     {phase.label}
                   </p>
                   {phase.note ? (
-                    <p className="mt-0.5 font-helvetica text-[0.82rem] text-[var(--r-muted)]">
+                    <p className="mt-0.5 font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">
                       {phase.note}
                     </p>
                   ) : null}
                 </div>
-                <p className="font-helvetica text-[0.78rem] text-[var(--r-muted)]">
+                <p className="font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">
                   {tasks.length} {tasks.length === 1 ? 'task' : 'tasks'}
                 </p>
               </div>
@@ -65,7 +65,7 @@ export function PlanBoard({ pb }: { pb: Playbook }) {
                         {t.actionId ? (
                           <Link
                             href={`/r/${pb.slug}?a=${t.actionId}`}
-                            className="ml-2 font-helvetica text-[0.75rem] font-semibold text-[var(--r-brand)] hover:underline"
+                            className="ml-2 font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-brand-deep)] hover:underline"
                           >
                             why this →
                           </Link>
@@ -92,15 +92,15 @@ export function PlanBoard({ pb }: { pb: Playbook }) {
       */}
       {pb.outcomes.length ? (
         <section className="mt-10">
-          <h2 className="font-futura text-[1.15rem] font-bold text-[var(--r-ink)]">
+          <h2 className="font-futura text-[length:var(--t-strong)] leading-[var(--lh-strong)] text-[var(--r-ink)]">
             How we&rsquo;ll know it worked
           </h2>
           {pb.baselineRequest ? (
-            <div className="mt-3 rounded-[10px] border-l-[3px] border-[var(--r-brand)] bg-[var(--r-brand-bg)] px-4 py-3.5">
-              <p className="font-futura text-[0.92rem] font-bold text-[var(--r-ink)]">
+            <div className="mt-3 rounded-[var(--radius)] border-l-[3px] border-[var(--r-brand)] bg-[var(--r-brand-bg)] px-4 py-3.5">
+              <p className="font-futura text-[length:var(--t-strong)] leading-[var(--lh-strong)] text-[var(--r-ink)]">
                 {pb.baselineRequest.title}
               </p>
-              <p className="mt-1.5 font-helvetica text-[0.88rem] leading-[1.6] text-[var(--r-ink-2)]">
+              <p className="mt-1.5 font-helvetica text-[length:var(--t-body)] leading-[var(--lh-body)] text-[var(--r-ink-2)]">
                 <Rich text={pb.baselineRequest.body} />
               </p>
             </div>
@@ -108,22 +108,22 @@ export function PlanBoard({ pb }: { pb: Playbook }) {
 
           <ul className="mt-4 grid gap-4 sm:grid-cols-2">
             {pb.outcomes.map((o) => (
-              <li key={o.id} className="rounded-[10px] border border-[var(--r-hair)] p-4">
+              <li key={o.id} className="rounded-[var(--radius)] border border-[var(--r-hair)] p-4">
                 <div className="flex items-center gap-2">
                   <span
                     aria-hidden
-                    className={`font-futura text-[1.1rem] font-bold ${
-                      o.direction === 'up' ? 'text-[var(--r-ok)]' : 'text-[var(--r-brand)]'
+                    className={`font-futura text-[length:var(--t-strong)] leading-[var(--lh-strong)] ${
+                      o.direction === 'up' ? 'text-[var(--r-ok)]' : 'text-[var(--r-brand-deep)]'
                     }`}
                   >
                     {o.direction === 'up' ? '↑' : '↓'}
                   </span>
-                  <p className="font-futura text-[0.95rem] font-bold text-[var(--r-ink)]">{o.label}</p>
+                  <p className="font-futura text-[length:var(--t-strong)] leading-[var(--lh-strong)] text-[var(--r-ink)]">{o.label}</p>
                 </div>
-                <p className="mt-1.5 font-helvetica text-[0.85rem] leading-snug text-[var(--r-ink-2)]">
+                <p className="mt-1.5 font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-ink-2)]">
                   {o.definition}
                 </p>
-                <p className="mt-2 font-helvetica text-[0.78rem] text-[var(--r-muted)]">
+                <p className="mt-2 font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">
                   {o.measureFrom}
                 </p>
                 {/* No value slot. The type makes one impossible; so does this. */}

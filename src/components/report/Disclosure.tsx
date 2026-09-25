@@ -19,13 +19,11 @@ export function Disclosure({
   label,
   meta,
   children,
-  tone = 'default',
   toggleLabel = 'Why',
 }: {
   label: ReactNode;
   meta?: string;
   children: ReactNode;
-  tone?: 'default' | 'quiet';
   /** What the toggle says when closed. "Why" suits a reason; an exemplar or a
    *  template needs its own word, or the control lies about what it opens. */
   toggleLabel?: string;
@@ -42,25 +40,17 @@ export function Disclosure({
         aria-controls={id}
         className="flex w-full items-start gap-3 py-3 text-left group"
       >
-        <span
-          aria-hidden
-          className={`mt-[0.45em] size-1.5 shrink-0 rounded-full ${
-            tone === 'quiet' ? 'bg-[var(--r-muted)]' : 'bg-[var(--r-brand)]'
-          }`}
-        />
-        <span className="min-w-0 flex-1 font-helvetica text-[0.95rem] leading-[1.55] text-[var(--r-ink)]">
+        <span className="min-w-0 flex-1 font-helvetica text-[length:var(--t-body)] leading-[var(--lh-body)] tracking-[var(--ls-body)] text-[var(--r-ink)]">
           {label}
         </span>
         {meta ? (
-          <span className="shrink-0 rounded-full bg-[var(--r-quiet-bg)] px-2.5 py-0.5 font-helvetica text-[0.7rem] font-semibold text-[var(--r-muted)]">
+          <span className="shrink-0 rounded-[var(--radius-pill)] bg-[var(--r-quiet-bg)] px-2.5 py-0.5 font-helvetica text-[length:var(--t-label)] leading-[var(--lh-label)] text-[var(--r-muted)]">
             {meta}
           </span>
         ) : null}
         <span
           aria-hidden
-          className={`mt-[0.15em] shrink-0 font-helvetica text-[0.78rem] font-semibold text-[var(--r-brand)] transition-opacity ${
-            open ? 'opacity-60' : 'opacity-100'
-          }`}
+          className="mt-[0.15em] shrink-0 font-helvetica text-[length:var(--t-small)] text-[var(--r-muted)] underline decoration-[var(--r-hair)] underline-offset-4 group-hover:decoration-[var(--r-muted)]" 
         >
           {open ? 'Hide' : toggleLabel}
         </span>
@@ -68,7 +58,7 @@ export function Disclosure({
 
       {open ? (
         <div id={id} className="pb-4 pl-[1.1rem]">
-          <div className="border-l-2 border-[var(--r-brand-bg)] pl-4 font-helvetica text-[0.9rem] leading-[1.65] text-[var(--r-ink-2)]">
+          <div className="border-l-2 border-[var(--r-hair)] pl-4 font-helvetica text-[length:var(--t-body)] leading-[var(--lh-body)] tracking-[var(--ls-body)] text-[var(--r-ink-2)]">
             {children}
           </div>
         </div>

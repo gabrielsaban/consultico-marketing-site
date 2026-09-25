@@ -5,28 +5,46 @@ export function Card({ children, className = '' }: { children: ReactNode; classN
   return <div className={`${styles.card} ${className}`}>{children}</div>;
 }
 
-export function Eyebrow({ children }: { children: ReactNode }) {
+/**
+ * The only micro-label in the system.
+ *
+ * It replaces five sizes doing one job (0.65 / 0.68 / 0.7 / 0.72 / 0.75rem),
+ * three of which could appear on a single page. `tone` is the distinction that
+ * actually matters: a structural label gets full ink, an editorial one gets
+ * muted. Neither gets brand blue — that is reserved for things you can act on.
+ */
+export function Label({
+  children,
+  tone = 'quiet',
+}: {
+  children: ReactNode;
+  tone?: 'structural' | 'quiet';
+}) {
   return (
-    <p className="font-helvetica text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-[var(--r-brand)]">
+    <p
+      className={`font-helvetica text-[length:var(--t-label)] leading-[var(--lh-label)] tracking-[var(--ls-label)] uppercase ${
+        tone === 'structural' ? 'text-[var(--r-ink)]' : 'text-[var(--r-muted)]'
+      }`}
+    >
       {children}
     </p>
   );
 }
 
-export type Tone = 'ok' | 'warn' | 'risk' | 'quiet' | 'brand';
+/** No `brand` tone. Blue means "act on this"; a badge is never that. */
+export type Tone = 'ok' | 'warn' | 'risk' | 'quiet';
 
 const TONE: Record<Tone, string> = {
   ok: 'bg-[var(--r-ok-bg)] text-[var(--r-ok)]',
   warn: 'bg-[var(--r-warn-bg)] text-[var(--r-warn)]',
   risk: 'bg-[var(--r-risk-bg)] text-[var(--r-risk)]',
-  quiet: 'bg-[var(--r-quiet-bg)] text-[var(--r-quiet)]',
-  brand: 'bg-[var(--r-brand-bg)] text-[var(--r-brand)]',
+  quiet: 'bg-[var(--r-quiet-bg)] text-[var(--r-muted)]',
 };
 
 export function Badge({ tone = 'quiet', children }: { tone?: Tone; children: ReactNode }) {
   return (
     <span
-      className={`inline-block rounded-full px-2.5 py-1 font-helvetica text-[0.7rem] font-semibold whitespace-nowrap ${TONE[tone]}`}
+      className={`inline-block rounded-[var(--radius-pill)] px-2.5 py-1 font-helvetica text-[length:var(--t-label)] leading-[var(--lh-label)] whitespace-nowrap ${TONE[tone]}`}
     >
       {children}
     </span>
@@ -52,12 +70,14 @@ export function StatTile({
 }) {
   return (
     <div>
-      <p className="font-helvetica text-[0.78rem] font-medium text-[var(--r-muted)]">{label}</p>
-      <p className="mt-1 font-futura text-[clamp(1.6rem,3.4vw,2.1rem)] leading-none font-bold text-[var(--r-ink)]">
+      <p className="font-helvetica text-[length:var(--t-label)] leading-[var(--lh-label)] tracking-[var(--ls-label)] uppercase text-[var(--r-muted)]">
+        {label}
+      </p>
+      <p className="mt-[var(--s-1)] font-futura text-[length:var(--t-title)] leading-[var(--lh-title)] tracking-[var(--ls-title)] text-[var(--r-navy)]">
         {value}
       </p>
       {note ? (
-        <p className="mt-1.5 font-helvetica text-[0.75rem] leading-snug text-[var(--r-muted)]">
+        <p className="mt-[var(--s-1)] font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">
           {note}
         </p>
       ) : null}

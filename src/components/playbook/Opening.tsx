@@ -20,19 +20,19 @@ export function Opening({ pb }: { pb: Playbook }) {
   return (
     <article>
       <header>
-        <p className="font-helvetica text-[0.68rem] font-semibold tracking-[0.18em] uppercase text-[var(--r-brand)]">
+        <p className="font-helvetica text-[length:var(--t-label)] leading-[var(--lh-label)] tracking-[0.18em] uppercase text-[var(--r-brand-deep)]">
           {pb.title}
         </p>
-        <h1 className="mt-2 font-futura text-[clamp(1.8rem,4.6vw,2.7rem)] leading-[1.08] font-bold text-[var(--r-ink)]">
+        <h1 className="mt-2 font-futura text-[length:var(--t-title)] leading-[var(--lh-title)] text-[var(--r-ink)]">
           {pb.client.name}
           <span className="text-[var(--r-brand)]">.</span>
         </h1>
         {pb.subtitle ? (
-          <p className="mt-3 max-w-[54ch] font-helvetica text-[clamp(1rem,1.6vw,1.12rem)] leading-[1.55] text-[var(--r-ink-2)]">
+          <p className="mt-3 max-w-[54ch] font-helvetica text-[length:var(--t-title)] leading-[var(--lh-title)] text-[var(--r-ink-2)]">
             {pb.subtitle}
           </p>
         ) : null}
-        <p className="mt-4 font-helvetica text-[0.8rem] text-[var(--r-muted)]">
+        <p className="mt-4 font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">
           {new Date(pb.issued).toLocaleDateString('en-GB', { month: 'long', year: 'numeric' })} ·
           Prepared by {pb.preparedBy}
         </p>
@@ -52,14 +52,14 @@ export function Opening({ pb }: { pb: Playbook }) {
       ) : null}
 
       <section className="mt-8">
-        <h2 className="font-futura text-[1.25rem] font-bold text-[var(--r-ink)]">
+        <h2 className="font-futura text-[length:var(--t-title)] leading-[var(--lh-title)] text-[var(--r-ink)]">
           {pb.opening.title}
         </h2>
         <div className="mt-4 flex flex-col gap-3">
           {pb.opening.summary.map((line, i) => (
             <p
               key={i}
-              className="font-helvetica text-[clamp(0.98rem,1.5vw,1.08rem)] leading-[1.6] text-[var(--r-ink-2)]"
+              className="font-helvetica text-[length:var(--t-title)] leading-[var(--lh-title)] text-[var(--r-ink-2)]"
             >
               <Rich text={line} />
             </p>
@@ -72,10 +72,10 @@ export function Opening({ pb }: { pb: Playbook }) {
 
       {/* The map. This is what makes a seven-action playbook feel finite. */}
       <section className="mt-10">
-        <p className="font-helvetica text-[0.7rem] font-semibold tracking-[0.14em] uppercase text-[var(--r-muted)]">
+        <p className="font-helvetica text-[length:var(--t-label)] leading-[var(--lh-label)] tracking-[0.14em] uppercase text-[var(--r-muted)]">
           What you&rsquo;ll run
         </p>
-        <p className="mt-2 font-helvetica text-[0.9rem] leading-[1.6] text-[var(--r-ink-2)]">
+        <p className="mt-2 font-helvetica text-[length:var(--t-body)] leading-[var(--lh-body)] text-[var(--r-ink-2)]">
           <Rich text={pb.opening.howItWorks} />
         </p>
 
@@ -84,19 +84,19 @@ export function Opening({ pb }: { pb: Playbook }) {
             <Card key={part.id}>
               <div className="flex flex-wrap items-baseline justify-between gap-2">
                 <div>
-                  <p className="font-helvetica text-[0.65rem] font-semibold tracking-[0.14em] uppercase text-[var(--r-brand)]">
+                  <p className="font-helvetica text-[length:var(--t-label)] leading-[var(--lh-label)] tracking-[0.14em] uppercase text-[var(--r-brand-deep)]">
                     {part.label}
                   </p>
-                  <p className="mt-0.5 font-futura text-[1.02rem] font-bold text-[var(--r-ink)]">
+                  <p className="mt-0.5 font-futura text-[length:var(--t-strong)] leading-[var(--lh-strong)] text-[var(--r-ink)]">
                     {part.title}
                   </p>
                 </div>
-                <p className="font-helvetica text-[0.75rem] text-[var(--r-muted)]">
+                <p className="font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">
                   {actions.reduce((n, a) => n + a.minutes, 0)} min
                 </p>
               </div>
               {part.blurb ? (
-                <p className="mt-2 font-helvetica text-[0.85rem] leading-snug text-[var(--r-muted)]">
+                <p className="mt-2 font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">
                   {part.blurb}
                 </p>
               ) : null}
@@ -105,16 +105,16 @@ export function Opening({ pb }: { pb: Playbook }) {
                   <li key={a.id}>
                     <Link
                       href={`/r/${pb.slug}?a=${a.id}`}
-                      className="flex items-baseline gap-3 rounded-[8px] px-2 py-1.5 transition-colors hover:bg-[var(--r-canvas)]"
+                      className="flex items-baseline gap-3 rounded-[var(--radius)] px-2 py-1.5 transition-colors hover:bg-[var(--r-canvas)]"
                     >
-                      <span className="font-futura text-[0.78rem] font-bold text-[var(--r-brand)]">
+                      <span className="font-futura text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-brand-deep)]">
                         {String(a.order).padStart(2, '0')}
                       </span>
                       <span className="min-w-0 flex-1">
-                        <span className="block font-helvetica text-[0.92rem] font-semibold text-[var(--r-ink)]">
+                        <span className="block font-helvetica text-[length:var(--t-body)] leading-[var(--lh-body)] text-[var(--r-ink)]">
                           {a.title}
                         </span>
-                        <span className="mt-0.5 block font-helvetica text-[0.82rem] leading-snug text-[var(--r-muted)]">
+                        <span className="mt-0.5 block font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">
                           {a.oneLiner}
                         </span>
                       </span>
@@ -126,7 +126,7 @@ export function Opening({ pb }: { pb: Playbook }) {
           ))}
         </div>
 
-        <p className="mt-4 font-helvetica text-[0.8rem] text-[var(--r-muted)]">
+        <p className="mt-4 font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">
           {pb.actions.length} {pb.actions.length === 1 ? 'action' : 'actions'} · about{' '}
           {totalMinutes(pb)} minutes in total
         </p>
@@ -139,7 +139,7 @@ export function Opening({ pb }: { pb: Playbook }) {
         is throat-clearing. When answers start reaching a person, this grows
         into a real notice and says so before it starts happening.
       */}
-      <p className="mt-10 border-t border-[var(--r-hair)] pt-5 font-helvetica text-[0.8rem] leading-[1.6] text-[var(--r-muted)]">
+      <p className="mt-10 border-t border-[var(--r-hair)] pt-5 font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">
         {pb.privacy.body.map((line, i) => (
           <span key={i} className="block">
             <Rich text={line} />
@@ -149,7 +149,7 @@ export function Opening({ pb }: { pb: Playbook }) {
         {pb.privacy.contactEmail ? (
           <span className="block">
             Questions:{' '}
-            <a href={`mailto:${pb.privacy.contactEmail}`} className="text-[var(--r-brand)] hover:underline">
+            <a href={`mailto:${pb.privacy.contactEmail}`} className="text-[var(--r-brand-deep)] hover:underline">
               {pb.privacy.contactEmail}
             </a>
           </span>

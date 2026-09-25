@@ -37,11 +37,7 @@ export function ActionNav({
               trackReport('report_task_toggled', { slug, task_id: `action:${action.id}`, done: true });
             }
           }}
-          className={`rounded-lg px-5 py-2.5 font-helvetica text-[0.9rem] font-semibold transition-colors ${
-            done
-              ? 'bg-[var(--r-ok-bg)] text-[var(--r-ok)]'
-              : 'bg-[var(--r-brand)] text-white hover:opacity-90'
-          }`}
+          className={`rounded-[var(--radius)] px-5 py-2.5 font-helvetica text-[length:var(--t-body)] leading-[var(--lh-body)] transition-colors ${ done ? 'bg-[var(--r-ok-bg)] text-[var(--r-ok)]' : 'bg-[var(--r-brand-deep)] text-white hover:opacity-90' }`}
         >
           {done ? '✓ Done' : 'Mark this done'}
         </button>
@@ -49,7 +45,7 @@ export function ActionNav({
         {next ? (
           <Link
             href={`/r/${slug}?a=${next.id}`}
-            className="font-helvetica text-[0.9rem] font-semibold text-[var(--r-brand)] hover:underline"
+            className="font-helvetica text-[length:var(--t-body)] leading-[var(--lh-body)] text-[var(--r-brand-deep)] hover:underline"
           >
             Next: {next.title} →
           </Link>
@@ -59,7 +55,7 @@ export function ActionNav({
       {prev ? (
         <Link
           href={`/r/${slug}?a=${prev.id}`}
-          className="font-helvetica text-[0.82rem] text-[var(--r-muted)] hover:text-[var(--r-ink)]"
+          className="font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)] hover:text-[var(--r-ink)]"
         >
           ← {prev.title}
         </Link>

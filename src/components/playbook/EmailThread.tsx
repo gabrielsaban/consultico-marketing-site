@@ -45,16 +45,16 @@ export function EmailThread({ emails }: { emails: Email[] }) {
               role="tab"
               aria-selected={i === active}
               onClick={() => setActive(i)}
-              className={`w-full rounded-[10px] border p-3 text-left transition-colors ${
+              className={`w-full rounded-[var(--radius)] border p-3 text-left transition-colors ${
                 i === active
                   ? 'border-[var(--r-brand)] bg-[var(--r-brand-bg)]'
                   : 'border-[var(--r-hair)] bg-[var(--r-surface)] hover:border-[var(--r-brand)]'
               }`}
             >
-              <span className="block font-helvetica text-[0.68rem] font-semibold tracking-[0.08em] uppercase text-[var(--r-muted)]">
+              <span className="block font-helvetica text-[length:var(--t-label)] leading-[var(--lh-label)] tracking-[0.08em] uppercase text-[var(--r-muted)]">
                 {e.when}
               </span>
-              <span className="mt-1 block font-helvetica text-[0.85rem] leading-snug font-semibold text-[var(--r-ink)]">
+              <span className="mt-1 block font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-ink)]">
                 {e.subject}
               </span>
             </button>
@@ -64,12 +64,12 @@ export function EmailThread({ emails }: { emails: Email[] }) {
 
       <div className="min-w-0">
         {/* The email as it arrives. */}
-        <div className="rounded-[12px] border border-[var(--r-hair)] bg-[var(--r-surface)]">
+        <div className="rounded-[var(--radius)] border border-[var(--r-hair)] bg-[var(--r-surface)]">
           <div className="border-b border-[var(--r-hair)] p-5">
-            <p className="font-futura text-[1.05rem] leading-tight font-bold text-[var(--r-ink)]">
+            <p className="font-futura text-[length:var(--t-strong)] leading-[var(--lh-strong)] text-[var(--r-ink)]">
               {email.subject}
             </p>
-            <p className="mt-2 font-helvetica text-[0.78rem] text-[var(--r-muted)]">
+            <p className="mt-2 font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">
               Viktor Sághy &middot; sent {email.when.toLowerCase()}
             </p>
           </div>
@@ -77,7 +77,7 @@ export function EmailThread({ emails }: { emails: Email[] }) {
             {email.body.map((line, i) => (
               <p
                 key={i}
-                className="font-helvetica text-[0.92rem] leading-[1.65] text-[var(--r-ink)]"
+                className="font-helvetica text-[length:var(--t-body)] leading-[var(--lh-body)] text-[var(--r-ink)]"
               >
                 <Rich text={line} />
               </p>
@@ -88,16 +88,16 @@ export function EmailThread({ emails }: { emails: Email[] }) {
         {/* Why it is written that way. The part that makes it teachable. */}
         {email.notes.length ? (
           <div className="mt-5">
-            <p className="font-helvetica text-[0.68rem] font-semibold tracking-[0.14em] uppercase text-[var(--r-muted)]">
+            <p className="font-helvetica text-[length:var(--t-label)] leading-[var(--lh-label)] tracking-[0.14em] uppercase text-[var(--r-muted)]">
               Why it&rsquo;s written this way
             </p>
             <ol className="mt-3 grid gap-3 sm:grid-cols-2">
               {email.notes.map((n, i) => (
-                <li key={i} className="rounded-[10px] bg-[var(--r-canvas)] p-3.5">
-                  <p className="font-futura text-[0.85rem] font-bold text-[var(--r-ink)]">
+                <li key={i} className="rounded-[var(--radius)] bg-[var(--r-canvas)] p-3.5">
+                  <p className="font-futura text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-ink)]">
                     {n.title}
                   </p>
-                  <p className="mt-1 font-helvetica text-[0.83rem] leading-snug text-[var(--r-ink-2)]">
+                  <p className="mt-1 font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-ink-2)]">
                     <Rich text={n.why} />
                   </p>
                 </li>
@@ -106,7 +106,7 @@ export function EmailThread({ emails }: { emails: Email[] }) {
           </div>
         ) : null}
 
-        <p className="mt-5 font-helvetica text-[0.78rem] leading-snug text-[var(--r-muted)]">
+        <p className="mt-5 font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">
           Anything in amber is yours to fill in. Change the wording freely — but check the note
           beside a line before you cut it, because several are doing more than they look.
         </p>

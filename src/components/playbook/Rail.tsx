@@ -41,11 +41,7 @@ export function Rail({
     <nav aria-label="Playbook contents" className="flex flex-col gap-6">
       <Link
         href={`/r/${slug}`}
-        className={`block rounded-[10px] px-3 py-2.5 font-helvetica text-[0.88rem] font-semibold transition-colors ${
-          currentId
-            ? 'text-[var(--r-muted)] hover:bg-[var(--r-canvas)] hover:text-[var(--r-ink)]'
-            : 'bg-[var(--r-brand-bg)] text-[var(--r-brand)]'
-        }`}
+        className={`block rounded-[var(--radius)] px-3 py-2.5 font-helvetica text-[length:var(--t-body)] leading-[var(--lh-body)] transition-colors ${ currentId ? 'text-[var(--r-muted)] hover:bg-[var(--r-canvas)] hover:text-[var(--r-ink)]' : 'bg-[var(--r-brand-bg)] text-[var(--r-brand-deep)]' }`}
       >
         The situation
       </Link>
@@ -56,10 +52,10 @@ export function Rail({
 
         return (
           <div key={part.id}>
-            <p className="px-3 font-helvetica text-[0.65rem] font-semibold tracking-[0.14em] uppercase text-[var(--r-muted)]">
+            <p className="px-3 font-helvetica text-[length:var(--t-label)] leading-[var(--lh-label)] tracking-[0.14em] uppercase text-[var(--r-muted)]">
               {part.label}
             </p>
-            <p className="mt-0.5 px-3 font-futura text-[0.85rem] font-bold text-[var(--r-ink-2)]">
+            <p className="mt-0.5 px-3 font-futura text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-ink-2)]">
               {part.title}
             </p>
 
@@ -73,19 +69,17 @@ export function Rail({
                   <>
                     <span
                       aria-hidden
-                      className={`mt-[0.15em] grid size-[18px] shrink-0 place-items-center rounded-full text-[0.6rem] font-bold ${
-                        isDone
-                          ? 'bg-[var(--r-ok)] text-white'
-                          : isCurrent
-                            ? 'bg-[var(--r-brand)] text-white'
-                            : 'border border-[var(--r-hair)] text-[var(--r-muted)]'
-                      }`}
+                      className={`mt-[0.15em] grid size-[18px] shrink-0 place-items-center rounded-full text-[length:var(--t-small)] leading-[var(--lh-small)] ${ isDone ? 'bg-[var(--r-ok)] text-white' : isCurrent ? 'bg-white/25 text-white' : 'border border-[var(--r-hair)] text-[var(--r-muted)]' }`}
                     >
                       {isDone ? '✓' : item.order}
                     </span>
                     <span className="min-w-0 flex-1">
                       <span className="block leading-snug">{item.title}</span>
-                      <span className="mt-0.5 block font-helvetica text-[0.7rem] text-[var(--r-muted)]">
+                      <span
+                        className={`mt-0.5 block font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] ${
+                          isCurrent ? 'text-white/70' : 'text-[var(--r-muted)]'
+                        }`}
+                      >
                         {item.minutes} min{item.optional ? ' · optional' : ''}
                       </span>
                     </span>
@@ -93,7 +87,7 @@ export function Rail({
                 );
 
                 const base =
-                  'flex w-full items-start gap-2.5 rounded-[10px] px-3 py-2 text-left font-helvetica text-[0.85rem] transition-colors';
+                  'flex w-full items-start gap-2.5 rounded-[var(--radius)] px-3 py-2 text-left font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] transition-colors';
 
                 // Unreachable renders as a span with a reason, never a dead
                 // link. Inert while navigation is 'open'.
@@ -118,7 +112,7 @@ export function Rail({
                       aria-current={isCurrent ? 'step' : undefined}
                       className={`${base} ${
                         isCurrent
-                          ? 'bg-[var(--r-brand-bg)] font-semibold text-[var(--r-brand)]'
+                          ? 'bg-[var(--r-brand-deep)] text-white'
                           : 'text-[var(--r-ink-2)] hover:bg-[var(--r-canvas)]'
                       }`}
                     >
@@ -133,7 +127,7 @@ export function Rail({
       })}
 
       {showProgress ? (
-        <p className="px-3 font-helvetica text-[0.75rem] text-[var(--r-muted)]">
+        <p className="px-3 font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">
           {done.size} of {items.length} done
         </p>
       ) : null}
@@ -141,13 +135,13 @@ export function Rail({
       <div className="flex flex-col gap-1 border-t border-[var(--r-hair)] pt-4">
         <Link
           href={`/r/${slug}/plan`}
-          className="rounded-[10px] px-3 py-2 font-helvetica text-[0.85rem] text-[var(--r-ink-2)] transition-colors hover:bg-[var(--r-canvas)]"
+          className="rounded-[var(--radius)] px-3 py-2 font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-ink-2)] transition-colors hover:bg-[var(--r-canvas)]"
         >
           The 90-day plan
         </Link>
         <Link
           href={`/r/${slug}/resources`}
-          className="rounded-[10px] px-3 py-2 font-helvetica text-[0.85rem] text-[var(--r-ink-2)] transition-colors hover:bg-[var(--r-canvas)]"
+          className="rounded-[var(--radius)] px-3 py-2 font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-ink-2)] transition-colors hover:bg-[var(--r-canvas)]"
         >
           Resources
         </Link>
