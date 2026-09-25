@@ -324,8 +324,14 @@ export type PrivacyNotice = {
   /** Capped at 20 words. Shown verbatim above every apply field. */
   short: string;
   body: RichText[];
-  retention: string;
-  contactEmail: string;
+  /**
+   * Both describe what happens to an answer once it leaves the browser, so
+   * both are optional while nothing does. When the progress endpoint ships,
+   * fill them in — and say who reads a note and when, because "may be read"
+   * makes people write nothing.
+   */
+  retention?: string;
+  contactEmail?: string;
 };
 
 /* ----------------------------------------------------------------- projections */

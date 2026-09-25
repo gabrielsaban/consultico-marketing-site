@@ -132,25 +132,30 @@ export function Opening({ pb }: { pb: Playbook }) {
         </p>
       </section>
 
-      {/* Said properly, once, before anything is written anywhere. */}
-      <section className="mt-10 rounded-[12px] border border-[var(--r-hair)] bg-[var(--r-canvas)] p-5">
-        <p className="font-futura text-[0.95rem] font-bold text-[var(--r-ink)]">
-          About the notes you write here
-        </p>
-        <div className="mt-2 flex flex-col gap-2">
-          {pb.privacy.body.map((line, i) => (
-            <p key={i} className="font-helvetica text-[0.85rem] leading-[1.6] text-[var(--r-ink-2)]">
-              <Rich text={line} />
-            </p>
-          ))}
-        </div>
-        <p className="mt-3 font-helvetica text-[0.8rem] text-[var(--r-muted)]">
-          {pb.privacy.retention} · Questions:{' '}
-          <a href={`mailto:${pb.privacy.contactEmail}`} className="text-[var(--r-brand)] hover:underline">
-            {pb.privacy.contactEmail}
-          </a>
-        </p>
-      </section>
+      {/*
+        Kept deliberately small. While notes never leave the browser there is
+        nothing to disclose, so this is one quiet line rather than a boxed
+        notice — four paragraphs of housekeeping near the top of a deliverable
+        is throat-clearing. When answers start reaching a person, this grows
+        into a real notice and says so before it starts happening.
+      */}
+      <p className="mt-10 border-t border-[var(--r-hair)] pt-5 font-helvetica text-[0.8rem] leading-[1.6] text-[var(--r-muted)]">
+        {pb.privacy.body.map((line, i) => (
+          <span key={i} className="block">
+            <Rich text={line} />
+          </span>
+        ))}
+        {pb.privacy.retention ? <span className="block">{pb.privacy.retention}</span> : null}
+        {pb.privacy.contactEmail ? (
+          <span className="block">
+            Questions:{' '}
+            <a href={`mailto:${pb.privacy.contactEmail}`} className="text-[var(--r-brand)] hover:underline">
+              {pb.privacy.contactEmail}
+            </a>
+          </span>
+        ) : null}
+      </p>
+
     </article>
   );
 }

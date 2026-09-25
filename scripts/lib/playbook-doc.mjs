@@ -209,7 +209,9 @@ export function validatePlaybook(doc) {
   if (!pv) {
     c.err('doc.privacy', 'required — a playbook that saves what a client writes must say who reads it');
   } else {
-    c.req('doc.privacy', pv, ['short', 'retention', 'contactEmail']);
+    // retention and contactEmail describe server-side handling; not required
+    // while answers never leave the browser.
+    c.req('doc.privacy', pv, ['short']);
     if (pv.short && words(pv.short) > LIMITS.privacyShortWords) {
       c.err('doc.privacy.short', `${words(pv.short)} words, max ${LIMITS.privacyShortWords} — it sits above every field`);
     }
