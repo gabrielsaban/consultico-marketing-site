@@ -24,7 +24,7 @@ export function Journey({ spec }: { spec: JourneyVisual }) {
         return (
           <li
             key={i}
-            className={`rounded-[var(--radius)] border-t-[3px] bg-[var(--r-canvas)] p-3.5 ${state.ring}`}
+            className={`rounded-[var(--radius)] border-t-[3px] bg-[var(--r-tint)] p-[var(--s-2)] ${state.ring}`}
           >
             <span className="flex items-center gap-2">
               <span className={`size-2 rounded-full ${state.dot}`} aria-hidden />

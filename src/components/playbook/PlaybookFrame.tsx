@@ -3,6 +3,7 @@ import type { Playbook } from '@/lib/reports/content/playbook';
 import { railItems, reachableActions } from '@/lib/reports/playbook-nav';
 import { ProgressProvider } from './ProgressProvider';
 import { Rail } from './Rail';
+import { TopBar } from './TopBar';
 import styles from '../report/report.module.css';
 
 /**
@@ -27,8 +28,15 @@ export function PlaybookFrame({
 
   return (
     <div className={styles.scope}>
-      <div className={styles.frame}>
-        <ProgressProvider slug={pb.slug}>
+      <ProgressProvider slug={pb.slug}>
+        <TopBar
+          slug={pb.slug}
+          title={pb.title}
+          client={pb.client.name}
+          total={pb.actions.length}
+          planLabel={`The ${pb.plan.horizonDays}-day plan`}
+        />
+        <div className={styles.frame}>
           <div className={styles.rail}>
             <Rail
               slug={pb.slug}
@@ -40,8 +48,8 @@ export function PlaybookFrame({
             />
           </div>
           <main className={styles.stage}>{children}</main>
-        </ProgressProvider>
-      </div>
+        </div>
+      </ProgressProvider>
     </div>
   );
 }

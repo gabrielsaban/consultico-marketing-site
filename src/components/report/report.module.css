@@ -133,11 +133,27 @@
     --r-hair: #27303d;
     --r-canvas: #0f141b;
     --r-surface: #161d26;
+    --r-tint: #1c2531;
     --r-navy: #b9cde8;
     /* Lifted off the near-black canvas so the panel still reads as a panel. */
     --r-brand-deep: #1459b8;
+    /* The amber placeholder chip needs both moves. Lifting the ink alone only
+       reaches ~4.1:1, because the tint underneath lifts the background with
+       it. */
+    --r-warn: #f0bf4a;
+    --r-warn-bg: rgba(240, 191, 74, 0.12);
+    --r-brand-bg: rgba(90, 169, 255, 0.18);
     --r-shadow: rgba(0, 0, 0, 0.4) 0 0 2px 0, rgba(0, 0, 0, 0.3) 0 12px 24px -4px;
+
+    color-scheme: dark;
   }
+
+  /* The covers are printed panels: on a near-black canvas they have to come
+     UP to read as panels, not down. #141414 in particular was all but
+     identical to the dark canvas, so the one card the index is built around
+     disappeared. */
+  .dInk { background: #262f3c; }
+  .dQuiet .coverNum { color: rgba(255, 255, 255, 0.07); }
 }
 
 /* ---------------------------------------------------------------------- L4
@@ -214,7 +230,8 @@
   inset-inline-start: 10px;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 11px;
+  font-size: var(--t-label);
+  line-height: var(--lh-label);
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--r-muted);
@@ -254,7 +271,8 @@
 .tick {
   position: absolute;
   translate: -50% 0;
-  font-size: 11px;
+  font-size: var(--t-label);
+  line-height: var(--lh-label);
   color: var(--r-muted);
   white-space: nowrap;
 }
@@ -281,6 +299,36 @@
  * prefetched, so the round trip is real; keeping the frame stable is what makes
  * it read as fast rather than as a page load.
  */
+/* ---------------------------------------------------------------- top bar
+ *
+ * Slim, sticky, and the only persistent furniture in the document. It answers
+ * "where am I, how much is left" without the reader having to find the rail —
+ * which matters most on a phone, where the rail sits below the fold.
+ */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  border-bottom: 1px solid var(--r-hair);
+  background: color-mix(in srgb, var(--r-canvas) 88%, transparent);
+  backdrop-filter: saturate(1.4) blur(10px);
+}
+
+.topbarInner {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 10px 16px;
+}
+
+@media (min-width: 900px) {
+  .topbarInner {
+    padding: 10px 32px;
+  }
+}
+
 .frame {
   display: grid;
   grid-template-columns: 1fr;
@@ -307,6 +355,20 @@
 
 .rail {
   scrollbar-width: thin;
+}
+
+/* On a phone the rail is static and precedes the stage, so the first screen of
+   every action was the whole contents list — eleven items before a word of the
+   thing the reader just tapped. Reordered visually only: the DOM stays put, so
+   the frame is still byte-identical across navigations and the rail still
+   reads in a sensible place to a screen reader. */
+@media (max-width: 899px) {
+  .rail {
+    order: 2;
+  }
+  .stage {
+    order: 1;
+  }
 }
 
 /* One action, not a stack. Generous, so it reads as one thing. */
@@ -348,6 +410,12 @@
  * read as belonging to a document rather than to a dashboard. */
 .measure > .bleed {
   grid-column: full;
+}
+
+/* A caption or note belonging to a bleeding figure. */
+.figNote {
+  margin-inline: auto;
+  max-width: var(--measure);
 }
 
 /*
@@ -418,4 +486,193 @@
   .beatHead {
     position: relative;
   }
+}
+
+
+/* ======================================================================= index
+ *
+ * The card grid that replaces the opener's list of links.
+ *
+ * The covers are typographic because the honest alternatives are worse: there
+ * is no photography of this client, and stock imagery would cheapen a private
+ * deliverable instantly. A navy field with the part numeral bleeding off the
+ * edge costs no assets and no licence, and six of them in a grid read as a
+ * designed set — which is the whole job, because the index has to make the
+ * document look worth reading before any of the typography inside it matters.
+ */
+
+.grid {
+  display: grid;
+  gap: var(--s-3);
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  align-items: stretch;
+}
+
+.grid > li {
+  display: flex;
+}
+
+.grid > li > a {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Whatever length the blurbs happen to be, every card's progress line sits on
+   the same baseline. Six ragged ones read as six unrelated cards. */
+.cardMeta {
+  margin-top: auto;
+  padding-top: var(--s-2);
+}
+
+/* The one card you are meant to open first runs the full width of the grid.
+   Being told "start here" is weaker than being shown it. */
+.gridWide {
+  grid-column: 1 / -1;
+}
+
+.cover {
+  position: relative;
+  container-type: inline-size;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  padding: var(--s-2);
+  background: var(--r-navy);
+  color: #fff;
+  transition: filter 0.15s ease;
+}
+
+a:hover > .cover {
+  filter: brightness(1.14);
+}
+
+/* Parts are distinguished by depth of the same navy rather than by hue. Three
+   accents would re-muddy exactly what the colour pass just cleaned, and depth
+   tells a reader something a hue does not: where in the sequence they are. */
+.d1 { background: #2e4472; }
+.d2 { background: #243758; }
+.d3 { background: #1b2a4a; }
+.dInk { background: #141414; }
+.dQuiet {
+  background: var(--r-tint);
+  color: var(--r-ink);
+}
+
+/* Label and title are one stack in the corner. They were positioned
+   independently, which worked until a card was wide and short and they landed
+   on top of each other. */
+.coverText {
+  position: relative;
+  z-index: 1;
+  max-width: 19ch;
+}
+
+.coverLabel {
+  display: block;
+  font-family: var(--font-helvetica);
+  font-size: var(--t-label);
+  line-height: var(--lh-label);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  opacity: 0.72;
+  margin-bottom: var(--s-1);
+}
+
+.coverTitle {
+  display: block;
+  font-family: var(--font-futura);
+  font-size: var(--t-strong);
+  line-height: var(--lh-strong);
+  text-wrap: balance;
+}
+
+.coverNum {
+  position: absolute;
+  right: 0.02em;
+  bottom: -0.28em;
+  font-family: var(--font-futura);
+  /* Sized against the card, not the viewport, so it bleeds off the edge by the
+     same amount whether the grid is showing two columns or four. */
+  font-size: 46cqw;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: rgba(255, 255, 255, 0.15);
+  pointer-events: none;
+  user-select: none;
+}
+
+.dQuiet .coverNum { color: rgba(20, 20, 20, 0.1); }
+
+/* The one card you are meant to open first is a banner rather than a poster:
+   a row, with the document's own signature mark set beside the title instead
+   of stacked over it. */
+.gridWide .cover {
+  aspect-ratio: auto;
+  min-height: 136px;
+  align-items: center;
+  gap: var(--s-4);
+  padding-inline: var(--s-3);
+}
+
+.gridWide .coverText {
+  max-width: 24ch;
+}
+
+.gridWide .coverTitle {
+  font-size: var(--t-title);
+  line-height: var(--lh-title);
+  letter-spacing: var(--ls-title);
+}
+
+/* The document's own signature image, reduced to a mark: fourteen days, two of
+   which are the calls the whole argument turns on. */
+.strip {
+  margin-inline-start: auto;
+  display: grid;
+  grid-template-columns: repeat(14, 1fr);
+  gap: 4px;
+  width: min(46%, 420px);
+}
+
+.stripCell {
+  height: 26px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.stripCell[data-call] {
+  background: var(--r-brand);
+}
+
+@media (max-width: 560px) {
+  .gridWide .cover {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--s-2);
+    padding: var(--s-2);
+  }
+  .strip {
+    width: 100%;
+    margin-inline-start: 0;
+  }
+  .stripCell { height: 14px; }
+}
+
+/* A hairline track, not a component. Completion is the only thing on this page
+   allowed to be green. */
+.bar {
+  height: 3px;
+  border-radius: var(--radius-pill);
+  background: var(--r-hair);
+  overflow: hidden;
+}
+
+.barFill {
+  height: 100%;
+  border-radius: var(--radius-pill);
+  background: var(--r-ok);
+  transition: width 0.25s ease;
 }

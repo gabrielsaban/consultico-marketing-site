@@ -1,5 +1,6 @@
 import type { DayStripVisual, DeltaVisual, StatRowVisual } from '@/lib/reports/content/schema';
 import { Rich } from '../Rich';
+import styles from '../report.module.css';
 import { StatTile } from '../Primitives';
 
 /**
@@ -32,7 +33,7 @@ export function DayStrip({ spec }: { spec: DayStripVisual }) {
           );
         })}
       </div>
-      <figcaption className="mt-3 font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">
+      <figcaption className={`${styles.figNote} mt-[var(--s-2)] font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]`}>
         <Rich text={spec.caption} />
       </figcaption>
     </figure>
@@ -50,11 +51,11 @@ export function Delta({ spec }: { spec: DeltaVisual }) {
     <div>
       <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
         <Side value={spec.from.value} label={spec.from.label} muted />
-        <span aria-hidden className="font-futura text-2xl text-[var(--r-brand-deep)]">→</span>
+        <span aria-hidden className="font-futura text-[length:var(--t-title)] leading-[var(--lh-title)] text-[var(--r-brand-deep)]">→</span>
         <Side value={spec.to.value} label={spec.to.label} />
       </div>
       {spec.note ? (
-        <p className="mt-3 font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">
+        <p className={`${styles.figNote} mt-[var(--s-2)] font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]`}>
           <Rich text={spec.note} />
         </p>
       ) : null}

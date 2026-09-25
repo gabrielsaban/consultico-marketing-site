@@ -20,6 +20,16 @@ export type ProgressState = {
   lastActionId?: string;
 };
 
+/**
+ * The `?a=` value that opens the diagnosis.
+ *
+ * The situation is not an action — it has no contract, no task and nothing to
+ * apply — but it is a destination, so it needs an address. A real action with
+ * this id would win, because actionById is consulted first; the validator
+ * rejects the collision at seal time rather than leaving it to chance here.
+ */
+export const SITUATION_ID = 'situation';
+
 export function orderedActions(pb: Playbook): Action[] {
   return [...pb.actions].sort((a, b) => a.order - b.order);
 }

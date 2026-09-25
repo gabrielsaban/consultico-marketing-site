@@ -5,6 +5,7 @@ import { Disclosure } from '../report/Disclosure';
 import { ContractStrip } from './ContractStrip';
 import { ActionNav } from './ActionNav';
 import { ApplyPanel } from './ApplyPanel';
+import { DoneToggle } from './DoneToggle';
 import styles from '../report/report.module.css';
 
 /**
@@ -70,10 +71,13 @@ export function ActionView({
       <header className={styles.measure}>
         {/* The folio — where you are and how far through. A reader should
             never have to wonder. */}
-        <p className="font-helvetica text-[length:var(--t-label)] leading-[var(--lh-label)] tracking-[var(--ls-label)] uppercase text-[var(--r-muted)]">
-          {pb.parts.find((p) => p.id === action.partId)?.label} &middot; Action {action.order} of{' '}
-          {pb.actions.length}
-        </p>
+        <div className="flex items-start justify-between gap-[var(--s-3)]">
+          <p className="font-helvetica text-[length:var(--t-label)] leading-[var(--lh-label)] tracking-[var(--ls-label)] uppercase text-[var(--r-muted)]">
+            {pb.parts.find((p) => p.id === action.partId)?.label} &middot; Action {action.order} of{' '}
+            {pb.actions.length}
+          </p>
+          <DoneToggle slug={pb.slug} actionId={action.id} />
+        </div>
         <h1 className="mt-[var(--s-2)] font-futura text-[length:var(--t-display)] leading-[var(--lh-display)] tracking-[var(--ls-display)] text-[var(--r-navy)]">
           {action.title}
         </h1>
@@ -95,11 +99,15 @@ export function ActionView({
         <Blocks blocks={action.why.blocks} visuals={pb.visuals} />
 
         {action.why.showing ? (
-          <figure className="m-0 mt-[var(--s-4)]">
+          /* The figure breaks out, and then re-establishes the text column
+             inside itself, so the visual runs full width while its lede,
+             caption and reading sit back on the text edge. Without this the
+             lane timeline was squeezed into 512px and scrolled sideways. */
+          <figure className={`${styles.bleed} ${styles.measure} m-0 mt-[var(--s-4)]`}>
             <p className="font-helvetica text-[length:var(--t-body)] leading-[var(--lh-body)] tracking-[var(--ls-body)] text-[var(--r-ink)]">
               <Rich text={action.why.showing.lede} />
             </p>
-            <div className="mt-[var(--s-3)]">
+            <div className={`${styles.bleed} mt-[var(--s-3)]`}>
               <Visual spec={pb.visuals[action.why.showing.visual]} />
             </div>
             {action.why.showing.caption ? (
@@ -173,7 +181,7 @@ export function ActionView({
       </Beat>
 
       <div className={styles.measure}>
-        <ActionNav slug={pb.slug} action={action} prev={prev} next={next} />
+        <ActionNav slug={pb.slug} prev={prev} next={next} />
       </div>
     </article>
   );

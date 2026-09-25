@@ -163,7 +163,7 @@ function BlockView({ block, visuals }: { block: Block; visuals: Record<string, V
       // Was --r-canvas, which is the page. These rendered as padded text with
       // no visible container at all.
       return (
-        <div className="bleed grid gap-[var(--s-2)] sm:grid-cols-2">
+        <div className={`${styles.bleed} grid gap-[var(--s-2)] sm:grid-cols-2`}>
           {[block.left, block.right].map((half, i) => (
             <div key={i} className="rounded-[var(--radius)] bg-[var(--r-tint)] p-[var(--s-3)]">
               <p className="font-futura text-[length:var(--t-strong)] leading-[var(--lh-strong)] text-[var(--r-ink)]">
@@ -199,7 +199,7 @@ function BlockView({ block, visuals }: { block: Block; visuals: Record<string, V
       const spec = visuals[block.visual];
       if (!spec) return null;
       return (
-        <figure className="bleed m-0">
+        <figure className={`${styles.bleed} m-0`}>
           <Visual spec={spec} />
           {block.caption ? (
             // Back inside the measure, left-aligned to the text edge. This one

@@ -1,53 +1,42 @@
 import type { Playbook } from '@/lib/reports/content/playbook';
-import { actionById, neighbours, railItems, reachableActions } from '@/lib/reports/playbook-nav';
-import { ProgressProvider } from './ProgressProvider';
-import { Rail } from './Rail';
+import { SITUATION_ID, actionById, neighbours } from '@/lib/reports/playbook-nav';
+import { PlaybookFrame } from './PlaybookFrame';
 import { Opening } from './Opening';
+import { Situation } from './Situation';
 import { ActionView } from './ActionView';
-import styles from '../report/report.module.css';
 
 /**
- * The frame around one playbook.
+ * One playbook, dispatched to the right stage.
  *
- * A server component. The rail and the controls are client children; every word
- * of the playbook renders here and stays out of the JS bundle.
+ * A server component. Every word of the playbook renders here and stays out of
+ * the JS bundle; the rail, the top bar and the controls are client children.
  *
- * An unknown or absent `?a=` renders the opening rather than 404ing. An unknown
+ * An unknown or absent `?a=` renders the index rather than 404ing. An unknown
  * id means a typo or a reordered playbook, and dropping someone on a 404 when
  * they have the right link and the right code is the wrong answer.
+ *
+ * The furniture comes from PlaybookFrame, the same component the plan and the
+ * resource shelf use. It used to be copied out here instead, which quietly put
+ * the "identical frame across every surface" property — the thing that makes
+ * navigation read as fast rather than as a page load — in the hands of whoever
+ * remembered to edit both files.
  */
 export function PlaybookShell({ pb, actionId }: { pb: Playbook; actionId?: string }) {
   const action = actionById(pb, actionId);
   const { prev, next } = action ? neighbours(pb, action.id) : {};
-
-  // Gating ships off, so this is every id. It is computed here rather than in
-  // the rail so that one function owns the meaning — see playbook-nav.ts.
-  const reachable = [...reachableActions(pb, { completed: new Set() })];
+  // Only when no real action claims the id, so a playbook can never lose an
+  // action to the reserved word.
+  const isSituation = !action && actionId === SITUATION_ID;
 
   return (
-    <div className={styles.scope}>
-      <div className={styles.frame}>
-        <ProgressProvider slug={pb.slug}>
-          <div className={styles.rail}>
-            <Rail
-              slug={pb.slug}
-              parts={pb.parts}
-              items={railItems(pb)}
-              currentId={action?.id}
-              reachable={reachable}
-              showProgress={pb.config.showProgress}
-            />
-          </div>
-
-          <main className={styles.stage}>
-            {action ? (
-              <ActionView pb={pb} action={action} prev={prev} next={next} />
-            ) : (
-              <Opening pb={pb} />
-            )}
-          </main>
-        </ProgressProvider>
-      </div>
-    </div>
+    <PlaybookFrame pb={pb} currentId={action?.id ?? (isSituation ? SITUATION_ID : undefined)}>
+      {action ? (
+        <ActionView pb={pb} action={action} prev={prev} next={next} />
+      ) : isSituation ? (
+        <Situation pb={pb} />
+      ) : (
+        <Opening pb={pb} />
+      )}
+    </PlaybookFrame>
   );
 }

@@ -91,7 +91,7 @@ export function SectionPanel({
 
         <span
           aria-hidden
-          className={`mt-1 shrink-0 font-futura text-lg text-[var(--r-muted)] transition-transform ${
+          className={`mt-1 shrink-0 font-futura text-[length:var(--t-strong)] leading-[var(--lh-strong)] text-[var(--r-muted)] transition-transform ${
             open ? 'rotate-45' : ''
           }`}
         >

@@ -38,7 +38,7 @@ import type { Playbook } from '@/lib/reports/content/playbook';
  * entry and a shared screen are all read by people who are not.
  */
 export const metadata: Metadata = {
-  title: 'Private playbook · Consultico',
+  title: { absolute: 'Private playbook · Consultico' },
   robots: { index: false, follow: false },
 };
 

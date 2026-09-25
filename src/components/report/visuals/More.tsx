@@ -6,6 +6,7 @@ import type {
   TableVisual,
 } from '@/lib/reports/content/schema';
 import { Rich } from '../Rich';
+import styles from '../report.module.css';
 import { Badge, type Tone } from '../Primitives';
 
 /**
@@ -38,7 +39,7 @@ export function SplitBar({ spec }: { spec: SplitBarVisual }) {
           </span>
         ))}
       </div>
-      <p className="mt-2 font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">
+      <p className={`${styles.figNote} mt-[var(--s-2)] font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]`}>
         {spec.basis === 'rule' ? 'A target to hold to — not a measurement.' : 'Measured.'}
         {spec.note ? ' ' : null}
         {spec.note ? <Rich text={spec.note} /> : null}
@@ -209,7 +210,7 @@ export function DataTable({ spec }: { spec: TableVisual }) {
         </table>
       </div>
       {spec.note ? (
-        <p className="mt-3 font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">
+        <p className={`${styles.figNote} mt-[var(--s-2)] font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]`}>
           <Rich text={spec.note} />
         </p>
       ) : null}
