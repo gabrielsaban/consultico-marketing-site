@@ -50,7 +50,7 @@ function Index({ pb }: { pb: Playbook }) {
         </p>
       </header>
 
-      <ul className="mt-8 grid gap-4 sm:grid-cols-2">
+      <ul className="mt-[var(--s-4)] grid gap-[var(--s-2)] sm:grid-cols-2">
         {pb.resources.map((r) => {
           const k = r.kind ? KIND[r.kind] : undefined;
           return (
@@ -94,7 +94,7 @@ function One({ pb, resource }: { pb: Playbook; resource: Resource }) {
         ← All resources
       </Link>
 
-      <header className="mt-4">
+      <header className="mt-[var(--s-2)]">
         <h1 className="font-futura text-[length:var(--t-title)] leading-[var(--lh-title)] text-[var(--r-ink)]">
           {resource.title}
         </h1>
@@ -111,7 +111,7 @@ function One({ pb, resource }: { pb: Playbook; resource: Resource }) {
         ) : null}
       </header>
 
-      <div className="mt-8">
+      <div className="mt-[var(--s-4)]">
         <Body pb={pb} resource={resource} />
       </div>
     </article>
@@ -130,7 +130,7 @@ function Body({ pb, resource }: { pb: Playbook; resource: Resource }) {
 
     case 'panels':
       return (
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid gap-[var(--s-2)] sm:grid-cols-2">
           {body.panels.map((p) => (
             <Card key={p.title} className={p.wide ? 'sm:col-span-2' : ''}>
               <p className="font-futura text-[length:var(--t-strong)] leading-[var(--lh-strong)] text-[var(--r-ink)]">{p.title}</p>
@@ -166,7 +166,7 @@ function Body({ pb, resource }: { pb: Playbook; resource: Resource }) {
           <p className="mt-2 font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">
             The row above is an example. Fill one in per post.
           </p>
-          <div className="mt-6 grid gap-4 sm:grid-cols-2">
+          <div className="mt-[var(--s-3)] grid gap-[var(--s-2)] sm:grid-cols-2">
             {body.prompts.map((p) => (
               <Card key={p.title}>
                 <p className="font-futura text-[length:var(--t-strong)] leading-[var(--lh-strong)] text-[var(--r-ink)]">{p.title}</p>

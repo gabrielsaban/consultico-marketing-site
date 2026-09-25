@@ -51,12 +51,12 @@ export function SectionPanel({
   }, [open, slug, section.id, section.order]);
 
   return (
-    <section id={section.id} className={`${styles.card} scroll-mt-4`} aria-labelledby={headingId}>
+    <section id={section.id} className={`${styles.card} scroll-mt-[var(--s-2)]`} aria-labelledby={headingId}>
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
-        className="flex w-full items-start gap-4 text-left"
+        className="flex w-full items-start gap-[var(--s-2)] text-left"
       >
         <span
           aria-hidden
@@ -104,9 +104,9 @@ export function SectionPanel({
       </h2>
 
       {open ? (
-        <div className="mt-6">
+        <div className="mt-[var(--s-3)]">
           {section.meta?.length ? (
-            <dl className="mb-6 flex flex-wrap gap-x-8 gap-y-3 border-b border-[var(--r-hair)] pb-5">
+            <dl className="mb-[var(--s-3)] flex flex-wrap gap-x-8 gap-y-[var(--s-2)] border-b border-[var(--r-hair)] pb-5">
               {section.meta.map((m) => (
                 <div key={m.label}>
                   <dt className="font-helvetica text-[length:var(--t-label)] leading-[var(--lh-label)] tracking-[0.1em] uppercase text-[var(--r-muted)]">
@@ -123,7 +123,7 @@ export function SectionPanel({
           {children}
 
           {nextLabel ? (
-            <p className="mt-7 border-t border-[var(--r-hair)] pt-5 font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">
+            <p className="mt-[var(--s-3)] border-t border-[var(--r-hair)] pt-5 font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">
               Next: <span className="font-futura text-[var(--r-ink)]">{nextLabel}</span>{' '}
               <span className="text-[var(--r-muted)]">
                 &middot; {index + 2} of {total}

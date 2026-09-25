@@ -38,7 +38,7 @@ export function Disclosure({
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
         aria-controls={id}
-        className="flex w-full items-start gap-3 py-3 text-left group"
+        className="flex w-full items-start gap-[var(--s-2)] py-3 text-left group"
       >
         <span className="min-w-0 flex-1 font-helvetica text-[length:var(--t-body)] leading-[var(--lh-body)] tracking-[var(--ls-body)] text-[var(--r-ink)]">
           {label}

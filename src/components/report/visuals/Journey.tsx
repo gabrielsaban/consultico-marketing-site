@@ -18,7 +18,7 @@ const STATE = {
 
 export function Journey({ spec }: { spec: JourneyVisual }) {
   return (
-    <ol className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+    <ol className="grid gap-[var(--s-2)] sm:grid-cols-2 lg:grid-cols-5">
       {spec.nodes.map((n, i) => {
         const state = STATE[n.state];
         return (

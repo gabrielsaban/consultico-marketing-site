@@ -4,7 +4,12 @@ import { loadForRequest } from '@/lib/reports/load-for-request';
 import { unlockPath, reportPath } from '@/lib/reports/store';
 import { ResourceShelf } from '@/components/playbook/ResourceShelf';
 
-export const metadata: Metadata = { robots: { index: false, follow: false } };
+export const metadata: Metadata = {
+  // Absolute: the root layout's '%s | Consultico' template would otherwise put
+  // the marketing site's name on a private page's tab and browser history.
+  title: { absolute: 'Private playbook · Consultico' },
+  robots: { index: false, follow: false },
+};
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 

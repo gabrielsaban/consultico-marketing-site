@@ -137,7 +137,7 @@ function BlockView({ block, visuals }: { block: Block; visuals: Record<string, V
       const label = { keep: 'Keep', watch: 'Watch', fix: 'Fix' }[block.severity];
       return (
         <div className="border-y border-[var(--r-hair)] py-[var(--s-3)]">
-          <div className="flex flex-wrap items-center gap-3">
+          <div className="flex flex-wrap items-center gap-[var(--s-2)]">
             <Badge tone={tone[block.severity]}>{label}</Badge>
             <p className="font-futura text-[length:var(--t-strong)] leading-[var(--lh-strong)] text-[var(--r-ink)]">
               {block.title}

@@ -40,7 +40,7 @@ export function LaneTimeline({ spec }: { spec: LaneTimelineVisual }) {
         <div
           role="tablist"
           aria-label="Timeline state"
-          className="mb-4 inline-flex gap-1 rounded-full bg-[var(--r-canvas)] p-1"
+          className="mb-[var(--s-2)] inline-flex gap-1 rounded-full bg-[var(--r-canvas)] p-1"
         >
           {spec.states.map((s, i) => (
             <button
@@ -61,7 +61,7 @@ export function LaneTimeline({ spec }: { spec: LaneTimelineVisual }) {
 
       <div id={`${groupId}-panel`} role="tabpanel" aria-labelledby={`${groupId}-tab-${active}`}>
         {state.counters.length ? (
-          <div className="mb-5 flex flex-wrap gap-x-10 gap-y-4">
+          <div className="mb-[var(--s-3)] flex flex-wrap gap-x-10 gap-y-[var(--s-2)]">
             {state.counters.map((c) => (
               <div key={c.label}>
                 <p className="font-futura text-[length:var(--t-title)] leading-[var(--lh-title)] text-[var(--r-ink)]">
@@ -143,7 +143,7 @@ export function LaneTimeline({ spec }: { spec: LaneTimelineVisual }) {
         </ul>
 
         {state.legend.length ? (
-          <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
+          <div className="mt-[var(--s-2)] flex flex-wrap gap-x-5 gap-y-2">
             {state.legend.map((l) => (
               <span key={l.kind} className="flex items-center gap-2">
                 <span
@@ -158,7 +158,7 @@ export function LaneTimeline({ spec }: { spec: LaneTimelineVisual }) {
         ) : null}
 
         {state.rows?.length ? (
-          <ul className="mt-6 divide-y divide-[var(--r-hair)] border-t border-[var(--r-hair)]">
+          <ul className="mt-[var(--s-3)] divide-y divide-[var(--r-hair)] border-t border-[var(--r-hair)]">
             {state.rows.map((row, i) => (
               <li key={i} className="flex flex-wrap items-baseline gap-x-3 gap-y-1 py-2.5">
                 <span className="w-24 shrink-0 font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">

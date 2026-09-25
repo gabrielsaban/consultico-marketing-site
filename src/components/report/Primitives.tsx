@@ -43,10 +43,13 @@ const TONE: Record<Tone, string> = {
   quiet: 'bg-[var(--r-quiet-bg)] text-[var(--r-ink-2)]',
 };
 
+/* self-start because a flex item is blockified: `inline-block` inside a
+ * column (the resource cards, the contract strip) was being stretched to the
+ * full width of the card, so every badge read as a coloured bar. */
 export function Badge({ tone = 'quiet', children }: { tone?: Tone; children: ReactNode }) {
   return (
     <span
-      className={`inline-block rounded-[var(--radius-pill)] px-2.5 py-1 font-helvetica text-[length:var(--t-label)] leading-[var(--lh-label)] whitespace-nowrap ${TONE[tone]}`}
+      className={`inline-block self-start rounded-[var(--radius-pill)] px-2.5 py-1 font-helvetica text-[length:var(--t-label)] leading-[var(--lh-label)] whitespace-nowrap ${TONE[tone]}`}
     >
       {children}
     </span>

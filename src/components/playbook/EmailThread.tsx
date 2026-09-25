@@ -31,7 +31,7 @@ export function EmailThread({ emails }: { emails: Email[] }) {
   if (!email) return null;
 
   return (
-    <div className="grid gap-5 lg:grid-cols-[230px_minmax(0,1fr)] lg:items-start">
+    <div className="grid gap-[var(--s-3)] lg:grid-cols-[230px_minmax(0,1fr)] lg:items-start">
       {/* The sequence. Horizontal on a phone, a column on a laptop. */}
       <ol
         role="tablist"
@@ -73,7 +73,7 @@ export function EmailThread({ emails }: { emails: Email[] }) {
               Viktor Sághy &middot; sent {email.when.toLowerCase()}
             </p>
           </div>
-          <div className="flex flex-col gap-3 p-5">
+          <div className="flex flex-col gap-[var(--s-2)] p-5">
             {email.body.map((line, i) => (
               <p
                 key={i}
@@ -87,11 +87,11 @@ export function EmailThread({ emails }: { emails: Email[] }) {
 
         {/* Why it is written that way. The part that makes it teachable. */}
         {email.notes.length ? (
-          <div className="mt-5">
+          <div className="mt-[var(--s-3)]">
             <p className="font-helvetica text-[length:var(--t-label)] leading-[var(--lh-label)] tracking-[0.14em] uppercase text-[var(--r-muted)]">
               Why it&rsquo;s written this way
             </p>
-            <ol className="mt-3 grid gap-3 sm:grid-cols-2">
+            <ol className="mt-[var(--s-2)] grid gap-[var(--s-2)] sm:grid-cols-2">
               {email.notes.map((n, i) => (
                 <li key={i} className="rounded-[var(--radius)] bg-[var(--r-canvas)] p-3.5">
                   <p className="font-futura text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-ink)]">
@@ -106,7 +106,7 @@ export function EmailThread({ emails }: { emails: Email[] }) {
           </div>
         ) : null}
 
-        <p className="mt-5 font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">
+        <p className="mt-[var(--s-3)] font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">
           Anything in amber is yours to fill in. Change the wording freely — but check the note
           beside a line before you cut it, because several are doing more than they look.
         </p>

@@ -663,7 +663,7 @@ a:hover > .cover {
 
 .stripCell {
   height: 26px;
-  border-radius: 2px;
+  border-radius: var(--radius-inline);
   background: rgba(255, 255, 255, 0.16);
 }
 

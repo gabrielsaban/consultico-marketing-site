@@ -46,7 +46,7 @@ export function Rail({
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <nav aria-label="Playbook contents" className="flex flex-col gap-6">
+    <nav aria-label="Playbook contents" className="flex flex-col gap-[var(--s-3)]">
       <button
         type="button"
         onClick={() => setExpanded((v) => !v)}
@@ -59,7 +59,7 @@ export function Rail({
         </span>
       </button>
 
-      <div className={`flex flex-col gap-6 ${expanded ? 'flex' : 'hidden'} min-[900px]:flex`}>
+      <div className={`flex flex-col gap-[var(--s-3)] ${expanded ? 'flex' : 'hidden'} min-[900px]:flex`}>
       {/* Two destinations, not one. The index and the diagnosis were sharing a
           link, which is how "The situation" came to read as a section heading
           rather than as something you open. */}

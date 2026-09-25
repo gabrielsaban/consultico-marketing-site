@@ -61,7 +61,7 @@ export function IdeaLoop({ spec }: { spec: IdeaLoopVisual }) {
               : 'border-[var(--r-hair)] bg-[var(--r-canvas)]'
           }`}
         >
-          <div className="flex items-baseline gap-3">
+          <div className="flex items-baseline gap-[var(--s-2)]">
             <span className="font-futura text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-brand-ink)]">
               {s.gate ? '?' : String(i + 1).padStart(2, '0')}
             </span>
@@ -99,7 +99,7 @@ export function SerpMock({ spec }: { spec: SerpVisual }) {
       <p className="rounded-full border border-[var(--r-hair)] px-4 py-2 font-helvetica text-[length:var(--t-body)] leading-[var(--lh-body)] text-[var(--r-muted)]">
         {spec.query}
       </p>
-      <ol className="mt-4 flex flex-col gap-4">
+      <ol className="mt-[var(--s-2)] flex flex-col gap-[var(--s-2)]">
         {spec.results.map((r, i) => {
           const v = VERDICT[r.verdict];
           return (
@@ -136,7 +136,7 @@ const STATUS: Record<string, { label: string; tone: Tone }> = {
 
 export function FixList({ spec }: { spec: FixListVisual }) {
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-[var(--s-3)]">
       {spec.groups.map((g) => {
         const todo = g.items.filter((i) => i.status !== 'have').length;
         return (

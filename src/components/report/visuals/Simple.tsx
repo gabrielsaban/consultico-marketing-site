@@ -49,7 +49,7 @@ export function DayStrip({ spec }: { spec: DayStripVisual }) {
 export function Delta({ spec }: { spec: DeltaVisual }) {
   return (
     <div>
-      <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+      <div className="flex flex-wrap items-center gap-x-6 gap-y-[var(--s-2)]">
         <Side value={spec.from.value} label={spec.from.label} muted />
         <span aria-hidden className="font-futura text-[length:var(--t-title)] leading-[var(--lh-title)] text-[var(--r-brand-ink)]">→</span>
         <Side value={spec.to.value} label={spec.to.label} />
@@ -80,7 +80,7 @@ function Side({ value, label, muted = false }: { value: string; label: string; m
 
 export function StatRow({ spec }: { spec: StatRowVisual }) {
   return (
-    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+    <div className="grid gap-[var(--s-3)] sm:grid-cols-2 lg:grid-cols-4">
       {spec.stats.map((s) => (
         <StatTile key={s.label} value={s.value} label={s.label} note={s.note} />
       ))}

@@ -37,7 +37,7 @@ export function ReportShell({ doc }: { doc: ReportDoc }) {
             priority
           />
 
-          <p className="mt-9 font-helvetica text-[length:var(--t-label)] leading-[var(--lh-label)] tracking-[0.18em] uppercase text-[var(--r-brand-ink)]">
+          <p className="mt-[var(--s-4)] font-helvetica text-[length:var(--t-label)] leading-[var(--lh-label)] tracking-[0.18em] uppercase text-[var(--r-brand-ink)]">
             {doc.title}
           </p>
           <h1 className="mt-2 font-futura text-[length:var(--t-title)] leading-[var(--lh-title)] text-[var(--r-ink)]">
@@ -45,12 +45,12 @@ export function ReportShell({ doc }: { doc: ReportDoc }) {
             <span className="text-[var(--r-brand)]">.</span>
           </h1>
           {doc.subtitle ? (
-            <p className="mt-3 max-w-[54ch] font-helvetica text-[length:var(--t-title)] leading-[var(--lh-title)] text-[var(--r-ink-2)]">
+            <p className="mt-[var(--s-2)] max-w-[54ch] font-helvetica text-[length:var(--t-title)] leading-[var(--lh-title)] text-[var(--r-ink-2)]">
               {doc.subtitle}
             </p>
           ) : null}
 
-          <p className="mt-5 font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">
+          <p className="mt-[var(--s-3)] font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">
             {issued} &middot; Prepared by {doc.preparedBy} &middot; {sections.length} sections
           </p>
         </header>
@@ -63,8 +63,8 @@ export function ReportShell({ doc }: { doc: ReportDoc }) {
           panel, framed as the measurement plan. See the Outcome type.
         */}
         {doc.headlines.length ? (
-          <Card className="mt-8">
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <Card className="mt-[var(--s-4)]">
+            <div className="grid gap-[var(--s-3)] sm:grid-cols-2 lg:grid-cols-4">
               {doc.headlines.map((h) => (
                 <StatTile key={h.label} value={h.value} label={h.label} note={h.note} />
               ))}
@@ -73,11 +73,11 @@ export function ReportShell({ doc }: { doc: ReportDoc }) {
         ) : null}
 
         {doc.summary.length ? (
-          <Card className="mt-6">
+          <Card className="mt-[var(--s-3)]">
             <p className="font-helvetica text-[length:var(--t-label)] leading-[var(--lh-label)] tracking-[0.14em] uppercase text-[var(--r-muted)]">
               The short version
             </p>
-            <div className="mt-3 flex flex-col gap-3">
+            <div className="mt-[var(--s-2)] flex flex-col gap-[var(--s-2)]">
               {doc.summary.map((line, i) => (
                 <p
                   key={i}
@@ -90,11 +90,11 @@ export function ReportShell({ doc }: { doc: ReportDoc }) {
           </Card>
         ) : null}
 
-        <nav aria-label="Sections" className="mt-10">
+        <nav aria-label="Sections" className="mt-[var(--s-4)]">
           <p className="font-helvetica text-[length:var(--t-label)] leading-[var(--lh-label)] tracking-[0.14em] uppercase text-[var(--r-muted)]">
             Work through it
           </p>
-          <ol className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <ol className="mt-[var(--s-2)] grid gap-[var(--s-2)] sm:grid-cols-2 lg:grid-cols-3">
             {sections.map((s, i) => {
               const tasks = doc.plan.tasks.filter((t) => t.sectionId === s.id).length;
               return (
@@ -127,7 +127,7 @@ export function ReportShell({ doc }: { doc: ReportDoc }) {
           </ol>
         </nav>
 
-        <div className="mt-6 flex flex-col gap-4">
+        <div className="mt-[var(--s-3)] flex flex-col gap-[var(--s-2)]">
           {sections.map((s, i) => (
             <SectionPanel
               key={s.id}
@@ -145,7 +145,7 @@ export function ReportShell({ doc }: { doc: ReportDoc }) {
           ))}
         </div>
 
-        <footer className="mt-12 border-t border-[var(--r-hair)] pt-6">
+        <footer className="mt-[var(--s-4)] border-t border-[var(--r-hair)] pt-6">
           <p className="font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">
             {doc.title} &middot; {doc.client.name} &middot; {issued} &middot; consultico.co.uk
           </p>

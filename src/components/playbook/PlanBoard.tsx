@@ -32,7 +32,7 @@ export function PlanBoard({ pb }: { pb: Playbook }) {
         </p>
       </header>
 
-      <div className="mt-8 flex flex-col gap-5">
+      <div className="mt-[var(--s-4)] flex flex-col gap-[var(--s-3)]">
         {phases.map((phase) => {
           const tasks = pb.plan.tasks.filter((t) => t.phase === phase.id);
           if (!tasks.length) return null;
@@ -55,7 +55,7 @@ export function PlanBoard({ pb }: { pb: Playbook }) {
                 </p>
               </div>
 
-              <div className="mt-3">
+              <div className="mt-[var(--s-2)]">
                 {tasks.map((t) => (
                   <Disclosure
                     key={t.id}
@@ -91,12 +91,16 @@ export function PlanBoard({ pb }: { pb: Playbook }) {
         absence becomes a strength.
       */}
       {pb.outcomes.length ? (
-        <section className="mt-10">
+        <section className="mt-[var(--s-4)]">
           <h2 className="font-futura text-[length:var(--t-strong)] leading-[var(--lh-strong)] text-[var(--r-ink)]">
             How we&rsquo;ll know it worked
           </h2>
           {pb.baselineRequest ? (
-            <div className="mt-3 rounded-[var(--radius)] border-l-[3px] border-[var(--r-brand)] bg-[var(--r-brand-bg)] px-4 py-3.5">
+            /* The same demotion every other callout got: a 2px rule in
+               ink-2, no fill. This one still carried a 3px brand edge over a
+               blue tint, which broke the rule that blue means "you can act on
+               this" — a request for four numbers is not a button. */
+            <div className="mt-[var(--s-2)] max-w-[var(--measure)] border-l-2 border-[var(--r-ink-2)] pl-[var(--s-2)]">
               <p className="font-futura text-[length:var(--t-strong)] leading-[var(--lh-strong)] text-[var(--r-ink)]">
                 {pb.baselineRequest.title}
               </p>
@@ -106,7 +110,7 @@ export function PlanBoard({ pb }: { pb: Playbook }) {
             </div>
           ) : null}
 
-          <ul className="mt-4 grid gap-4 sm:grid-cols-2">
+          <ul className="mt-[var(--s-2)] grid gap-[var(--s-2)] sm:grid-cols-2">
             {pb.outcomes.map((o) => (
               <li key={o.id} className="rounded-[var(--radius)] border border-[var(--r-hair)] p-4">
                 <div className="flex items-center gap-2">
