@@ -28,6 +28,14 @@ import styles from '@/components/report/report.module.css';
  */
 
 export const metadata: Metadata = {
+  /*
+   * Absolute, so the root layout's '%s | Consultico' template does not put
+   * "Digital Marketing Consultant in Glasgow" on the tab of a private gate.
+   *
+   * It reveals nothing the page does not already say out loud in its own
+   * heading, and nothing about whose report it is or what it covers.
+   */
+  title: { absolute: 'Private report · Consultico' },
   robots: { index: false, follow: false },
 };
 
