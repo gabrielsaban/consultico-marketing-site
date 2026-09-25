@@ -21,7 +21,7 @@ export function PlanBoard({ pb }: { pb: Playbook }) {
   return (
     <PlaybookFrame pb={pb}>
       <header>
-        <p className="font-helvetica text-[length:var(--t-label)] leading-[var(--lh-label)] tracking-[0.14em] uppercase text-[var(--r-brand-deep)]">
+        <p className="font-helvetica text-[length:var(--t-label)] leading-[var(--lh-label)] tracking-[0.14em] uppercase text-[var(--r-brand-ink)]">
           The plan
         </p>
         <h1 className="mt-2 font-futura text-[length:var(--t-title)] leading-[var(--lh-title)] text-[var(--r-ink)]">
@@ -65,7 +65,7 @@ export function PlanBoard({ pb }: { pb: Playbook }) {
                         {t.actionId ? (
                           <Link
                             href={`/r/${pb.slug}?a=${t.actionId}`}
-                            className="ml-2 font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-brand-deep)] hover:underline"
+                            className="ml-2 font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-brand-ink)] hover:underline"
                           >
                             why this →
                           </Link>
@@ -113,7 +113,7 @@ export function PlanBoard({ pb }: { pb: Playbook }) {
                   <span
                     aria-hidden
                     className={`font-futura text-[length:var(--t-strong)] leading-[var(--lh-strong)] ${
-                      o.direction === 'up' ? 'text-[var(--r-ok)]' : 'text-[var(--r-brand-deep)]'
+                      o.direction === 'up' ? 'text-[var(--r-ok)]' : 'text-[var(--r-brand-ink)]'
                     }`}
                   >
                     {o.direction === 'up' ? '↑' : '↓'}

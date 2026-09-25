@@ -51,7 +51,7 @@ export function Delta({ spec }: { spec: DeltaVisual }) {
     <div>
       <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
         <Side value={spec.from.value} label={spec.from.label} muted />
-        <span aria-hidden className="font-futura text-[length:var(--t-title)] leading-[var(--lh-title)] text-[var(--r-brand-deep)]">→</span>
+        <span aria-hidden className="font-futura text-[length:var(--t-title)] leading-[var(--lh-title)] text-[var(--r-brand-ink)]">→</span>
         <Side value={spec.to.value} label={spec.to.label} />
       </div>
       {spec.note ? (
@@ -68,7 +68,7 @@ function Side({ value, label, muted = false }: { value: string; label: string; m
     <div>
       <p
         className={`font-futura text-[length:var(--t-title)] leading-[var(--lh-title)] tracking-[var(--ls-title)] ${
-          muted ? 'text-[var(--r-muted)]' : 'text-[var(--r-brand-deep)]'
+          muted ? 'text-[var(--r-muted)]' : 'text-[var(--r-brand-ink)]'
         }`}
       >
         {value}

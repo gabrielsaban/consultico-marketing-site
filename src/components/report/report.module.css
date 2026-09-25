@@ -90,7 +90,12 @@
 
   --r-ink: #141414;
   --r-ink-2: #3d4654;
-  --r-muted: #6b7482;
+  /* The most-used secondary colour in the document. #6b7482 measured 4.22:1
+     on the canvas — missing AA by a whisker and taking a dozen labels with
+     it. This value clears 4.5:1 on --r-canvas AND on --r-tint, which is where
+     most muted text actually sits. On a badge's own tint it still does not,
+     so badges set their text in --r-ink-2 instead. */
+  --r-muted: #616a78;
   --r-hair: #e4e8ef;
   --r-canvas: #f2f2f2;
   /* The missing token. `pair`, `draft` and the email annotations filled with
@@ -101,19 +106,33 @@
 
   --r-brand: #007bff;
   --r-navy: #1b2a4a;
-  /* L4's fill, and the reason it is not --r-brand. White on #007bff measures
-   * 3.98:1 — under AA for body text, which is most of what an L4 panel holds.
-   * Deepening the same hue to #0a58c2 takes it to 6.6:1 and still reads
-   * unmistakably as the brand, so "blue means act" survives contact with the
-   * contrast requirement instead of being quietly waived. */
-  --r-brand-deep: #0a58c2;
+  /* Two tokens, because brand blue has two jobs with opposite requirements
+   * and --r-brand #007bff fails both: as text on the canvas it measures
+   * 3.55:1, and as a fill under white text 3.98:1. Deepening the same hue
+   * fixes both in light mode.
+   *
+   * They have to be separate because DARK MODE pulls them apart. There the
+   * canvas is near-black, so blue text has to go lighter, not darker, while a
+   * fill under white text still has to stay dark enough to carry it. One
+   * token cannot do both, and a single deepened blue put dark-blue text on a
+   * dark card. */
+  --r-brand-ink: #0a58c2;   /* blue as TEXT, on the canvas */
+  --r-brand-fill: #0a58c2;  /* blue as a FILL, under white text */
 
-  /* Status tints at 15% alpha over a solid text colour — the badge idiom. */
-  --r-ok: #1f9d6b;
+  /* Status tints at 15% alpha over a solid text colour — the badge idiom.
+   *
+   * The hues are darker than the obvious ones because of what the idiom does
+   * to them: a badge sets the solid colour as TEXT on its own tint, which for
+   * mid-tone green, amber and red lands at 2.6-3.5:1. Darkened, each clears
+   * 4.5:1 both on its own tint and on the canvas, and each is still plainly
+   * the colour it is meant to be — which matters for amber in particular,
+   * because the email pack's copy says "anything in amber is yours to fill
+   * in". Dark mode lifts them back up; see the dark block. */
+  --r-ok: #14684a;
   --r-ok-bg: rgba(31, 157, 107, 0.15);
-  --r-warn: #b97e0d;
+  --r-warn: #8a5c00;
   --r-warn-bg: rgba(246, 181, 30, 0.18);
-  --r-risk: #d63a3a;
+  --r-risk: #b02121;
   --r-risk-bg: rgba(214, 58, 58, 0.13);
   --r-quiet-bg: rgba(107, 116, 130, 0.12);
   --r-brand-bg: rgba(0, 123, 255, 0.11);
@@ -135,13 +154,18 @@
     --r-surface: #161d26;
     --r-tint: #1c2531;
     --r-navy: #b9cde8;
-    /* Lifted off the near-black canvas so the panel still reads as a panel. */
-    --r-brand-deep: #1459b8;
+    /* Text goes up off the near-black canvas (8.9:1); the fill stays down so
+       it can still carry white type (6.7:1). This is the pair diverging. */
+    --r-brand-ink: #7ab8ff;
+    --r-brand-fill: #1459b8;
     /* The amber placeholder chip needs both moves. Lifting the ink alone only
        reaches ~4.1:1, because the tint underneath lifts the background with
        it. */
     --r-warn: #f0bf4a;
     --r-warn-bg: rgba(240, 191, 74, 0.12);
+    /* The darkened light-mode status hues would be near-invisible here. */
+    --r-ok: #4fd39c;
+    --r-risk: #ff8f8f;
     --r-brand-bg: rgba(90, 169, 255, 0.18);
     --r-shadow: rgba(0, 0, 0, 0.4) 0 0 2px 0, rgba(0, 0, 0, 0.3) 0 12px 24px -4px;
 
@@ -167,13 +191,13 @@
  * component it happens to contain.
  */
 .onBrand {
-  background: var(--r-brand-deep);
+  background: var(--r-brand-fill);
   color: #fff;
   color-scheme: dark;
 
   --r-ink: #ffffff;
   --r-ink-2: rgba(255, 255, 255, 0.86);
-  --r-muted: rgba(255, 255, 255, 0.7);
+  --r-muted: rgba(255, 255, 255, 0.84);
   --r-hair: rgba(255, 255, 255, 0.28);
   --r-surface: rgba(255, 255, 255, 0.12);
   --r-tint: rgba(255, 255, 255, 0.1);
@@ -675,4 +699,81 @@ a:hover > .cover {
   border-radius: var(--radius-pill);
   background: var(--r-ok);
   transition: width 0.25s ease;
+}
+
+
+/* ====================================================================== unlock
+ *
+ * The front door, on the same tokens as the document behind it.
+ *
+ * It used to use the site's class-based `dark:` variants while the report used
+ * prefers-color-scheme, and the class defaults to light — so a client typed
+ * their code on a white page and landed on a dark document. One mechanism for
+ * the whole /r/ area fixes that, and stops the unlock page looking like a page
+ * of the marketing site rather than the way in to a private one.
+ */
+
+.unlock {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  padding: var(--s-5) var(--s-2);
+}
+
+.unlockCard {
+  width: 100%;
+  max-width: 26rem;
+  background: var(--r-surface);
+  border-radius: var(--radius);
+  box-shadow: var(--r-shadow);
+  padding: var(--s-4);
+}
+
+/* A single-colour wordmark. Forcing it to white is more predictable than
+   inverting it, which turns the navy into cream. */
+@media (prefers-color-scheme: dark) {
+  .unlockMark {
+    filter: brightness(0) invert(1);
+  }
+}
+
+.unlockField {
+  width: 100%;
+  margin-top: var(--s-1);
+  padding: 12px 16px;
+  border-radius: var(--radius-inline);
+  border: 1px solid var(--r-hair);
+  background: var(--r-canvas);
+  color: var(--r-ink);
+  font-family: var(--font-helvetica);
+  font-size: var(--t-body);
+  line-height: var(--lh-body);
+  letter-spacing: 0.02em;
+  outline: none;
+}
+
+.unlockField:focus {
+  border-color: var(--r-brand-ink);
+  box-shadow: 0 0 0 3px var(--r-brand-bg);
+}
+
+.unlockField[aria-invalid='true'] {
+  border-color: var(--r-risk);
+}
+
+.unlockSubmit {
+  width: 100%;
+  margin-top: var(--s-3);
+  padding: 12px 24px;
+  border-radius: var(--radius);
+  background: var(--r-brand-fill);
+  color: #fff;
+  font-family: var(--font-helvetica);
+  font-size: var(--t-body);
+  line-height: var(--lh-body);
+  transition: opacity 0.15s ease;
+}
+
+.unlockSubmit:hover {
+  opacity: 0.9;
 }

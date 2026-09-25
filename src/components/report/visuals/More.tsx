@@ -62,7 +62,7 @@ export function IdeaLoop({ spec }: { spec: IdeaLoopVisual }) {
           }`}
         >
           <div className="flex items-baseline gap-3">
-            <span className="font-futura text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-brand-deep)]">
+            <span className="font-futura text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-brand-ink)]">
               {s.gate ? '?' : String(i + 1).padStart(2, '0')}
             </span>
             <div className="min-w-0 flex-1">
@@ -108,7 +108,7 @@ export function SerpMock({ spec }: { spec: SerpVisual }) {
                 <span className="font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">{r.source}</span>
                 <Badge tone={v.tone}>{v.label}</Badge>
               </div>
-              <p className="mt-0.5 font-helvetica text-[length:var(--t-body)] leading-[var(--lh-body)] text-[var(--r-brand-deep)]">{r.title}</p>
+              <p className="mt-0.5 font-helvetica text-[length:var(--t-body)] leading-[var(--lh-body)] text-[var(--r-brand-ink)]">{r.title}</p>
               <p className="mt-0.5 font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">
                 <Rich text={r.note} />
               </p>

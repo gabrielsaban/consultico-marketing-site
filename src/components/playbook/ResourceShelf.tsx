@@ -39,7 +39,7 @@ function Index({ pb }: { pb: Playbook }) {
   return (
     <div>
       <header>
-        <p className="font-helvetica text-[length:var(--t-label)] leading-[var(--lh-label)] tracking-[0.14em] uppercase text-[var(--r-brand-deep)]">
+        <p className="font-helvetica text-[length:var(--t-label)] leading-[var(--lh-label)] tracking-[0.14em] uppercase text-[var(--r-brand-ink)]">
           Resources
         </p>
         <h1 className="mt-2 font-futura text-[length:var(--t-title)] leading-[var(--lh-title)] text-[var(--r-ink)]">
@@ -67,7 +67,7 @@ function Index({ pb }: { pb: Playbook }) {
                   {r.blurb}
                 </span>
                 {r.forWhat ? (
-                  <span className="mt-auto pt-2 font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-brand-deep)]">
+                  <span className="mt-auto pt-2 font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-brand-ink)]">
                     {r.forWhat}
                   </span>
                 ) : null}
@@ -104,7 +104,7 @@ function One({ pb, resource }: { pb: Playbook; resource: Resource }) {
         {from ? (
           <p className="mt-2 font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">
             From{' '}
-            <Link href={`/r/${pb.slug}?a=${from.id}`} className="text-[var(--r-brand-deep)] hover:underline">
+            <Link href={`/r/${pb.slug}?a=${from.id}`} className="text-[var(--r-brand-ink)] hover:underline">
               {from.title}
             </Link>
           </p>

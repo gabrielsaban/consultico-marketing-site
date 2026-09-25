@@ -44,7 +44,7 @@ export function Disclosure({
           {label}
         </span>
         {meta ? (
-          <span className="shrink-0 rounded-[var(--radius-pill)] bg-[var(--r-quiet-bg)] px-2.5 py-0.5 font-helvetica text-[length:var(--t-label)] leading-[var(--lh-label)] text-[var(--r-muted)]">
+          <span className="shrink-0 rounded-[var(--radius-pill)] bg-[var(--r-quiet-bg)] px-2.5 py-0.5 font-helvetica text-[length:var(--t-label)] leading-[var(--lh-label)] text-[var(--r-ink-2)]">
             {meta}
           </span>
         ) : null}

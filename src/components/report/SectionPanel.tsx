@@ -60,7 +60,7 @@ export function SectionPanel({
       >
         <span
           aria-hidden
-          className={`mt-0.5 grid size-8 shrink-0 place-items-center rounded-[9px] font-futura text-[length:var(--t-small)] leading-[var(--lh-small)] ${ open ? 'bg-[var(--r-brand)] text-white' : 'bg-[var(--r-brand-bg)] text-[var(--r-brand-deep)]' }`}
+          className={`mt-0.5 grid size-8 shrink-0 place-items-center rounded-[9px] font-futura text-[length:var(--t-small)] leading-[var(--lh-small)] ${ open ? 'bg-[var(--r-brand)] text-white' : 'bg-[var(--r-brand-bg)] text-[var(--r-brand-ink)]' }`}
         >
           {String(index + 1).padStart(2, '0')}
         </span>
@@ -68,7 +68,7 @@ export function SectionPanel({
         <span className="min-w-0 flex-1">
           <span className="flex flex-wrap items-center gap-x-3 gap-y-1">
             {section.eyebrow ? (
-              <span className="font-helvetica text-[length:var(--t-label)] leading-[var(--lh-label)] tracking-[0.14em] uppercase text-[var(--r-brand-deep)]">
+              <span className="font-helvetica text-[length:var(--t-label)] leading-[var(--lh-label)] tracking-[0.14em] uppercase text-[var(--r-brand-ink)]">
                 {section.eyebrow}
               </span>
             ) : null}

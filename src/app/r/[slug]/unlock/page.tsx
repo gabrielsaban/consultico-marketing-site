@@ -5,6 +5,7 @@ import { notFound, redirect } from 'next/navigation';
 import { getCookieSecret } from '@/lib/reports/config';
 import { decryptBody, readCookieValue } from '@/lib/reports/crypto';
 import { isValidSlug, loadEnvelope, reportCookieName, reportPath } from '@/lib/reports/store';
+import styles from '@/components/report/report.module.css';
 
 /**
  * The unlock page for one private report.
@@ -76,9 +77,16 @@ export default async function UnlockPage({ params, searchParams }: UnlockPagePro
   const error = e === '2' ? 'rate' : e === '1' ? 'code' : null;
 
   return (
-    <main className="relative flex min-h-screen items-center justify-center bg-brand-silk px-4 py-20 dark:bg-gray-950">
+    /*
+     * On the report's own scoped tokens, not the marketing site's. The two used
+     * different dark-mode mechanisms — this page keyed off the `.dark` class,
+     * which defaults to light, while the report keys off prefers-color-scheme —
+     * so a client in dark mode typed their code on a white page and landed on a
+     * near-black document. One mechanism across the whole /r/ area.
+     */
+    <main className={`${styles.scope} ${styles.unlock}`}>
       <div className="w-full max-w-[26rem]">
-        <div className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm sm:p-10 dark:border-gray-800 dark:bg-gray-900">
+        <div className={styles.unlockCard}>
           {/*
             Desktop only. TopBar already puts the wordmark at the top of the
             screen on mobile and is hidden from md up, where the side nav takes
@@ -90,27 +98,27 @@ export default async function UnlockPage({ params, searchParams }: UnlockPagePro
             alt="Consultico"
             width={420}
             height={120}
-            className="hidden h-auto w-[8.5rem] md:block"
+            className={`${styles.unlockMark} hidden h-auto w-[8.5rem] md:block`}
             priority
           />
 
-          <p className="font-helvetica text-[0.8rem] font-semibold uppercase tracking-[0.16em] text-brand-blue md:mt-8">
+          <p className="font-helvetica text-[length:var(--t-label)] leading-[var(--lh-label)] tracking-[var(--ls-label)] uppercase text-[var(--r-brand-ink)] md:mt-[var(--s-4)]">
             Private report
           </p>
-          <h1 className="mt-2 font-futura text-[clamp(1.5rem,4vw,1.875rem)] font-bold leading-tight text-gray-900 dark:text-white">
+          <h1 className="mt-[var(--s-1)] font-futura text-[length:var(--t-title)] leading-[var(--lh-title)] tracking-[var(--ls-title)] text-[var(--r-navy)]">
             Enter your access code
           </h1>
-          <p className="mt-3 font-helvetica-light text-[0.95rem] leading-[1.7] text-gray-600 dark:text-gray-400">
+          <p className="mt-[var(--s-2)] font-helvetica text-[length:var(--t-body)] leading-[var(--lh-body)] tracking-[var(--ls-body)] text-[var(--r-ink-2)]">
             This report was prepared for one person. Enter the access code you were given to open
             it.
           </p>
 
-          <form method="post" action="/api/report-unlock" className="mt-7">
+          <form method="post" action="/api/report-unlock" className="mt-[var(--s-4)]">
             <input type="hidden" name="slug" value={slug} />
 
             <label
               htmlFor="code"
-              className="block font-helvetica text-[0.8rem] font-semibold uppercase tracking-[0.12em] text-gray-500 dark:text-gray-400"
+              className="block font-helvetica text-[length:var(--t-label)] leading-[var(--lh-label)] tracking-[var(--ls-label)] uppercase text-[var(--r-muted)]"
             >
               Access code
             </label>
@@ -124,50 +132,36 @@ export default async function UnlockPage({ params, searchParams }: UnlockPagePro
               required
               aria-describedby={error ? 'unlock-error' : undefined}
               aria-invalid={error ? true : undefined}
-              className={`mt-2 w-full rounded-lg border bg-white px-4 py-3 font-helvetica text-[1.05rem] tracking-[0.02em] text-gray-900 outline-none transition-colors placeholder:text-gray-400 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 dark:bg-gray-950 dark:text-white ${
-                error
-                  ? 'border-red-400 dark:border-red-500/70'
-                  : 'border-gray-300 dark:border-gray-700'
-              }`}
+              className={styles.unlockField}
             />
 
             {/*
               One message for every kind of wrong. Saying which part was wrong,
               or that a code was "nearly" right, hands an attacker a free oracle.
             */}
-            {error === 'code' && (
+            {error ? (
               <p
                 id="unlock-error"
                 role="alert"
-                className="mt-3 font-helvetica-light text-[0.9rem] leading-[1.6] text-red-600 dark:text-red-400"
+                className="mt-[var(--s-2)] font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-risk)]"
               >
-                That code was not recognised. Check it and try again.
+                {error === 'rate'
+                  ? 'Too many attempts. Please wait a few minutes and try again.'
+                  : 'That code was not recognised. Check it and try again.'}
               </p>
-            )}
-            {error === 'rate' && (
-              <p
-                id="unlock-error"
-                role="alert"
-                className="mt-3 font-helvetica-light text-[0.9rem] leading-[1.6] text-red-600 dark:text-red-400"
-              >
-                Too many attempts. Please wait a few minutes and try again.
-              </p>
-            )}
+            ) : null}
 
-            <button
-              type="submit"
-              className="mt-6 w-full rounded-lg bg-brand-blue px-6 py-3 font-helvetica text-[1rem] font-semibold text-white transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-brand-blue/40 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
-            >
+            <button type="submit" className={styles.unlockSubmit}>
               Open report
             </button>
           </form>
 
-          <p className="mt-6 font-helvetica-light text-[0.85rem] leading-[1.6] text-gray-500 dark:text-gray-500">
+          <p className="mt-[var(--s-3)] font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">
             You will only need to do this once on this device.
           </p>
         </div>
 
-        <p className="mt-6 text-center font-helvetica-light text-[0.8rem] text-gray-500 dark:text-gray-500">
+        <p className="mt-[var(--s-3)] text-center font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-muted)]">
           Having trouble? Reply to the message this link came in and we will sort it.
         </p>
       </div>

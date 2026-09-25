@@ -32,13 +32,6 @@ const helveticaNow = localFont({
   variable: '--font-helvetica',
 });
 
-const helveticaUI = localFont({
-  src: '../fonts/HelveticaRegular.woff2',
-  weight: '400',
-  style: 'normal',
-  display: 'swap',
-  variable: '--font-helvetica-ui',
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.consultico.co.uk'),
@@ -99,7 +92,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${futuraHV.variable} ${helveticaNow.variable} ${helveticaUI.variable} antialiased font-sans relative`}>
+      <body className={`${futuraHV.variable} ${helveticaNow.variable} antialiased font-sans relative`}>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: serializeJsonLd(siteJsonLd) }}

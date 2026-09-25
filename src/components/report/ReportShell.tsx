@@ -37,7 +37,7 @@ export function ReportShell({ doc }: { doc: ReportDoc }) {
             priority
           />
 
-          <p className="mt-9 font-helvetica text-[length:var(--t-label)] leading-[var(--lh-label)] tracking-[0.18em] uppercase text-[var(--r-brand-deep)]">
+          <p className="mt-9 font-helvetica text-[length:var(--t-label)] leading-[var(--lh-label)] tracking-[0.18em] uppercase text-[var(--r-brand-ink)]">
             {doc.title}
           </p>
           <h1 className="mt-2 font-futura text-[length:var(--t-title)] leading-[var(--lh-title)] text-[var(--r-ink)]">
@@ -104,7 +104,7 @@ export function ReportShell({ doc }: { doc: ReportDoc }) {
                     className="flex h-full flex-col gap-1.5 rounded-[var(--radius)] border border-[var(--r-hair)] bg-[var(--r-surface)] p-4 transition-colors hover:border-[var(--r-brand)]"
                   >
                     <span className="flex items-center gap-2">
-                      <span className="font-futura text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-brand-deep)]">
+                      <span className="font-futura text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-brand-ink)]">
                         {String(i + 1).padStart(2, '0')}
                       </span>
                       {s.optional ? <Badge tone="quiet">Optional</Badge> : null}
@@ -116,7 +116,7 @@ export function ReportShell({ doc }: { doc: ReportDoc }) {
                       {s.oneLiner}
                     </span>
                     {tasks ? (
-                      <span className="mt-auto pt-2 font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-brand-deep)]">
+                      <span className="mt-auto pt-2 font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-brand-ink)]">
                         {tasks} {tasks === 1 ? 'task' : 'tasks'}
                       </span>
                     ) : null}

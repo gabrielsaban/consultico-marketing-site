@@ -41,7 +41,7 @@ export function ActionNav({
       {next ? (
         <Link
           href={`/r/${slug}?a=${next.id}`}
-          className="ml-auto text-right font-helvetica text-[length:var(--t-body)] leading-[var(--lh-body)] text-[var(--r-brand-deep)] hover:underline"
+          className="ml-auto text-right font-helvetica text-[length:var(--t-body)] leading-[var(--lh-body)] text-[var(--r-brand-ink)] hover:underline"
         >
           Next: {next.title} →
         </Link>

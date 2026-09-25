@@ -57,13 +57,13 @@ export function TopBar({
 
           <Link
             href={`/r/${slug}/plan`}
-            className="hidden whitespace-nowrap font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-ink-2)] hover:text-[var(--r-brand-deep)] sm:inline"
+            className="hidden whitespace-nowrap font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-ink-2)] hover:text-[var(--r-brand-ink)] sm:inline"
           >
             {planLabel}
           </Link>
           <Link
             href={`/r/${slug}/resources`}
-            className="whitespace-nowrap font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-ink-2)] hover:text-[var(--r-brand-deep)]"
+            className="whitespace-nowrap font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] text-[var(--r-ink-2)] hover:text-[var(--r-brand-ink)]"
           >
             Resources
           </Link>

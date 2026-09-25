@@ -38,7 +38,9 @@ const TONE: Record<Tone, string> = {
   ok: 'bg-[var(--r-ok-bg)] text-[var(--r-ok)]',
   warn: 'bg-[var(--r-warn-bg)] text-[var(--r-warn)]',
   risk: 'bg-[var(--r-risk-bg)] text-[var(--r-risk)]',
-  quiet: 'bg-[var(--r-quiet-bg)] text-[var(--r-muted)]',
+  // A badge sets its text ON its own tint, which is darker than the canvas, so
+  // --r-muted lands under 4.5:1 there however far it is darkened for the page.
+  quiet: 'bg-[var(--r-quiet-bg)] text-[var(--r-ink-2)]',
 };
 
 export function Badge({ tone = 'quiet', children }: { tone?: Tone; children: ReactNode }) {

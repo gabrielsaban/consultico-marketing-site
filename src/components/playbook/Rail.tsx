@@ -79,7 +79,7 @@ export function Rail({
           aria-current={currentId === SITUATION_ID ? 'page' : undefined}
           className={`flex items-start gap-2.5 rounded-[var(--radius)] px-3 py-2 font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] transition-colors ${
             currentId === SITUATION_ID
-              ? 'bg-[var(--r-brand-deep)] text-white'
+              ? 'bg-[var(--r-brand-fill)] text-white'
               : 'text-[var(--r-ink-2)] hover:bg-[var(--r-canvas)]'
           }`}
         >
@@ -126,7 +126,7 @@ export function Rail({
                       <span className="block leading-snug">{item.title}</span>
                       <span
                         className={`mt-0.5 block font-helvetica text-[length:var(--t-small)] leading-[var(--lh-small)] ${
-                          isCurrent ? 'text-white/70' : 'text-[var(--r-muted)]'
+                          isCurrent ? 'text-white/85' : 'text-[var(--r-muted)]'
                         }`}
                       >
                         {item.minutes} min{item.optional ? ' · optional' : ''}
@@ -161,7 +161,7 @@ export function Rail({
                       aria-current={isCurrent ? 'step' : undefined}
                       className={`${base} ${
                         isCurrent
-                          ? 'bg-[var(--r-brand-deep)] text-white'
+                          ? 'bg-[var(--r-brand-fill)] text-white'
                           : 'text-[var(--r-ink-2)] hover:bg-[var(--r-canvas)]'
                       }`}
                     >

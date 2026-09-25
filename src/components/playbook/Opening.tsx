@@ -112,7 +112,7 @@ export function Opening({ pb }: { pb: Playbook }) {
             Questions:{' '}
             <a
               href={`mailto:${pb.privacy.contactEmail}`}
-              className="text-[var(--r-brand-deep)] hover:underline"
+              className="text-[var(--r-brand-ink)] hover:underline"
             >
               {pb.privacy.contactEmail}
             </a>
