@@ -75,7 +75,7 @@ export function StatTile({
 }) {
   return (
     <div>
-      <p className="font-helvetica text-[length:var(--t-label)] leading-[var(--lh-label)] tracking-[var(--ls-label)] uppercase text-[var(--r-muted)]">
+      <p className={`${styles.tileLabel} font-helvetica text-[length:var(--t-label)] leading-[var(--lh-label)] tracking-[var(--ls-label)] uppercase text-[var(--r-muted)]`}>
         {label}
       </p>
       <p className="mt-[var(--s-1)] font-futura text-[length:var(--t-title)] leading-[var(--lh-title)] tracking-[var(--ls-title)] text-[var(--r-navy)]">

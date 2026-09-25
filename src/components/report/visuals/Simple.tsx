@@ -24,10 +24,12 @@ export function DayStrip({ spec }: { spec: DayStripVisual }) {
             <span
               key={day}
               title={label ?? `Day ${day}: nothing`}
-              className={`h-9 flex-1 min-w-[18px] rounded-[var(--radius-inline)] border ${
-                label
-                  ? 'border-transparent bg-[var(--r-brand)]'
-                  : 'border-[var(--r-hair)] bg-[var(--r-canvas)]'
+              /* Filled, not outlined. An empty cell used --r-canvas — the page
+                 background — inside a hairline border, so a strip of fourteen
+                 days read as a row of fourteen empty input fields. A tint
+                 reads as a day with nothing in it, which is what it is. */
+              className={`h-7 flex-1 min-w-[18px] rounded-[var(--radius-inline)] ${
+                label ? 'bg-[var(--r-brand)]' : 'bg-[var(--r-tint)]'
               }`}
             />
           );

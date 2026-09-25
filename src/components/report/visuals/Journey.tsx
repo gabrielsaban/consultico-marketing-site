@@ -1,3 +1,4 @@
+import styles from '../report.module.css';
 import type { JourneyVisual } from '@/lib/reports/content/schema';
 
 /**
@@ -28,7 +29,7 @@ export function Journey({ spec }: { spec: JourneyVisual }) {
           >
             <span className="flex items-center gap-2">
               <span className={`size-2 rounded-full ${state.dot}`} aria-hidden />
-              <span className="font-helvetica text-[length:var(--t-label)] leading-[var(--lh-label)] tracking-[0.1em] uppercase text-[var(--r-muted)]">
+              <span className={`${styles.tileLabel} font-helvetica text-[length:var(--t-label)] leading-[var(--lh-label)] tracking-[var(--ls-label)] uppercase text-[var(--r-muted)]`}>
                 {state.label}
               </span>
             </span>

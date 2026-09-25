@@ -245,8 +245,11 @@
   position: relative;
   height: 44px;
   border-radius: var(--radius-inline);
-  background: color-mix(in srgb, var(--r-canvas) 70%, transparent);
-  border: 1px solid var(--r-hair);
+  /* --r-canvas at 70% over --r-canvas is --r-canvas: the lanes were the page
+     background inside a hairline, so a lane with nothing in it read as an
+     empty box rather than as an empty lane. Third instance of this fault,
+     after `pair`/`draft` and the day strip — it is what --r-tint is for. */
+  background: var(--r-tint);
 }
 
 .laneName {
@@ -683,6 +686,17 @@ a:hover > .cover {
     margin-inline-start: 0;
   }
   .stripCell { height: 14px; }
+}
+
+/* A label sitting above a figure, in a row of tiles.
+ *
+ * It reserves two lines whether it needs them or not. Without that, one label
+ * wrapping — "CONTACTS BETWEEN THE CALLS" against "DAYS WITH NOTHING" —
+ * pushed its figure 16px below the other three, and a row of big numbers not
+ * sharing a baseline is the first thing the eye catches.
+ */
+.tileLabel {
+  min-height: calc(var(--lh-label) * 2);
 }
 
 /* A hairline track, not a component. Completion is the only thing on this page
