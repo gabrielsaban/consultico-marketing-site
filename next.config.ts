@@ -124,6 +124,11 @@ const nextConfig: NextConfig = {
       // consultico a good marketing agency". A 404 in the source set for a
       // question about whether we are any good is worth a line of config.
       { source: '/seo-agency', destination: '/seo', permanent: true },
+      // Never a real URL on this site, but Search Console shows it earning
+      // impressions (2026-09-16 to 09-18, position 1.7, "best ppc agency
+      // london") and returning a 404. Something out there links to it as if it
+      // were the PPC agencies guide, so send it there.
+      { source: '/articles/best-agencies-uk', destination: '/articles/best-ppc-agencies-uk', permanent: true },
     ];
   },
 };
