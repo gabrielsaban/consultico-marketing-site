@@ -160,8 +160,6 @@ Email paul@consultico.co.uk, call 0141 459 1351, use the contact form at ${BASE}
 
 - **Paul Wilson**, Founder. Strategy, web development, brand growth. BA Marketing and Business Enterprise, University of Strathclyde; Strathclyde Inspire Summer Founder Fellowship 2025; certified by the Market Research Society.
 - **Leona Wade**, Account Manager. SEO, social, strategy, client success. BA Marketing and Entrepreneurship, Strathclyde.
-- **Lucy Dinse**, Lead Beta Tester, student internship programme. University of Strathclyde.
-- **Juan Canals Marti**, Senior Meta Analytics Partner. Founder of Marti Clearpath Ltd; BSc Mathematics and Economics.
 
 ## Core pages
 

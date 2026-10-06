@@ -2,7 +2,6 @@
 
 import Container from '@/components/Container';
 import ContactForm from '@/components/ContactForm';
-import ContactLazyMap from '@/components/ContactLazyMap';
 import {
   CONSULTICO_BOOKING_URL,
   CONSULTICO_EMAIL,
@@ -68,8 +67,6 @@ export default function ContactSection() {
 
           <ContactForm idPrefix="home-contact" />
         </div>
-
-        <ContactLazyMap />
       </Container>
     </section>
   );

@@ -77,43 +77,6 @@ const teamMembers: TeamMember[] = [
       'Client work with The Boiler Co, Tiny Changes, Strathclyde Inspire, and Scotia Biotech',
     ],
   },
-  {
-    id: 6,
-    name: 'Lucy Dinse',
-    role: 'Lead Beta Tester',
-    cvLink: '#',
-    location: 'Glasgow, Scotland',
-    bio: [
-      "Lucy Dinse has been part of the Consultico team for over a year, joining as an intern and growing into one of the most active members of the internship programme. She has completed training across personal development and technical marketing skills.",
-      "Lucy is currently a student at the University of Strathclyde and serves as Lead Beta Tester for Consultico's student internship programme, helping shape how the programme is structured and delivered for future interns.",
-    ],
-    credentials: [
-      'Current student, University of Strathclyde',
-      'Completed training in personal development and technical marketing',
-      'Lead Beta Tester, Consultico Student Internship Programme',
-    ],
-  },
-  {
-    id: 7,
-    name: 'Juan Canals Marti',
-    role: 'Senior Meta Analytics Partner',
-    cvLink: '#',
-    image: '/team/juan_canals_marti.png',
-    imageAlt:
-      'Juan Canals Marti, a young man with short light brown hair, looking directly at the camera with a neutral expression, wearing a navy shirt with an orange and white check, against a plain white backdrop.',
-    portraitScale: 1.36,
-    location: 'United Kingdom',
-    bio: [
-      'Juan Canals Marti is the founder of Marti Clearpath Ltd, a performance-driven social media marketing agency, and serves as Senior Meta Analytics Partner at Consultico. He holds a BSc in Mathematics and Economics, shaping his data-led approach to paid media and strategy.',
-      'Juan works across Meta advertising, content strategy, marketing automation, and Generative Engine Optimisation. He oversees the paid media lifecycle from funnel architecture and creative strategy through to feed enrichment, catalogue segmentation, and conversion tracking.',
-    ],
-    credentials: [
-      'BSc in Mathematics and Economics',
-      'Founder, Marti Clearpath Ltd',
-      'Notable clients include American Life Investment, BB Insurance, and Unmissable Ventures',
-      'Specialisms include Meta advertising, funnel architecture, marketing automation, and GEO',
-    ],
-  },
 ];
 
 const teamPages = teamMembers.reduce<TeamMember[][]>((pages, member, index) => {
@@ -413,9 +376,10 @@ export default function AboutSection(): React.JSX.Element {
         </motion.div>
 
         {/* Team Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-[70%_auto] gap-12 lg:gap-16">
-          {/* Team Grid */}
-          <div className="hidden self-start md:grid md:grid-cols-4 items-start gap-6">
+        <div className="grid grid-cols-1 xl:grid-cols-[minmax(0,600px)_1fr] gap-12 xl:gap-20">
+          {/* Team Grid: two people, so two columns capped at 600px rather than a
+              half-empty four-column row. Widen again if the team grows. */}
+          <div className="hidden self-start md:grid md:grid-cols-2 items-start gap-6 md:max-w-[600px]">
             {teamMembers.map((member) => (
               <div
                 key={member.id}
@@ -489,7 +453,7 @@ export default function AboutSection(): React.JSX.Element {
           </div>
 
           {/* Team Description */}
-          <div className="flex flex-col justify-between">
+          <div className="flex max-w-2xl flex-col justify-between xl:max-w-none">
             <div>
               <h3 className="text-[clamp(1.5rem,2.5vw,2.5rem)] font-bold text-brand-blue font-futura mb-6">
                 Our Team

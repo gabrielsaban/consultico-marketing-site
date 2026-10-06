@@ -4,7 +4,6 @@ import Link from 'next/link';
 import Container from '@/components/Container';
 import AuditSignupBlock from '@/components/AuditSignupBlock';
 import ContactForm from '@/components/ContactForm';
-import ContactLazyMap from '@/components/ContactLazyMap';
 import {
   CONSULTICO_ADDRESS,
   CONSULTICO_BOOKING_URL,
@@ -114,12 +113,6 @@ export default function ContactPageContent() {
               also available.
             </p>
           </div>
-        </Container>
-      </section>
-
-      <section className="pb-16 md:pb-20">
-        <Container>
-          <ContactLazyMap />
         </Container>
       </section>
     </>
