@@ -53,7 +53,6 @@ const teamMembers: TeamMember[] = [
       'Certified by the Market Research Society',
       'University of Strathclyde fellowship recipient, 2025',
       'Finalist, Undergraduate of the Year Awards, 2023',
-      'Agency experience with Blue Economy Agency, San Francisco',
     ],
     linkedIn: 'https://www.linkedin.com/in/think-first-marketing',
   },
