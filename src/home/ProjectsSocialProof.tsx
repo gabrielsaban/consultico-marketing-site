@@ -54,7 +54,7 @@ export default function ProjectsSocialProof() {
               href="/case-studies"
               className="font-medium text-brand-blue underline-offset-2 hover:underline"
             >
-              Read both case studies
+              See all our case studies
             </Link>
             .
           </p>

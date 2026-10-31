@@ -16,7 +16,7 @@ export const metadata: Metadata = pageMeta({
   // 149 chars. Matches the page's own register, so the snippet sounds like the
   // page it opens rather than a company describing itself.
   description:
-    "We're proud of the companies we work with. See what we did for a Bristol plumbing company and a Norfolk garden games brand, and how we could help you.",
+    "A garden games brand that only sold in summer, and a trades business whose diary ran on ad spend. See what we found, what we did and what changed for each.",
   path: '/case-studies',
 });
 
@@ -67,15 +67,17 @@ export default function CaseStudiesPage() {
             </a>
             .
           </p>
+          {/*
+            Rewritten 2026-10-31 around the advice Paul took from Oli Green at
+            Brave Bison: lead with the problem and the method, not the service,
+            and describe small clients by what they are rather than by name. The
+            method is the thing a bigger client is buying, and it is the same
+            whatever the size of the business it was used on.
+          */}
           <p className="mt-4 font-helvetica-light text-[clamp(1rem,1.2vw,1.1rem)] leading-[1.65] text-gray-800 dark:text-gray-200">
-            Norfolk Boards sell American garden games from Norfolk. We were with them for 20 months, across
-            three websites, a strategy workshop, SEO and then social. In December 2025 we told them to move
-            their budget off search, and it carried on growing without us.
-          </p>
-          <p className="mt-4 font-helvetica-light text-[clamp(1rem,1.2vw,1.1rem)] leading-[1.65] text-gray-800 dark:text-gray-200">
-            The Boiler Co are a plumbing and heating company in Bristol. Their diary ran on paid ads, so when
-            the spend dipped or paused, the work got unpredictable. About three months after we started on
-            search they were filling the calendar from it instead, and they stayed with us for over 14 months.
+            Every one of these started the same way: working out what was actually holding the business back
+            before deciding what to do about it. Often that was search. For a garden games brand, it was the
+            product range itself.
           </p>
 
           <div className="mt-12 space-y-6">
@@ -89,7 +91,7 @@ export default function CaseStudiesPage() {
                   {study.sector}
                 </p>
                 <h2 className="mt-2 font-futura text-[clamp(1.3rem,2vw,1.6rem)] font-bold leading-[1.2] text-brand-blue">
-                  {study.client}
+                  {study.headline}
                 </h2>
                 <p className="mt-3 font-helvetica-light text-[0.98rem] leading-[1.7] text-gray-700 dark:text-gray-300">
                   {study.summary}
@@ -108,15 +110,7 @@ export default function CaseStudiesPage() {
                   ))}
                 </div>
 
-                {/*
-                  Strip a leading "The" from the client name. "Read the {client}
-                  case study" renders as "Read the The Boiler Co case study"
-                  otherwise, which is the sort of thing you only ever see in the
-                  browser and never in the build.
-                */}
-                <p className="mt-6 font-helvetica text-[0.9rem] font-medium text-brand-blue">
-                  Read the {study.client.replace(/^The /, '')} case study
-                </p>
+                <p className="mt-6 font-helvetica text-[0.9rem] font-medium text-brand-blue">Read the case study</p>
               </Link>
             ))}
           </div>

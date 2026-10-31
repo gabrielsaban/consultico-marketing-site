@@ -1,4 +1,5 @@
 import { getAllArticles } from '@/lib/articles/loader';
+import { CASE_STUDIES } from '@/lib/case-studies';
 import { getLiveSeoIndustries, SEO_BY_INDUSTRY_PATH } from '@/lib/seo-industries';
 
 /**
@@ -183,8 +184,7 @@ Email paul@consultico.co.uk, call 0141 459 1351, use the contact form at ${BASE}
 ## Case studies
 
 - [All case studies](${BASE}/case-studies): Index of every published Consultico client case study.
-- [The Boiler Co](${BASE}/case-studies/boiler-co): Trades SEO case study, calendar filled organically within around three months.
-- [Norfolk Boards](${BASE}/case-studies/norfolk-boards): Strategy and SEO case study, where the constraint turned out to be the product calendar rather than the marketing.
+${CASE_STUDIES.map((study) => `- [${study.named ? study.client : study.headline}](${BASE}/case-studies/${study.slug}): ${study.summary}`).join('\n')}
 `;
 
 const CLOSING = `

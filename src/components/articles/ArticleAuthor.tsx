@@ -11,8 +11,8 @@ export default function ArticleAuthor({ article }: ArticleAuthorProps) {
 
   return (
     <div className="flex items-center gap-4 border-b border-gray-200 pb-6 dark:border-gray-800">
-      <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full border border-gray-200 dark:border-gray-700">
-        <Image src={author.image} alt="" fill className="object-cover" sizes="48px" />
+      <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full border border-gray-200 dark:border-gray-700">
+        <Image src={author.image} alt="" fill className="object-cover" sizes="64px" />
       </div>
       <div className="font-helvetica">
         <div className="text-[1rem] font-medium text-gray-900 dark:text-gray-100">{author.name}</div>

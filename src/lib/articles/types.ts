@@ -81,5 +81,5 @@ export interface Article extends ArticleFrontmatter {
 export const DEFAULT_AUTHOR: ArticleAuthor = {
   name: 'Paul Wilson',
   role: 'Founder, Consultico',
-  image: '/team/paul_wilson.png',
+  image: '/team/paul_wilson_portrait.jpg',
 };

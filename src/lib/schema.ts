@@ -382,6 +382,7 @@ export function articlePageJsonLd(article: Article) {
         '@type': 'Person',
         name: author.name,
         jobTitle: author.role,
+        image: `${SITE_ORIGIN}${author.image}`,
         // Derive the @id from the author's name so a future team-member byline
         // gets its own Person entity instead of being bound to Paul's #id.
         // 'Paul Wilson' -> '#paul-wilson', matching the canonical founder node.
@@ -459,10 +460,10 @@ export function caseStudyPageJsonLd(study: CaseStudy) {
         mainEntityOfPage: { '@type': 'WebPage', '@id': url },
         author: { '@id': `${SITE_ORIGIN}/#paul-wilson` },
         publisher: { '@id': `${SITE_ORIGIN}/#org` },
-        about: {
-          '@type': 'Organization',
-          name: study.client,
-        },
+        // Only a client who has agreed to be named becomes an entity. An
+        // anonymous one ("a UK healthcare and wellness practice") is not a name,
+        // and marking it up as one would hand an engine a fake organisation.
+        ...(study.named ? { about: { '@type': 'Organization', name: study.client } } : {}),
         mentions: study.services.map((service) => ({
           '@type': 'Service',
           name: service,
@@ -482,7 +483,7 @@ export function caseStudyPageJsonLd(study: CaseStudy) {
             name: 'Case studies',
             item: `${SITE_ORIGIN}${CASE_STUDIES_PATH}`,
           },
-          { '@type': 'ListItem', position: 3, name: study.client, item: url },
+          { '@type': 'ListItem', position: 3, name: study.named ? study.client : study.headline, item: url },
         ],
       },
     ],
@@ -508,7 +509,7 @@ export function caseStudiesPageJsonLd() {
           itemListElement: CASE_STUDIES.map((study, index) => ({
             '@type': 'ListItem',
             position: index + 1,
-            name: `${study.client}: ${study.summary}`,
+            name: study.named ? `${study.client}: ${study.summary}` : study.summary,
             url: `${SITE_ORIGIN}${CASE_STUDIES_PATH}/${study.slug}`,
           })),
         },
