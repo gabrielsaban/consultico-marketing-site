@@ -8,16 +8,16 @@ category: Strategy
 type: Article
 readTime: 9 min read
 review:
-  score: 87
+  score: 86
   categories:
     content: 22
     seo: 16
-    eeat: 17
+    eeat: 16
     technical: 13
     citability: 19
   reviewer: claude
-  date: 2026-08-25
-  hash: 99ab24ca8c05dd1b
+  date: 2026-10-30
+  hash: 2d8e1802f345d79e
 cta:
   preset: think-first
 faqs:
@@ -37,19 +37,15 @@ faqs:
 
 When you hire an agency you're really hiring a few specific people, and you often don't find out which ones until after the work has started. The pitch is done by whoever's good at pitching. The work goes to whoever has room for it. Neither of those is a problem on its own. Not being told is.
 
-At Consultico the answer is four people and a partner network. Leona Wade manages the accounts and is who you'd deal with day to day. I do strategy, websites and the strategy workshops. Juan Canals Marti handles paid social and analytics. Lucy Dinse tests what we build before a client sees it. Where a job needs someone we haven't got, a specialist comes in from the partner network and you're told whose work it is.
+At Consultico the answer is two people and a partner network. Leona Wade manages the accounts and is who you'd deal with day to day. I do strategy, websites and the strategy workshops. Where a job needs someone we haven't got, a specialist comes in from the partner network and you're told whose work it is.
 
 ## Who's on your account here
 
-The detail behind those four names, because a role on its own doesn't tell you much.
+The detail behind those two names, because a role on its own doesn't tell you much.
 
 - **Leona Wade, account manager.** She came in as a technical marketing assistant across search, social and strategy projects, and now runs our client portfolio and acts as the point of contact into the partner network. She graduated in marketing and entrepreneurship from the University of Strathclyde and has taken further training in SEO and Google Ads.
 
 - **Me, Paul Wilson.** I've been building sites since 2017 and I'm certified by the Market Research Society. Most of what I do on an account is the deciding rather than the delivering, which is worth knowing if you're expecting me to be the one writing your pages.
-
-- **Juan Canals Marti, Meta and analytics.** Funnel structure, tracking, feed work and the paid social itself. He isn't an employee. He runs Marti Clearpath, his own agency, and works with us as a partner. He has a BSc in maths and economics, which is roughly why the measurement ends up with him.
-
-- **Lucy Dinse, testing.** She works through what we build before a client sees it, and helps shape how our internship programme runs. She's currently a student at Strathclyde.
 
 Each of them has a biography and a list of what they've worked on [on our site](/#about). That's deliberate. If a name doesn't lead anywhere, you've got no way of checking it.
 
@@ -70,7 +66,7 @@ Whether any of the four holds up comes down to the hand-off. Each of them involv
 
 White labelling is when one agency sells the work and a second agency delivers it under the first one's brand. Your contract is with the first. The people doing the work are at the second, and quite often you're never told they exist.
 
-It's a normal commercial arrangement and it can be a good deal. A small agency with a strong client relationship and no developer of its own is better off buying that in. Partner arrangements are part of how we work too, which is why Juan is up there with his own company beside his name rather than blended into ours.
+It's a normal commercial arrangement and it can be a good deal. A small agency with a strong client relationship and no developer of its own is better off buying that in. Partner arrangements are part of how we work too.
 
 What it changes for you is smaller than it sounds and worth knowing anyway. Your logins and your data may end up sitting with a company you have no contract with. If something goes wrong, the person who can fix it is one step further away than the person you can complain to. And if the two agencies fall out, your account is inside that argument.
 
@@ -96,13 +92,11 @@ We built it because we failed it. When we finally scored the five articles that 
 
 The same exercise produced the second rule. Every external source now gets opened before it's cited, to confirm the page really contains the number attached to it. That came from checking our best-read article and finding that three of its four sources didn't. A source can be named and still not say the thing, and a reader has no way of telling from the page.
 
-On client accounts the checking is more ordinary than that. The account manager sees everything before it goes out, and anything technical goes past whoever owns that discipline. [Organic search](/seo) is Leona's and mine. [Paid media](/ppc) is Juan's. The first step of [Think First](/think-first), our strategy workshop, is also a check on us: somebody from the team who knows nothing about the business researches it on their own, then presents it back to the rest of us as if they were recommending it to a friend. If they can't explain what the business does, either we've misread it or there's something worth knowing about how the business explains itself.
-
-We publish the findings that complicate the story as well as the ones that flatter it. The most recent is [six near-identical pages we shipped on one day](/articles/six-identical-pages-different-results), where the explanation we expected to find fell apart the moment we looked at all six rather than two.
+On client accounts the checking is more ordinary than that. The account manager sees everything before it goes out, and anything technical goes past whoever owns that discipline. [Organic search](/seo) is Leona's and mine. [Paid media](/ppc) goes past the specialist from our partner network who runs it. The first step of [Think First](/think-first), our strategy workshop, is also a check on us: somebody from the team who knows nothing about the business researches it on their own, then presents it back to the rest of us as if they were recommending it to a friend. If they can't explain what the business does, either we've misread it or there's something worth knowing about how the business explains itself.
 
 ## The team is young, and that cuts both ways
 
-Three of the four people above came through the University of Strathclyde, and our office in Glasgow is on the same campus. One of them is still a student there. The internship programme is a real route in rather than a filing job: Lucy arrived through it and now helps decide how it works for the people coming after her.
+Leona and I both came through the University of Strathclyde, and our office in Glasgow is on the same campus.
 
 I'm not going to argue that being young makes the work better. It doesn't on its own, and it isn't a reason to hire anybody.
 

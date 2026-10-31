@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 500" role="img" aria-labelledby="t d">
+  <title id="t">The keyword ladder for a jeans brand</title>
+  <desc id="d">Four steps rising from the shoreline. Foundation: 14 small keywords, 90 to 880 searches a month each, difficulty 0 to 19. Next step: light wash and dark wash jeans, 1,600 to 2,900 searches, difficulty 17 to 18. Bigger again: high waisted jeans, mom jeans and mens black jeans, 5,400 to 9,900 searches, difficulty 18 to 26. The big potato: mens jeans and jeans, 40,500 to 74,000 searches, difficulty 43 to 44. Source: Semrush UK, October 2026.</desc>
+  <style>
+    .ink { fill: #141414; }
+    .muted { fill: #555; }
+    .line { stroke: #141414; }
+    .sea { fill: #007bff; opacity: .18; }
+    .wave { fill: none; stroke: #007bff; stroke-width: 2; opacity: .6; }
+    text { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+    @media (prefers-color-scheme: dark) {
+      .ink { fill: #f2f2f2; }
+      .muted { fill: #b8b8b8; }
+      .line { stroke: #f2f2f2; }
+      .sea { opacity: .3; }
+    }
+  </style>
+
+  <text x="24" y="36" class="ink" font-size="20" font-weight="700">The keyword ladder for a jeans brand</text>
+  <text x="24" y="60" class="muted" font-size="14">Win the small searches first, then step up. Each rung makes the next one reachable.</text>
+
+  <!-- push inland arrow: runs parallel to the step tops, clear of every label -->
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#007bff"/>
+    </marker>
+  </defs>
+  <g transform="translate(0 40)">
+  <line x1="150" y1="242" x2="572" y2="52" stroke="#007bff" stroke-width="2.5" stroke-dasharray="7 6" marker-end="url(#ah)"/>
+  <text x="318" y="153" fill="#007bff" font-size="15" font-weight="700" transform="rotate(-24.2 318 153)">push inland</text>
+
+  <!-- sea and shoreline -->
+  <rect x="0" y="384" width="128" height="50" class="sea"/>
+  <path class="wave" d="M0,396 q16,-10 32,0 t32,0 t32,0 t32,0"/>
+  <path class="wave" d="M0,414 q16,-10 32,0 t32,0 t32,0 t32,0"/>
+  <text x="22" y="352" class="ink" font-size="14" font-weight="700">You land</text>
+  <text x="22" y="370" class="ink" font-size="14" font-weight="700">here</text>
+
+  <!-- step 1 -->
+  <rect x="130" y="290" width="145" height="94" rx="6" fill="#cfe4ff"/>
+  <text x="138" y="282" class="ink" font-size="15" font-weight="700">Foundation</text>
+  <text x="140" y="314" fill="#0b2a4a" font-size="13" font-weight="700">14 small keywords</text>
+  <text x="140" y="336" fill="#0b2a4a" font-size="13">90 to 880 a month</text>
+  <text x="140" y="358" fill="#0b2a4a" font-size="13">Difficulty 0 to 19</text>
+
+  <!-- step 2 -->
+  <rect x="283" y="220" width="145" height="164" rx="6" fill="#8fc1ff"/>
+  <text x="291" y="212" class="ink" font-size="15" font-weight="700">Next step up</text>
+  <text x="293" y="244" fill="#0b2a4a" font-size="13" font-weight="700">light wash jeans,</text>
+  <text x="293" y="262" fill="#0b2a4a" font-size="13" font-weight="700">dark wash jeans</text>
+  <text x="293" y="284" fill="#0b2a4a" font-size="13">1,600 to 2,900</text>
+  <text x="293" y="306" fill="#0b2a4a" font-size="13">Difficulty 17 to 18</text>
+
+  <!-- step 3 -->
+  <rect x="436" y="150" width="145" height="234" rx="6" fill="#3d95ff"/>
+  <text x="444" y="142" class="ink" font-size="15" font-weight="700">Bigger again</text>
+  <text x="446" y="174" fill="#ffffff" font-size="13" font-weight="700">high waisted jeans,</text>
+  <text x="446" y="192" fill="#ffffff" font-size="13" font-weight="700">mom jeans,</text>
+  <text x="446" y="210" fill="#ffffff" font-size="13" font-weight="700">mens black jeans</text>
+  <text x="446" y="232" fill="#ffffff" font-size="13">5,400 to 9,900</text>
+  <text x="446" y="254" fill="#ffffff" font-size="13">Difficulty 18 to 26</text>
+
+  <!-- step 4 -->
+  <rect x="589" y="110" width="150" height="274" rx="6" fill="#007bff"/>
+  <text x="599" y="134" fill="#ffffff" font-size="15" font-weight="700">The big potato</text>
+  <text x="599" y="158" fill="#ffffff" font-size="13" font-weight="700">mens jeans, jeans</text>
+  <text x="599" y="180" fill="#ffffff" font-size="13">40,500 to 74,000</text>
+  <text x="599" y="202" fill="#ffffff" font-size="13">Difficulty 43 to 44</text>
+
+  <!-- ground -->
+  <line x1="128" y1="384" x2="745" y2="384" class="line" stroke-width="1.5"/>
+  </g>
+  <text x="24" y="492" class="muted" font-size="12">Monthly UK searches and keyword difficulty (0 to 100). Source: Semrush, UK database, October 2026.</text>
+</svg>

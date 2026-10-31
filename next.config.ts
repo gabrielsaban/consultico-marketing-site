@@ -129,6 +129,7 @@ const nextConfig: NextConfig = {
       // london") and returning a 404. Something out there links to it as if it
       // were the PPC agencies guide, so send it there.
       { source: '/articles/best-agencies-uk', destination: '/articles/best-ppc-agencies-uk', permanent: true },
+      { source: '/articles/six-identical-pages-different-results', destination: '/seo-by-industry', permanent: true },
     ];
   },
 };

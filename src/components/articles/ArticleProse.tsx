@@ -70,6 +70,14 @@ export default function ArticleProse({ content, sponsored }: ArticleProseProps) 
               {children}
             </blockquote>
           ),
+          // Article diagrams are static SVGs in /public, so next/image adds nothing here.
+          // Scrolls sideways on phones, like tables, so the labels stay readable.
+          img: ({ src, alt }) => (
+            <span className="my-8 block overflow-x-auto">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={typeof src === 'string' ? src : undefined} alt={alt ?? ''} loading="lazy" className="h-auto w-full min-w-[40rem]" />
+            </span>
+          ),
           table: ({ children }) => (
             <div className="mb-6 overflow-x-auto">
               <table className="w-full min-w-[32rem] border-collapse text-left text-[0.9rem]">{children}</table>
