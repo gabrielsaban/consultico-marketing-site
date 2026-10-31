@@ -17,7 +17,7 @@ review:
     citability: 18
   reviewer: claude
   date: 2026-08-29
-  hash: 2fa91a648a5b2c2f
+  hash: f09150ff8b2854cb
 cta:
   preset: geo
 faqs:
@@ -135,7 +135,7 @@ We sell GEO, so we think it is only fair to measure it on ourselves and report h
 
 Our method is deliberately simple: take the questions a customer would genuinely ask, run them through the engines, and record whether Consultico is named, linked, or absent, and who gets cited instead. We track seven of these queries monthly.
 
-At our first measurement at the end of June 2026, we were cited on **none of the seven**. At the end of July, we were cited on **three**, including one where we were named first, ahead of larger local agencies. The pattern in the data was not subtle: every query we were cited for was one we had deliberately published a page about, and every one we were absent from was one we had not. That is the same compounding effect we saw doing organic work for [a plumbing business](/case-studies/boiler-co), just measured in citations rather than clicks.
+At our first measurement at the end of June 2026, we were cited on **none of the seven**. At the end of July, we were cited on **three**, including one where we were named first, ahead of larger local agencies. The pattern in the data was not subtle: every query we were cited for was one we had deliberately published a page about, and every one we were absent from was one we had not. That is the same compounding effect we saw doing organic work for [a plumbing business](/case-studies/boiler-installation-company), just measured in citations rather than clicks.
 
 More persuasively than any of that, in late July a business owner contacted us through our website after asking Gemini about marketing workshops in Glasgow. That is a real enquiry that came from an AI engine naming us. It is a single case rather than a trend, and we would not present it as more than that. But it is the reason we treat this as commercial work rather than an experiment.
 

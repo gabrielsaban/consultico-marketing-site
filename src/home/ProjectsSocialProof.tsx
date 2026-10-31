@@ -26,19 +26,19 @@ export default function ProjectsSocialProof() {
             </Link>{' '}
             work includes{' '}
             <Link
-              href="/case-studies/boiler-co"
+              href="/case-studies/boiler-installation-company"
               className="font-medium text-brand-blue underline-offset-2 hover:underline"
             >
-              The Boiler Co
-            </Link>
-            , a Bristol-based plumbing business that filled its calendar through organic search within three months when paid ads had to pause. Over more than 14 months of retained work, weekly impressions grew from approximately 8,000 to a peak above 21,000.
+              a boiler installation company
+            </Link>{' '}
+            that filled its calendar through organic search within three months when paid ads had to pause. Over more than 14 months of retained work, weekly impressions grew from approximately 8,000 to a peak above 21,000.
           </p>
           {/*
-            Norfolk Boards had ZERO inbound links from the homepage while Boiler
-            Co had one, so the homepage was only ever evidence of half our work.
+            Norfolk Boards had ZERO inbound links from the homepage while the
+            boiler installation study had one, so the homepage was only ever evidence of half our work.
             The hub link matters as much as the study link: /case-studies is the
             URL a person or an engine tries first, and until now it redirected
-            straight to Boiler Co and buried this one.
+            straight to the boiler study and buried this one.
           */}
           <p className="mt-4 text-[clamp(1rem,1.35vw,1.2rem)] leading-[1.6] text-gray-800 dark:text-gray-200 font-helvetica-light max-w-3xl mx-auto text-center">
             On the strategy side,{' '}

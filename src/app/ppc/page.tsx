@@ -523,17 +523,17 @@ export default function PpcPage() {
               <div className={`space-y-6 font-helvetica-light text-[clamp(1rem,1.1vw,1.05rem)] leading-[1.65] ${bodyTextClass}`}>
                 <p>
                   We treat paid media as one tool, not the whole answer. The clearest example is a contrast.{' '}
-                  <Link href="/case-studies/boiler-co" className="font-medium text-brand-blue underline-offset-2 hover:underline">
-                    The Boiler Co
-                  </Link>
-                  , a trades business based in Bristol, came to us relying heavily on paid ads. When those ads had to pause, their lead flow was suddenly at risk. The right advice there was not more PPC. It was to build an{' '}
+                  <Link href="/case-studies/boiler-installation-company" className="font-medium text-brand-blue underline-offset-2 hover:underline">
+                    A boiler installation company
+                  </Link>{' '}
+                  came to us relying heavily on paid ads. When those ads had to pause, their lead flow was suddenly at risk. The right advice there was not more PPC. It was to build an{' '}
                   <Link href="/seo" className="font-medium text-brand-blue underline-offset-2 hover:underline">
                     SEO foundation
                   </Link>{' '}
                   so organic search could carry the calendar, which it now does. That is the same judgement we bring to every paid account: spend where it pays back, and be honest when another channel is the better bet.
                 </p>
                 <p>
-                  On the paid side, the clearest result is MCD Gas, a gas and heating business we run Google Ads for. The work was the unglamorous kind: cutting spend on the searches that were never going to convert, then putting it behind the ones that did. That is the kind of accountable, margin-aware spend we aim for — a cost per lead the owner can actually plan around.
+                  On the paid side, the clearest result is MCD Gas, a gas and heating business we run Google Ads for. The work was the unglamorous kind: cutting spend on the searches that were never going to convert, then putting it behind the ones that did. That is the kind of accountable, margin-aware spend we aim for: a cost per lead the owner can actually plan around.
                 </p>
                 <blockquote className="border-l-2 border-brand-blue pl-5 font-helvetica-light italic">
                   &ldquo;{graemeReview.quote}&rdquo;
@@ -542,7 +542,7 @@ export default function PpcPage() {
                   </footer>
                 </blockquote>
                 <p className={`text-[0.9rem] ${secondaryTextClass}`}>
-                  Results vary by market, competition and starting point. The Boiler Co result is from SEO work, shown here to illustrate how we advise, not as a paid-media result.
+                  Results vary by market, competition and starting point. The boiler installation result is from SEO work, shown here to illustrate how we advise, not as a paid-media result.
                 </p>
               </div>
             </div>

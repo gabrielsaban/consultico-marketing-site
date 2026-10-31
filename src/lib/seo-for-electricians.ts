@@ -3,7 +3,7 @@ import { getIndustryPath } from '@/lib/seo-industries';
 export const SEO_FOR_ELECTRICIANS_SLUG = 'seo-for-electricians';
 export const SEO_FOR_ELECTRICIANS_PATH = getIndustryPath(SEO_FOR_ELECTRICIANS_SLUG);
 
-export const BOILER_CO_CASE_STUDY_PATH = '/case-studies/boiler-co';
+export const BOILER_INSTALLER_CASE_STUDY_PATH = '/case-studies/boiler-installation-company';
 
 /** Visible FAQ copy (section 3 of brief). */
 export const SEO_FOR_ELECTRICIANS_FAQS = [
@@ -126,9 +126,9 @@ export const ELECTRICIAN_SEO_PROCESS_STEPS = [
   },
 ] as const;
 
-export const BOILER_CO_TRADES_TESTIMONIAL = {
+export const BOILER_INSTALLER_TRADES_TESTIMONIAL = {
   quote:
     'After a frustrating run with agencies, this gave us genuine clarity on what to do and why it would work.',
-  name: 'Ant Vitale',
-  company: 'The Boiler Co',
+  name: 'Owner',
+  company: 'boiler installation company',
 } as const;

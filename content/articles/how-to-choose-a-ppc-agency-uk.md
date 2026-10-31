@@ -17,7 +17,7 @@ review:
     citability: 17
   reviewer: paul
   date: 2026-08-08
-  hash: 8ea62dd432f18ca9
+  hash: 75b712b2b6805d70
 cta:
   preset: ppc
 faqs:
@@ -111,7 +111,7 @@ Sometimes it isn't, and a decent agency will tell you so.
 
 Paid ads buy attention for exactly as long as you keep paying. That's genuinely useful when you need customers this month, when you're testing whether an offer works, or when a season is short and you can't wait for organic search to catch up. It's a poor fit when your margins are thin, when your website doesn't convert the traffic it already gets, or when you have no way of knowing which enquiries turned into money.
 
-We've told businesses to fix the site first and come back later. One plumbing business we did [organic search work for](/case-studies/boiler-co) turned their paid ads off during that work and had the calendar filled from organic within about three months.
+We've told businesses to fix the site first and come back later. One plumbing business we did [organic search work for](/case-studies/boiler-installation-company) turned their paid ads off during that work and had the calendar filled from organic within about three months.
 
 That's not an argument against paid advertising, and it won't be the right call for everyone. It's an argument for knowing which problem you're solving before you pick a channel. If what you actually need is something more durable, that's the case for [SEO](/seo) instead.
 

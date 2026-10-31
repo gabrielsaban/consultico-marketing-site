@@ -54,7 +54,7 @@ export default function CaseStudiesPage() {
             point of the sentence.
 
             The entity signal an AI engine needs is still all here, because it
-            lives in the facts themselves: both clients named, both sectors, both
+            lives in the facts themselves: each named client named, both sectors, both
             locations, how long each ran and what happened. It never needed a
             sentence about our methodology to carry it.
           */}

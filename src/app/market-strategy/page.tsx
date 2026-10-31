@@ -11,8 +11,8 @@ export const metadata: Metadata = servicePageMeta('market-strategy');
 
 const stats = [
   { number: '12 mo', label: 'Average client partnership' },
-  { number: '3 mo', label: 'Calendar filled from organic, paid ads paused (Boiler Co)' },
-  { number: '14 mo', label: 'Longest retained relationship (Boiler Co)' },
+  { number: '3 mo', label: 'Calendar filled from organic, paid ads paused (boiler installer)' },
+  { number: '14 mo', label: 'Longest retained relationship (boiler installer)' },
   { number: '5.0', label: 'Rated on Google' },
 ];
 
@@ -479,7 +479,7 @@ export default function MarketStrategyPage() {
               <p className="mt-3 text-[clamp(0.95rem,1.05vw,1rem)] leading-[1.55] text-gray-700 dark:text-gray-300 font-helvetica-light">
                 A boiler installation company paused paid ads. Within roughly three months organic search was filling the diary, and average position had moved from 37.8 to 13.7 across the engagement.
               </p>
-              <Link href="/case-studies/boiler-co" className="mt-4 inline-flex items-center gap-2 font-helvetica text-[0.95rem] font-medium text-brand-blue underline-offset-2 hover:underline">
+              <Link href="/case-studies/boiler-installation-company" className="mt-4 inline-flex items-center gap-2 font-helvetica text-[0.95rem] font-medium text-brand-blue underline-offset-2 hover:underline">
                 Read the case study
                 <ArrowIcon />
               </Link>

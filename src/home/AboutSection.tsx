@@ -73,7 +73,7 @@ const teamMembers: TeamMember[] = [
     credentials: [
       'BA in Marketing and Entrepreneurship, University of Strathclyde',
       'Certified in SEO and Google Advertising',
-      'Client work with The Boiler Co, Tiny Changes, Strathclyde Inspire, and Scotia Biotech',
+      'Client work with Tiny Changes, Strathclyde Inspire, and Scotia Biotech',
     ],
   },
 ];

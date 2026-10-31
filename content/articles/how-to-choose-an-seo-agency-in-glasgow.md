@@ -17,7 +17,7 @@ review:
     citability: 18
   reviewer: paul
   date: 2026-08-02
-  hash: cb434f31b892ce6c
+  hash: bf8926535c6c338f
 cta:
   preset: seo
 faqs:
@@ -144,7 +144,7 @@ A page can reach the top ten and still bring you almost nothing, because of what
 
 So when a report shows impressions climbing, the question worth asking is whether anything downstream moved with them. Ask for enquiries, and ask where they came from. An agency that can't join the work to the enquiries can't tell you whether it's working, however good the chart looks.
 
-Our clearest example is [The Boiler Co](/case-studies/boiler-co). They fit and service boilers, they are based in Bristol, and we handled their organic search. When their paid advertising was switched off, enquiries kept arriving through search instead. They aren't a Glasgow business, which is rather the point of the section above: the work doesn't change with the postcode. What took time was the groundwork, and what mattered at the end wasn't the traffic. It was the booked jobs.
+Our clearest example is [a boiler installation company](/case-studies/boiler-installation-company) whose organic search we handled. When their paid advertising was switched off, enquiries kept arriving through search instead. They aren't a Glasgow business, which is rather the point of the section above: the work doesn't change with the postcode. What took time was the groundwork, and what mattered at the end wasn't the traffic. It was the booked jobs.
 
 ## Before you speak to anyone
 

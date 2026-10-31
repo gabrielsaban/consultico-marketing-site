@@ -1,4 +1,4 @@
-/** Weekly impressions curve for The Boiler Co (GSC: ~8k at engagement start to a peak above 21k). */
+/** Weekly impressions curve for a boiler installation company (GSC: ~8k at engagement start to a peak above 21k). */
 const DATA_POINTS = [
   { x: 0, y: 8000 },
   { x: 1, y: 9200 },
@@ -33,7 +33,7 @@ export default function BoilerCoImpressionsChart() {
     <svg
       viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
       role="img"
-      aria-label="The Boiler Co organic search impressions grew from around 8,000 to a peak above 21,000 weekly impressions over the engagement"
+      aria-label="A boiler installation company's organic search impressions grew from around 8,000 to a peak above 21,000 weekly impressions over the engagement"
       className="h-auto w-full"
     >
       <defs>
@@ -46,7 +46,7 @@ export default function BoilerCoImpressionsChart() {
       <rect x="8" y="8" width={WIDTH - 16} height={HEIGHT - 16} rx="12" fill="#ffffff" stroke="#e5e7eb" />
 
       <text x={PAD.left} y={22} fill="#64748b" fontSize="11" fontWeight="600" letterSpacing="0.12em">
-        THE BOILER CO · WEEKLY IMPRESSIONS
+        BOILER INSTALLER · WEEKLY IMPRESSIONS
       </text>
 
       {[0, 6000, 12000, 18000, 21000].map((tick) => {

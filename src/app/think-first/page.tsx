@@ -157,9 +157,9 @@ const testimonials = [
   },
   {
     quote: 'After a frustrating run with agencies, this gave us genuine clarity on what to do and why it would work.',
-    name: 'Ant Vitale',
-    company: 'The Boiler Co',
-    caseStudyHref: '/case-studies/boiler-co',
+    name: 'Owner',
+    company: 'boiler installation company',
+    caseStudyHref: '/case-studies/boiler-installation-company',
   },
 ];
 

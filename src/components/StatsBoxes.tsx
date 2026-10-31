@@ -14,7 +14,7 @@ const stats: Stat[] = [
   },
   {
     headline: '90 days',
-    label: 'A full diary from organic search with paid ads paused - The Boiler Co',
+    label: 'A full diary from organic search with paid ads paused, for a boiler installation company',
     variant: 'phrase',
   },
   {

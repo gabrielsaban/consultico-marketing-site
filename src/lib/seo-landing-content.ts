@@ -97,24 +97,12 @@ export const SEO_LANDING_CHANNELS = [
 export type SeoChannelId = (typeof SEO_LANDING_CHANNELS)[number]['id'];
 
 const fullByCompany = {
-  boiler: ppcPageGoogleReviews.find((r) => r.company.includes('Boiler'))!,
   ellc: ppcPageGoogleReviews.find((r) => r.company.includes('Easy Line'))!,
   mcd: ppcPageGoogleReviews.find((r) => r.company.includes('MCD'))!,
 };
 
 /** Card teasers match homepage ReviewStrip excerpts; modals use full GBP text. */
 export const SEO_LANDING_STORIES = [
-  {
-    id: 'boiler-co',
-    name: 'The Boiler Co',
-    sector: 'Heating and plumbing',
-    teaser:
-      'After a frustrating run with agencies, this gave us genuine clarity on what to do and why it would work.',
-    quote: fullByCompany.boiler.quote,
-    reviewer: fullByCompany.boiler.name,
-    logo: '/seo-landing/logo-boiler-co.png',
-    logoBg: '#A8E6CF',
-  },
   {
     id: 'ellc',
     name: 'ELLC',

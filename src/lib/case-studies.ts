@@ -157,17 +157,17 @@ export const CASE_STUDIES: CaseStudy[] = [
       'In October 2025 Consultico’s Think First workshop found that Norfolk Boards, a UK garden games business, was held back by a summer-only sales calendar, and recommended extending the range into indoor games. That led to Norfolk Boards becoming the UK and European reseller for Michaud Toys, a Canadian maker of wooden board games. Across the twelve months to August 2026, monthly search clicks on its Shuffleboard site grew by 143%.',
   },
   {
-    slug: 'boiler-co',
-    named: true,
-    client: 'The Boiler Co',
+    slug: 'boiler-installation-company',
+    named: false,
+    client: 'A boiler installation company',
     headline: 'A full diary without paying for every lead',
-    metaTitle: 'The Boiler Co Case Study: Trades SEO in Bristol',
+    metaTitle: 'Case Study: Boiler Installer SEO, Full Diary',
     metaDescription:
-      'A Bristol boiler business whose diary rose and fell with its ad spend. Within around three months, search was filling the calendar, and they stayed 14 months.',
+      'A boiler installation company whose diary rose and fell with its ad spend. Within around three months, search was filling the calendar. They stayed 14 months.',
     intro:
-      'A Bristol plumbing and heating business where a full diary is everything. Their work came and went with their ad spend, so we built a source of enquiries that kept going when the ads paused.',
+      'A boiler installation company where a full diary is everything. Their work came and went with their ad spend, so we built a source of enquiries that kept going when the ads paused.',
     summary:
-      'A Bristol trades business that ran on paid ads, until search started filling the diary instead and kept it full for over 14 months.',
+      'A boiler installation company that ran on paid ads, until search started filling the diary instead and kept it full for over 14 months.',
     sector: 'Trades and plumbing',
     services: ['SEO', 'Web development'],
     metrics: [
@@ -198,7 +198,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       {
         heading: 'The impact',
         paragraphs: [
-          'Within around three months their calendar was being filled consistently through organic search, including through the periods when paid ads had to pause. Weekly impressions grew from around 8,000 to a peak of 21,054, weekly clicks rose from about 20 to a peak of 74, and monthly clicks went from 63 in April 2025 to 195 in October 2025. Average position improved from 37.8 to 13.7. They stayed with us as a retained client for over 14 months.',
+          'Within around three months their calendar was being filled consistently through organic search, including through the periods when paid ads had to pause. Weekly impressions grew from around 8,000 to a peak of 21,054, weekly clicks rose from about 20 to a peak of 74, and monthly clicks went from 63 in April 2025 to 195 in October 2025. Average position improved from 37.8 to 13.7. They stayed with us as a retained client for over 14 months. The owner told me his monthly revenue went from around £30,000 to over £80,000 in the better months.',
         ],
       },
       {
@@ -209,14 +209,14 @@ export const CASE_STUDIES: CaseStudy[] = [
       },
     ],
     quote: {
-      text: 'After a frustrating run with agencies, this gave us genuine clarity on what to do and why it would work.',
-      attribution: 'Ant Vitale, The Boiler Co',
+      text: 'I can’t thank Consultico enough. My business had hit a slump, busy with existing clients but getting no new ones. After dealing with pushy agencies and expensive quotes, I almost lost hope. Then I found Paul, who was genuine, knowledgeable, and always willing to explain things clearly.',
+      attribution: 'Owner, boiler installation company, Google review',
     },
     sourceNote: 'Search figures are from the client’s own Google Search Console export, covering the engagement.',
     primaryCta: SEO_CONTACT,
     secondaryCta: { href: '/seo-for-plumbers', label: 'SEO for plumbers' },
     citableClaim:
-      'Within around three months of Consultico starting SEO work, The Boiler Co’s calendar was consistently filled through organic search alone, including periods when paid advertising had to pause. They stayed a retained SEO client for over 14 months.',
+      'Within around three months of Consultico starting SEO work, a boiler installation company’s calendar was consistently filled through organic search alone, including periods when paid advertising had to pause. They stayed a retained SEO client for over 14 months.',
   },
 ];
 
@@ -225,65 +225,6 @@ export const CASE_STUDIES: CaseStudy[] = [
  * published. Move an entry up into CASE_STUDIES once it has been signed off.
  */
 export const DRAFT_CASE_STUDIES: CaseStudy[] = [
-  {
-    slug: 'healthcare-practice-search',
-    named: false,
-    client: 'A UK healthcare and wellness practice',
-    headline: 'From page two to page one for 21 conditions',
-    metaTitle: 'Case Study: Healthcare Practice SEO, Page One',
-    metaDescription:
-      'A UK healthcare practice sat on page two of Google for the conditions it treats. During our work, 21 pages reached page one and its position rose to 7.3.',
-    intro:
-      'A specialist UK healthcare and wellness practice treats a long list of conditions, from low back pain to Parkinson’s. People searching for help with those conditions weren’t finding it. Over six months of search work, that changed.',
-    summary:
-      'A specialist practice on page two of Google, moved to page one for 21 conditions by building search around what patients actually look for.',
-    sector: 'Healthcare and wellness',
-    services: ['SEO'],
-    metrics: [
-      { value: '19.2 to 7.3', label: 'Average position' },
-      { value: '21', label: 'Pages on page one' },
-      { value: '616', label: 'Non-brand searches in the top 10' },
-      { value: '8.5k to 22.5k', label: 'Monthly impressions' },
-    ],
-    sections: [
-      {
-        heading: 'The problem',
-        paragraphs: [
-          'The practice had the expertise, but its average position in Google was 19.2. That is page two, where almost nobody looks, so people searching for help were finding someone else first.',
-        ],
-      },
-      {
-        heading: 'What we found',
-        paragraphs: [
-          'Most people don’t search for the name of a profession. They search for the thing they want help with: back pain, menopause, osteoarthritis. So the way in was through each condition, one page at a time, rather than through the practice’s name.',
-        ],
-      },
-      {
-        heading: 'What we did',
-        paragraphs: [
-          'We ran the search work from September 2025 to March 2026, then stayed on call. The work focused on the condition pages, so each one could stand up on its own for the people searching for that condition.',
-        ],
-      },
-      {
-        heading: 'The impact',
-        paragraphs: [
-          'During our work, the practice’s average position rose from 19.2 to 7.3. By August 2026, 21 of its pages averaged a page-one position, including osteoporosis, low back pain, menopause, Parkinson’s, osteoarthritis, Alzheimer’s, diabetes, sarcopenia, posture and painful shoulder. 616 searches that don’t mention the practice by name were bringing it up in the top ten, and monthly impressions grew from around 8,500 to around 22,500.',
-        ],
-      },
-      {
-        heading: 'Why it mattered',
-        paragraphs: [
-          'In healthcare, being visible for the condition is how a new patient finds you. Each of those 21 pages is a way in for someone who has never heard of the practice and needs exactly what it does.',
-        ],
-      },
-    ],
-    sourceNote:
-      'Figures are from the practice’s own Google Search Console, comparing the start of our engagement in late August 2025 with the twelve months to 6 August 2026.',
-    primaryCta: SEO_CONTACT,
-    secondaryCta: { href: '/seo', label: 'Our SEO service' },
-    citableClaim:
-      'During Consultico’s six months of SEO work for a UK healthcare and wellness practice, its average Google position improved from 19.2 to 7.3, 21 condition pages reached page one, and 616 non-brand searches began returning it in the top ten.',
-  },
   {
     slug: 'wellness-business-new-site-search',
     named: false,

@@ -12,7 +12,7 @@ export const metadata: Metadata = servicePageMeta('content-creation');
 const stats = [
   { number: '110k+', label: 'Organic Instagram views in 30 days (Tiny Changes)' },
   { number: '13k', label: 'Organic Facebook reach, same campaign' },
-  { number: '21k', label: 'Weekly search impressions, up from 6k (Boiler Co)' },
+  { number: '21k', label: 'Weekly search impressions, up from 8k (boiler installer)' },
   { number: '5.0', label: 'Rated on Google' },
 ];
 

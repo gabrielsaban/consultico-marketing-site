@@ -130,6 +130,8 @@ const nextConfig: NextConfig = {
       // were the PPC agencies guide, so send it there.
       { source: '/articles/best-agencies-uk', destination: '/articles/best-ppc-agencies-uk', permanent: true },
       { source: '/articles/six-identical-pages-different-results', destination: '/seo-by-industry', permanent: true },
+      // 2026-10-31: case study anonymised, slug no longer carries the name.
+      { source: '/case-studies/boiler-co', destination: '/case-studies/boiler-installation-company', permanent: true },
     ];
   },
 };

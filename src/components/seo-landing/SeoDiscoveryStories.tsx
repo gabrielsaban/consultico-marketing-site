@@ -29,7 +29,7 @@ export default function SeoDiscoveryStories() {
           </p>
         </div>
 
-        <ul className="mx-auto mt-10 grid max-w-[62rem] grid-cols-1 gap-6 md:grid-cols-3 md:gap-5">
+        <ul className="mx-auto mt-10 grid max-w-[42rem] grid-cols-1 gap-6 md:grid-cols-2 md:gap-5">
           {SEO_LANDING_STORIES.map((story) => (
             <li key={story.id} className="relative pt-8">
               <article className="flex h-full flex-col overflow-hidden rounded-[1.25rem] bg-[#E8F3FE] dark:bg-gray-900">

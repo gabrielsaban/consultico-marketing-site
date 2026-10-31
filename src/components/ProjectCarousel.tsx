@@ -42,14 +42,14 @@ interface Project {
 const projects: Project[] = [
   {
     id: 1,
-    title: 'The Boiler Co.',
+    title: 'A boiler installation company',
     description: 'An SEO foundation that kept a trades business visible, busy, and less dependent on paid advertising.',
     image: '/projects/boiler.avif',
     category: 'SEO - 14+ months',
     tags: ['SEO', 'Lead generation', 'Retained client'],
     metric: '21,000',
     metricLabel: 'weekly impressions',
-    detail: "The Boiler Co is a Bristol-based trades business where a full calendar is everything. With an average job value of £1,200 and a team to keep busy, inconsistent lead flow isn't just an inconvenience - it threatens the whole operation. Since working with Consultico, the team has grown - a sign of a business that's now able to take on more work consistently.",
+    detail: "For a boiler installation company, a full calendar is everything. With an average job value of £1,200 and a team to keep busy, inconsistent lead flow isn't just an inconvenience - it threatens the whole operation. Since working with Consultico, the team has grown - a sign of a business that's now able to take on more work consistently.",
     proofPoints: [
       {
         value: '21,000',
@@ -64,12 +64,12 @@ const projects: Project[] = [
       {
         value: '14+',
         label: 'Months retained',
-        detail: "The Boiler Co have now been a retained SEO client for over 14 months. They've since returned for additional website work.",
+        detail: "They've now been a retained SEO client for over 14 months. They've since returned for additional website work.",
       },
       {
         value: '3',
         label: 'Months to results',
-        detail: 'Within three months, The Boiler Co reported that their calendar was getting consistently filled through organic search alone.',
+        detail: 'Within three months, they reported that their calendar was getting consistently filled through organic search alone.',
       },
     ],
     caseSections: [
@@ -79,11 +79,11 @@ const projects: Project[] = [
       },
       {
         title: 'What We Did',
-        body: 'We identified SEO as the missing piece. Not as a replacement for paid - as a foundation that would keep working regardless of what happened with ad budget. We built and implemented a full SEO strategy focused on high-intent search terms - people actively looking for boiler services in their area, ready to book. Within three months, The Boiler Co reported that their calendar was getting consistently filled through organic search alone.',
+        body: 'We identified SEO as the missing piece. Not as a replacement for paid - as a foundation that would keep working regardless of what happened with ad budget. We built and implemented a full SEO strategy focused on high-intent search terms - people actively looking for boiler services in their area, ready to book. Within three months, they reported that their calendar was getting consistently filled through organic search alone.',
       },
       {
         title: 'The Outcome',
-        body: "When paid ads had to be paused, SEO kept the business running. That's the result that matters most - not a percentage uplift on a dashboard, but a team of four staying busy and a business that stopped being dependent on a single channel. In terms of search performance, a typical week when we started showed around 8,000 impressions and 20 clicks - low volume, low intent. After consistent work, that peaked above 21,000 impressions and 55 clicks in the same week, with significantly higher intent traffic converting into booked appointments. Average position improved from 37.8 to 13.7. The Boiler Co were a retained SEO client for over 14 months and returned for additional website work.",
+        body: "When paid ads had to be paused, SEO kept the business running. That's the result that matters most - not a percentage uplift on a dashboard, but a team of four staying busy and a business that stopped being dependent on a single channel. In terms of search performance, a typical week when we started showed around 8,000 impressions and 20 clicks - low volume, low intent. After consistent work, that peaked above 21,000 impressions and 55 clicks in the same week, with significantly higher intent traffic converting into booked appointments. Average position improved from 37.8 to 13.7. They were a retained SEO client for over 14 months and returned for additional website work.",
       },
     ],
     results: [
@@ -92,7 +92,7 @@ const projects: Project[] = [
     ],
     testimonial: {
       quote: 'After a frustrating run with agencies, this gave us genuine clarity on what to do and why it would work.',
-      attribution: 'Ant Vitale, The Boiler Co',
+      attribution: 'Owner, boiler installation company',
     },
   },
   {
