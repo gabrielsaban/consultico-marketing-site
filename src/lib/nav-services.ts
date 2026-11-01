@@ -20,7 +20,7 @@ export const LOOP_HREF = '/#loop';
 
 /** The menu's big items, in order. */
 export const PRIMARY_NAV: NavLink[] = [
-  { name: 'Loop', href: LOOP_HREF },
+  { name: 'Meet Loop', href: LOOP_HREF },
   { name: 'Case studies', href: '/case-studies' },
   { name: 'About', href: '/#about' },
   { name: 'Contact', href: '/contact' },

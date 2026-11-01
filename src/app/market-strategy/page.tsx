@@ -246,7 +246,7 @@ export default function MarketStrategyPage() {
                   href={LOOP_HREF}
                   className="inline-flex items-center justify-center rounded-lg border border-brand-blue px-7 py-3 text-[clamp(1rem,1.15vw,1.1rem)] font-helvetica font-medium text-brand-blue transition-colors duration-200 hover:bg-brand-blue hover:text-white focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2"
                 >
-                  See how Loop works
+                  Meet Loop
                 </Link>
                 <Link
                   href="/think-first"

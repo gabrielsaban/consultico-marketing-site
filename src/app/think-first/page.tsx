@@ -617,7 +617,7 @@ export default function ThinkFirstPage() {
           <p className="mt-4 text-[clamp(0.875rem,1vw,1rem)] text-white/85 font-helvetica-light">
             We&apos;ll review your business and confirm if we can help before anything is booked.{' '}
             <Link href={LOOP_HREF} className="font-medium text-white underline underline-offset-2">
-              See how Loop works
+              Meet Loop
             </Link>
             .
           </p>

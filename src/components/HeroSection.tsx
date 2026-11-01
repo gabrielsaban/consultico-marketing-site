@@ -157,7 +157,7 @@ export default function HeroSection() {
                   scrollToHomeSection('loop');
                 }}
               >
-                See how Loop works <span aria-hidden="true">↓</span>
+                Meet Loop <span aria-hidden="true">↓</span>
               </button>
             </motion.div>
           </div>

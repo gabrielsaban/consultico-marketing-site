@@ -15,7 +15,7 @@ import { LOOP_HREF, NAV_SERVICES, getNavIndustries, type NavLink } from '@/lib/n
 // menu keeps the services quiet and Google never opens menus, so this has to
 // be the complete, crawlable index: every service, every industry page.
 const COMPANY_LINKS: NavLink[] = [
-  { name: 'Loop', href: LOOP_HREF },
+  { name: 'Meet Loop', href: LOOP_HREF },
   { name: 'Think First', href: '/think-first' },
   // Sitewide, so every page has a crawlable path to the proof.
   { name: 'Case studies', href: '/case-studies' },

@@ -1,7 +1,7 @@
 'use client';
 
 import { useLayoutEffect } from 'react';
-import { consumePendingHomeSection, scrollToHomeSection } from '@/lib/homeNavigation';
+import { clearHomeHash, consumePendingHomeSection, scrollToHomeSection } from '@/lib/homeNavigation';
 
 export default function ScrollToSectionOnLoad() {
   useLayoutEffect(() => {
@@ -27,8 +27,12 @@ export default function ScrollToSectionOnLoad() {
 
     restoreScroll();
 
+    // Once the page has settled on the section, tidy the address back to "/".
+    const tidy = window.setTimeout(clearHomeHash, 1500);
+
     return () => {
       if (frame) cancelAnimationFrame(frame);
+      window.clearTimeout(tidy);
     };
   }, []);
 

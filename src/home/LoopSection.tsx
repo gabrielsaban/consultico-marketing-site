@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Container from '@/components/Container';
 
 /**
- * "How Loop runs", directly under the hero. It replaces MarketingIntro, which
+ * "Meet Loop", directly under the hero. It replaces MarketingIntro, which
  * opened "Your marketing spend is being wasted without a strategy" and told the
  * reader "You have a strategy problem". The people this is for already know
  * their numbers, so that talked down to them (identity plan, 2026-10-31).
@@ -17,7 +17,7 @@ const STEPS = [
     body: 'The same person every week, who gets to know your brand and your numbers.',
   },
   {
-    title: 'Your Monday report',
+    title: 'Your weekly report',
     body: 'What your marketing really brought in, and changes that make a difference.',
   },
   {
@@ -34,14 +34,16 @@ export default function LoopSection() {
     >
       <Container>
         <div className="max-w-4xl">
-          <p className="mb-3 font-helvetica text-[0.78rem] font-semibold uppercase tracking-[0.16em] text-brand-blue">
-            How Loop runs
-          </p>
-          <h2 className="font-futura text-[clamp(1.6rem,2.8vw,2.75rem)] font-bold leading-[1.1] text-[#1B2A4A] dark:text-white">
-            A fresh look at your marketing, every Monday.
+          {/* "Meet Loop" (Paul, 2026-11-01): Loop is a system people haven't
+              met before, so it's introduced, not assumed. The "together" in
+              the last line matters: Loop is a collaboration with the client's
+              team, never an offer to do everything for them. */}
+          <h2 className="font-futura text-[clamp(2rem,3.6vw,3.5rem)] font-bold leading-[1.05] tracking-[-0.01em]">
+            <span className="block text-[#1B2A4A] dark:text-white">Meet Loop.</span>
+            <span className="block text-brand-blue">A fresh look at your marketing, every week.</span>
           </h2>
-          <p className="mt-5 font-helvetica-light text-[clamp(1.05rem,1.4vw,1.3rem)] leading-[1.6] text-gray-800 dark:text-gray-200">
-            Loop shows you what your marketing really brings in. Every Monday, one person sends changes that make a difference. Say yes, talk or no, and we make them.
+          <p className="mt-6 font-helvetica-light text-[clamp(1.05rem,1.4vw,1.3rem)] leading-[1.6] text-gray-800 dark:text-gray-200">
+            Loop shows you how your marketing makes revenue and how to make it more effective. Every week, our team helps you find changes that make a difference. You choose the best ones, and together we make them happen.
           </p>
         </div>
 
