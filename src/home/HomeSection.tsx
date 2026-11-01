@@ -1,7 +1,6 @@
 import HeroSection from '@/components/HeroSection';
 import LoopSection from './LoopSection';
 import NewsletterSignup from '@/components/NewsletterSignup';
-import ThinkFirstSection from './ThinkFirstSection';
 // import KeywordSection from './KeywordSection';
 
 export default function HomeSection() {
@@ -31,7 +30,6 @@ export default function HomeSection() {
         flatten both of them and push Think First too far down.
       */}
       <NewsletterSignup source="homepage" />
-      <ThinkFirstSection />
       {/* <KeywordSection /> */}
     </section>
   );
