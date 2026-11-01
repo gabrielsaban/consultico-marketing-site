@@ -110,8 +110,9 @@ export default function HeroSection() {
       </motion.div>
 
       {/* Main hero. Loop is the front door (identity plan, 2026-10-31): the
-          product name as the eyebrow, the slogan as the H1, and one plain
-          sentence under it. Who sits behind Loop is explained further down the
+          slogan as the H1 and one plain sentence under it. The "Loop, by
+          Consultico" pill came out on 2026-11-01 (Paul): the logo above and
+          the Loop ring beside already say it. Who sits behind Loop is explained further down the
           page, so the hero stays about the reader. */}
       <Container className="w-full">
         <motion.div
@@ -121,14 +122,6 @@ export default function HeroSection() {
           animate="visible"
         >
           <div className="text-left">
-            <motion.p
-              className="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-primary/30 px-4 py-2 font-helvetica text-[0.78rem] font-semibold uppercase tracking-[0.16em] text-blue-primary"
-              variants={itemVariants}
-            >
-              <span className="h-2 w-2 rounded-full bg-blue-primary" aria-hidden="true" />
-              Loop, by Consultico
-            </motion.p>
-
             {/* Holds the LCP element, so it uses sloganVariants (no opacity). */}
             <motion.h1
               className="font-futura font-[750] leading-[1.04] tracking-[-0.02em] text-[clamp(2.4rem,4.3vw,4.6rem)] [@media(max-height:800px)]:text-[clamp(2.2rem,3.9vw,4rem)] lg:[&>span]:whitespace-nowrap"
