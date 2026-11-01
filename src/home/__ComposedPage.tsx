@@ -11,9 +11,9 @@ export default function ComposedPage() {
     <main className="min-h-screen">
       <ScrollToSectionOnLoad />
       <HomeSection />
-      <ServicesSection />
       <ProjectsSocialProof />
       <LatestArticlesSection />
+      <ServicesSection />
       <AboutSection />
       <ContactSection />
     </main>
