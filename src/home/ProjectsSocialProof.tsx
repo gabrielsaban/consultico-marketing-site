@@ -84,13 +84,12 @@ export default function ProjectsSocialProof() {
             ))}
           </ul>
 
-          <p className="mt-8 max-w-3xl font-helvetica-light text-[1rem] leading-[1.6] text-gray-700 dark:text-gray-300">
-            We&apos;ve also worked with Tiny Changes and Hepburn Holistic.{' '}
-            <Link href="/case-studies" className="font-medium text-brand-blue underline-offset-4 hover:underline">
-              See all our case studies
-            </Link>
-            .
-          </p>
+          <Link
+            href="/case-studies"
+            className="mt-8 inline-block font-helvetica font-medium text-brand-blue underline-offset-4 hover:underline"
+          >
+            See all our case studies
+          </Link>
         </Container>
 
       </div>
