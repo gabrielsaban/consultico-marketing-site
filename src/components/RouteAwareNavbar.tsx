@@ -8,10 +8,12 @@ import ThemeToggle from '@/components/ThemeToggle';
 import { useRouter } from 'next/navigation';
 import { navigateToHomeSection } from '@/lib/homeNavigation';
 import { isReportPath } from '@/lib/reports/is-report-path';
+import { useSiteMenu } from '@/components/SiteMenuContext';
 
+// Shortcuts to homepage sections that still exist. The full site map lives in
+// the overlay menu (SiteMenu), which the hamburger at the top opens.
 const navItems = [
   { name: 'home',     href: '#home'     },
-  { name: 'services', href: '#services' },
   { name: 'projects', href: '#projects' },
   { name: 'about',    href: '#about'    },
   { name: 'contact',  href: '#contact'  },
@@ -20,8 +22,9 @@ const navItems = [
 export default function RouteAwareNavbar() {
   const pathname = usePathname();
   const router = useRouter();
-  const [activeSection, setActiveSection] = useState('home');
+  const [activeSection, setActiveSection] = useState<string | null>('home');
   const prefersReduced = useReducedMotion();
+  const { open, toggleMenu } = useSiteMenu();
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -39,7 +42,15 @@ export default function RouteAwareNavbar() {
         setActiveSection('about');
         return;
       }
-      setActiveSection('services');
+      if (pathname === '/contact') {
+        setActiveSection('contact');
+        return;
+      }
+      if (pathname === '/case-studies' || pathname.startsWith('/case-studies/')) {
+        setActiveSection('projects');
+        return;
+      }
+      setActiveSection(null);
       return;
     }
 
@@ -62,8 +73,7 @@ export default function RouteAwareNavbar() {
         }
       }
 
-      if (bestId) setActiveSection(bestId);
-      else setActiveSection('home');
+      setActiveSection(bestId ?? 'home');
     };
 
     const onScroll = () => {
@@ -87,14 +97,34 @@ export default function RouteAwareNavbar() {
   if (isReportPath(pathname)) return null;
 
   return (
-    <motion.nav 
+    <motion.nav
+      aria-label="Sections"
       data-cursor-theme="light"
-      className="hidden md:flex fixed left-0 top-0 h-full w-16 bg-brand-blue z-50 flex-col justify-center"
+      className="hidden md:flex fixed left-0 top-0 h-full w-16 bg-brand-blue z-50 flex-col items-center py-4"
       initial={prefersReduced ? false : { x: -100, opacity: 0 }}
       animate={prefersReduced ? { x: 0, opacity: 1 } : { x: 0, opacity: 1 }}
       transition={{ delay: prefersReduced ? 0 : 0.15, duration: prefersReduced ? 0 : 0.35, ease: 'easeOut' }}
     >
-      <div className="flex flex-col items-center space-y-28">
+      {/* Stays live while the menu is open: it is the menu's close button. */}
+      <button
+        type="button"
+        data-site-menu-toggle
+        aria-expanded={open}
+        aria-controls="site-menu"
+        aria-label={open ? 'Close menu' : 'Open menu'}
+        onClick={(e) => toggleMenu(e.currentTarget)}
+        className="shrink-0 w-12 h-12 grid place-items-center text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+      >
+        <span className="relative block h-3.5 w-5" aria-hidden="true">
+          <span className={`absolute left-0 right-0 h-[2px] bg-current transition-transform duration-200 motion-reduce:transition-none ${open ? 'top-1/2 -translate-y-1/2 rotate-45' : 'top-0'}`} />
+          <span className={`absolute left-0 right-0 top-1/2 h-[2px] -translate-y-1/2 bg-current transition-opacity duration-200 motion-reduce:transition-none ${open ? 'opacity-0' : 'opacity-100'}`} />
+          <span className={`absolute left-0 right-0 h-[2px] bg-current transition-transform duration-200 motion-reduce:transition-none ${open ? 'bottom-1/2 translate-y-1/2 -rotate-45' : 'bottom-0'}`} />
+        </span>
+      </button>
+
+      {/* Vertical writing rather than a rotate transform, so each label's
+          layout box is its real height and the gaps below are honest. */}
+      <div inert={open} className="flex flex-1 min-h-0 flex-col items-center justify-center gap-[clamp(1.75rem,6vh,4.5rem)]">
         {navItems.map((item) => {
           const isActive = activeSection === item.name;
           return (
@@ -102,26 +132,33 @@ export default function RouteAwareNavbar() {
               key={item.name}
               href={`/${item.href}`}
               onClick={(e) => handleNavClick(e, item.href)}
+              aria-current={isActive ? 'location' : undefined}
               className={`
-                relative flex items-center justify-center
-                transition-all duration-200 ease-out
+                text-white text-d-20 tracking-wide antialiased whitespace-nowrap
+                [writing-mode:vertical-rl] rotate-180
+                transition-transform duration-200 ease-out motion-reduce:transition-none
                 ${isActive
-                  ? 'font-extrabold scale-110 text-white'
-                  : 'font-bold text-brand-silk/70'
+                  ? 'font-extrabold scale-110 underline decoration-2 underline-offset-[6px]'
+                  : 'font-bold'
                 }
-                hover:scale-105
+                hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-white
               `}
             >
-              <div className="transform -rotate-90 whitespace-nowrap">
-                <span className="text-d-20 tracking-wide antialiased subpixel-antialiased">
-                  {item.name}
-                </span>
-              </div>
+              {item.name}
             </Link>
           );
         })}
       </div>
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2">
+
+      {/* White on our blue is just under 4:1, so this stays at large-text
+          size (19px bold) to clear the 3:1 large-text bar. */}
+      <div inert={open} className="shrink-0 flex flex-col items-center gap-5">
+        <Link
+          href="/contact"
+          className="text-white text-[19px] leading-none font-bold tracking-wide whitespace-nowrap [writing-mode:vertical-rl] rotate-180 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+        >
+          Start the conversation
+        </Link>
         <ThemeToggle className="border-white text-white hover:bg-white/20" />
       </div>
     </motion.nav>

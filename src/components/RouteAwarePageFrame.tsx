@@ -4,9 +4,11 @@ import { usePathname } from 'next/navigation'
 import Footer from '@/components/Footer'
 import { isReportPath } from '@/lib/reports/is-report-path';
 import { useEffect } from 'react'
+import { useSiteMenu } from '@/components/SiteMenuContext'
 
 export default function RouteAwarePageFrame({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
+  const { open: menuOpen } = useSiteMenu()
 
   useEffect(() => {
     if (typeof window === 'undefined') return
@@ -24,7 +26,8 @@ export default function RouteAwarePageFrame({ children }: { children: React.Reac
   }
 
   return (
-    <div className="relative z-10 min-h-screen flex flex-col pl-0 md:pl-16">
+    // Inert while the site menu is open, so nothing behind it takes focus.
+    <div inert={menuOpen} className="relative z-10 min-h-screen flex flex-col pl-0 md:pl-16">
       <div className="flex-1">{children}</div>
       <Footer />
     </div>

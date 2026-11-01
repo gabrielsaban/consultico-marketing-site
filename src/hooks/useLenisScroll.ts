@@ -66,10 +66,14 @@ export function useLenisScroll(options: UseLenisScrollOptions = {}) {
     const handleTeamModal = (event: Event) => {
       updateModalLock('team', Boolean((event as CustomEvent<{ open?: boolean }>).detail?.open))
     }
+    const handleSiteMenu = (event: Event) => {
+      updateModalLock('menu', Boolean((event as CustomEvent<{ open?: boolean }>).detail?.open))
+    }
 
     window.addEventListener('consultico:scroll-to-top', handleScrollToTop)
     window.addEventListener('consultico:project-modal', handleProjectModal)
     window.addEventListener('consultico:team-modal', handleTeamModal)
+    window.addEventListener('consultico:site-menu', handleSiteMenu)
     frameRef.current = requestAnimationFrame(raf)
 
     // Cleanup
@@ -84,6 +88,7 @@ export function useLenisScroll(options: UseLenisScrollOptions = {}) {
       window.removeEventListener('consultico:scroll-to-top', handleScrollToTop)
       window.removeEventListener('consultico:project-modal', handleProjectModal)
       window.removeEventListener('consultico:team-modal', handleTeamModal)
+      window.removeEventListener('consultico:site-menu', handleSiteMenu)
       lenis.destroy()
     }
   }, [options])

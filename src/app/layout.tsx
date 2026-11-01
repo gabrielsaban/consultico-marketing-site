@@ -8,6 +8,8 @@ import RouteAwareNavbar from "@/components/RouteAwareNavbar";
 import RouteAwarePageFrame from "@/components/RouteAwarePageFrame";
 import ClientEffectsRoot from "@/components/ClientEffectsRoot";
 import TopBar from "@/components/TopBar";
+import SiteMenu from "@/components/SiteMenu";
+import { SiteMenuProvider } from "@/components/SiteMenuContext";
 import SitePreloader from "@/components/SitePreloader";
 import { PreloaderProvider } from "@/components/PreloaderContext";
 import PreloaderGate from "@/components/PreloaderGate";
@@ -101,12 +103,16 @@ export default function RootLayout({
         <PreloaderProvider>
           <SitePreloader />
           <PreloaderGate>
-            {/* Mobile-only top bar */}
-            <TopBar />
-            <RouteAwareNavbar />
-            <RouteAwarePageFrame>
-              {children}
-            </RouteAwarePageFrame>
+            {/* One menu state for the sidebar, the mobile top bar and the overlay */}
+            <SiteMenuProvider>
+              {/* Mobile-only top bar */}
+              <TopBar />
+              <RouteAwareNavbar />
+              <SiteMenu />
+              <RouteAwarePageFrame>
+                {children}
+              </RouteAwarePageFrame>
+            </SiteMenuProvider>
           </PreloaderGate>
           <ClientEffectsRoot />
         </PreloaderProvider>

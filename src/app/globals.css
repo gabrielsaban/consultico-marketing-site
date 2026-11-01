@@ -31,6 +31,9 @@
   --color-brand-silk: var(--brand-silk);
   --color-brand-black: var(--brand-black);
   --color-brand-navy: var(--brand-navy);
+  /* Site menu names: the same black and silk, under the names the menu uses */
+  --color-ink: var(--brand-black);
+  --color-paper: var(--brand-silk);
   /* Backwards-compat mapping */
   --color-blue-primary: var(--brand-blue);
 }
@@ -45,6 +48,14 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-helvetica);
+}
+
+/* The site menu moves focus to <main> (or a homepage section) after a
+   navigation. It is a landing spot for screen readers, not a control, so it
+   needs no visible ring. */
+main[tabindex="-1"]:focus,
+section[tabindex="-1"]:focus {
+  outline: none;
 }
 
 .custom-cursor-active,
