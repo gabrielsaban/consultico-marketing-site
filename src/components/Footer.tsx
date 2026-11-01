@@ -9,48 +9,60 @@ import {
   CONSULTICO_PHONE_DISPLAY,
   CONSULTICO_PHONE_TEL,
 } from '@/lib/contact';
-import {
-  SEO_BY_INDUSTRY_PATH,
-  getFeaturedSeoIndustries,
-  getIndustryPath,
-} from '@/lib/seo-industries';
+import { LOOP_HREF, NAV_SERVICES, getNavIndustries, type NavLink } from '@/lib/nav-services';
+
+// The footer is the one place every page is linked from every page. The new
+// menu keeps the services quiet and Google never opens menus, so this has to
+// be the complete, crawlable index: every service, every industry page.
+const COMPANY_LINKS: NavLink[] = [
+  { name: 'Loop', href: LOOP_HREF },
+  { name: 'Think First', href: '/think-first' },
+  // Sitewide, so every page has a crawlable path to the proof.
+  { name: 'Case studies', href: '/case-studies' },
+  { name: 'Articles', href: '/articles' },
+  { name: 'About', href: '/#about' },
+  { name: 'Careers', href: '/careers' },
+  { name: 'Advertise', href: '/sponsored-placements' },
+  { name: 'Contact', href: '/contact' },
+];
+
+function FooterLinkList({ title, links }: { title: string; links: NavLink[] }) {
+  return (
+    <div>
+      <h3 className="text-[clamp(1.125rem,1.3vw,1.25rem)] font-futura font-bold mb-4">{title}</h3>
+      <ul className="space-y-2">
+        {links.map((link) => (
+          <li key={link.href}>
+            <Link
+              href={link.href}
+              className="flex items-start gap-2 text-[clamp(0.875rem,1vw,1rem)] font-helvetica-light text-gray-100 hover:text-white transition-colors group"
+            >
+              <svg
+                className="w-3 h-3 mt-[0.35em] flex-shrink-0 group-hover:translate-x-1 transition-transform"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+              {link.name}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
 
 export default function Footer() {
-  const featuredIndustryLinks = getFeaturedSeoIndustries(3).map((industry) => ({
-    name: industry.label,
-    href: getIndustryPath(industry),
-  }));
-
-  const quickLinks1 = [
-    { name: 'Home', href: '/#home' },
-    { name: 'Projects', href: '/#projects' },
-    // Sitewide, so every page has a crawlable path to the proof. "Projects"
-    // above points at a homepage anchor, which is not the same thing and is not
-    // what anyone types or follows when they want the case studies.
-    { name: 'Case Studies', href: '/case-studies' },
-    { name: 'About', href: '/#about' },
-    { name: 'Careers', href: '/careers' },
-    { name: 'Advertise', href: '/sponsored-placements' },
-    { name: 'Contact', href: '/contact' },
-  ];
-
-  const quickLinks2 = [
-    // The strategy pillar had two inbound links site-wide (both contextual) and
-    // none from any shared component: 1 query / 15 impressions in a month.
-    // First in the list because strategy is the stated priority (2026-08-29).
-    { name: 'Marketing Strategy', href: '/market-strategy' },
-    { name: 'Think First', href: '/think-first' },
-    { name: 'Articles', href: '/articles' },
-    { name: 'SEO', href: '/seo' },
-    { name: 'PPC', href: '/ppc' },
-    { name: 'SEO by Industry', href: SEO_BY_INDUSTRY_PATH },
-    ...featuredIndustryLinks,
-  ];
-
   return (
     <footer data-cursor-theme="light" className="bg-brand-blue text-white mt-auto">
       <Container className="py-8 md:py-10 lg:py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-8 lg:gap-12 items-start justify-items-center">
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_2.4fr_1fr] gap-8 md:gap-8 lg:gap-12 items-start justify-items-center">
           {/* Column 1: Logo + Description */}
           <div className="w-full max-w-xs">
             <Image
@@ -61,7 +73,7 @@ export default function Footer() {
               className="mb-6 brightness-0 invert"
             />
             <p className="text-[clamp(0.875rem,1vw,1rem)] leading-[1.6] font-helvetica-light text-gray-100 mb-6">
-              Strategic digital marketing solutions that drive real results. We help businesses grow through data-driven strategies and expert execution.
+              Loop, by Consultico. An extra part of your marketing team that takes a fresh look every week. Sharper every week. Further every year.
             </p>
             
             {/* Social Media Icons */}
@@ -96,59 +108,11 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Column 2: Quick Links - Two columns side by side */}
-          <div className="w-full max-w-xs md:max-w-none">
-            <h3 className="text-[clamp(1.125rem,1.3vw,1.25rem)] font-futura font-bold mb-4">
-              Quick Links
-            </h3>
-            <div className="grid grid-cols-2 gap-3">
-              <ul className="space-y-2">
-                {quickLinks1.map((link) => (
-                  <li key={link.name}>
-                    <Link
-                      href={link.href}
-                      className="flex items-center gap-2 text-[clamp(0.875rem,1vw,1rem)] font-helvetica-light text-gray-100 hover:text-white transition-colors group"
-                    >
-                      <svg
-                        className="w-3 h-3 flex-shrink-0 group-hover:translate-x-1 transition-transform"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M5 12h14M12 5l7 7-7 7" />
-                      </svg>
-                      {link.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-              <ul className="space-y-2">
-                {quickLinks2.map((link) => (
-                  <li key={link.name}>
-                    <Link
-                      href={link.href}
-                      className="flex items-center gap-2 text-[clamp(0.875rem,1vw,1rem)] font-helvetica-light text-gray-100 hover:text-white transition-colors group"
-                    >
-                      <svg
-                        className="w-3 h-3 flex-shrink-0 group-hover:translate-x-1 transition-transform"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M5 12h14M12 5l7 7-7 7" />
-                      </svg>
-                      {link.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          {/* Column 2: the full index. Company, services, then industries. */}
+          <div className="w-full max-w-xs md:max-w-none grid grid-cols-2 lg:grid-cols-[0.8fr_0.8fr_1.4fr] gap-6">
+            <FooterLinkList title="Consultico" links={COMPANY_LINKS} />
+            <FooterLinkList title="Services" links={NAV_SERVICES} />
+            <FooterLinkList title="Industries" links={getNavIndustries()} />
           </div>
 
           {/* Column 3: Contact Us */}

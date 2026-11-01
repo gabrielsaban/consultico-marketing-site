@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import Image from 'next/image';
 import Container from '@/components/Container';
-import ImageFilledText from '@/components/ImageFilledText';
+import HeroOrbit from '@/components/HeroOrbit';
 import ContactHeaderButton from '@/components/ContactHeaderButton';
 import { consumeHomeEntryAnimationSkip, scrollToHomeSection } from '@/lib/homeNavigation';
 
@@ -109,67 +109,68 @@ export default function HeroSection() {
         <ContactHeaderButton />
       </motion.div>
 
-      {/* Main Hero Content - Centered Slogan */}
+      {/* Main hero. Loop is the front door (identity plan, 2026-10-31): the
+          product name as the eyebrow, the slogan as the H1, and one plain
+          sentence under it. Who sits behind Loop is explained further down the
+          page, so the hero stays about the reader. */}
       <Container className="w-full">
         <motion.div
-          className="text-center [@media(max-height:800px)]:translate-y-6"
+          className="grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr] [@media(max-height:800px)]:translate-y-6"
           variants={containerVariants}
           initial={skipEntryAnimation ? false : 'hidden'}
           animate="visible"
         >
-          {/* Slogan. Holds the LCP element, so it uses sloganVariants (no opacity). */}
-          <motion.div className="mb-12" variants={sloganVariants}>
-            <div className="flex flex-col items-center gap-4 md:gap-6">
-              {/* Line 1: "in a world of noise" */}
-              <div className="flex flex-wrap items-baseline justify-center gap-3 md:gap-4">
-                <h1 className="text-blue-primary font-futura font-[750] text-[clamp(1.65rem,4.55vmin,3.35rem)] [@media(max-height:800px)]:text-[clamp(1.9rem,5.3vmin,3.9rem)] 2xl:text-[clamp(2rem,3.9vw,4rem)] leading-[1.1]">
-                  in a world of
-                </h1>
-                <ImageFilledText 
-                  text="noise" 
-                  className="font-futura font-[750] text-[clamp(3rem,8.75vmin,7.5rem)] [@media(max-height:800px)]:text-[clamp(3.5rem,10.15vmin,8.7rem)] 2xl:text-[clamp(3.75rem,7.75vw,9.75rem)] leading-[1]"
-                />
-              </div>
-              
-              {/* Line 2: "we make your brand heard" */}
-              <h2 className="text-blue-primary font-futura font-[750] text-[clamp(1.65rem,4.55vmin,3.35rem)] [@media(max-height:800px)]:text-[clamp(1.9rem,5.3vmin,3.9rem)] 2xl:text-[clamp(2rem,3.9vw,4rem)] leading-[1.1]">
-                we make your brand heard
-              </h2>
-            </div>
-          </motion.div>
-
-          {/* Decorative Divider */}
-          <motion.div className="mb-14" variants={itemVariants}>
-            <div className="h-[2px] bg-gradient-to-r from-transparent via-blue-primary to-transparent mx-auto w-[30vw]"  />
-          </motion.div>
-
-          {/* Supporting Line - Strategy Focus */}
-          <motion.div className="mb-8" variants={itemVariants}>
-            <p className="text-blue-primary opacity-80 font-futura font-medium text-[clamp(1rem,2.25vw,1.9rem)] [@media(max-height:800px)]:text-[clamp(0.95rem,1.85vw,1.5rem)] leading-[1.3]">
-              A Strategy-Led Digital Marketing Studio
-            </p>
-          </motion.div>
-
-          {/* Philosophy Micro Line */}
-          <motion.div className="mb-10" variants={itemVariants}>
-            <p className="text-gray-600 dark:text-gray-300 font-futura text-[clamp(0.75rem,0.9vw,0.85rem)] tracking-[0.15em] opacity-70 uppercase">
-               Clarity <span className="mx-2">·</span> Strategy <span className="mx-2">·</span> Growth
-            </p>
-          </motion.div>
-
-          {/* CTA Button */}
-          <motion.div variants={itemVariants}>
-            <motion.button
-              className="bg-blue-primary text-white font-helvetica font-medium text-[clamp(1rem,1.2vw,1.125rem)] px-8 py-3 rounded-lg transition-colors duration-200 hover:bg-[#006FE6] active:bg-[#0067D6] focus:outline-none focus:ring-2 focus:ring-blue-primary focus:ring-offset-2"
-              whileHover={{ scale: 1.06 }}
-              whileTap={{ scale: 0.98 }}
-              aria-label="Get in touch with Consultico"
-              onClick={() => {
-                scrollToHomeSection('contact');
-              }}
+          <div className="text-left">
+            <motion.p
+              className="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-primary/30 px-4 py-2 font-helvetica text-[0.78rem] font-semibold uppercase tracking-[0.16em] text-blue-primary"
+              variants={itemVariants}
             >
-              Get in touch
-            </motion.button>
+              <span className="h-2 w-2 rounded-full bg-blue-primary" aria-hidden="true" />
+              Loop, by Consultico
+            </motion.p>
+
+            {/* Holds the LCP element, so it uses sloganVariants (no opacity). */}
+            <motion.h1
+              className="font-futura font-[750] leading-[1.04] tracking-[-0.02em] text-[clamp(2.4rem,4.3vw,4.6rem)] [@media(max-height:800px)]:text-[clamp(2.2rem,3.9vw,4rem)] lg:[&>span]:whitespace-nowrap"
+              variants={sloganVariants}
+            >
+              <span className="block text-[#1B2A4A] dark:text-white">Sharper every week.</span>
+              <span className="block text-blue-primary">Further every year.</span>
+            </motion.h1>
+
+            <motion.p
+              className="mt-6 max-w-[34rem] font-helvetica-light text-[clamp(1.05rem,1.35vw,1.3rem)] leading-[1.6] text-gray-700 dark:text-gray-200"
+              variants={itemVariants}
+            >
+              An extra part of your marketing team that takes a fresh look every week and helps you do more of what works.
+            </motion.p>
+
+            <motion.div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-4" variants={itemVariants}>
+              <motion.button
+                type="button"
+                className="bg-blue-primary text-white font-helvetica font-medium text-[clamp(1rem,1.2vw,1.125rem)] px-8 py-3 rounded-lg transition-colors duration-200 hover:bg-[#006FE6] active:bg-[#0067D6] focus:outline-none focus:ring-2 focus:ring-blue-primary focus:ring-offset-2"
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => {
+                  scrollToHomeSection('contact');
+                }}
+              >
+                Start the conversation
+              </motion.button>
+              <button
+                type="button"
+                className="font-helvetica font-medium text-[clamp(0.95rem,1.1vw,1.05rem)] text-blue-primary underline-offset-4 hover:underline focus:outline-none focus-visible:underline"
+                onClick={() => {
+                  scrollToHomeSection('loop');
+                }}
+              >
+                See how Loop works <span aria-hidden="true">↓</span>
+              </button>
+            </motion.div>
+          </div>
+
+          <motion.div className="hidden lg:block" variants={itemVariants}>
+            <HeroOrbit />
           </motion.div>
         </motion.div>
       </Container>

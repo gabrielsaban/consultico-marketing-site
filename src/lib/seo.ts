@@ -82,9 +82,11 @@ export const SERVICE_PAGES = {
     serviceType: 'Content marketing',
   },
   'market-strategy': {
-    title: 'Marketing Strategy Consultants, Glasgow & UK',
+    // Glasgow comes out of this title so the page stops competing with the
+    // homepage for "marketing consultant glasgow" (identity plan, 2026-10-31).
+    title: 'Marketing Strategy Consultants, UK',
     description:
-      'Strategy-led marketing consultants in Glasgow, working across Scotland and the UK. We work out what your numbers can support, and what should happen first.',
+      "Marketing strategy for UK consumer brands: what to keep, what to stop and what to back next. It's how Loop, by Consultico, starts and keeps going.",
     path: '/market-strategy',
     serviceName: 'Marketing Strategy Consulting',
     serviceType: 'Marketing strategy consulting',

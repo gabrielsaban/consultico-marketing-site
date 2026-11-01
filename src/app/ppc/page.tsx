@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Container from '@/components/Container';
 import FaqSection from '@/components/FaqSection';
+import LoopNote from '@/components/LoopNote';
 import ServicePageJsonLd from '@/components/ServicePageJsonLd';
 import ServiceHero from '@/components/services/ServiceHero';
 import PpcSixChecksDiagram from '@/components/services/PpcSixChecksDiagram';
@@ -654,6 +655,8 @@ export default function PpcPage() {
             </p>
           </Container>
         </section>
+
+        <LoopNote />
 
         <section className="bg-white dark:bg-gray-950">
           <Container>

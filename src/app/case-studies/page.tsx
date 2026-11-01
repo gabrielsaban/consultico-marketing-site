@@ -146,7 +146,7 @@ export default function CaseStudiesPage() {
                 href="/think-first"
                 className="inline-flex items-center justify-center rounded-lg border border-gray-300 px-6 py-3 font-helvetica text-gray-800 transition-colors hover:border-brand-blue hover:text-brand-blue dark:border-gray-700 dark:text-gray-200"
               >
-                See the Think First workshop
+                See the Think First strategy workshop
               </Link>
             </div>
           </div>

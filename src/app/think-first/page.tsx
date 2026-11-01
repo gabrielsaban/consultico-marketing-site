@@ -5,12 +5,13 @@ import ServiceDesktopHeader from '@/components/ServiceDesktopHeader';
 import Image from 'next/image';
 import Link from 'next/link';
 import { pageMeta } from '@/lib/seo';
+import { LOOP_HREF } from '@/lib/nav-services';
 import { serializeJsonLd, thinkFirstPageJsonLd } from '@/lib/schema';
 
 export const metadata: Metadata = pageMeta({
   title: 'Think First: Marketing Strategy Workshop | Consultico',
   description:
-    'Consultico\'s 30-day marketing workshop for B2C brands, in Glasgow or online. Strategy, projections and a roadmap before you spend on SEO, PPC or web.',
+    'The marketing strategy workshop that starts Loop, by Consultico. For UK consumer brands, in Glasgow or online: a clear plan and five recommendations.',
   path: '/think-first',
   absoluteTitle: true,
 });
@@ -188,7 +189,7 @@ export default function ThinkFirstPage() {
             <div>
               <h1 className="font-futura font-bold mb-4 max-w-[38rem]">
                 <span className="block text-[clamp(1.55rem,2.35vw,2.65rem)] leading-[1.1] text-brand-blue">
-                  Think First: your marketing strategy workshop, built in 30 days
+                  Think First: the marketing strategy workshop that starts Loop
                 </span>
               </h1>
               <p className="text-[clamp(0.9rem,1.05vw,1rem)] leading-[1.5] text-gray-600 dark:text-gray-400 font-helvetica mb-5">
@@ -602,10 +603,10 @@ export default function ThinkFirstPage() {
       <section id="apply" data-cursor-theme="light" className="py-16 md:py-20 lg:py-24 bg-brand-blue text-white">
         <Container>
           <h2 className="text-[clamp(1.6rem,2.6vw,2.8rem)] leading-[1.14] font-futura font-bold mb-5 max-w-[20ch]">
-            Stop Spending Blindly. Start Scaling Intelligently.
+            Start with Think First. Then keep going with Loop.
           </h2>
           <p className="text-[clamp(1rem,1.35vw,1.25rem)] leading-[1.6] font-helvetica-light mb-6 max-w-3xl text-white/90">
-            If you want clarity before your next big marketing decision, apply below.
+            Think First is how every Loop starts. If you want clarity before your next big marketing decision, apply below.
           </p>
           <Link
             href="/#contact"
@@ -614,7 +615,11 @@ export default function ThinkFirstPage() {
             Apply For The Strategy Workshop
           </Link>
           <p className="mt-4 text-[clamp(0.875rem,1vw,1rem)] text-white/85 font-helvetica-light">
-            We&apos;ll review your business and confirm if we can help before anything is booked.
+            We&apos;ll review your business and confirm if we can help before anything is booked.{' '}
+            <Link href={LOOP_HREF} className="font-medium text-white underline underline-offset-2">
+              See how Loop works
+            </Link>
+            .
           </p>
         </Container>
       </section>

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Container from '@/components/Container';
 import FaqSection from '@/components/FaqSection';
+import LoopNote from '@/components/LoopNote';
 import ServiceDesktopHeader from '@/components/ServiceDesktopHeader';
 import ServicePageJsonLd from '@/components/ServicePageJsonLd';
 import Link from 'next/link';
@@ -430,6 +431,8 @@ export default function WebDevelopmentPage() {
           </div>
         </Container>
       </section>
+
+      <LoopNote />
 
       <section className="bg-white dark:bg-gray-950">
         <Container>

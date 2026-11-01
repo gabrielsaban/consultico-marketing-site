@@ -88,7 +88,7 @@ export function resolveArticleCta(article: Article): ResolvedArticleCta {
 
 export function getServiceLinkForCategory(category: ArticleCategory): { href: string; label: string } {
   const map: Record<ArticleCategory, { href: string; label: string }> = {
-    Strategy: { href: '/think-first', label: 'Think First workshop' },
+    Strategy: { href: '/think-first', label: 'Think First strategy workshop' },
     SEO: { href: '/seo', label: 'SEO services' },
     PPC: { href: '/ppc', label: 'PPC services' },
     Content: { href: '/content-creation', label: 'Content creation' },
@@ -105,14 +105,14 @@ const ARTICLE_SECONDARY_SERVICE_LINKS: Record<string, { href: string; label: str
   ],
   'how-to-choose-an-seo-agency-in-glasgow': [
     { href: '/seo-glasgow', label: 'SEO in Glasgow' },
-    { href: '/think-first', label: 'Think First workshop' },
+    { href: '/think-first', label: 'Think First strategy workshop' },
   ],
   'what-is-generative-engine-optimisation': [
     { href: '/seo', label: 'SEO & GEO services' },
-    { href: '/think-first', label: 'Think First workshop' },
+    { href: '/think-first', label: 'Think First strategy workshop' },
   ],
   'how-to-choose-a-ppc-agency-uk': [
-    { href: '/think-first', label: 'Think First workshop' },
+    { href: '/think-first', label: 'Think First strategy workshop' },
     { href: '/seo', label: 'SEO services' },
   ],
 };

@@ -83,7 +83,7 @@ export interface CaseStudy {
   citableClaim: string;
 }
 
-const THINK_FIRST: CaseStudyLink = { href: '/think-first', label: 'See the Think First workshop' };
+const THINK_FIRST: CaseStudyLink = { href: '/think-first', label: 'See the Think First strategy workshop' };
 const SEO_CONTACT: CaseStudyLink = { href: '/contact?interest=seo', label: 'Talk to us about search' };
 const CONTACT: CaseStudyLink = { href: '/contact', label: 'Get in touch' };
 

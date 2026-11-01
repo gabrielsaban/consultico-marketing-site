@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Container from '@/components/Container';
 import FaqSection from '@/components/FaqSection';
+import LoopNote from '@/components/LoopNote';
 import ServicePageJsonLd from '@/components/ServicePageJsonLd';
 import SeoDiscoveryChannels from '@/components/seo-landing/SeoDiscoveryChannels';
 import SeoDiscoveryContact from '@/components/seo-landing/SeoDiscoveryContact';
@@ -27,6 +28,7 @@ export default function SeoPage() {
         {/* Kept deliberately compact: closed accordions, so the page stays
             design-led while the questions (and the FAQPage schema) remain in
             the HTML for search engines and AI assistants. */}
+        <LoopNote />
         <Container maxWidth="1280px">
           <FaqSection faqs={SERVICE_FAQS.seo} />
         </Container>

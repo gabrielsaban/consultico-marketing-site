@@ -29,9 +29,8 @@ export default function ThinkFirstSectionClient({
             <Link
               href="/think-first"
               className="inline-flex items-center justify-center rounded-lg bg-blue-primary px-8 py-3 font-helvetica text-[clamp(1rem,1.2vw,1.125rem)] font-medium text-white transition-colors duration-200 hover:bg-[#006FE6] active:bg-[#0067D6] focus:outline-none focus:ring-2 focus:ring-blue-primary focus:ring-offset-2"
-              aria-label="Explore our Think First strategy workshop"
-            >
-              Explore our Think First strategy workshop
+              >
+              See the Think First strategy workshop
             </Link>
           </motion.div>
         </div>
