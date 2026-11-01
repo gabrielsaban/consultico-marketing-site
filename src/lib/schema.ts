@@ -27,7 +27,10 @@ export const siteJsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
     {
-      '@type': ['LocalBusiness', 'ProfessionalService'],
+      // ProfessionalService is already a LocalBusiness subtype, so listing both
+      // was redundant. The Google Business Profile drives the local pack, not
+      // this type.
+      '@type': 'ProfessionalService',
       '@id': `${SITE_ORIGIN}/#org`,
       name: 'Consultico',
       legalName: 'Consultico Ltd',
@@ -36,13 +39,95 @@ export const siteJsonLd = {
       image: `${SITE_ORIGIN}/og.jpg`,
       email: CONSULTICO_EMAIL,
       telephone: CONSULTICO_PHONE_E164,
-      priceRange: '££',
+      // Loop starts at £5,000 a month, so '££' undersold it.
+      priceRange: '£££',
+      // The identity line, agreed 2026-10-31 (verified-facts.md). Loop is
+      // described as how we work, never as new, and nothing here promises a
+      // result: AI engines repeat this sentence word for word.
       description:
-        'Strategy-led digital marketing consultancy in Glasgow. We start with strategy, then deliver SEO, GEO, paid media, web, content and campaigns for B2C brands and trades businesses across the UK and US.',
+        "Consultico is a Glasgow marketing company for UK consumer brands. Through Loop, it works as an extra part of a brand's marketing team: a strategist leads, backed by a team, frameworks built in-house and tools built on leading AI models, taking a fresh look every week.",
+      slogan: 'Sharper every week. Further every year.',
+      knowsAbout: [
+        'Marketing strategy',
+        'Marketing efficiency ratio (MER)',
+        'Marketing measurement',
+        'Marketing budget allocation',
+        'Consumer brand marketing',
+        'Direct-to-consumer (D2C) marketing',
+        'Search engine optimisation (SEO)',
+        'Generative engine optimisation (GEO)',
+        'Paid search advertising',
+        'Website design and development',
+      ],
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'Consultico services',
+        itemListElement: [
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              '@id': `${SITE_ORIGIN}/#loop`,
+              name: 'Loop, by Consultico',
+              description:
+                "An extra part of a consumer brand's marketing team. A strategist leads, a team makes and tests the changes, and every Monday the client gets three recommendations to answer yes, talk or no.",
+              provider: { '@id': `${SITE_ORIGIN}/#org` },
+              hasOfferCatalog: {
+                '@type': 'OfferCatalog',
+                name: 'How Loop starts',
+                itemListElement: [
+                  {
+                    '@type': 'Offer',
+                    itemOffered: {
+                      '@type': 'Service',
+                      name: 'Think First marketing strategy workshop',
+                      url: `${SITE_ORIGIN}/think-first`,
+                    },
+                  },
+                ],
+              },
+            },
+            // A minimum monthly price on a 12-month agreement. No start date,
+            // so nothing reads as "coming soon".
+            priceSpecification: {
+              '@type': 'UnitPriceSpecification',
+              minPrice: 5000,
+              priceCurrency: 'GBP',
+              unitCode: 'MON',
+              billingDuration: 'P12M',
+            },
+          },
+          {
+            '@type': 'OfferCatalog',
+            name: 'Other services',
+            itemListElement: [
+              { name: 'SEO', url: `${SITE_ORIGIN}/seo` },
+              { name: 'GEO (generative engine optimisation)', url: `${SITE_ORIGIN}/articles/what-is-generative-engine-optimisation` },
+              { name: 'Google Ads', url: `${SITE_ORIGIN}/ppc` },
+              { name: 'Websites', url: `${SITE_ORIGIN}/web-development` },
+              { name: 'Content', url: `${SITE_ORIGIN}/content-creation` },
+              { name: 'Campaigns', url: `${SITE_ORIGIN}/campaign-management` },
+            ].map((service) => ({
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name: service.name,
+                url: service.url,
+                provider: { '@id': `${SITE_ORIGIN}/#org` },
+              },
+            })),
+          },
+        ],
+      },
       founder: {
         '@type': 'Person',
         '@id': `${SITE_ORIGIN}/#paul-wilson`,
         name: 'Paul Wilson',
+        // Never "CMO": verified-facts.md rules it out until a role says so.
+        jobTitle: 'Founder',
+        image: `${SITE_ORIGIN}/team/paul-wilson-headshot.jpg`,
+        alumniOf: { '@type': 'CollegeOrUniversity', name: 'University of Strathclyde' },
+        knowsAbout: ['Marketing strategy', 'Search engine optimisation (SEO)', 'Website development'],
         sameAs: ['https://www.linkedin.com/in/think-first-marketing'],
       },
       address: {
@@ -71,12 +156,14 @@ export const siteJsonLd = {
         worstRating: '1',
       },
       areaServed: [
+        { '@type': 'City', name: 'Glasgow' },
         { '@type': 'Country', name: 'United Kingdom' },
         { '@type': 'Country', name: 'United States' },
       ],
       sameAs: [
         'https://www.linkedin.com/company/consultico-ltd/',
         'https://www.instagram.com/consultico_marketing/',
+        'https://www.facebook.com/profile.php?id=61562303216944',
         CONSULTICO_GBP_URL,
       ],
     },
@@ -106,7 +193,8 @@ export const thinkFirstPageJsonLd = {
       name: 'Think First Marketing Strategy Workshop',
       serviceType: 'Marketing workshop',
       description:
-        'A 30-day marketing strategy workshop for B2C brands doing £50K+ per month, delivered in person in Glasgow or online. Maps channels, economics, and growth before budget is committed to SEO, PPC, or web.',
+        'The marketing strategy workshop that starts Loop, by Consultico. For UK consumer brands, delivered in person in Glasgow or online. Maps channels, economics and growth before budget is committed.',
+      isRelatedTo: { '@id': `${SITE_ORIGIN}/#loop` },
       provider: { '@id': `${SITE_ORIGIN}/#org` },
       url: `${SITE_ORIGIN}/think-first`,
       areaServed: [
@@ -180,31 +268,9 @@ export function seoGlasgowPageJsonLd() {
         ],
         url: pageUrl,
       },
-      {
-        '@type': 'LocalBusiness',
-        '@id': `${pageUrl}#local`,
-        name: 'Consultico',
-        url: SITE_ORIGIN,
-        telephone: CONSULTICO_PHONE_E164,
-        email: CONSULTICO_EMAIL,
-        image: `${SITE_ORIGIN}/og.jpg`,
-        address: {
-          '@type': 'PostalAddress',
-          streetAddress: CONSULTICO_ADDRESS.streetAddress,
-          addressLocality: CONSULTICO_ADDRESS.addressLocality,
-          addressRegion: CONSULTICO_ADDRESS.addressRegion,
-          postalCode: CONSULTICO_ADDRESS.postalCode,
-          addressCountry: CONSULTICO_ADDRESS.addressCountry,
-        },
-        geo: { '@type': 'GeoCoordinates', latitude: '55.8609282', longitude: '-4.2418232' },
-        hasMap: CONSULTICO_GBP_URL,
-        parentOrganization: { '@id': `${SITE_ORIGIN}/#org` },
-        areaServed: [
-          { '@type': 'City', name: 'Glasgow' },
-          { '@type': 'AdministrativeArea', name: 'Scotland' },
-        ],
-        sameAs: [CONSULTICO_GBP_URL],
-      },
+      // A second LocalBusiness used to sit here, with the same name and address
+      // under its own @id, which told engines there were two Consulticos. The
+      // Service above already names #org as its provider, so that's the link.
       {
         '@type': 'BreadcrumbList',
         itemListElement: [
@@ -500,7 +566,7 @@ export function caseStudiesPageJsonLd() {
         '@id': `${SITE_ORIGIN}${CASE_STUDIES_PATH}#page`,
         name: 'Consultico case studies',
         description:
-          'Published client results from Consultico, a strategy-led digital marketing consultancy in Glasgow.',
+          'Published client results from Consultico, a Glasgow marketing company for UK consumer brands.',
         url: `${SITE_ORIGIN}${CASE_STUDIES_PATH}`,
         publisher: { '@id': `${SITE_ORIGIN}/#org` },
         mainEntity: {

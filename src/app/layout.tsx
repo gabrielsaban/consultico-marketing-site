@@ -36,26 +36,26 @@ const helveticaNow = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.consultico.co.uk'),
   title: {
-    default: 'Digital Marketing Consultant in Glasgow | Consultico',
+    default: 'Glasgow Marketing Consultants | Loop, by Consultico',
     template: '%s | Consultico',
   },
   description:
-    'Glasgow digital marketing consultancy. We start with strategy, then deliver SEO, GEO, paid ads and web. Serving the UK and US.',
+    'Sharper every week. Further every year. Loop, by Consultico, is an extra part of your marketing team, for UK consumer brands. Based in Glasgow.',
   openGraph: {
     type: 'website',
     locale: 'en_GB',
     siteName: 'Consultico',
     url: 'https://www.consultico.co.uk',
-    title: 'Digital Marketing Consultant in Glasgow | Consultico',
+    title: 'Glasgow Marketing Consultants | Loop, by Consultico',
     description:
-      'Glasgow digital marketing consultancy. Strategy first, then SEO, GEO, paid ads and web. Serving the UK and US.',
+      'Sharper every week. Further every year. Loop, by Consultico, is an extra part of your marketing team, for UK consumer brands. Based in Glasgow.',
     images: ['/og.jpg'],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Digital Marketing Consultant in Glasgow | Consultico',
+    title: 'Glasgow Marketing Consultants | Loop, by Consultico',
     description:
-      'Glasgow digital marketing consultancy. Strategy first, then SEO, GEO, paid ads and web.',
+      'Sharper every week. Further every year. Loop, by Consultico, is an extra part of your marketing team, for UK consumer brands. Based in Glasgow.',
     images: ['/og.jpg'],
   },
   icons: {

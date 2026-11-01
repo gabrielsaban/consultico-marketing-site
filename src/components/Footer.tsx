@@ -39,7 +39,7 @@ export default function Footer() {
     // none from any shared component: 1 query / 15 impressions in a month.
     // First in the list because strategy is the stated priority (2026-08-29).
     { name: 'Marketing Strategy', href: '/market-strategy' },
-    { name: 'Think-First', href: '/think-first' },
+    { name: 'Think First', href: '/think-first' },
     { name: 'Articles', href: '/articles' },
     { name: 'SEO', href: '/seo' },
     { name: 'PPC', href: '/ppc' },

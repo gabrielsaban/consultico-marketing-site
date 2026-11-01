@@ -100,7 +100,7 @@ export const SERVICE_PAGES = {
   careers: {
     title: 'Careers',
     description:
-      'Join Consultico: internships and roles in a strategy-led Glasgow marketing consultancy. See current opportunities and our student programme.',
+      'Join Consultico: internships and roles at a Glasgow marketing company for UK consumer brands. See current opportunities and our student programme.',
     path: '/careers',
     serviceName: 'Careers at Consultico',
     serviceType: 'Employment',

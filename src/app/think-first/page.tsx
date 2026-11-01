@@ -99,7 +99,7 @@ const deliveryMechanics = [
 
 const fitChecks = {
   good: [
-    'B2C businesses generating £50K+ per month',
+    'Consumer brands with a marketing team and budget in place',
     'Owners serious about scaling sustainably',
     'Businesses already selling successfully',
     'Founders who want strategic control before delegating',
@@ -192,7 +192,7 @@ export default function ThinkFirstPage() {
                 </span>
               </h1>
               <p className="text-[clamp(0.9rem,1.05vw,1rem)] leading-[1.5] text-gray-600 dark:text-gray-400 font-helvetica mb-5">
-                For B2C businesses already doing £50K+ per month
+                The marketing strategy workshop that starts Loop, for UK consumer brands
               </p>
               <p className="text-[clamp(1rem,1.35vw,1.25rem)] leading-[1.65] text-gray-800 dark:text-gray-200 font-helvetica-light max-w-3xl mb-8">
                 A strategic workshop built around your business - showing which channels will work, why they&apos;ll work, and exactly what they&apos;re worth before you invest another pound.
@@ -605,7 +605,7 @@ export default function ThinkFirstPage() {
             Stop Spending Blindly. Start Scaling Intelligently.
           </h2>
           <p className="text-[clamp(1rem,1.35vw,1.25rem)] leading-[1.6] font-helvetica-light mb-6 max-w-3xl text-white/90">
-            If you&apos;re already doing £50K+ per month and want clarity before scaling further, apply below.
+            If you want clarity before your next big marketing decision, apply below.
           </p>
           <Link
             href="/#contact"

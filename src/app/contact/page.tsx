@@ -6,7 +6,7 @@ import ContactPageContent from './ContactPageContent';
 export const metadata: Metadata = pageMeta({
   title: 'Contact',
   description:
-    'Contact Consultico in Glasgow: send a message, book a call, or request a free SEO audit. Strategy-led digital marketing for UK and US businesses.',
+    'Contact Consultico in Glasgow: send a message, book a call, or request a free SEO audit. The team behind Loop, by Consultico.',
   path: '/contact',
 });
 

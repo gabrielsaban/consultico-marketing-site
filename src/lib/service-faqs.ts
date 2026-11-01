@@ -118,7 +118,7 @@ export const SERVICE_FAQS: Record<Exclude<ServicePageKey, 'careers'>, { question
     {
       question: 'What is the Think First workshop?',
       answer:
-        'Think First is Consultico\'s 30-day marketing strategy workshop for B2C brands doing £50K+ per month. It maps channels, economics, and growth before budget goes to SEO, PPC, or web.',
+        'Think First is Consultico\'s marketing strategy workshop for UK consumer brands, and the way Loop, by Consultico, starts. It maps channels, economics and growth before budget goes to SEO, PPC or web.',
     },
     {
       question: 'Are you marketing consultants or a marketing agency?',

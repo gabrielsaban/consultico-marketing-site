@@ -46,7 +46,7 @@ const teamMembers: TeamMember[] = [
     portraitScale: 1.18,
     location: 'Glasgow, Scotland',
     bio: [
-      'Paul Wilson is the founder of Consultico, a strategy-led digital marketing consultancy based in Glasgow. He has been building websites since 2017 and studied marketing at the University of Strathclyde before launching Consultico while still a student.',
+      'Paul Wilson is the founder of Consultico, a Glasgow marketing company for UK consumer brands. He has been building websites since 2017 and studied marketing at the University of Strathclyde before launching Consultico while still a student.',
       'In 2025, Paul was awarded a fellowship from the University of Strathclyde Inspire accelerator programme, funding research and development into the Think First Workshop. He brings experience across marketing strategy, web development, and brand growth to client work.',
     ],
     credentials: [
