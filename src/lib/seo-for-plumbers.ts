@@ -8,7 +8,7 @@ export const SEO_FOR_PLUMBERS_FAQS = [
   {
     question: 'How long does SEO take to get a plumber more jobs?',
     answer:
-      'Most plumbing businesses see movement in local rankings within two to three months and a meaningful change in enquiries by month three to six. For a boiler installation company we worked with, organic filled the calendar within roughly three months when paid ads were paused. Timescales depend on your area\'s competition and the state of your current website and profile.',
+      'Most plumbing businesses see movement in local rankings within two to three months and a meaningful change in enquiries by month three to six. For The Boiler Co, organic filled the calendar within roughly three months when paid ads were paused. Timescales depend on your area\'s competition and the state of your current website and profile.',
   },
   {
     question: 'Is SEO or Google Ads better for plumbers?',

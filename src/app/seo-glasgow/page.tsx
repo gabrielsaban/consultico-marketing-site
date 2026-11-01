@@ -137,8 +137,8 @@ export default function SeoGlasgowPage() {
               <div>
                 <h2 className={`${sectionHeadingClass} mb-4`}>Proof it works</h2>
                 <p className={bodyClass}>
-                  We treat SEO as a long-term asset, not rented traffic. For a boiler installation company, we
-                  built an SEO foundation around high-intent boiler-service searches. Within three months
+                  We treat SEO as a long-term asset, not rented traffic. For The Boiler Co, a Bristol plumbing and heating
+                  business, we built an SEO foundation around high-intent boiler-service searches. Within three months
                   their calendar was filling through organic search alone: typical weekly performance moved from roughly
                   8,000 impressions and 20 clicks to a peak above 21,000 impressions and 55 clicks, with higher-intent visitors
                   turning into booked jobs. They&apos;ve stayed with us for over 14 months with additional website work

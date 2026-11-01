@@ -14,8 +14,8 @@ export const seoPageGoogleReviews: GoogleReviewExcerpt[] = [
   },
   {
     quote: 'Paul was genuine, knowledgeable, and always willing to explain things clearly.',
-    name: 'Owner',
-    company: 'Boiler installation company',
+    name: 'Ant Vitale',
+    company: 'The Boiler Co',
   },
   {
     quote:
@@ -31,7 +31,7 @@ export const seoPageGoogleReviews: GoogleReviewExcerpt[] = [
   },
 ];
 
-/** Full verbatim GBP text for the PPC page (order: Graeme, John, Marcus, boiler installer). */
+/** Full verbatim GBP text for the PPC page (order: Graeme, John, Marcus, Ant). */
 export const ppcPageGoogleReviews: GoogleReviewExcerpt[] = [
   {
     quote:
@@ -54,8 +54,8 @@ export const ppcPageGoogleReviews: GoogleReviewExcerpt[] = [
   {
     quote:
       "I can't thank Consultico enough. My business had hit a slump, busy with existing clients but getting no new ones. After dealing with pushy agencies and expensive quotes, I almost lost hope. Then I found Paul, who was genuine, knowledgeable, and always willing to explain things clearly.",
-    name: 'Owner',
-    company: 'Boiler installation company',
+    name: 'Ant Vitale',
+    company: 'The Boiler Co',
   },
 ];
 

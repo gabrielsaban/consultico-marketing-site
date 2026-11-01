@@ -8,8 +8,8 @@ const featuredReviews = [
   {
     quote:
       'After a frustrating run with agencies, this gave us genuine clarity on what to do and why it would work.',
-    name: 'Owner',
-    company: 'Boiler installation company',
+    name: 'Ant Vitale',
+    company: 'The Boiler Co',
   },
   {
     quote:

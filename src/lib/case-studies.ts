@@ -158,16 +158,16 @@ export const CASE_STUDIES: CaseStudy[] = [
   },
   {
     slug: 'boiler-installation-company',
-    named: false,
-    client: 'A boiler installation company',
+    named: true,
+    client: 'The Boiler Co',
     headline: 'A full diary without paying for every lead',
-    metaTitle: 'Case Study: Boiler Installer SEO, Full Diary',
+    metaTitle: 'The Boiler Co Case Study: Trades SEO in Bristol',
     metaDescription:
-      'A boiler installation company whose diary rose and fell with its ad spend. Within around three months, search was filling the calendar. They stayed 14 months.',
+      'A Bristol boiler business whose diary rose and fell with its ad spend. Within around three months, search was filling the calendar. They stayed 14 months.',
     intro:
-      'A boiler installation company where a full diary is everything. Their work came and went with their ad spend, so we built a source of enquiries that kept going when the ads paused.',
+      'The Boiler Co is a Bristol plumbing and heating business where a full diary is everything. Their work came and went with their ad spend, so we built a source of enquiries that kept going when the ads paused.',
     summary:
-      'A boiler installation company that ran on paid ads, until search started filling the diary instead and kept it full for over 14 months.',
+      'A Bristol plumbing and heating business that ran on paid ads, until search started filling the diary instead and kept it full for over 14 months.',
     sector: 'Trades and plumbing',
     services: ['SEO', 'Web development'],
     metrics: [
@@ -198,7 +198,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       {
         heading: 'The impact',
         paragraphs: [
-          'Within around three months their calendar was being filled consistently through organic search, including through the periods when paid ads had to pause. Weekly impressions grew from around 8,000 to a peak of 21,054, weekly clicks rose from about 20 to a peak of 74, and monthly clicks went from 63 in April 2025 to 195 in October 2025. Average position improved from 37.8 to 13.7. They stayed with us as a retained client for over 14 months. The owner told me his monthly revenue went from around £30,000 to over £80,000 in the better months.',
+          'Within around three months their calendar was being filled consistently through organic search, including through the periods when paid ads had to pause. Weekly impressions grew from around 8,000 to a peak of 21,054, weekly clicks rose from about 20 to a peak of 74, and monthly clicks went from 63 in April 2025 to 195 in October 2025. Average position improved from 37.8 to 13.7. They stayed with us as a retained client for over 14 months.',
         ],
       },
       {
@@ -210,13 +210,13 @@ export const CASE_STUDIES: CaseStudy[] = [
     ],
     quote: {
       text: 'I can’t thank Consultico enough. My business had hit a slump, busy with existing clients but getting no new ones. After dealing with pushy agencies and expensive quotes, I almost lost hope. Then I found Paul, who was genuine, knowledgeable, and always willing to explain things clearly.',
-      attribution: 'Owner, boiler installation company, Google review',
+      attribution: 'Ant Vitale, The Boiler Co, Google review',
     },
     sourceNote: 'Search figures are from the client’s own Google Search Console export, covering the engagement.',
     primaryCta: SEO_CONTACT,
     secondaryCta: { href: '/seo-for-plumbers', label: 'SEO for plumbers' },
     citableClaim:
-      'Within around three months of Consultico starting SEO work, a boiler installation company’s calendar was consistently filled through organic search alone, including periods when paid advertising had to pause. They stayed a retained SEO client for over 14 months.',
+      'Within around three months of Consultico starting SEO work, the calendar of The Boiler Co, a Bristol plumbing and heating business, was consistently filled through organic search alone, including periods when paid advertising had to pause. They stayed a retained SEO client for over 14 months.',
   },
 ];
 

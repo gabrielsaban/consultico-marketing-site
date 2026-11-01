@@ -3,14 +3,14 @@ import { getIndustryPath } from '@/lib/seo-industries';
 export const SEO_FOR_HEATING_ENGINEERS_SLUG = 'seo-for-heating-engineers';
 export const SEO_FOR_HEATING_ENGINEERS_PATH = getIndustryPath(SEO_FOR_HEATING_ENGINEERS_SLUG);
 
-export const BOILER_INSTALLER_CASE_STUDY_PATH = '/case-studies/boiler-installation-company';
+export const BOILER_CO_CASE_STUDY_PATH = '/case-studies/boiler-installation-company';
 
 /** Visible FAQ copy (section 3 of brief). */
 export const SEO_FOR_HEATING_ENGINEERS_FAQS = [
   {
     question: 'How long does SEO take to get a gas engineer more jobs?',
     answer:
-      'Most heating businesses see movement in local rankings within two to three months and a meaningful change in enquiries by month three to six. For a boiler installation company we worked with, organic filled the calendar within roughly three months when paid ads were paused. Because demand is seasonal, it pays to build in spring and autumn so you rank before the winter breakdown rush.',
+      'Most heating businesses see movement in local rankings within two to three months and a meaningful change in enquiries by month three to six. For The Boiler Co, organic filled the calendar within roughly three months when paid ads were paused. Because demand is seasonal, it pays to build in spring and autumn so you rank before the winter breakdown rush.',
   },
   {
     question: 'How do I get boiler installation work in summer, not just winter repairs?',
@@ -44,7 +44,7 @@ export const SEO_FOR_HEATING_ENGINEERS_FAQS_SCHEMA = [
   {
     question: 'How long does SEO take to get a gas engineer more jobs?',
     answer:
-      'Most heating businesses see movement in local rankings within two to three months and a meaningful change in enquiries by month three to six. For a boiler installation company we worked with, organic search filled the calendar within roughly three months when paid ads were paused. Because demand is seasonal, it pays to build in spring and autumn so you are ranking before the winter breakdown rush.',
+      'Most heating businesses see movement in local rankings within two to three months and a meaningful change in enquiries by month three to six. For The Boiler Co, organic search filled the calendar within roughly three months when paid ads were paused. Because demand is seasonal, it pays to build in spring and autumn so you are ranking before the winter breakdown rush.',
   },
   {
     question: 'How do I get boiler installation work in summer, not just winter repairs?',
@@ -126,9 +126,9 @@ export const HEATING_ENGINEER_SEO_PROCESS_STEPS = [
   },
 ] as const;
 
-export const BOILER_INSTALLER_TESTIMONIAL = {
+export const BOILER_CO_TESTIMONIAL = {
   quote:
     'After a frustrating run with agencies, this gave us genuine clarity on what to do and why it would work.',
-  name: 'Owner',
-  company: 'boiler installation company',
+  name: 'Ant Vitale',
+  company: 'The Boiler Co',
 } as const;

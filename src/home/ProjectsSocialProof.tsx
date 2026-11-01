@@ -59,7 +59,7 @@ export default function ProjectsSocialProof() {
                   )}
                   <div className="flex flex-1 flex-col p-6 md:p-8">
                   <p className="font-helvetica text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-gray-500 dark:text-gray-400">
-                    {study.sector}
+                    {study.named ? `${study.client} · ${study.sector}` : study.sector}
                   </p>
                   <h3 className="mt-2 font-futura text-[clamp(1.3rem,2vw,1.6rem)] font-bold leading-[1.2] text-[#1B2A4A] dark:text-white">
                     {study.headline}

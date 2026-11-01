@@ -54,7 +54,7 @@ export default function CaseStudiesPage() {
             point of the sentence.
 
             The entity signal an AI engine needs is still all here, because it
-            lives in the facts themselves: each named client named, both sectors, both
+            lives in the facts themselves: both clients named, both sectors, both
             locations, how long each ran and what happened. It never needed a
             sentence about our methodology to carry it.
           */}
@@ -88,7 +88,7 @@ export default function CaseStudiesPage() {
                 className="block rounded-2xl border border-gray-200 bg-white p-6 transition-colors hover:border-brand-blue dark:border-gray-800 dark:bg-gray-900 md:p-8"
               >
                 <p className="font-helvetica text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-gray-500 dark:text-gray-400">
-                  {study.sector}
+                  {study.named ? `${study.client} · ${study.sector}` : study.sector}
                 </p>
                 <h2 className="mt-2 font-futura text-[clamp(1.3rem,2vw,1.6rem)] font-bold leading-[1.2] text-brand-blue">
                   {study.headline}

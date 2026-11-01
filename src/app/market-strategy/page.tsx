@@ -490,7 +490,7 @@ export default function MarketStrategyPage() {
                 Organic filled the calendar when the ads stopped
               </h3>
               <p className="mt-3 text-[clamp(0.95rem,1.05vw,1rem)] leading-[1.55] text-gray-700 dark:text-gray-300 font-helvetica-light">
-                A boiler installation company paused paid ads. Within roughly three months organic search was filling the diary, and average position had moved from 37.8 to 13.7 across the engagement.
+                The Boiler Co, a Bristol plumbing and heating business, paused paid ads. Within roughly three months organic search was filling the diary, and average position had moved from 37.8 to 13.7 across the engagement.
               </p>
               <Link href="/case-studies/boiler-installation-company" className="mt-4 inline-flex items-center gap-2 font-helvetica text-[0.95rem] font-medium text-brand-blue underline-offset-2 hover:underline">
                 Read the case study
