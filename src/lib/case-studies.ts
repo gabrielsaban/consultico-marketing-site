@@ -103,9 +103,9 @@ export const CASE_STUDIES: CaseStudy[] = [
     sector: 'E-commerce, garden and board games',
     services: ['Strategy workshop', 'SEO', 'Web development', 'Brand', 'Social media'],
     metrics: [
-      { value: '+143%', label: 'Monthly search clicks, Shuffleboard' },
-      { value: '+76%', label: 'Search impressions, Cornhole, season on season' },
-      { value: '+83%', label: 'Click-through rate, Shuffleboard' },
+      { value: '+143%', label: 'Monthly search clicks' },
+      { value: '+76%', label: 'Search impressions, season on season' },
+      { value: '+83%', label: 'Click-through rate' },
       { value: 'New range', label: 'Michaud Toys, for the UK and Europe' },
     ],
     sections: [

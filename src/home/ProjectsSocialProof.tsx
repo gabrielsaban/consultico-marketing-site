@@ -1,12 +1,20 @@
 // ARCHIVED: Full projects content moved to archive/sections/ProjectsSocialProof_archived.tsx
 // StatsCta archived - replaced with StatsBoxes
 
+import Image from 'next/image';
 import Link from 'next/link';
-import ProjectCarousel from '@/components/ProjectCarousel';
 import ReviewStrip from '@/components/ReviewStrip';
 import StatsBoxes from '@/components/StatsBoxes';
 import Container from '@/components/Container';
 import { CASE_STUDIES } from '@/lib/case-studies';
+
+// A photo per case study, keyed by slug. The project carousel that used to sit
+// under these cards showed the same work a second time, so it came out
+// (2026-11-01) and its photos moved here.
+const CASE_STUDY_IMAGES: Record<string, { src: string; alt: string }> = {
+  'norfolk-boards': { src: '/projects/garden_games.jpg', alt: 'A cornhole board on a lawn at an outdoor event' },
+  'boiler-installation-company': { src: '/projects/boiler.avif', alt: 'Copper pipework and a pressure gauge on a boiler installation' },
+};
 
 export default function ProjectsSocialProof() {
   return (
@@ -36,8 +44,20 @@ export default function ProjectsSocialProof() {
               <li key={study.slug}>
                 <Link
                   href={`/case-studies/${study.slug}`}
-                  className="group flex h-full flex-col rounded-2xl border border-gray-200 bg-white p-6 transition-colors hover:border-brand-blue dark:border-gray-800 dark:bg-gray-900 md:p-8"
+                  className="group flex h-full flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white transition-colors hover:border-brand-blue dark:border-gray-800 dark:bg-gray-900"
                 >
+                  {CASE_STUDY_IMAGES[study.slug] && (
+                    <div className="relative aspect-[16/9] w-full overflow-hidden">
+                      <Image
+                        src={CASE_STUDY_IMAGES[study.slug].src}
+                        alt={CASE_STUDY_IMAGES[study.slug].alt}
+                        fill
+                        sizes="(min-width: 768px) 45vw, 100vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      />
+                    </div>
+                  )}
+                  <div className="flex flex-1 flex-col p-6 md:p-8">
                   <p className="font-helvetica text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-gray-500 dark:text-gray-400">
                     {study.sector}
                   </p>
@@ -58,25 +78,21 @@ export default function ProjectsSocialProof() {
                   <span className="mt-6 font-helvetica text-[0.95rem] font-medium text-brand-blue group-hover:underline underline-offset-4">
                     Read the case study
                   </span>
+                  </div>
                 </Link>
               </li>
             ))}
           </ul>
 
-          <Link
-            href="/case-studies"
-            className="mt-8 inline-block font-helvetica font-medium text-brand-blue underline-offset-4 hover:underline"
-          >
-            See all our case studies
-          </Link>
-        </Container>
-
-        <Container className="mb-4">
-          <p className="font-helvetica text-[0.78rem] font-semibold uppercase tracking-[0.16em] text-brand-blue">
-            More of our work
+          <p className="mt-8 max-w-3xl font-helvetica-light text-[1rem] leading-[1.6] text-gray-700 dark:text-gray-300">
+            We&apos;ve also worked with Tiny Changes, Prebio Fibres, Drink Japan and Hepburn Holistic.{' '}
+            <Link href="/case-studies" className="font-medium text-brand-blue underline-offset-4 hover:underline">
+              See all our case studies
+            </Link>
+            .
           </p>
         </Container>
-        <ProjectCarousel />
+
       </div>
 
       {/* Stats Section - Lighter Grey Background with Shadow */}

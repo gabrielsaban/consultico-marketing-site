@@ -87,22 +87,22 @@ const teamPages = teamMembers.reduce<TeamMember[][]>((pages, member, index) => {
 
 const philosophyPoints: PhilosophyPoint[] = [
   {
-    title: 'No Guesswork',
+    title: 'No guesswork',
     description: "Every recommendation is backed by data. We track and report everything we do, so you always know what's working and what isn't.",
     icon: 'target',
   },
   {
-    title: 'Clarity Before Execution',
+    title: 'Clarity before execution',
     description: 'We believe marketing should be structured from the ground up, not patched together after the fact.',
     icon: 'blueprint',
   },
   {
-    title: 'Your Own Dedicated Account Manager',
-    description: 'One person who knows your business, your goals, and is always on the other end of the phone.',
+    title: 'Your own strategist',
+    description: 'The person you meet is the person who does the work. One person who knows your business and your goals, and is always on the other end of the phone.',
     icon: 'weight',
   },
   {
-    title: 'A Proven Process',
+    title: 'A proven process',
     description: 'Every engagement runs through our in-house framework, developed and refined across real client work. Structure that works, built by us.',
     icon: 'unique',
   },
@@ -254,37 +254,28 @@ export default function AboutSection(): React.JSX.Element {
   return (
     <section id="about" className="py-16 md:py-20 lg:py-24 scroll-mt-24">
       <Container>
-        {/* Intro */}
+        {/* Intro. Rebuilt 2026-11-01 to match the sections above (eyebrow, navy
+            heading) and to lead with the people, not the service list: the
+            services already have their own section just above. */}
         <div className="mb-16 md:mb-20 lg:mb-24">
-          <h2 className="text-[clamp(2rem,3vw,3.125rem)] font-bold text-brand-blue font-futura mb-8">
-            Built around brands
-          </h2>
-          <div className="max-w-3xl space-y-4">
-            <p className="text-[clamp(1rem,1.3vw,1.2rem)] leading-[1.6] text-gray-800 dark:text-gray-200 font-helvetica">
-              In the summer of 2025, Consultico was awarded a fellowship from the University of Strathclyde. Over the following six months, everything from that fellowship went into researching and developing the Think First Workshop, grounded in research into how B2C businesses actually grow. The result is a service that makes quality marketing strategy accessible, consistently reliable, and fully understood. Consultico has been operating since February 2024.
+          <div className="max-w-4xl">
+            <p className="mb-3 font-helvetica text-[0.78rem] font-semibold uppercase tracking-[0.16em] text-brand-blue">
+              About Consultico
             </p>
-            <p className="text-[clamp(1rem,1.3vw,1.2rem)] leading-[1.6] text-gray-800 dark:text-gray-200 font-helvetica">
-              We run a full-service marketing agency,{' '}
-              <Link href="/web-development" className="font-medium text-brand-blue underline-offset-2 hover:underline">
-                building websites
+            <h2 className="font-futura text-[clamp(1.6rem,2.8vw,2.75rem)] font-bold leading-[1.1] text-[#1B2A4A] dark:text-white">
+              The people behind Loop
+            </h2>
+          </div>
+          <div className="mt-6 max-w-3xl space-y-4">
+            <p className="font-helvetica-light text-[clamp(1.05rem,1.35vw,1.25rem)] leading-[1.6] text-gray-800 dark:text-gray-200">
+              Consultico is a Glasgow marketing company for UK consumer brands, running since February 2024. The person you meet is the person who does the work, and they stay with you week after week.
+            </p>
+            <p className="font-helvetica-light text-[clamp(1.05rem,1.35vw,1.25rem)] leading-[1.6] text-gray-800 dark:text-gray-200">
+              In 2025 a University of Strathclyde fellowship funded the research behind{' '}
+              <Link href="/think-first" className="font-medium text-brand-blue underline-offset-2 hover:underline">
+                Think First
               </Link>
-              ,{' '}
-              <Link href="/seo" className="font-medium text-brand-blue underline-offset-2 hover:underline">
-                optimising for search
-              </Link>
-              ,{' '}
-              <Link href="/content-creation" className="font-medium text-brand-blue underline-offset-2 hover:underline">
-                creating content
-              </Link>
-              , and running{' '}
-              <Link href="/ppc" className="font-medium text-brand-blue underline-offset-2 hover:underline">
-                paid advertising
-              </Link>{' '}
-              and{' '}
-              <Link href="/campaign-management" className="font-medium text-brand-blue underline-offset-2 hover:underline">
-                campaigns
-              </Link>
-              . Our team is fully equipped to help you reach your goals. This ecosystem works together to give you clear insight into exactly where your budget and time will have the most impact.
+              , the workshop every Loop starts with. Behind every strategist is our team, our own frameworks and tools we&apos;ve built on leading AI models.
             </p>
           </div>
         </div>
@@ -314,7 +305,7 @@ export default function AboutSection(): React.JSX.Element {
                   <PhilosophyIcon />
                 </div>
                 <div>
-                  <h4 className="font-futura font-bold text-[clamp(1.125rem,1.4vw,1.35rem)] text-brand-blue mb-2">
+                  <h4 className="font-futura font-bold text-[clamp(1.125rem,1.4vw,1.35rem)] text-[#1B2A4A] dark:text-white mb-2">
                     {point.title}
                   </h4>
                   <p className="text-[clamp(0.95rem,1.1vw,1.25rem)] leading-[1.6] text-gray-700 dark:text-gray-300 font-helvetica-light">
@@ -325,54 +316,6 @@ export default function AboutSection(): React.JSX.Element {
             ))}
           </motion.div>
         </div>
-
-        {/* Visual Pause - Noise Context */}
-        <motion.div
-          className="mb-20 md:mb-28 lg:mb-32 py-16 md:py-20 lg:py-24"
-          variants={{
-            hidden: {},
-            show: { transition: { staggerChildren: 0.25 } },
-          }}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.5 }}
-        >
-          <motion.div
-            className="flex items-center gap-2 min-[600px]:gap-6 mb-2"
-            variants={{
-              hidden: { opacity: 0 },
-              show: { opacity: 1, transition: { duration: 0.8, ease: 'easeOut' } },
-            }}
-          >
-            <div className="flex-1 h-[2px] bg-gradient-to-r from-transparent via-black to-black dark:via-gray-600 dark:to-gray-600" />
-            <p className="text-[clamp(0.78rem,3.2vw,1.75rem)] min-[600px]:text-[clamp(1.25rem,2vw,1.75rem)] leading-[1.5] text-gray-800 dark:text-gray-200 font-helvetica text-center max-w-4xl whitespace-nowrap">
-              The average person sees thousands of brands every day.
-            </p>
-            <div className="flex-1 h-[2px] bg-gradient-to-l from-transparent via-black to-black dark:via-gray-600 dark:to-gray-600" />
-          </motion.div>
-          <motion.p
-            className="text-[clamp(0.78rem,3.2vw,1.75rem)] min-[600px]:text-[clamp(1.25rem,2vw,1.75rem)] leading-[1.5] text-gray-800 dark:text-gray-200 font-helvetica text-center mb-6"
-            variants={{
-              hidden: { opacity: 0 },
-              show: { opacity: 1, transition: { duration: 0.8, ease: 'easeOut' } },
-            }}
-          >
-            Most are forgotten instantly.
-          </motion.p>
-          <motion.div
-            className="flex items-center gap-2 min-[600px]:gap-6"
-            variants={{
-              hidden: { opacity: 0 },
-              show: { opacity: 1, transition: { duration: 0.8, ease: 'easeOut' } },
-            }}
-          >
-            <div className="flex-1 h-[2px] bg-gradient-to-r from-transparent via-brand-blue to-brand-blue" />
-            <p className="text-[clamp(0.78rem,3.2vw,1.75rem)] min-[600px]:text-[clamp(1.25rem,2vw,1.75rem)] leading-[1.5] text-brand-blue font-helvetica font-medium text-center max-w-4xl whitespace-nowrap">
-              <b>We exist to make sure yours isn&apos;t.</b>
-            </p>
-            <div className="flex-1 h-[2px] bg-gradient-to-l from-transparent via-brand-blue to-brand-blue" />
-          </motion.div>
-        </motion.div>
 
         {/* Team Section */}
         <div className="grid grid-cols-1 xl:grid-cols-[minmax(0,600px)_1fr] gap-12 xl:gap-20">
@@ -454,12 +397,15 @@ export default function AboutSection(): React.JSX.Element {
           {/* Team Description */}
           <div className="flex max-w-2xl flex-col justify-between xl:max-w-none">
             <div>
-              <h3 className="text-[clamp(1.5rem,2.5vw,2.5rem)] font-bold text-brand-blue font-futura mb-6">
-                Our Team
+              <p className="mb-3 font-helvetica text-[0.78rem] font-semibold uppercase tracking-[0.16em] text-brand-blue">
+                Our team
+              </p>
+              <h3 className="font-futura text-[clamp(1.5rem,2.4vw,2.25rem)] font-bold leading-[1.15] text-[#1B2A4A] dark:text-white mb-6">
+                Talent over tenure
               </h3>
               <div className="space-y-4 mb-8">
                 <p className="text-[clamp(0.95rem,1.1vw,1.05rem)] leading-[1.6] text-gray-700 dark:text-gray-300 font-helvetica">
-                  We prioritise talent over tenure. Our team combines fresh digital thinking with experienced strategic oversight - including advisors who have built and scaled brands across a range of industries. Every piece of work is held to the same standard, regardless of who produces it.
+                  We prioritise talent over tenure. Our team pairs fresh digital thinking with experienced oversight, including advisors who have built and scaled brands across a range of industries. Every piece of work is held to the same standard, regardless of who produces it.
                 </p>
                 <p className="text-[clamp(0.95rem,1.1vw,1.05rem)] leading-[1.6] text-gray-700 dark:text-gray-300 font-helvetica-light">
                   Click on any team member to learn more about their background, what they specialise in, and how they contribute to your work.
