@@ -21,8 +21,8 @@ const STEPS = [
     body: 'What your marketing really brought in, and changes that make a difference.',
   },
   {
-    title: 'Yes, talk or no',
-    body: 'You decide. Our team makes the changes and tests them.',
+    title: 'Make the decisions',
+    body: 'Your Loop team brings you specific, researched recommendations, and you use these to make effective marketing changes.',
   },
 ];
 
