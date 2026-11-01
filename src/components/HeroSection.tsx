@@ -169,9 +169,11 @@ export default function HeroSection() {
             </motion.div>
           </div>
 
-          <motion.div className="hidden lg:block" variants={itemVariants}>
+          {/* No entry variant: the ring draws itself in (see HeroOrbit), so it
+              doesn't also slide up from below. */}
+          <div className="hidden lg:block">
             <HeroOrbit />
-          </motion.div>
+          </div>
         </motion.div>
       </Container>
     </div>
