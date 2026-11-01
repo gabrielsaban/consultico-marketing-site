@@ -239,7 +239,7 @@ export default function MarketStrategyPage() {
                   href="/#contact"
                   className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand-blue px-7 py-3 text-[clamp(1rem,1.15vw,1.1rem)] font-helvetica font-medium text-white transition-colors duration-200 hover:bg-[#006FE6] active:bg-[#0067D6] focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2"
                 >
-                  Start the conversation
+                  Apply now
                   <ArrowIcon />
                 </Link>
                 <Link

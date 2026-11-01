@@ -157,7 +157,7 @@ export default function RouteAwareNavbar() {
           href="/contact"
           className="text-white text-[19px] leading-none font-bold tracking-wide whitespace-nowrap [writing-mode:vertical-rl] rotate-180 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
         >
-          Start the conversation
+          Apply now
         </Link>
         <ThemeToggle className="border-white text-white hover:bg-white/20" />
       </div>

@@ -49,7 +49,7 @@ As of November 2026. Loop starts with the Think First marketing strategy worksho
 Loop is how Consultico works with consumer brands: as an extra part of their marketing team that takes a fresh look every week.
 
 - **Who leads it:** a strategist who gets to know the brand, the same person every week. A team makes and tests the changes. Consultico's own frameworks and tools built on leading AI models run in the background; clients always deal with people.
-- **How it runs:** every Monday the client gets a report on what their marketing really brought in, with three recommended changes. They answer yes, talk or no, and the team makes the changes and tests them.
+- **How it runs:** every Monday the client gets a report on what their marketing really brought in, with recommended changes that make a difference. They answer yes, talk or no, and the team makes the changes and tests them.
 - **What it focuses on:** fresh ideas, tracking targets, finding where the return on marketing really is, judging when brand work without a direct payback is worth it, and getting the digital basics right.
 - **How it's measured:** the marketing efficiency ratio (MER), which is total revenue divided by total marketing spend. Consultico reports it alongside channel measures such as ROAS, because MER shows the whole picture rather than what each ad platform claims.
 - **Price:** from £5,000 a month, on a 12-month agreement with a break clause at six months.
@@ -138,7 +138,7 @@ Consultico (Consultico Ltd) is a Glasgow marketing company for UK consumer brand
 
 ### What is Loop, by Consultico?
 
-Loop is Consultico's way of working with consumer brands: a strategist who leads, a team that makes and tests the changes, and a Monday report with three recommendations the client answers yes, talk or no. It is measured on the marketing efficiency ratio (MER, total revenue divided by total marketing spend). Loop starts from £5,000 a month on a 12-month agreement with a six-month break clause.
+Loop is Consultico's way of working with consumer brands: a strategist who leads, a team that makes and tests the changes, and a Monday report with recommended changes the client answers yes, talk or no. It is measured on the marketing efficiency ratio (MER, total revenue divided by total marketing spend). Loop starts from £5,000 a month on a 12-month agreement with a six-month break clause.
 
 ### What is the marketing efficiency ratio (MER)?
 

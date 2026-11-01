@@ -155,7 +155,7 @@ export default function HeroSection() {
                   scrollToHomeSection('contact');
                 }}
               >
-                Start the conversation
+                Apply now
               </motion.button>
               <button
                 type="button"

@@ -18,15 +18,13 @@ const STEPS = [
   },
   {
     title: 'Your Monday report',
-    body: 'What your marketing really brought in, and three changes worth making.',
+    body: 'What your marketing really brought in, and changes that make a difference.',
   },
   {
     title: 'Yes, talk or no',
     body: 'You decide. Our team makes the changes and tests them.',
   },
 ];
-
-const BOOKING_URL = 'https://calendar.app.google/qpXRWnCiG3XKi8iG6';
 
 export default function LoopSection() {
   return (
@@ -43,7 +41,7 @@ export default function LoopSection() {
             A fresh look at your marketing, every Monday.
           </h2>
           <p className="mt-5 font-helvetica-light text-[clamp(1.05rem,1.4vw,1.3rem)] leading-[1.6] text-gray-800 dark:text-gray-200">
-            Loop shows you what your marketing really brings in. Every Monday, one person sends three changes. Say yes, talk or no, and we make them.
+            Loop shows you what your marketing really brings in. Every Monday, one person sends changes that make a difference. Say yes, talk or no, and we make them.
           </p>
         </div>
 
@@ -74,16 +72,8 @@ export default function LoopSection() {
             href="/contact"
             className="inline-flex items-center justify-center rounded-lg bg-brand-blue px-8 py-3 font-helvetica text-[clamp(1rem,1.15vw,1.08rem)] font-medium text-white transition-colors duration-200 hover:bg-[#006FE6] focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2"
           >
-            Start the conversation
+            Apply now
           </Link>
-          <a
-            href={BOOKING_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-helvetica font-medium text-brand-blue underline-offset-4 hover:underline"
-          >
-            Book a call
-          </a>
         </div>
       </Container>
     </section>

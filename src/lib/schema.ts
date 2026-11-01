@@ -70,7 +70,7 @@ export const siteJsonLd = {
               '@id': `${SITE_ORIGIN}/#loop`,
               name: 'Loop, by Consultico',
               description:
-                "An extra part of a consumer brand's marketing team. A strategist leads, a team makes and tests the changes, and every Monday the client gets three recommendations to answer yes, talk or no.",
+                "An extra part of a consumer brand's marketing team. A strategist leads, a team makes and tests the changes, and every Monday the client gets recommended changes to answer yes, talk or no.",
               provider: { '@id': `${SITE_ORIGIN}/#org` },
               hasOfferCatalog: {
                 '@type': 'OfferCatalog',
