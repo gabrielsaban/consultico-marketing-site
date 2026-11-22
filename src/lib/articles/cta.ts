@@ -51,6 +51,13 @@ const PRESETS: Record<ArticleCtaPreset, ResolvedArticleCta> = {
     href: '/seo',
     label: 'Explore SEO & GEO',
   },
+  updates: {
+    eyebrow: 'Keep up',
+    title: 'Hear what we are working on',
+    body: 'Updates from the people at Consultico: what we are thinking about, what we are building and what is going on with us.',
+    href: '/articles',
+    label: 'Read more updates',
+  },
 };
 
 const CATEGORY_DEFAULTS: Record<ArticleCategory, ArticleCtaPreset> = {
@@ -59,6 +66,7 @@ const CATEGORY_DEFAULTS: Record<ArticleCategory, ArticleCtaPreset> = {
   PPC: 'ppc',
   Content: 'content',
   GEO: 'geo',
+  Updates: 'updates',
 };
 
 function isPreset(value: string): value is ArticleCtaPreset {
@@ -93,6 +101,7 @@ export function getServiceLinkForCategory(category: ArticleCategory): { href: st
     PPC: { href: '/ppc', label: 'PPC services' },
     Content: { href: '/content-creation', label: 'Content creation' },
     GEO: { href: '/seo', label: 'SEO & GEO' },
+    Updates: { href: '/think-first', label: 'Think First strategy workshop' },
   };
   return map[category];
 }

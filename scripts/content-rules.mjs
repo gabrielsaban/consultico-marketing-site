@@ -76,6 +76,37 @@ export const REVIEW_CATEGORIES = {
   citability: 20,
 };
 
+/* ------------------------------------------------------------------ Updates
+ * The person-led strand (category: Updates). Not keyword-led, so the SEO and
+ * citability checks above do not apply. Same 80 gate, different rubric.
+ * See "Updates" in docs/content-quality.md.
+ */
+
+export const UPDATES_CATEGORY = 'Updates';
+
+/** Replaces REQUIRED_FRONTMATTER for updates. seoTitle and type are optional. */
+export const UPDATE_REQUIRED_FRONTMATTER = [
+  'title',
+  'excerpt',
+  'date',
+  'category',
+  'kind',
+  'author',
+  'readTime',
+];
+
+export const UPDATE_BODY_WORDS_WARN_MIN = 300;
+export const UPDATE_BODY_WORDS_WARN_MAX = 1500;
+
+/** Per-category ceilings for the Updates rubric. Must sum to 100. */
+export const UPDATE_REVIEW_CATEGORIES = {
+  voice: 30,
+  honesty: 25,
+  readability: 20,
+  sourcing: 15,
+  technical: 10,
+};
+
 /**
  * Articles predating the gate. Layer 2 scoring is skipped until the date, then
  * fails permanently. A grandfather list without an expiry is a disabled check.

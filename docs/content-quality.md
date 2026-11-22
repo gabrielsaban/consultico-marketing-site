@@ -124,3 +124,74 @@ Worth being honest about, so nobody treats a green run as a quality guarantee:
 There is no skip flag. To take an article out of the build, move it to
 `content/articles/_drafts/`. The loader ignores subdirectories, so this unpublishes it
 and silences the linter in one move, which is the honest trade.
+
+## Updates
+
+Updates are the person-led strand: `category: Updates`. A named team member writing
+about whatever is on their mind, not built around a keyword, and republished in full
+as a LinkedIn article. They appear under the Updates tab on `/articles`, at the usual
+`/articles/<slug>` address.
+
+### Frontmatter
+
+```yaml
+---
+title: "Stop running ads"
+excerpt: "110 to 170 characters. Doubles as the meta description and LinkedIn preview text."
+date: 2026-12-01
+category: Updates
+kind: Insights          # one of UPDATE_KINDS: Insights, Team news
+author: paul-wilson     # a slug from src/lib/articles/authors.ts
+readTime: 4 min read
+source:                 # optional, for an Insight responding to a video or article
+  title: "The video's title"
+  creator: "Who made it"
+  url: "https://..."
+review:
+  score: 84
+  categories:
+    voice: 26
+    honesty: 22
+    readability: 17
+    sourcing: 12
+    technical: 7
+  reviewer: paul
+  date: 2026-12-01
+  hash: <from --hash>
+---
+```
+
+`seoTitle`, `type`, `cta` and `updated` are optional. FAQs are refused.
+
+- **Insights**: thinking, commentary, a reaction to something watched or read, a story.
+- **Team news**: what is going on with us.
+
+Add a new kind to `UPDATE_KINDS` in `src/lib/articles/types.ts` only when a third one
+genuinely turns up. Add a new author to `src/lib/articles/authors.ts` (and their photo to
+`public/team/`) before their first update; the linter fails an unknown slug.
+
+### What changes
+
+| | Articles | Updates |
+|---|---|---|
+| Rubric | content / seo / eeat / technical / citability | voice / honesty / readability / sourcing / technical |
+| Internal links | 2 minimum | none required |
+| H2 sections | 3 or more expected | whatever the thought needs |
+| Length warning | under 600 words | under 300 or over 1,500 |
+| FAQs | encouraged | refused |
+| Page CTA | service preset | "Read more updates", no related-service box |
+| OG image | title card | title card with the author's face |
+
+Same 80 gate, same hash, same dash ban, same readTime honesty.
+
+### The Updates rubric
+
+| Category | Points | What it covers |
+|---|---|---|
+| Voice | 30 | Sounds like this person thinking out loud, not performing expertise. Their words and ideas, not ones added for them. |
+| Honesty and accuracy | 25 | No invented numbers or client results. Nothing that puts Consultico next to a bad number. Claims about others are fair. |
+| Readability | 20 | Short sentences, plain British English, a clear thread from opening to closing question. |
+| Sourcing and credit | 15 | Anything responded to is named, linked and represented fairly. Quotes are exact. |
+| Technical | 10 | Frontmatter, kind, author slug, excerpt length. |
+
+Drafting follows the `team-update` skill, which also produces the LinkedIn article version.

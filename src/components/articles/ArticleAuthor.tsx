@@ -7,7 +7,7 @@ interface ArticleAuthorProps {
 }
 
 export default function ArticleAuthor({ article }: ArticleAuthorProps) {
-  const author = article.author!;
+  const author = article.author;
 
   return (
     <div className="flex items-center gap-4 border-b border-gray-200 pb-6 dark:border-gray-800">

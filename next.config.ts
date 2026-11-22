@@ -23,6 +23,7 @@ const nextConfig: NextConfig = {
     '/llms.txt': ['./content/articles/**/*.md'],
     '/articles': ['./content/articles/**/*.md'],
     '/articles/[slug]': ['./content/articles/**/*.md'],
+    '/articles/[slug]/opengraph-image': ['./content/articles/**/*.md'],
     // Same trap as the articles above, and it would bite harder here. The
     // sealed client reports in content/reports are read at request time through
     // a path built with process.cwd(), which the tracer cannot see. Unlike

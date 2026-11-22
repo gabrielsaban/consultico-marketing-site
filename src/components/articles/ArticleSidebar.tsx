@@ -46,7 +46,7 @@ export default function ArticleSidebar({
               <li key={article.slug} className="border-t border-gray-100 pt-4 first:border-t-0 first:pt-0 dark:border-gray-800">
                 <Link href={`/articles/${article.slug}`} className="group block">
                   <p className="mb-1 font-helvetica text-[0.72rem] font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">
-                    {article.category} · {article.readTime}
+                    {article.kind ? `${article.category} · ${article.kind}` : `${article.category} · ${article.readTime}`}
                   </p>
                   <p className="font-futura text-[0.95rem] font-bold leading-[1.35] text-gray-900 transition-colors group-hover:text-brand-blue dark:text-gray-100">
                     {article.title}
@@ -65,6 +65,8 @@ export default function ArticleSidebar({
         )}
       </div>
 
+      {/* Updates are person-led, not service pages, so no service upsell. */}
+      {currentCategory !== 'Updates' && (
       <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-gray-900">
         <p className="mb-2 font-helvetica text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-gray-500 dark:text-gray-400">
           Related service
@@ -90,6 +92,7 @@ export default function ArticleSidebar({
           </ul>
         )}
       </div>
+      )}
     </aside>
   );
 }

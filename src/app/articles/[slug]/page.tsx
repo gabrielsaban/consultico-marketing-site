@@ -12,6 +12,7 @@ import PreferredSourceLink from '@/components/articles/PreferredSourceLink';
 import ArticleProse from '@/components/articles/ArticleProse';
 import ArticleReadingPanel from '@/components/articles/ArticleReadingPanel';
 import ArticleSidebar from '@/components/articles/ArticleSidebar';
+import ArticleSourceCard from '@/components/articles/ArticleSourceCard';
 import { formatArticleDate } from '@/lib/articles/format';
 import { resolveArticleCta } from '@/lib/articles/cta';
 import { hasDedicatedArticleImage } from '@/lib/articles/display';
@@ -72,6 +73,9 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   const cta = resolveArticleCta(article);
   const jsonLd = articlePageJsonLd(article);
   const showHeroImage = hasDedicatedArticleImage(article);
+  // Updates are person-led: no FAQ block, a kind tag in place of read time, and
+  // a credit for whatever the piece is responding to.
+  const isUpdate = article.category === 'Updates';
 
   return (
     <>
@@ -111,9 +115,15 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                     <span className="inline-flex rounded-full border border-brand-blue px-2.5 py-0.5 text-[0.7rem] font-helvetica font-medium uppercase tracking-wide text-brand-blue">
                       {article.category}
                     </span>
-                    <span className="font-helvetica text-[0.875rem] text-gray-500 dark:text-gray-400">
-                      {article.readTime}
-                    </span>
+                    {isUpdate && article.kind ? (
+                      <span className="inline-flex rounded-full border border-gray-300 px-2.5 py-0.5 text-[0.7rem] font-helvetica font-medium uppercase tracking-wide text-gray-600 dark:border-gray-600 dark:text-gray-300">
+                        {article.kind}
+                      </span>
+                    ) : (
+                      <span className="font-helvetica text-[0.875rem] text-gray-500 dark:text-gray-400">
+                        {article.readTime}
+                      </span>
+                    )}
                   </div>
 
                   <h1 className="mb-5 font-futura text-[clamp(2rem,3.5vw,2.75rem)] font-bold leading-[1.12] text-brand-blue">
@@ -139,9 +149,11 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                     </div>
                   )}
 
+                  {isUpdate && article.source && <ArticleSourceCard source={article.source} />}
+
                   <ArticleProse content={article.content} sponsored={article.sponsored} />
 
-                  {article.faqs && article.faqs.length > 0 && (
+                  {!isUpdate && article.faqs && article.faqs.length > 0 && (
                     <div className="mt-12">
                       <FaqSection faqs={article.faqs} includeSchema={false} />
                     </div>

@@ -421,7 +421,7 @@ export function seoByIndustryPageJsonLd() {
 }
 
 export function articlePageJsonLd(article: Article) {
-  const author = article.author!;
+  const author = article.author;
   const published = article.date;
   const modified = article.updated ?? article.date;
   const graph: object[] = [
@@ -463,6 +463,18 @@ export function articlePageJsonLd(article: Article) {
         ? `${SITE_ORIGIN}${article.image}`
         : `${SITE_ORIGIN}/articles/${article.slug}/opengraph-image`,
       articleSection: article.category,
+      ...(article.kind ? { keywords: [article.kind] } : {}),
+      ...(article.source
+        ? {
+            // Credits the piece an Insight responds to, in the data as on the page.
+            citation: {
+              '@type': 'CreativeWork',
+              name: article.source.title,
+              url: article.source.url,
+              author: { '@type': 'Person', name: article.source.creator },
+            },
+          }
+        : {}),
     },
   ];
 

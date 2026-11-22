@@ -16,7 +16,8 @@ export default function ArticleCard({
   showCategories = false,
   className = '',
 }: ArticleCardProps) {
-  const author = article.author!;
+  const author = article.author;
+  const secondaryLabel = article.kind ?? (article.type && article.type !== 'Article' ? article.type : null);
 
   return (
     <Link
@@ -24,16 +25,16 @@ export default function ArticleCard({
       className={`group flex h-full flex-col rounded-2xl border border-gray-200 bg-white transition-all duration-200 hover:-translate-y-0.5 hover:border-brand-blue/30 hover:shadow-md dark:border-gray-800 dark:bg-gray-900 dark:hover:border-brand-blue/40 ${className}`}
     >
       <div className={`flex flex-1 flex-col border-t-4 border-brand-blue/15 transition-colors group-hover:border-brand-blue ${compact ? 'p-4 md:p-5' : 'p-5 md:p-6'}`}>
-        {(showCategories || (article.type && article.type !== 'Article')) && (
+        {(showCategories || secondaryLabel) && (
           <div className={`flex flex-wrap items-center gap-2 ${compact ? 'mb-2' : 'mb-3'}`}>
             {showCategories && (
               <span className="inline-flex rounded-full border border-brand-blue px-2.5 py-0.5 text-[0.7rem] font-helvetica font-medium uppercase tracking-wide text-brand-blue">
                 {article.category}
               </span>
             )}
-            {article.type && article.type !== 'Article' && (
+            {secondaryLabel && (
               <span className="inline-flex rounded-full border border-gray-300 px-2.5 py-0.5 text-[0.7rem] font-helvetica font-medium uppercase tracking-wide text-gray-600 dark:border-gray-600 dark:text-gray-300">
-                {article.type}
+                {secondaryLabel}
               </span>
             )}
           </div>

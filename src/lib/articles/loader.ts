@@ -3,9 +3,11 @@ import 'server-only';
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import { authorSlugOf, resolveAuthor } from './authors';
 import {
   ARTICLE_CATEGORIES,
-  DEFAULT_AUTHOR,
+  UPDATE_KINDS,
+  UPDATES_CATEGORY,
   type Article,
   type ArticleCategory,
   type ArticleFrontmatter,
@@ -25,6 +27,14 @@ function parseArticleFile(slug: string, fileContents: string): Article {
     throw new Error(`Article "${slug}" has invalid category: ${frontmatter.category}`);
   }
 
+  if (frontmatter.category === UPDATES_CATEGORY) {
+    if (!frontmatter.kind || !UPDATE_KINDS.includes(frontmatter.kind)) {
+      throw new Error(
+        `Update "${slug}" needs a kind, one of: ${UPDATE_KINDS.join(', ')}. Got: ${frontmatter.kind ?? 'nothing'}`
+      );
+    }
+  }
+
   return {
     slug,
     title: frontmatter.title,
@@ -36,7 +46,9 @@ function parseArticleFile(slug: string, fileContents: string): Article {
     readTime: frontmatter.readTime ?? '5 min read',
     image: frontmatter.image,
     imageAlt: frontmatter.imageAlt,
-    author: frontmatter.author ?? DEFAULT_AUTHOR,
+    author: resolveAuthor(frontmatter.author),
+    kind: frontmatter.category === UPDATES_CATEGORY ? frontmatter.kind : undefined,
+    source: frontmatter.source,
     cta: frontmatter.cta,
     seoTitle: frontmatter.seoTitle,
     faqs: frontmatter.faqs,
@@ -136,8 +148,20 @@ export function getRelatedArticles(slug: string, limit = 4): Article[] {
   const current = getArticleBySlug(slug);
   if (!current) return [];
 
-  return getAllArticles()
-    .filter((article) => article.slug !== slug)
+  const others = getAllArticles().filter((article) => article.slug !== slug);
+
+  // An update's natural next read is more from the same person, then more
+  // updates, then whatever else is newest. People follow a voice, not a topic.
+  if (current.category === UPDATES_CATEGORY) {
+    const authorSlug = authorSlugOf(current.author);
+    const rank = (a: Article) =>
+      a.category === UPDATES_CATEGORY ? (authorSlugOf(a.author) === authorSlug ? 2 : 1) : 0;
+    return others
+      .sort((a, b) => rank(b) - rank(a) || new Date(b.date).getTime() - new Date(a.date).getTime())
+      .slice(0, limit);
+  }
+
+  return others
     .sort((a, b) => {
       const aSameCategory = a.category === current.category ? 1 : 0;
       const bSameCategory = b.category === current.category ? 1 : 0;

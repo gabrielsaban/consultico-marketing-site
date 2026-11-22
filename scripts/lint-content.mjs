@@ -23,6 +23,7 @@ import * as R from './content-rules.mjs';
 
 const ARTICLES_DIR = join(process.cwd(), 'content', 'articles');
 const TYPES_FILE = join(process.cwd(), 'src', 'lib', 'articles', 'types.ts');
+const AUTHORS_FILE = join(process.cwd(), 'src', 'lib', 'articles', 'authors.ts');
 
 const errors = [];
 const warnings = [];
@@ -39,6 +40,15 @@ function readEnum(name) {
   if (!m) return null;
   return [...m[1].matchAll(/'([^']+)'/g)].map((x) => x[1]);
 }
+
+/** Author slugs registered in authors.ts, read from source so they can't drift. */
+function readAuthorSlugs() {
+  if (!existsSync(AUTHORS_FILE)) return null;
+  const src = readFileSync(AUTHORS_FILE, 'utf8');
+  return [...src.matchAll(/^\s*'([a-z0-9-]+)':/gm)].map((m) => m[1]);
+}
+
+const isUpdate = (fm) => fm.category === R.UPDATES_CATEGORY;
 
 /** Body prose only: no frontmatter, code, tables, headings or link URLs. */
 function proseOf(body) {
@@ -104,6 +114,8 @@ function reviewHash(fm, body) {
     readTime: fm.readTime ?? '',
     itemList: fm.itemList ?? null,
     faqs: fm.faqs ?? null,
+    // Only present on updates, so every existing article keeps its hash.
+    ...(isUpdate(fm) ? { kind: fm.kind ?? '', author: fm.author ?? '', source: fm.source ?? null } : {}),
   });
   return createHash('sha256').update(payload).digest('hex').slice(0, 16);
 }
@@ -123,14 +135,38 @@ function checkArticle(file, raw, fm, body, slug) {
     });
   }
 
+  const update = isUpdate(fm);
+
   // --- frontmatter contract. Closes the loader's silent-default hole.
-  for (const field of R.REQUIRED_FRONTMATTER) {
+  for (const field of update ? R.UPDATE_REQUIRED_FRONTMATTER : R.REQUIRED_FRONTMATTER) {
     const v = fm[field];
     if (v === undefined || v === null || String(v).trim() === '') {
       err(slug, `missing frontmatter: ${field}`, 'The loader silently defaults some of these, so absence is invisible until it hurts.');
     }
   }
-  if (!fm.cta) warn(slug, 'no cta block, article will fall back to the category default');
+  if (!fm.cta && !update) warn(slug, 'no cta block, article will fall back to the category default');
+
+  if (update) {
+    const kinds = readEnum('UPDATE_KINDS');
+    if (kinds && fm.kind && !kinds.includes(fm.kind)) err(slug, `kind "${fm.kind}" is not in UPDATE_KINDS`, `Allowed: ${kinds.join(', ')}`);
+    const authors = readAuthorSlugs();
+    if (typeof fm.author !== 'string') {
+      err(slug, 'updates must name their author by slug', 'e.g. author: paul-wilson. Register new people in src/lib/articles/authors.ts.');
+    } else if (authors && !authors.includes(fm.author)) {
+      err(slug, `author "${fm.author}" is not in src/lib/articles/authors.ts`, `Registered: ${authors.join(', ')}`);
+    }
+    if (fm.faqs) err(slug, 'updates do not carry FAQs', 'An FAQ turns a personal piece into an SEO page. Take it out.');
+    if (fm.source) {
+      for (const k of ['title', 'creator', 'url']) {
+        if (!fm.source[k]) err(slug, `source.${k} is missing`, 'Whatever an Insight responds to is credited in full: title, creator and url.');
+      }
+      if (fm.source.url && !body.includes(fm.source.url)) {
+        warn(slug, 'source url is credited in frontmatter but never linked in the body');
+      }
+    }
+  } else if (fm.kind) {
+    warn(slug, 'kind is set but only applies to updates, it will be ignored');
+  }
 
   const cats = readEnum('ARTICLE_CATEGORIES');
   const types = readEnum('ARTICLE_TYPES');
@@ -208,7 +244,8 @@ function checkArticle(file, raw, fm, body, slug) {
     prev = h.level;
   }
   const h2s = headings.filter((h) => h.level === 2);
-  if (h2s.length < 3) warn(slug, `only ${h2s.length} H2 sections`);
+  // Updates are prose with as much or as little structure as the thought needs.
+  if (!update && h2s.length < 3) warn(slug, `only ${h2s.length} H2 sections`);
   if (h2s.length > 12) warn(slug, `${h2s.length} H2 sections, consider splitting`);
   const seen = new Set();
   for (const h of headings) {
@@ -219,11 +256,16 @@ function checkArticle(file, raw, fm, body, slug) {
 
   // --- links
   const internal = (body.match(/\]\(\//g) || []).length;
-  if (internal < R.INTERNAL_LINKS_MIN) err(slug, `only ${internal} internal links`, 'Orphan pages do not earn their place in a cluster.');
+  if (update) {
+    if (internal > R.INTERNAL_LINKS_WARN_MAX) warn(slug, `${internal} internal links, possibly stuffed`);
+  } else if (internal < R.INTERNAL_LINKS_MIN) err(slug, `only ${internal} internal links`, 'Orphan pages do not earn their place in a cluster.');
   else if (internal > R.INTERNAL_LINKS_WARN_MAX) warn(slug, `${internal} internal links, possibly stuffed`);
 
   // --- soft quality signals
-  if (words < R.BODY_WORDS_WARN_MIN) warn(slug, `${words} words, thin for a standalone article`);
+  if (update) {
+    if (words < R.UPDATE_BODY_WORDS_WARN_MIN) warn(slug, `${words} words, short even for an update`);
+    if (words > R.UPDATE_BODY_WORDS_WARN_MAX) warn(slug, `${words} words, long for an update. Is this really an article?`);
+  } else if (words < R.BODY_WORDS_WARN_MIN) warn(slug, `${words} words, thin for a standalone article`);
   for (const p of body.split(/\n\s*\n/)) {
     const n = proseOf(p).split(/\s+/).filter(Boolean).length;
     if (n > R.PARAGRAPH_WORDS_WARN_MAX) warn(slug, `a paragraph runs to ${n} words`);
@@ -305,13 +347,14 @@ function checkReview(fm, body, slug) {
     return;
   }
 
-  const total = Object.values(R.REVIEW_CATEGORIES).reduce((a, b) => a + b, 0);
+  const rubric = isUpdate(fm) ? R.UPDATE_REVIEW_CATEGORIES : R.REVIEW_CATEGORIES;
+  const total = Object.values(rubric).reduce((a, b) => a + b, 0);
   if (typeof review.score !== 'number') err(slug, 'review.score is missing or not a number');
   else if (review.score < R.MIN_REVIEW_SCORE) err(slug, `review.score is ${review.score}, below the ${R.MIN_REVIEW_SCORE} gate`);
 
   const cats = review.categories ?? {};
   let sum = 0;
-  for (const [name, ceiling] of Object.entries(R.REVIEW_CATEGORIES)) {
+  for (const [name, ceiling] of Object.entries(rubric)) {
     const v = cats[name];
     if (typeof v !== 'number') { err(slug, `review.categories.${name} is missing`); continue; }
     if (v > ceiling) err(slug, `review.categories.${name} is ${v}, above its ${ceiling} ceiling`);

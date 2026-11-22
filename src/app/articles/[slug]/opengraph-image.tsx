@@ -1,5 +1,6 @@
 import { ImageResponse } from 'next/og';
 import { getArticleBySlug } from '@/lib/articles/loader';
+import { SITE_ORIGIN } from '@/lib/schema';
 
 export const alt = 'Consultico article';
 export const size = { width: 1200, height: 630 };
@@ -11,6 +12,11 @@ export default async function Image({ params }: { params: Promise<{ slug: string
 
   const title = article?.title ?? 'Consultico Articles';
   const category = article?.category ?? 'Articles';
+  // Updates are shared on LinkedIn by the person who wrote them, so the preview
+  // carries their face and name. Everything else keeps the plain card.
+  const isUpdate = article?.category === 'Updates';
+  const label = isUpdate && article?.kind ? `${category} · ${article.kind}` : category;
+  const author = article?.author;
 
   return new ImageResponse(
     (
@@ -37,7 +43,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
             textTransform: 'uppercase',
           }}
         >
-          Consultico · {category}
+          Consultico · {label}
         </div>
         <div
           style={{
@@ -50,7 +56,23 @@ export default async function Image({ params }: { params: Promise<{ slug: string
         >
           {title}
         </div>
-        <div style={{ fontSize: 28, color: '#4b5563' }}>consultico.co.uk/articles</div>
+        {isUpdate && author ? (
+          <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
+            <img
+              src={`${SITE_ORIGIN}${author.image}`}
+              width={96}
+              height={96}
+              alt=""
+              style={{ borderRadius: '48px', objectFit: 'cover', border: '3px solid #007BFF' }}
+            />
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              <div style={{ fontSize: 32, fontWeight: 700, color: '#141414' }}>{author.name}</div>
+              <div style={{ fontSize: 26, color: '#4b5563' }}>{author.role}</div>
+            </div>
+          </div>
+        ) : (
+          <div style={{ fontSize: 28, color: '#4b5563' }}>consultico.co.uk/articles</div>
+        )}
       </div>
     ),
     { ...size }

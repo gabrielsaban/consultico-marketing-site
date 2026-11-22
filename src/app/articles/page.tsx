@@ -48,7 +48,7 @@ export default function ArticlesPage() {
             Articles
           </h1>
           <p className="mb-12 max-w-2xl font-helvetica-light text-[clamp(1rem,1.4vw,1.25rem)] leading-[1.6] text-gray-800 dark:text-gray-200 md:mb-16">
-            Practical writing on strategy, SEO, PPC, and growth. No filler, no generic agency advice.
+            Practical writing on strategy, SEO, PPC, and growth, plus updates from the team. No filler, no generic agency advice.
           </p>
 
           <ArticleCategoryFilter articles={articles} />

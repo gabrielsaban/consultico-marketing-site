@@ -12,5 +12,8 @@ export type {
   ArticleCategory,
   ArticleFrontmatter,
   ArticleType,
+  ArticleSource,
+  UpdateKind,
 } from './types';
-export { ARTICLE_CATEGORIES, ARTICLE_TYPES, DEFAULT_AUTHOR } from './types';
+export { ARTICLE_CATEGORIES, ARTICLE_TYPES, DEFAULT_AUTHOR, UPDATE_KINDS, UPDATES_CATEGORY } from './types';
+export { AUTHORS, authorSlugOf, resolveAuthor } from './authors';
