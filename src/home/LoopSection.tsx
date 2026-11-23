@@ -21,8 +21,8 @@ const STEPS = [
     body: 'What your marketing really brought in, and changes that make a difference.',
   },
   {
-    title: 'Yes, talk or no',
-    body: 'You decide on each change. We make the ones you say yes to, with you, and test them.',
+    title: 'Your call',
+    body: 'Yes, talk or no on every change. We make the yes ones with you, and test them.',
   },
 ];
 
