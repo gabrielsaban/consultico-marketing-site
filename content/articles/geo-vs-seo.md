@@ -7,6 +7,10 @@ updated: 2026-11-23
 category: GEO
 type: Article
 readTime: 4 min read
+author:
+  name: Leona Wade
+  role: Account Manager, Consultico
+  image: /team/leona_wade.png
 review:
   score: 87
   categories:
