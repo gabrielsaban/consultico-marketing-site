@@ -17,12 +17,12 @@ const STEPS = [
     body: 'The same person every week, who gets to know your brand and your numbers.',
   },
   {
-    title: 'Your weekly report',
+    title: 'Your Monday report',
     body: 'What your marketing really brought in, and changes that make a difference.',
   },
   {
-    title: 'Your decision',
-    body: 'Your Loop team brings you specific, researched recommendations, and you use these to make effective marketing changes.',
+    title: 'Yes, talk or no',
+    body: 'You decide on each change. We make the ones you say yes to, with you, and test them.',
   },
 ];
 
@@ -39,11 +39,11 @@ export default function LoopSection() {
               the last line matters: Loop is a collaboration with the client's
               team, never an offer to do everything for them. */}
           <h2 className="font-futura text-[clamp(2rem,3.6vw,3.5rem)] font-bold leading-[1.05] tracking-[-0.01em]">
-            <span className="block text-[#1B2A4A] dark:text-white">Meet Loop.</span>
+            <span className="block text-[#1B2A4A] dark:text-white">How it works.</span>
             <span className="block text-brand-blue">A fresh look at your marketing, every week.</span>
           </h2>
           <p className="mt-6 font-helvetica-light text-[clamp(1.05rem,1.4vw,1.3rem)] leading-[1.6] text-gray-800 dark:text-gray-200">
-            Loop shows you how your marketing makes revenue and how to make it more effective. Every week, our team helps you find changes that make a difference. You choose the best ones, and together we make them happen.
+            Every Monday, your strategist sends one report: what your marketing really brought in, and the changes worth making next. You say yes, talk or no to each one, and together we make the yes ones happen. We call this Loop.
           </p>
         </div>
 
@@ -66,7 +66,7 @@ export default function LoopSection() {
         </ol>
 
         <p className="mt-8 max-w-3xl font-helvetica-light text-[1rem] leading-[1.6] text-gray-700 dark:text-gray-300">
-          Behind your strategist sits our team, frameworks we&apos;ve built in-house and tools we&apos;ve built on leading AI models. Use AI, don&apos;t become AI: you always talk to people.
+          Behind your strategist sits our team, frameworks we&apos;ve built in-house and tools we&apos;ve built on leading AI models. You always talk to a person.
         </p>
 
         <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
@@ -74,7 +74,7 @@ export default function LoopSection() {
             href="/contact"
             className="inline-flex items-center justify-center rounded-lg bg-brand-blue px-8 py-3 font-helvetica text-[clamp(1rem,1.15vw,1.08rem)] font-medium text-white transition-colors duration-200 hover:bg-[#006FE6] focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2"
           >
-            Apply now
+            Book a call
           </Link>
         </div>
       </Container>

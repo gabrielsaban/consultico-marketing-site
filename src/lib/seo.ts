@@ -68,7 +68,7 @@ export const SERVICE_PAGES = {
   'web-development': {
     title: 'Web Design & Development in Glasgow',
     description:
-      'Fast, conversion-focused websites with SEO built in from day one, built as growth assets for B2C brands and trades businesses across the UK.',
+      'Fast, conversion-focused websites with SEO built in from day one, built as growth assets for consumer brands across the UK.',
     path: '/web-development',
     serviceName: 'Web Design & Development',
     serviceType: 'Web design and development',

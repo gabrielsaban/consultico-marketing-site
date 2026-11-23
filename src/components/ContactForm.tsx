@@ -328,7 +328,7 @@ export default function ContactForm({
 
         {showResponseNote && (
           <p className="text-center font-helvetica-light text-[0.85rem] text-gray-500 dark:text-gray-400">
-            We usually reply within a few hours - same working day, guaranteed.
+            We reply within one working day.
           </p>
         )}
       </form>

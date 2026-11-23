@@ -100,7 +100,7 @@ const deliveryMechanics = [
 
 const fitChecks = {
   good: [
-    'Consumer brands with a marketing team and budget in place',
+    'Consumer and maker brands with a marketing budget in place',
     'Owners serious about scaling sustainably',
     'Businesses already selling successfully',
     'Founders who want strategic control before delegating',
@@ -146,18 +146,18 @@ const caseStudies = [
 
 const testimonials = [
   {
-    quote: 'This workshop was highly relevant to our business and gave us clear, actionable direction that made a real difference.',
+    quote: 'This workshop came at exactly the right time. It was highly relevant to our business and gave us clear, actionable guidance that made a real difference.',
     name: 'Peter Davis',
     company: 'Norfolk Boards',
     caseStudyHref: '/case-studies/norfolk-boards',
   },
   {
-    quote: 'The team made the process straightforward and effective. Clear thinking, no fluff, and practical next steps.',
+    quote: 'Consultico are a pleasure to work with. They made the whole process straightforward and effective.',
     name: 'Marcus Binnie',
     company: 'Promo Designs',
   },
   {
-    quote: 'After a frustrating run with agencies, this gave us genuine clarity on what to do and why it would work.',
+    quote: 'After dealing with pushy agencies and expensive quotes, I almost lost hope. Then I found Paul, who was genuine, knowledgeable, and always willing to explain things clearly.',
     name: 'Ant Vitale',
     company: 'The Boiler Co',
     caseStudyHref: '/case-studies/boiler-installation-company',
@@ -189,11 +189,11 @@ export default function ThinkFirstPage() {
             <div>
               <h1 className="font-futura font-bold mb-4 max-w-[38rem]">
                 <span className="block text-[clamp(1.55rem,2.35vw,2.65rem)] leading-[1.1] text-brand-blue">
-                  Think First: the marketing strategy workshop that starts Loop
+                  Think First: a marketing strategy workshop for UK consumer brands
                 </span>
               </h1>
               <p className="text-[clamp(0.9rem,1.05vw,1rem)] leading-[1.5] text-gray-600 dark:text-gray-400 font-helvetica mb-5">
-                The marketing strategy workshop that starts Loop, for UK consumer brands
+                Month one of working with us: 30 days, a half-day workshop and a 12-month roadmap.
               </p>
               <p className="text-[clamp(1rem,1.35vw,1.25rem)] leading-[1.65] text-gray-800 dark:text-gray-200 font-helvetica-light max-w-3xl mb-8">
                 A strategic workshop built around your business - showing which channels will work, why they&apos;ll work, and exactly what they&apos;re worth before you invest another pound.
@@ -203,7 +203,7 @@ export default function ThinkFirstPage() {
                   href="#apply"
                   className="inline-flex items-center justify-center bg-brand-blue text-white font-helvetica font-medium text-[clamp(1rem,1.2vw,1.125rem)] px-8 py-3 rounded-lg transition-colors duration-200 hover:bg-[#006FE6] active:bg-[#0067D6] focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2"
                 >
-                  Apply For The Strategy Workshop
+                  Book a call
                 </a>
               </div>
               <p className="text-[clamp(0.875rem,1vw,1rem)] text-gray-600 dark:text-gray-400 font-helvetica-light mb-8">
@@ -211,7 +211,7 @@ export default function ThinkFirstPage() {
               </p>
               <div className="border-l-2 border-brand-blue pl-4">
                 <p className="text-[clamp(0.95rem,1.15vw,1.1rem)] leading-[1.6] text-gray-700 dark:text-gray-300 font-helvetica">
-                  No retainers. No guesswork. No &quot;try this and see.&quot; Just clarity, projections, and a step-by-step implementation path.
+                  No guesswork. No &quot;try this and see.&quot; Just clarity, projections and a step-by-step plan.
                 </p>
               </div>
             </div>
@@ -240,7 +240,7 @@ export default function ThinkFirstPage() {
         <Container>
           <div className="max-w-3xl">
             <p className="font-helvetica-light text-[clamp(1.05rem,1.25vw,1.2rem)] leading-[1.7] text-gray-800 dark:text-gray-200">
-              Think First is Consultico&apos;s marketing workshop for B2C businesses, run from Glasgow and delivered in
+              Think First is Consultico&apos;s marketing workshop for consumer brands, run from Glasgow and delivered in
               person or online. It takes 30 days from booking. We start with a strategic audit of your numbers, your
               channels and your positioning, build a revenue and channel model from what we find, then bring it all into
               a half-day workshop with you and your team. You leave with a marketing model built around your business, a
@@ -258,7 +258,7 @@ export default function ThinkFirstPage() {
         <div className="absolute -top-24 -right-16 w-[26rem] h-[26rem] rounded-full bg-brand-blue/10 blur-3xl" />
         <Container>
           <h2 className={`${sectionHeadingClass} mb-6 max-w-[23ch]`}>
-            <span className="block">Most B2C Businesses Don&apos;t Have a Marketing Problem</span>
+            <span className="block">Most consumer brands don&apos;t have a marketing problem</span>
             <span className="block mt-1 text-gray-800 dark:text-gray-100">They Have a Clarity Problem</span>
           </h2>
           <div className="relative grid grid-cols-1 lg:grid-cols-[1fr_0.9fr] gap-8 lg:gap-12">
@@ -310,7 +310,7 @@ export default function ThinkFirstPage() {
         <div className="absolute -left-20 top-16 w-72 h-72 rounded-full bg-brand-blue/10 blur-3xl" />
         <Container>
           <h2 className={`${sectionHeadingClass} mb-4 max-w-none md:whitespace-nowrap text-center mx-auto`}>
-            Before Execution, Comes <span className="text-gray-800 dark:text-white">Precision</span>
+            Precision before <span className="text-gray-800 dark:text-white">execution</span>
           </h2>
           <p className="relative text-[clamp(1rem,1.35vw,1.2rem)] leading-[1.6] text-gray-800 dark:text-gray-200 font-helvetica-light max-w-4xl mb-8 text-center mx-auto">
             Most agencies start with ads. We start with the business model behind growth.
@@ -353,7 +353,7 @@ export default function ThinkFirstPage() {
       <section className="relative overflow-hidden py-16 md:py-20 lg:py-24">
         <Container>
           <h2 className={`${sectionHeadingClass} mb-8 max-w-none md:whitespace-nowrap`}>
-            What You Leave With
+            What you leave with
           </h2>
           <div className="relative grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 mb-8">
             {[walkAwayOutcomes.slice(0, 3), walkAwayOutcomes.slice(3)].map((column, idx) => (
@@ -492,7 +492,7 @@ export default function ThinkFirstPage() {
                     href={item.caseStudyHref}
                     className="mt-3 inline-block font-helvetica text-[0.85rem] text-brand-blue underline underline-offset-4 hover:no-underline"
                   >
-                    Read the {item.company} case study
+                    Read {item.company.startsWith('The ') ? '' : 'the '}{item.company} case study
                   </Link>
                 )}
               </article>
@@ -603,21 +603,21 @@ export default function ThinkFirstPage() {
       <section id="apply" data-cursor-theme="light" className="py-16 md:py-20 lg:py-24 bg-brand-blue text-white">
         <Container>
           <h2 className="text-[clamp(1.6rem,2.6vw,2.8rem)] leading-[1.14] font-futura font-bold mb-5 max-w-[20ch]">
-            Start with Think First. Then keep going with Loop.
+            Start with Think First. Then we keep going, every week.
           </h2>
           <p className="text-[clamp(1rem,1.35vw,1.25rem)] leading-[1.6] font-helvetica-light mb-6 max-w-3xl text-white/90">
-            Think First is how every Loop starts. If you want clarity before your next big marketing decision, apply below.
+            If you want clarity before your next big marketing decision, book a call below.
           </p>
           <Link
             href="/#contact"
             className="inline-flex items-center justify-center bg-white text-brand-blue font-helvetica font-medium text-[clamp(1rem,1.2vw,1.125rem)] px-8 py-3 rounded-lg transition-colors duration-200 hover:bg-gray-100 active:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-brand-blue"
           >
-            Apply For The Strategy Workshop
+            Book a call
           </Link>
           <p className="mt-4 text-[clamp(0.875rem,1vw,1rem)] text-white/85 font-helvetica-light">
             We&apos;ll review your business and confirm if we can help before anything is booked.{' '}
             <Link href={LOOP_HREF} className="font-medium text-white underline underline-offset-2">
-              Meet Loop
+              See how it works
             </Link>
             .
           </p>

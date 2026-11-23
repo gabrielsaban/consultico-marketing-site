@@ -109,7 +109,7 @@ export const SEO_LANDING_STORIES = [
     name: 'The Boiler Co',
     sector: 'Heating and plumbing',
     teaser:
-      'After a frustrating run with agencies, this gave us genuine clarity on what to do and why it would work.',
+      'After dealing with pushy agencies and expensive quotes, I almost lost hope. Then I found Paul, who was genuine, knowledgeable, and always willing to explain things clearly.',
     quote: fullByCompany.boiler.quote,
     reviewer: fullByCompany.boiler.name,
     logo: '/seo-landing/logo-boiler-co.png',

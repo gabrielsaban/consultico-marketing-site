@@ -135,7 +135,7 @@ export default function HeroSection() {
               className="mt-6 max-w-[34rem] font-helvetica-light text-[clamp(1.05rem,1.35vw,1.3rem)] leading-[1.6] text-gray-700 dark:text-gray-200"
               variants={itemVariants}
             >
-              An extra part of your marketing team that takes a fresh look every week and helps you do more of what works.
+              One strategist looks at all your marketing every week and tells you what to change next. You decide, and we make the changes with you.
             </motion.p>
 
             <motion.div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-4" variants={itemVariants}>
@@ -148,7 +148,7 @@ export default function HeroSection() {
                   scrollToHomeSection('contact');
                 }}
               >
-                Apply now
+                Book a call
               </motion.button>
               <button
                 type="button"
@@ -157,7 +157,7 @@ export default function HeroSection() {
                   scrollToHomeSection('loop');
                 }}
               >
-                Meet Loop <span aria-hidden="true">↓</span>
+                How it works <span aria-hidden="true">↓</span>
               </button>
             </motion.div>
           </div>

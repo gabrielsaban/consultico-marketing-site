@@ -7,7 +7,7 @@ import { CONSULTICO_GBP_URL } from '@/lib/contact';
 const featuredReviews = [
   {
     quote:
-      'After a frustrating run with agencies, this gave us genuine clarity on what to do and why it would work.',
+      'After dealing with pushy agencies and expensive quotes, I almost lost hope. Then I found Paul, who was genuine, knowledgeable, and always willing to explain things clearly.',
     name: 'Ant Vitale',
     company: 'The Boiler Co',
   },

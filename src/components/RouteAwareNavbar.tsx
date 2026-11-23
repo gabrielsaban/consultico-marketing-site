@@ -14,7 +14,7 @@ import { useSiteMenu } from '@/components/SiteMenuContext';
 // the overlay menu (SiteMenu), which the hamburger at the top opens.
 const navItems = [
   { name: 'home',     href: '#home'     },
-  { name: 'projects', href: '#projects' },
+  { name: 'projects', label: 'case studies', href: '#projects' },
   { name: 'about',    href: '#about'    },
   { name: 'contact',  href: '#contact'  },
 ];
@@ -34,10 +34,6 @@ export default function RouteAwareNavbar() {
 
   useEffect(() => {
     if (pathname !== '/') {
-      if (pathname === '/think-first') {
-        setActiveSection('home');
-        return;
-      }
       if (pathname === '/careers') {
         setActiveSection('about');
         return;
@@ -144,7 +140,7 @@ export default function RouteAwareNavbar() {
                 hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-white
               `}
             >
-              {item.name}
+              {'label' in item && item.label ? item.label : item.name}
             </Link>
           );
         })}

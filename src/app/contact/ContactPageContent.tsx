@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import Container from '@/components/Container';
 import AuditSignupBlock from '@/components/AuditSignupBlock';
 import ContactForm from '@/components/ContactForm';
@@ -27,15 +26,15 @@ export default function ContactPageContent() {
                 Send us a message
               </h1>
               <p className="mt-4 max-w-md font-helvetica-light text-[clamp(1rem,1.2vw,1.1rem)] leading-[1.65] text-gray-800 dark:text-gray-200">
-                Tell us about your business and what you need. We work with B2C brands and trades businesses across the UK and United States.
+                Tell us about your brand and where your marketing is now. We work with UK consumer and maker brands.
               </p>
 
               <blockquote className="mt-8 border-l-2 border-brand-blue pl-4">
                 <p className="font-helvetica-light text-[0.98rem] italic leading-[1.65] text-gray-800 dark:text-gray-200">
-                  &ldquo;Paul kept me informed throughout and delivered on time - his support was outstanding.&rdquo;
+                  &ldquo;This workshop came at exactly the right time. It was highly relevant to our business and gave us clear, actionable guidance that made a real difference.&rdquo;
                 </p>
                 <footer className="mt-3 font-helvetica text-[0.875rem] font-medium not-italic text-gray-900 dark:text-gray-100">
-                  Keiren, Custom Crafts by KJB
+                  Peter Davis, Norfolk Boards
                 </footer>
               </blockquote>
 
@@ -106,12 +105,6 @@ export default function ContactPageContent() {
               <br />
               United Kingdom
             </a>
-            <p className="mt-4 font-helvetica-light text-[0.875rem] text-gray-500 dark:text-gray-400">
-              <Link href="/#contact" className="text-brand-blue hover:underline">
-                Homepage contact section
-              </Link>{' '}
-              also available.
-            </p>
           </div>
         </Container>
       </section>

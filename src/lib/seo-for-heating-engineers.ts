@@ -128,7 +128,7 @@ export const HEATING_ENGINEER_SEO_PROCESS_STEPS = [
 
 export const BOILER_CO_TESTIMONIAL = {
   quote:
-    'After a frustrating run with agencies, this gave us genuine clarity on what to do and why it would work.',
+    'After dealing with pushy agencies and expensive quotes, I almost lost hope. Then I found Paul, who was genuine, knowledgeable, and always willing to explain things clearly.',
   name: 'Ant Vitale',
   company: 'The Boiler Co',
 } as const;

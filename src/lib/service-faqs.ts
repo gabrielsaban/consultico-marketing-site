@@ -30,7 +30,7 @@ export const SERVICE_FAQS: Record<Exclude<ServicePageKey, 'careers'>, { question
     {
       question: 'Do you work with businesses outside Glasgow?',
       answer:
-        'Yes. Consultico is based in Glasgow and serves B2C brands and trades businesses across the UK and United States. Strategy and delivery are built around your market, not just our postcode.',
+        'Yes. Consultico is based in Glasgow and serves consumer brands across the UK. Strategy and delivery are built around your market, not just our postcode.',
     },
   ],
   ppc: [
@@ -148,7 +148,7 @@ export const SERVICE_FAQS: Record<Exclude<ServicePageKey, 'careers'>, { question
     {
       question: 'Is this the same as hiring an agency retainer?',
       answer:
-        'No. Think First is a defined strategy engagement with a clear handover. Execution can follow with Consultico or your in-house team.',
+        'Think First is the first month of working with us. After it, we review your marketing every week on a 12-month agreement. If you only want the workshop, ask us.',
     },
     {
       question: 'Do you use a framework?',

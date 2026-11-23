@@ -135,7 +135,7 @@ export const ACCOUNTANT_PAID_PROOF = {
 
 export const ACCOUNTANT_WORKSHOP_TESTIMONIAL = {
   quote:
-    'The team made the process straightforward and effective. Clear thinking, no fluff, and practical next steps.',
+    'Consultico are a pleasure to work with. They made the whole process straightforward and effective.',
   name: 'Marcus Binnie',
   company: 'Promo Designs',
 } as const;

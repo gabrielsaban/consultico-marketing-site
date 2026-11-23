@@ -24,10 +24,10 @@ export default function ContactSection() {
         <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
           <div>
             <p className="mb-3 font-helvetica text-[0.78rem] font-semibold uppercase tracking-[0.16em] text-brand-blue">
-              Apply
+              Contact
             </p>
             <h2 className="font-futura text-[clamp(1.6rem,2.8vw,2.75rem)] font-bold leading-[1.1] text-[#1B2A4A] dark:text-white">
-              Let&apos;s see if Loop is right for you.
+              Let&apos;s see if we&apos;re the right fit.
             </h2>
             <p className="mt-5 max-w-[32rem] font-helvetica-light text-[clamp(1.05rem,1.35vw,1.25rem)] leading-[1.6] text-gray-800 dark:text-gray-200">
               Tell us about your brand and where your marketing is now, and we&apos;ll be in touch.

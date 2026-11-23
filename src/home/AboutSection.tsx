@@ -263,7 +263,7 @@ export default function AboutSection(): React.JSX.Element {
               About Consultico
             </p>
             <h2 className="font-futura text-[clamp(1.6rem,2.8vw,2.75rem)] font-bold leading-[1.1] text-[#1B2A4A] dark:text-white">
-              The people behind Loop
+              Who you&apos;ll work with
             </h2>
           </div>
           <div className="mt-6 max-w-3xl space-y-4">
@@ -275,7 +275,7 @@ export default function AboutSection(): React.JSX.Element {
               <Link href="/think-first" className="font-medium text-brand-blue underline-offset-2 hover:underline">
                 Think First
               </Link>
-              , the workshop every Loop starts with. Behind every strategist is our team, our own frameworks and tools we&apos;ve built on leading AI models.
+              , the strategy workshop every client starts with.
             </p>
           </div>
         </div>

@@ -18,7 +18,7 @@ const differentiators = [
   {
     number: '01',
     title: 'Student-Friendly Focus',
-    body: 'With a close relationship with Strathclyde University in Glasgow, our team prioritises student employability, upskilling, and training. We design opportunities around academic schedules, not against them.',
+    body: 'With a close relationship with the University of Strathclyde in Glasgow, our team prioritises student employability, upskilling, and training. We design opportunities around academic schedules, not against them.',
     note: 'Training is structured to improve confidence, commercial awareness, and employability while supporting your studies.',
   },
   {

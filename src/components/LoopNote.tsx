@@ -12,9 +12,9 @@ export default function LoopNote() {
     <section className="py-10 md:py-12">
       <Container>
         <p className="mx-auto max-w-3xl text-center font-helvetica-light text-[clamp(1rem,1.2vw,1.1rem)] leading-[1.65] text-gray-700 dark:text-gray-300">
-          Want more than one channel looked after? Loop, by Consultico, is an extra part of your marketing team that takes a fresh look every week.{' '}
+          Want all your marketing looked at together? We review every channel with you, every week.{' '}
           <Link href={LOOP_HREF} className="font-medium text-brand-blue underline-offset-2 hover:underline">
-            Meet Loop
+            See how it works
           </Link>
           .
         </p>

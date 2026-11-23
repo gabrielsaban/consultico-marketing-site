@@ -91,7 +91,7 @@ const projects: Project[] = [
       'After consistent work, weekly performance peaked above 21,000 impressions and 55 clicks, with significantly higher intent traffic converting into booked appointments.',
     ],
     testimonial: {
-      quote: 'After a frustrating run with agencies, this gave us genuine clarity on what to do and why it would work.',
+      quote: 'After dealing with pushy agencies and expensive quotes, I almost lost hope. Then I found Paul, who was genuine, knowledgeable, and always willing to explain things clearly.',
       attribution: 'Owner, boiler installation company',
     },
   },

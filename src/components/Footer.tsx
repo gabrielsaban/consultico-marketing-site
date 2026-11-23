@@ -15,7 +15,7 @@ import { LOOP_HREF, NAV_SERVICES, getNavIndustries, type NavLink } from '@/lib/n
 // menu keeps the services quiet and Google never opens menus, so this has to
 // be the complete, crawlable index: every service, every industry page.
 const COMPANY_LINKS: NavLink[] = [
-  { name: 'Meet Loop', href: LOOP_HREF },
+  { name: 'How it works', href: LOOP_HREF },
   { name: 'Think First', href: '/think-first' },
   // Sitewide, so every page has a crawlable path to the proof.
   { name: 'Case studies', href: '/case-studies' },
@@ -73,7 +73,7 @@ export default function Footer() {
               className="mb-6 brightness-0 invert"
             />
             <p className="text-[clamp(0.875rem,1vw,1rem)] leading-[1.6] font-helvetica-light text-gray-100 mb-6">
-              Loop, by Consultico. An extra part of your marketing team that takes a fresh look every week. Sharper every week. Further every year.
+              A Glasgow marketing company for UK consumer brands. A fresh look at your marketing, every week.
             </p>
             
             {/* Social Media Icons */}

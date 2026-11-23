@@ -231,7 +231,7 @@ export default function MarketStrategyPage() {
               </h1>
 
               <p className="mt-7 max-w-3xl text-[clamp(1rem,1.45vw,1.3rem)] leading-[1.65] text-gray-800 dark:text-gray-200 font-helvetica-light">
-                We work with UK consumer brands on what their marketing should do next: what to keep, what to stop and what to back. It&apos;s how every Loop starts, and it&apos;s how Loop keeps going, with a fresh look every week. Every piece of work starts the same way: working out what your numbers can actually support, and what should happen first. Sometimes that means we tell you not to spend yet.
+                We work with UK consumer brands on what their marketing should do next: what to keep, what to stop and what to back. It&apos;s where every client starts, and we keep doing it with a fresh look every week. Every piece of work starts the same way: working out what your numbers can actually support, and what should happen first. Sometimes that means we tell you not to spend yet.
               </p>
 
               <div className="mt-8 flex flex-col gap-4 sm:flex-row">
@@ -239,14 +239,14 @@ export default function MarketStrategyPage() {
                   href="/#contact"
                   className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand-blue px-7 py-3 text-[clamp(1rem,1.15vw,1.1rem)] font-helvetica font-medium text-white transition-colors duration-200 hover:bg-[#006FE6] active:bg-[#0067D6] focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2"
                 >
-                  Apply now
+                  Book a call
                   <ArrowIcon />
                 </Link>
                 <Link
                   href={LOOP_HREF}
                   className="inline-flex items-center justify-center rounded-lg border border-brand-blue px-7 py-3 text-[clamp(1rem,1.15vw,1.1rem)] font-helvetica font-medium text-brand-blue transition-colors duration-200 hover:bg-brand-blue hover:text-white focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2"
                 >
-                  Meet Loop
+                  See how it works
                 </Link>
                 <Link
                   href="/think-first"
@@ -512,7 +512,7 @@ export default function MarketStrategyPage() {
               What is included
             </p>
             <h2 className="font-futura text-[clamp(2rem,3.4vw,4rem)] font-bold leading-[1.05] text-gray-900 dark:text-white">
-              Everything needed to outthink, outposition, and outmaneuver.
+              Everything needed to outthink and outposition the competition.
             </h2>
           </div>
 
