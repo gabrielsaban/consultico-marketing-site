@@ -10,7 +10,7 @@ readTime: 4 min read
 author:
   name: Leona Wade
   role: Account Manager, Consultico
-  image: /team/leona_wade.png
+  image: /team/leona-wade-headshot.jpg
 review:
   score: 87
   categories:
