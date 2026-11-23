@@ -32,27 +32,16 @@ function isValidEmail(email: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-// Returns which check tripped, or null, so a rejection can be logged with its
-// reason. A bare true/false is how every signup failed for 30 days with nothing
-// in the logs to say why.
-function likelyBotReason(payload: NewsletterPayload): string | null {
+function isLikelyBot(payload: NewsletterPayload): boolean {
   if (payload.company?.trim()) {
-    return 'honeypot filled';
+    return true;
   }
 
   if (typeof payload.startedAt !== 'number' || !Number.isFinite(payload.startedAt)) {
-    return 'missing startedAt';
+    return true;
   }
 
-  const elapsed = Date.now() - payload.startedAt;
-  return elapsed < MIN_SUBMIT_TIME_MS ? `submitted too fast (${elapsed}ms)` : null;
-}
-
-// Every 400 is logged. These were silent before, so a signup rejected here
-// looked exactly like no signup at all. The email is never logged.
-function reject(reason: string, publicError: string, source: string | undefined) {
-  console.warn(`Newsletter signup rejected (400): ${reason} [source=${source ?? 'unknown'}]`);
-  return NextResponse.json({ ok: false, error: publicError }, { status: 400 });
+  return Date.now() - payload.startedAt < MIN_SUBMIT_TIME_MS;
 }
 
 // Matches the audit signup's handling so both routes store website the same
@@ -70,17 +59,16 @@ export async function POST(request: Request) {
     const payload = (await request.json()) as NewsletterPayload;
 
     if (!payload.sessionId) {
-      return reject('missing sessionId', 'Missing session id', payload.source);
+      return NextResponse.json({ ok: false, error: 'Missing session id' }, { status: 400 });
     }
 
-    const botReason = likelyBotReason(payload);
-    if (botReason) {
-      return reject(`bot check: ${botReason}`, 'Invalid submission', payload.source);
+    if (isLikelyBot(payload)) {
+      return NextResponse.json({ ok: false, error: 'Invalid submission' }, { status: 400 });
     }
 
     const email = payload.email?.trim() ?? '';
     if (!isValidEmail(email)) {
-      return reject('invalid email', 'Valid email required', payload.source);
+      return NextResponse.json({ ok: false, error: 'Valid email required' }, { status: 400 });
     }
 
     // Consent is the transaction here, not an extra, and it is enforced on the
@@ -88,7 +76,7 @@ export async function POST(request: Request) {
     // a legal record — anyone can POST this endpoint directly, and a marketing
     // address captured without consent is worse than no address at all.
     if (payload.consent !== true) {
-      return reject('consent not true', 'Consent required', payload.source);
+      return NextResponse.json({ ok: false, error: 'Consent required' }, { status: 400 });
     }
 
     // The form no longer has a website field (removed 2026-09-14 to make the
@@ -134,24 +122,11 @@ export async function POST(request: Request) {
     //
     // Do not restore a send here until RESEND_FROM_EMAIL is on our own domain,
     // or the reason this was removed comes straight back.
-    //
-    // Non-fatal (2026-11-14), like the Supabase and GHL steps below. A broken
-    // Resend key or sender must not turn a real signup into a 500, because GHL
-    // still receives the subscriber. But this notification is the trigger for
-    // the welcome email, so a failure here is logged loudly: if you see it, the
-    // welcome email has to be sent from what GHL holds.
-    try {
-      await sendResendEmail({
-        to: getNotificationRecipient('contact'),
-        subject: `New newsletter signup (send the welcome email): ${email}`,
-        text: internalText,
-      });
-    } catch (error) {
-      console.error(
-        'NEWSLETTER NOTIFICATION EMAIL FAILED (Resend). The signup continues, but no "send the welcome email" alert was sent. Check RESEND_API_KEY / RESEND_FROM_EMAIL:',
-        error,
-      );
-    }
+    await sendResendEmail({
+      to: getNotificationRecipient('contact'),
+      subject: `New newsletter signup (send the welcome email): ${email}`,
+      text: internalText,
+    });
 
     // Persisted after the emails and deliberately non-fatal: if Supabase is
     // down we would rather have the address sitting in an inbox than lose the
