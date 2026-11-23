@@ -150,15 +150,7 @@ export default function RouteAwareNavbar() {
         })}
       </div>
 
-      {/* White on our blue is just under 4:1, so this stays at large-text
-          size (19px bold) to clear the 3:1 large-text bar. */}
       <div inert={open} className="shrink-0 flex flex-col items-center gap-5">
-        <Link
-          href="/contact"
-          className="text-white text-[19px] leading-none font-bold tracking-wide whitespace-nowrap [writing-mode:vertical-rl] rotate-180 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
-        >
-          Apply now
-        </Link>
         <ThemeToggle className="border-white text-white hover:bg-white/20" />
       </div>
     </motion.nav>
