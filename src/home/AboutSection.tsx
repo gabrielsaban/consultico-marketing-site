@@ -260,7 +260,7 @@ export default function AboutSection(): React.JSX.Element {
           </div>
           <div className="mt-6 max-w-3xl space-y-4">
             <p className="font-helvetica-light text-[clamp(1.05rem,1.35vw,1.25rem)] leading-[1.6] text-gray-800 dark:text-gray-200">
-              Consultico is a Glasgow marketing company for UK consumer brands, running since February 2024. The person you meet is the person who does the work, and they stay with you.
+              Consultico is a Glasgow marketing company for UK consumer brands. The person you meet is the person who does the work, and they stay with you.
             </p>
             <p className="font-helvetica-light text-[clamp(1.05rem,1.35vw,1.25rem)] leading-[1.6] text-gray-800 dark:text-gray-200">
               In 2025 a University of Strathclyde fellowship funded the research behind{' '}

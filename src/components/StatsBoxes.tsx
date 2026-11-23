@@ -17,17 +17,12 @@ const stats: Stat[] = [
     label: 'Rated on Google',
     variant: 'numeric',
   },
-  {
-    headline: '40+',
-    label: 'Page-one rankings for our clients',
-    variant: 'numeric',
-  },
 ];
 
 export default function StatsBoxes() {
   return (
     <Container className="py-14 sm:py-20 lg:py-24">
-      <div className="grid grid-cols-1 gap-6 min-[600px]:grid-cols-3 min-[600px]:gap-8 lg:gap-10 xl:gap-12">
+      <div className="grid grid-cols-1 gap-6 min-[600px]:grid-cols-2 min-[600px]:gap-8 lg:gap-10 xl:gap-12">
         {stats.map((stat) => (
           <div
             key={stat.label}
