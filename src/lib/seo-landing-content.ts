@@ -36,10 +36,12 @@ export const SEO_LANDING_HERO = {
 export type SeoHeroGraphic = (typeof SEO_LANDING_HERO.rotateStates)[number]['graphic'];
 
 export const SEO_LANDING_STATS = [
-  { value: '300+', label: 'Pages optimised', icon: 'pages' as const },
-  { value: '900%', label: 'AI citations', icon: 'ai' as const },
-  { value: '4x', label: 'Weekly search impressions', icon: 'impressions' as const },
-  { value: '400+', label: 'Page-one rankings', icon: 'rankings' as const },
+  // Verified figures only (reader review, 2026-11-23). The old 300+ / 900% /
+  // 4x / 400+ row had no recorded basis and contradicted the homepage's 40+.
+  { value: '40+', label: 'Page-one rankings for our clients', icon: 'rankings' as const },
+  { value: '+143%', label: 'Search clicks for Norfolk Boards, season on season', icon: 'impressions' as const },
+  { value: '0 to 3', label: 'Of 7 tracked AI questions now naming us, in one month', icon: 'ai' as const },
+  { value: '5.0', label: 'Rated on Google', icon: 'pages' as const },
 ] as const;
 
 /** Farzin Data-page long teasers for channel detail modals. */

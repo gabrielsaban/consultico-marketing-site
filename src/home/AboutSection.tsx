@@ -401,11 +401,11 @@ export default function AboutSection(): React.JSX.Element {
                 Our team
               </p>
               <h3 className="font-futura text-[clamp(1.5rem,2.4vw,2.25rem)] font-bold leading-[1.15] text-[#1B2A4A] dark:text-white mb-6">
-                Talent over tenure
+                Small team, senior oversight
               </h3>
               <div className="space-y-4 mb-8">
                 <p className="text-[clamp(0.95rem,1.1vw,1.05rem)] leading-[1.6] text-gray-700 dark:text-gray-300 font-helvetica">
-                  We prioritise talent over tenure. Our team pairs fresh digital thinking with experienced oversight, including advisors who have built and scaled brands across a range of industries. Every piece of work is held to the same standard, regardless of who produces it.
+                  Our team pairs fresh digital thinking with experienced oversight, including advisors who have built and scaled brands across a range of industries. Every piece of work is held to the same standard, regardless of who produces it.
                 </p>
                 <p className="text-[clamp(0.95rem,1.1vw,1.05rem)] leading-[1.6] text-gray-700 dark:text-gray-300 font-helvetica-light">
                   Click on any team member to learn more about their background, what they specialise in, and how they contribute to your work.

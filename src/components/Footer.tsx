@@ -9,7 +9,8 @@ import {
   CONSULTICO_PHONE_DISPLAY,
   CONSULTICO_PHONE_TEL,
 } from '@/lib/contact';
-import { LOOP_HREF, NAV_SERVICES, getNavIndustries, type NavLink } from '@/lib/nav-services';
+import { LOOP_HREF, NAV_SERVICES, type NavLink } from '@/lib/nav-services';
+import { SEO_BY_INDUSTRY_PATH } from '@/lib/seo-industries';
 
 // The footer is the one place every page is linked from every page. The new
 // menu keeps the services quiet and Google never opens menus, so this has to
@@ -108,11 +109,12 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Column 2: the full index. Company, services, then industries. */}
-          <div className="w-full max-w-xs md:max-w-none grid grid-cols-2 lg:grid-cols-[0.8fr_0.8fr_1.4fr] gap-6">
+          {/* Column 2: the index. The trades industry pages left the footer on
+              2026-11-23 (reader review); they stay live, in the sitemap, and
+              linked from /seo-by-industry. */}
+          <div className="w-full max-w-xs md:max-w-none grid grid-cols-2 gap-6">
             <FooterLinkList title="Consultico" links={COMPANY_LINKS} />
-            <FooterLinkList title="Services" links={NAV_SERVICES} />
-            <FooterLinkList title="Industries" links={getNavIndustries()} />
+            <FooterLinkList title="Services" links={[...NAV_SERVICES, { name: 'SEO by industry', href: SEO_BY_INDUSTRY_PATH }]} />
           </div>
 
           {/* Column 3: Contact Us */}

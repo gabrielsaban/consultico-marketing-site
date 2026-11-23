@@ -1,7 +1,6 @@
 'use client';
 
 import Container from '@/components/Container';
-import AuditSignupBlock from '@/components/AuditSignupBlock';
 import ContactForm from '@/components/ContactForm';
 import {
   CONSULTICO_ADDRESS,
@@ -83,13 +82,6 @@ export default function ContactPageContent() {
         </Container>
       </section>
 
-      <section className="bg-brand-silk/80 py-10 dark:bg-gray-900/80 md:py-12">
-        <Container>
-          <div className="mx-auto max-w-3xl">
-            <AuditSignupBlock source="contact-page" variant="compact" />
-          </div>
-        </Container>
-      </section>
 
       <section className="py-12 md:py-14">
         <Container>

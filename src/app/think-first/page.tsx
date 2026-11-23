@@ -100,7 +100,7 @@ const deliveryMechanics = [
 
 const fitChecks = {
   good: [
-    'Consumer and maker brands with a marketing budget in place',
+    'Consumer brands with a marketing team and budget in place',
     'Owners serious about scaling sustainably',
     'Businesses already selling successfully',
     'Founders who want strategic control before delegating',
@@ -113,20 +113,6 @@ const fitChecks = {
 };
 
 const caseStudies = [
-  {
-    title: 'Local Services (Plumbing & Construction)',
-    situation: 'Lead generation had stalled. Paid ads were inconsistent and unprofitable.',
-    finding: 'Incorrect channel sequencing and no defined acquisition ceiling.',
-    metrics: [
-      { value: '3x', label: 'Online Revenue In 6 Months' },
-      { value: '100%', label: 'Channels Measurable' },
-      { value: '1', label: 'Scalable Lead System Built' },
-    ],
-    outcomes: [
-      'Every channel became measurable and profitable',
-      'New scalable lead flow system built',
-    ],
-  },
   {
     title: 'E-Commerce Brand',
     situation: 'Owner unsure where to focus next - website, social, or paid.',

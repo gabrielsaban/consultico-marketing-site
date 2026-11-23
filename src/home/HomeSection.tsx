@@ -1,6 +1,5 @@
 import HeroSection from '@/components/HeroSection';
 import LoopSection from './LoopSection';
-import NewsletterSignup from '@/components/NewsletterSignup';
 // import KeywordSection from './KeywordSection';
 
 export default function HomeSection() {
@@ -8,31 +7,10 @@ export default function HomeSection() {
     <section id="home">
       <HeroSection />
       <LoopSection />
-      {/*
-        Placement is deliberate, and it is the second most important decision
-        here after the offer itself.
-
-        It sits directly after the Loop section because that is the first moment
-        on the page where the reader has a REASON to hand over an email: they
-        have just seen how Loop runs, and its CTAs (a conversation, a call) are
-        high-friction asks. A one-field
-        newsletter signup is the low-friction answer for the large majority who
-        are not ready to put time in a calendar, and it catches them at the
-        point of highest interest rather than after they have scrolled past
-        three more sections.
-
-        Not directly under the hero: the hero is one full viewport with a single
-        clear CTA, and interrupting it with a form before we have made any
-        argument is what makes an email capture read as a toll gate.
-
-        Kept to a slim strip on purpose. A second band of similar weight is
-        planned for this page, and two full pitch sections stacked here would
-        flatten both of them and push Think First too far down.
-      */}
-      <NewsletterSignup source="homepage" />
+      {/* The newsletter strip that sat here was moved out on 2026-11-23 (reader
+          review: it interrupted the pitch). Signup lives in the footer, the
+          articles index and every article. */}
       {/* <KeywordSection /> */}
     </section>
   );
 }
-
-
