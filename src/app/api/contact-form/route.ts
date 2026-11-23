@@ -16,6 +16,8 @@ type ContactFormPayload = {
   /** Real company site URL from the SEO landing form (not the honeypot). */
   companyWebsite?: string;
   heardAbout?: string;
+  /** 'apply' for the Think First application at /apply. Changes the email subject and GHL tag only. */
+  formSource?: 'contact' | 'apply';
   attribution?: Record<string, string>;
 };
 
@@ -57,6 +59,7 @@ function normalisePayload(payload: ContactFormPayload) {
     companyWebsite: normaliseCompanyWebsite(payload.companyWebsite),
     message: payload.message?.trim() ?? '',
     heardAbout: payload.heardAbout?.trim() ?? '',
+    isApplication: payload.formSource === 'apply',
     attribution: payload.attribution ?? {},
   };
 }
@@ -81,7 +84,7 @@ async function sendContactEmails(payload: ReturnType<typeof normalisePayload>) {
   }
 
   const internalText = [
-    'New contact form submission',
+    payload.isApplication ? 'New application (Apply now)' : 'New contact form submission',
     '',
     `Name: ${payload.name || 'Not provided'}`,
     `Business: ${payload.business || 'Not provided'}`,
@@ -99,11 +102,13 @@ async function sendContactEmails(payload: ReturnType<typeof normalisePayload>) {
   const userText = [
     `Hi ${payload.name || 'there'},`,
     '',
-    'Thanks for getting in touch with Consultico.',
+    payload.isApplication ? 'Thanks for applying to work with Consultico.' : 'Thanks for getting in touch with Consultico.',
     '',
-    'We have received your message and will come back to you as soon as possible.',
+    payload.isApplication
+      ? 'We read every application ourselves and will reply within one working day to book your call.'
+      : 'We have received your message and will come back to you as soon as possible.',
     '',
-    'Your message:',
+    payload.isApplication ? 'Your answers:' : 'Your message:',
     payload.message || 'Not provided',
     '',
     'Consultico',
@@ -112,12 +117,12 @@ async function sendContactEmails(payload: ReturnType<typeof normalisePayload>) {
   await Promise.all([
     sendResendEmail({
       to: getNotificationRecipient('contact'),
-      subject: `New contact form submission: ${payload.business || payload.email}`,
+      subject: `${payload.isApplication ? 'New application' : 'New contact form submission'}: ${payload.business || payload.email}`,
       text: internalText,
     }),
     sendResendEmail({
       to: payload.email,
-      subject: 'We received your Consultico message',
+      subject: payload.isApplication ? 'We received your Consultico application' : 'We received your Consultico message',
       text: userText,
     }),
   ]);
@@ -179,8 +184,8 @@ export async function POST(request: Request) {
         business: data.business,
         phone: data.phone,
         website: data.companyWebsite || undefined,
-        source: 'contact-form',
-        tags: ['lead', 'contact-form'],
+        source: data.isApplication ? 'apply-form' : 'contact-form',
+        tags: data.isApplication ? ['lead', 'apply-form'] : ['lead', 'contact-form'],
         heard_about: data.heardAbout,
         attribution: data.attribution,
       });

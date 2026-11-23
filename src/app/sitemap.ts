@@ -19,6 +19,8 @@ const STATIC_ROUTES: { path: string; priority: number; changeFrequency: Metadata
   { path: '/web-development', priority: 0.8, changeFrequency: 'monthly' },
   { path: '/content-creation', priority: 0.8, changeFrequency: 'monthly' },
   { path: '/market-strategy', priority: 0.8, changeFrequency: 'monthly' },
+  { path: '/pricing', priority: 0.8, changeFrequency: 'monthly' },
+  { path: '/apply', priority: 0.6, changeFrequency: 'monthly' },
   { path: '/campaign-management', priority: 0.8, changeFrequency: 'monthly' },
   { path: '/careers', priority: 0.6, changeFrequency: 'monthly' },
   { path: '/articles', priority: 0.8, changeFrequency: 'weekly' },

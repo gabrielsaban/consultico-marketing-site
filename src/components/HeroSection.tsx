@@ -135,21 +135,18 @@ export default function HeroSection() {
               className="mt-6 max-w-[34rem] font-helvetica-light text-[clamp(1.05rem,1.35vw,1.3rem)] leading-[1.6] text-gray-700 dark:text-gray-200"
               variants={itemVariants}
             >
-              One strategist looks at all your marketing every week and tells you what to change next. You decide, and we make the changes with you.
+              More revenue from the marketing you already pay for. Every week you&apos;ll know what&apos;s working, and where to put more.
             </motion.p>
 
             <motion.div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-4" variants={itemVariants}>
-              <motion.button
-                type="button"
+              <motion.a
+                href="/apply"
                 className="bg-blue-primary text-white font-helvetica font-medium text-[clamp(1rem,1.2vw,1.125rem)] px-8 py-3 rounded-lg transition-colors duration-200 hover:bg-[#006FE6] active:bg-[#0067D6] focus:outline-none focus:ring-2 focus:ring-blue-primary focus:ring-offset-2"
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.98 }}
-                onClick={() => {
-                  scrollToHomeSection('contact');
-                }}
               >
-                Book a call
-              </motion.button>
+                Apply now
+              </motion.a>
               <button
                 type="button"
                 className="font-helvetica font-medium text-[clamp(0.95rem,1.1vw,1.05rem)] text-blue-primary underline-offset-4 hover:underline focus:outline-none focus-visible:underline"

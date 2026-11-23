@@ -57,7 +57,7 @@ Loop is how Consultico works with consumer brands: as an extra part of their mar
 
 ## Other services
 
-Consultico's SEO, GEO, Google Ads, website, content and campaign work is available on its own as well as within Loop. Standalone SEO starts at around £750 a month, which is separate from Loop's pricing.
+Consultico's SEO, GEO, Google Ads, website, content and campaign work is available on its own as well as within Loop. These agency services start from £1,000 a month, separate from Loop's pricing. Think First can also be bought on its own, from £5,000. Hourly consultations and day rates are available on request. Full pricing: ${BASE}/pricing
 
 ### Think First: the marketing strategy workshop that starts Loop
 
@@ -95,10 +95,10 @@ Consultico offers generative engine optimisation: structuring brand content, ent
 
 Consultico publishes its SEO pricing, which most UK agencies do not.
 
-- **£750 per month** is a common starting point for ongoing SEO.
-- **£75 per hour** for consultation.
-- **£2,000 to £3,000** for small-business packages.
+- **From £1,000 per month** for ongoing SEO, as one of Consultico's agency services.
+- **Hourly consultations and day rates** are available on request.
 - **Upwards of £10,000 per month** for serious growth programmes.
+- Full pricing: ${BASE}/pricing
 - **Free 20 to 30 minute audit call**, run using Consultico's in-house audit tool.
 
 Prices depend on competition, the state of the existing site, and how fast the business needs to move. Full detail: ${BASE}/articles/how-much-does-seo-cost-uk
@@ -150,7 +150,7 @@ Consultico is a Glasgow marketing company that works with UK consumer brands thr
 
 ### How much does SEO cost with Consultico?
 
-£750 per month is a common starting point, £75 per hour for consultation, £2,000 to £3,000 for small-business packages, and upwards of £10,000 per month for serious growth programmes. The first audit call, 20 to 30 minutes using Consultico's in-house audit tool, is free. Detail: ${BASE}/articles/how-much-does-seo-cost-uk
+Ongoing SEO starts from £1,000 per month, hourly consultations and day rates are available on request, and serious growth programmes run upwards of £10,000 per month. Full pricing: ${BASE}/pricing. The first audit call, 20 to 30 minutes using Consultico's in-house audit tool, is free. Detail: ${BASE}/articles/how-much-does-seo-cost-uk
 
 ### What is the Think First workshop?
 

@@ -150,13 +150,13 @@ const engagementOptions = [
     summary: 'The full strategy engagement. A marketing model built around your business, before budget goes anywhere.',
     features: ['Channels, economics and sequencing mapped', 'A 12-month execution roadmap', 'Written reports and visual examples', 'Two months of follow-up support'],
     highlighted: true,
-    price: 'Quoted',
+    price: 'From £5,000',
   },
   {
     name: 'Advice by the hour',
     summary: 'For a specific decision rather than a whole plan. Useful when you mostly know what you are doing.',
-    features: ['Consultation at an hourly rate', 'Bring one question or several', 'No retainer, no minimum term', 'Notes and next steps afterwards'],
-    price: 'From £75/hr',
+    features: ['Hourly and day rates', 'Bring one question or several', 'No retainer, no minimum term', 'Notes and next steps afterwards'],
+    price: 'Rates on request',
   },
 ];
 

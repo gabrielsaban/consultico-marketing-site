@@ -34,6 +34,8 @@ export const NAV_SERVICES: NavLink[] = [
   { name: 'Content', href: '/content-creation' },
   { name: 'Campaigns', href: '/campaign-management' },
   { name: 'Marketing strategy', href: '/market-strategy' },
+  // Pricing sits here, not in PRIMARY_NAV (Paul, 2026-11-23): easy to find, not top level.
+  { name: 'Pricing', href: '/pricing' },
 ];
 
 /** The industry and local SEO pages. Kept for search, out of the top level. */

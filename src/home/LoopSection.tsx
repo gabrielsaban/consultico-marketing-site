@@ -13,16 +13,16 @@ import Container from '@/components/Container';
  */
 const STEPS = [
   {
-    title: 'Your strategist',
-    body: 'The same person every week, who gets to know your brand and your numbers.',
+    title: 'You know what\'s working',
+    body: 'One strategist learns your brand and your numbers, and shows you what each channel really brings in.',
   },
   {
-    title: 'Your Monday report',
-    body: 'What your marketing really brought in, and changes that make a difference.',
+    title: 'You stop wasting spend',
+    body: 'Every Monday, a clear read on what\'s earning its keep and what isn\'t.',
   },
   {
-    title: 'Your call',
-    body: 'Yes, talk or no on every change. We make the yes ones with you, and test them.',
+    title: 'You grow, week on week',
+    body: 'There\'s always something worth changing. We make the right ones happen.',
   },
 ];
 
@@ -43,7 +43,7 @@ export default function LoopSection() {
             <span className="block text-brand-blue">A fresh look at your marketing, every week.</span>
           </h2>
           <p className="mt-6 font-helvetica-light text-[clamp(1.05rem,1.4vw,1.3rem)] leading-[1.6] text-gray-800 dark:text-gray-200">
-            Every Monday, your strategist sends one report: what your marketing really brought in, and the changes worth making next. You say yes, talk or no to each one, and together we make the yes ones happen. We call this Loop.
+            Know what your marketing really earns, stop paying for what doesn&apos;t work, and grow steadily from what does. Behind it sit one strategist, one Monday report and your say on every change. We call this Loop.
           </p>
         </div>
 
@@ -71,10 +71,10 @@ export default function LoopSection() {
 
         <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
           <Link
-            href="/contact"
+            href="/apply"
             className="inline-flex items-center justify-center rounded-lg bg-brand-blue px-8 py-3 font-helvetica text-[clamp(1rem,1.15vw,1.08rem)] font-medium text-white transition-colors duration-200 hover:bg-[#006FE6] focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2"
           >
-            Book a call
+            Apply now
           </Link>
         </div>
       </Container>
