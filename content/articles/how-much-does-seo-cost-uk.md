@@ -3,7 +3,7 @@ title: "How much does SEO cost in the UK, and what you get for the money"
 seoTitle: "How Much Does SEO Cost in the UK? | Consultico"
 excerpt: "UK SEO prices are a range with conditions attached, not a rate card. What the market charges, the things that move your number, and when not to buy at all."
 date: 2026-08-14
-updated: 2026-08-14
+updated: 2026-11-23
 category: SEO
 type: Guide
 readTime: 8 min read
@@ -17,7 +17,7 @@ review:
     citability: 18
   reviewer: paul
   date: 2026-08-13
-  hash: 384e997f9ec8029a
+  hash: b899b494eece2f02
 cta:
   preset: seo
 faqs:
@@ -97,7 +97,7 @@ One more that people don't expect. If you already have a budget and want to put 
 
 ## What does SEO cost with Consultico?
 
-Consultation on its own is currently **£75 an hour** at Consultico, and a lot of our ongoing work starts around **£750 a month**. Neither is a promise. The first is a rate that can move, and the second is where a good number of engagements begin rather than a floor we hold everyone to, because £750 doesn't describe the same job twice.
+Consultation on its own is currently **£75 an hour** at Consultico, and our ongoing SEO starts from **£1,000 a month** ([see our pricing](/pricing)). Neither is a promise. The first is a rate that can move, and the second is where engagements begin rather than a fixed price, because £1,000 doesn't describe the same job twice.
 
 It's worth saying that a monthly fee isn't the hourly rate multiplied up. The software licences behind the work sit inside it, so they don't turn up as a separate line, and there's no ad budget underneath any of it, so what you're paying is what the channel costs.
 
@@ -105,7 +105,7 @@ Most of what we do at the start is work out where a budget should go, which is w
 
 ## What does a smaller SEO budget actually buy?
 
-Roughly **£750 to £2,000 a month** is where a budget has the most say in what happens to it. People often arrive expecting the lower end of a price list to be the consolation prize. In practice it's some of the best value we can offer, because there's no large programme to carry and almost the whole fee goes into the work itself.
+Roughly **£1,000 to £2,000 a month** is where a budget has the most say in what happens to it. People often arrive expecting the lower end of a price list to be the consolation prize. In practice it's some of the best value we can offer, because there's no large programme to carry and almost the whole fee goes into the work itself.
 
 At that level you can have the technical state of the site sorted out properly, the handful of pages that actually have to earn enquiries written or rewritten to go after something specific, tracking that records what came in rather than what got clicked, and a monthly conversation about where the next block of effort goes. A focused site in a market you can name will go a long way on that. We'd rather put a modest budget somewhere it visibly moves than spread it thin enough to make a package look full.
 

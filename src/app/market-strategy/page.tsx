@@ -155,8 +155,8 @@ const engagementOptions = [
   {
     name: 'Advice by the hour',
     summary: 'For a specific decision rather than a whole plan. Useful when you mostly know what you are doing.',
-    features: ['Hourly and day rates', 'Bring one question or several', 'No retainer, no minimum term', 'Notes and next steps afterwards'],
-    price: 'Rates on request',
+    features: ['Consultation at an hourly rate', 'Day rates also available', 'No retainer, no minimum term', 'Notes and next steps afterwards'],
+    price: 'From £75/hr',
   },
 ];
 

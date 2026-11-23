@@ -21,7 +21,7 @@ import { createFormSessionId } from '@/components/ContactForm';
 const REVENUE = ['Under £1m', '£1m to £5m', '£5m to £20m', 'Over £20m'];
 const TEAM = ['Just me', '1 to 3 people', '4 to 10 people', 'More than 10'];
 const SPEND = ['Under £2,000', '£2,000 to £10,000', '£10,000 to £50,000', 'Over £50,000'];
-const CHANNELS = ['SEO', 'Google Ads', 'Meta ads', 'Email', 'Social', 'Influencers', 'PR', 'Retail or wholesale'];
+const CHANNELS = ['SEO', 'Google Ads', 'Meta ads', 'Email', 'Social', 'Influencers', 'PR', 'Retail or wholesale', 'Other'];
 const START = ['As soon as possible', 'In the next 3 months', 'Later this year', 'Just exploring'];
 
 type Answers = {
@@ -57,10 +57,10 @@ const EMPTY: Answers = {
 };
 
 const STEPS = [
-  { title: 'You and your brand', hint: 'So we know who we are talking to.' },
-  { title: 'Your size', hint: 'Roughly is fine. It helps us suggest the right way to work together.' },
+  { title: 'You and your brand', hint: '' },
+  { title: 'Your size', hint: 'It helps us suggest the right way to work together.' },
   { title: 'Where you are now', hint: 'Your monthly marketing spend, and the channels you use today.' },
-  { title: 'Where you want to be', hint: 'In your own words. A sentence or two is plenty.' },
+  { title: 'Where you want to be', hint: '' },
   { title: 'How to reach you', hint: 'We reply within one working day.' },
 ];
 
@@ -245,7 +245,9 @@ export default function ApplyForm() {
       >
         {STEPS[step].title}
       </h2>
-      <p className="mt-2 font-helvetica-light text-[1.05rem] text-gray-600 dark:text-gray-400">{STEPS[step].hint}</p>
+      {STEPS[step].hint && (
+        <p className="mt-2 font-helvetica-light text-[1.05rem] text-gray-600 dark:text-gray-400">{STEPS[step].hint}</p>
+      )}
 
       {/* Honeypot: hidden from people, filled by bots. */}
       <input

@@ -43,7 +43,7 @@ export default function LoopSection() {
             <span className="block text-brand-blue">A fresh look at your marketing, every week.</span>
           </h2>
           <p className="mt-6 font-helvetica-light text-[clamp(1.05rem,1.4vw,1.3rem)] leading-[1.6] text-gray-800 dark:text-gray-200">
-            Know what your marketing really earns, stop paying for what doesn&apos;t work, and grow steadily from what does. Behind it sit one strategist, one Monday report and your say on every change. We call this Loop.
+            One strategist, one report every Monday, and your say on every change. We call this Loop.
           </p>
         </div>
 
@@ -66,7 +66,7 @@ export default function LoopSection() {
         </ol>
 
         <p className="mt-8 max-w-3xl font-helvetica-light text-[1rem] leading-[1.6] text-gray-700 dark:text-gray-300">
-          Behind your strategist sits our team, frameworks we&apos;ve built in-house and tools we&apos;ve built on leading AI models. You always talk to a person.
+          Your strategist has our whole team behind them. You always talk to a person.
         </p>
 
         <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">

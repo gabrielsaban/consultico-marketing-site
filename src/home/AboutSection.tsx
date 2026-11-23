@@ -85,26 +85,18 @@ const teamPages = teamMembers.reduce<TeamMember[][]>((pages, member, index) => {
   return pages;
 }, []);
 
+// Cut to two (reader review, 2026-11-23): "Clarity before execution" and "A
+// proven process" were about us and read as agency boilerplate.
 const philosophyPoints: PhilosophyPoint[] = [
   {
     title: 'No guesswork',
-    description: "Every recommendation is backed by data. We track and report everything we do, so you always know what's working and what isn't.",
+    description: "Every recommendation is backed by your own data. You always know what's working and what isn't.",
     icon: 'target',
   },
   {
-    title: 'Clarity before execution',
-    description: 'We believe marketing should be structured from the ground up, not patched together after the fact.',
-    icon: 'blueprint',
-  },
-  {
-    title: 'Your own strategist',
-    description: 'The person you meet is the person who does the work. One person who knows your business and your goals, and is always on the other end of the phone.',
+    title: 'One person who knows your business',
+    description: 'Your strategist learns your brand, your numbers and your team, and is always on the other end of the phone.',
     icon: 'weight',
-  },
-  {
-    title: 'A proven process',
-    description: 'Every engagement runs through our in-house framework, developed and refined across real client work. Structure that works, built by us.',
-    icon: 'unique',
   },
 ];
 
@@ -268,7 +260,7 @@ export default function AboutSection(): React.JSX.Element {
           </div>
           <div className="mt-6 max-w-3xl space-y-4">
             <p className="font-helvetica-light text-[clamp(1.05rem,1.35vw,1.25rem)] leading-[1.6] text-gray-800 dark:text-gray-200">
-              Consultico is a Glasgow marketing company for UK consumer brands, running since February 2024. The person you meet is the person who does the work, and they stay with you week after week.
+              Consultico is a Glasgow marketing company for UK consumer brands, running since February 2024. The person you meet is the person who does the work, and they stay with you.
             </p>
             <p className="font-helvetica-light text-[clamp(1.05rem,1.35vw,1.25rem)] leading-[1.6] text-gray-800 dark:text-gray-200">
               In 2025 a University of Strathclyde fellowship funded the research behind{' '}
@@ -405,10 +397,7 @@ export default function AboutSection(): React.JSX.Element {
               </h3>
               <div className="space-y-4 mb-8">
                 <p className="text-[clamp(0.95rem,1.1vw,1.05rem)] leading-[1.6] text-gray-700 dark:text-gray-300 font-helvetica">
-                  Our team pairs fresh digital thinking with experienced oversight, including advisors who have built and scaled brands across a range of industries. Every piece of work is held to the same standard, regardless of who produces it.
-                </p>
-                <p className="text-[clamp(0.95rem,1.1vw,1.05rem)] leading-[1.6] text-gray-700 dark:text-gray-300 font-helvetica-light">
-                  Click on any team member to learn more about their background, what they specialise in, and how they contribute to your work.
+                  A small team, with senior people checking every piece of work before it reaches you.
                 </p>
               </div>
             </div>

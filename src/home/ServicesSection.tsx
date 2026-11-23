@@ -33,7 +33,7 @@ export default function ServicesSection() {
             Need one thing done well?
           </h2>
           <p className="mt-4 font-helvetica-light text-[clamp(1rem,1.3vw,1.2rem)] leading-[1.6] text-gray-700 dark:text-gray-300">
-            We also do each of these on its own.
+            Just need one of these? We do each on its own too.
           </p>
         </div>
 

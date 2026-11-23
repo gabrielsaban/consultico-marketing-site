@@ -135,7 +135,7 @@ export default function HeroSection() {
               className="mt-6 max-w-[34rem] font-helvetica-light text-[clamp(1.05rem,1.35vw,1.3rem)] leading-[1.6] text-gray-700 dark:text-gray-200"
               variants={itemVariants}
             >
-              More revenue from the marketing you already pay for. Every week you&apos;ll know what&apos;s working, and where to put more.
+              More revenue from the marketing you already pay for. Know what&apos;s working, and where to put more.
             </motion.p>
 
             <motion.div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-4" variants={itemVariants}>

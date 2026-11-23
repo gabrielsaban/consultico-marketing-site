@@ -12,7 +12,8 @@ import { focusPageStart, getVisibleMenuToggle, useSiteMenu } from '@/components/
 /**
  * The full-screen site menu. Big Futura items down the left, with a blue
  * square on the current or hovered one and the rest dimmed. Services sits last
- * and opens a quieter list in the bottom right.
+ * and opens a quieter list to the right. The list sits in the vertical centre of
+ * the page (Paul, 2026-11-23: at the bottom it looked squashed).
  *
  * The whole thing is always in the server HTML, closed or not, so every link
  * in it is crawlable. Closed, it is invisible and inert rather than unmounted.
@@ -213,7 +214,7 @@ export default function SiteMenu() {
       <div className="relative mx-auto flex min-h-[100svh] max-w-6xl flex-col justify-between gap-12 px-6 pb-12 pt-24 sm:px-10 md:pt-12 lg:py-16">
         <nav aria-label="Site" className="flex flex-1 flex-col">
           <ul
-            className="flex flex-col gap-1 lg:mt-auto"
+            className="my-auto flex flex-col gap-1"
             onMouseLeave={() => {
               if (!servicesOpen) setActive(null);
             }}
@@ -289,7 +290,7 @@ export default function SiteMenu() {
           <div
             id="site-menu-services"
             hidden={!servicesOpen}
-            className="mt-10 pl-7 lg:absolute lg:pl-0 lg:bottom-28 lg:right-10 lg:mt-0 lg:w-[min(36rem,46%)]"
+            className="mt-10 pl-7 lg:absolute lg:pl-0 lg:top-1/2 lg:-translate-y-1/2 lg:right-10 lg:mt-0 lg:w-[min(36rem,46%)]"
             onMouseEnter={() => {
               if (canHover() && hoverOpenedRef.current) clearCloseTimer();
             }}

@@ -12,9 +12,9 @@ export default function ComposedPage() {
       <ScrollToSectionOnLoad />
       <HomeSection />
       <ProjectsSocialProof />
-      <LatestArticlesSection />
-      <ServicesSection />
       <AboutSection />
+      <ServicesSection />
+      <LatestArticlesSection />
       <ContactSection />
     </main>
   );

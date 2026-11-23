@@ -21,37 +21,23 @@ export const metadata: Metadata = pageMeta({
   path: '/pricing',
 });
 
-const MAIN = [
-  {
-    eyebrow: 'Loop',
-    title: 'All your marketing, sharper every week',
-    price: '£5,000',
-    unit: 'a month',
-    note: '12-month agreement, starting with Think First',
-    points: [
-      'One strategist who learns your brand and your numbers',
-      'A Monday report on what your marketing really earns',
-      'The right changes made with your team, and tested',
-    ],
-    cta: { label: 'Apply now', href: '/apply' },
-    secondary: { label: 'How it works', href: LOOP_HREF },
-    featured: true,
-  },
-  {
-    eyebrow: 'Think First',
-    title: 'A clear plan before you spend',
-    price: '£5,000',
-    unit: 'one-off',
-    note: 'Bought on its own, or as month one of Loop',
-    points: [
-      'A strategic audit of your numbers and channels',
-      'A half-day workshop with your team',
-      'A 12-month roadmap you can act on',
-    ],
-    cta: { label: 'Apply now', href: '/apply' },
-    secondary: { label: 'About Think First', href: '/think-first' },
-    featured: false,
-  },
+const LOOP_INCLUDES = [
+  'A strategist who learns your brand, your numbers and your team',
+  'Every channel looked at together: search, ads, email, social and content',
+  'A Monday report on what your marketing really earns',
+  'The right changes made with your team every week, and tested',
+  'Think First as month one: your audit, workshop and 12-month roadmap',
+  'Measured on total revenue against total marketing spend, not platform claims',
+];
+
+/** What's included, side by side. Only claims the site already makes elsewhere. */
+const COMPARE: { row: string; loop: string; agency: string; thinkFirst: string }[] = [
+  { row: 'A strategist who knows your brand', loop: 'yes', agency: 'no', thinkFirst: 'yes' },
+  { row: 'Every channel looked at together', loop: 'yes', agency: 'no', thinkFirst: 'yes' },
+  { row: 'A 12-month roadmap', loop: 'yes', agency: 'no', thinkFirst: 'yes' },
+  { row: 'Changes made with your team', loop: 'Every week', agency: 'In one channel', thinkFirst: 'no' },
+  { row: 'Reporting on what it earns', loop: 'Every Monday', agency: 'For that channel', thinkFirst: 'no' },
+  { row: 'Price', loop: 'From £5,000 a month', agency: 'From £1,000 a month', thinkFirst: 'From £5,000, one-off' },
 ];
 
 const AGENCY = [
@@ -103,54 +89,53 @@ export default function PricingPage() {
         </Container>
       </section>
 
+      {/* Loop gets the whole width (Paul, 2026-11-23): next to Think First, two
+          £5,000 cards read as a choice between equals, which they aren't. */}
       <section className="pb-12 md:pb-16">
         <Container>
-          <div className="grid gap-6 lg:grid-cols-2">
-            {MAIN.map((plan) => (
-              <article
-                key={plan.eyebrow}
-                className={`flex flex-col rounded-2xl border p-6 md:p-8 ${
-                  plan.featured
-                    ? 'border-[#1B2A4A] bg-[#1B2A4A] text-white dark:border-brand-blue'
-                    : 'border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900'
-                }`}
-              >
-                <p className={`font-helvetica text-[0.85rem] uppercase tracking-[0.12em] ${plan.featured ? 'text-blue-200' : 'text-brand-blue'}`}>
-                  {plan.eyebrow}
-                </p>
-                <h2 className={`mt-2 font-futura text-[1.6rem] font-bold leading-tight ${plan.featured ? 'text-white' : 'text-[#1B2A4A] dark:text-white'}`}>
-                  {plan.title}
+          <article className="overflow-hidden rounded-3xl bg-[#1B2A4A] text-white">
+            <div className="grid gap-10 p-6 md:p-10 lg:grid-cols-[1.4fr_1fr] lg:gap-14 lg:p-14">
+              <div>
+                <p className="font-helvetica text-[0.85rem] uppercase tracking-[0.14em] text-blue-200">Loop</p>
+                <h2 className="mt-3 font-futura text-[clamp(1.9rem,3vw,2.8rem)] font-bold leading-[1.08]">
+                  All your marketing, sharper every week.
                 </h2>
-                <p className="mt-6 font-futura">
-                  <span className={`text-[1rem] ${plan.featured ? 'text-blue-100' : 'text-gray-600 dark:text-gray-400'}`}>From </span>
-                  <span className="text-[2.6rem] font-bold leading-none">{plan.price}</span>
-                  <span className={`text-[1rem] ${plan.featured ? 'text-blue-100' : 'text-gray-600 dark:text-gray-400'}`}> {plan.unit}</span>
+                <p className="mt-4 max-w-xl font-helvetica-light text-[1.1rem] leading-[1.6] text-blue-100">
+                  For brands with a marketing team who want to know what&apos;s working, and where to put more.
                 </p>
-                <p className={`mt-2 font-helvetica-light text-[0.98rem] ${plan.featured ? 'text-blue-100' : 'text-gray-600 dark:text-gray-400'}`}>{plan.note}</p>
-                <ul className={`mt-6 space-y-3 border-t pt-6 font-helvetica-light text-[1.02rem] ${plan.featured ? 'border-white/20' : 'border-gray-200 dark:border-gray-800'}`}>
-                  {plan.points.map((point) => (
-                    <li key={point} className="flex gap-3">
-                      <Check />
+                <ul className="mt-8 grid gap-4 sm:grid-cols-2">
+                  {LOOP_INCLUDES.map((point) => (
+                    <li key={point} className="flex gap-3 font-helvetica-light text-[1.02rem] leading-[1.5]">
+                      <svg className="mt-1 h-4 w-4 flex-none text-blue-300" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M20 6L9 17l-5-5" />
+                      </svg>
                       <span>{point}</span>
                     </li>
                   ))}
                 </ul>
-                <div className="mt-auto flex flex-wrap items-center gap-x-6 gap-y-3 pt-8">
-                  <Link
-                    href={plan.cta.href}
-                    className={`inline-flex min-h-[48px] items-center justify-center rounded-lg px-7 py-3 font-helvetica font-medium transition-colors ${
-                      plan.featured ? 'bg-white text-[#1B2A4A] hover:bg-blue-50' : 'bg-brand-blue text-white hover:bg-[#006FE6]'
-                    }`}
-                  >
-                    {plan.cta.label}
+              </div>
+              <div className="flex flex-col justify-between rounded-2xl bg-white/[0.06] p-6 ring-1 ring-white/15 md:p-8">
+                <div>
+                  <p className="font-futura">
+                    <span className="block text-[1rem] text-blue-100">From</span>
+                    <span className="text-[clamp(3rem,5vw,4.25rem)] font-bold leading-none">£5,000</span>
+                    <span className="text-[1.1rem] text-blue-100"> a month</span>
+                  </p>
+                  <p className="mt-4 font-helvetica-light text-[1rem] leading-[1.6] text-blue-100">
+                    A 12-month agreement with a break clause at six months. Think First is included as month one.
+                  </p>
+                </div>
+                <div className="mt-8 flex flex-col gap-3">
+                  <Link href="/apply" className="inline-flex min-h-[52px] items-center justify-center rounded-lg bg-white px-7 py-3 font-helvetica font-medium text-[#1B2A4A] transition-colors hover:bg-blue-50">
+                    Apply now
                   </Link>
-                  <Link href={plan.secondary.href} className={`font-helvetica underline-offset-4 hover:underline ${plan.featured ? 'text-white' : 'text-brand-blue'}`}>
-                    {plan.secondary.label}
+                  <Link href={LOOP_HREF} className="text-center font-helvetica text-white underline-offset-4 hover:underline">
+                    How it works
                   </Link>
                 </div>
-              </article>
-            ))}
-          </div>
+              </div>
+            </div>
+          </article>
         </Container>
       </section>
 
@@ -189,14 +174,62 @@ export default function PricingPage() {
 
       <section className="pb-12 md:pb-16">
         <Container>
-          <div className="grid gap-6 md:grid-cols-2">
+          <div className="grid gap-6 md:grid-cols-3">
+            <article className="rounded-2xl border border-gray-200 bg-white p-6 md:p-8 dark:border-gray-800 dark:bg-gray-900">
+              <p className="font-helvetica text-[0.85rem] uppercase tracking-[0.12em] text-brand-blue">Want the plan first?</p>
+              <h2 className="mt-2 font-futura text-[1.35rem] font-bold text-[#1B2A4A] dark:text-white">Think First on its own</h2>
+              <p className="mt-3 font-helvetica-light text-[1.02rem] leading-[1.6] text-gray-700 dark:text-gray-300">
+                A strategic audit, a half-day workshop with your team and a 12-month roadmap you can run yourselves.
+              </p>
+              <p className="mt-4 font-helvetica font-medium text-[#1B2A4A] dark:text-white">From £5,000, one-off</p>
+              <Link href="/think-first" className="mt-3 inline-flex font-helvetica text-brand-blue underline-offset-4 hover:underline">
+                About Think First
+              </Link>
+            </article>
             {EXTRAS.map((item) => (
               <article key={item.title} className="rounded-2xl border border-gray-200 bg-white p-6 md:p-8 dark:border-gray-800 dark:bg-gray-900">
-                <h2 className="font-futura text-[1.35rem] font-bold text-[#1B2A4A] dark:text-white">{item.title}</h2>
+                <p className="font-helvetica text-[0.85rem] uppercase tracking-[0.12em] text-brand-blue">Also available</p>
+                <h2 className="mt-2 font-futura text-[1.35rem] font-bold text-[#1B2A4A] dark:text-white">{item.title}</h2>
                 <p className="mt-3 font-helvetica-light text-[1.02rem] leading-[1.6] text-gray-700 dark:text-gray-300">{item.body}</p>
-                <p className="mt-4 font-helvetica font-medium text-brand-blue">{item.price}</p>
+                <p className="mt-4 font-helvetica font-medium text-[#1B2A4A] dark:text-white">{item.price}</p>
               </article>
             ))}
+          </div>
+        </Container>
+      </section>
+
+      <section className="pb-12 md:pb-16">
+        <Container>
+          <h2 className="font-futura text-[clamp(1.5rem,2.4vw,2rem)] font-bold text-[#1B2A4A] dark:text-white">What&apos;s included</h2>
+          <div className="mt-6 overflow-x-auto rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900">
+            <table className="w-full min-w-[640px] text-left font-helvetica text-[0.98rem]">
+              <thead>
+                <tr className="border-b border-gray-200 dark:border-gray-800">
+                  <th scope="col" className="p-4 md:p-5"><span className="sr-only">Feature</span></th>
+                  <th scope="col" className="bg-[#1B2A4A] p-4 text-white md:p-5">Loop</th>
+                  <th scope="col" className="p-4 text-[#1B2A4A] md:p-5 dark:text-white">Agency services</th>
+                  <th scope="col" className="p-4 text-[#1B2A4A] md:p-5 dark:text-white">Think First on its own</th>
+                </tr>
+              </thead>
+              <tbody>
+                {COMPARE.map((r) => (
+                  <tr key={r.row} className="border-b border-gray-100 last:border-0 dark:border-gray-800">
+                    <th scope="row" className="p-4 font-normal text-gray-700 md:p-5 dark:text-gray-300">{r.row}</th>
+                    {[r.loop, r.agency, r.thinkFirst].map((v, i) => (
+                      <td key={i} className={`p-4 md:p-5 ${i === 0 ? 'bg-[#1B2A4A]/[0.04] font-medium text-[#1B2A4A] dark:bg-white/[0.04] dark:text-white' : 'text-gray-700 dark:text-gray-300'}`}>
+                        {v === 'yes' ? (
+                          <><Check /><span className="sr-only">Included</span></>
+                        ) : v === 'no' ? (
+                          <span className="text-gray-400" aria-label="Not included">–</span>
+                        ) : (
+                          v
+                        )}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </Container>
       </section>

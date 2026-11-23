@@ -9,13 +9,8 @@ interface Stat {
 const stats: Stat[] = [
   {
     headline: '3×',
-    label: 'Organic clicks in 14 months',
+    label: 'Organic clicks in 14 months, for one client',
     variant: 'numeric',
-  },
-  {
-    headline: '90 days',
-    label: 'A full diary from organic search with paid ads paused, for a boiler installation company',
-    variant: 'phrase',
   },
   {
     headline: '5.0★',
@@ -32,7 +27,7 @@ const stats: Stat[] = [
 export default function StatsBoxes() {
   return (
     <Container className="py-14 sm:py-20 lg:py-24">
-      <div className="grid grid-cols-1 gap-6 min-[600px]:grid-cols-2 xl:grid-cols-4 min-[600px]:gap-8 lg:gap-10 xl:gap-12">
+      <div className="grid grid-cols-1 gap-6 min-[600px]:grid-cols-3 min-[600px]:gap-8 lg:gap-10 xl:gap-12">
         {stats.map((stat) => (
           <div
             key={stat.label}
