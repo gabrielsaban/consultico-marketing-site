@@ -1,5 +1,22 @@
 import type { NextConfig } from 'next';
 
+// What the site actually loads: GA4 via @next/third-parties, PostHog EU,
+// Vercel Analytics/Speed Insights, local fonts, a Google Maps iframe on
+// /seo-glasgow, and video embeds in client reports.
+const CSP = [
+  "default-src 'self'",
+  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://eu-assets.i.posthog.com https://va.vercel-scripts.com",
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data: blob: https://www.googletagmanager.com https://*.google-analytics.com https://www.google.com https://maps.gstatic.com",
+  "font-src 'self' data:",
+  "connect-src 'self' https://eu.i.posthog.com https://eu-assets.i.posthog.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://vitals.vercel-insights.com",
+  "frame-src https://www.google.com https://www.youtube-nocookie.com https://player.vimeo.com https://player.mux.com https://api.leadconnectorhq.com",
+  "frame-ancestors 'none'",
+  "base-uri 'self'",
+  "form-action 'self'",
+  "object-src 'none'",
+].join('; ');
+
 const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: false,
@@ -39,6 +56,24 @@ const nextConfig: NextConfig = {
   },
   async headers() {
     return [
+      {
+        // Baseline security headers for every page. Later, more specific
+        // entries (e.g. /r/* with Referrer-Policy: no-referrer) override these.
+        // The CSP ships as Report-Only first: violations show in the browser
+        // console without blocking anything. Switch the key to
+        // Content-Security-Policy once a week of browsing shows it clean.
+        source: '/:path*',
+        headers: [
+          { key: 'Content-Security-Policy-Report-Only', value: CSP },
+          { key: 'X-Frame-Options', value: 'DENY' },
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+          {
+            key: 'Permissions-Policy',
+            value: 'camera=(), microphone=(), geolocation=(), browsing-topics=()',
+          },
+        ],
+      },
       {
         // The private client-report area. The old /r/<slug> route handler set
         // these inline on every response; a React page cannot, so they move
