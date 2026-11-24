@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getNotificationRecipient, sendResendEmail, upsertFormSession, type FormSessionStatus } from '@/lib/server/formSessions';
 import { sendToGhl } from '@/lib/server/ghl';
+import { GENERIC_ERROR, capText, recipientOverLimit, safeGreetingName, sanitiseAttribution } from '@/lib/server/abuse';
 
 type ContactFormPayload = {
   sessionId?: string;
@@ -52,15 +53,15 @@ function normaliseCompanyWebsite(value: string | undefined) {
 
 function normalisePayload(payload: ContactFormPayload) {
   return {
-    name: payload.name?.trim() ?? '',
-    business: payload.business?.trim() ?? '',
-    email: payload.email?.trim() ?? '',
-    phone: payload.phone?.trim() ?? '',
-    companyWebsite: normaliseCompanyWebsite(payload.companyWebsite),
-    message: payload.message?.trim() ?? '',
-    heardAbout: payload.heardAbout?.trim() ?? '',
+    name: capText(payload.name, 120),
+    business: capText(payload.business, 200),
+    email: capText(payload.email, 254),
+    phone: capText(payload.phone, 40),
+    companyWebsite: normaliseCompanyWebsite(capText(payload.companyWebsite, 300)),
+    message: capText(payload.message, 5000),
+    heardAbout: capText(payload.heardAbout, 300),
     isApplication: payload.formSource === 'apply',
-    attribution: payload.attribution ?? {},
+    attribution: sanitiseAttribution(payload.attribution),
   };
 }
 
@@ -99,17 +100,17 @@ async function sendContactEmails(payload: ReturnType<typeof normalisePayload>) {
     formatAttribution(payload.attribution).replace('{{HEARD}}', payload.heardAbout || 'Not answered'),
   ].join('\n');
 
+  // The confirmation goes to whatever address was typed, so it repeats nothing
+  // the visitor wrote (bar a name that passes safeGreetingName). Otherwise the
+  // form is a free way to send any text from our domain to anyone.
   const userText = [
-    `Hi ${payload.name || 'there'},`,
+    `Hi ${safeGreetingName(payload.name)},`,
     '',
     payload.isApplication ? 'Thanks for applying to work with Consultico.' : 'Thanks for getting in touch with Consultico.',
     '',
     payload.isApplication
       ? 'We read every application ourselves and will reply within one working day to book your call.'
       : 'We have received your message and will come back to you as soon as possible.',
-    '',
-    payload.isApplication ? 'Your answers:' : 'Your message:',
-    payload.message || 'Not provided',
     '',
     'Consultico',
   ].join('\n');
@@ -164,6 +165,11 @@ export async function POST(request: Request) {
     });
 
     if (status === 'submitted') {
+      // Same reply as a success, so a script learns nothing from the cap.
+      if (await recipientOverLimit(data.email)) {
+        console.warn('Contact form: recipient over hourly limit, not sending');
+        return NextResponse.json({ ok: true });
+      }
       await sendContactEmails(data);
       await saveFormSession().catch((error: unknown) => {
         console.error('Contact form session save failed after email send:', error);
@@ -201,7 +207,7 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         ok: false,
-        error: error instanceof Error ? error.message : 'Unexpected error',
+        error: GENERIC_ERROR,
       },
       { status: 500 }
     );

@@ -1,4 +1,5 @@
 import { getServerEnv } from '@/lib/server/formSessions';
+import { sanitiseAttribution } from '@/lib/server/abuse';
 
 /**
  * Pushes a lead or subscriber into GoHighLevel.
@@ -95,9 +96,13 @@ export async function sendToGhl(payload: GhlContactPayload): Promise<void> {
     const response = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
+      // Attribution comes from the browser, so it is filtered to the known
+      // tracking keys and spread FIRST: nothing in it can overwrite the
+      // server-set email, tags, form_type or consent fields.
       body: JSON.stringify({
+        ...sanitiseAttribution(payload.attribution),
         ...payload,
-        ...(payload.attribution ?? {}),
+        attribution: sanitiseAttribution(payload.attribution),
         submitted_at: new Date().toISOString(),
       }),
       // GHL occasionally sits on a request. Without this the serverless

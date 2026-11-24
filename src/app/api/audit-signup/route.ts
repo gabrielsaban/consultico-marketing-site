@@ -6,8 +6,35 @@ import {
 import {
   getNotificationRecipient,
   sendResendEmail,
+  supabaseRestRequest,
   upsertFormSession,
 } from '@/lib/server/formSessions';
+import { GENERIC_ERROR, capText, recipientOverLimit } from '@/lib/server/abuse';
+
+/**
+ * Step 2 only makes sense after step 1. Checking that a step-1 row exists for
+ * this session AND this email stops step 2 being used on its own as a free
+ * "send an email to anyone" endpoint. No row means no email. If Supabase
+ * itself errors we let it through, so an outage cannot lose a real lead's
+ * website (an attacker cannot cause that error).
+ */
+async function hasStep1Session(sessionId: string, email: string): Promise<boolean> {
+  try {
+    const params = new URLSearchParams({
+      select: 'id',
+      id: `eq.${sessionId}`,
+      email: `ilike.${email}`,
+      form_type: 'eq.audit_signup',
+      limit: '1',
+    });
+    const response = await supabaseRestRequest(`form_sessions?${params.toString()}`, { method: 'GET' });
+    const rows = (await response.json()) as unknown[];
+    return rows.length > 0;
+  } catch (error) {
+    console.error('Audit signup step-1 lookup failed (allowing):', error);
+    return true;
+  }
+}
 
 const MIN_SUBMIT_TIME_MS = 2500;
 
@@ -95,7 +122,8 @@ async function sendStep2Emails(email: string, website: string) {
   const subscriberText = [
     'Hi there,',
     '',
-    `Thanks, we have received your website (${website}). We will review it and send your customised SEO audit.`,
+    // No echo of the website: this goes to whatever address was typed.
+    'Thanks, we have received your website. We will review it and send your customised SEO audit.',
     '',
     'Consultico',
   ].join('\n');
@@ -128,12 +156,18 @@ export async function POST(request: Request) {
     }
 
     if (step === 1) {
-      const email = payload.email?.trim() ?? '';
+      const email = capText(payload.email, 254);
       if (!isValidEmail(email)) {
         return NextResponse.json({ ok: false, error: 'Valid email required' }, { status: 400 });
       }
 
-      const source = payload.source?.trim() || 'unknown';
+      // Same reply as a success, so a script learns nothing from the cap.
+      if (await recipientOverLimit(email)) {
+        console.warn('Audit signup: recipient over hourly limit, not sending');
+        return NextResponse.json({ ok: true, sessionId: payload.sessionId });
+      }
+
+      const source = capText(payload.source, 100) || 'unknown';
       const now = new Date().toISOString();
 
       await sendStep1Emails(email, source);
@@ -160,8 +194,8 @@ export async function POST(request: Request) {
       return NextResponse.json({ ok: true, sessionId: payload.sessionId });
     }
 
-    const website = normaliseWebsite(payload.website ?? '');
-    const email = payload.email?.trim() ?? '';
+    const website = normaliseWebsite(capText(payload.website, 300));
+    const email = capText(payload.email, 254);
 
     if (!website) {
       return NextResponse.json({ ok: false, error: 'Website URL required' }, { status: 400 });
@@ -169,6 +203,10 @@ export async function POST(request: Request) {
 
     if (!isValidEmail(email)) {
       return NextResponse.json({ ok: false, error: 'Valid email required' }, { status: 400 });
+    }
+
+    if (!(await hasStep1Session(payload.sessionId, email))) {
+      return NextResponse.json({ ok: false, error: 'Invalid submission' }, { status: 400 });
     }
 
     await sendStep2Emails(email, website);
@@ -196,7 +234,7 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         ok: false,
-        error: error instanceof Error ? error.message : 'Unexpected error',
+        error: GENERIC_ERROR,
       },
       { status: 500 },
     );
