@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getNotificationRecipient, sendResendEmail, upsertFormSession, type FormSessionStatus } from '@/lib/server/formSessions';
 import { sendToGhl } from '@/lib/server/ghl';
-import { GENERIC_ERROR, capText, recipientOverLimit, safeGreetingName, sanitiseAttribution } from '@/lib/server/abuse';
+import { GENERIC_ERROR, capText, ipOverLimit, recipientOverLimit, safeGreetingName, sanitiseAttribution } from '@/lib/server/abuse';
 
 type ContactFormPayload = {
   sessionId?: string;
@@ -166,7 +166,7 @@ export async function POST(request: Request) {
 
     if (status === 'submitted') {
       // Same reply as a success, so a script learns nothing from the cap.
-      if (await recipientOverLimit(data.email)) {
+      if (ipOverLimit(request) || await recipientOverLimit(data.email)) {
         console.warn('Contact form: recipient over hourly limit, not sending');
         return NextResponse.json({ ok: true });
       }

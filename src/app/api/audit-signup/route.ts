@@ -9,7 +9,7 @@ import {
   supabaseRestRequest,
   upsertFormSession,
 } from '@/lib/server/formSessions';
-import { GENERIC_ERROR, capText, recipientOverLimit } from '@/lib/server/abuse';
+import { GENERIC_ERROR, capText, ipOverLimit, recipientOverLimit } from '@/lib/server/abuse';
 
 /**
  * Step 2 only makes sense after step 1. Checking that a step-1 row exists for
@@ -162,7 +162,7 @@ export async function POST(request: Request) {
       }
 
       // Same reply as a success, so a script learns nothing from the cap.
-      if (await recipientOverLimit(email)) {
+      if (ipOverLimit(request) || await recipientOverLimit(email)) {
         console.warn('Audit signup: recipient over hourly limit, not sending');
         return NextResponse.json({ ok: true, sessionId: payload.sessionId });
       }
@@ -203,6 +203,10 @@ export async function POST(request: Request) {
 
     if (!isValidEmail(email)) {
       return NextResponse.json({ ok: false, error: 'Valid email required' }, { status: 400 });
+    }
+
+    if (ipOverLimit(request)) {
+      return NextResponse.json({ ok: true });
     }
 
     if (!(await hasStep1Session(payload.sessionId, email))) {

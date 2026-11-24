@@ -19,7 +19,38 @@ const MAX_SENDS_PER_RECIPIENT_PER_HOUR = 3;
  * Fails OPEN: if Supabase is down we would rather let a real lead through than
  * lose them, and the other guards still apply.
  */
+/**
+ * Best-effort counter held in this server instance's memory. Vercel runs
+ * several instances and recycles them, so this is a backstop, not the real
+ * limit (that is the Vercel firewall rule on /api/*). It still stops the
+ * simple case of one script hammering one warm instance, and it keeps working
+ * when Supabase is unreachable.
+ */
+const localHits = new Map<string, number[]>();
+
+function localOverLimit(key: string, max: number, windowMs: number): boolean {
+  const now = Date.now();
+  const recent = (localHits.get(key) ?? []).filter((t) => now - t < windowMs);
+  const over = recent.length >= max;
+  if (!over) recent.push(now);
+  localHits.set(key, recent);
+  if (localHits.size > 5000) localHits.clear();
+  return over;
+}
+
+/** At most 5 submitted forms per IP per 10 minutes (per instance). */
+export function ipOverLimit(request: Request): boolean {
+  const ip =
+    request.headers.get('x-real-ip') ??
+    request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ??
+    'unknown';
+  return localOverLimit(`ip:${ip}`, 5, 10 * 60 * 1000);
+}
+
 export async function recipientOverLimit(email: string): Promise<boolean> {
+  if (localOverLimit(`to:${email.toLowerCase()}`, MAX_SENDS_PER_RECIPIENT_PER_HOUR, 60 * 60 * 1000)) {
+    return true;
+  }
   try {
     const since = new Date(Date.now() - 60 * 60 * 1000).toISOString();
     const params = new URLSearchParams({
