@@ -148,7 +148,7 @@ export const SERVICE_FAQS: Record<Exclude<ServicePageKey, 'careers'>, { question
     {
       question: 'Is this the same as hiring an agency retainer?',
       answer:
-        'Think First is the first month of working with us. After it, we review your marketing every week on a 12-month agreement. If you only want the workshop, ask us.',
+        'Think First is the first month of working with us. After it, we review your marketing every week. Minimum terms apply. If you only want the workshop, ask us.',
     },
     {
       question: 'Do you use a framework?',

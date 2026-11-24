@@ -122,7 +122,7 @@ export default function PricingPage() {
                     <span className="text-[1.1rem] text-blue-100"> a month</span>
                   </p>
                   <p className="mt-4 font-helvetica-light text-[1rem] leading-[1.6] text-blue-100">
-                    A 12-month agreement with a break clause at six months. Think First is included as month one.
+                    Minimum terms apply. Think First is included as month one.
                   </p>
                 </div>
                 <div className="mt-8 flex flex-col gap-3">
