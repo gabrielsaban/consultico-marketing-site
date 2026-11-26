@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { motion, useReducedMotion } from 'framer-motion';
 import { usePathname, useRouter } from 'next/navigation';
-import { PRIMARY_NAV, NAV_SERVICES, getNavIndustries } from '@/lib/nav-services';
+import { PRIMARY_NAV, NAV_SERVICES } from '@/lib/nav-services';
 import { navigateToHomeSection } from '@/lib/homeNavigation';
 import { isReportPath } from '@/lib/reports/is-report-path';
 import { focusPageStart, getVisibleMenuToggle, useSiteMenu } from '@/components/SiteMenuContext';
@@ -19,7 +19,6 @@ import { focusPageStart, getVisibleMenuToggle, useSiteMenu } from '@/components/
  * in it is crawlable. Closed, it is invisible and inert rather than unmounted.
  */
 
-const NAV_INDUSTRIES = getNavIndustries();
 const SERVICES = 'Services';
 const FOCUSABLE = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
@@ -30,7 +29,7 @@ function isCurrent(pathname: string, href: string) {
 }
 
 const servicesCurrent = (pathname: string) =>
-  [...NAV_SERVICES, ...NAV_INDUSTRIES].some((link) => isCurrent(pathname, link.href));
+  NAV_SERVICES.some((link) => isCurrent(pathname, link.href));
 
 // Hover-open only where a real pointer can hover. Touch taps would otherwise
 // fire mouseenter and click together and cancel each other out.
@@ -300,7 +299,7 @@ export default function SiteMenu() {
           >
             <motion.div
               key={servicesOpen ? 'open' : 'closed'}
-              className="grid gap-8 sm:grid-cols-2"
+              className="grid gap-8"
               initial={prefersReduced ? false : { opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: prefersReduced ? 0 : 0.25 }}
@@ -313,20 +312,6 @@ export default function SiteMenu() {
                       aria-current={isCurrent(pathname, link.href) ? 'page' : undefined}
                       onClick={(event) => handleLinkClick(event, link.href)}
                       className={`text-b-18 ${smallLink(link.href, false)}`}
-                    >
-                      {link.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-              <ul className="flex flex-col gap-2 border-l border-paper/25 pl-4" aria-label="SEO by place and industry">
-                {NAV_INDUSTRIES.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      aria-current={isCurrent(pathname, link.href) ? 'page' : undefined}
-                      onClick={(event) => handleLinkClick(event, link.href)}
-                      className={`text-b-16 ${smallLink(link.href, true)}`}
                     >
                       {link.name}
                     </Link>

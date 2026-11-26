@@ -3,14 +3,13 @@
  * disagree about what exists.
  *
  * Loop is the front door. Everything else is still sold and still linked, just
- * more quietly: it sits in the menu's Services group and in the footer, which
- * is the one crawlable index of every service and industry page.
+ * more quietly: services sit in the menu's Services group, and the footer is the
+ * one crawlable index of every service and industry page. The local and
+ * industry SEO pages are footer-only (Paul, 2026-11-26).
  *
  * LOOP_HREF points at the homepage's Loop section until /loop exists (Deploy 2
  * of the identity plan). Change it here and every link follows.
  */
-import { SEO_BY_INDUSTRY_PATH, getIndustryPath, getLiveSeoIndustries } from '@/lib/seo-industries';
-
 export interface NavLink {
   name: string;
   href: string;
@@ -37,15 +36,3 @@ export const NAV_SERVICES: NavLink[] = [
   // Pricing sits here, not in PRIMARY_NAV (Paul, 2026-11-23): easy to find, not top level.
   { name: 'Pricing', href: '/pricing' },
 ];
-
-/** The industry and local SEO pages. Kept for search, out of the top level. */
-export function getNavIndustries(): NavLink[] {
-  return [
-    { name: 'SEO in Glasgow', href: '/seo-glasgow' },
-    { name: 'SEO by industry', href: SEO_BY_INDUSTRY_PATH },
-    ...getLiveSeoIndustries().map((industry) => ({
-      name: industry.label,
-      href: getIndustryPath(industry),
-    })),
-  ];
-}
