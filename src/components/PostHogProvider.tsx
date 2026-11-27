@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { captureAttribution } from '@/lib/attribution';
-import { POSTHOG_HOST, POSTHOG_KEY } from '@/lib/posthog';
+import { POSTHOG_KEY, POSTHOG_PROXY_PATH, POSTHOG_UI_HOST } from '@/lib/posthog';
 
 /**
  * Initialises PostHog and keeps pageviews correct under App Router navigation.
@@ -44,7 +44,10 @@ export default function PostHogProvider() {
         if (cancelled || posthog.__loaded) return;
 
         posthog.init(POSTHOG_KEY, {
-          api_host: POSTHOG_HOST,
+          // Through our own domain so ad blockers do not drop it — see the
+          // note on POSTHOG_PROXY_PATH. ui_host is required alongside it.
+          api_host: POSTHOG_PROXY_PATH,
+          ui_host: POSTHOG_UI_HOST,
           defaults: '2026-05-30',
           // Only build person profiles for people we actually identify, so an
           // anonymous reader does not become a stored profile. Cheaper, and a
@@ -56,6 +59,12 @@ export default function PostHogProvider() {
           // and PostHog's bounce rate and session duration become unreliable
           // (flagged by its installation health check, 2026-11-27).
           capture_pageleave: true,
+          // Real-visitor LCP, INP, CLS and FCP as $web_vitals events, so page
+          // speed can be read per page and per device next to the journeys
+          // themselves. Set here rather than left to the project setting so the
+          // behaviour is visible in the code. The small web-vitals script it
+          // lazy-loads comes through the proxy path, after init.
+          capture_performance: { web_vitals: true },
           // We do not run PostHog surveys and have never created one, but the
           // SDK fetches surveys.js (33KB) at runtime regardless. Measured on the
           // live homepage 2026-09-09, where analytics accounted for 271KB of the

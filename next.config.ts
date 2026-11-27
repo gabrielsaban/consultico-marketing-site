@@ -23,6 +23,13 @@ const nextConfig: NextConfig = {
     dirs: ['src/app', 'src/components', 'src/sections', 'src/hooks'],
   },
   trailingSlash: false,
+  // PostHog's endpoints end in a slash (/e/, /flags/). Left alone, Next
+  // answers each one with a 308 to the slashless URL before the rewrite below
+  // ever sees it — an extra round trip on every event, and a real risk of
+  // losing the $pageleave beacon sent as a tab closes. This turns that
+  // automatic redirect off for the whole site, so the first entry in
+  // redirects() puts it back for every path except the proxy.
+  skipTrailingSlashRedirect: true,
   // The article loader reads content/articles at request time (see
   // src/lib/articles/loader.ts). Next traces a route's file dependencies
   // statically, and a path built with path.join(process.cwd(), ...) is
@@ -123,8 +130,28 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async rewrites() {
+    // Reverse proxy for PostHog (EU). The path must match POSTHOG_PROXY_PATH
+    // in src/lib/posthog.ts. Order matters: the two asset rules have to come
+    // before the catch-all or the SDK's own scripts get sent to the ingestion
+    // host and 404.
+    return [
+      { source: '/relay/static/:path*', destination: 'https://eu-assets.i.posthog.com/static/:path*' },
+      { source: '/relay/array/:path*', destination: 'https://eu-assets.i.posthog.com/array/:path*' },
+      { source: '/relay/:path*', destination: 'https://eu.i.posthog.com/:path*' },
+    ];
+  },
   async redirects() {
     return [
+      {
+        // Replaces the trailing-slash redirect that skipTrailingSlashRedirect
+        // switches off above: /seo/ still goes to /seo, so there is never a
+        // second indexable URL for a page. Everything under /relay is left
+        // alone because PostHog needs its slashes.
+        source: '/:path((?!relay/).+)/',
+        destination: '/:path',
+        permanent: true,
+      },
       {
         source: '/:path*',
         has: [{ type: 'host', value: 'consultico.co.uk' }],

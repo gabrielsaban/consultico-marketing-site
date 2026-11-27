@@ -17,3 +17,24 @@ export const POSTHOG_KEY =
 
 export const POSTHOG_HOST =
   process.env.NEXT_PUBLIC_POSTHOG_HOST ?? 'https://eu.i.posthog.com';
+
+/**
+ * Browser traffic goes through our own domain, not straight to PostHog.
+ *
+ * Ad blockers and privacy extensions block requests to *.posthog.com by host
+ * name, so a direct setup silently loses those visitors — PostHog's own
+ * estimate is 10-30% of events. The rewrites in next.config.ts forward this
+ * path to the EU hosts above, so the data still lands in the EU.
+ *
+ * ⚠️ Browser only. Server-side capture (lib/reports/telemetry.ts) keeps using
+ * POSTHOG_HOST: a relative path means nothing on the server, and nothing
+ * blocks a server-to-server request anyway.
+ *
+ * ⚠️ The name is deliberately bland. PostHog's docs warn that blockers match
+ * obvious paths like /analytics, /tracking or /posthog. If this is renamed,
+ * rename the rewrites and the trailing-slash redirect in next.config.ts too.
+ */
+export const POSTHOG_PROXY_PATH = '/relay';
+
+/** Where "view in PostHog" links and the toolbar point, since api_host is now ours. */
+export const POSTHOG_UI_HOST = 'https://eu.posthog.com';
