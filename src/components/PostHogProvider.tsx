@@ -51,6 +51,11 @@ export default function PostHogProvider() {
           // smaller answer to give if anyone asks what we retain.
           person_profiles: 'identified_only',
           capture_pageview: false,
+          // posthog-js only sends $pageleave by default when it is also
+          // capturing pageviews itself. With manual pageviews it goes silent,
+          // and PostHog's bounce rate and session duration become unreliable
+          // (flagged by its installation health check, 2026-11-27).
+          capture_pageleave: true,
           // We do not run PostHog surveys and have never created one, but the
           // SDK fetches surveys.js (33KB) at runtime regardless. Measured on the
           // live homepage 2026-09-09, where analytics accounted for 271KB of the
