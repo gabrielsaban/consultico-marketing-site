@@ -30,6 +30,19 @@ import { POSTHOG_KEY, POSTHOG_PROXY_PATH, POSTHOG_UI_HOST } from '@/lib/posthog'
  * covers session recording, autocapture and web vitals, because all of them
  * start from init(). Declining and not answering are the same thing here.
  */
+/**
+ * The private client-report area.
+ *
+ * Session replay is a video-like copy of the page. On a report that would be a
+ * client's own numbers and plan sitting in a third-party analytics tool, which
+ * is exactly what lib/reports/track.ts promises never happens ("report content
+ * of any kind"). The named report events still fire; only the recording stops.
+ * PostHog's replay settings carry a matching URL blocklist as a second lock.
+ */
+function isReportPath(pathname: string): boolean {
+  return pathname === '/r' || pathname.startsWith('/r/');
+}
+
 export default function PostHogProvider() {
   // Deliberately NOT useSearchParams(): it opts every statically rendered page
   // into dynamic rendering (and fails the build without a Suspense boundary),
@@ -83,6 +96,13 @@ export default function PostHogProvider() {
           // 582KB of JavaScript on the page. Turn this back on the day we
           // actually build a survey, not before.
           disable_surveys: true,
+          // Uncaught errors and unhandled promise rejections become $exception
+          // events, grouped into issues under Error tracking and linked to the
+          // visit they happened in. Without it a broken page is invisible
+          // until somebody tells us.
+          capture_exceptions: true,
+          // Never record a client report. See isReportPath below.
+          disable_session_recording: isReportPath(window.location.pathname),
         });
       })
       .catch((error: unknown) => {
@@ -105,6 +125,11 @@ export default function PostHogProvider() {
         if (!posthog.__loaded) return;
 
         posthog.capture('$pageview', { $current_url: window.location.href });
+
+        // Recording follows the route: off on a client report, back on when
+        // they leave it. Starting an already-running recording does nothing.
+        if (isReportPath(pathname)) posthog.stopSessionRecording();
+        else posthog.startSessionRecording();
       })
       .catch(() => {
         // Already logged on init; a missed pageview is not worth a second error.
