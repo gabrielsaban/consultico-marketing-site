@@ -4,6 +4,24 @@ import { sanitiseAttribution } from '@/lib/server/abuse';
 /**
  * Pushes a lead or subscriber into GoHighLevel.
  *
+ * ── Two routes in, chosen by which env vars exist ──
+ * 1. THE API (preferred). Set GHL_API_TOKEN (a Private Integration token) and
+ *    GHL_LOCATION_ID. The contact is upserted, tagged and given a note, and we
+ *    get an answer back: we know it landed and we know the contact's id. That
+ *    id is what anything later hangs off — an opportunity in a pipeline, an
+ *    estimate, a quote.
+ * 2. AN INBOUND WEBHOOK (fallback). Set GHL_WEBHOOK_URL. Fire-and-forget; a
+ *    workflow on the GHL side does the mapping.
+ * With neither set, this does nothing and the site carries on. See
+ * sendViaApi and sendViaWebhook below.
+ *
+ * In the API route, GHL workflows are triggered by the TAGS (for example
+ * "Contact Tag: apply-form added"), not by a webhook trigger.
+ *
+ * ⚠️ THE TOKEN IS A PASSWORD TO THE CRM. Same rule as the webhook URL below,
+ * only more so: env var only, never in code, a comment, a log line or a commit
+ * message. This repository is public.
+ *
  * ── Why a webhook and not the API ──
  * A GHL inbound webhook is a plain POST to a URL that a workflow listens on.
  * No OAuth dance, no token refresh, no SDK, and the field mapping lives in GHL
@@ -58,6 +76,12 @@ export interface GhlContactPayload {
   consent_at?: string;
   /** How did you hear about us — free text, contact form only. */
   heard_about?: string;
+  /**
+   * What they wrote. API route only: it becomes a note on the contact, so an
+   * application's answers sit in the CRM next to the person rather than only
+   * in an inbox. The webhook route has never carried it and still does not.
+   */
+  message?: string;
   /** Flattened first_/last_ touch attribution. */
   attribution?: Record<string, string>;
 }
@@ -85,12 +109,106 @@ function resolveWebhookUrl(formType: GhlFormType): string | undefined {
   return specific ?? getServerEnv('GHL_WEBHOOK_URL');
 }
 
-export async function sendToGhl(payload: GhlContactPayload): Promise<void> {
-  const url = resolveWebhookUrl(payload.form_type);
+const GHL_API_BASE = 'https://services.leadconnectorhq.com';
 
-  // Not configured yet is a normal state, not an error. The site has to work
-  // before the webhook exists, and it has to keep working if Paul rotates it.
-  if (!url) return;
+/**
+ * One call to the GHL API. Returns the parsed body, or null on any failure —
+ * callers decide what a failure means; nothing here throws.
+ */
+async function ghlApi(token: string, path: string, body: unknown): Promise<Record<string, unknown> | null> {
+  try {
+    const response = await fetch(`${GHL_API_BASE}${path}`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        // GHL's current reference says to send `v3`; its older examples use a
+        // dated version. Overridable so a change on their side is a config
+        // edit, not a deploy.
+        Version: getServerEnv('GHL_API_VERSION') ?? 'v3',
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify(body),
+      signal: AbortSignal.timeout(8000),
+    });
+
+    if (!response.ok) {
+      // Status and GHL's own message only. Never the request: it holds the
+      // token and a person's details.
+      console.error(`GHL API ${path.replace(/\/[A-Za-z0-9]{12,}\//, '/:id/')} failed:`, response.status, (await response.text()).slice(0, 300));
+      return null;
+    }
+
+    return (await response.json()) as Record<string, unknown>;
+  } catch (error) {
+    console.error('GHL API request failed:', error instanceof Error ? error.message : 'unknown error');
+    return null;
+  }
+}
+
+/** The note that travels with the contact: what they said and where they came from. */
+function buildNote(payload: GhlContactPayload): string {
+  const a = sanitiseAttribution(payload.attribution);
+  const firstTouch = [a.first_utm_source, a.first_utm_medium, a.first_utm_campaign].filter(Boolean).join(' / ');
+
+  const lines = [
+    `Website form: ${payload.source}`,
+    payload.message ? `\n${payload.message}\n` : '',
+    payload.heard_about ? `Heard about us: ${payload.heard_about}` : '',
+    `First touch: ${firstTouch || a.first_referrer || 'direct / none'}`,
+    a.first_landing_page ? `First landed on: ${a.first_landing_page}` : '',
+    a.last_referrer ? `This visit came from: ${a.last_referrer}` : '',
+    // The consent proof stays attached to the person. See marketing_consent.
+    payload.marketing_consent
+      ? `\nMarketing consent given ${payload.consent_at ?? ''} (text version ${payload.consent_version ?? 'unknown'}):\n"${payload.consent_text ?? ''}"`
+      : '',
+  ];
+
+  return lines.filter(Boolean).join('\n');
+}
+
+/**
+ * Upsert the contact, then tag it and attach the note.
+ *
+ * ⚠️ TAGS ARE NOT SENT ON THE UPSERT, ON PURPOSE. GHL documents that `tags` on
+ * an upsert overwrites every tag the contact already has. Someone already
+ * tagged as a client who fills in the contact form would silently lose it. The
+ * separate add-tags call appends instead, and it is also what fires a
+ * "Contact Tag" workflow trigger.
+ */
+async function sendViaApi(token: string, locationId: string, payload: GhlContactPayload): Promise<boolean> {
+  const fullName = payload.name?.trim() ?? '';
+  const [firstName, ...rest] = fullName.split(/\s+/);
+
+  const upsert = await ghlApi(token, '/contacts/upsert', {
+    locationId,
+    email: payload.email,
+    ...(fullName ? { name: fullName, firstName, lastName: rest.join(' ') || undefined } : {}),
+    ...(payload.phone ? { phone: payload.phone } : {}),
+    ...(payload.business ? { companyName: payload.business } : {}),
+    ...(payload.website ? { website: payload.website } : {}),
+    source: `Website: ${payload.source}`,
+  });
+
+  const contact = upsert?.contact as { id?: string } | undefined;
+  if (!contact?.id) return false;
+
+  // Independent of each other, so together. A missing note is not worth
+  // failing the whole thing over; missing tags is, because the tags are what
+  // the workflows listen for.
+  const [tagged] = await Promise.all([
+    ghlApi(token, `/contacts/${contact.id}/tags`, { tags: payload.tags }),
+    ghlApi(token, `/contacts/${contact.id}/notes`, { body: buildNote(payload) }),
+  ]);
+
+  return tagged !== null;
+}
+
+async function sendViaWebhook(url: string, payload: GhlContactPayload): Promise<boolean> {
+  // `message` stays out of the webhook body: existing workflows were mapped
+  // without it, and a webhook URL is a weaker secret than the API token.
+  const { message: _message, ...rest } = payload;
+  void _message;
 
   try {
     const response = await fetch(url, {
@@ -100,9 +218,9 @@ export async function sendToGhl(payload: GhlContactPayload): Promise<void> {
       // tracking keys and spread FIRST: nothing in it can overwrite the
       // server-set email, tags, form_type or consent fields.
       body: JSON.stringify({
-        ...sanitiseAttribution(payload.attribution),
-        ...payload,
-        attribution: sanitiseAttribution(payload.attribution),
+        ...sanitiseAttribution(rest.attribution),
+        ...rest,
+        attribution: sanitiseAttribution(rest.attribution),
         submitted_at: new Date().toISOString(),
       }),
       // GHL occasionally sits on a request. Without this the serverless
@@ -113,8 +231,47 @@ export async function sendToGhl(payload: GhlContactPayload): Promise<void> {
 
     if (!response.ok) {
       console.error('GHL webhook rejected the request:', response.status, await response.text());
+      return false;
     }
+    return true;
   } catch (error) {
     console.error('GHL webhook failed:', error);
+    return false;
   }
+}
+
+/**
+ * Returns whether GHL definitely has the contact. `false` covers "not
+ * configured" as well as "failed" — either way, nothing on the GHL side can be
+ * relied on to act, and the caller should do the job itself.
+ */
+export async function sendToGhl(payload: GhlContactPayload): Promise<boolean> {
+  const token = getServerEnv('GHL_API_TOKEN');
+  const locationId = getServerEnv('GHL_LOCATION_ID');
+
+  if (token && locationId) {
+    return sendViaApi(token, locationId, payload);
+  }
+
+  const url = resolveWebhookUrl(payload.form_type);
+
+  // Not configured yet is a normal state, not an error. The site has to work
+  // before either route exists, and it has to keep working if Paul rotates a
+  // token or a URL.
+  if (!url) return false;
+
+  return sendViaWebhook(url, payload);
+}
+
+/**
+ * Whether a GHL workflow, rather than this site, sends the visitor their
+ * confirmation email.
+ *
+ * Off by default. Turn it on (GHL_SENDS_CONFIRMATION=true) only once the
+ * workflow that sends it is published and tested, because from that moment the
+ * site stops sending its own. If the push to GHL fails, the site sends the
+ * confirmation itself after all — see the contact-form route.
+ */
+export function ghlSendsConfirmation(): boolean {
+  return getServerEnv('GHL_SENDS_CONFIRMATION')?.toLowerCase() === 'true';
 }

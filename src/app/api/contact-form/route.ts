@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getNotificationRecipient, sendResendEmail, upsertFormSession, type FormSessionStatus } from '@/lib/server/formSessions';
-import { sendToGhl } from '@/lib/server/ghl';
+import { ghlSendsConfirmation, sendToGhl } from '@/lib/server/ghl';
 import { GENERIC_ERROR, capText, ipOverLimit, recipientOverLimit, safeGreetingName, sanitiseAttribution } from '@/lib/server/abuse';
 
 type ContactFormPayload = {
@@ -79,7 +79,36 @@ function formatAttribution(a: Record<string, string>): string {
   return lines.join('\n');
 }
 
-async function sendContactEmails(payload: ReturnType<typeof normalisePayload>) {
+/** The "we got it" email to the visitor. Sent by us, or by a GHL workflow. */
+async function sendConfirmationEmail(payload: ReturnType<typeof normalisePayload>) {
+  // The confirmation goes to whatever address was typed, so it repeats nothing
+  // the visitor wrote (bar a name that passes safeGreetingName). Otherwise the
+  // form is a free way to send any text from our domain to anyone.
+  const userText = [
+    `Hi ${safeGreetingName(payload.name)},`,
+    '',
+    payload.isApplication ? 'Thanks for applying to work with Consultico.' : 'Thanks for getting in touch with Consultico.',
+    '',
+    payload.isApplication
+      ? 'We read every application ourselves and will reply within one working day to book your call.'
+      : 'We have received your message and will come back to you as soon as possible.',
+    '',
+    'Consultico',
+  ].join('\n');
+
+  await sendResendEmail({
+    to: payload.email,
+    subject: payload.isApplication ? 'We received your Consultico application' : 'We received your Consultico message',
+    text: userText,
+  });
+}
+
+/**
+ * `includeConfirmation` is false when a GHL workflow owns the visitor's
+ * confirmation. The internal notification is ALWAYS sent from here: it is the
+ * one copy of the lead that does not depend on GHL being up or configured.
+ */
+async function sendContactEmails(payload: ReturnType<typeof normalisePayload>, includeConfirmation: boolean) {
   if (!isValidEmail(payload.email)) {
     throw new Error('Valid email required for contact submission');
   }
@@ -100,32 +129,13 @@ async function sendContactEmails(payload: ReturnType<typeof normalisePayload>) {
     formatAttribution(payload.attribution).replace('{{HEARD}}', payload.heardAbout || 'Not answered'),
   ].join('\n');
 
-  // The confirmation goes to whatever address was typed, so it repeats nothing
-  // the visitor wrote (bar a name that passes safeGreetingName). Otherwise the
-  // form is a free way to send any text from our domain to anyone.
-  const userText = [
-    `Hi ${safeGreetingName(payload.name)},`,
-    '',
-    payload.isApplication ? 'Thanks for applying to work with Consultico.' : 'Thanks for getting in touch with Consultico.',
-    '',
-    payload.isApplication
-      ? 'We read every application ourselves and will reply within one working day to book your call.'
-      : 'We have received your message and will come back to you as soon as possible.',
-    '',
-    'Consultico',
-  ].join('\n');
-
   await Promise.all([
     sendResendEmail({
       to: getNotificationRecipient('contact'),
       subject: `${payload.isApplication ? 'New application' : 'New contact form submission'}: ${payload.business || payload.email}`,
       text: internalText,
     }),
-    sendResendEmail({
-      to: payload.email,
-      subject: payload.isApplication ? 'We received your Consultico application' : 'We received your Consultico message',
-      text: userText,
-    }),
+    includeConfirmation ? sendConfirmationEmail(payload) : Promise.resolve(),
   ]);
 }
 
@@ -170,7 +180,8 @@ export async function POST(request: Request) {
         console.warn('Contact form: recipient over hourly limit, not sending');
         return NextResponse.json({ ok: true });
       }
-      await sendContactEmails(data);
+      const ghlConfirms = ghlSendsConfirmation();
+      await sendContactEmails(data, !ghlConfirms);
       await saveFormSession().catch((error: unknown) => {
         console.error('Contact form session save failed after email send:', error);
       });
@@ -183,7 +194,7 @@ export async function POST(request: Request) {
       // and no newsletter tag. Adding a contact enquiry to a marketing list
       // because they happened to land in the same CRM is precisely the kind of
       // thing PECR exists to stop.
-      await sendToGhl({
+      const inGhl = await sendToGhl({
         form_type: 'contact',
         email: data.email,
         name: data.name,
@@ -193,8 +204,18 @@ export async function POST(request: Request) {
         source: data.isApplication ? 'apply-form' : 'contact-form',
         tags: data.isApplication ? ['lead', 'apply-form'] : ['lead', 'contact-form'],
         heard_about: data.heardAbout,
+        message: data.message,
         attribution: data.attribution,
       });
+
+      // GHL was meant to send the confirmation but never got the contact, so
+      // no workflow will fire. Send it ourselves rather than leave someone who
+      // just applied hearing nothing.
+      if (ghlConfirms && !inGhl) {
+        await sendConfirmationEmail(data).catch((error: unknown) => {
+          console.error('Contact form fallback confirmation failed:', error);
+        });
+      }
     } else {
       await saveFormSession().catch((error: unknown) => {
         console.error('Contact form draft save failed:', error);
