@@ -88,6 +88,24 @@ export async function POST(request: Request) {
     const source = payload.source?.trim() || 'unknown';
     const now = new Date().toISOString();
 
+    // GHL is the list, so the subscriber goes in with the consent proof
+    // attached. It also SENDS THE WELCOME EMAIL: the 'newsletter' tag starts
+    // the "Website: Newsletter signup - welcome" workflow there. So this runs
+    // before the notification below, which needs to know whether it worked.
+    // Non-fatal: sendToGhl reports failure instead of throwing.
+    const inGhl = await sendToGhl({
+      form_type: 'newsletter',
+      email,
+      website,
+      source,
+      tags: ['newsletter', 'website-signup', `source:${source}`],
+      marketing_consent: true,
+      consent_text: NEWSLETTER_CONSENT_TEXT,
+      consent_version: NEWSLETTER_CONSENT_VERSION,
+      consent_at: now,
+      attribution: payload.attribution,
+    });
+
     const internalText = [
       'New newsletter signup',
       '',
@@ -100,31 +118,31 @@ export async function POST(request: Request) {
       `First touch: ${payload.attribution?.first_utm_source || payload.attribution?.first_referrer || 'direct / none'}`,
       `First landed on: ${payload.attribution?.first_landing_page || 'unknown'}`,
       '',
-      // The site has told them an email is coming very soon and no longer sends
-      // one, so this is the prompt to actually send it. Naming the file removes
-      // the one decision that would otherwise be made from memory each time.
-      'ACTION: send the welcome email from GoHighLevel.',
-      'Use welcome.html in the brand folder under emails/newsletter-welcome/',
-      'It links them to the gift form, where they pick what they want from us.',
+      // The site has told them an email is coming very soon. GoHighLevel sends
+      // it, so there is only something to do by hand when the signup did not
+      // reach GoHighLevel.
+      ...(inGhl
+        ? ['GoHighLevel has sent them the welcome email. Nothing to do.']
+        : [
+            'ACTION: this signup did NOT reach GoHighLevel, so no welcome email was sent.',
+            'Add them in GoHighLevel with the tag "newsletter" and the welcome email goes out.',
+          ]),
     ].join('\n');
 
     // THE SUBSCRIBER WELCOME EMAIL IS NOT SENT FROM HERE (Paul, 2026-09-09).
     //
     // It goes out of GoHighLevel instead, so that it sends from a
     // consultico.co.uk address with a real unsubscribe link and a reply-to that
-    // reaches a monitored inbox. RESEND_FROM_EMAIL does not currently satisfy
-    // any of those three.
-    //
-    // Sent by hand for now, so THE NOTIFICATION BELOW IS THE TRIGGER: if nobody
-    // sends it from GHL the subscriber gets nothing, and the site has already
-    // told them an email is coming shortly. This route stays the single source
-    // of the DATA and GHL owns the SENDING.
+    // reaches a monitored inbox. Since 2026-11-28 a GoHighLevel workflow sends
+    // it automatically when the 'newsletter' tag lands on the contact (above).
     //
     // Do not restore a send here until RESEND_FROM_EMAIL is on our own domain,
     // or the reason this was removed comes straight back.
     await sendResendEmail({
       to: getNotificationRecipient('contact'),
-      subject: `New newsletter signup (send the welcome email): ${email}`,
+      subject: inGhl
+        ? `New newsletter signup: ${email}`
+        : `New newsletter signup (welcome email NOT sent): ${email}`,
       text: internalText,
     });
 
@@ -150,21 +168,6 @@ export async function POST(request: Request) {
       currentStep: 1,
     }).catch((error: unknown) => {
       console.error('Newsletter signup session save failed after email send:', error);
-    });
-
-    // GHL is the list, so the subscriber goes in with the consent proof
-    // attached. Last, and non-fatal — see the note in ghl.ts.
-    await sendToGhl({
-      form_type: 'newsletter',
-      email,
-      website,
-      source,
-      tags: ['newsletter', 'website-signup', `source:${source}`],
-      marketing_consent: true,
-      consent_text: NEWSLETTER_CONSENT_TEXT,
-      consent_version: NEWSLETTER_CONSENT_VERSION,
-      consent_at: now,
-      attribution: payload.attribution,
     });
 
     return NextResponse.json({ ok: true });
