@@ -7,7 +7,7 @@ import ApplyForm from './ApplyForm';
 export const metadata: Metadata = pageMeta({
   title: 'Apply to work with us',
   description:
-    'Apply to work with Consultico. Five short steps about your brand and your goals, and we reply within one working day to book a call.',
+    'Apply to work with Consultico. Tell us about your brand and where you want it to be a year from now. Five short steps, and we reply within one working day.',
   path: '/apply',
 });
 
@@ -22,8 +22,8 @@ export default function ApplyPage() {
               Apply to work with us
             </h1>
             <p className="mt-4 font-helvetica-light text-[clamp(1.05rem,1.4vw,1.25rem)] leading-[1.6] text-gray-700 dark:text-gray-300">
-              We take on a small number of brands at a time, so we can give each one real attention. Five short steps, about
-              two minutes.
+              Tell us about your brand and where you want it to be a year from now. Working out what your marketing could
+              really do is our favourite part of the job, and this is where it starts.
             </p>
             <div className="mt-10">
               <ApplyForm />

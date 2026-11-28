@@ -13,6 +13,15 @@ import { createFormSessionId } from '@/components/ContactForm';
  * should feel like something you apply for, not a newsletter box. Each step is
  * small enough to answer in seconds, and a progress bar shows the end.
  *
+ * ── The feeling, not just the function (Paul, 2026-11-28) ──
+ * A senior decision maker should finish this page wanting the conversation.
+ * So the copy around the form is about THEIR brand and their next year, it
+ * never names a person on our side, and it does not explain the form in boxes.
+ * "About two minutes" sits on step 1, where the effort question is actually
+ * asked. The thank-you screen repeats the same four next steps as the
+ * confirmation email (brand/emails/apply-confirmation) so the page, the screen
+ * and the inbox tell one story. Change one, change the others.
+ *
  * It posts to the existing /api/contact-form with formSource 'apply', so
  * applications land in the same inbox, Supabase table and GHL as enquiries,
  * tagged 'apply-form'. The answers are packed into the message field.
@@ -57,11 +66,23 @@ const EMPTY: Answers = {
 };
 
 const STEPS = [
-  { title: 'You and your brand', hint: '' },
+  { title: 'You and your brand', hint: 'It takes about two minutes.' },
   { title: 'Your size', hint: 'It helps us suggest the right way to work together.' },
   { title: 'Where you are now', hint: 'Your monthly marketing spend, and the channels you use today.' },
   { title: 'Where you want to be', hint: '' },
   { title: 'How to reach you', hint: 'We reply within one working day.' },
+];
+
+/**
+ * The same four steps, in the same words, as the confirmation email. One call,
+ * not two: "arrange a chat" and "the consultation" are the same conversation
+ * (Paul, 2026-11-28).
+ */
+const NEXT_STEPS = [
+  'We review your application and reply within one working day.',
+  'We arrange a chat at a time that is convenient for you.',
+  'We talk through your brand and what you are hoping to achieve over the next 12 months.',
+  'If we are a good fit for you, we show you how we can help and share more insight on where to go next.',
 ];
 
 const inputClass =
@@ -204,7 +225,25 @@ export default function ApplyForm() {
           Thanks, {answers.name.split(' ')[0]}. Your application is in.
         </h2>
         <p className="mt-4 font-helvetica-light text-[1.1rem] leading-[1.6] text-gray-700 dark:text-gray-300">
-          We read every application ourselves and will email you within one working day to book a call.
+          Thank you for telling us about {answers.business.trim() || 'your brand'}. We read every application personally,
+          and we&apos;re looking forward to reading yours.
+        </p>
+        <h3 className="mt-8 font-futura text-[1.2rem] font-bold text-[#1B2A4A] dark:text-white">Here&apos;s what happens next</h3>
+        <ol className="mt-4 space-y-3 font-helvetica-light text-[1.05rem] leading-[1.6] text-gray-700 dark:text-gray-300">
+          {NEXT_STEPS.map((text, index) => (
+            <li key={text} className="flex gap-3">
+              <span
+                aria-hidden="true"
+                className="mt-[0.2em] flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-blue font-helvetica text-[0.8rem] font-semibold text-white"
+              >
+                {index + 1}
+              </span>
+              <span>{text}</span>
+            </li>
+          ))}
+        </ol>
+        <p className="mt-6 font-helvetica-light text-[1.05rem] leading-[1.6] text-gray-700 dark:text-gray-300">
+          A note with all of this is on its way to your inbox.
         </p>
         {smaller && (
           <p className="mt-4 font-helvetica-light text-[1.1rem] leading-[1.6] text-gray-700 dark:text-gray-300">
