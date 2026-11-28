@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { captureAttribution } from '@/lib/attribution';
+import { useConsent } from '@/lib/consent';
 import { POSTHOG_KEY, POSTHOG_PROXY_PATH, POSTHOG_UI_HOST } from '@/lib/posthog';
 
 /**
@@ -22,6 +23,12 @@ import { POSTHOG_KEY, POSTHOG_PROXY_PATH, POSTHOG_UI_HOST } from '@/lib/posthog'
  * one pageview per actual route change. It is set explicitly rather than left
  * to the `defaults` string so a future posthog-js release cannot quietly change
  * the behaviour underneath us.
+ *
+ * ── Consent ──
+ * PostHog is not imported, let alone initialised, until the visitor accepts
+ * analytics in the cookie banner (see lib/consent.ts). That one gate also
+ * covers session recording, autocapture and web vitals, because all of them
+ * start from init(). Declining and not answering are the same thing here.
  */
 export default function PostHogProvider() {
   // Deliberately NOT useSearchParams(): it opts every statically rendered page
@@ -29,15 +36,20 @@ export default function PostHogProvider() {
   // which is a heavy price for query strings this site barely uses. Reading
   // window.location in the effect gives the same URL with none of that.
   const pathname = usePathname();
+  const consented = useConsent() === 'granted';
 
-  // Init once.
+  // Init once, and only after consent.
   useEffect(() => {
-    let cancelled = false;
-
     // Runs BEFORE the PostHog import resolves and independently of it, because
     // first-touch attribution has to survive an ad blocker killing analytics.
-    // It is plain localStorage — no network, nothing to block.
-    captureAttribution();
+    // Without consent it only notes this visit's source in memory, so a form
+    // sent from this page still carries it; nothing is written to the browser
+    // until they accept.
+    captureAttribution(consented);
+
+    if (!consented) return;
+
+    let cancelled = false;
 
     import('posthog-js')
       .then(({ default: posthog }) => {
@@ -81,11 +93,12 @@ export default function PostHogProvider() {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [consented]);
 
-  // One pageview per route change, including the first.
+  // One pageview per route change, including the first — and one for the page
+  // they are on at the moment they accept.
   useEffect(() => {
-    if (!pathname) return;
+    if (!pathname || !consented) return;
 
     import('posthog-js')
       .then(({ default: posthog }) => {
@@ -96,7 +109,7 @@ export default function PostHogProvider() {
       .catch(() => {
         // Already logged on init; a missed pageview is not worth a second error.
       });
-  }, [pathname]);
+  }, [pathname, consented]);
 
   return null;
 }

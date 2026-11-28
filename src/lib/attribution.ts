@@ -53,16 +53,30 @@ function readCurrent(): AttributionData {
 }
 
 /**
- * Call once, as early as possible on every page load.
+ * What this page load told us, held in memory only. It is read once, on the
+ * first call, because that is the genuine entry: later calls happen after
+ * in-site navigation, when the referrer is our own domain.
+ */
+let entry: AttributionData | null = null;
+
+/**
+ * Call as early as possible on every page load, and again when consent changes.
+ *
+ * `persist` is whether the visitor has accepted analytics. Without it nothing
+ * is written to their browser — the entry is kept in memory for this page load
+ * only, which is enough for a form submitted before they navigate away.
  *
  * Deliberately quiet: every read and write is wrapped, because storage throws
  * outright in some contexts (Safari private mode, blocked site data) and losing
  * attribution must never take the page down with it.
  */
-export function captureAttribution(): void {
+export function captureAttribution(persist: boolean): void {
   if (typeof window === 'undefined') return;
 
-  const current = readCurrent();
+  if (!entry) entry = readCurrent();
+  const current = entry;
+
+  if (!persist) return;
 
   try {
     // First touch is written once and then left alone forever.
@@ -105,8 +119,10 @@ function read(storage: Storage | undefined, key: string): AttributionData | unde
 export function getAttribution(): Record<string, string> {
   if (typeof window === 'undefined') return {};
 
-  const first = read(window.localStorage, FIRST_TOUCH_KEY);
-  const last = read(window.sessionStorage, LAST_TOUCH_KEY);
+  // Falls back to the in-memory entry when nothing is stored, which is the
+  // case for anyone who has not accepted analytics.
+  const first = read(window.localStorage, FIRST_TOUCH_KEY) ?? entry ?? undefined;
+  const last = read(window.sessionStorage, LAST_TOUCH_KEY) ?? entry ?? undefined;
   const out: Record<string, string> = {};
 
   for (const [key, value] of Object.entries(first ?? {})) {

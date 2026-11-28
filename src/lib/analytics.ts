@@ -1,3 +1,4 @@
+import { hasConsent } from '@/lib/consent';
 import { trackGaEvent } from '@/lib/google-analytics';
 
 /**
@@ -19,6 +20,10 @@ export function track(event: string, props?: AnalyticsProps) {
   trackGaEvent(event, props);
 
   if (typeof window === 'undefined') return;
+
+  // No consent, no PostHog — and no point downloading it either. GA4 above is
+  // already a no-op here because its script is never loaded without consent.
+  if (!hasConsent()) return;
 
   // Dynamic import so this never pulls posthog-js into a page's bundle just by
   // being imported — the provider already loads it lazily after hydration, and
@@ -47,6 +52,7 @@ export function track(event: string, props?: AnalyticsProps) {
  */
 export function identify(email: string, props?: AnalyticsProps) {
   if (typeof window === 'undefined') return;
+  if (!hasConsent()) return;
 
   import('posthog-js')
     .then(({ default: posthog }) => {

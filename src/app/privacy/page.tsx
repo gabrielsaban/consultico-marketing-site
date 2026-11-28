@@ -42,7 +42,7 @@ const sections = [
   },
   {
     title: 'Cookies and analytics',
-    body: 'We use cookies and similar technologies for essential site function and analytics, including Google Analytics 4 (usage data such as pages visited and general location). Vercel Analytics and Speed Insights may also collect anonymised performance data. You can control cookies through your browser settings.',
+    body: 'We only use analytics if you accept it in the cookie banner. If you decline, or do not answer, no analytics scripts are loaded and nothing is stored on your device except a record of your choice. If you accept, we use: PostHog (hosted in the EU), which records pages visited, clicks, approximate location and page speed, and makes session recordings that replay how a visit went, with text typed into form fields masked; Google Analytics 4, which records usage data such as pages visited and general location; and Vercel Analytics and Speed Insights, which collect anonymised traffic and performance data. We also store the page and source you first arrived from in your browser, so that if you contact us we know how you found us. PostHog requests are routed through our own domain. You can change your choice at any time using the "Cookie settings" link at the bottom of every page; withdrawing removes the analytics cookies and stored data from your browser.',
   },
 ];
 
@@ -57,7 +57,7 @@ export default function PrivacyPage() {
           </p>
           <h1 className="font-futura text-[clamp(2rem,3vw,2.75rem)] font-bold text-brand-blue">Privacy Policy</h1>
           <p className="mt-4 font-helvetica-light text-[0.95rem] text-gray-600 dark:text-gray-400">
-            Last updated: June 2026.
+            Last updated: November 2026.
           </p>
 
           <div className="mt-10 space-y-8">

@@ -11,6 +11,8 @@
  * opaque token and is the only identifier.
  */
 
+import { hasConsent } from '@/lib/consent';
+
 type ReportEvent =
   | 'report_section_opened'
   | 'report_resource_opened'
@@ -19,6 +21,8 @@ type ReportEvent =
 
 export function trackReport(event: ReportEvent, props: Record<string, string | number | boolean>) {
   if (typeof window === 'undefined') return;
+  // Same rule as the rest of the site: nothing without consent.
+  if (!hasConsent()) return;
 
   // Dynamic import so posthog-js is never pulled into a report's bundle just
   // by importing this module — the same pattern src/lib/analytics.ts uses.

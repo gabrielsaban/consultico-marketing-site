@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import Container from '@/components/Container';
+import CookieSettingsButton from '@/components/CookieSettingsButton';
 import NewsletterSignup from '@/components/NewsletterSignup';
 import {
   CONSULTICO_ADDRESS,
@@ -220,6 +221,7 @@ export default function Footer() {
               <Link href="/terms" className="hover:text-white transition-colors">
                 Terms & Conditions
               </Link>
+              <CookieSettingsButton className="hover:text-white transition-colors" />
               <Link href="/contact" className="hover:text-white transition-colors">
                 Contact
               </Link>

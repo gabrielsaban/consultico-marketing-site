@@ -14,6 +14,8 @@ import SitePreloader from "@/components/SitePreloader";
 import { PreloaderProvider } from "@/components/PreloaderContext";
 import PreloaderGate from "@/components/PreloaderGate";
 import PostHogProvider from "@/components/PostHogProvider";
+import ConsentGate from "@/components/ConsentGate";
+import CookieConsent from "@/components/CookieConsent";
 import { serializeJsonLd, siteJsonLd } from "@/lib/schema";
 import { GA_MEASUREMENT_ID } from "@/lib/google-analytics";
 
@@ -115,9 +117,18 @@ export default function RootLayout({
             </SiteMenuProvider>
           </PreloaderGate>
           <ClientEffectsRoot />
+          {/* Inside the provider so it can wait for the preloader to clear. */}
+          <CookieConsent />
         </PreloaderProvider>
-        <Analytics />
-        <SpeedInsights />
+        {/*
+          Nothing in here is requested until the visitor accepts analytics in
+          the cookie banner. See src/lib/consent.ts for the rule.
+        */}
+        <ConsentGate>
+          <Analytics />
+          <SpeedInsights />
+          <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
+        </ConsentGate>
         {/*
           Last in the body and lazily imported, so analytics loads after the
           page is interactive rather than competing with it. Mobile LCP on the
@@ -126,7 +137,6 @@ export default function RootLayout({
         */}
         <PostHogProvider />
       </body>
-      <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
     </html>
   );
 }
