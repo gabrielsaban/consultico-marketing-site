@@ -118,6 +118,37 @@ function formatAttribution(a: Record<string, string>): string {
   return lines.join('\n');
 }
 
+/**
+ * The body of the internal notification.
+ *
+ * For an application, the answers are laid out here from the validated
+ * `application` object rather than trusting the `message` the browser packed.
+ * The form does pack them, but anything that posts without going through the
+ * form (a test, an old cached page, a future second form) would otherwise
+ * arrive as an application with no answers in it — which is exactly what the
+ * first API-driven tests looked like in Paul's inbox on 2026-11-28.
+ */
+function messageSection(payload: ReturnType<typeof normalisePayload>): string[] {
+  const a = payload.application;
+  const hasAnswers = a && (a.revenue || a.team || a.spend || a.start || a.goal || a.channels?.length);
+
+  if (!payload.isApplication || !hasAnswers) {
+    return ['Message:', payload.message || 'Not provided'];
+  }
+
+  return [
+    '--- Their answers ---',
+    `Yearly revenue: ${a.revenue || 'Not answered'}`,
+    `Marketing team: ${a.team || 'Not answered'}`,
+    `Monthly marketing spend: ${a.spend || 'Not answered'}`,
+    `Channels now: ${a.channels?.length ? a.channels.join(', ') : 'None ticked'}`,
+    `Wants to start: ${a.start || 'Not answered'}`,
+    '',
+    'Goal for the next 12 months:',
+    a.goal || 'Not answered',
+  ];
+}
+
 /** The "we got it" email to the visitor. Sent by us, or by a GHL workflow. */
 async function sendConfirmationEmail(payload: ReturnType<typeof normalisePayload>) {
   // The confirmation goes to whatever address was typed, so it repeats nothing
@@ -161,8 +192,7 @@ async function sendContactEmails(payload: ReturnType<typeof normalisePayload>, i
     `Phone: ${payload.phone || 'Not provided'}`,
     `Website: ${payload.companyWebsite || 'Not provided'}`,
     '',
-    'Message:',
-    payload.message || 'Not provided',
+    ...messageSection(payload),
     '',
     '--- Where they came from ---',
     formatAttribution(payload.attribution).replace('{{HEARD}}', payload.heardAbout || 'Not answered'),
