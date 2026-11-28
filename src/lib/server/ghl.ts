@@ -112,13 +112,25 @@ function resolveWebhookUrl(formType: GhlFormType): string | undefined {
 const GHL_API_BASE = 'https://services.leadconnectorhq.com';
 
 /**
+ * Tags that a published GHL workflow uses as its trigger, and which must fire
+ * again on every submission. Keep in step with the workflows named
+ * "Website: ... - confirmation" in GHL.
+ */
+const WORKFLOW_TRIGGER_TAGS = new Set(['apply-form', 'contact-form']);
+
+/**
  * One call to the GHL API. Returns the parsed body, or null on any failure —
  * callers decide what a failure means; nothing here throws.
  */
-async function ghlApi(token: string, path: string, body: unknown): Promise<Record<string, unknown> | null> {
+async function ghlApi(
+  token: string,
+  path: string,
+  body: unknown,
+  method: 'POST' | 'DELETE' = 'POST',
+): Promise<Record<string, unknown> | null> {
   try {
     const response = await fetch(`${GHL_API_BASE}${path}`, {
-      method: 'POST',
+      method,
       headers: {
         Authorization: `Bearer ${token}`,
         // GHL's current reference says to send `v3`; its older examples use a
@@ -220,6 +232,19 @@ async function sendViaApi(token: string, locationId: string, payload: GhlContact
       ...(payload.website ? { website: payload.website } : {}),
       source: `Website: ${payload.source}`,
     });
+  }
+
+  // ⚠️ A "Contact Tag added" trigger only fires when the tag is NEW to the
+  // contact. Found on the first live run (2026-11-28): a second application
+  // from the same address enrolled nobody, because the contact already carried
+  // `apply-form`. With GHL owning the confirmation email, that person would
+  // have heard nothing at all. So for an existing contact, the tags that
+  // workflows listen for are taken off first and then put back, which makes
+  // every submission a fresh "tag added". Only those tags: `lead`, `newsletter`
+  // and the rest are left alone, so nothing else re-fires.
+  const retrigger = payload.tags.filter((tag) => WORKFLOW_TRIGGER_TAGS.has(tag));
+  if (found?.new !== true && retrigger.length > 0) {
+    await ghlApi(token, `/contacts/${contact.id}/tags`, { tags: retrigger }, 'DELETE');
   }
 
   // Independent of each other, so together. A missing note is not worth
