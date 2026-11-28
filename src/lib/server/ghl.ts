@@ -151,8 +151,19 @@ function buildNote(payload: GhlContactPayload): string {
   const a = sanitiseAttribution(payload.attribution);
   const firstTouch = [a.first_utm_source, a.first_utm_medium, a.first_utm_campaign].filter(Boolean).join(' / ');
 
+  // What they typed about themselves goes in the note every time, because for
+  // a contact that already existed it is deliberately not written to the
+  // record. See sendViaApi.
+  const typed = [
+    payload.name ? `Name given: ${payload.name}` : '',
+    payload.business ? `Business given: ${payload.business}` : '',
+    payload.phone ? `Phone given: ${payload.phone}` : '',
+    payload.website ? `Website given: ${payload.website}` : '',
+  ].filter(Boolean);
+
   const lines = [
     `Website form: ${payload.source}`,
+    ...typed,
     payload.message ? `\n${payload.message}\n` : '',
     payload.heard_about ? `Heard about us: ${payload.heard_about}` : '',
     `First touch: ${firstTouch || a.first_referrer || 'direct / none'}`,
@@ -168,7 +179,18 @@ function buildNote(payload: GhlContactPayload): string {
 }
 
 /**
- * Upsert the contact, then tag it and attach the note.
+ * Find-or-create the contact, then tag it and attach the note.
+ *
+ * ⚠️ AN EXISTING CONTACT'S DETAILS ARE NEVER OVERWRITTEN. The first upsert
+ * sends the email address and nothing else, so for someone already in the CRM
+ * it changes nothing and simply tells us who they are. Only when GHL reports
+ * the contact as new do we fill in the name, company, phone and source.
+ *
+ * This is not caution for its own sake. The first live test (2026-11-28) sent
+ * everything in one upsert, with an address that already existed, and GHL
+ * renamed that contact to whatever had been typed into the form. A public form
+ * must not be a way to rename a client in the CRM by knowing their email. What
+ * the visitor typed still reaches us either way: it is in the note.
  *
  * ⚠️ TAGS ARE NOT SENT ON THE UPSERT, ON PURPOSE. GHL documents that `tags` on
  * an upsert overwrites every tag the contact already has. Someone already
@@ -177,21 +199,28 @@ function buildNote(payload: GhlContactPayload): string {
  * "Contact Tag" workflow trigger.
  */
 async function sendViaApi(token: string, locationId: string, payload: GhlContactPayload): Promise<boolean> {
+  const found = await ghlApi(token, '/contacts/upsert', { locationId, email: payload.email });
+
+  const contact = found?.contact as { id?: string } | undefined;
+  if (!contact?.id) return false;
+
   const fullName = payload.name?.trim() ?? '';
   const [firstName, ...rest] = fullName.split(/\s+/);
 
-  const upsert = await ghlApi(token, '/contacts/upsert', {
-    locationId,
-    email: payload.email,
-    ...(fullName ? { name: fullName, firstName, lastName: rest.join(' ') || undefined } : {}),
-    ...(payload.phone ? { phone: payload.phone } : {}),
-    ...(payload.business ? { companyName: payload.business } : {}),
-    ...(payload.website ? { website: payload.website } : {}),
-    source: `Website: ${payload.source}`,
-  });
-
-  const contact = upsert?.contact as { id?: string } | undefined;
-  if (!contact?.id) return false;
+  if (found?.new === true) {
+    // Matches the contact we just created, by the same email. If this second
+    // call fails the contact still exists and still gets its tags and note,
+    // so it is not treated as a failure of the whole push.
+    await ghlApi(token, '/contacts/upsert', {
+      locationId,
+      email: payload.email,
+      ...(fullName ? { name: fullName, firstName, lastName: rest.join(' ') || undefined } : {}),
+      ...(payload.phone ? { phone: payload.phone } : {}),
+      ...(payload.business ? { companyName: payload.business } : {}),
+      ...(payload.website ? { website: payload.website } : {}),
+      source: `Website: ${payload.source}`,
+    });
+  }
 
   // Independent of each other, so together. A missing note is not worth
   // failing the whole thing over; missing tags is, because the tags are what
