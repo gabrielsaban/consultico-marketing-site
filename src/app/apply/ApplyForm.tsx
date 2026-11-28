@@ -18,7 +18,7 @@ import { createFormSessionId } from '@/components/ContactForm';
  * So the copy around the form is about THEIR brand and their next year, it
  * never names a person on our side, and it does not explain the form in boxes.
  * "About two minutes" sits on step 1, where the effort question is actually
- * asked. The thank-you screen repeats the same four next steps as the
+ * asked. The thank-you screen repeats the same next steps as the
  * confirmation email (brand/emails/apply-confirmation) so the page, the screen
  * and the inbox tell one story. Change one, change the others.
  *
@@ -74,15 +74,14 @@ const STEPS = [
 ];
 
 /**
- * The same four steps, in the same words, as the confirmation email. One call,
- * not two: "arrange a chat" and "the consultation" are the same conversation
- * (Paul, 2026-11-28).
+ * The same three steps as the confirmation email. One call, not two (Paul,
+ * 2026-11-28). They were four until nine test readers found the fourth
+ * ("if we're a good fit...") vague and read it as a sales pitch coming.
  */
 const NEXT_STEPS = [
-  'We review your application and reply within one working day.',
-  'We arrange a chat at a time that is convenient for you.',
-  'We talk through your brand and what you are hoping to achieve over the next 12 months.',
-  'If we are a good fit for you, we show you how we can help and share more insight on where to go next.',
+  'We email you within one working day to arrange a call at a time that suits you.',
+  'On the call, we start from what you told us in your application: your brand, and what you want from the next 12 months.',
+  'You come away with a clear picture of how we can help, and what we would do first.',
 ];
 
 const inputClass =
