@@ -2,6 +2,14 @@ import { NextResponse } from 'next/server';
 import { getNotificationRecipient, sendResendEmail, upsertFormSession, type FormSessionStatus } from '@/lib/server/formSessions';
 import { ghlSendsConfirmation, sendToGhl } from '@/lib/server/ghl';
 import { GENERIC_ERROR, capText, ipOverLimit, recipientOverLimit, safeGreetingName, sanitiseAttribution } from '@/lib/server/abuse';
+import {
+  APPLY_CHANNELS,
+  APPLY_REVENUE,
+  APPLY_SPEND,
+  APPLY_START,
+  APPLY_TEAM,
+  type ApplyAnswers,
+} from '@/lib/apply-options';
 
 type ContactFormPayload = {
   sessionId?: string;
@@ -20,7 +28,37 @@ type ContactFormPayload = {
   /** 'apply' for the Think First application at /apply. Changes the email subject and GHL tag only. */
   formSource?: 'contact' | 'apply';
   attribution?: Record<string, string>;
+  /** The /apply answers, unpacked. Only read when formSource is 'apply'. */
+  application?: ApplyAnswers;
 };
+
+/**
+ * The application answers, cleaned for GoHighLevel's contact fields.
+ *
+ * Everything here arrives from the browser, so the fixed-choice answers are
+ * only kept when they are one of the options the form actually offers. A field
+ * you filter contacts by, or branch a workflow on, should never hold a value a
+ * script invented. The goal is free text, so it is capped rather than matched.
+ */
+function cleanApplication(input: ApplyAnswers | undefined): ApplyAnswers | undefined {
+  if (!input || typeof input !== 'object') return undefined;
+
+  const oneOf = (value: unknown, options: readonly string[]) =>
+    typeof value === 'string' && options.includes(value) ? value : undefined;
+
+  const channels = Array.isArray(input.channels)
+    ? input.channels.filter((c): c is string => typeof c === 'string' && (APPLY_CHANNELS as readonly string[]).includes(c))
+    : [];
+
+  return {
+    revenue: oneOf(input.revenue, APPLY_REVENUE),
+    team: oneOf(input.team, APPLY_TEAM),
+    spend: oneOf(input.spend, APPLY_SPEND),
+    start: oneOf(input.start, APPLY_START),
+    channels: [...new Set(channels)],
+    goal: capText(input.goal, 2000) || undefined,
+  };
+}
 
 const MIN_SUBMIT_TIME_MS = 2500;
 
@@ -61,6 +99,7 @@ function normalisePayload(payload: ContactFormPayload) {
     message: capText(payload.message, 5000),
     heardAbout: capText(payload.heardAbout, 300),
     isApplication: payload.formSource === 'apply',
+    application: payload.formSource === 'apply' ? cleanApplication(payload.application) : undefined,
     attribution: sanitiseAttribution(payload.attribution),
   };
 }
@@ -205,6 +244,7 @@ export async function POST(request: Request) {
         tags: data.isApplication ? ['lead', 'apply-form'] : ['lead', 'contact-form'],
         heard_about: data.heardAbout,
         message: data.message,
+        application: data.application,
         attribution: data.attribution,
       });
 

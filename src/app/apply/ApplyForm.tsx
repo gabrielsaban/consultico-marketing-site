@@ -5,6 +5,7 @@ import { useRef, useState, type FormEvent } from 'react';
 import { identify, track } from '@/lib/analytics';
 import { getAttribution } from '@/lib/attribution';
 import { createFormSessionId } from '@/components/ContactForm';
+import { APPLY_CHANNELS, APPLY_REVENUE, APPLY_SPEND, APPLY_START, APPLY_TEAM } from '@/lib/apply-options';
 
 /**
  * "Apply now": a five-step application, one short question set per screen.
@@ -27,11 +28,13 @@ import { createFormSessionId } from '@/components/ContactForm';
  * tagged 'apply-form'. The answers are packed into the message field.
  */
 
-const REVENUE = ['Under £1m', '£1m to £5m', '£5m to £20m', 'Over £20m'];
-const TEAM = ['Just me', '1 to 3 people', '4 to 10 people', 'More than 10'];
-const SPEND = ['Under £2,000', '£2,000 to £10,000', '£10,000 to £50,000', 'Over £50,000'];
-const CHANNELS = ['SEO', 'Google Ads', 'Meta ads', 'Email', 'Social', 'Influencers', 'PR', 'Retail or wholesale', 'Other'];
-const START = ['As soon as possible', 'In the next 3 months', 'Later this year', 'Just exploring'];
+// The options live in lib/apply-options.ts because the API route validates
+// against the same lists before writing them to GoHighLevel fields.
+const REVENUE = [...APPLY_REVENUE];
+const TEAM = [...APPLY_TEAM];
+const SPEND = [...APPLY_SPEND];
+const CHANNELS = [...APPLY_CHANNELS];
+const START = [...APPLY_START];
 
 type Answers = {
   name: string;
@@ -203,6 +206,16 @@ export default function ApplyForm() {
           heardAbout: answers.heardAbout,
           website: answers.website,
           message,
+          // The same answers again, unpacked, so each can be saved to its own
+          // field in GoHighLevel. `message` stays: it is what the inbox reads.
+          application: {
+            revenue: answers.revenue,
+            team: answers.team,
+            spend: answers.spend,
+            channels: answers.channels,
+            start: answers.start,
+            goal: answers.goal.trim(),
+          },
           attribution: getAttribution(),
         }),
       });

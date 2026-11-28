@@ -1,5 +1,6 @@
 import { getServerEnv } from '@/lib/server/formSessions';
 import { sanitiseAttribution } from '@/lib/server/abuse';
+import type { ApplyAnswers } from '@/lib/apply-options';
 
 /**
  * Pushes a lead or subscriber into GoHighLevel.
@@ -82,6 +83,13 @@ export interface GhlContactPayload {
    * in an inbox. The webhook route has never carried it and still does not.
    */
   message?: string;
+  /**
+   * The /apply answers, already validated by the route. API route only: each
+   * one is written to its own contact field (see applicationFields) so
+   * contacts can be filtered by revenue or spend and workflows can branch on
+   * them. They are still in the note as well, as readable text.
+   */
+  application?: ApplyAnswers;
   /** Flattened first_/last_ touch attribution. */
   attribution?: Record<string, string>;
 }
@@ -158,6 +166,34 @@ async function ghlApi(
   }
 }
 
+/**
+ * The /apply answers as GoHighLevel custom fields.
+ *
+ * The keys are the fields created in GHL on 2026-11-28 (Settings > Custom
+ * Fields, in the "Additional Info" folder, each named "Application ...").
+ * ⚠️ Renaming a field in GHL does not change its key, but deleting and
+ * recreating one does. If a field stops filling, check its key there first.
+ *
+ * Empty answers are left out rather than sent blank, so a later application
+ * that skips an optional answer does not wipe what an earlier one gave.
+ */
+function applicationFields(payload: GhlContactPayload): { key: string; field_value: string }[] {
+  const a = payload.application;
+  if (!a) return [];
+
+  const pairs: [string, string | undefined][] = [
+    ['application_yearly_revenue', a.revenue],
+    ['application_marketing_team', a.team],
+    ['application_monthly_spend', a.spend],
+    ['application_channels', a.channels?.length ? a.channels.join(', ') : undefined],
+    ['application_start', a.start],
+    ['application_goal', a.goal],
+    ['application_heard_about_us', payload.heard_about || undefined],
+  ];
+
+  return pairs.filter((pair): pair is [string, string] => Boolean(pair[1])).map(([key, field_value]) => ({ key, field_value }));
+}
+
 /** The note that travels with the contact: what they said and where they came from. */
 function buildNote(payload: GhlContactPayload): string {
   const a = sanitiseAttribution(payload.attribution);
@@ -219,6 +255,11 @@ async function sendViaApi(token: string, locationId: string, payload: GhlContact
   const fullName = payload.name?.trim() ?? '';
   const [firstName, ...rest] = fullName.split(/\s+/);
 
+  // Application answers are written for new AND existing contacts. They are
+  // not identity: they describe this application, and the latest one should
+  // win. Name, company, phone and source below stay new-contact-only.
+  const customFields = applicationFields(payload);
+
   if (found?.new === true) {
     // Matches the contact we just created, by the same email. If this second
     // call fails the contact still exists and still gets its tags and note,
@@ -231,7 +272,10 @@ async function sendViaApi(token: string, locationId: string, payload: GhlContact
       ...(payload.business ? { companyName: payload.business } : {}),
       ...(payload.website ? { website: payload.website } : {}),
       source: `Website: ${payload.source}`,
+      ...(customFields.length ? { customFields } : {}),
     });
+  } else if (customFields.length) {
+    await ghlApi(token, '/contacts/upsert', { locationId, email: payload.email, customFields });
   }
 
   // ⚠️ A "Contact Tag added" trigger only fires when the tag is NEW to the
