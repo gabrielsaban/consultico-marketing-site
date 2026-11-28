@@ -90,7 +90,7 @@ export async function POST(request: Request) {
 
     // GHL is the list, so the subscriber goes in with the consent proof
     // attached. It also SENDS THE WELCOME EMAIL: the 'newsletter' tag starts
-    // the "Website: Newsletter signup - welcome" workflow there. So this runs
+    // the "Welcome Email Newsletter" workflow there. So this runs
     // before the notification below, which needs to know whether it worked.
     // Non-fatal: sendToGhl reports failure instead of throwing.
     const inGhl = await sendToGhl({
